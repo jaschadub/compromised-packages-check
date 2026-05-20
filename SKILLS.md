@@ -5,6 +5,20 @@ This file is a working guide for whoever (or whatever) is maintaining
 incidents are continuous; the list is only as good as the cadence at which
 it's refreshed.
 
+## Slash commands
+
+Two Claude Code slash commands ship in `.claude/commands/`. They activate
+automatically when this repo is cloned into a project (or installed as a
+plugin):
+
+| Command | Purpose |
+| --- | --- |
+| `/check-packages [path]` | Runs `check_compromised_packages.py` against the current repo (or `path`) and explains the result, including remediation hints if hits are found. Read-only. |
+| `/update-bad-list [advisory id / scope / URL]` | Researches a new advisory (or sweeps the standard sources when called with no argument), shows a proposed diff against the evidence threshold below, then — after confirmation — edits `NPM_BAD` / `PYPI_BAD`, updates the README's tracked-waves table, and runs a synthetic-manifest sanity check before committing. Does not push. |
+
+Both commands are thin wrappers over the workflow documented below; nothing
+in this file changes whether you invoke them by slash command or by hand.
+
 ## What "good evidence" looks like
 
 Before adding an entry to `NPM_BAD` / `PYPI_BAD`, get at least one of:
