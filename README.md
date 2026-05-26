@@ -39,17 +39,22 @@ FOUND 2 MALICIOUS PACKAGE VERSION(S):
 ```
 
 The scanner also emits a warning (no failure) for any package living under
-an advisory-affected npm scope (`@mistralai/`, `@uipath/`, `@opensearch-project/`)
-where the version doesn't exactly match the malicious list — useful for
-catching newly-disclosed entries before this repo has been updated.
+an advisory-affected npm scope (`@mistralai/`, `@uipath/`, `@opensearch-project/`,
+`@antv/`) where the version doesn't exactly match the malicious list —
+useful for catching newly-disclosed entries before this repo has been updated.
 
 ## What's tracked
 
 | Wave | Scope / Packages |
 | --- | --- |
 | TanStack — May 2026 (GHSA-g7cv-rxg3-hmpx, CVE-2026-45321) | 42 `@tanstack/*` packages, 84 versions |
-| Mini Shai-Hulud — May 2026 | `@mistralai/mistralai`, `@mistralai/mistralai-gcp`, `@mistralai/mistralai-azure`; `@opensearch-project/opensearch`; 66 `@uipath/*` packages |
+| Mini Shai-Hulud — May 2026 | `@mistralai/mistralai`, `@mistralai/mistralai-gcp`, `@mistralai/mistralai-azure`; `@opensearch-project/opensearch`; 66 `@uipath/*` packages; `@squawk/{mcp,weather,flightplan}`; `@tallyui/connector-{medusa,vendure}` |
+| @antv / atool mass wave — May 19 2026 (317 packages, 631 versions) | `@antv/{g2,g6,l7,s2,x6,scale}`, `size-sensor`, `echarts-for-react`, `timeago.js` (high-impact subset); rest covered by `@antv/` suspect scope |
+| node-ipc — May 14 2026 (GHSA-g7cv-rxg3-hmpx) | `node-ipc` 9.1.6, 9.2.3, 12.0.1 |
+| @bitwarden/cli — April 22 2026 (GHSA-g98r-qjhg-4fmr) | `@bitwarden/cli` 2026.4.0 |
+| axios — March 31 2026 (GHSA-fw8c-xr5c-95f9, Sapphire Sleet / DPRK) | `axios` 0.30.4, 1.14.1; `plain-crypto-js` 4.2.0, 4.2.1 |
 | PyPI — May 2026 | `durabletask` 1.4.1 – 1.4.3, `mistralai` 2.4.6, `guardrails-ai` 0.10.1 |
+| PyTorch Lightning — April 30 2026 (GHSA-w37p-236h-pfx3, CVE-2026-44484) | `pytorch-lightning` 2.6.2, 2.6.3 |
 | @cap-js / mbt — April 2026 | `@cap-js/sqlite` 2.2.2, `@cap-js/postgres` 2.2.2, `@cap-js/db-service` 2.10.1, `mbt` 1.2.48 |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
@@ -74,6 +79,16 @@ in `check_compromised_packages.py`. Please include:
 - [Aikido — Mini Shai-Hulud is back](https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised)
 - [Corgea — Mini Shai-Hulud supply-chain worm](https://corgea.com/research/tanstack-supply-chain-attack-mini-shai-hulud)
 - [The Hacker News — Mini Shai-Hulud worm coverage](https://thehackernews.com/2026/05/mini-shai-hulud-worm-compromises.html)
+- [Snyk — Mini Shai-Hulud hits AntV (300+ packages)](https://snyk.io/blog/mini-shai-hulud-antv-npm-supply-chain-attack/)
+- [SafeDep — Mini Shai-Hulud 314 npm packages compromised](https://safedep.io/mini-shai-hulud-strikes-again-314-npm-packages-compromised/)
+- [StepSecurity — node-ipc supply chain attack](https://www.stepsecurity.io/blog/node-ipc-npm-supply-chain-attack)
+- [The Hacker News — node-ipc stealer backdoor](https://thehackernews.com/2026/05/stealer-backdoor-found-in-3-node-ipc.html)
+- [Microsoft Security Blog — axios npm supply chain compromise](https://www.microsoft.com/en-us/security/blog/2026/04/01/mitigating-the-axios-npm-supply-chain-compromise/)
+- [Huntress — axios supply chain compromise](https://www.huntress.com/blog/supply-chain-compromise-axios-npm-package)
+- [CISA — Supply chain compromise impacts axios npm package](https://www.cisa.gov/news-events/alerts/2026/04/20/supply-chain-compromise-impacts-axios-node-package-manager)
+- [The Hacker News — Bitwarden CLI compromised](https://thehackernews.com/2026/04/bitwarden-cli-compromised-in-ongoing.html)
+- [Palo Alto Unit 42 — Bitwarden CLI impersonation attack](https://www.paloaltonetworks.com/blog/cloud-security/bitwardencli-supply-chain-attack/)
+- [GHSA-w37p-236h-pfx3 — pytorch-lightning compromise](https://github.com/Lightning-AI/pytorch-lightning/security/advisories/GHSA-w37p-236h-pfx3)
 
 ## License
 

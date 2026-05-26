@@ -4,11 +4,12 @@ check_compromised_packages.py
 
 Scan a repository for known-malicious package versions from recent npm and
 PyPI supply-chain incidents (Mini Shai-Hulud / TanStack May 2026, the April
-2026 @cap-js / mbt wave, and related Mistral / Guardrails / durabletask
-poisonings).
+2026 @cap-js / mbt wave, axios DPRK takeover March 2026, @bitwarden/cli
+April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, and
+related Mistral / Guardrails / durabletask / pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-20
+Date:      2026-05-25
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -30,6 +31,9 @@ PYPI_BAD: dict[str, set[str]] = {
     "durabletask": {"1.4.1", "1.4.2", "1.4.3"},
     "mistralai": {"2.4.6"},
     "guardrails-ai": {"0.10.1"},
+    # PyTorch Lightning maintainer compromise (April 30 2026)
+    # GHSA-w37p-236h-pfx3 / CVE-2026-44484
+    "pytorch-lightning": {"2.6.2", "2.6.3"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -159,12 +163,44 @@ NPM_BAD: dict[str, set[str]] = {
     "@uipath/vertical-solutions-tool": {"1.0.1"},
     "@uipath/vss": {"0.1.6"},
     "@uipath/widget.sdk": {"1.2.3"},
+    # axios maintainer-account takeover (March 31 2026) — Sapphire Sleet / DPRK
+    # OSV MAL-2026-2307 / GHSA-fw8c-xr5c-95f9 (axios)
+    # OSV MAL-2026-2306 / GHSA-2x9r-6wxq-hrr7 (plain-crypto-js phantom dep)
+    "axios": {"0.30.4", "1.14.1"},
+    "plain-crypto-js": {"4.2.0", "4.2.1"},
+    # @bitwarden/cli typosquat (April 22 2026) — TeamPCP / Checkmarx breach
+    # OSV MAL-2026-3020 / GHSA-g98r-qjhg-4fmr
+    "@bitwarden/cli": {"2026.4.0"},
+    # node-ipc maintainer-account takeover (May 14 2026)
+    # OSV MAL-2026-3744 / GHSA-g7cv-rxg3-hmpx / CVE-2026-45321
+    "node-ipc": {"9.1.6", "9.2.3", "12.0.1"},
+    # Additional Mini Shai-Hulud packages (May 2026 wave)
+    # OSV MAL-2026-3448, MAL-2026-3456, MAL-2026-3444, MAL-2026-3515, MAL-2026-3458
+    "@squawk/mcp": {"0.9.1", "0.9.2", "0.9.3", "0.9.4", "0.9.5"},
+    "@squawk/weather": {"0.5.6", "0.5.7", "0.5.8", "0.5.9", "0.5.10"},
+    "@squawk/flightplan": {"0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6"},
+    "@tallyui/connector-medusa": {"1.0.1", "1.0.2", "1.0.3"},
+    "@tallyui/connector-vendure": {"1.0.1", "1.0.2", "1.0.3"},
+    # @antv / atool mass wave (May 19 2026) — 317 npm packages, 631 versions
+    # Per safedep.io and ossf/malicious-packages. High-impact subset only;
+    # the rest of the @antv/ scope is covered by NPM_SUSPECT_SCOPES below.
+    # OSV MAL-2026-3973, MAL-2026-3982, MAL-2026-4033, MAL-2026-4077,
+    # MAL-2026-3839, MAL-2026-4083, MAL-2026-4153, MAL-2026-4132, MAL-2026-4156
+    "@antv/g2": {"5.5.8", "5.6.8"},
+    "@antv/g6": {"5.2.1", "5.3.1"},
+    "@antv/l7": {"2.26.10", "2.27.10"},
+    "@antv/s2": {"2.8.1", "2.9.1"},
+    "@antv/x6": {"3.2.7", "3.3.7"},
+    "@antv/scale": {"0.6.2", "0.7.2"},
+    "size-sensor": {"1.0.4", "1.1.4", "1.2.4"},
+    "echarts-for-react": {"3.0.7", "3.1.7", "3.2.7"},
+    "timeago.js": {"4.1.2", "4.2.2"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
 # additional package in these scopes still triggers a manual-review warning
 # in case the advisory expands.
-NPM_SUSPECT_SCOPES = ("@mistralai/", "@uipath/", "@opensearch-project/")
+NPM_SUSPECT_SCOPES = ("@mistralai/", "@uipath/", "@opensearch-project/", "@antv/")
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
              "dist", "build", "__pycache__", ".tox", ".mypy_cache"}
