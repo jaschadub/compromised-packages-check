@@ -8,7 +8,9 @@ PyPI supply-chain incidents (Mini Shai-Hulud / TanStack May 2026, the April
 April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, the
 TrapDoor crypto-stealer typosquats from May 22 2026, the 25-package
 multi-cluster npm typosquat wave from May 25 2026, and related Mistral
-/ Guardrails / durabletask / pytorch-lightning poisonings).
+/ Guardrails / durabletask / pytorch-lightning poisonings, plus the
+dYdX supply-chain attack January 2026, TeamPCP Trivy-cascade litellm
+and telnyx (March 2026), and elementary-data April 2026).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-26
@@ -42,6 +44,17 @@ PYPI_BAD: dict[str, set[str]] = {
     # PyTorch Lightning maintainer compromise (April 30 2026)
     # GHSA-w37p-236h-pfx3 / CVE-2026-44484
     "pytorch-lightning": {"2.6.2", "2.6.3"},
+    # dYdX supply-chain attack (January 27 2026) — maintainer credential compromise
+    # PYSEC-2026-1; Socket + TheHackerNews + Rescana + CyberPress
+    "dydx-v4-client": {"1.1.5.post1"},
+    # TeamPCP / Trivy CI credential-steal cascade (March 2026)
+    # litellm: GHSA-5mg7-485q-xm76 (Datadog, Snyk, Sonatype, Wiz, Endor Labs, Truesec)
+    "litellm": {"1.82.7", "1.82.8"},
+    # telnyx: GHSA-955r-262c-33jc (Akamai, Help Net Security, Mend, Hexastrike)
+    "telnyx": {"4.87.1", "4.87.2"},
+    # elementary-data GitHub Actions script-injection (April 24 2026)
+    # StepSecurity, Snyk, Bleeping Computer, CyberSecurityNews, Chainguard
+    "elementary-data": {"0.23.3"},
     # TrapDoor crypto-stealer campaign (May 22 2026) — fully malicious typosquats
     # OSV MAL-2026-4259, 4260, 4261, 4262, 4271, 4272, 4273
     "cryptowallet-safety": {"0.1.0"},
@@ -180,6 +193,9 @@ NPM_BAD: dict[str, set[str]] = {
     "@uipath/vertical-solutions-tool": {"1.0.1"},
     "@uipath/vss": {"0.1.6"},
     "@uipath/widget.sdk": {"1.2.3"},
+    # dYdX supply-chain attack (January 27 2026) — maintainer credential compromise
+    # Socket + TheHackerNews + Rescana + CyberPress agree on all four versions
+    "@dydxprotocol/v4-client-js": {"3.4.1", "1.22.1", "1.15.2", "1.0.31"},
     # axios maintainer-account takeover (March 31 2026) — Sapphire Sleet / DPRK
     # OSV MAL-2026-2307 / GHSA-fw8c-xr5c-95f9 (axios)
     # OSV MAL-2026-2306 / GHSA-2x9r-6wxq-hrr7 (plain-crypto-js phantom dep)
