@@ -6,11 +6,12 @@ Scan a repository for known-malicious package versions from recent npm and
 PyPI supply-chain incidents (Mini Shai-Hulud / TanStack May 2026, the April
 2026 @cap-js / mbt wave, axios DPRK takeover March 2026, @bitwarden/cli
 April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, the
-TrapDoor crypto-stealer typosquats from May 22 2026, and related Mistral
+TrapDoor crypto-stealer typosquats from May 22 2026, the 25-package
+multi-cluster npm typosquat wave from May 25 2026, and related Mistral
 / Guardrails / durabletask / pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-25
+Date:      2026-05-26
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -236,6 +237,43 @@ NPM_BAD: dict[str, set[str]] = {
     "wallet-security-checker": set(),
     "web3-secrets-detector": set(),
     "workspace-config-loader": set(),
+    # Multi-cluster npm typosquat wave (May 25 2026) — 25 packages, all fully malicious.
+    # GitHub Advisory Database confirmed affected.ranges >=0 for every entry; use the
+    # empty-set wildcard. The batch breaks into five sub-clusters published the same day:
+    #   ts-* family:        GHSA-jp5r-76w9-2rvh, GHSA-66j8-7w8q-vvf5, GHSA-xqpr-hv2v-6pfj,
+    #                       GHSA-qgfv-9wmq-m4f7, GHSA-f6hr-rvf9-ch6p, GHSA-vxrv-934h-xj6q
+    #   @gbrlxvii/* scope:  GHSA-pvrm-mpcj-2mcp, GHSA-362c-qm74-42gg, GHSA-59j3-wvx3-w9hx
+    #   auth0-* cluster:    GHSA-4xqv-4874-rxx6, GHSA-g8jx-g4j9-hh3w, GHSA-cwjp-2mq2-6xp6,
+    #                       GHSA-xm89-4mqj-hfrq, GHSA-c8ph-73mc-f5p8, GHSA-jfp3-8vwj-7g9v
+    #   webservices.rest*:  GHSA-2qjx-pgq9-vx24, GHSA-v62r-4vqp-f32g
+    #   vite-plugin-env-*:  GHSA-7v58-43rg-wjwq, GHSA-2rh6-x7fc-2fr4
+    #   miscellaneous:      GHSA-fc78-r45j-m7f5, GHSA-6pxr-857g-mr97, GHSA-qcrh-87jf-mm39,
+    #                       GHSA-w6gc-fhv9-53hq, GHSA-rj44-v8w3-c5q5, GHSA-gqvh-j8hx-425w
+    "ts-stream-compose": set(),
+    "ts-result-pipe": set(),
+    "ts-typeguard-utils": set(),
+    "ts-config-mapper": set(),
+    "ts-iter-utils": set(),
+    "ts-schema-config": set(),
+    "@gbrlxvii/ts-project-lint": set(),
+    "@gbrlxvii/ts-form-utils": set(),
+    "@gbrlxvii/ts-env-validator": set(),
+    "auth0-aspnetcore-utils": set(),
+    "auth0-internal-collector": set(),
+    "auth0-android-helper-utils": set(),
+    "auth0-net-sdk-utils": set(),
+    "auth0-sample-dus-utils": set(),
+    "auth0-common-telemetry": set(),
+    "webservices.rest": set(),
+    "webservices.rest-utils": set(),
+    "vite-plugin-env-compat-1.5": set(),
+    "vite-plugin-env-compat-plus": set(),
+    "fivem-monitor": set(),
+    "jules-standard": set(),
+    "internallib_v95": set(),
+    "chai-as-redeploy": set(),
+    "expo-config-plugin-typescript": set(),
+    "unique-string-64": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
