@@ -1,12 +1,12 @@
 ---
-description: Research new supply-chain advisories and update NPM_BAD / PYPI_BAD in the scanner
+description: Research new supply-chain advisories and update NPM_BAD / PYPI_BAD / CRATES_BAD in the scanner
 argument-hint: "[advisory id, scope, or URL]  (optional; otherwise sweeps the standard sources)"
 ---
 
 Help the user add newly-disclosed compromised package versions to
 `check_compromised_packages.py`. The user's argument (if any) is in
-`$ARGUMENTS` — it may be a GHSA id, a CVE id, an npm scope, a package
-name, or a URL to a vendor writeup.
+`$ARGUMENTS` — it may be a GHSA id, a CVE id, a RUSTSEC id, an npm scope,
+a package name, or a URL to a vendor writeup.
 
 Follow the workflow documented in `SKILLS.md`:
 
@@ -16,13 +16,20 @@ Follow the workflow documented in `SKILLS.md`:
   `package | versions` table.
 - If `$ARGUMENTS` is **a GHSA id** (e.g. `GHSA-xxxx-yyyy-zzzz`): fetch
   `https://github.com/advisories/<id>` with `WebFetch`.
+- If `$ARGUMENTS` is **a RUSTSEC id** (e.g. `RUSTSEC-2026-0017`): fetch
+  `https://rustsec.org/advisories/<id>.html` or read the corresponding
+  `crates/<pkg>/<id>.md` file from a checkout of
+  `https://github.com/rustsec/advisory-db`.
 - If `$ARGUMENTS` is **a CVE id**: search GHSA and OSV for the matching
   advisory.
 - If `$ARGUMENTS` is **a package name or scope**: query OSV
   (`https://api.osv.dev/v1/query`) and search GHSA for affected versions.
 - If `$ARGUMENTS` **is empty**: do a sweep — use `WebSearch` to look for
-  npm / PyPI supply-chain advisories newer than the most recent commit in
-  this repo, then dig into the top hits.
+  npm / PyPI / crates.io supply-chain advisories newer than the most
+  recent commit in this repo, then dig into the top hits. For crates.io,
+  also `grep -lE '^categories *=.*"malicious"' crates/*/RUSTSEC-*.md` in
+  a sparse checkout of `rustsec/advisory-db` and diff against the names
+  already in `CRATES_BAD`.
 
 Always prefer primary sources. Useful starting points (also listed in
 `SKILLS.md`):
@@ -103,7 +110,10 @@ After confirmation:
    python3 check_compromised_packages.py "$tmp"    # expect exit 1
    rm -rf "$tmp"
    ```
-   For PyPI entries, use a `requirements.txt` instead.
+   For PyPI entries use a `requirements.txt`; for crates.io use a
+   `Cargo.toml` with `[dependencies]\n<pkg> = "0.1.0"` or a `Cargo.lock`
+   with a `[[package]]` block sourced from
+   `registry+https://github.com/rust-lang/crates.io-index`.
 4. Run `python3 -m py_compile check_compromised_packages.py` to confirm
    no syntax errors.
 
