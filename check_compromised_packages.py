@@ -5,8 +5,9 @@ check_compromised_packages.py
 Scan a repository for known-malicious package versions from recent npm and
 PyPI supply-chain incidents (Mini Shai-Hulud / TanStack May 2026, the April
 2026 @cap-js / mbt wave, axios DPRK takeover March 2026, @bitwarden/cli
-April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, and
-related Mistral / Guardrails / durabletask / pytorch-lightning poisonings).
+April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, the
+TrapDoor crypto-stealer typosquats from May 22 2026, and related Mistral
+/ Guardrails / durabletask / pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-25
@@ -24,6 +25,12 @@ from typing import Iterable
 
 # ---------------------------------------------------------------------------
 # Known-malicious version data. Update as advisories evolve.
+#
+# Data model: package name -> set of malicious version strings. An *empty
+# set* is the wildcard convention: any installed version of that package is
+# treated as malicious. Use it for pure-malware typosquats (where OSV's
+# `affected.ranges` is `>=0`) so we still catch republished versions after
+# npm/PyPI takedowns leave only a `0.0.1-security` placeholder.
 # ---------------------------------------------------------------------------
 
 # PyPI: package name (lowercased) -> set of malicious versions
@@ -34,6 +41,15 @@ PYPI_BAD: dict[str, set[str]] = {
     # PyTorch Lightning maintainer compromise (April 30 2026)
     # GHSA-w37p-236h-pfx3 / CVE-2026-44484
     "pytorch-lightning": {"2.6.2", "2.6.3"},
+    # TrapDoor crypto-stealer campaign (May 22 2026) — fully malicious typosquats
+    # OSV MAL-2026-4259, 4260, 4261, 4262, 4271, 4272, 4273
+    "cryptowallet-safety": {"0.1.0"},
+    "defi-risk-scanner": {"0.1.0"},
+    "eth-security-auditor": {"0.1.0"},
+    "solidity-build-guard": {"0.1.0"},
+    "data-pipeline-check": {"0.1.0", "0.1.1"},
+    "env-loader-cli": {"0.1.0", "0.1.1"},
+    "git-config-sync": {"0.1.0", "0.1.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -195,6 +211,31 @@ NPM_BAD: dict[str, set[str]] = {
     "size-sensor": {"1.0.4", "1.1.4", "1.2.4"},
     "echarts-for-react": {"3.0.7", "3.1.7", "3.2.7"},
     "timeago.js": {"4.1.2", "4.2.2"},
+    # TrapDoor crypto-stealer campaign (May 22 2026) — pure-malware typosquats
+    # OSV records flag the entire package (`affected.ranges` is `>=0`); use
+    # the empty-set wildcard so we catch any republished versions.
+    # OSV MAL-2026-4202..4208, 4218..4220, 4250, 4275..4284
+    "async-pipeline-builder": set(),
+    "build-scripts-utils": set(),
+    "chain-key-validator": set(),
+    "crypto-credential-scanner": set(),
+    "defi-env-auditor": set(),
+    "defi-threat-scanner": set(),
+    "deployment-key-auditor": set(),
+    "dev-env-bootstrapper": set(),
+    "eth-wallet-sentinel": set(),
+    "llm-context-compressor": set(),
+    "mnemonic-safety-check": set(),
+    "model-switch-router": set(),
+    "node-setup-helpers": set(),
+    "project-init-tools": set(),
+    "prompt-engineering-toolkit": set(),
+    "solidity-deploy-guard": set(),
+    "token-usage-tracker": set(),
+    "wallet-backup-verifier": set(),
+    "wallet-security-checker": set(),
+    "web3-secrets-detector": set(),
+    "workspace-config-loader": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -358,14 +399,16 @@ def scan(root: Path):
         for pkg, version in pairs:
             if is_npm:
                 bad = NPM_BAD.get(pkg)
-                if bad and version in bad:
-                    hits.append((path, pkg, version, "npm"))
+                # Empty set is the wildcard: any version of this package is
+                # malicious (pure-malware typosquats; see PYPI_BAD docstring).
+                if bad is not None and (not bad or version in bad):
+                    hits.append((path, pkg, version or "?", "npm"))
                 elif any(pkg.startswith(s) for s in NPM_SUSPECT_SCOPES):
                     suspects.append((path, pkg, version or "?", "npm-scope"))
             else:
                 bad = PYPI_BAD.get(pkg.lower())
-                if bad and version and version in bad:
-                    hits.append((path, pkg, version, "pypi"))
+                if bad is not None and (not bad or (version and version in bad)):
+                    hits.append((path, pkg, version or "?", "pypi"))
 
     return hits, suspects
 

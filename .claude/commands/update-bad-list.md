@@ -33,17 +33,53 @@ Always prefer primary sources. Useful starting points (also listed in
 - Aikido, Socket, Snyk, Wiz, Mend, StepSecurity, Phylum, ReversingLabs,
   Checkmarx, JFrog, SafeDep, Corgea, Unit 42, Microsoft Security Blog
 
+### Always cross-check OSV directly
+
+Vendor articles (The Hacker News, Socket blog, SafeDep, etc.) routinely
+list package names without versions, which makes it look like the
+evidence threshold can't be met. OSV almost always has a per-package
+`MAL-YYYY-NNNN` record with `affected.versions` and/or `affected.ranges`
+populated within hours of the takedown — query it directly for every
+named package before giving up:
+
+```bash
+curl -sS -X POST https://api.osv.dev/v1/query \
+  -H "Content-Type: application/json" \
+  -d '{"package":{"name":"<pkg>","ecosystem":"npm"}}' \
+  | python3 -c "import sys,json; d=json.load(sys.stdin); \
+    [print(v['id'], v.get('aliases'), \
+           [(a.get('versions'), a.get('ranges')) for a in v.get('affected',[])]) \
+     for v in d.get('vulns',[])]"
+```
+
+(Swap ecosystem to `PyPI` or `crates.io` as needed.) Read the
+`Interpreting OSV affected shapes` section in `SKILLS.md` — pay particular
+attention to `ranges: [{events:[{introduced:"0"}]}]`, which means *any
+version is malicious* and calls for the empty-set wildcard.
+
 ## 2. Meet the evidence threshold
 
 Per `SKILLS.md`, before adding any entry require **one** of:
 
-- A GHSA / OSV / CVE record naming the package and exact versions.
+- A GHSA / OSV / CVE record naming the package and exact versions
+  (or a `>=0` range, which is OSV's any-version wildcard — see below).
 - A primary-source maintainer postmortem with versions enumerated.
 - Two independent vendor writeups that agree on the version list.
 
-If only a scope name is known (no exact versions yet), do **not** invent
-entries — leave the scope to the existing `NPM_SUSPECT_SCOPES` safety net
-and stop here.
+If a vendor article names a package but no version, **always query OSV by
+package name first** (step 1) — OSV often has versions or a `>=0` range
+the article omitted. Only fall back to `NPM_SUSPECT_SCOPES` if both the
+vendor source *and* OSV are silent on versions.
+
+For pure-malware typosquats where OSV's `affected.ranges` is `>=0`, use
+the empty-set wildcard in `NPM_BAD` / `PYPI_BAD`:
+
+```python
+"evil-typosquat": set(),   # any installed version is treated as malicious
+```
+
+Do **not** use the wildcard for legitimate packages with one bad release
+(e.g. `axios`, `node-ipc`) — those must stay version-pinned.
 
 ## 3. Show the user the diff before editing
 
