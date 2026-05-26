@@ -57,6 +57,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | PyTorch Lightning — April 30 2026 (GHSA-w37p-236h-pfx3, CVE-2026-44484) | `pytorch-lightning` 2.6.2, 2.6.3 |
 | @cap-js / mbt — April 2026 | `@cap-js/sqlite` 2.2.2, `@cap-js/postgres` 2.2.2, `@cap-js/db-service` 2.10.1, `mbt` 1.2.48 |
 | TrapDoor crypto-stealer — May 22 2026 | 21 npm typosquats (`async-pipeline-builder`, `build-scripts-utils`, `chain-key-validator`, …) flagged any-version; 7 PyPI typosquats (`eth-security-auditor`, `cryptowallet-safety`, `defi-risk-scanner`, `solidity-build-guard` @ 0.1.0; `data-pipeline-check`, `env-loader-cli`, `git-config-sync` @ 0.1.0, 0.1.1) |
+| Multi-cluster npm typosquat wave — May 25 2026 | 25 malicious-from-creation npm packages across 5 sub-clusters: 6 `ts-*` utilities (`ts-stream-compose`, `ts-result-pipe`, `ts-typeguard-utils`, `ts-config-mapper`, `ts-iter-utils`, `ts-schema-config`); 3 `@gbrlxvii/ts-*`; 6 `auth0-*` SDK typosquats; 2 `webservices.rest*`; 2 `vite-plugin-env-compat*`; 6 miscellaneous (`fivem-monitor`, `jules-standard`, `internallib_v95`, `chai-as-redeploy`, `expo-config-plugin-typescript`, `unique-string-64`) |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -92,6 +93,31 @@ in `check_compromised_packages.py`. Please include:
 - [GHSA-w37p-236h-pfx3 — pytorch-lightning compromise](https://github.com/Lightning-AI/pytorch-lightning/security/advisories/GHSA-w37p-236h-pfx3)
 - [The Hacker News — TrapDoor supply chain attack](https://thehackernews.com/2026/05/trapdoor-supply-chain-attack-spreads.html)
 - [Socket — TrapDoor crypto-stealer](https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates)
+- [GHSA-jp5r-76w9-2rvh — ts-stream-compose](https://github.com/advisories/GHSA-jp5r-76w9-2rvh)
+- [GHSA-66j8-7w8q-vvf5 — ts-result-pipe](https://github.com/advisories/GHSA-66j8-7w8q-vvf5)
+- [GHSA-xqpr-hv2v-6pfj — ts-typeguard-utils](https://github.com/advisories/GHSA-xqpr-hv2v-6pfj)
+- [GHSA-qgfv-9wmq-m4f7 — ts-config-mapper](https://github.com/advisories/GHSA-qgfv-9wmq-m4f7)
+- [GHSA-f6hr-rvf9-ch6p — ts-iter-utils](https://github.com/advisories/GHSA-f6hr-rvf9-ch6p)
+- [GHSA-vxrv-934h-xj6q — ts-schema-config](https://github.com/advisories/GHSA-vxrv-934h-xj6q)
+- [GHSA-pvrm-mpcj-2mcp — @gbrlxvii/ts-project-lint](https://github.com/advisories/GHSA-pvrm-mpcj-2mcp)
+- [GHSA-362c-qm74-42gg — @gbrlxvii/ts-form-utils](https://github.com/advisories/GHSA-362c-qm74-42gg)
+- [GHSA-59j3-wvx3-w9hx — @gbrlxvii/ts-env-validator](https://github.com/advisories/GHSA-59j3-wvx3-w9hx)
+- [GHSA-4xqv-4874-rxx6 — auth0-aspnetcore-utils](https://github.com/advisories/GHSA-4xqv-4874-rxx6)
+- [GHSA-g8jx-g4j9-hh3w — auth0-internal-collector](https://github.com/advisories/GHSA-g8jx-g4j9-hh3w)
+- [GHSA-cwjp-2mq2-6xp6 — auth0-android-helper-utils](https://github.com/advisories/GHSA-cwjp-2mq2-6xp6)
+- [GHSA-xm89-4mqj-hfrq — auth0-net-sdk-utils](https://github.com/advisories/GHSA-xm89-4mqj-hfrq)
+- [GHSA-c8ph-73mc-f5p8 — auth0-sample-dus-utils](https://github.com/advisories/GHSA-c8ph-73mc-f5p8)
+- [GHSA-jfp3-8vwj-7g9v — auth0-common-telemetry](https://github.com/advisories/GHSA-jfp3-8vwj-7g9v)
+- [GHSA-2qjx-pgq9-vx24 — webservices.rest](https://github.com/advisories/GHSA-2qjx-pgq9-vx24)
+- [GHSA-v62r-4vqp-f32g — webservices.rest-utils](https://github.com/advisories/GHSA-v62r-4vqp-f32g)
+- [GHSA-7v58-43rg-wjwq — vite-plugin-env-compat-1.5](https://github.com/advisories/GHSA-7v58-43rg-wjwq)
+- [GHSA-2rh6-x7fc-2fr4 — vite-plugin-env-compat-plus](https://github.com/advisories/GHSA-2rh6-x7fc-2fr4)
+- [GHSA-fc78-r45j-m7f5 — fivem-monitor](https://github.com/advisories/GHSA-fc78-r45j-m7f5)
+- [GHSA-6pxr-857g-mr97 — jules-standard](https://github.com/advisories/GHSA-6pxr-857g-mr97)
+- [GHSA-qcrh-87jf-mm39 — internallib_v95](https://github.com/advisories/GHSA-qcrh-87jf-mm39)
+- [GHSA-w6gc-fhv9-53hq — chai-as-redeploy](https://github.com/advisories/GHSA-w6gc-fhv9-53hq)
+- [GHSA-rj44-v8w3-c5q5 — expo-config-plugin-typescript](https://github.com/advisories/GHSA-rj44-v8w3-c5q5)
+- [GHSA-gqvh-j8hx-425w — unique-string-64](https://github.com/advisories/GHSA-gqvh-j8hx-425w)
 
 ## License
 
