@@ -47,6 +47,9 @@ useful for catching newly-disclosed entries before this repo has been updated.
 
 | Wave | Scope / Packages |
 | --- | --- |
+| dYdX — January 27 2026 (PYSEC-2026-1) | `@dydxprotocol/v4-client-js` 3.4.1, 1.22.1, 1.15.2, 1.0.31 (npm); `dydx-v4-client` 1.1.5.post1 (PyPI) |
+| TeamPCP / Trivy cascade — March 2026 (GHSA-5mg7-485q-xm76, GHSA-955r-262c-33jc) | `litellm` 1.82.7, 1.82.8; `telnyx` 4.87.1, 4.87.2 (PyPI) |
+| elementary-data — April 24 2026 | `elementary-data` 0.23.3 (PyPI) — GitHub Actions script-injection |
 | TanStack — May 2026 (GHSA-g7cv-rxg3-hmpx, CVE-2026-45321) | 42 `@tanstack/*` packages, 84 versions |
 | Mini Shai-Hulud — May 2026 | `@mistralai/mistralai`, `@mistralai/mistralai-gcp`, `@mistralai/mistralai-azure`; `@opensearch-project/opensearch`; 66 `@uipath/*` packages; `@squawk/{mcp,weather,flightplan}`; `@tallyui/connector-{medusa,vendure}` |
 | @antv / atool mass wave — May 19 2026 (317 packages, 631 versions) | `@antv/{g2,g6,l7,s2,x6,scale}`, `size-sensor`, `echarts-for-react`, `timeago.js` (high-impact subset); rest covered by `@antv/` suspect scope |
@@ -74,6 +77,17 @@ in `check_compromised_packages.py`. Please include:
 
 ## Sources
 
+- [Socket — malicious dYdX packages (npm + PyPI)](https://socket.dev/blog/malicious-dydx-packages-published-to-npm-and-pypi)
+- [The Hacker News — dYdX wallet stealer and RAT](https://thehackernews.com/2026/02/compromised-dydx-npm-and-pypi-packages.html)
+- [PYSEC-2026-1 — dydx-v4-client](https://github.com/pypa/advisory-database/blob/main/vulns/dydx-v4-client/PYSEC-2026-1.yaml)
+- [GHSA-5mg7-485q-xm76 — litellm malicious versions](https://github.com/advisories/GHSA-5mg7-485q-xm76)
+- [Datadog — LiteLLM and Telnyx TeamPCP campaign](https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-teampcp-supply-chain-campaign/)
+- [Snyk — poisoned security scanner backdooring LiteLLM](https://snyk.io/blog/poisoned-security-scanner-backdooring-litellm/)
+- [GHSA-955r-262c-33jc — telnyx malicious versions](https://github.com/team-telnyx/telnyx-python/security/advisories/GHSA-955r-262c-33jc)
+- [Akamai — Telnyx SDK PyPI compromise](https://www.akamai.com/blog/security-research/telnyx-sdk-pypi-2026-teampcp-supply-chain-attacks)
+- [StepSecurity — elementary-data PyPI compromise](https://www.stepsecurity.io/blog/elementary-data-compromised-on-pypi-and-ghcr-forged-release-pushed-via-github-actions-script-injection)
+- [Snyk — elementary-data steals cloud credentials](https://snyk.io/blog/malicious-release-of-elementary-data-pypi-package-steals-cloud-credentials-from-data-engineers/)
+- [Bleeping Computer — elementary-data 1.1M download package hacked](https://www.bleepingcomputer.com/news/security/pypi-package-with-11m-monthly-downloads-hacked-to-push-infostealer/)
 - [TanStack postmortem](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
 - [GHSA-g7cv-rxg3-hmpx](https://github.com/advisories/GHSA-g7cv-rxg3-hmpx)
 - [Snyk — TanStack npm packages hit by Mini Shai-Hulud](https://snyk.io/blog/tanstack-npm-packages-compromised/)
