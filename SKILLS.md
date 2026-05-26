@@ -32,6 +32,47 @@ Before adding an entry to `NPM_BAD` / `PYPI_BAD`, get at least one of:
 Single-vendor blog posts with no enumerated versions are not enough — log
 the scope under `NPM_SUSPECT_SCOPES` instead and wait for a precise list.
 
+**Always cross-check OSV directly by package name** before trusting (or
+giving up on) a vendor article's version data. Many vendor writeups —
+including The Hacker News, Socket blog posts and SafeDep digests — list
+package names without versions, while OSV almost always has a per-package
+`MAL-YYYY-NNNN` record with structured `affected.versions` and
+`affected.ranges` populated within hours of the takedown. The fastest
+recipe:
+
+```bash
+curl -sS -X POST https://api.osv.dev/v1/query \
+  -H "Content-Type: application/json" \
+  -d '{"package":{"name":"<pkg>","ecosystem":"npm"}}' \
+  | python3 -c "import sys,json; d=json.load(sys.stdin); \
+    [print(v['id'], v.get('aliases'), \
+           [(a.get('versions'), a.get('ranges')) for a in v.get('affected',[])]) \
+     for v in d.get('vulns',[])]"
+```
+
+(Same for `"ecosystem":"PyPI"` or `"ecosystem":"crates.io"`.)
+
+### Interpreting OSV `affected` shapes
+
+- `versions: ["1.2.3", "1.2.4"]` → pin those exact strings.
+- `versions: ["1.0.12"]` *combined with* `ranges: [{events:[{introduced:"0"}]}]`
+  → the *whole* package is malicious; `1.0.12` is just what was published
+  before the takedown. Use the **empty-set wildcard** (see below), not
+  just `1.0.12` — re-uploads under different versions will otherwise be
+  missed. The npm registry's `0.0.1-security` placeholder is a strong tell
+  that a takedown happened and this case applies.
+- `ranges` only, no `versions` → same story; empty-set wildcard.
+
+### Empty-set wildcard convention
+
+`NPM_BAD[pkg] = set()` (and the same for `PYPI_BAD`) means *any installed
+version of this package is malicious*. Use it for pure-malware typosquats
+where OSV's `affected.ranges` is `>=0` — i.e. the package has no
+legitimate use whatsoever. Examples already in the list: the entire
+TrapDoor npm cluster (`async-pipeline-builder`, `chain-key-validator`,
+etc.). For legitimate packages with a single bad release (e.g. `axios`,
+`node-ipc`), **always pin exact versions** — do not wildcard.
+
 ## Where to look for new compromises
 
 ### Primary advisory databases (authoritative, machine-readable)
@@ -80,10 +121,14 @@ the scope under `NPM_SUSPECT_SCOPES` instead and wait for a precise list.
 
 ## Workflow to add a new entry
 
-1. **Confirm the evidence threshold above is met.**
+1. **Confirm the evidence threshold above is met.** Cross-check OSV by
+   package name even when a vendor article looks complete — that's how
+   you'll catch any-version typosquats whose vendor coverage only lists
+   names.
 2. **Add the entry to the right dict** in `check_compromised_packages.py`:
    ```python
-   "@scope/pkg": {"1.2.3", "1.2.4"},
+   "@scope/pkg": {"1.2.3", "1.2.4"},   # specific malicious versions
+   "evil-typosquat": set(),            # any version is malicious
    ```
    Keep entries grouped by wave under the existing comments.
 3. **Sanity-check parsing** against a synthetic manifest:
