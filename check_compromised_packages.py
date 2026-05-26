@@ -9,12 +9,15 @@ May 2026, the April 2026 @cap-js / mbt wave, axios DPRK takeover March
 May 19 mass wave, the TrapDoor crypto-stealer typosquats from May 22
 2026, the 25-package multi-cluster npm typosquat wave from May 25 2026,
 the toskypi npm RAT/infostealer campaign May 25 2026, the CLOB IPFS
-dropper campaign May 26 2026, intercom-client April 2026, the dYdX
-supply-chain attack January 2026, TeamPCP Trivy-cascade litellm and
-telnyx March 2026, elementary-data April 2026, the Polymarket / Mysten /
-timeapi crates.io campaigns, the 2023 amaperf crates typosquat cluster,
-and related Mistral / Guardrails / durabletask / pytorch-lightning
-poisonings).
+dropper campaign May 26 2026, the DPRK js-logger-pack / terminal-logger
+npm stealer cluster April–May 2026, the leaked Shai-Hulud
+deadcode09284814 npm infostealer/DDoS cluster May 26 2026, the TrapDoor
+crates.io Sui/Move build.rs dropper cluster May 2026, intercom-client
+April 2026, the dYdX supply-chain attack January 2026, TeamPCP
+Trivy-cascade litellm and telnyx March 2026, elementary-data April 2026,
+the Polymarket / Mysten / timeapi crates.io campaigns, the 2023 amaperf
+crates typosquat cluster, and related Mistral / Guardrails / durabletask
+/ pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-26
@@ -317,6 +320,37 @@ NPM_BAD: dict[str, set[str]] = {
     "api-rs-node": set(),
     "clob.api": set(),
     "clobprice.api": set(),
+    # DPRK-linked js-logger-pack / terminal-logger-utils cluster (April–May 2026)
+    # js-logger-pack: fake npm logger with 23 malicious versions (2026-04-01 to
+    # 2026-04-15); downloads MicrosoftSystem64 binary from HuggingFace Lordplay/
+    # system-releases and exfiltrates via WebSocket; OSV MAL-2026-2827.
+    # terminal-logger-utils: multi-stage dropper + RAT targeting Telegram sessions,
+    # SSH keys, crypto wallets, cloud credentials; postinstall hook, HuggingFace
+    # second-stage; three dependent packages trigger it on install.
+    # Sources: OSV MAL-2026-2827; JFrog research.jfrog.com/post/hugging-face-exfil/;
+    #          OX Security ox.security/blog/north-korean-npm-infostealer-rat/;
+    #          SafeDep safedep.io/malicious-js-logger-pack-npm-stealer/;
+    #          CybersecurityNews cybersecuritynews.com/malicious-npm-package-turns-hugging-face/
+    "js-logger-pack": set(),
+    "terminal-logger-utils": set(),
+    "pretty-logger-utils": set(),
+    "ts-logger-pack": set(),
+    "pinno-loggers": set(),
+    # Leaked Shai-Hulud / deadcode09284814 npm cluster (May 26 2026)
+    # Four packages published by npm user deadcode09284814 containing different
+    # payloads: chalk-tempalte carries a working Shai-Hulud worm clone with its
+    # own C2; axois-utils delivers Phantom Bot (Golang DDoS botnet with HTTP/TCP/
+    # UDP flood and persistence on Windows + Linux); @deadcode09284814/axios-util
+    # and color-style-utils siphon SSH keys, env vars, cloud credentials, and
+    # crypto wallet data. "Any version" confirmed for all four.
+    # Sources: Bleeping Computer bleepingcomputer.com/news/security/leaked-shai-hulud-malware-fuels-new-npm-infostealer-campaign/ (2026-05-26);
+    #          OX Security ox.security/blog/new-actors-deploy-shai-hulud-clones-teampcp-copycats-are-here/;
+    #          SecurityWeek securityweek.com/first-shai-hulud-worm-clones-emerge/;
+    #          The Hacker News thehackernews.com/2026/05/four-malicious-npm-packages-deliver.html
+    "chalk-tempalte": set(),
+    "@deadcode09284814/axios-util": set(),
+    "axois-utils": set(),
+    "color-style-utils": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -379,6 +413,20 @@ CRATES_BAD: dict[str, set[str]] = {
     "tracings": set(),
     "tracing_checks": set(),
     "tracing-ethers": set(),
+    # TrapDoor crates.io build.rs dropper cluster (May 22–26 2026) — Sui / Move developers
+    # build.rs locates Sui, Solana, and Aptos wallet keystores, XOR-encrypts them
+    # with hardcoded key "cargo-build-helper-2026", exfiltrates to GitHub Gists
+    # (attacker account: ddjidd564). All six were removed from crates.io.
+    # Sources: socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates (primary);
+    #          theblock.co/post/402458/ (independent corroboration);
+    #          socradar.io/blog/trapdoor-npm-pypi-cratesio-secrets-ai-tooling/;
+    #          cybersecuritynews.com/supply-chain-trapdoor-malware/
+    "move-analyzer-build": set(),
+    "move-compiler-tools": set(),
+    "move-project-builder": set(),
+    "sui-framework-helpers": set(),
+    "sui-move-build-helper": set(),
+    "sui-sdk-build-utils": set(),
     # build.rs droppers / .env exfiltration (2025-2026)
     "uniswap-utils": set(),
     "sha-rust": set(),
