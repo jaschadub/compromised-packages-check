@@ -1,7 +1,7 @@
 # compromised-packages-check
 
 A single-file Python scanner that flags known-malicious package versions from
-recent npm and PyPI supply-chain compromises in any repository.
+recent npm, PyPI, and crates.io supply-chain compromises in any repository.
 
 Pure stdlib. No dependencies. Drop into CI or run locally.
 
@@ -20,19 +20,23 @@ Exit codes:
 | `2` | usage error |
 
 The scanner walks the tree (skipping `node_modules`, `.venv`, `.git`,
-`dist`, `build`, etc.) and parses:
+`target`, `dist`, `build`, etc.) and parses:
 
 - **npm:** `package.json`, `package-lock.json` (v1/v2/v3), `yarn.lock`,
   `pnpm-lock.yaml`
 - **PyPI:** `requirements*.txt`, `pyproject.toml`, `Pipfile`,
   `Pipfile.lock`, `poetry.lock`, `setup.py`
+- **crates.io:** `Cargo.toml` (inline, table, sub-table, and
+  target-prefixed dependency forms), `Cargo.lock` (only entries sourced
+  from the crates.io registry — path/git dependencies are skipped)
 
 Output:
 
 ```
-FOUND 2 MALICIOUS PACKAGE VERSION(S):
-  [npm]  @tanstack/react-router@1.169.8  (web-app/package-lock.json)
-  [pypi] durabletask@1.4.2               (requirements.txt)
+FOUND 3 MALICIOUS PACKAGE VERSION(S):
+  [npm]       @tanstack/react-router@1.169.8  (web-app/package-lock.json)
+  [pypi]      durabletask@1.4.2               (requirements.txt)
+  [crates.io] rustdecimal@0.5.0               (Cargo.lock)
 
 1 package(s) in advisory-affected scopes (verify versions manually):
   @uipath/new-pkg@0.0.1  (services/foo/package.json)
@@ -62,6 +66,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | @cap-js / mbt — April 2026 | `@cap-js/sqlite` 2.2.2, `@cap-js/postgres` 2.2.2, `@cap-js/db-service` 2.10.1, `mbt` 1.2.48 |
 | TrapDoor crypto-stealer — May 22 2026 | 21 npm typosquats (`async-pipeline-builder`, `build-scripts-utils`, `chain-key-validator`, …) flagged any-version; 7 PyPI typosquats (`eth-security-auditor`, `cryptowallet-safety`, `defi-risk-scanner`, `solidity-build-guard` @ 0.1.0; `data-pipeline-check`, `env-loader-cli`, `git-config-sync` @ 0.1.0, 0.1.1) |
 | Multi-cluster npm typosquat wave — May 25 2026 | 25 malicious-from-creation npm packages across 5 sub-clusters: 6 `ts-*` utilities (`ts-stream-compose`, `ts-result-pipe`, `ts-typeguard-utils`, `ts-config-mapper`, `ts-iter-utils`, `ts-schema-config`); 3 `@gbrlxvii/ts-*`; 6 `auth0-*` SDK typosquats; 2 `webservices.rest*`; 2 `vite-plugin-env-compat*`; 6 miscellaneous (`fivem-monitor`, `jules-standard`, `internallib_v95`, `chai-as-redeploy`, `expo-config-plugin-typescript`, `unique-string-64`) |
+| crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -71,7 +76,7 @@ working `@tanstack/*` payloads.
 ## Contributing
 
 New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
-in `check_compromised_packages.py`. Please include:
+/ `CRATES_BAD` in `check_compromised_packages.py`. Please include:
 
 - The advisory URL (GHSA, CVE, OSV, or a primary security-vendor writeup)
 - Exact package names and version strings
@@ -136,6 +141,10 @@ in `check_compromised_packages.py`. Please include:
 - [GHSA-w6gc-fhv9-53hq — chai-as-redeploy](https://github.com/advisories/GHSA-w6gc-fhv9-53hq)
 - [GHSA-rj44-v8w3-c5q5 — expo-config-plugin-typescript](https://github.com/advisories/GHSA-rj44-v8w3-c5q5)
 - [GHSA-gqvh-j8hx-425w — unique-string-64](https://github.com/advisories/GHSA-gqvh-j8hx-425w)
+- [rustsec/advisory-db](https://github.com/rustsec/advisory-db) — canonical RustSec advisories (filter for `categories = ["malicious"]`)
+- [Veracode (Phylum) — Rust malware staged on crates.io](https://www.veracode.com/blog/rust-malware-staged-on-crates-io/) (amaperf 2023 cluster)
+- [Socket — 5 malicious Rust crates posed as time utilities](https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files) (timeapi.io campaign)
+- [crates.io blog — security incidents](https://blog.rust-lang.org/inside-rust/) — primary source for Polymarket and Mysten takedowns
 
 ## License
 

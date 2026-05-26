@@ -2,15 +2,17 @@
 """
 check_compromised_packages.py
 
-Scan a repository for known-malicious package versions from recent npm and
-PyPI supply-chain incidents (Mini Shai-Hulud / TanStack May 2026, the April
-2026 @cap-js / mbt wave, axios DPRK takeover March 2026, @bitwarden/cli
-April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, the
-TrapDoor crypto-stealer typosquats from May 22 2026, the 25-package
-multi-cluster npm typosquat wave from May 25 2026, intercom-client April 2026,
-and related Mistral / Guardrails / durabletask / pytorch-lightning poisonings,
-plus the dYdX supply-chain attack January 2026, TeamPCP Trivy-cascade litellm
-and telnyx (March 2026), and elementary-data April 2026).
+Scan a repository for known-malicious package versions from recent npm,
+PyPI, and crates.io supply-chain incidents (Mini Shai-Hulud / TanStack
+May 2026, the April 2026 @cap-js / mbt wave, axios DPRK takeover March
+2026, @bitwarden/cli April 2026, node-ipc May 2026, the @antv / atool
+May 19 mass wave, the TrapDoor crypto-stealer typosquats from May 22
+2026, the 25-package multi-cluster npm typosquat wave from May 25 2026,
+intercom-client April 2026, the dYdX supply-chain attack January 2026,
+TeamPCP Trivy-cascade litellm and telnyx March 2026, elementary-data
+April 2026, the Polymarket / Mysten / timeapi crates.io campaigns, the
+2023 amaperf crates typosquat cluster, and related Mistral / Guardrails
+/ durabletask / pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-26
@@ -300,13 +302,93 @@ NPM_BAD: dict[str, set[str]] = {
 # in case the advisory expands.
 NPM_SUSPECT_SCOPES = ("@mistralai/", "@uipath/", "@opensearch-project/", "@antv/")
 
+# crates.io: exact crate name -> set of malicious versions.
+# All entries below are RustSec advisories tagged `categories = ["malicious"]`
+# with `[versions] patched = []` — i.e. the package was removed from the
+# registry and any installed version is malicious. Use the empty-set
+# wildcard so re-uploads under different versions are still caught.
+# Sources: rustsec/advisory-db, OSV crates.io ecosystem.
+CRATES_BAD: dict[str, set[str]] = {
+    # rustdecimal typosquat of rust_decimal (Mar 2022, GHSA-7pwq-f4pq-78gm)
+    "rustdecimal": set(),
+    # amaperf typosquat cluster (Aug 2023, Veracode/Phylum disclosure)
+    "xrvrv": set(),
+    "oncecell": set(),
+    "serd": set(),
+    "lazystatic": set(),
+    "if-cfg": set(),
+    "envlogger": set(),
+    "postgress": set(),
+    "littest": set(),
+    "windowsservice": set(),
+    "lfest-main": set(),
+    "lasso-rs": set(),
+    "monero-api": set(),
+    "monero-rpc-rs": set(),
+    "postgresderive": set(),
+    "tauri-win-rt-notification": set(),
+    "win-crypto": set(),
+    "windows-service-rs": set(),
+    "tauri-winrt-notifications": set(),
+    "win-base64-rs": set(),
+    "tiny-server": set(),
+    "openvpn-plugin-rs": set(),
+    "registry-win": set(),
+    "win_run_rs": set(),
+    "libusb1-main": set(),
+    "winx-rs": set(),
+    "hann-rs-service": set(),
+    "bit-flags": set(),
+    "acceptxmr-rs": set(),
+    # Polymarket credential-stealer typosquat campaign (Feb 2026)
+    "polymarket-clients-sdk": set(),
+    "polymarket-client-sdks": set(),
+    "polymarkets-client-sdk": set(),
+    "polymarkets-rs-clob-client": set(),
+    "clob-sdk": set(),
+    "rpc-check": set(),
+    # timeapi.io impersonation campaign (Mar 2026, Socket disclosure)
+    "time_calibrator": set(),
+    "time_calibrators": set(),
+    "dnp3times": set(),
+    "time-sync": set(),
+    "chrono_anchor": set(),
+    "tracing-check": set(),
+    "tracings": set(),
+    "tracing_checks": set(),
+    "tracing-ethers": set(),
+    # build.rs droppers / .env exfiltration (2025-2026)
+    "uniswap-utils": set(),
+    "sha-rust": set(),
+    "evm-units": set(),
+    "finch-rust": set(),
+    "finch-rst": set(),
+    "sha-rst": set(),
+    "finch_cli_rust": set(),
+    "rands": set(),
+    "replit_ruspty": set(),
+    "tree-sitter-pkl": set(),
+    "custom-req-on-workers": set(),
+    "statsrelay-protobuf": set(),
+    "jfrog_quotes": set(),
+    "sophosfirewall-python": set(),
+    "logtrace": set(),
+    "pretty-changelog-logger": set(),
+    "microsoftsystem64": set(),
+    "safe-agent-rs": set(),
+    "mysten-metrics": set(),
+    "sui-execution-cut": set(),
+}
+
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
-             "dist", "build", "__pycache__", ".tox", ".mypy_cache"}
+             "dist", "build", "__pycache__", ".tox", ".mypy_cache",
+             "target"}
 
 PYPI_FILENAMES = {"Pipfile", "Pipfile.lock", "poetry.lock",
                   "pyproject.toml", "setup.py"}
 NPM_FILENAMES = {"package.json", "package-lock.json",
                  "yarn.lock", "pnpm-lock.yaml"}
+CRATES_FILENAMES = {"Cargo.toml", "Cargo.lock"}
 
 REQ_TXT_RE = re.compile(r"^requirements.*\.txt$")
 
@@ -407,6 +489,88 @@ def parse_pnpm_lock(path: Path) -> Iterable[tuple[str, str]]:
         yield m.group(1), m.group(2)
 
 
+# Cargo.lock: each [[package]] block holds name/version/source. Only entries
+# sourced from the crates.io registry are reported; path/git dependencies
+# can't be matched against a crates.io name list.
+CARGO_LOCK_NAME_RE = re.compile(r'^\s*name\s*=\s*"([^"]+)"', re.MULTILINE)
+CARGO_LOCK_VERSION_RE = re.compile(r'^\s*version\s*=\s*"([^"]+)"', re.MULTILINE)
+
+
+def parse_cargo_lock(path: Path) -> Iterable[tuple[str, str]]:
+    text = path.read_text(errors="ignore")
+    for block in text.split("[[package]]")[1:]:
+        if 'source = "registry+' not in block:
+            continue
+        name_m = CARGO_LOCK_NAME_RE.search(block)
+        ver_m = CARGO_LOCK_VERSION_RE.search(block)
+        if name_m and ver_m:
+            yield name_m.group(1), ver_m.group(1)
+
+
+# Cargo.toml: dependency tables can appear as
+#   [dependencies]                 → inline `pkg = "1.2"` or `pkg = { version = "1.2", ... }`
+#   [dev-dependencies]              → same
+#   [build-dependencies]            → same
+#   [target.'cfg(unix)'.dependencies] → same
+#   [dependencies.pkg]              → version on its own line in the table body
+# Workspace tables ([workspace.dependencies]) follow the same shape.
+CARGO_SECTION_HEADER_RE = re.compile(r"^\[([^\]]+)\]\s*$", re.MULTILINE)
+CARGO_INLINE_DEP_RE = re.compile(
+    r'^\s*([A-Za-z0-9_\-]+)\s*=\s*"([^"]+)"\s*$', re.MULTILINE
+)
+CARGO_TABLE_DEP_RE = re.compile(
+    r'^\s*([A-Za-z0-9_\-]+)\s*=\s*\{([^}]*)\}\s*$', re.MULTILINE
+)
+CARGO_TABLE_VERSION_RE = re.compile(r'version\s*=\s*"([^"]+)"')
+
+
+def _is_cargo_dep_section(section: str) -> bool:
+    """True for [dependencies], [dev-dependencies], [build-dependencies],
+    workspace variants, and target-prefixed variants. Returns False for
+    [dependencies.pkg] style (handled separately)."""
+    s = section.strip()
+    tail = s.rsplit(".", 1)[-1]
+    return tail in {"dependencies", "dev-dependencies", "build-dependencies"}
+
+
+def _cargo_subtable_dep_name(section: str) -> str | None:
+    """For [dependencies.pkg] / [workspace.dependencies.pkg] /
+    [target.X.dev-dependencies.pkg], return `pkg`. Otherwise None."""
+    parts = section.strip().split(".")
+    if len(parts) < 2:
+        return None
+    if parts[-2] in {"dependencies", "dev-dependencies", "build-dependencies"}:
+        return parts[-1]
+    return None
+
+
+def parse_cargo_toml(path: Path) -> Iterable[tuple[str, str | None]]:
+    text = path.read_text(errors="ignore")
+    # Split text into (section_header, body) pairs.
+    headers = list(CARGO_SECTION_HEADER_RE.finditer(text))
+    for i, m in enumerate(headers):
+        section = m.group(1)
+        body_start = m.end()
+        body_end = headers[i + 1].start() if i + 1 < len(headers) else len(text)
+        body = text[body_start:body_end]
+
+        sub_dep = _cargo_subtable_dep_name(section)
+        if sub_dep:
+            ver_m = CARGO_TABLE_VERSION_RE.search(body)
+            yield sub_dep, ver_m.group(1) if ver_m else None
+            continue
+
+        if not _is_cargo_dep_section(section):
+            continue
+
+        for line_m in CARGO_INLINE_DEP_RE.finditer(body):
+            yield line_m.group(1), line_m.group(2)
+        for line_m in CARGO_TABLE_DEP_RE.finditer(body):
+            inner = line_m.group(2)
+            ver_m = CARGO_TABLE_VERSION_RE.search(inner)
+            yield line_m.group(1), ver_m.group(1) if ver_m else None
+
+
 # ---------------------------------------------------------------------------
 # Scanner
 # ---------------------------------------------------------------------------
@@ -419,27 +583,33 @@ def find_manifests(root: Path) -> list[Path]:
         if any(part in SKIP_DIRS for part in path.parts):
             continue
         name = path.name
-        if name in PYPI_FILENAMES or name in NPM_FILENAMES or REQ_TXT_RE.match(name):
+        if (name in PYPI_FILENAMES or name in NPM_FILENAMES
+                or name in CRATES_FILENAMES or REQ_TXT_RE.match(name)):
             out.append(path)
     return out
 
 
-def parse_manifest(path: Path) -> tuple[list[tuple[str, str | None]], bool]:
-    """Return (pairs, is_npm) for the given manifest path."""
+def parse_manifest(path: Path) -> tuple[list[tuple[str, str | None]], str]:
+    """Return (pairs, ecosystem) for the given manifest path.
+    Ecosystem is one of: "npm", "pypi", "crates", or "" if unknown."""
     name = path.name
     if name == "package.json":
-        return list(parse_package_json(path)), True
+        return list(parse_package_json(path)), "npm"
     if name == "package-lock.json":
-        return list(parse_package_lock(path)), True
+        return list(parse_package_lock(path)), "npm"
     if name == "yarn.lock":
-        return list(parse_yarn_lock(path)), True
+        return list(parse_yarn_lock(path)), "npm"
     if name == "pnpm-lock.yaml":
-        return list(parse_pnpm_lock(path)), True
+        return list(parse_pnpm_lock(path)), "npm"
     if name == "pyproject.toml":
-        return list(parse_pyproject_toml(path)), False
+        return list(parse_pyproject_toml(path)), "pypi"
     if name in {"Pipfile", "Pipfile.lock", "poetry.lock", "setup.py"} or REQ_TXT_RE.match(name):
-        return list(parse_requirements_txt(path)), False
-    return [], False
+        return list(parse_requirements_txt(path)), "pypi"
+    if name == "Cargo.toml":
+        return list(parse_cargo_toml(path)), "crates"
+    if name == "Cargo.lock":
+        return list(parse_cargo_lock(path)), "crates"
+    return [], ""
 
 
 def scan(root: Path):
@@ -448,13 +618,13 @@ def scan(root: Path):
 
     for path in find_manifests(root):
         try:
-            pairs, is_npm = parse_manifest(path)
+            pairs, ecosystem = parse_manifest(path)
         except Exception as exc:
             print(f"warn: failed to parse {path}: {exc}", file=sys.stderr)
             continue
 
         for pkg, version in pairs:
-            if is_npm:
+            if ecosystem == "npm":
                 bad = NPM_BAD.get(pkg)
                 # Empty set is the wildcard: any version of this package is
                 # malicious (pure-malware typosquats; see PYPI_BAD docstring).
@@ -462,17 +632,21 @@ def scan(root: Path):
                     hits.append((path, pkg, version or "?", "npm"))
                 elif any(pkg.startswith(s) for s in NPM_SUSPECT_SCOPES):
                     suspects.append((path, pkg, version or "?", "npm-scope"))
-            else:
+            elif ecosystem == "pypi":
                 bad = PYPI_BAD.get(pkg.lower())
                 if bad is not None and (not bad or (version and version in bad)):
                     hits.append((path, pkg, version or "?", "pypi"))
+            elif ecosystem == "crates":
+                bad = CRATES_BAD.get(pkg)
+                if bad is not None and (not bad or (version and version in bad)):
+                    hits.append((path, pkg, version or "?", "crates.io"))
 
     return hits, suspects
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Check a repo for known-malicious npm/PyPI package versions.",
+        description="Check a repo for known-malicious npm/PyPI/crates.io package versions.",
         epilog="Author: Jascha Wanger / Tarnover, LLC",
     )
     parser.add_argument("path", nargs="?", default=".",

@@ -1,9 +1,9 @@
 # SKILLS.md — keeping the BAD list current
 
 This file is a working guide for whoever (or whatever) is maintaining
-`NPM_BAD` and `PYPI_BAD` in `check_compromised_packages.py`. Supply-chain
-incidents are continuous; the list is only as good as the cadence at which
-it's refreshed.
+`NPM_BAD`, `PYPI_BAD`, and `CRATES_BAD` in `check_compromised_packages.py`.
+Supply-chain incidents are continuous; the list is only as good as the
+cadence at which it's refreshed.
 
 ## Slash commands
 
@@ -21,7 +21,8 @@ in this file changes whether you invoke them by slash command or by hand.
 
 ## What "good evidence" looks like
 
-Before adding an entry to `NPM_BAD` / `PYPI_BAD`, get at least one of:
+Before adding an entry to `NPM_BAD` / `PYPI_BAD` / `CRATES_BAD`, get at
+least one of:
 
 - **A GHSA / OSV / CVE record** with the package name and exact version(s).
 - **A primary-source maintainer postmortem** (e.g. the TanStack blog post)
@@ -65,13 +66,39 @@ curl -sS -X POST https://api.osv.dev/v1/query \
 
 ### Empty-set wildcard convention
 
-`NPM_BAD[pkg] = set()` (and the same for `PYPI_BAD`) means *any installed
-version of this package is malicious*. Use it for pure-malware typosquats
-where OSV's `affected.ranges` is `>=0` — i.e. the package has no
-legitimate use whatsoever. Examples already in the list: the entire
-TrapDoor npm cluster (`async-pipeline-builder`, `chain-key-validator`,
-etc.). For legitimate packages with a single bad release (e.g. `axios`,
+`NPM_BAD[pkg] = set()` (and the same for `PYPI_BAD` / `CRATES_BAD`) means
+*any installed version of this package is malicious*. Use it for
+pure-malware typosquats where OSV's `affected.ranges` is `>=0` — i.e.
+the package has no legitimate use whatsoever. Examples already in the
+list: the entire TrapDoor npm cluster (`async-pipeline-builder`,
+`chain-key-validator`, etc.), and the entire `CRATES_BAD` dict (every
+RustSec advisory tagged `categories = ["malicious"]` has
+`[versions] patched = []`, i.e. the crate was removed from the registry).
+For legitimate packages with a single bad release (e.g. `axios`,
 `node-ipc`), **always pin exact versions** — do not wildcard.
+
+### crates.io specifics
+
+The RustSec advisory database (`github.com/rustsec/advisory-db`) is the
+canonical source — it cross-publishes to OSV with the `crates.io`
+ecosystem string. To enumerate every crate currently flagged as
+supply-chain malware:
+
+```bash
+git clone --depth 1 --filter=blob:none --sparse \
+  https://github.com/rustsec/advisory-db.git /tmp/rustsec-adv
+cd /tmp/rustsec-adv && git sparse-checkout set crates
+grep -lE '^categories *=.*"malicious"' crates/*/RUSTSEC-*.md
+```
+
+Any file from that grep is a candidate for `CRATES_BAD`. Cross-check that
+the body contains `expect-deleted = true` and `[versions] patched = []`
+before adding it — that's RustSec's signal that the package was pulled
+from crates.io entirely (and therefore the empty-set wildcard is correct).
+Vulnerability advisories tagged `code-execution` or `memory-corruption`
+in legitimate crates (e.g. `rkyv`, `starship`, `age`) are out of scope
+— this tool only tracks malicious supply-chain incidents, not CVEs in
+otherwise-legitimate crates.
 
 ## Where to look for new compromises
 
@@ -130,7 +157,8 @@ etc.). For legitimate packages with a single bad release (e.g. `axios`,
    "@scope/pkg": {"1.2.3", "1.2.4"},   # specific malicious versions
    "evil-typosquat": set(),            # any version is malicious
    ```
-   Keep entries grouped by wave under the existing comments.
+   Use `CRATES_BAD` for crates.io entries (almost always empty-set), and
+   group entries by wave under the existing comments.
 3. **Sanity-check parsing** against a synthetic manifest:
    ```bash
    tmp=$(mktemp -d)
