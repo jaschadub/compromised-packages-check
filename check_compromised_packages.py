@@ -8,11 +8,13 @@ May 2026, the April 2026 @cap-js / mbt wave, axios DPRK takeover March
 2026, @bitwarden/cli April 2026, node-ipc May 2026, the @antv / atool
 May 19 mass wave, the TrapDoor crypto-stealer typosquats from May 22
 2026, the 25-package multi-cluster npm typosquat wave from May 25 2026,
-intercom-client April 2026, the dYdX supply-chain attack January 2026,
-TeamPCP Trivy-cascade litellm and telnyx March 2026, elementary-data
-April 2026, the Polymarket / Mysten / timeapi crates.io campaigns, the
-2023 amaperf crates typosquat cluster, and related Mistral / Guardrails
-/ durabletask / pytorch-lightning poisonings).
+the toskypi npm RAT/infostealer campaign May 25 2026, the CLOB IPFS
+dropper campaign May 26 2026, intercom-client April 2026, the dYdX
+supply-chain attack January 2026, TeamPCP Trivy-cascade litellm and
+telnyx March 2026, elementary-data April 2026, the Polymarket / Mysten /
+timeapi crates.io campaigns, the 2023 amaperf crates typosquat cluster,
+and related Mistral / Guardrails / durabletask / pytorch-lightning
+poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-26
@@ -295,6 +297,26 @@ NPM_BAD: dict[str, set[str]] = {
     "chai-as-redeploy": set(),
     "expo-config-plugin-typescript": set(),
     "unique-string-64": set(),
+    # toskypi npm RAT/infostealer campaign (May 25 2026)
+    # Multi-platform infostealer + RAT disguised as terminal/logger utilities.
+    # Postinstall hook establishes persistence on Windows/macOS/Linux;
+    # steals crypto wallets, browsers, SSH keys, cloud creds. Second-stage
+    # payload fetched from HuggingFace repo; C2: ws://195.201.194.107:8010.
+    # OSV MAL-2026-4345 (eo-terminal), MAL-2026-4346 (logger-draft)
+    # ossf/malicious-packages PR #1270 (merged 2026-05-26); SafeDep discovery
+    "eo-terminal": set(),
+    "logger-draft": set(),
+    # CLOB IPFS dropper campaign (May 26 2026)
+    # Four typosquats targeting DeFi / Central-Limit-Order-Book API developers.
+    # Postinstall hook fetches a Windows executable via IPFS CID, installs it
+    # with registry persistence, and beacons to C2 at 45.8.22.112:2026.
+    # OSV MAL-2026-4347 (@devcarron/clob), MAL-2026-4348 (api-rs-node),
+    # MAL-2026-4349 (clob.api), MAL-2026-4350 (clobprice.api)
+    # ossf/malicious-packages PR #1271 (merged 2026-05-26); SafeDep discovery
+    "@devcarron/clob": set(),
+    "api-rs-node": set(),
+    "clob.api": set(),
+    "clobprice.api": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any

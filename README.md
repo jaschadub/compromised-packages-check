@@ -66,6 +66,8 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | @cap-js / mbt — April 2026 | `@cap-js/sqlite` 2.2.2, `@cap-js/postgres` 2.2.2, `@cap-js/db-service` 2.10.1, `mbt` 1.2.48 |
 | TrapDoor crypto-stealer — May 22 2026 | 21 npm typosquats (`async-pipeline-builder`, `build-scripts-utils`, `chain-key-validator`, …) flagged any-version; 7 PyPI typosquats (`eth-security-auditor`, `cryptowallet-safety`, `defi-risk-scanner`, `solidity-build-guard` @ 0.1.0; `data-pipeline-check`, `env-loader-cli`, `git-config-sync` @ 0.1.0, 0.1.1) |
 | Multi-cluster npm typosquat wave — May 25 2026 | 25 malicious-from-creation npm packages across 5 sub-clusters: 6 `ts-*` utilities (`ts-stream-compose`, `ts-result-pipe`, `ts-typeguard-utils`, `ts-config-mapper`, `ts-iter-utils`, `ts-schema-config`); 3 `@gbrlxvii/ts-*`; 6 `auth0-*` SDK typosquats; 2 `webservices.rest*`; 2 `vite-plugin-env-compat*`; 6 miscellaneous (`fivem-monitor`, `jules-standard`, `internallib_v95`, `chai-as-redeploy`, `expo-config-plugin-typescript`, `unique-string-64`) |
+| toskypi npm RAT/infostealer — May 25 2026 (MAL-2026-4345, MAL-2026-4346) | `eo-terminal`, `logger-draft` (npm) — multi-platform RAT + infostealer disguised as terminal/logger utilities; second-stage from HuggingFace; C2 ws://195.201.194.107:8010 |
+| CLOB IPFS dropper — May 26 2026 (MAL-2026-4347–4350) | `@devcarron/clob`, `api-rs-node`, `clob.api`, `clobprice.api` (npm) — DeFi/CLOB-API typosquats fetching Windows executable via IPFS; registry persistence; C2 45.8.22.112:2026 |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
@@ -141,6 +143,14 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-w6gc-fhv9-53hq — chai-as-redeploy](https://github.com/advisories/GHSA-w6gc-fhv9-53hq)
 - [GHSA-rj44-v8w3-c5q5 — expo-config-plugin-typescript](https://github.com/advisories/GHSA-rj44-v8w3-c5q5)
 - [GHSA-gqvh-j8hx-425w — unique-string-64](https://github.com/advisories/GHSA-gqvh-j8hx-425w)
+- [OSV MAL-2026-4345 — eo-terminal](https://osv.dev/vulnerability/MAL-2026-4345)
+- [OSV MAL-2026-4346 — logger-draft](https://osv.dev/vulnerability/MAL-2026-4346)
+- [ossf/malicious-packages PR #1270 — eo-terminal, logger-draft (toskypi campaign)](https://github.com/ossf/malicious-packages/pull/1270)
+- [OSV MAL-2026-4347 — @devcarron/clob](https://osv.dev/vulnerability/MAL-2026-4347)
+- [OSV MAL-2026-4348 — api-rs-node](https://osv.dev/vulnerability/MAL-2026-4348)
+- [OSV MAL-2026-4349 — clob.api](https://osv.dev/vulnerability/MAL-2026-4349)
+- [OSV MAL-2026-4350 — clobprice.api](https://osv.dev/vulnerability/MAL-2026-4350)
+- [ossf/malicious-packages PR #1271 — CLOB IPFS dropper campaign](https://github.com/ossf/malicious-packages/pull/1271)
 - [rustsec/advisory-db](https://github.com/rustsec/advisory-db) — canonical RustSec advisories (filter for `categories = ["malicious"]`)
 - [Veracode (Phylum) — Rust malware staged on crates.io](https://www.veracode.com/blog/rust-malware-staged-on-crates-io/) (amaperf 2023 cluster)
 - [Socket — 5 malicious Rust crates posed as time utilities](https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files) (timeapi.io campaign)
