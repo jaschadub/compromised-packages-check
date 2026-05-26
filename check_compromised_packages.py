@@ -7,9 +7,9 @@ PyPI supply-chain incidents (Mini Shai-Hulud / TanStack May 2026, the April
 2026 @cap-js / mbt wave, axios DPRK takeover March 2026, @bitwarden/cli
 April 2026, node-ipc May 2026, the @antv / atool May 19 mass wave, the
 TrapDoor crypto-stealer typosquats from May 22 2026, the 25-package
-multi-cluster npm typosquat wave from May 25 2026, and related Mistral
-/ Guardrails / durabletask / pytorch-lightning poisonings, plus the
-dYdX supply-chain attack January 2026, TeamPCP Trivy-cascade litellm
+multi-cluster npm typosquat wave from May 25 2026, intercom-client April 2026,
+and related Mistral / Guardrails / durabletask / pytorch-lightning poisonings,
+plus the dYdX supply-chain attack January 2026, TeamPCP Trivy-cascade litellm
 and telnyx (March 2026), and elementary-data April 2026).
 
 Author:    Jascha Wanger / Tarnover, LLC
@@ -214,6 +214,9 @@ NPM_BAD: dict[str, set[str]] = {
     "@squawk/flightplan": {"0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6"},
     "@tallyui/connector-medusa": {"1.0.1", "1.0.2", "1.0.3"},
     "@tallyui/connector-vendure": {"1.0.1", "1.0.2", "1.0.3"},
+    # intercom-client maintainer-credential compromise (April 30 2026) — Shai-Hulud campaign
+    # GHSA-54pg-9963-v8vg; confirmed by StepSecurity, Socket, Netskope, OX Security, Upwind
+    "intercom-client": {"7.0.4"},
     # @antv / atool mass wave (May 19 2026) — 317 npm packages, 631 versions
     # Per safedep.io and ossf/malicious-packages. High-impact subset only;
     # the rest of the @antv/ scope is covered by NPM_SUSPECT_SCOPES below.
