@@ -102,42 +102,47 @@ otherwise-legitimate crates.
 
 ## Where to look for new compromises
 
-### Primary advisory databases (authoritative, machine-readable)
+The source list is split into **primary** (reliable, machine-readable,
+no anti-bot) and **secondary** (vendor blogs, often Cloudflare-protected
+— only fetch when a primary record cites a specific URL). Always start
+with primary.
 
-| Source | Notes |
-| --- | --- |
-| [GitHub Advisory Database](https://github.com/advisories) | Filter by ecosystem (npm / pip). Each GHSA links to the affected versions. Searchable via `gh api /advisories`. |
-| [OSV.dev](https://osv.dev) | Aggregates GHSA, PYSEC, npm, etc. Has a JSON API: `https://api.osv.dev/v1/query` |
-| [npm Security Advisories](https://www.npmjs.com/advisories) | Vendor list for the npm registry. |
-| [PYSEC / pypa/advisory-database](https://github.com/pypa/advisory-database) | Canonical PyPI advisory source. |
-| [CVE.org / NVD](https://www.cve.org/) | Slower to publish, but useful for cross-referencing. |
+### Primary sources (always queried first)
 
-### Security-vendor research blogs (often first to enumerate versions)
+| Source | How to access | Why it's reliable |
+| --- | --- | --- |
+| **OSV.dev bulk export (GCS)** | `curl https://osv-vulnerabilities.storage.googleapis.com/{npm,PyPI,crates.io}/all.zip` | Single ZIP per ecosystem; contains every `MAL-*` record with `affected.versions` / `affected.ranges` populated. No auth, no bot protection. ~200MB per ecosystem. |
+| **OSV.dev per-package API** | `POST https://api.osv.dev/v1/query` | For verifying a single candidate surfaced elsewhere. |
+| **GitHub Advisory Database** | `gh api '/advisories?type=malware&ecosystem={npm,pip,rust}&per_page=50'` | Fresh `MAL-*` records via authenticated API. |
+| **`github/advisory-database` git mirror** | `gh api '/repos/github/advisory-database/contents/advisories/github-reviewed/<YYYY>/<MM>'` | File-level access to the canonical GHSA YAML. |
+| **`ossf/malicious-packages` git tree** | `gh api '/repos/ossf/malicious-packages/contents/osv/malicious/<eco>'` | Per-package tree, catches things before OSV ingests them. |
+| **`pypa/advisory-database` git mirror** | `gh api '/repos/pypa/advisory-database/contents/vulns'` | Canonical PyPI advisory source. |
+| **`rustsec/advisory-db` git mirror** | `gh api '/repos/rustsec/advisory-db/contents/crates'`; then look in candidate `crates/<name>/RUSTSEC-*.md` for `categories = [..., "malicious"]` | Canonical crates.io advisory source. |
+| **CVE.org / NVD** | Web/API | Slower to publish, but useful for cross-referencing aliases. |
 
-| Source | URL |
-| --- | --- |
-| Aikido | https://www.aikido.dev/blog |
-| Socket | https://socket.dev/blog |
-| Snyk | https://snyk.io/blog/ |
-| Wiz | https://www.wiz.io/blog |
-| Mend | https://www.mend.io/blog/ |
-| StepSecurity | https://www.stepsecurity.io/blog |
-| Phylum | https://blog.phylum.io/ |
-| ReversingLabs | https://www.reversinglabs.com/blog |
-| Checkmarx Zero | https://checkmarx.com/blog/ |
-| JFrog Security Research | https://jfrog.com/blog/category/security-research/ |
-| SafeDep | https://safedep.io/blog |
-| Corgea Research | https://corgea.com/research |
-| Microsoft Security Blog | https://www.microsoft.com/en-us/security/blog/ |
-| Palo Alto Unit 42 | https://unit42.paloaltonetworks.com/ |
-| Red Hat (supply-chain digest) | https://access.redhat.com/security/supply-chain-attacks-NPM-packages |
+### Secondary sources (only consult when a primary cites them)
 
-### Aggregators / news
+Vendor research blogs are useful for human context (the *who, why, IoCs*)
+but their indexes and RSS feeds 403 the sandbox user-agent because of
+Cloudflare bot-protection. Don't iterate them. If an OSV/GHSA record
+points at a specific URL, fetch that URL — that's the only case where
+WebFetching a vendor page is worth the round-trip.
 
-- [The Hacker News](https://thehackernews.com/) — fast tag for ongoing waves.
-- [CyberScoop](https://cyberscoop.com/) — incident timelines.
-- [Security Boulevard](https://securityboulevard.com/) — republishes many vendor writeups.
-- [@vxunderground](https://twitter.com/vxunderground), [@malwrhunterteam](https://twitter.com/malwrhunterteam) and the npm/pypi security tags on Mastodon/Bluesky often surface things before formal advisories.
+Known publishers whose data does end up in OSV/GHSA: Aikido, Socket,
+Snyk, Wiz, Mend, StepSecurity, Phylum (defunct since Veracode
+acquisition), ReversingLabs, Checkmarx Zero, JFrog Security Research,
+SafeDep, Corgea Research, Microsoft Security Blog, Palo Alto Unit 42,
+Red Hat supply-chain digest, The Hacker News, CyberScoop, Security
+Boulevard. None of these need to be polled — OSV/GHSA carry the same
+package+version data within hours.
+
+### Affected-project incident pages (when a campaign targets a specific scope)
+
+- Look for an **incident** / **security** post on the project's own blog or
+  the **GitHub Issues** of its main repo (e.g. `TanStack/router#7383`,
+  `opensearch-project/opensearch-js#1116`). Maintainers usually publish
+  the precise malicious versions there first. Findable via
+  `gh search issues '<query>' --updated '>=<floor>'`.
 
 ### Affected-project incident pages (when a campaign targets a specific scope)
 
