@@ -19,8 +19,12 @@ the Polymarket / Mysten / timeapi crates.io campaigns, the 2023 amaperf
 crates typosquat cluster, the Nx build-system supply-chain compromise
 May 27 2026, the @limebike dependency-confusion campaign May 27 2026,
 the @tailwind-core Tailwind typosquat cluster May 27 2026, the
-fastapi / strawberry-graphql PyPI poisonings May 27 2026, and related
-Mistral / Guardrails / durabletask / pytorch-lightning poisonings).
+fastapi / strawberry-graphql PyPI poisonings May 27 2026, the
+CanisterSprawl TeamPCP npm worm / Namastex Labs packages April 2026,
+the @velora-dex/sdk registry-only macOS backdoor April 2026, the DevTap
+user0001 typosquat cluster April–May 2026, the xinference PyPI TeamPCP
+compromise April 2026, and related Mistral / Guardrails / durabletask /
+pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-27
@@ -54,6 +58,13 @@ PYPI_BAD: dict[str, set[str]] = {
     # PyTorch Lightning maintainer compromise (April 30 2026)
     # GHSA-w37p-236h-pfx3 / CVE-2026-44484
     "pytorch-lightning": {"2.6.2", "2.6.3"},
+    # xinference maintainer-account compromise (April 22 2026) — 600k-download PyPI AI-inference framework
+    # Three consecutive malicious versions published after account takeover; heavily obfuscated
+    # base64 payload steals AWS/GCP/K8s/SSH/env credentials on import.
+    # JFrog research.jfrog.com/post/xinference-compromise/
+    # Mend.io mend.io/blog/malicious-xinference-pypi-teampcp-part-4/
+    # OX Security ox.security/blog/xinference-allegedly-hacked-by-teampcp-malicious-package-in-pypi/
+    "xinference": {"2.6.0", "2.6.1", "2.6.2"},
     # dYdX supply-chain attack (January 27 2026) — maintainer credential compromise
     # PYSEC-2026-1; Socket + TheHackerNews + Rescana + CyberPress
     "dydx-v4-client": {"1.1.5.post1"},
@@ -244,6 +255,34 @@ NPM_BAD: dict[str, set[str]] = {
     # intercom-client maintainer-credential compromise (April 30 2026) — Shai-Hulud campaign
     # GHSA-54pg-9963-v8vg; confirmed by StepSecurity, Socket, Netskope, OX Security, Upwind
     "intercom-client": {"7.0.4"},
+    # CanisterSprawl / TeamPCP npm self-propagating worm (April 8–22 2026)
+    # Self-spreading credential stealer using ICP-canister exfiltration; compromised Namastex Labs
+    # developer tools. Postinstall hook harvests cloud creds, SSH keys, npm tokens, then republishes
+    # infected versions using stolen tokens. Covers @fairwords scope (April 8) and Namastex packages
+    # (April 21–22). All version ranges confirmed by two+ independent vendors.
+    # pgserve: StepSecurity stepsecurity.io/blog/pgserve-compromised-on-npm-malicious-versions-harvest-credentials
+    #          Socket socket.dev/blog/namastex-npm-packages-compromised-canisterworm
+    #          Maintainer issue github.com/namastexlabs/pgserve/issues/25
+    # @automagik/genie: Socket; THN thehackernews.com/2026/04/self-propagating-supply-chain-worm.html
+    #                   InfoWorld infoworld.com/article/4162198/malicious-pgserve-automagik-developer-tools-found-in-npm-registry.html
+    # @fairwords/*: SafeDep safedep.io/malicious-fairwords-npm-credential-worm/; Socket (same campaign)
+    # @openwebconcept/*: Socket (same campaign); THN; The Register
+    "pgserve": {"1.1.11", "1.1.12", "1.1.13"},
+    "@automagik/genie": {
+        "4.260421.33", "4.260421.34", "4.260421.35", "4.260421.36",
+        "4.260421.37", "4.260421.38", "4.260421.39", "4.260421.40",
+    },
+    "@fairwords/websocket": {"1.0.38", "1.0.39"},
+    "@fairwords/loopback-connector-es": {"1.4.3", "1.4.4"},
+    "@openwebconcept/theme-owc": {"1.0.1", "1.0.2", "1.0.3"},
+    "@openwebconcept/design-tokens": {"1.0.1", "1.0.2", "1.0.3"},
+    # @velora-dex/sdk registry-only supply-chain compromise (April 7 2026)
+    # Malicious build published directly to npm without matching GitHub commit; injects a Go RAT
+    # (minirat) + macOS launchctl persistence into dist/index.js on import (no postinstall hook).
+    # Legitimate SDK; pin to <=9.4.0 and rotate all credentials.
+    # StepSecurity stepsecurity.io/blog/velora-dex-sdk-compromised-on-npm-malicious-version-drops-macos-backdoor-via-launchctl-persistence
+    # SafeDep safedep.io/malicious-velora-dex-sdk-npm-compromised-rat/
+    "@velora-dex/sdk": {"9.4.1"},
     # @antv / atool mass wave (May 19 2026) — 317 npm packages, 631 versions
     # Per safedep.io and ossf/malicious-packages. High-impact subset only;
     # the rest of the @antv/ scope is covered by NPM_SUSPECT_SCOPES below.
@@ -356,6 +395,21 @@ NPM_BAD: dict[str, set[str]] = {
     "pretty-logger-utils": set(),
     "ts-logger-pack": set(),
     "pinno-loggers": set(),
+    # DevTap user0001 typosquat cluster (April–May 2026) — six pure-malware packages
+    # Single throwaway publisher (user0001 / tanvisoul9@gmail.com); all six share identical
+    # postinstall payloads. Payloads include: SSH-key backdoor via Supabase bucket, Windows
+    # HKCU persistence + Node.js RAT with microphone/screenshot/browser-history theft,
+    # and full remote-access shell. OSV confirmed affected.ranges >=0 for all; use empty-set
+    # wildcard.
+    # SafeDep (per-package blogs: safedep.io/malicious-npm-node-env-resolve-rat/,
+    #          safedep.io/malicious-dom-utils-lite-npm-ssh-backdoor/)
+    # Xygeni xygeni.io/blog/devtap-npm-typosquatting-attack-2/ (covers all six packages)
+    "centralogger": set(),
+    "connector-agent": set(),
+    "dom-utils-lite": set(),
+    "node-env-resolve": set(),
+    "node-fetch-lite": set(),
+    "node-gyp-runtime": set(),
     # Leaked Shai-Hulud / deadcode09284814 npm cluster (May 26 2026)
     # Four packages published by npm user deadcode09284814 containing different
     # payloads: chalk-tempalte carries a working Shai-Hulud worm clone with its

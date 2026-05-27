@@ -51,6 +51,10 @@ useful for catching newly-disclosed entries before this repo has been updated.
 
 | Wave | Scope / Packages |
 | --- | --- |
+| CanisterSprawl / TeamPCP npm worm — April 8–22 2026 | `@fairwords/websocket` 1.0.38–1.0.39; `@fairwords/loopback-connector-es` 1.4.3–1.4.4 (April 8); `pgserve` 1.1.11–1.1.13; `@automagik/genie` 4.260421.33–4.260421.40; `@openwebconcept/theme-owc` 1.0.1–1.0.3; `@openwebconcept/design-tokens` 1.0.1–1.0.3 (April 21–22) — self-propagating ICP-canister credential stealer |
+| @velora-dex/sdk registry-only compromise — April 7 2026 | `@velora-dex/sdk` 9.4.1 — Go RAT (minirat) + macOS launchctl persistence injected into dist/index.js without GitHub commit |
+| DevTap user0001 typosquat cluster — April–May 2026 | `centralogger`, `connector-agent`, `dom-utils-lite`, `node-env-resolve`, `node-fetch-lite`, `node-gyp-runtime` — any-version (six packages, single throwaway account, SSH-key backdoor + Windows RAT + browser-history theft) |
+| xinference PyPI TeamPCP compromise — April 22 2026 | `xinference` 2.6.0–2.6.2 — 600k-download AI-inference framework; obfuscated base64 infostealer exfiltrates cloud/SSH/K8s credentials on import |
 | dYdX — January 27 2026 (PYSEC-2026-1) | `@dydxprotocol/v4-client-js` 3.4.1, 1.22.1, 1.15.2, 1.0.31 (npm); `dydx-v4-client` 1.1.5.post1 (PyPI) |
 | TeamPCP / Trivy cascade — March 2026 (GHSA-5mg7-485q-xm76, GHSA-955r-262c-33jc) | `litellm` 1.82.7, 1.82.8; `telnyx` 4.87.1, 4.87.2 (PyPI) |
 | elementary-data — April 24 2026 | `elementary-data` 0.23.3 (PyPI) — GitHub Actions script-injection |
@@ -189,6 +193,20 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-4771 — strawberry-graphql 0.315.6](https://osv.dev/vulnerability/MAL-2026-4771)
 - [OSV MAL-2026-4759 — notebook-intelligence](https://osv.dev/vulnerability/MAL-2026-4759)
 - [OSV MAL-2026-4194 — libhmac](https://osv.dev/vulnerability/MAL-2026-4194)
+- [StepSecurity — pgserve compromised on npm (CanisterSprawl)](https://www.stepsecurity.io/blog/pgserve-compromised-on-npm-malicious-versions-harvest-credentials)
+- [Socket — Namastex npm packages hit with CanisterWorm](https://socket.dev/blog/namastex-npm-packages-compromised-canisterworm)
+- [Maintainer issue — pgserve 1.1.11–1.1.13 malicious postinstall](https://github.com/namastexlabs/pgserve/issues/25)
+- [The Hacker News — self-propagating supply chain worm hijacks npm (CanisterSprawl)](https://thehackernews.com/2026/04/self-propagating-supply-chain-worm.html)
+- [SafeDep — @fairwords npm credential worm](https://safedep.io/malicious-fairwords-npm-credential-worm/)
+- [InfoWorld — malicious pgserve and automagik developer tools found in npm](https://www.infoworld.com/article/4162198/malicious-pgserve-automagik-developer-tools-found-in-npm-registry.html)
+- [StepSecurity — @velora-dex/sdk compromised: macOS backdoor via launchctl](https://www.stepsecurity.io/blog/velora-dex-sdk-compromised-on-npm-malicious-version-drops-macos-backdoor-via-launchctl-persistence)
+- [SafeDep — @velora-dex/sdk delivers Go RAT via npm](https://safedep.io/malicious-velora-dex-sdk-npm-compromised-rat/)
+- [SafeDep — node-env-resolve npm RAT](https://safedep.io/malicious-npm-node-env-resolve-rat/)
+- [SafeDep — dom-utils-lite npm SSH backdoor via Supabase](https://safedep.io/malicious-dom-utils-lite-npm-ssh-backdoor/)
+- [Xygeni — DevTap npm typosquatting attack (user0001 cluster)](https://xygeni.io/blog/devtap-npm-typosquatting-attack-2/)
+- [JFrog — xinference PyPI package compromised by TeamPCP](https://research.jfrog.com/post/xinference-compromise/)
+- [Mend.io — TeamPCP Part 4: malicious xinference on PyPI](https://www.mend.io/blog/malicious-xinference-pypi-teampcp-part-4/)
+- [OX Security — xinference allegedly hacked by TeamPCP](https://www.ox.security/blog/xinference-allegedly-hacked-by-teampcp-malicious-package-in-pypi/)
 - [rustsec/advisory-db](https://github.com/rustsec/advisory-db) — canonical RustSec advisories (filter for `categories = ["malicious"]`)
 - [Veracode (Phylum) — Rust malware staged on crates.io](https://www.veracode.com/blog/rust-malware-staged-on-crates-io/) (amaperf 2023 cluster)
 - [Socket — 5 malicious Rust crates posed as time utilities](https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files) (timeapi.io campaign)
