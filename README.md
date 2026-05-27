@@ -70,6 +70,13 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | CLOB IPFS dropper — May 26 2026 (MAL-2026-4347–4350) | `@devcarron/clob`, `api-rs-node`, `clob.api`, `clobprice.api` (npm) — DeFi/CLOB-API typosquats fetching Windows executable via IPFS; registry persistence; C2 45.8.22.112:2026 |
 | DPRK js-logger-pack / terminal-logger-utils cluster — April–May 2026 (OSV MAL-2026-2827) | `js-logger-pack` (23 versions, any-version), `terminal-logger-utils`, `pretty-logger-utils`, `ts-logger-pack`, `pinno-loggers` (npm) — multi-stage dropper + infostealer + RAT; HuggingFace second-stage; targets Telegram sessions, SSH keys, crypto wallets, cloud credentials |
 | Leaked Shai-Hulud / deadcode09284814 cluster — May 26 2026 | `chalk-tempalte` (Shai-Hulud worm clone), `@deadcode09284814/axios-util` (credential stealer), `axois-utils` (Phantom Bot DDoS botnet), `color-style-utils` (wallet/credential stealer) — any-version |
+| Nx build-system supply-chain compromise — May 27 2026 (MAL-2025-41436–41443) | 8 `@nx/*` packages + `nx` core: `@nx/devkit` 20.9.0, 21.5.0; `@nx/eslint` 21.5.0; `@nx/js` 20.9.0, 21.5.0; `@nx/node` 20.9.0, 21.5.0; `@nx/workspace` 20.9.0, 21.5.0; `@nx/enterprise-cloud` 3.2.0; `@nx/key` 3.2.0, 5.0.7; `nx` 20.9.0–20.12.0, 21.5.0–21.8.0 |
+| @limebike dependency-confusion — May 27 2026 (MAL-2026-4187–4190) | `@limebike/frontend-core-api`, `@limebike/supreme`, `@limebike/supreme-data-grid`, `@limebike/supreme-date-pickers` — any-version (high-version 85.x packages targeting Lime's internal CI) |
+| @tailwind-core Tailwind typosquat cluster — May 27 2026 (MAL-2026-4448–4452) | `@tailwind-core/oxide-linux-x64-gnu`, `@tailwind-core/oxide-win32-x64-msvc`, `@tailwind-core/postcss`, `@tailwind-core/vite`, `@tailwind-core/webpack` — all version 4.3.0 (impersonates `@tailwindcss/*`) |
+| @tarojs/cli compromise — May 27 2026 (MAL-2026-4453) | `@tarojs/cli` 4.1.12-beta.47, 4.2.1-beta.0 |
+| fastapi / strawberry-graphql PyPI poisonings — May 27 2026 | `fastapi` 0.136.3; `strawberry-graphql` 0.315.6; `notebook-intelligence` 5.0.0a1, 5.0.0, 5.0.1; `libhmac` 0.3.0, 0.8.28.0, 0.8.28.1, 1.1.0 (PyPI) |
+| polymarket-clob-client npm compromise — May 26 2026 (MAL-2026-4643) | `polymarket-clob-client` 2.1.1 (npm) — official Polymarket CLOB client, single malicious version |
+| msc-terminal npm infostealer — May 27 2026 (MAL-2026-4823) | `msc-terminal` — any-version (pure-malware, >=0 range in OSV) |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
@@ -164,6 +171,24 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [The Hacker News — four malicious npm packages deliver infostealers and Phantom Bot DDoS](https://thehackernews.com/2026/05/four-malicious-npm-packages-deliver.html)
 - [Socket — TrapDoor crates.io Sui/Move build.rs dropper cluster](https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates)
 - [The Block — TrapDoor crates.io Sui/Move packages (independent corroboration)](https://www.theblock.co/post/402458/researchers-flag-trapdoor-malware-campaign-targeting-crypto-developer-environments-including-aptos-sui-and-solana)
+- [OSV MAL-2025-41436 through 41443 — @nx/* and nx supply-chain compromise](https://osv.dev/vulnerability/MAL-2025-41436)
+- [OSV MAL-2026-4187 — @limebike/frontend-core-api](https://osv.dev/vulnerability/MAL-2026-4187)
+- [OSV MAL-2026-4188 — @limebike/supreme](https://osv.dev/vulnerability/MAL-2026-4188)
+- [OSV MAL-2026-4189 — @limebike/supreme-data-grid](https://osv.dev/vulnerability/MAL-2026-4189)
+- [OSV MAL-2026-4190 — @limebike/supreme-date-pickers](https://osv.dev/vulnerability/MAL-2026-4190)
+- [OSV MAL-2026-4200 — art-template](https://osv.dev/vulnerability/MAL-2026-4200)
+- [OSV MAL-2026-4448 — @tailwind-core/oxide-linux-x64-gnu](https://osv.dev/vulnerability/MAL-2026-4448)
+- [OSV MAL-2026-4449 — @tailwind-core/oxide-win32-x64-msvc](https://osv.dev/vulnerability/MAL-2026-4449)
+- [OSV MAL-2026-4450 — @tailwind-core/postcss](https://osv.dev/vulnerability/MAL-2026-4450)
+- [OSV MAL-2026-4451 — @tailwind-core/vite](https://osv.dev/vulnerability/MAL-2026-4451)
+- [OSV MAL-2026-4452 — @tailwind-core/webpack](https://osv.dev/vulnerability/MAL-2026-4452)
+- [OSV MAL-2026-4453 — @tarojs/cli](https://osv.dev/vulnerability/MAL-2026-4453)
+- [OSV MAL-2026-4643 — polymarket-clob-client](https://osv.dev/vulnerability/MAL-2026-4643)
+- [OSV MAL-2026-4823 — msc-terminal](https://osv.dev/vulnerability/MAL-2026-4823)
+- [OSV MAL-2026-4750 — fastapi 0.136.3](https://osv.dev/vulnerability/MAL-2026-4750)
+- [OSV MAL-2026-4771 — strawberry-graphql 0.315.6](https://osv.dev/vulnerability/MAL-2026-4771)
+- [OSV MAL-2026-4759 — notebook-intelligence](https://osv.dev/vulnerability/MAL-2026-4759)
+- [OSV MAL-2026-4194 — libhmac](https://osv.dev/vulnerability/MAL-2026-4194)
 - [rustsec/advisory-db](https://github.com/rustsec/advisory-db) — canonical RustSec advisories (filter for `categories = ["malicious"]`)
 - [Veracode (Phylum) — Rust malware staged on crates.io](https://www.veracode.com/blog/rust-malware-staged-on-crates-io/) (amaperf 2023 cluster)
 - [Socket — 5 malicious Rust crates posed as time utilities](https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files) (timeapi.io campaign)

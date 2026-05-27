@@ -16,11 +16,14 @@ crates.io Sui/Move build.rs dropper cluster May 2026, intercom-client
 April 2026, the dYdX supply-chain attack January 2026, TeamPCP
 Trivy-cascade litellm and telnyx March 2026, elementary-data April 2026,
 the Polymarket / Mysten / timeapi crates.io campaigns, the 2023 amaperf
-crates typosquat cluster, and related Mistral / Guardrails / durabletask
-/ pytorch-lightning poisonings).
+crates typosquat cluster, the Nx build-system supply-chain compromise
+May 27 2026, the @limebike dependency-confusion campaign May 27 2026,
+the @tailwind-core Tailwind typosquat cluster May 27 2026, the
+fastapi / strawberry-graphql PyPI poisonings May 27 2026, and related
+Mistral / Guardrails / durabletask / pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-26
+Date:      2026-05-27
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -62,6 +65,23 @@ PYPI_BAD: dict[str, set[str]] = {
     # elementary-data GitHub Actions script-injection (April 24 2026)
     # StepSecurity, Snyk, Bleeping Computer, CyberSecurityNews, Chainguard
     "elementary-data": {"0.23.3"},
+    # fastapi maintainer-account compromise (May 27 2026)
+    # A single malicious version of the ubiquitous Python web framework
+    # (400M+ monthly PyPI downloads). Specific version only; do not wildcard.
+    # OSV MAL-2026-4750.
+    "fastapi": {"0.136.3"},
+    # strawberry-graphql compromise (May 27 2026)
+    # Malicious version of the popular Python GraphQL library.
+    # OSV MAL-2026-4771.
+    "strawberry-graphql": {"0.315.6"},
+    # notebook-intelligence compromise (May 27 2026)
+    # Malicious versions of the Jupyter AI assistant extension.
+    # OSV MAL-2026-4759.
+    "notebook-intelligence": {"5.0.0a1", "5.0.0", "5.0.1"},
+    # libhmac crypto-stealer typosquat (May 26 2026)
+    # Impersonates a legitimate HMAC library; exfiltrates credentials.
+    # OSV MAL-2026-4194.
+    "libhmac": {"0.3.0", "0.8.28.0", "0.8.28.1", "1.1.0"},
     # TrapDoor crypto-stealer campaign (May 22 2026) — fully malicious typosquats
     # OSV MAL-2026-4259, 4260, 4261, 4262, 4271, 4272, 4273
     "cryptowallet-safety": {"0.1.0"},
@@ -98,7 +118,7 @@ NPM_BAD: dict[str, set[str]] = {
     "@tanstack/router-utils": {"1.161.11", "1.161.14"},
     "@tanstack/router-vite-plugin": {"1.166.53", "1.166.56"},
     "@tanstack/solid-router": {"1.169.5", "1.169.8"},
-    "@tanstack/solid-router-devtools": {"1.166.16", "1.166.19"},
+    "@tanstack/solid-router-devtools": {"1.166.16", "1.166.19", "1.167.0"},
     "@tanstack/solid-router-ssr-query": {"1.166.15", "1.166.18"},
     "@tanstack/solid-start": {"1.167.65", "1.167.68"},
     "@tanstack/solid-start-client": {"1.166.50", "1.166.53"},
@@ -108,7 +128,7 @@ NPM_BAD: dict[str, set[str]] = {
     "@tanstack/start-plugin-core": {"1.169.23", "1.169.26"},
     "@tanstack/start-server-core": {"1.167.33", "1.167.36"},
     "@tanstack/start-static-server-functions": {"1.166.44", "1.166.47"},
-    "@tanstack/start-storage-context": {"1.166.38", "1.166.41"},
+    "@tanstack/start-storage-context": {"1.166.38", "1.166.41", "1.167.4"},
     "@tanstack/valibot-adapter": {"1.166.12", "1.166.15"},
     "@tanstack/virtual-file-routes": {"1.161.10", "1.161.13"},
     "@tanstack/vue-router": {"1.169.5", "1.169.8"},
@@ -351,6 +371,58 @@ NPM_BAD: dict[str, set[str]] = {
     "@deadcode09284814/axios-util": set(),
     "axois-utils": set(),
     "color-style-utils": set(),
+    # Nx build-system supply-chain compromise (May 27 2026)
+    # Malicious versions injected into the @nx/* monorepo-build ecosystem.
+    # OSV MAL-2025-41436 (@nx/devkit), MAL-2025-41437 (@nx/enterprise-cloud),
+    # MAL-2025-41438 (@nx/eslint), MAL-2025-41439 (@nx/js),
+    # MAL-2025-41440 (@nx/key), MAL-2025-41441 (@nx/node),
+    # MAL-2025-41442 (@nx/workspace), MAL-2025-41443 (nx)
+    "@nx/devkit": {"20.9.0", "21.5.0"},
+    "@nx/enterprise-cloud": {"3.2.0"},
+    "@nx/eslint": {"21.5.0"},
+    "@nx/js": {"20.9.0", "21.5.0"},
+    "@nx/key": {"3.2.0", "5.0.7"},
+    "@nx/node": {"20.9.0", "21.5.0"},
+    "@nx/workspace": {"20.9.0", "21.5.0"},
+    "nx": {"20.9.0", "20.10.0", "20.11.0", "20.12.0",
+            "21.5.0", "21.6.0", "21.7.0", "21.8.0"},
+    # @limebike/* dependency-confusion campaign (May 27 2026)
+    # High-version (85.x) packages published to the @limebike scope to
+    # override Lime's internal packages in CI. OSV affected.ranges is >=0
+    # for every entry — use the empty-set wildcard.
+    # OSV MAL-2026-4187 (@limebike/frontend-core-api),
+    # MAL-2026-4188 (@limebike/supreme),
+    # MAL-2026-4189 (@limebike/supreme-data-grid),
+    # MAL-2026-4190 (@limebike/supreme-date-pickers)
+    "@limebike/frontend-core-api": set(),
+    "@limebike/supreme": set(),
+    "@limebike/supreme-data-grid": set(),
+    "@limebike/supreme-date-pickers": set(),
+    # art-template maintainer-account compromise (May 27 2026)
+    # Popular npm template engine (10M+ weekly downloads); specific malicious
+    # versions injected. OSV MAL-2026-4200.
+    "art-template": {"4.13.3", "4.13.5", "4.13.6"},
+    # @tailwind-core/* Tailwind CSS typosquat cluster (May 27 2026)
+    # Impersonates @tailwindcss/* platform-native packages; version 4.3.0
+    # published across five platform-binary and plugin packages.
+    # OSV MAL-2026-4448 through MAL-2026-4452.
+    "@tailwind-core/oxide-linux-x64-gnu": {"4.3.0"},
+    "@tailwind-core/oxide-win32-x64-msvc": {"4.3.0"},
+    "@tailwind-core/postcss": {"4.3.0"},
+    "@tailwind-core/vite": {"4.3.0"},
+    "@tailwind-core/webpack": {"4.3.0"},
+    # @tarojs/cli supply-chain compromise (May 27 2026)
+    # Malicious beta releases of the Taro cross-platform app framework CLI.
+    # OSV MAL-2026-4453.
+    "@tarojs/cli": {"4.1.12-beta.47", "4.2.1-beta.0"},
+    # msc-terminal npm infostealer (May 27 2026)
+    # Pure-malware any-version package; OSV affected.ranges is >=0.
+    # OSV MAL-2026-4823.
+    "msc-terminal": set(),
+    # polymarket-clob-client compromise (May 26 2026)
+    # Specific malicious version of the official Polymarket CLOB npm client.
+    # OSV MAL-2026-4643.
+    "polymarket-clob-client": {"2.1.1"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
