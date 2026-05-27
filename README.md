@@ -81,6 +81,14 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | fastapi / strawberry-graphql PyPI poisonings — May 27 2026 | `fastapi` 0.136.3; `strawberry-graphql` 0.315.6; `notebook-intelligence` 5.0.0a1, 5.0.0, 5.0.1; `libhmac` 0.3.0, 0.8.28.0, 0.8.28.1, 1.1.0 (PyPI) |
 | polymarket-clob-client npm compromise — May 26 2026 (MAL-2026-4643) | `polymarket-clob-client` 2.1.1 (npm) — official Polymarket CLOB client, single malicious version |
 | msc-terminal npm infostealer — May 27 2026 (MAL-2026-4823) | `msc-terminal` — any-version (pure-malware, >=0 range in OSV) |
+| Baileys/WhatsApp bot malware campaign — May 27 2026 | 15 malicious forks of WhatsApp API libraries (`@blckrose/baileys`, `@budetzz/baileys`, `@budetzz/libsignal-node`, `@budetzzgantenk/baileys`, `@hanssoft/baileys`, `@shadowmd/libsignal-node`, `@shinzepelly/libsignal-node`, `@zentrix23/baileys`, `alya-baileys`, `chromestaff-baileys`, `fca-eryxenx`, `fca-official-uzair-rajput`, `hiura-baileys`, `kurumi-fca`, `naileys`) — postinstall payloads steal credentials and crypto wallets |
+| @onerjs BabylonJS typosquat cluster — May 27 2026 | 6 packages impersonating `@babylonjs/*`: `@onerjs/addons`, `@onerjs/inspector`, `@onerjs/procedural-textures`, `@onerjs/serializers`, `@onerjs/smart-filters`, `@onerjs/smart-filters-blocks` |
+| Claude Code / openclaw impersonation cluster — May 27 2026 | 12 packages impersonating Claude Code or OpenClaw tooling (`@bonsai-ai/claude-code`, `@cometix/claude-code`, `@shadanai/openclaw`, `@wengine-ai/claude-code-router-shared`, `klaudius`, `atel-mcp-openclaw`, etc.) — harvest AI API keys and developer credentials |
+| local-mcp / lokal-mcp MCP malware campaign — May 27 2026 | `local-mcp` (21 versions: 3.0.177–3.0.221), `lokal-mcp` 0.4.0 — malicious MCP server packages targeting Model Context Protocol developers |
+| Dependency-confusion 99.x batch — May 27 2026 | `@remitee-money-transfer/rmt-base` 99.99.x; `customerdigital-ui-containers-lib` 99.x; `editorial-code`, `editorial-mse-authentication-ui`, `mse-authentication` 99.0.1 — high-version CI shadow attack |
+| May 27 2026 npm any-version wildcards | `@not-nemo/crypto-tracker`, `bulletproof-json`, `chai-as-repaired`, `claude-channel-imessage`, `shop-minis`, `skills-detector`, `testing-on-npmjs`, `verify-mycommand` — all OSV >=0 ranges |
+| May 27 2026 bulk npm malware (OSV disclosures) | ~70 additional packages confirmed by individual OSV MAL-2026-* records, including `local-mcp`, `open-agents-ai`, `onboardconnect-agent`, `omnius`, `rdflib` 2.3.7, `opentiny-react` 6.9.31, `@ctrl/plex` 6.0.0, `wallet-agent-ai`, `venturo-playwright*`, `promptbook-{cli,mcp}`, and others |
+| May 27 2026 bulk PyPI malware (OSV disclosures) | 13 packages: `cdktn-provider-{datadog,newrelic}`, `edison-tools`, `heims`, `indextts-cli`, `massive` 2.8.0, `noteparse`, `openirf`, `pgrayy-wasmtime`, `pulumi-vcd`, `qontract-reconcile` dev builds (legitimate Red Hat tool, 4 compromised dev versions), `quatres`, `ranno` |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
@@ -211,6 +219,18 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [Veracode (Phylum) — Rust malware staged on crates.io](https://www.veracode.com/blog/rust-malware-staged-on-crates-io/) (amaperf 2023 cluster)
 - [Socket — 5 malicious Rust crates posed as time utilities](https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files) (timeapi.io campaign)
 - [crates.io blog — security incidents](https://blog.rust-lang.org/inside-rust/) — primary source for Polymarket and Mysten takedowns
+- [OSV MAL-2026-4369 through 4619 — Baileys/WhatsApp bot malware campaign](https://osv.dev/vulnerability/MAL-2026-4369)
+- [OSV MAL-2026-4410 through 4415 — @onerjs BabylonJS typosquat cluster](https://osv.dev/vulnerability/MAL-2026-4410)
+- [OSV MAL-2026-4370 through 4593 — Claude Code / openclaw impersonation cluster](https://osv.dev/vulnerability/MAL-2026-4370)
+- [OSV MAL-2026-4601 — local-mcp MCP malware](https://osv.dev/vulnerability/MAL-2026-4601)
+- [OSV MAL-2026-4602 — lokal-mcp](https://osv.dev/vulnerability/MAL-2026-4602)
+- [OSV MAL-2026-4424 — @remitee-money-transfer/rmt-base dependency-confusion](https://osv.dev/vulnerability/MAL-2026-4424)
+- [OSV MAL-2026-4833 — bulletproof-json](https://osv.dev/vulnerability/MAL-2026-4833)
+- [OSV MAL-2026-4512 — chai-as-repaired](https://osv.dev/vulnerability/MAL-2026-4512)
+- [OSV MAL-2026-4523 — claude-channel-imessage](https://osv.dev/vulnerability/MAL-2026-4523)
+- [OSV MAL-2026-4765 — qontract-reconcile compromised dev builds](https://osv.dev/vulnerability/MAL-2026-4765)
+- [OSV MAL-2026-4795 — massive 2.8.0 (PyPI)](https://osv.dev/vulnerability/MAL-2026-4795)
+- [OSV MAL-2026-4659 — rdflib 2.3.7 (npm)](https://osv.dev/vulnerability/MAL-2026-4659)
 
 ## License
 

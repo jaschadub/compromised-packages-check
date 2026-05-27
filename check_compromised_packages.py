@@ -23,8 +23,12 @@ fastapi / strawberry-graphql PyPI poisonings May 27 2026, the
 CanisterSprawl TeamPCP npm worm / Namastex Labs packages April 2026,
 the @velora-dex/sdk registry-only macOS backdoor April 2026, the DevTap
 user0001 typosquat cluster April–May 2026, the xinference PyPI TeamPCP
-compromise April 2026, and related Mistral / Guardrails / durabletask /
-pytorch-lightning poisonings).
+compromise April 2026, the Baileys/WhatsApp bot malware campaign May 27
+2026, the @onerjs BabylonJS typosquat cluster May 27 2026, the Claude
+Code/openclaw impersonation cluster May 27 2026, the local-mcp/lokal-mcp
+MCP malware campaign May 27 2026, the dependency-confusion 99.x batch May
+27 2026, bulk OSV-disclosed npm/PyPI malware May 27 2026, and related
+Mistral / Guardrails / durabletask / pytorch-lightning poisonings).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-27
@@ -102,6 +106,32 @@ PYPI_BAD: dict[str, set[str]] = {
     "data-pipeline-check": {"0.1.0", "0.1.1"},
     "env-loader-cli": {"0.1.0", "0.1.1"},
     "git-config-sync": {"0.1.0", "0.1.1"},
+    # Various PyPI malware — May 27 2026 bulk OSV disclosures
+    # All entries confirmed by individual OSV MAL-2026-* records; versions
+    # as recorded in affected.versions (no >=0 ranges → exact-version pins).
+    # qontract-reconcile is a legitimate Red Hat/AppSRE reconciliation tool;
+    # only the four dev-build versions listed are malicious.
+    # MAL-2026-4747 (edison-tools), MAL-2026-4754 (heims), MAL-2026-4761 (openirf),
+    # MAL-2026-4762 (pgrayy-wasmtime), MAL-2026-4763 (pulumi-vcd),
+    # MAL-2026-4765 (qontract-reconcile), MAL-2026-4786 (ranno),
+    # MAL-2026-4794 (indextts-cli), MAL-2026-4795 (massive),
+    # MAL-2026-4813 (noteparse), MAL-2026-4824 (cdktn-provider-datadog),
+    # MAL-2026-4825 (cdktn-provider-newrelic), MAL-2026-4829 (quatres)
+    "cdktn-provider-datadog": {"15.1.1"},
+    "cdktn-provider-newrelic": {"15.0.5"},
+    "edison-tools": {"0.1.13", "0.1.15", "0.1.16", "0.1.17", "0.1.22"},
+    "heims": {"1.1.16"},
+    "indextts-cli": {"0.1.1", "0.1.3", "0.1.4", "0.1.5"},
+    "massive": {"2.8.0"},
+    "noteparse": {"1.1.27"},
+    "openirf": {"0.1.4a1"},
+    "pgrayy-wasmtime": {"0.0.0", "44.0.3"},
+    "pulumi-vcd": {"3.0.0a1779455998", "3.0.0a1779710724"},
+    "qontract-reconcile": {
+        "0.10.2.dev649", "0.10.2.dev653", "0.10.2.dev658", "0.10.2.dev663",
+    },
+    "quatres": {"3.0.1"},
+    "ranno": {"0.3.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -477,6 +507,216 @@ NPM_BAD: dict[str, set[str]] = {
     # Specific malicious version of the official Polymarket CLOB npm client.
     # OSV MAL-2026-4643.
     "polymarket-clob-client": {"2.1.1"},
+    # Baileys/WhatsApp bot malware campaign (May 27 2026)
+    # Multiple malicious forks of the WhatsApp API (baileys / libsignal-node /
+    # fca) targeting WhatsApp bot developers. Postinstall payloads steal
+    # credentials, crypto wallets, and browser data.
+    # OSV MAL-2026-4369, 4372, 4373, 4374, 4392, 4442, 4443, 4470,
+    #     4478, 4519, 4559, 4560, 4578, 4597, 4619
+    "@blckrose/baileys": {"2.0.6", "2.0.7"},
+    "@budetzz/baileys": {"2.0.14", "2.0.16", "2.0.17", "2.0.18"},
+    "@budetzz/libsignal-node": {"2.0.15"},
+    "@budetzzgantenk/baileys": {"2.0.17"},
+    "@hanssoft/baileys": {"10.0.0"},
+    "@shadowmd/libsignal-node": {"8.6.59"},
+    "@shinzepelly/libsignal-node": {"2.2.4"},
+    "@zentrix23/baileys": {"1.0.0"},
+    "alya-baileys": {
+        "1.9.35", "1.9.36", "1.9.37", "1.9.38",
+        "1.9.39", "1.9.42", "1.9.45", "1.9.46",
+    },
+    "chromestaff-baileys": {"1.1.3"},
+    "fca-eryxenx": {"6.0.0"},
+    "fca-official-uzair-rajput": {"1.16.0"},
+    "hiura-baileys": {"1.0.0", "1.0.1", "1.0.3"},
+    "kurumi-fca": {"1.1.7", "1.1.8"},
+    "naileys": {"0.5.2"},
+    # @onerjs scope — BabylonJS typosquat cluster (May 27 2026)
+    # Six packages impersonating the @babylonjs/* rendering-engine ecosystem.
+    # OSV MAL-2026-4410, 4411, 4412, 4413, 4414, 4415
+    "@onerjs/addons": {"8.52.1", "8.52.3"},
+    "@onerjs/inspector": {"8.52.2"},
+    "@onerjs/procedural-textures": {"8.51.8"},
+    "@onerjs/serializers": {"8.52.1"},
+    "@onerjs/smart-filters": {"8.51.7", "8.51.8"},
+    "@onerjs/smart-filters-blocks": {"8.51.9", "8.52.4"},
+    # Claude Code / openclaw impersonation cluster (May 27 2026)
+    # Multiple packages impersonating Claude Code or the OpenClaw AI tooling
+    # layer. Install-time payloads harvest developer credentials and AI API keys.
+    # OSV MAL-2026-4370, 4371, 4376, 4386, 4395, 4398, 4441, 4445,
+    #     4457, 4468, 4485, 4593
+    "@bonsai-ai/claude-code": {"2.1.141-1", "2.1.141"},
+    "@bonsai-ai/claude-code-win32-x64": {"2.1.141"},
+    "@cometix/claude-code": {"2.1.143", "2.1.147"},
+    "@elvatis_com/openclaw-cli-bridge-elvatis": {"3.11.4"},
+    "@inetafrica/open-claudia": {"2.2.15", "2.2.16"},
+    "@jonusnattapong/claudecode": {"2.1.163"},
+    "@shadanai/openclaw": {"2026.5.15-1", "2026.5.16", "2026.5.26"},
+    "@signetai/signet-memory-openclaw": {"0.123.3", "0.123.12"},
+    "@tmecontinue/claude": {"2.2.15-test.1"},
+    "@wengine-ai/claude-code-router-shared": {
+        "2.0.21", "2.0.22", "2.0.23", "2.0.24",
+        "2.0.25", "2.0.26", "2.0.41",
+    },
+    "atel-mcp-openclaw": {"0.6.43", "0.6.44"},
+    "klaudius": {"0.9.0", "0.11.0", "0.12.0", "0.12.1", "0.12.2", "0.12.3"},
+    # local-mcp / lokal-mcp MCP malware campaign (May 27 2026)
+    # Malicious MCP server packages targeting developers using the Model
+    # Context Protocol toolchain. local-mcp published 21 malicious versions.
+    # OSV MAL-2026-4601 (local-mcp), MAL-2026-4602 (lokal-mcp)
+    "local-mcp": {
+        "3.0.177", "3.0.178", "3.0.180", "3.0.183", "3.0.186", "3.0.188",
+        "3.0.192", "3.0.197", "3.0.198", "3.0.199", "3.0.201", "3.0.203",
+        "3.0.206", "3.0.207", "3.0.209", "3.0.210", "3.0.211", "3.0.212",
+        "3.0.215", "3.0.217", "3.0.221",
+    },
+    "lokal-mcp": {"0.4.0"},
+    # Dependency-confusion 99.x campaign (May 27 2026)
+    # High-version packages published to the public registry to shadow private
+    # internal packages in CI pipelines. OSV MAL-2026-4424, 4543, 4830, 4831, 4832
+    "@remitee-money-transfer/rmt-base": {
+        "99.99.99", "99.99.100", "99.99.102", "99.99.104",
+    },
+    "customerdigital-ui-containers-lib": {"99.12.9", "99.13.9"},
+    "editorial-code": {"99.0.1"},
+    "editorial-mse-authentication-ui": {"99.0.1"},
+    "mse-authentication": {"99.0.1"},
+    # Any-version wildcards — May 27 2026 pure-malware packages
+    # OSV affected.ranges is >=0 for each; use empty-set wildcard.
+    # OSV MAL-2026-2491, 4344, 4356, 4512, 4523, 4670, 4807, 4833
+    "@not-nemo/crypto-tracker": set(),
+    "bulletproof-json": set(),
+    "chai-as-repaired": set(),
+    "claude-channel-imessage": set(),
+    "shop-minis": set(),
+    "skills-detector": set(),
+    "testing-on-npmjs": set(),
+    "verify-mycommand": set(),
+    # Miscellaneous npm malware — May 27 2026 bulk OSV disclosures
+    # All confirmed by individual OSV MAL-2026-* records; exact-version pins.
+    # Includes legitimate-package compromises (@ctrl/plex, opentiny-react,
+    # rdflib, @nutui/nutui-react-taro) and pure-malware new packages.
+    "@agora-sdk/react-js": {"1.0.2", "1.0.3"},
+    "@aledan007/tester": {"0.4.5"},
+    "@amswf/huoke": {"1.9.0", "1.9.1"},
+    "@arbocollab/arbo-web-people": {
+        "0.26.3-alpha.7", "0.26.3-alpha.9", "0.26.3-alpha.10",
+        "0.26.3-alpha.13", "0.26.3-alpha.14", "0.26.3-alpha.15",
+    },
+    "@asura21232/fca-unofficial-nextgen": {"2.0.1"},
+    "@aswinsparky/api": {"1.0.1"},
+    "@atlisp/mcp": {"1.6.10"},
+    "@autofleet/rabbit": {"1.3.0"},
+    "@autoheal/setup": {"1.0.2"},
+    "@bcrumbs.net/bc-chat": {"1.0.87"},
+    "@beyondbday/vibe-terminal": {"1.1.14", "1.1.16", "1.1.17", "1.1.21"},
+    "@catclaw/message-logger-plugin": {"0.2.9-beta.5"},
+    "@citely/mcp-server": {"0.9.1", "0.10.0"},
+    "@ctrl/plex": {"6.0.0"},
+    "@dekuzxc/nexca": {"1.1.0", "1.2.0", "1.4.7"},
+    "@digicroz/typed-api-kit": {"1.0.3", "1.0.4"},
+    "@dknzo/soonex-ai": {"1.0.0", "1.0.1"},
+    "@dreamlake/lakeshore": {"0.1.16", "0.1.17"},
+    "@euqns/nudge-mcp": {"0.1.0", "0.1.1", "0.2.0", "0.2.1"},
+    "@exocore/exocode": {"0.0.11", "0.0.15", "0.0.17"},
+    "@flowselections/core": {"1.0.8", "1.0.9"},
+    "@godscene/web": {"1.7.22"},
+    "@iola_adm/iola-cli": {"0.1.2"},
+    "@jemavidev/betteragents-pi": {
+        "0.1.1", "0.1.3", "0.1.4", "0.1.5",
+        "0.1.7", "0.1.9", "0.1.10", "0.1.11",
+    },
+    "@kedem/okdb": {"1.8.3"},
+    "@kmmao/happy-coder": {
+        "0.83.7", "0.85.2", "0.85.5", "0.85.12",
+        "0.85.20", "0.85.21", "0.86.1", "0.86.2", "0.86.3",
+    },
+    "@kruzer/lib-ui": {"0.0.0-alpha.491", "0.0.0-alpha.497"},
+    "@kyungseopk1m/holidays-kr": {"2.0.2"},
+    "@leviyuan/lodestar": {"0.4.2"},
+    "@link-assistant/hive-mind": {
+        "1.69.17", "1.72.1", "1.72.3", "1.72.4", "1.72.5", "1.72.6",
+    },
+    "@lokuma/cli": {"2.0.1"},
+    "@luke-101141/nobody": {"1.0.1"},
+    "@mcpassure/mcp-anvisa-bulario": {
+        "2.1.1", "2.1.2", "2.1.3", "2.1.4", "2.1.5",
+        "2.1.6", "2.1.7", "2.1.8", "2.1.9", "2.1.10",
+    },
+    "@mcpassure/mcp-cnes": {
+        "0.2.1", "0.2.2", "0.2.4", "0.2.5", "0.2.6",
+        "0.2.7", "0.2.8", "0.2.9", "0.3.0", "0.3.1", "0.3.2",
+    },
+    "@nolimit-x/win32-x64": {"1.0.105"},
+    "@nutui/nutui-react-taro": {"3.0.21-cpp"},
+    "@ornexus/neocortex": {"4.55.4", "4.55.5"},
+    "@pisell/pisellos": {
+        "0.0.546", "2.2.164", "2.2.168", "2.2.169", "2.2.172", "2.2.173",
+    },
+    "@pmate/utils": {"1.1.4"},
+    "@qwedqwed/axios": {"1.16.2"},
+    "@refactco/refact-os": {"1.5.0", "1.5.2", "1.6.0", "1.6.1"},
+    "@riteshkumar04/stack-audit": {"1.0.7", "1.0.8", "1.0.11"},
+    "@rspack-debug/core": {"2.0.4"},
+    "@rui.branco/sentry-mcp": {"1.0.4"},
+    "@saidddddddddd/somethingelse": {"2.0.0"},
+    "@scp3500/openvl": {"1.0.40"},
+    "@self-evolving-harness/kivo": {"1.29.3"},
+    "@semacode/cli": {"1.5.28"},
+    "@spcsn/taro-cli": {"0.1.5"},
+    "@taskd/maritime-email-processor": {"1.0.6"},
+    "@thebros/create-benjamin": {"1.0.12"},
+    "@thesignup/cli": {"0.0.2"},
+    "@toni77777/aora": {"0.1.0", "0.1.1"},
+    "@touchvue/chat": {"1.0.0-beta.52", "1.0.0-beta.53", "1.0.0-beta.54"},
+    "@venturo/playwright": {"1.1.0"},
+    "@vino.tian/vibe-kanban": {"0.1.4413", "0.1.4418", "0.1.4420"},
+    "@zaamx/netme": {"0.0.6", "0.0.7"},
+    "@zesyn/zeditor": {"1.0.3"},
+    "acc-document-editing": {"0.1.1", "0.1.3", "0.1.4", "0.1.5", "0.1.6", "0.1.8"},
+    "amaco-os": {"0.1.0", "0.1.1"},
+    "ask-my-llm": {"1.1.3", "1.1.4", "1.1.5"},
+    "clawpro-diagnostics-metrics-cls": {"3.0.4"},
+    "etherproxy-lite": {"0.6.0"},
+    "figma-d2c-utils": {"0.6.0"},
+    "koishi-plugin-fusheng-car": {"1.0.6"},
+    "koishi-plugin-fusheng-count": {"1.0.9"},
+    "koishi-plugin-yuan": {"1.7.0"},
+    "makecoder": {"4.0.54", "4.0.56", "4.0.57"},
+    "mcp-server-iehub-proxy": {"1.0.0"},
+    "n8n-nodes-whatsapp-business-api-by-automations-builder": {"0.1.0"},
+    "omnius": {
+        "1.0.136", "1.0.140", "1.0.141", "1.0.145",
+        "1.0.147", "1.0.148", "1.0.153", "1.0.155", "1.0.157",
+    },
+    "onboardconnect-agent": {
+        "1.1.5", "1.1.15", "1.1.16", "1.1.21",
+        "1.1.22", "1.1.24", "1.1.25", "1.1.31", "1.1.32",
+    },
+    "open-agents-ai": {
+        "0.187.587", "0.187.588", "0.187.589", "0.187.590",
+        "0.187.591", "0.187.592", "0.187.593", "0.187.594",
+        "0.187.595", "0.187.596",
+    },
+    "opentiny-react": {"6.9.31"},
+    "peertube-plugin-google-analytics-js": {"0.0.1"},
+    "prisma-client-python": {"0.3.8"},
+    "promptbook-cli": {"0.1.0"},
+    "promptbook-mcp": {"0.1.0"},
+    "rdflib": {"2.3.7"},
+    "seedcode-facturacion-electronica": {"2.5.35"},
+    "share-anything-cli": {"0.5.6"},
+    "skipshot-agent": {"2.0.3"},
+    "tax4all-components": {"0.1.26"},
+    "tdpilot": {"1.6.15", "1.6.16"},
+    "tubebrain": {"0.1.10"},
+    "use-context-selector-tony": {"2.0.5"},
+    "venturo-playwright": {"1.0.13"},
+    "venturo-playwright-runner": {"1.0.6", "1.0.8", "1.0.9", "1.0.12"},
+    "vestibulect": {"0.0.1"},
+    "wallet-agent-ai": {"1.0.1", "1.0.2"},
+    "wallet-agent-ai-radix": {"1.0.0"},
+    "workrally": {"2.4.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
