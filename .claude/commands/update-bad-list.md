@@ -31,23 +31,58 @@ Follow the workflow documented in `SKILLS.md`:
   a sparse checkout of `rustsec/advisory-db` and diff against the names
   already in `CRATES_BAD`.
 
-Always prefer primary sources. Useful starting points (also listed in
-`SKILLS.md`):
+Always prefer primary sources. The reliable ones — all machine-readable,
+none behind Cloudflare bot-protection:
 
-- GitHub Advisory Database: https://github.com/advisories
-- OSV.dev API: https://api.osv.dev/v1/query
-- pypa/advisory-database: https://github.com/pypa/advisory-database
-- Aikido, Socket, Snyk, Wiz, Mend, StepSecurity, Phylum, ReversingLabs,
-  Checkmarx, JFrog, SafeDep, Corgea, Unit 42, Microsoft Security Blog
+- **OSV.dev bulk export (GCS)** — one ZIP per ecosystem, contains every `MAL-*` record:
+  - `https://osv-vulnerabilities.storage.googleapis.com/npm/all.zip`
+  - `https://osv-vulnerabilities.storage.googleapis.com/PyPI/all.zip`
+  - `https://osv-vulnerabilities.storage.googleapis.com/crates.io/all.zip`
+- **OSV.dev API**: `https://api.osv.dev/v1/query` — for verifying a single candidate.
+- **GitHub Advisory Database** via `gh api '/advisories?type=malware&ecosystem={npm,pip,rust}'`.
+- **`github/advisory-database` git mirror** via `gh api '/repos/github/advisory-database/contents/advisories/github-reviewed/<YYYY>/<MM>'`.
+- **`ossf/malicious-packages` git tree** via `gh api '/repos/ossf/malicious-packages/contents/osv/malicious/<eco>'`.
+- **`pypa/advisory-database`** and **`rustsec/advisory-db`** git trees via the same `gh api .../contents/...` pattern.
 
-### Always cross-check OSV directly
+Vendor blogs (Aikido, Socket, Snyk, Wiz, Mend, StepSecurity, SafeDep,
+Phylum, ReversingLabs, Checkmarx, JFrog, Corgea, Unit 42, Microsoft
+Security Blog) are **secondary** — only fetch a specific vendor URL if
+a primary record (OSV/GHSA) cites it. Their indexes and RSS feeds 403
+the sandbox UA, so don't iterate them.
 
-Vendor articles (The Hacker News, Socket blog, SafeDep, etc.) routinely
-list package names without versions, which makes it look like the
-evidence threshold can't be met. OSV almost always has a per-package
-`MAL-YYYY-NNNN` record with `affected.versions` and/or `affected.ranges`
-populated within hours of the takedown — query it directly for every
-named package before giving up:
+### Use the bulk OSV export for sweeps; per-package query for verification
+
+For an `$ARGUMENTS`-less sweep, download the OSV bulk ZIPs once, then
+filter to `MAL-*` IDs whose `modified` timestamp is on/after the floor
+date:
+
+```bash
+FLOOR=$(git log -1 --pretty=format:'%ad' --date=short)
+mkdir -p /tmp/osv && cd /tmp/osv
+for eco in npm PyPI crates.io; do
+  curl -fsSL -o "${eco/\//_}.zip" "https://osv-vulnerabilities.storage.googleapis.com/${eco}/all.zip"
+done
+
+FLOOR="$FLOOR" python3 - <<'PY'
+import zipfile, json, os
+floor = os.environ['FLOOR']
+for f, label in [('npm.zip','npm'), ('PyPI.zip','PyPI'), ('crates.io.zip','crates.io')]:
+    z = zipfile.ZipFile(f'/tmp/osv/{f}')
+    for name in z.namelist():
+        if not name.startswith('MAL-'): continue
+        d = json.loads(z.read(name))
+        if d.get('modified','')[:10] < floor: continue
+        for aff in d.get('affected', []):
+            pkg = aff.get('package',{}).get('name')
+            versions = aff.get('versions') or [
+                f"range:{e}" for r in aff.get('ranges',[]) for e in r.get('events',[])
+            ]
+            print(f"{label}\t{d['id']}\t{d['modified'][:10]}\t{pkg}\t{versions}")
+PY
+```
+
+For verifying a single candidate that came from somewhere else (a vendor
+writeup, an issue, etc.), the per-package OSV API is still the right tool:
 
 ```bash
 curl -sS -X POST https://api.osv.dev/v1/query \
