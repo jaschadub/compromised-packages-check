@@ -28,10 +28,12 @@ compromise April 2026, the Baileys/WhatsApp bot malware campaign May 27
 Code/openclaw impersonation cluster May 27 2026, the local-mcp/lokal-mcp
 MCP malware campaign May 27 2026, the dependency-confusion 99.x batch May
 27 2026, bulk OSV-disclosed npm/PyPI malware May 27 2026, and related
-Mistral / Guardrails / durabletask / pytorch-lightning poisonings).
+Mistral / Guardrails / durabletask / pytorch-lightning poisonings, and the
+May 26 2026 17-package pure-malware batch covering Web3/DeFi, JSON-utility,
+Solidity/Hardhat, and document-library typosquats).
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-27
+Date:      2026-05-28
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -717,6 +719,40 @@ NPM_BAD: dict[str, set[str]] = {
     "wallet-agent-ai": {"1.0.1", "1.0.2"},
     "wallet-agent-ai-radix": {"1.0.0"},
     "workrally": {"2.4.0"},
+    # May 26 2026 pure-malware typosquat batch — 17 packages, all fully malicious.
+    # GHSA affected.ranges is >= 0 for every entry; use the empty-set wildcard.
+    # Clusters: Web3/DeFi impersonators (web3-prices, web3.prc, int-node, @izumiswap/sdk),
+    # JSON-utility typosquats (jsonlogbundler, fastjsonlog, jsonbson), Solidity/Hardhat
+    # dev-tool impersonators (solidity-coverage-plus, hardhat-gas-analytics), document-
+    # library typosquats (pdf-lib-enhanced, xlsx-enhanced), and miscellaneous malware
+    # (corelia, license-checker-plus, lynx-keeper, lynx-keeper-cli, zest-product,
+    # tailwind-style-typography).
+    # GHSA-g3vg-qhhh-pfv7 (web3-prices), GHSA-r4j3-79hx-xpr6 (web3.prc),
+    # GHSA-r4ww-65gv-rhv8 (int-node), GHSA-q782-j24w-vv68 (@izumiswap/sdk),
+    # GHSA-hhf2-gfcc-vw45 (jsonlogbundler), GHSA-82gw-34fc-qfwj (fastjsonlog),
+    # GHSA-44rg-m26f-r36f (jsonbson), GHSA-fg63-2vqh-93xf (corelia),
+    # GHSA-9qcm-qgjc-h848 (pdf-lib-enhanced), GHSA-j5gx-8qjw-gp5q (xlsx-enhanced),
+    # GHSA-j3fh-3pm4-rw5h (solidity-coverage-plus), GHSA-73xx-w222-rg6v (license-checker-plus),
+    # GHSA-7pxc-2jp3-w7c8 (hardhat-gas-analytics), GHSA-x7hr-g7qr-7j7p (lynx-keeper),
+    # GHSA-3p5r-gmr8-v7mr (lynx-keeper-cli), GHSA-qm6m-33hv-fvwv (zest-product),
+    # GHSA-pv74-wmjg-4gp8 (tailwind-style-typography)
+    "@izumiswap/sdk": set(),
+    "corelia": set(),
+    "fastjsonlog": set(),
+    "hardhat-gas-analytics": set(),
+    "int-node": set(),
+    "jsonbson": set(),
+    "jsonlogbundler": set(),
+    "license-checker-plus": set(),
+    "lynx-keeper": set(),
+    "lynx-keeper-cli": set(),
+    "pdf-lib-enhanced": set(),
+    "solidity-coverage-plus": set(),
+    "tailwind-style-typography": set(),
+    "web3-prices": set(),
+    "web3.prc": set(),
+    "xlsx-enhanced": set(),
+    "zest-product": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any

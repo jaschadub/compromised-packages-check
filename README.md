@@ -89,6 +89,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | May 27 2026 npm any-version wildcards | `@not-nemo/crypto-tracker`, `bulletproof-json`, `chai-as-repaired`, `claude-channel-imessage`, `shop-minis`, `skills-detector`, `testing-on-npmjs`, `verify-mycommand` — all OSV >=0 ranges |
 | May 27 2026 bulk npm malware (OSV disclosures) | ~70 additional packages confirmed by individual OSV MAL-2026-* records, including `local-mcp`, `open-agents-ai`, `onboardconnect-agent`, `omnius`, `rdflib` 2.3.7, `opentiny-react` 6.9.31, `@ctrl/plex` 6.0.0, `wallet-agent-ai`, `venturo-playwright*`, `promptbook-{cli,mcp}`, and others |
 | May 27 2026 bulk PyPI malware (OSV disclosures) | 13 packages: `cdktn-provider-{datadog,newrelic}`, `edison-tools`, `heims`, `indextts-cli`, `massive` 2.8.0, `noteparse`, `openirf`, `pgrayy-wasmtime`, `pulumi-vcd`, `qontract-reconcile` dev builds (legitimate Red Hat tool, 4 compromised dev versions), `quatres`, `ranno` |
+| May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
@@ -231,6 +232,23 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-4765 — qontract-reconcile compromised dev builds](https://osv.dev/vulnerability/MAL-2026-4765)
 - [OSV MAL-2026-4795 — massive 2.8.0 (PyPI)](https://osv.dev/vulnerability/MAL-2026-4795)
 - [OSV MAL-2026-4659 — rdflib 2.3.7 (npm)](https://osv.dev/vulnerability/MAL-2026-4659)
+- [GHSA-g3vg-qhhh-pfv7 — web3-prices](https://github.com/advisories/GHSA-g3vg-qhhh-pfv7)
+- [GHSA-r4j3-79hx-xpr6 — web3.prc](https://github.com/advisories/GHSA-r4j3-79hx-xpr6)
+- [GHSA-r4ww-65gv-rhv8 — int-node](https://github.com/advisories/GHSA-r4ww-65gv-rhv8)
+- [GHSA-q782-j24w-vv68 — @izumiswap/sdk](https://github.com/advisories/GHSA-q782-j24w-vv68)
+- [GHSA-hhf2-gfcc-vw45 — jsonlogbundler](https://github.com/advisories/GHSA-hhf2-gfcc-vw45)
+- [GHSA-82gw-34fc-qfwj — fastjsonlog](https://github.com/advisories/GHSA-82gw-34fc-qfwj)
+- [GHSA-44rg-m26f-r36f — jsonbson](https://github.com/advisories/GHSA-44rg-m26f-r36f)
+- [GHSA-fg63-2vqh-93xf — corelia](https://github.com/advisories/GHSA-fg63-2vqh-93xf)
+- [GHSA-9qcm-qgjc-h848 — pdf-lib-enhanced](https://github.com/advisories/GHSA-9qcm-qgjc-h848)
+- [GHSA-j5gx-8qjw-gp5q — xlsx-enhanced](https://github.com/advisories/GHSA-j5gx-8qjw-gp5q)
+- [GHSA-j3fh-3pm4-rw5h — solidity-coverage-plus](https://github.com/advisories/GHSA-j3fh-3pm4-rw5h)
+- [GHSA-73xx-w222-rg6v — license-checker-plus](https://github.com/advisories/GHSA-73xx-w222-rg6v)
+- [GHSA-7pxc-2jp3-w7c8 — hardhat-gas-analytics](https://github.com/advisories/GHSA-7pxc-2jp3-w7c8)
+- [GHSA-x7hr-g7qr-7j7p — lynx-keeper](https://github.com/advisories/GHSA-x7hr-g7qr-7j7p)
+- [GHSA-3p5r-gmr8-v7mr — lynx-keeper-cli](https://github.com/advisories/GHSA-3p5r-gmr8-v7mr)
+- [GHSA-qm6m-33hv-fvwv — zest-product](https://github.com/advisories/GHSA-qm6m-33hv-fvwv)
+- [GHSA-pv74-wmjg-4gp8 — tailwind-style-typography](https://github.com/advisories/GHSA-pv74-wmjg-4gp8)
 
 ## License
 
