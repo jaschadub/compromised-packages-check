@@ -30,7 +30,9 @@ MCP malware campaign May 27 2026, the dependency-confusion 99.x batch May
 27 2026, bulk OSV-disclosed npm/PyPI malware May 27 2026, and related
 Mistral / Guardrails / durabletask / pytorch-lightning poisonings, and the
 May 26 2026 17-package pure-malware batch covering Web3/DeFi, JSON-utility,
-Solidity/Hardhat, and document-library typosquats).
+Solidity/Hardhat, and document-library typosquats, the @polka-ui/config
+dependency-confusion May 2026, and the Roblox/robase developer-tool
+credential-stealer cluster May 2026 covering 52 PyPI packages).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-28
@@ -134,6 +136,73 @@ PYPI_BAD: dict[str, set[str]] = {
     },
     "quatres": {"3.0.1"},
     "ranno": {"0.3.0"},
+    # Roblox/robase developer-tool credential-stealer cluster (May 2026)
+    # 52 PyPI packages targeting Roblox game developers with fake database,
+    # API-wrapper, and utility libraries. Package names impersonate Roblox
+    # tooling ("robase", "rblx-*", "roboat*", "rogiant", "database-roblox",
+    # "databasero*") or generic developer tools ("api-analysis", "quicksolving").
+    # All malicious versions confirmed by individual OSV MAL-2026-* records;
+    # exact-version pins (no >=0 ranges in any record).
+    # OSV: MAL-2026-2279, 2280, 2281, 2289, 2295, 2305, 2433, 2489, 2490,
+    #      2494, 2501, 2502, 2512, 2542, 2543, 2544, 2555, 2556, 2557, 2558,
+    #      2559, 2561, 2562, 2563, 2569, 2570, 2625, 2699, 2821, 2859, 2863,
+    #      2864, 3041, 3042, 3043, 3044, 3045, 3047, 3048, 3050, 3104, 3137,
+    #      3138, 3139, 3191, 3192, 3193, 3194, 3250, 3332, 3333, 4835
+    "api-analysis": {"0.0.8"},
+    "api-feature": {"0.0.8"},
+    "bloxy-api": {"3.4.0"},
+    "core-roblox-utils": {"2.4.0"},
+    "database-roblox": {"0.0.1"},
+    "databaselooks": {"0.0.4"},
+    "databasenaps": {"0.0.4", "0.0.5"},
+    "databaseroboat": {"0.0.1", "0.0.2"},
+    "databaseroboats": {"0.0.3", "0.0.4"},
+    "databaserobooms": {"0.0.4"},
+    "databaserotacos": {"0.0.4"},
+    "databasesupalake": {"1.2.0"},
+    "databasesupasafe": {"1.0.0", "1.2.0"},
+    "databasetapes": {"0.0.4"},
+    "databasetrace": {"0.0.5", "0.0.6", "0.0.7"},
+    "pycolorlib001": {"0.0.1"},
+    "pycolorlib3": {"0.0.4", "0.0.5"},
+    "quicksolving": {"2.3.0"},
+    "quicktestybesty": {"2.3.0"},
+    "rblx-api": {"2.6.0"},
+    "rblx-http": {"2.4.0"},
+    "rblx-https": {"2.4.0"},
+    "rblx-studio-api": {"2.6.0", "2.7.0", "2.8.0"},
+    "ro-db": {"2.4.0"},
+    "robase": {"2.1.0", "2.2.0"},
+    "robase-api": {"2.4.0", "2.6.0"},
+    "robase-apis": {"2.4.0"},
+    "robase-app": {"2.1.0", "3.4.0"},
+    "robase-dnb": {"2.4.0"},
+    "robase-fallback": {"2.2.0", "2.4.0"},
+    "robase-fast-install": {"2.3.0"},
+    "robase-gui": {"2.3.0"},
+    "robase-gui-api": {"2.3.0"},
+    "robase-help": {"0.0.9"},
+    "robase-install": {"2.1.0"},
+    "robase-installer": {"2.2.0"},
+    "robase-library-quick-install": {"2.3.0", "2.4.0", "2.5.0"},
+    "robase-quick-install": {"2.6.0"},
+    "robase-setup": {"2.0.0", "2.1.0", "2.2.0", "2.3.0"},
+    "robase-start": {"2.4.0"},
+    "robase-ui": {"2.3.0"},
+    "robase-utils": {"2.3.0"},
+    "roboat-addition": {"0.0.1"},
+    "roboat-additions": {"0.0.1"},
+    "roboat-utilities": {"2.1.0"},
+    "roboat-utils": {
+        "1.0.0", "2.1.0", "2.2.0", "2.3.0", "2.4.0", "2.5.0",
+        "2.6.0", "2.7.0", "2.8.0", "2.9.0", "3.0.0",
+    },
+    "roboats-addition": {"0.0.1"},
+    "rogiant": {"2.4.0"},
+    "rogiant-install": {"2.5.0"},
+    "rogiant-quick-install": {"2.4.0"},
+    "rosolver": {"0.0.1"},
+    "rostilesolver": {"2.4.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -753,6 +822,11 @@ NPM_BAD: dict[str, set[str]] = {
     "web3.prc": set(),
     "xlsx-enhanced": set(),
     "zest-product": set(),
+    # @polka-ui/config dependency-confusion (May 27 2026)
+    # High-version (9.9.11) package published to the public registry to
+    # shadow a private internal @polka-ui package in CI; executes malicious
+    # commands on install. OSV MAL-2026-4834 (ossf-package-analysis).
+    "@polka-ui/config": {"9.9.11"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
