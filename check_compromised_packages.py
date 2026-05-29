@@ -28,9 +28,13 @@ compromise April 2026, the Baileys/WhatsApp bot malware campaign May 27
 Code/openclaw impersonation cluster May 27 2026, the local-mcp/lokal-mcp
 MCP malware campaign May 27 2026, the dependency-confusion 99.x batch May
 27 2026, bulk OSV-disclosed npm/PyPI malware May 27 2026, and related
-Mistral / Guardrails / durabletask / pytorch-lightning poisonings, and the
+Mistral / Guardrails / durabletask / pytorch-lightning poisonings, the
 May 26 2026 17-package pure-malware batch covering Web3/DeFi, JSON-utility,
-Solidity/Hardhat, and document-library typosquats).
+Solidity/Hardhat, and document-library typosquats, the September 8 2025
+Qix phishing attack on the chalk/debug/color/ansi npm ecosystem (19
+packages, >2B weekly downloads, crypto-wallet interceptor), and the
+September 15 2025 Shai-Hulud worm wave via @ctrl/tinycolor and
+ngx-bootstrap account takeovers).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-28
@@ -263,6 +267,50 @@ NPM_BAD: dict[str, set[str]] = {
     "@uipath/vertical-solutions-tool": {"1.0.1"},
     "@uipath/vss": {"0.1.6"},
     "@uipath/widget.sdk": {"1.2.3"},
+    # September 8 2025 Qix phishing attack — chalk / debug / color ecosystem
+    # A single npm maintainer (Qix-) was phished via a fake npmjs.help 2FA-reset
+    # email; attacker published malicious versions of 19 widely-used packages
+    # within 16 minutes of account takeover. Malicious code is a browser-based
+    # interceptor that silently rewrites crypto-wallet addresses in fetch/XHR
+    # and window.ethereum payloads. Versions were live for ~2.5 hours before
+    # the maintainer revoked access and re-published clean versions.
+    # Collectively these packages see >2 billion weekly npm downloads.
+    # Each entry has an individual GHSA/CVE record; versions confirmed as exact
+    # pins by maintainer postmortems and multiple independent vendor writeups
+    # (StepSecurity, Upwind, Wiz, Bleeping Computer, Checkmarx, OX Security).
+    "chalk": {"5.6.1"},            # GHSA-2v46-p5h4-248w
+    "debug": {"4.4.2"},            # GHSA-4x49-vf9v-38px / CVE-2025-59144
+    "color": {"5.0.1"},            # GHSA-qrmh-qg46-72pp / CVE-2025-59143
+    "color-name": {"2.0.1"},       # GHSA-5fvm-p68v-5wmh / CVE-2025-59145
+    "color-convert": {"3.1.1"},    # GHSA-pxx3-g568-hxr4 / CVE-2025-59162
+    "color-string": {"2.1.1"},     # GHSA-286p-vc9p-p5qv
+    "error-ex": {"1.3.3"},         # GHSA-6jp5-hh4c-8c5h / CVE-2025-59330
+    "ansi-regex": {"6.2.1"},       # GHSA-jvhh-2m83-6w29
+    "strip-ansi": {"7.1.1"},       # GHSA-vfjc-p7x3-q864
+    "ansi-styles": {"6.2.2"},      # GHSA-p5rr-crjh-x7gr
+    "wrap-ansi": {"9.0.1"},        # GHSA-2rv4-jp6r-xgq7
+    "backslash": {"0.2.1"},        # GHSA-53mq-f4w3-f7qv
+    "is-arrayish": {"0.3.3"},      # GHSA-frh7-2f84-v9mw / CVE-2025-59331
+    "simple-swizzle": {"0.2.3"},   # GHSA-9g9j-rggx-7fmg / CVE-2025-59141
+    "supports-color": {"10.2.1"},  # GHSA-pj3j-3w3f-j752
+    "slice-ansi": {"7.1.1"},       # GHSA-9xjj-cmqc-578p
+    # StepSecurity + Bleeping Computer + Checkmarx + OX Security all confirm
+    # the same version list for has-ansi, chalk-template, and supports-hyperlinks:
+    "has-ansi": {"6.0.1"},
+    "chalk-template": {"1.1.1"},
+    "supports-hyperlinks": {"4.1.1"},
+    # September 15 2025 Shai-Hulud worm — @ctrl/tinycolor and ngx-bootstrap wave
+    # A separate account takeover (different maintainer) using an identical
+    # postinstall bundle.js that harvests npm/GitHub tokens and cloud credentials,
+    # then self-propagates by republishing infected versions using stolen credentials.
+    # The campaign ultimately spread to 194 packages (582 compromised versions),
+    # though only the original entry points are pinned here.
+    # @ctrl/tinycolor: OSV MAL-2025-47141; Snyk + Endor Labs (independent sources)
+    # ngx-bootstrap: GHSA-6m4g-vm7c-f8w6 / OSV MAL-2025-47197;
+    #               Snyk blog + valor-software/ngx-bootstrap#6776 (maintainer issue)
+    "@ctrl/tinycolor": {"4.1.1", "4.1.2"},
+    "ngx-bootstrap": {"18.1.4", "19.0.3", "19.0.4",
+                       "20.0.3", "20.0.4", "20.0.5", "20.0.6"},
     # dYdX supply-chain attack (January 27 2026) — maintainer credential compromise
     # Socket + TheHackerNews + Rescana + CyberPress agree on all four versions
     "@dydxprotocol/v4-client-js": {"3.4.1", "1.22.1", "1.15.2", "1.0.31"},
