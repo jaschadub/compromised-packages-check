@@ -37,7 +37,16 @@ and CI/CD environments), the Roblox/robase PyPI typosquat cluster May 29
 2026 (52 packages impersonating Roblox API / database helper libraries),
 and the oob-moika-tech dependency-confusion npm sub-wave May 29 2026
 (@databus-service-ui, @service-suppliers, @service-user-notifications,
-@polka-ui, @pulse-web-platform-core, @loans, nemo-reporter)).
+@polka-ui, @pulse-web-platform-core, @loans, nemo-reporter), the
+oob-moika-tech Wave 2 npm dependency-confusion cluster May 29 2026
+(17 packages by actor t-in-one / nath.dr4k3@gmail.com, C2 oob.moika.tech:
+15 @t-in-one/* Angular DI token packages, @capibar.chat/ui-kit,
+@sber-ecom-core/sberpay-widget; OSV MAL-2026-3337, 5031–5046), the
+mixed npm malware batch May 29 2026 (buffer-util-extend GHSA-g44v-3gq3-j8p6,
+hellowornd GHSA-4f9q-ffgq-5w82, tiny-naturalsort GHSA-mqp5-9r9w-8hg4,
+@neon-i18n/core-ui and sorenson-webfonts dependency-confusion;
+OSV MAL-2026-2920/4839/5027/5028/5030), and the modulebuild3240234t
+PyPI Roblox infostealer May 29 2026 (OSV MAL-2026-5029)).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -171,6 +180,10 @@ PYPI_BAD: dict[str, set[str]] = {
     "rogiant-quick-install": {"2.4.0"},
     "rosolver": {"0.0.1"},
     "rostilesolver": {"2.4.0"},
+    # modulebuild3240234t PyPI Roblox infostealer (May 29 2026)
+    # Exfiltrates Roblox session data and credentials on import.
+    # OSV MAL-2026-5029 (active, confirmed by kam193 / bad-packages.kam193.eu)
+    "modulebuild3240234t": {"1.0.0", "1.0.1", "2.0.0", "3.0.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -856,6 +869,49 @@ NPM_BAD: dict[str, set[str]] = {
     "@service-suppliers/suppliers": set(),
     "@service-user-notifications/set_notifications_not_removable": set(),
     "nemo-reporter": {"1.8.3"},
+    # oob-moika-tech Wave 2 npm dependency-confusion cluster (May 29 2026)
+    # Same actor (npm user t-in-one, nath.dr4k3@gmail.com) and C2 (oob.moika.tech) as May 28
+    # Moika Tech wave. Targets the @t-in-one scope (attacker's own npm username) with 15 packages
+    # impersonating private Angular DI token packages, plus two external-scope targets
+    # (@capibar.chat/ui-kit and @sber-ecom-core/sberpay-widget). All 17 packages have
+    # OSV affected.ranges >=0 — use empty-set wildcard.
+    # OSV MAL-2026-3337 (@t-in-one/save_application_hid_to_storage, first discovery),
+    # MAL-2026-5031 (@capibar.chat/ui-kit), MAL-2026-5032 (@sber-ecom-core/sberpay-widget),
+    # MAL-2026-5033–5046 (remaining @t-in-one/* packages)
+    # Primary source: SafeDep safedep.io/oob-moika-tech-dependency-confusion-campaign/
+    "@capibar.chat/ui-kit": set(),
+    "@sber-ecom-core/sberpay-widget": set(),
+    "@t-in-one/add_app_middleware_token": set(),
+    "@t-in-one/add_application": set(),
+    "@t-in-one/add_application_service_token": set(),
+    "@t-in-one/add_application_tid": set(),
+    "@t-in-one/application_id_storage_key_token": set(),
+    "@t-in-one/form_product_token": set(),
+    "@t-in-one/get_application_hid": set(),
+    "@t-in-one/only_difference_payload": set(),
+    "@t-in-one/prefill_bundle_data_token": set(),
+    "@t-in-one/prefill_credit_data_token": set(),
+    "@t-in-one/prefill_transformers_data_token": set(),
+    "@t-in-one/restore_application_hid_from_storage": set(),
+    "@t-in-one/safe_local_storage_token": set(),
+    "@t-in-one/save_application_hid_to_storage": set(),
+    "@t-in-one/send_add_application": set(),
+    # Mixed npm malware batch (May 29 2026)
+    # buffer-util-extend: decodes and executes base64 payload on require/import.
+    #   OSV MAL-2026-2920 / GHSA-g44v-3gq3-j8p6 (Amazon Inspector primary discovery)
+    # hellowornd: generic credential stealer, any-version wildcard.
+    #   OSV MAL-2026-4839 / GHSA-4f9q-ffgq-5w82
+    # tiny-naturalsort: any-version wildcard.
+    #   OSV MAL-2026-5030 / GHSA-mqp5-9r9w-8hg4
+    # @neon-i18n/core-ui: dependency-confusion package at inflated version 99.99.99.
+    #   OSV MAL-2026-5027 (OpenSSF Package Analysis)
+    # sorenson-webfonts: dependency-confusion package at inflated version 99.9.1.
+    #   OSV MAL-2026-5028 (OpenSSF Package Analysis)
+    "buffer-util-extend": set(),
+    "hellowornd": set(),
+    "tiny-naturalsort": set(),
+    "@neon-i18n/core-ui": {"99.99.99"},
+    "sorenson-webfonts": {"99.9.1"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -868,6 +924,8 @@ NPM_SUSPECT_SCOPES = (
     "@debit-ib/", "@fb-deposit/", "@mlspace/",
     # vpmdhaj typosquat cluster (May 28 2026) — entire scope is malicious
     "@vpmdhaj/",
+    # oob-moika-tech Wave 2 (May 29 2026) — attacker's own npm username scope
+    "@t-in-one/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
