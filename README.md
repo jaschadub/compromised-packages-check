@@ -45,7 +45,7 @@ FOUND 3 MALICIOUS PACKAGE VERSION(S):
 The scanner also emits a warning (no failure) for any package living under
 an advisory-affected npm scope (`@mistralai/`, `@uipath/`, `@opensearch-project/`,
 `@antv/`, `@car-loans/`, `@cloudplatform-single-spa/`, `@debit-ib/`, `@fb-deposit/`,
-`@mlspace/`) where the version doesn't exactly match the malicious list —
+`@mlspace/`, `@vpmdhaj/`) where the version doesn't exactly match the malicious list —
 useful for catching newly-disclosed entries before this repo has been updated.
 
 ## What's tracked
@@ -93,6 +93,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | May 27 2026 bulk npm malware (OSV disclosures) | ~70 additional packages confirmed by individual OSV MAL-2026-* records, including `local-mcp`, `open-agents-ai`, `onboardconnect-agent`, `omnius`, `rdflib` 2.3.7, `opentiny-react` 6.9.31, `@ctrl/plex` 6.0.0, `wallet-agent-ai`, `venturo-playwright*`, `promptbook-{cli,mcp}`, and others |
 | May 27 2026 bulk PyPI malware (OSV disclosures) | 13 packages: `cdktn-provider-{datadog,newrelic}`, `edison-tools`, `heims`, `indextts-cli`, `massive` 2.8.0, `noteparse`, `openirf`, `pgrayy-wasmtime`, `pulumi-vcd`, `qontract-reconcile` dev builds (legitimate Red Hat tool, 4 compromised dev versions), `quatres`, `ranno` |
 | Moika Tech dependency confusion campaign — May 28 2026 (ossf/malicious-packages PR #1279) | 164 npm packages across 5 private scopes (`@car-loans`, `@cloudplatform-single-spa`, `@debit-ib`, `@fb-deposit`, `@mlspace`) published at version 99.99.99 by attacker 'pik-libs' to hijack internal CI pipelines; all any-version wildcards |
+| vpmdhaj OpenSearch/CI typosquat cluster — May 28 2026 | 14 npm packages published by threat actor vpmdhaj in a 4-hour window: `@vpmdhaj/devops-tools`, `@vpmdhaj/elastic-helper`, `@vpmdhaj/opensearch-setup`, `@vpmdhaj/search-setup`, `app-config-utility`, `elastic-opensearch-helper`, `env-config-manager`, `opensearch-config-utility`, `opensearch-security-scanner`, `opensearch-setup`, `opensearch-setup-tool`, `search-cluster-setup`, `search-engine-setup`, `vpmdhaj-opensearch-setup` — all any-version wildcards; Bun-compiled stager harvests AWS/Vault/CI credentials |
 | May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
@@ -282,6 +283,8 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-qm6m-33hv-fvwv — zest-product](https://github.com/advisories/GHSA-qm6m-33hv-fvwv)
 - [GHSA-pv74-wmjg-4gp8 — tailwind-style-typography](https://github.com/advisories/GHSA-pv74-wmjg-4gp8)
 - [ossf/malicious-packages PR #1279 — Moika Tech dependency confusion (164 npm packages, May 28 2026)](https://github.com/ossf/malicious-packages/pull/1279)
+- [Microsoft Security Blog — vpmdhaj typosquatted npm packages steal cloud and CI/CD secrets (2026-05-28)](https://www.microsoft.com/en-us/security/blog/2026/05/28/typosquatted-npm-packages-used-steal-cloud-ci-cd-secrets/)
+- [GBHackers — typosquatted npm packages steal cloud and CI/CD secrets](https://gbhackers.com/typosquatted-npm-packages/)
 
 ## License
 
