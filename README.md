@@ -77,23 +77,18 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | CLOB IPFS dropper — May 26 2026 (MAL-2026-4347–4350) | `@devcarron/clob`, `api-rs-node`, `clob.api`, `clobprice.api` (npm) — DeFi/CLOB-API typosquats fetching Windows executable via IPFS; registry persistence; C2 45.8.22.112:2026 |
 | DPRK js-logger-pack / terminal-logger-utils cluster — April–May 2026 (OSV MAL-2026-2827) | `js-logger-pack` (23 versions, any-version), `terminal-logger-utils`, `pretty-logger-utils`, `ts-logger-pack`, `pinno-loggers` (npm) — multi-stage dropper + infostealer + RAT; HuggingFace second-stage; targets Telegram sessions, SSH keys, crypto wallets, cloud credentials |
 | Leaked Shai-Hulud / deadcode09284814 cluster — May 26 2026 | `chalk-tempalte` (Shai-Hulud worm clone), `@deadcode09284814/axios-util` (credential stealer), `axois-utils` (Phantom Bot DDoS botnet), `color-style-utils` (wallet/credential stealer) — any-version |
-| Nx build-system supply-chain compromise — May 27 2026 (MAL-2025-41436–41443) | 8 `@nx/*` packages + `nx` core: `@nx/devkit` 20.9.0, 21.5.0; `@nx/eslint` 21.5.0; `@nx/js` 20.9.0, 21.5.0; `@nx/node` 20.9.0, 21.5.0; `@nx/workspace` 20.9.0, 21.5.0; `@nx/enterprise-cloud` 3.2.0; `@nx/key` 3.2.0, 5.0.7; `nx` 20.9.0–20.12.0, 21.5.0–21.8.0 |
+| Nx build-system supply-chain compromise — May 27 2026 (MAL-2025-41436–41443) | 8 `@nx/*` packages + `nx` core: `@nx/devkit` 20.9.0, 21.5.0; `@nx/eslint` 21.5.0; `@nx/js` 20.9.0, 21.5.0; `@nx/node` 20.9.0, 21.5.0; `@nx/workspace` 20.9.0, 21.5.0; `@nx/enterprise-cloud` 3.2.0; `nx` 20.9.0–20.12.0, 21.5.0–21.8.0 (`@nx/key` withdrawn as FP, MAL-2025-41440) |
 | @limebike dependency-confusion — May 27 2026 (MAL-2026-4187–4190) | `@limebike/frontend-core-api`, `@limebike/supreme`, `@limebike/supreme-data-grid`, `@limebike/supreme-date-pickers` — any-version (high-version 85.x packages targeting Lime's internal CI) |
-| @tailwind-core Tailwind typosquat cluster — May 27 2026 (MAL-2026-4448–4452) | `@tailwind-core/oxide-linux-x64-gnu`, `@tailwind-core/oxide-win32-x64-msvc`, `@tailwind-core/postcss`, `@tailwind-core/vite`, `@tailwind-core/webpack` — all version 4.3.0 (impersonates `@tailwindcss/*`) |
-| @tarojs/cli compromise — May 27 2026 (MAL-2026-4453) | `@tarojs/cli` 4.1.12-beta.47, 4.2.1-beta.0 |
-| fastapi / strawberry-graphql PyPI poisonings — May 27 2026 | `fastapi` 0.136.3; `strawberry-graphql` 0.315.6; `notebook-intelligence` 5.0.0a1, 5.0.0, 5.0.1; `libhmac` 0.3.0, 0.8.28.0, 0.8.28.1, 1.1.0 (PyPI) |
+| libhmac crypto-stealer typosquat — May 26 2026 (MAL-2026-4194) | `libhmac` 0.3.0, 0.8.28.0, 0.8.28.1, 1.1.0 (PyPI) — impersonates a legitimate HMAC library |
 | polymarket-clob-client npm compromise — May 26 2026 (MAL-2026-4643) | `polymarket-clob-client` 2.1.1 (npm) — official Polymarket CLOB client, single malicious version |
 | msc-terminal npm infostealer — May 27 2026 (MAL-2026-4823) | `msc-terminal` — any-version (pure-malware, >=0 range in OSV) |
-| Baileys/WhatsApp bot malware campaign — May 27 2026 | 15 malicious forks of WhatsApp API libraries (`@blckrose/baileys`, `@budetzz/baileys`, `@budetzz/libsignal-node`, `@budetzzgantenk/baileys`, `@hanssoft/baileys`, `@shadowmd/libsignal-node`, `@shinzepelly/libsignal-node`, `@zentrix23/baileys`, `alya-baileys`, `chromestaff-baileys`, `fca-eryxenx`, `fca-official-uzair-rajput`, `hiura-baileys`, `kurumi-fca`, `naileys`) — postinstall payloads steal credentials and crypto wallets |
-| @onerjs BabylonJS typosquat cluster — May 27 2026 | 6 packages impersonating `@babylonjs/*`: `@onerjs/addons`, `@onerjs/inspector`, `@onerjs/procedural-textures`, `@onerjs/serializers`, `@onerjs/smart-filters`, `@onerjs/smart-filters-blocks` |
-| Claude Code / openclaw impersonation cluster — May 27 2026 | 12 packages impersonating Claude Code or OpenClaw tooling (`@bonsai-ai/claude-code`, `@cometix/claude-code`, `@shadanai/openclaw`, `@wengine-ai/claude-code-router-shared`, `klaudius`, `atel-mcp-openclaw`, etc.) — harvest AI API keys and developer credentials |
-| local-mcp / lokal-mcp MCP malware campaign — May 27 2026 | `local-mcp` (21 versions: 3.0.177–3.0.221), `lokal-mcp` 0.4.0 — malicious MCP server packages targeting Model Context Protocol developers |
 | Dependency-confusion 99.x batch — May 27 2026 | `@remitee-money-transfer/rmt-base` 99.99.x; `customerdigital-ui-containers-lib` 99.x; `editorial-code`, `editorial-mse-authentication-ui`, `mse-authentication` 99.0.1 — high-version CI shadow attack |
 | May 27 2026 npm any-version wildcards | `@not-nemo/crypto-tracker`, `bulletproof-json`, `chai-as-repaired`, `claude-channel-imessage`, `shop-minis`, `skills-detector`, `testing-on-npmjs`, `verify-mycommand` — all OSV >=0 ranges |
-| May 27 2026 bulk npm malware (OSV disclosures) | ~70 additional packages confirmed by individual OSV MAL-2026-* records, including `local-mcp`, `open-agents-ai`, `onboardconnect-agent`, `omnius`, `rdflib` 2.3.7, `opentiny-react` 6.9.31, `@ctrl/plex` 6.0.0, `wallet-agent-ai`, `venturo-playwright*`, `promptbook-{cli,mcp}`, and others |
-| May 27 2026 bulk PyPI malware (OSV disclosures) | 13 packages: `cdktn-provider-{datadog,newrelic}`, `edison-tools`, `heims`, `indextts-cli`, `massive` 2.8.0, `noteparse`, `openirf`, `pgrayy-wasmtime`, `pulumi-vcd`, `qontract-reconcile` dev builds (legitimate Red Hat tool, 4 compromised dev versions), `quatres`, `ranno` |
+| quatres PyPI malware — May 27 2026 (MAL-2026-4829) | `quatres` 3.0.1 — sole survivor of the May 27 bulk PyPI batch; the rest were withdrawn as false positives (see note below) |
 | Moika Tech dependency confusion campaign — May 28 2026 (ossf/malicious-packages PR #1279) | 164 npm packages across 5 private scopes (`@car-loans`, `@cloudplatform-single-spa`, `@debit-ib`, `@fb-deposit`, `@mlspace`) published at version 99.99.99 by attacker 'pik-libs' to hijack internal CI pipelines; all any-version wildcards |
 | vpmdhaj OpenSearch/CI typosquat cluster — May 28 2026 | 14 npm packages published by threat actor vpmdhaj in a 4-hour window: `@vpmdhaj/devops-tools`, `@vpmdhaj/elastic-helper`, `@vpmdhaj/opensearch-setup`, `@vpmdhaj/search-setup`, `app-config-utility`, `elastic-opensearch-helper`, `env-config-manager`, `opensearch-config-utility`, `opensearch-security-scanner`, `opensearch-setup`, `opensearch-setup-tool`, `search-cluster-setup`, `search-engine-setup`, `vpmdhaj-opensearch-setup` — all any-version wildcards; Bun-compiled stager harvests AWS/Vault/CI credentials |
+| Roblox/robase PyPI typosquat cluster — May 29 2026 | 52 packages impersonating Roblox API / database helper libraries (`robase`, `robase-*`, `rblx-*`, `ro-db`, `roboat-*`, `rogiant*`, `rosolver`, `database*`, `bloxy-api`, `core-roblox-utils`, `api-analysis`, `pycolorlib*`, `quicksolving`, …) — each confirmed by an individual OSV MAL-2026-* record |
+| oob-moika-tech dependency-confusion npm sub-wave — May 29 2026 | `@databus-service-ui/*`, `@service-suppliers/*`, `@service-user-notifications/set_notifications_not_removable`, `@polka-ui/*`, `@pulse-web-platform-core/scripts-loader`, `@loans/vehicles-api`, `nemo-reporter` — internal-package-name dependency confusion; each confirmed by an individual OSV MAL-2026-* record |
 | May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
@@ -101,6 +96,19 @@ Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
 be removed and credentials rotated, but the realised impact differs from the
 working `@tanstack/*` payloads.
+
+> **Withdrawn false positives (May 27 2026 bulk batch).** A large batch of
+> packages initially flagged from the May 27 2026 bulk OSV disclosures were
+> subsequently withdrawn as false positives by the ossf/malicious-packages
+> project ([PR #1276](https://github.com/ossf/malicious-packages/pull/1276),
+> [PR #1278](https://github.com/ossf/malicious-packages/pull/1278)) — including
+> the `fastapi` / `strawberry-graphql` / `notebook-intelligence` PyPI reports,
+> the `@tailwind-core` and `@onerjs` npm typosquat clusters, the
+> Baileys/WhatsApp, Claude Code/openclaw, and local-mcp/lokal-mcp campaigns,
+> `@tarojs/cli`, `@nx/key`, and the bulk `edison-tools` / `heims` / `openirf` /
+> `ranno` PyPI batch (~145 entries total). These have been removed. Every
+> entry retained in the lists above has an active (non-withdrawn) OSV `MAL-*`
+> record, or independent authoritative corroboration, as of 2026-05-29.
 
 ## Contributing
 
@@ -222,19 +230,14 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-4188 — @limebike/supreme](https://osv.dev/vulnerability/MAL-2026-4188)
 - [OSV MAL-2026-4189 — @limebike/supreme-data-grid](https://osv.dev/vulnerability/MAL-2026-4189)
 - [OSV MAL-2026-4190 — @limebike/supreme-date-pickers](https://osv.dev/vulnerability/MAL-2026-4190)
-- [OSV MAL-2026-4200 — art-template](https://osv.dev/vulnerability/MAL-2026-4200)
-- [OSV MAL-2026-4448 — @tailwind-core/oxide-linux-x64-gnu](https://osv.dev/vulnerability/MAL-2026-4448)
-- [OSV MAL-2026-4449 — @tailwind-core/oxide-win32-x64-msvc](https://osv.dev/vulnerability/MAL-2026-4449)
-- [OSV MAL-2026-4450 — @tailwind-core/postcss](https://osv.dev/vulnerability/MAL-2026-4450)
-- [OSV MAL-2026-4451 — @tailwind-core/vite](https://osv.dev/vulnerability/MAL-2026-4451)
-- [OSV MAL-2026-4452 — @tailwind-core/webpack](https://osv.dev/vulnerability/MAL-2026-4452)
-- [OSV MAL-2026-4453 — @tarojs/cli](https://osv.dev/vulnerability/MAL-2026-4453)
 - [OSV MAL-2026-4643 — polymarket-clob-client](https://osv.dev/vulnerability/MAL-2026-4643)
 - [OSV MAL-2026-4823 — msc-terminal](https://osv.dev/vulnerability/MAL-2026-4823)
-- [OSV MAL-2026-4750 — fastapi 0.136.3](https://osv.dev/vulnerability/MAL-2026-4750)
-- [OSV MAL-2026-4771 — strawberry-graphql 0.315.6](https://osv.dev/vulnerability/MAL-2026-4771)
-- [OSV MAL-2026-4759 — notebook-intelligence](https://osv.dev/vulnerability/MAL-2026-4759)
 - [OSV MAL-2026-4194 — libhmac](https://osv.dev/vulnerability/MAL-2026-4194)
+- [OSV MAL-2026-4829 — quatres 3.0.1 (PyPI)](https://osv.dev/vulnerability/MAL-2026-4829)
+- [OSV MAL-2026-2543 — robase (Roblox/robase PyPI cluster, May 29 2026; ~52 MAL-2026-* records)](https://osv.dev/vulnerability/MAL-2026-2543)
+- [OSV MAL-2026-4834 — @polka-ui/config (oob-moika-tech dependency-confusion npm sub-wave, May 29 2026)](https://osv.dev/vulnerability/MAL-2026-4834)
+- [OSV MAL-2026-4435 — @service-suppliers/fetch_suppliers_action_saga](https://osv.dev/vulnerability/MAL-2026-4435)
+- [OSV MAL-2026-4836 — nemo-reporter](https://osv.dev/vulnerability/MAL-2026-4836)
 - [StepSecurity — pgserve compromised on npm (CanisterSprawl)](https://www.stepsecurity.io/blog/pgserve-compromised-on-npm-malicious-versions-harvest-credentials)
 - [Socket — Namastex npm packages hit with CanisterWorm](https://socket.dev/blog/namastex-npm-packages-compromised-canisterworm)
 - [Maintainer issue — pgserve 1.1.11–1.1.13 malicious postinstall](https://github.com/namastexlabs/pgserve/issues/25)
@@ -253,18 +256,10 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [Veracode (Phylum) — Rust malware staged on crates.io](https://www.veracode.com/blog/rust-malware-staged-on-crates-io/) (amaperf 2023 cluster)
 - [Socket — 5 malicious Rust crates posed as time utilities](https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files) (timeapi.io campaign)
 - [crates.io blog — security incidents](https://blog.rust-lang.org/inside-rust/) — primary source for Polymarket and Mysten takedowns
-- [OSV MAL-2026-4369 through 4619 — Baileys/WhatsApp bot malware campaign](https://osv.dev/vulnerability/MAL-2026-4369)
-- [OSV MAL-2026-4410 through 4415 — @onerjs BabylonJS typosquat cluster](https://osv.dev/vulnerability/MAL-2026-4410)
-- [OSV MAL-2026-4370 through 4593 — Claude Code / openclaw impersonation cluster](https://osv.dev/vulnerability/MAL-2026-4370)
-- [OSV MAL-2026-4601 — local-mcp MCP malware](https://osv.dev/vulnerability/MAL-2026-4601)
-- [OSV MAL-2026-4602 — lokal-mcp](https://osv.dev/vulnerability/MAL-2026-4602)
 - [OSV MAL-2026-4424 — @remitee-money-transfer/rmt-base dependency-confusion](https://osv.dev/vulnerability/MAL-2026-4424)
 - [OSV MAL-2026-4833 — bulletproof-json](https://osv.dev/vulnerability/MAL-2026-4833)
 - [OSV MAL-2026-4512 — chai-as-repaired](https://osv.dev/vulnerability/MAL-2026-4512)
 - [OSV MAL-2026-4523 — claude-channel-imessage](https://osv.dev/vulnerability/MAL-2026-4523)
-- [OSV MAL-2026-4765 — qontract-reconcile compromised dev builds](https://osv.dev/vulnerability/MAL-2026-4765)
-- [OSV MAL-2026-4795 — massive 2.8.0 (PyPI)](https://osv.dev/vulnerability/MAL-2026-4795)
-- [OSV MAL-2026-4659 — rdflib 2.3.7 (npm)](https://osv.dev/vulnerability/MAL-2026-4659)
 - [GHSA-g3vg-qhhh-pfv7 — web3-prices](https://github.com/advisories/GHSA-g3vg-qhhh-pfv7)
 - [GHSA-r4j3-79hx-xpr6 — web3.prc](https://github.com/advisories/GHSA-r4j3-79hx-xpr6)
 - [GHSA-r4ww-65gv-rhv8 — int-node](https://github.com/advisories/GHSA-r4ww-65gv-rhv8)
