@@ -36,7 +36,9 @@ packages, >2B weekly downloads, crypto-wallet interceptor), and the
 September 15 2025 Shai-Hulud worm wave via @ctrl/tinycolor and
 ngx-bootstrap account takeovers, and the Moika Tech out-of-band dependency
 confusion campaign May 28 2026 (five private scopes, 164 npm packages:
-@car-loans, @cloudplatform-single-spa, @debit-ib, @fb-deposit, @mlspace)).
+@car-loans, @cloudplatform-single-spa, @debit-ib, @fb-deposit, @mlspace),
+and the vpmdhaj OpenSearch/CI typosquat cluster May 28 2026 (14 npm
+packages targeting OpenSearch, ElasticSearch, and CI/CD environments)).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-05-28
@@ -980,6 +982,33 @@ NPM_BAD: dict[str, set[str]] = {
     "@mlspace/model-registry": set(),
     "@mlspace/profile": set(),
     "@mlspace/shared-storage": set(),
+    # vpmdhaj OpenSearch/CI typosquat cluster (May 28, 2026)
+    # A single threat actor (alias vpmdhaj, a39155771@gmail.com) published 14
+    # malicious packages within a four-hour window, typosquatting OpenSearch,
+    # ElasticSearch, DevOps, and environment-config libraries. All packages spoof
+    # the upstream opensearch-project repository metadata in package.json to appear
+    # legitimate. Postinstall stager deploys a ~195 KB Bun-compiled second-stage
+    # payload that harvests AWS credentials, HashiCorp Vault tokens, and CI/CD
+    # pipeline secrets. Packages were removed from the registry; no prior legitimate
+    # versions exist — use the empty-set wildcard.
+    # Microsoft Threat Intelligence (primary disclosure, versions enumerated):
+    #   microsoft.com/en-us/security/blog/2026/05/28/typosquatted-npm-packages-used-steal-cloud-ci-cd-secrets/
+    # GBHackers (independent corroboration):
+    #   gbhackers.com/typosquatted-npm-packages/
+    "@vpmdhaj/devops-tools": set(),
+    "@vpmdhaj/elastic-helper": set(),
+    "@vpmdhaj/opensearch-setup": set(),
+    "@vpmdhaj/search-setup": set(),
+    "app-config-utility": set(),
+    "elastic-opensearch-helper": set(),
+    "env-config-manager": set(),
+    "opensearch-config-utility": set(),
+    "opensearch-security-scanner": set(),
+    "opensearch-setup": set(),
+    "opensearch-setup-tool": set(),
+    "search-cluster-setup": set(),
+    "search-engine-setup": set(),
+    "vpmdhaj-opensearch-setup": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -990,6 +1019,8 @@ NPM_SUSPECT_SCOPES = (
     # Moika Tech dependency confusion scopes (May 28 2026)
     "@car-loans/", "@cloudplatform-single-spa/",
     "@debit-ib/", "@fb-deposit/", "@mlspace/",
+    # vpmdhaj typosquat cluster (May 28 2026) — entire scope is malicious
+    "@vpmdhaj/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
