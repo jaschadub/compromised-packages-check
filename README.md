@@ -51,6 +51,8 @@ useful for catching newly-disclosed entries before this repo has been updated.
 
 | Wave | Scope / Packages |
 | --- | --- |
+| September 8 2025 Qix phishing attack — chalk/debug/color/ansi npm ecosystem | 19 packages with >2B combined weekly downloads: `chalk` 5.6.1; `debug` 4.4.2; `color` 5.0.1; `color-name` 2.0.1; `color-convert` 3.1.1; `color-string` 2.1.1; `error-ex` 1.3.3; `ansi-regex` 6.2.1; `strip-ansi` 7.1.1; `ansi-styles` 6.2.2; `wrap-ansi` 9.0.1; `backslash` 0.2.1; `is-arrayish` 0.3.3; `simple-swizzle` 0.2.3; `supports-color` 10.2.1; `slice-ansi` 7.1.1; `has-ansi` 6.0.1; `chalk-template` 1.1.1; `supports-hyperlinks` 4.1.1 — browser-based crypto-wallet address interceptor injected via phished maintainer account (npmjs.help phishing); live ~2.5 h before removal |
+| September 15 2025 Shai-Hulud worm — @ctrl/tinycolor / ngx-bootstrap wave | `@ctrl/tinycolor` 4.1.1, 4.1.2 (OSV MAL-2025-47141); `ngx-bootstrap` 18.1.4, 19.0.3–19.0.4, 20.0.3–20.0.6 (GHSA-6m4g-vm7c-f8w6 / MAL-2025-47197) — self-propagating credential stealer (postinstall bundle.js harvests npm/GitHub/cloud tokens and republishes infected versions); ultimately spread to 582 compromised versions across 194 packages |
 | CanisterSprawl / TeamPCP npm worm — April 8–22 2026 | `@fairwords/websocket` 1.0.38–1.0.39; `@fairwords/loopback-connector-es` 1.4.3–1.4.4 (April 8); `pgserve` 1.1.11–1.1.13; `@automagik/genie` 4.260421.33–4.260421.40; `@openwebconcept/theme-owc` 1.0.1–1.0.3; `@openwebconcept/design-tokens` 1.0.1–1.0.3 (April 21–22) — self-propagating ICP-canister credential stealer |
 | @velora-dex/sdk registry-only compromise — April 7 2026 | `@velora-dex/sdk` 9.4.1 — Go RAT (minirat) + macOS launchctl persistence injected into dist/index.js without GitHub commit |
 | DevTap user0001 typosquat cluster — April–May 2026 | `centralogger`, `connector-agent`, `dom-utils-lite`, `node-env-resolve`, `node-fetch-lite`, `node-gyp-runtime` — any-version (six packages, single throwaway account, SSH-key backdoor + Windows RAT + browser-history theft) |
@@ -107,6 +109,34 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 
 ## Sources
 
+- [Aikido — npm debug and chalk packages compromised (2025-09-08)](https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised)
+- [StepSecurity — 20+ popular npm packages compromised: chalk, debug, strip-ANSI, color-convert, wrap-ANSI](https://www.stepsecurity.io/blog/20-popular-npm-packages-compromised-chalk-debug-strip-ansi-color-convert-wrap-ansi)
+- [Wiz — widespread npm supply chain attack: chalk and debug](https://www.wiz.io/blog/widespread-npm-supply-chain-attack-breaking-down-impact-scope-across-debug-chalk)
+- [Upwind — npm supply chain attack: debug, chalk, and 16 other packages](https://www.upwind.io/feed/npm-supply-chain-attack-massive-compromise-of-debug-chalk-and-16-other-packages)
+- [Bleeping Computer — hackers hijack npm packages with 2 billion weekly downloads](https://www.bleepingcomputer.com/news/security/hackers-hijack-npm-packages-with-2-billion-weekly-downloads-in-supply-chain-attack/)
+- [Semgrep — chalk, debug and color on npm compromised (2025-09-08)](https://semgrep.dev/blog/2025/chalk-debug-and-color-on-npm-compromised-in-new-supply-chain-attack/)
+- [OX Security — 19 npm packages compromised](https://www.ox.security/blog/npm-packages-compromised/)
+- [GHSA-2v46-p5h4-248w — chalk 5.6.1 malware](https://github.com/advisories/GHSA-2v46-p5h4-248w)
+- [GHSA-4x49-vf9v-38px — debug 4.4.2 malware](https://github.com/advisories/GHSA-4x49-vf9v-38px)
+- [GHSA-qrmh-qg46-72pp — color 5.0.1 malware](https://github.com/advisories/GHSA-qrmh-qg46-72pp)
+- [GHSA-5fvm-p68v-5wmh — color-name 2.0.1 malware](https://github.com/advisories/GHSA-5fvm-p68v-5wmh)
+- [GHSA-pxx3-g568-hxr4 — color-convert 3.1.1 malware](https://github.com/advisories/GHSA-pxx3-g568-hxr4)
+- [GHSA-286p-vc9p-p5qv — color-string 2.1.1 malware](https://github.com/advisories/GHSA-286p-vc9p-p5qv)
+- [GHSA-6jp5-hh4c-8c5h — error-ex 1.3.3 malware](https://github.com/advisories/GHSA-6jp5-hh4c-8c5h)
+- [GHSA-jvhh-2m83-6w29 — ansi-regex 6.2.1 malware](https://github.com/advisories/GHSA-jvhh-2m83-6w29)
+- [GHSA-vfjc-p7x3-q864 — strip-ansi 7.1.1 malware](https://github.com/advisories/GHSA-vfjc-p7x3-q864)
+- [GHSA-p5rr-crjh-x7gr — ansi-styles 6.2.2 malware](https://github.com/advisories/GHSA-p5rr-crjh-x7gr)
+- [GHSA-2rv4-jp6r-xgq7 — wrap-ansi 9.0.1 malware](https://github.com/advisories/GHSA-2rv4-jp6r-xgq7)
+- [GHSA-53mq-f4w3-f7qv — backslash 0.2.1 malware](https://github.com/advisories/GHSA-53mq-f4w3-f7qv)
+- [GHSA-frh7-2f84-v9mw — is-arrayish 0.3.3 malware](https://github.com/advisories/GHSA-frh7-2f84-v9mw)
+- [GHSA-9g9j-rggx-7fmg — simple-swizzle 0.2.3 malware](https://github.com/advisories/GHSA-9g9j-rggx-7fmg)
+- [GHSA-pj3j-3w3f-j752 — supports-color 10.2.1 malware](https://github.com/advisories/GHSA-pj3j-3w3f-j752)
+- [GHSA-9xjj-cmqc-578p — slice-ansi 7.1.1 malware](https://github.com/advisories/GHSA-9xjj-cmqc-578p)
+- [Snyk — embedded malicious code in tinycolor and ngx-bootstrap (2025-09-15)](https://snyk.io/blog/embedded-malicious-code-in-tinycolor-and-ngx-bootstrap-releases-on-npm/)
+- [GHSA-6m4g-vm7c-f8w6 — ngx-bootstrap malware (18.1.4, 19.0.3–19.0.4, 20.0.3–20.0.6)](https://github.com/advisories/GHSA-6m4g-vm7c-f8w6)
+- [OSV MAL-2025-47141 — @ctrl/tinycolor malware (4.1.1, 4.1.2)](https://deps.dev/advisory/osv/MAL-2025-47141)
+- [valor-software/ngx-bootstrap#6776 — maintainer postmortem](https://github.com/valor-software/ngx-bootstrap/issues/6776)
+- [Endor Labs — tinycolor and CrowdStrike packages compromised](https://www.endorlabs.com/learn/npm-malware-outbreak-tinycolor-and-crowdstrike-packages-compromised)
 - [Socket — malicious dYdX packages (npm + PyPI)](https://socket.dev/blog/malicious-dydx-packages-published-to-npm-and-pypi)
 - [The Hacker News — dYdX wallet stealer and RAT](https://thehackernews.com/2026/02/compromised-dydx-npm-and-pypi-packages.html)
 - [PYSEC-2026-1 — dydx-v4-client](https://github.com/pypa/advisory-database/blob/main/vulns/dydx-v4-client/PYSEC-2026-1.yaml)
