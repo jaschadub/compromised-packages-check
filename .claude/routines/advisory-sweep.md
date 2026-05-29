@@ -85,7 +85,7 @@ fire. Keep this in sync with the live routine — diverging this file from
 the live config defeats the purpose.
 
 ```
-You are a scheduled remote agent running every 6 hours in a fresh clone of
+You are a scheduled remote agent running every 4 hours in a fresh clone of
 https://github.com/jaschadub/compromised-packages-check on `main`. Your job
 is to sweep newly-disclosed npm/PyPI/crates.io supply-chain advisories
 and, if any qualify, add them to the scanner, commit, and push.
