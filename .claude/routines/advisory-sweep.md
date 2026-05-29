@@ -177,6 +177,18 @@ For each candidate package version, require ONE of:
 
 Use `set()` ONLY for pure-malware typosquats where OSV says any version is malicious. Pin exact versions for legitimate-package compromises (axios, node-ipc, pytorch-lightning, intercom-client, etc).
 
+**Active-record gate (MANDATORY — do this for every package right before adding it).** OSV and ossf regularly WITHDRAW reports as false positives (e.g. ossf/malicious-packages PRs #1276/#1278 retracted ~145 packages in one day). A bare `MAL-*` id is not enough — the record must still be live. Re-query OSV by package name and confirm there is at least one `MAL-*` vuln with NO `withdrawn` field:
+
+```bash
+curl -sS -X POST https://api.osv.dev/v1/query -H 'Content-Type: application/json' \
+  -d '{"package":{"name":"<pkg>","ecosystem":"npm"}}' \
+  | python3 -c "import sys,json; v=json.load(sys.stdin).get('vulns',[]); \
+    act=[x['id'] for x in v if x['id'].startswith('MAL-') and not x.get('withdrawn')]; \
+    print('ADD' if act else 'SKIP', act)"
+```
+
+If it prints `SKIP` (empty `vulns`, or every `MAL-*` record carries a `withdrawn` timestamp), DO NOT add the package — the report was retracted. Only `ADD` rows clear the gate. This applies to bulk-OSV batches especially: verify each member individually, never add a batch wholesale.
+
 Skip anything already in `NPM_BAD`, `PYPI_BAD`, `CRATES_BAD`, or covered by `NPM_SUSPECT_SCOPES`. If only a scope is known (no exact versions), add to `NPM_SUSPECT_SCOPES` rather than inventing entries.
 
 ## If qualifying entries are found
@@ -195,7 +207,23 @@ Skip anything already in `NPM_BAD`, `PYPI_BAD`, `CRATES_BAD`, or covered by `NPM
    - Subject: wave name + headline packages (<= 72 chars).
    - Body: every primary source URL used (OSV `MAL-YYYY-NNNN`, GHSA, CVE, RUSTSEC, plus any vendor URL the primary record cited).
    - **NEVER mention Claude, AI, an assistant, or Anthropic** — repo policy and the user's global CLAUDE.md forbid this.
-5. `git push origin main`. If push fails for credential reasons, leave the commit local and report the failure — do not retry destructively.
+   - Final body line, verbatim: `Automatically updated every 4 hours <UTC timestamp>` (use `date -u +%Y-%m-%dT%H:%M:%SZ`).
+5. Integrate cleanly — ALWAYS rebase onto the latest `main` first, then push/merge in THIS SAME run. The accumulation of stale, never-merged branches is what causes conflicts; never leave one open for a later run to inherit.
+
+   a. Sync and rebase (this is what guarantees a clean merge):
+      ```
+      git fetch origin
+      git rebase origin/main
+      ```
+      A conflict here is ALWAYS an additive collision in `check_compromised_packages.py` or `README.md` (another run added near the same dict). Resolve by KEEPING BOTH sides' entries, then `git add <file> && git rebase --continue`. NEVER `git rebase --abort` and never discard the other run's entries.
+   b. If direct pushes to `main` are allowed: `git push origin main`. If rejected (non-fast-forward), repeat (a) and push again — up to 3 attempts. Never `--force`.
+   c. If this run is on its own branch (the environment created one): merge it NOW, in this run —
+      ```
+      git push origin HEAD
+      gh pr create --base main --fill          # only if one wasn't auto-created
+      gh pr merge --rebase --delete-branch     # merge THIS run's PR immediately
+      ```
+      Use `--rebase` (no merge commit). If the merge is blocked by a non-fast-forward, run (a) again, push, and retry the merge — up to 3 attempts. After merging, confirm no `claude/*` branch from this run remains.
 
 ## If nothing qualifies
 Do not commit. End with a short report:
@@ -206,10 +234,11 @@ Do not commit. End with a short report:
 
 ## Hard rules
 - Never invent versions.
-- Never `git push --force` or `git commit --amend`.
-- Never `--no-verify` or skip hooks.
+- Never add a package whose OSV `MAL-*` record is withdrawn or absent (the active-record gate above is mandatory).
+- Each run integrates ONLY its own work, in the same run. Never open a long-lived branch; never touch or merge a branch/PR created by a different run.
+- Always `git fetch origin && git rebase origin/main` before pushing or merging; resolve additive conflicts by keeping both sides.
+- Never `git push --force`, `git commit --amend`, `--no-verify`, or skip hooks.
 - Never mention Claude, AI, or Anthropic in commits.
-- Stay on `main` — do not create branches or PRs.
 - If a vendor URL fails, log it and keep going — the primary sources (1–4) are the source of truth, vendor pages are just colour.
 ```
 
