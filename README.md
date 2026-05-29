@@ -45,7 +45,7 @@ FOUND 3 MALICIOUS PACKAGE VERSION(S):
 The scanner also emits a warning (no failure) for any package living under
 an advisory-affected npm scope (`@mistralai/`, `@uipath/`, `@opensearch-project/`,
 `@antv/`, `@car-loans/`, `@cloudplatform-single-spa/`, `@debit-ib/`, `@fb-deposit/`,
-`@mlspace/`, `@vpmdhaj/`) where the version doesn't exactly match the malicious list —
+`@mlspace/`, `@vpmdhaj/`, `@t-in-one/`) where the version doesn't exactly match the malicious list —
 useful for catching newly-disclosed entries before this repo has been updated.
 
 ## What's tracked
@@ -89,6 +89,9 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | vpmdhaj OpenSearch/CI typosquat cluster — May 28 2026 | 14 npm packages published by threat actor vpmdhaj in a 4-hour window: `@vpmdhaj/devops-tools`, `@vpmdhaj/elastic-helper`, `@vpmdhaj/opensearch-setup`, `@vpmdhaj/search-setup`, `app-config-utility`, `elastic-opensearch-helper`, `env-config-manager`, `opensearch-config-utility`, `opensearch-security-scanner`, `opensearch-setup`, `opensearch-setup-tool`, `search-cluster-setup`, `search-engine-setup`, `vpmdhaj-opensearch-setup` — all any-version wildcards; Bun-compiled stager harvests AWS/Vault/CI credentials |
 | Roblox/robase PyPI typosquat cluster — May 29 2026 | 52 packages impersonating Roblox API / database helper libraries (`robase`, `robase-*`, `rblx-*`, `ro-db`, `roboat-*`, `rogiant*`, `rosolver`, `database*`, `bloxy-api`, `core-roblox-utils`, `api-analysis`, `pycolorlib*`, `quicksolving`, …) — each confirmed by an individual OSV MAL-2026-* record |
 | oob-moika-tech dependency-confusion npm sub-wave — May 29 2026 | `@databus-service-ui/*`, `@service-suppliers/*`, `@service-user-notifications/set_notifications_not_removable`, `@polka-ui/*`, `@pulse-web-platform-core/scripts-loader`, `@loans/vehicles-api`, `nemo-reporter` — internal-package-name dependency confusion; each confirmed by an individual OSV MAL-2026-* record |
+| oob-moika-tech Wave 2 npm dependency-confusion cluster — May 29 2026 | 17 npm packages by actor t-in-one (nath.dr4k3@gmail.com), same C2 oob.moika.tech as May 28 wave: 15 `@t-in-one/*` Angular DI token packages (`add_application`, `form_product_token`, `save_application_hid_to_storage`, `add_app_middleware_token`, `add_application_service_token`, `add_application_tid`, `application_id_storage_key_token`, `get_application_hid`, `only_difference_payload`, `prefill_bundle_data_token`, `prefill_credit_data_token`, `prefill_transformers_data_token`, `restore_application_hid_from_storage`, `safe_local_storage_token`, `send_add_application`) plus `@capibar.chat/ui-kit` and `@sber-ecom-core/sberpay-widget` — all any-version wildcards; OSV MAL-2026-3337, 5031–5046 |
+| Mixed npm malware batch — May 29 2026 | `buffer-util-extend` (GHSA-g44v-3gq3-j8p6 / OSV MAL-2026-2920, any-version — executes base64 payload on require/import), `hellowornd` (GHSA-4f9q-ffgq-5w82 / OSV MAL-2026-4839, any-version), `tiny-naturalsort` (GHSA-mqp5-9r9w-8hg4 / OSV MAL-2026-5030, any-version); dependency-confusion pins: `@neon-i18n/core-ui` 99.99.99 (OSV MAL-2026-5027), `sorenson-webfonts` 99.9.1 (OSV MAL-2026-5028) |
+| modulebuild3240234t PyPI Roblox infostealer — May 29 2026 | `modulebuild3240234t` 1.0.0, 1.0.1, 2.0.0, 3.0.0 (OSV MAL-2026-5029) — exfiltrates Roblox session data and credentials on import |
 | May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
@@ -280,6 +283,20 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [ossf/malicious-packages PR #1279 — Moika Tech dependency confusion (164 npm packages, May 28 2026)](https://github.com/ossf/malicious-packages/pull/1279)
 - [Microsoft Security Blog — vpmdhaj typosquatted npm packages steal cloud and CI/CD secrets (2026-05-28)](https://www.microsoft.com/en-us/security/blog/2026/05/28/typosquatted-npm-packages-used-steal-cloud-ci-cd-secrets/)
 - [GBHackers — typosquatted npm packages steal cloud and CI/CD secrets](https://gbhackers.com/typosquatted-npm-packages/)
+- [OSV MAL-2026-2920 — buffer-util-extend](https://osv.dev/vulnerability/MAL-2026-2920)
+- [GHSA-g44v-3gq3-j8p6 — buffer-util-extend malware](https://github.com/advisories/GHSA-g44v-3gq3-j8p6)
+- [OSV MAL-2026-4839 — hellowornd](https://osv.dev/vulnerability/MAL-2026-4839)
+- [GHSA-4f9q-ffgq-5w82 — hellowornd malware](https://github.com/advisories/GHSA-4f9q-ffgq-5w82)
+- [OSV MAL-2026-5027 — @neon-i18n/core-ui dependency confusion](https://osv.dev/vulnerability/MAL-2026-5027)
+- [OSV MAL-2026-5028 — sorenson-webfonts dependency confusion](https://osv.dev/vulnerability/MAL-2026-5028)
+- [OSV MAL-2026-5029 — modulebuild3240234t (PyPI Roblox infostealer)](https://osv.dev/vulnerability/MAL-2026-5029)
+- [OSV MAL-2026-5030 — tiny-naturalsort](https://osv.dev/vulnerability/MAL-2026-5030)
+- [GHSA-mqp5-9r9w-8hg4 — tiny-naturalsort malware](https://github.com/advisories/GHSA-mqp5-9r9w-8hg4)
+- [OSV MAL-2026-3337 — @t-in-one/save_application_hid_to_storage (oob-moika-tech Wave 2)](https://osv.dev/vulnerability/MAL-2026-3337)
+- [OSV MAL-2026-5031 — @capibar.chat/ui-kit (oob-moika-tech Wave 2)](https://osv.dev/vulnerability/MAL-2026-5031)
+- [OSV MAL-2026-5032 — @sber-ecom-core/sberpay-widget (oob-moika-tech Wave 2)](https://osv.dev/vulnerability/MAL-2026-5032)
+- [OSV MAL-2026-5033 through 5046 — @t-in-one/* Angular DI token packages (oob-moika-tech Wave 2)](https://osv.dev/vulnerability/MAL-2026-5033)
+- [SafeDep — oob-moika-tech dependency confusion campaign](https://safedep.io/oob-moika-tech-dependency-confusion-campaign/)
 
 ## License
 
