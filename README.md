@@ -93,6 +93,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Mixed npm malware batch — May 29 2026 | `buffer-util-extend` (GHSA-g44v-3gq3-j8p6 / OSV MAL-2026-2920, any-version — executes base64 payload on require/import), `hellowornd` (GHSA-4f9q-ffgq-5w82 / OSV MAL-2026-4839, any-version), `tiny-naturalsort` (GHSA-mqp5-9r9w-8hg4 / OSV MAL-2026-5030, any-version); dependency-confusion pins: `@neon-i18n/core-ui` 99.99.99 (OSV MAL-2026-5027), `sorenson-webfonts` 99.9.1 (OSV MAL-2026-5028) |
 | modulebuild3240234t PyPI Roblox infostealer — May 29 2026 | `modulebuild3240234t` 1.0.0, 1.0.1, 2.0.0, 3.0.0 (OSV MAL-2026-5029) — exfiltrates Roblox session data and credentials on import |
 | polymarket-data PyPI crypto/credentials infostealer — May 30 2026 (OSV MAL-2026-5086) | `polymarket-data` 2.0.0, 2.0.1 — exfiltrates cryptocurrency data and API keys; establishes persistence; likely typosquat of polymarket-data-fetcher |
+| buffer-utilities npm malware — May 30 2026 (OSV MAL-2026-5087) | `buffer-utilities` 1.0.0 — communicates with a domain associated with malicious activity and executes commands associated with malicious behavior; detected by OpenSSF Package Analysis |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -333,6 +334,7 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-q36r-56hw-2r46 — chai-bundle typosquat](https://github.com/advisories/GHSA-q36r-56hw-2r46)
 - [GHSA-29g5-vw2p-x29p — tailwind-clamps-line typosquat](https://github.com/advisories/GHSA-29g5-vw2p-x29p)
 - [GHSA-8cm2-vv7w-4c27 — zod-to-js typosquat](https://github.com/advisories/GHSA-8cm2-vv7w-4c27)
+- [OSV MAL-2026-5087 — buffer-utilities npm malware](https://osv.dev/vulnerability/MAL-2026-5087)
 
 ## License
 

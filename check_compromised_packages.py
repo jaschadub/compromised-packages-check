@@ -1131,6 +1131,12 @@ NPM_BAD: dict[str, set[str]] = {
     # Impersonates a Zod-to-JS bridge library; two specific malicious versions.
     # OSV MAL-2026-4740 / GHSA-8cm2-vv7w-4c27
     "zod-to-js": {"13.4.3", "13.4.4"},
+    # buffer-utilities npm malware (May 30 2026)
+    # Communicates with a domain associated with malicious activity and executes
+    # commands associated with malicious behavior; detected by OpenSSF Package Analysis.
+    # Only one version published before takedown; pin it (no >=0 range in OSV record).
+    # OSV MAL-2026-5087
+    "buffer-utilities": {"1.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
