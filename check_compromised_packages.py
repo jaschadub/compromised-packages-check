@@ -56,7 +56,9 @@ canvas-nest.js, onfire.js, etc.; OSV MAL-2026-4123-4159), and the May 29-30
 packages across @clearpool, axis-*, ally-*, @breezeai-frontend,
 @citi-icg-158830, apexomni/apexpro, @cplace-*, @rsi-community, @timelycare,
 ethers.js/EVM typosquats, chai/tailwind plugin typosquats, zod-to-js, and
-misc; OSV MAL-2026-3056 through MAL-2026-5085)).
+misc; OSV MAL-2026-3056 through MAL-2026-5085)), and the
+polymarket-data PyPI crypto/credentials infostealer May 30 2026
+(OSV MAL-2026-5086).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -194,6 +196,11 @@ PYPI_BAD: dict[str, set[str]] = {
     # Exfiltrates Roblox session data and credentials on import.
     # OSV MAL-2026-5029 (active, confirmed by kam193 / bad-packages.kam193.eu)
     "modulebuild3240234t": {"1.0.0", "1.0.1", "2.0.0", "3.0.0"},
+    # polymarket-data PyPI crypto/credentials infostealer (May 30 2026)
+    # Exfiltrates cryptocurrency-related data and API keys; establishes persistence.
+    # Likely a typosquat of polymarket-data-fetcher. Specific malicious versions only.
+    # OSV MAL-2026-5086 (active, confirmed by kam193 / bad-packages.kam193.eu)
+    "polymarket-data": {"2.0.0", "2.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
