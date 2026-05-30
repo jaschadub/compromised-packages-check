@@ -92,6 +92,14 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | oob-moika-tech Wave 2 npm dependency-confusion cluster — May 29 2026 | 17 npm packages by actor t-in-one (nath.dr4k3@gmail.com), same C2 oob.moika.tech as May 28 wave: 15 `@t-in-one/*` Angular DI token packages (`add_application`, `form_product_token`, `save_application_hid_to_storage`, `add_app_middleware_token`, `add_application_service_token`, `add_application_tid`, `application_id_storage_key_token`, `get_application_hid`, `only_difference_payload`, `prefill_bundle_data_token`, `prefill_credit_data_token`, `prefill_transformers_data_token`, `restore_application_hid_from_storage`, `safe_local_storage_token`, `send_add_application`) plus `@capibar.chat/ui-kit` and `@sber-ecom-core/sberpay-widget` — all any-version wildcards; OSV MAL-2026-3337, 5031–5046 |
 | Mixed npm malware batch — May 29 2026 | `buffer-util-extend` (GHSA-g44v-3gq3-j8p6 / OSV MAL-2026-2920, any-version — executes base64 payload on require/import), `hellowornd` (GHSA-4f9q-ffgq-5w82 / OSV MAL-2026-4839, any-version), `tiny-naturalsort` (GHSA-mqp5-9r9w-8hg4 / OSV MAL-2026-5030, any-version); dependency-confusion pins: `@neon-i18n/core-ui` 99.99.99 (OSV MAL-2026-5027), `sorenson-webfonts` 99.9.1 (OSV MAL-2026-5028) |
 | modulebuild3240234t PyPI Roblox infostealer — May 29 2026 | `modulebuild3240234t` 1.0.0, 1.0.1, 2.0.0, 3.0.0 (OSV MAL-2026-5029) — exfiltrates Roblox session data and credentials on import |
+| puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
+| Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
+| @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
+| Multi-campaign dependency confusion batch — May 29–30 2026 | ~80 npm packages from 12+ independent dependency-confusion campaigns: `@clearpool/{comms,streaming,table}` (crypto exchange); `axis-{abc-search-account,abc-search-address,notification}` (Axis Communications); `@breezeai-frontend/*`, `@breeze-ai/*` (BreezeAI); `@allybank/ally-sdk`, `@allyfinancial/allyfinancial-api`, `ally-{antivirus,badges,ccapi,eagw-identity,json-threat-protect}` (Ally Financial); `@citi-icg-158830/*` (Citigroup ICG); `apexomni`, `apexpro`, `apexomni-node`, `apexpro-node` (ApexOmni/ApexPro crypto); `@cplace-*`, `@rsi-community/*`, `@lir-portal/*`, `@tc-core/*`, `@timelycare/*`, `@trp-individual-investor-adv-disc/*`, plus misc packages (`proton-pack`, `deepl-sync`, `reactive-cdk-app`, `power-apps`, `codex-devcontainer-install`, `gcp-api-enabler`, etc.) — all any-version wildcards |
+| ethers.js / EVM toolchain typosquat cluster — May 29–30 2026 | 12 npm packages targeting Ethereum/EVM developers: `ethers-abstract-signer` (GHSA-2f7m-g9qw-8288), `ethers-signing-key`, `ethers-contract` (GHSA-gxfh-j6jv-hc58), `ethers-errors`, `ethers-hash`, `ethers-hdnode`, `evmchain-cli`, `evmchain-config`, `foundry-config`, `hardhat-evmchain`, `viem-multichain`, `web3-config-loader` — all any-version wildcards |
+| chai testing-library typosquat cluster — May 29–30 2026 | `chai-as-tuned` (GHSA-2f37-mh3q-7394), `chai-bundle` (GHSA-q36r-56hw-2r46), `chai-extensions-extras`, `chai-use-test` — fake Chai extensions, any-version wildcards |
+| Tailwind CSS plugin typosquat cluster — May 29–30 2026 | `tailwind-clamps-line` (GHSA-29g5-vw2p-x29p), `tailwind-effect`, `tailwind-smooth-slider`, `tailwindcss-basic-animation`, `tailwind-typography-cssstyle` — fake Tailwind CSS plugins, any-version wildcards |
+| zod-to-js Zod-ecosystem typosquat — May 29 2026 (GHSA-8cm2-vv7w-4c27) | `zod-to-js` 13.4.3, 13.4.4 — Zod-to-JS bridge library typosquat |
 | May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
@@ -297,6 +305,32 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5032 — @sber-ecom-core/sberpay-widget (oob-moika-tech Wave 2)](https://osv.dev/vulnerability/MAL-2026-5032)
 - [OSV MAL-2026-5033 through 5046 — @t-in-one/* Angular DI token packages (oob-moika-tech Wave 2)](https://osv.dev/vulnerability/MAL-2026-5033)
 - [SafeDep — oob-moika-tech dependency confusion campaign](https://safedep.io/oob-moika-tech-dependency-confusion-campaign/)
+- [GHSA-8r2f-2qg4-cv9v — puppeteer 25.0.1 malware](https://github.com/advisories/GHSA-8r2f-2qg4-cv9v)
+- [OSV MAL-2026-5077 — puppeteer maintainer-account compromise](https://osv.dev/vulnerability/MAL-2026-5077)
+- [GHSA-cqpw-mfqj-f2j7 — @beproduct/nestjs-auth malware (Mini Shai-Hulud)](https://github.com/advisories/GHSA-cqpw-mfqj-f2j7)
+- [OSV MAL-2026-3433 — @beproduct/nestjs-auth](https://osv.dev/vulnerability/MAL-2026-3433)
+- [OSV MAL-2026-3604 — @tallyui/storage-sqlite](https://osv.dev/vulnerability/MAL-2026-3604)
+- [OSV MAL-2026-4123 — @lint-md/cli (@antv wave supplemental)](https://osv.dev/vulnerability/MAL-2026-4123)
+- [Socket — AntV packages compromised (atool wave)](https://socket.dev/blog/antv-packages-compromised)
+- [GHSA-fr5f-hf7f-p9w9 — @clearpool/comms dependency confusion](https://github.com/advisories/GHSA-fr5f-hf7f-p9w9)
+- [GHSA-2892-cpv4-xqr4 — @allybank/ally-sdk dependency confusion](https://github.com/advisories/GHSA-2892-cpv4-xqr4)
+- [GHSA-gw7h-mv77-3wv8 — @citi-icg-158830/elemental-ui-react dependency confusion](https://github.com/advisories/GHSA-gw7h-mv77-3wv8)
+- [GHSA-m6v2-w5cf-f85x — apexomni typosquat](https://github.com/advisories/GHSA-m6v2-w5cf-f85x)
+- [GHSA-fmm7-x566-j93x — @cplace-workflow-fe/cf-workflow dependency confusion](https://github.com/advisories/GHSA-fmm7-x566-j93x)
+- [GHSA-j83r-w4f8-v7m9 — @rsi-community/hub-schema dependency confusion](https://github.com/advisories/GHSA-j83r-w4f8-v7m9)
+- [GHSA-pvc4-pwx8-4c4g — @lir-portal/web-components dependency confusion](https://github.com/advisories/GHSA-pvc4-pwx8-4c4g)
+- [GHSA-h3x2-x2gh-2hcm — @timelycare/api dependency confusion](https://github.com/advisories/GHSA-h3x2-x2gh-2hcm)
+- [GHSA-qvrg-265v-cqvc — deepl-sync typosquat](https://github.com/advisories/GHSA-qvrg-265v-cqvc)
+- [GHSA-gj36-855r-fpmf — proton-pack typosquat](https://github.com/advisories/GHSA-gj36-855r-fpmf)
+- [GHSA-frcf-f9wx-gq64 — codex-devcontainer-install malware](https://github.com/advisories/GHSA-frcf-f9wx-gq64)
+- [GHSA-9vx3-fc8v-7w96 — customerdigital-service-lib dependency confusion](https://github.com/advisories/GHSA-9vx3-fc8v-7w96)
+- [GHSA-cx3x-gvpc-g35w — private-next-instrumentation-client malware](https://github.com/advisories/GHSA-cx3x-gvpc-g35w)
+- [GHSA-2f7m-g9qw-8288 — ethers-abstract-signer typosquat](https://github.com/advisories/GHSA-2f7m-g9qw-8288)
+- [GHSA-gxfh-j6jv-hc58 — ethers-contract typosquat](https://github.com/advisories/GHSA-gxfh-j6jv-hc58)
+- [GHSA-2f37-mh3q-7394 — chai-as-tuned typosquat](https://github.com/advisories/GHSA-2f37-mh3q-7394)
+- [GHSA-q36r-56hw-2r46 — chai-bundle typosquat](https://github.com/advisories/GHSA-q36r-56hw-2r46)
+- [GHSA-29g5-vw2p-x29p — tailwind-clamps-line typosquat](https://github.com/advisories/GHSA-29g5-vw2p-x29p)
+- [GHSA-8cm2-vv7w-4c27 — zod-to-js typosquat](https://github.com/advisories/GHSA-8cm2-vv7w-4c27)
 
 ## License
 

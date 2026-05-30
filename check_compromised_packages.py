@@ -46,7 +46,17 @@ mixed npm malware batch May 29 2026 (buffer-util-extend GHSA-g44v-3gq3-j8p6,
 hellowornd GHSA-4f9q-ffgq-5w82, tiny-naturalsort GHSA-mqp5-9r9w-8hg4,
 @neon-i18n/core-ui and sorenson-webfonts dependency-confusion;
 OSV MAL-2026-2920/4839/5027/5028/5030), and the modulebuild3240234t
-PyPI Roblox infostealer May 29 2026 (OSV MAL-2026-5029)).
+PyPI Roblox infostealer May 29 2026 (OSV MAL-2026-5029), the puppeteer
+25.0.1 maintainer-account compromise May 29 2026 (GHSA-8r2f-2qg4-cv9v),
+Mini Shai-Hulud additional packages @beproduct/nestjs-auth and
+@tallyui/storage-sqlite (May 2026; GHSA-cqpw-mfqj-f2j7 / MAL-2026-3433/3604),
+supplemental @antv-wave non-@antv npm packages May 19 2026 (@lint-md/*,
+canvas-nest.js, onfire.js, etc.; OSV MAL-2026-4123-4159), and the May 29-30
+2026 multi-campaign dependency confusion + typosquat batch (100 new npm
+packages across @clearpool, axis-*, ally-*, @breezeai-frontend,
+@citi-icg-158830, apexomni/apexpro, @cplace-*, @rsi-community, @timelycare,
+ethers.js/EVM typosquats, chai/tailwind plugin typosquats, zod-to-js, and
+misc; OSV MAL-2026-3056 through MAL-2026-5085)).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -59,7 +69,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-29
+Date:      2026-05-30
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -591,7 +601,7 @@ NPM_BAD: dict[str, set[str]] = {
     "@remitee-money-transfer/rmt-base": {
         "99.99.99", "99.99.100", "99.99.102", "99.99.104",
     },
-    "customerdigital-ui-containers-lib": {"99.12.9", "99.13.9"},
+    "customerdigital-ui-containers-lib": set(),  # >=0 wildcard (OSV MAL-2026-4543)
     "editorial-code": {"99.0.1"},
     "editorial-mse-authentication-ui": {"99.0.1"},
     "mse-authentication": {"99.0.1"},
@@ -912,6 +922,208 @@ NPM_BAD: dict[str, set[str]] = {
     "tiny-naturalsort": set(),
     "@neon-i18n/core-ui": {"99.99.99"},
     "sorenson-webfonts": {"99.9.1"},
+    # puppeteer maintainer-account compromise (May 29 2026)
+    # A single malicious version published to the official puppeteer package
+    # (Google's headless Chrome library, 25M+ weekly downloads). Any computer
+    # with this version installed should be considered fully compromised.
+    # OSV MAL-2026-5077 / GHSA-8r2f-2qg4-cv9v
+    "puppeteer": {"25.0.1"},
+    # Mini Shai-Hulud wave additional packages (May 2026)
+    # @beproduct/nestjs-auth: every published version is infected;
+    #   same Shai-Hulud postinstall bundle as @tanstack/* packages.
+    #   OSV MAL-2026-3433 / GHSA-cqpw-mfqj-f2j7 (Aikido + StepSecurity)
+    # @tallyui/storage-sqlite: three malicious versions in same campaign.
+    #   OSV MAL-2026-3604 (Socket + Aikido + StepSecurity)
+    "@beproduct/nestjs-auth": {
+        "0.1.2", "0.1.3", "0.1.4", "0.1.5", "0.1.6", "0.1.7", "0.1.8",
+        "0.1.9", "0.1.10", "0.1.11", "0.1.12", "0.1.13", "0.1.14",
+        "0.1.15", "0.1.16", "0.1.17", "0.1.18", "0.1.19",
+    },
+    "@tallyui/storage-sqlite": {"0.2.1", "0.2.2", "0.2.3"},
+    # @antv / atool wave supplemental packages (May 19 2026)
+    # Non-@antv-scope packages compromised in the same 317-package campaign.
+    # Compromised versions follow the same +1-minor pattern as the @antv/* entries.
+    # Sources: safedep.io/mini-shai-hulud-strikes-again-314-npm-packages-compromised/;
+    #          socket.dev/blog/antv-packages-compromised
+    # OSV MAL-2026-4123 (@lint-md/cli), MAL-2026-4124 (@lint-md/core),
+    # MAL-2026-4125 (@lint-md/parser), MAL-2026-4128 (ast-plugin),
+    # MAL-2026-4131 (canvas-nest.js), MAL-2026-4134 (fixed-round),
+    # MAL-2026-4137 (jest-date-mock), MAL-2026-4140 (jest-less-loader),
+    # MAL-2026-4143 (limit-size), MAL-2026-4148 (miz), MAL-2026-4149 (onfire.js),
+    # MAL-2026-4151 (relationship.js), MAL-2026-4154 (slice.js),
+    # MAL-2026-4158 (word-width), MAL-2026-4159 (xmorse)
+    "@lint-md/cli": {"2.1.0", "2.2.0"},
+    "@lint-md/core": {"2.1.0", "2.2.0"},
+    "@lint-md/parser": {"0.1.14", "0.2.14"},
+    "ast-plugin": {"0.1.7", "0.2.7"},
+    "canvas-nest.js": {"2.1.4", "2.2.4"},
+    "fixed-round": {"1.1.2", "1.2.2"},
+    "jest-date-mock": {"1.0.11", "1.1.11", "1.2.11"},
+    "jest-less-loader": {"0.3.0", "0.4.0"},
+    "limit-size": {"0.2.4", "0.3.4"},
+    "miz": {"1.1.1", "1.2.1"},
+    "onfire.js": {"2.1.1", "2.2.1"},
+    "relationship.js": {"1.3.9", "1.4.9"},
+    "slice.js": {"1.2.1", "1.3.1"},
+    "word-width": {"1.1.1", "1.2.1"},
+    "xmorse": {"1.1.0", "1.2.0"},
+    # Multi-campaign dependency confusion batch (May 29–30 2026)
+    # Multiple independent actors published high-version packages to public npm
+    # to shadow private internal packages in CI. All have OSV affected.ranges >=0;
+    # use empty-set wildcard.
+    #
+    # @clearpool dependency confusion (GHSA-fr5f-hf7f-p9w9 + siblings)
+    # OSV MAL-2026-3056..3058
+    "@clearpool/comms": set(),
+    "@clearpool/streaming": set(),
+    "@clearpool/table": set(),
+    # Axis Communications dependency confusion
+    # OSV MAL-2026-3075..3078
+    "axis-abc-search-account": set(),
+    "axis-abc-search-address": set(),
+    "axis-notification": set(),
+    # BreezeAI dependency confusion
+    # OSV MAL-2026-3183, 3184, 3292, 3293
+    "@breezeai-frontend/cargo-ui": set(),
+    "@breezeai-frontend/tailwind-config": set(),
+    "@breezeai-frontend/i18n-config": set(),
+    "@breeze-ai/ui-library": set(),
+    # Ally Financial dependency confusion (GHSA-2892-cpv4-xqr4 + siblings)
+    # OSV MAL-2026-3289, 3290, 3295, 3296, 3298, 3299, 3301
+    "@allybank/ally-sdk": set(),
+    "@allyfinancial/allyfinancial-api": set(),
+    "ally-antivirus": set(),
+    "ally-badges": set(),
+    "ally-ccapi": set(),
+    "ally-eagw-identity": set(),
+    "ally-json-threat-protect": set(),
+    # Citigroup ICG dependency confusion (GHSA-gw7h-mv77-3wv8 + sibling)
+    # OSV MAL-2026-3807, 3808
+    "@citi-icg-158830/elemental-ui-react": set(),
+    "@citi-icg-158830/icgds-react-css": set(),
+    # ApexOmni / ApexPro crypto exchange API typosquats (GHSA-m6v2-w5cf-f85x + siblings)
+    # OSV MAL-2026-3233, 3234, 3818, 3819
+    "apexomni": set(),
+    "apexpro": set(),
+    "apexomni-node": set(),
+    "apexpro-node": set(),
+    # cplace software dependency confusion (GHSA-fmm7-x566-j93x + siblings)
+    # OSV MAL-2026-3427, 5047, 5048
+    "@cplace-workflow-fe/cf-workflow": set(),
+    "@cplace-paw-fe/cf-training-extended": set(),
+    "@cplace-project-planning-fe/cf-project-planning": set(),
+    # RSI Community dependency confusion (GHSA-j83r-w4f8-v7m9 + sibling)
+    # OSV MAL-2026-3414, 5050
+    "@rsi-community/hub-schema": set(),
+    "@rsi-community/hub-client-app": set(),
+    # @lir-portal dependency confusion (GHSA-pvc4-pwx8-4c4g)
+    # OSV MAL-2026-5049
+    "@lir-portal/web-components": set(),
+    # @tc-core dependency confusion
+    # OSV MAL-2026-5051
+    "@tc-core/provider-service": set(),
+    # TimelyCare dependency confusion (GHSA-h3x2-x2gh-2hcm + siblings)
+    # OSV MAL-2026-5052..5055
+    "@timelycare/api": set(),
+    "@timelycare/common": set(),
+    "@timelycare/config-service": set(),
+    "@timelycare/core": set(),
+    # @trp-individual-investor-adv-disc dependency confusion
+    # OSV MAL-2026-5056
+    "@trp-individual-investor-adv-disc/adv-shared": set(),
+    # Miscellaneous dependency-confusion and pure-malware packages (May 29–30 2026)
+    # OSV MAL-2023-1274 (proton-pack, GHSA-gj36-855r-fpmf)
+    # OSV MAL-2026-2909 (tailwind-typography-cssstyle)
+    # OSV MAL-2026-2926 (material-ui-plugin-cache-endpoint)
+    # OSV MAL-2026-3241 (nextjs-chat-with-ai-service)
+    # OSV MAL-2026-3304 (apcyber-test-package)
+    # OSV MAL-2026-3326 (paychex-common-vendor-lib)
+    # OSV MAL-2026-3363 (mrdaa-frontend)
+    # OSV MAL-2026-3645 (dit-envv), MAL-2026-3646 (erslove)
+    # OSV MAL-2026-3745 (deepl-sync, GHSA-qvrg-265v-cqvc)
+    # OSV MAL-2026-4254 (reactive-cdk-app), MAL-2026-4274 (power-apps)
+    # OSV MAL-2026-4548 (dds-js-idl-types), MAL-2026-4612 (mmt-static)
+    # OSV MAL-2026-4644 (power-platform-playwright-toolkit)
+    # OSV MAL-2026-5057 (appkit-react-utils), MAL-2026-5058 (argpras)
+    # OSV MAL-2026-5062 (codex-devcontainer-install, GHSA-frcf-f9wx-gq64)
+    # OSV MAL-2026-5063 (customerdigital-service-lib, GHSA-9vx3-fc8v-7w96)
+    # OSV MAL-2026-5071 (gcp-api-enabler), MAL-2026-5073 (midoss)
+    # OSV MAL-2026-5074 (one-view-chat-ui-module), MAL-2026-5075 (ota_web_admin)
+    # OSV MAL-2026-5076 (private-next-instrumentation-client, GHSA-cx3x-gvpc-g35w)
+    # OSV MAL-2026-5078 (raven-i18n-react), MAL-2026-5079 (react-svg-animator)
+    "proton-pack": set(),
+    "tailwind-typography-cssstyle": set(),
+    "material-ui-plugin-cache-endpoint": set(),
+    "nextjs-chat-with-ai-service": set(),
+    "apcyber-test-package": set(),
+    "paychex-common-vendor-lib": set(),
+    "mrdaa-frontend": set(),
+    "dit-envv": set(),
+    "erslove": set(),
+    "deepl-sync": set(),
+    "reactive-cdk-app": set(),
+    "power-apps": set(),
+    "dds-js-idl-types": set(),
+    "mmt-static": set(),
+    "power-platform-playwright-toolkit": set(),
+    "appkit-react-utils": set(),
+    "argpras": set(),
+    "codex-devcontainer-install": set(),
+    "customerdigital-service-lib": set(),
+    "gcp-api-enabler": set(),
+    "midoss": set(),
+    "one-view-chat-ui-module": set(),
+    "ota_web_admin": set(),
+    "private-next-instrumentation-client": set(),
+    "raven-i18n-react": set(),
+    "react-svg-animator": set(),
+    # ethers.js / EVM toolchain typosquat cluster (May 29–30 2026)
+    # Pure-malware typosquats targeting Ethereum/EVM developers by impersonating
+    # ethers.js sub-modules, Foundry, Hardhat, and viem toolchain packages.
+    # All have OSV affected.ranges >=0; use empty-set wildcard.
+    # OSV MAL-2026-3760 (ethers-abstract-signer, GHSA-2f7m-g9qw-8288)
+    # OSV MAL-2026-3761 (ethers-signing-key)
+    # OSV MAL-2026-5064 (ethers-contract, GHSA-gxfh-j6jv-hc58)
+    # OSV MAL-2026-5065 (ethers-errors), MAL-2026-5066 (ethers-hash)
+    # OSV MAL-2026-5067 (ethers-hdnode)
+    # OSV MAL-2026-5068 (evmchain-cli), MAL-2026-5069 (evmchain-config)
+    # OSV MAL-2026-5070 (foundry-config), MAL-2026-5072 (hardhat-evmchain)
+    # OSV MAL-2026-5084 (viem-multichain), MAL-2026-5085 (web3-config-loader)
+    "ethers-abstract-signer": set(),
+    "ethers-signing-key": set(),
+    "ethers-contract": set(),
+    "ethers-errors": set(),
+    "ethers-hash": set(),
+    "ethers-hdnode": set(),
+    "evmchain-cli": set(),
+    "evmchain-config": set(),
+    "foundry-config": set(),
+    "hardhat-evmchain": set(),
+    "viem-multichain": set(),
+    "web3-config-loader": set(),
+    # chai testing-library typosquat cluster (May 29–30 2026)
+    # Fake Chai extensions; any installed version is malicious.
+    # OSV MAL-2026-4513 (chai-as-tuned, GHSA-2f37-mh3q-7394)
+    # OSV MAL-2026-5059 (chai-bundle, GHSA-q36r-56hw-2r46)
+    # OSV MAL-2026-5060 (chai-extensions-extras), MAL-2026-5061 (chai-use-test)
+    "chai-as-tuned": set(),
+    "chai-bundle": set(),
+    "chai-extensions-extras": set(),
+    "chai-use-test": set(),
+    # Tailwind CSS plugin typosquat cluster (May 29–30 2026)
+    # Fake Tailwind CSS plugins; any installed version is malicious.
+    # OSV MAL-2026-2909 (tailwind-typography-cssstyle — already listed above)
+    # OSV MAL-2026-5080 (tailwind-clamps-line, GHSA-29g5-vw2p-x29p)
+    # OSV MAL-2026-5081 (tailwind-effect), MAL-2026-5082 (tailwind-smooth-slider)
+    # OSV MAL-2026-5083 (tailwindcss-basic-animation)
+    "tailwind-clamps-line": set(),
+    "tailwind-effect": set(),
+    "tailwind-smooth-slider": set(),
+    "tailwindcss-basic-animation": set(),
+    # zod-to-js Zod-ecosystem typosquat (May 29 2026)
+    # Impersonates a Zod-to-JS bridge library; two specific malicious versions.
+    # OSV MAL-2026-4740 / GHSA-8cm2-vv7w-4c27
+    "zod-to-js": {"13.4.3", "13.4.4"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
