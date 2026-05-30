@@ -59,7 +59,9 @@ ethers.js/EVM typosquats, chai/tailwind plugin typosquats, zod-to-js, and
 misc; OSV MAL-2026-3056 through MAL-2026-5085)), and the
 polymarket-data PyPI crypto/credentials infostealer May 30 2026
 (OSV MAL-2026-5086), and the crypto-helper / cryptolock PyPI install-time
-malware batch May 30 2026 (OSV MAL-2026-5088/5089).
+malware batch May 30 2026 (OSV MAL-2026-5088/5089), the discord-ban PyPI
+browser-credential infostealer May 30 2026 (OSV MAL-2026-5091), and the
+neuralforge-ml PyPI env-variable exfiltrator May 30 2026 (OSV MAL-2026-5090).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -208,6 +210,16 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-5088 (crypto-helper), MAL-2026-5089 (cryptolock)
     "crypto-helper": {"1.0.0"},
     "cryptolock": {"1.0.0", "1.0.1"},
+    # discord-ban PyPI browser-credential infostealer (May 30 2026)
+    # Steals credentials, credit cards, and browsing history from web browsers.
+    # Three malicious versions; no legitimate use. Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5091
+    "discord-ban": {"1.0.0", "1.0.1", "1.0.2"},
+    # neuralforge-ml PyPI env-variable exfiltrator (May 30 2026)
+    # Stub package imitating a real ML library; version 0.9.9 adds obfuscated
+    # exfiltration of environment variables. Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5090
+    "neuralforge-ml": {"0.9.9"},
 }
 
 # npm: exact package name -> set of malicious versions.
