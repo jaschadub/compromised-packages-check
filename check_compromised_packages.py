@@ -58,7 +58,8 @@ packages across @clearpool, axis-*, ally-*, @breezeai-frontend,
 ethers.js/EVM typosquats, chai/tailwind plugin typosquats, zod-to-js, and
 misc; OSV MAL-2026-3056 through MAL-2026-5085)), and the
 polymarket-data PyPI crypto/credentials infostealer May 30 2026
-(OSV MAL-2026-5086).
+(OSV MAL-2026-5086), and the crypto-helper / cryptolock PyPI install-time
+malware batch May 30 2026 (OSV MAL-2026-5088/5089).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -201,6 +202,12 @@ PYPI_BAD: dict[str, set[str]] = {
     # Likely a typosquat of polymarket-data-fetcher. Specific malicious versions only.
     # OSV MAL-2026-5086 (active, confirmed by kam193 / bad-packages.kam193.eu)
     "polymarket-data": {"2.0.0", "2.0.1"},
+    # crypto-helper / cryptolock PyPI install-time malware batch (May 30 2026)
+    # Both tamper with security settings and download + execute a malicious executable
+    # during pip install. Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5088 (crypto-helper), MAL-2026-5089 (cryptolock)
+    "crypto-helper": {"1.0.0"},
+    "cryptolock": {"1.0.0", "1.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
