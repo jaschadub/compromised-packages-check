@@ -61,7 +61,9 @@ polymarket-data PyPI crypto/credentials infostealer May 30 2026
 (OSV MAL-2026-5086), and the crypto-helper / cryptolock PyPI install-time
 malware batch May 30 2026 (OSV MAL-2026-5088/5089), the discord-ban PyPI
 browser-credential infostealer May 30 2026 (OSV MAL-2026-5091), and the
-neuralforge-ml PyPI env-variable exfiltrator May 30 2026 (OSV MAL-2026-5090).
+neuralforge-ml PyPI env-variable exfiltrator May 30 2026 (OSV MAL-2026-5090),
+and the retail-location-strategy-frontend npm malware May 30 2026
+(OSV MAL-2026-5092).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1156,6 +1158,11 @@ NPM_BAD: dict[str, set[str]] = {
     # Only one version published before takedown; pin it (no >=0 range in OSV record).
     # OSV MAL-2026-5087
     "buffer-utilities": {"1.0.0"},
+    # retail-location-strategy-frontend npm malware (May 30 2026)
+    # Communicates with a domain associated with malicious activity; detected by
+    # OpenSSF Package Analysis. Two specific versions published; no >=0 range.
+    # OSV MAL-2026-5092
+    "retail-location-strategy-frontend": {"1.1.1", "1.1.2"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
