@@ -63,7 +63,8 @@ malware batch May 30 2026 (OSV MAL-2026-5088/5089), the discord-ban PyPI
 browser-credential infostealer May 30 2026 (OSV MAL-2026-5091), and the
 neuralforge-ml PyPI env-variable exfiltrator May 30 2026 (OSV MAL-2026-5090),
 and the retail-location-strategy-frontend npm malware May 30 2026
-(OSV MAL-2026-5092).
+(OSV MAL-2026-5092), and the js-shared-modules npm malware May 31 2026
+(OSV MAL-2026-5098).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -76,7 +77,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-30
+Date:      2026-05-31
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1185,6 +1186,11 @@ NPM_BAD: dict[str, set[str]] = {
     # OpenSSF Package Analysis. Single version published; no >=0 range.
     # OSV MAL-2026-5097
     "cms-storehub": {"1.3.6"},
+    # js-shared-modules npm malware (May 31 2026)
+    # Communicates with a domain associated with malicious activity; detected by
+    # OpenSSF Package Analysis. Single version published; no >=0 range.
+    # OSV MAL-2026-5098
+    "js-shared-modules": {"1.11.7"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
