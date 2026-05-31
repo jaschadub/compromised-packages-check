@@ -222,6 +222,13 @@ PYPI_BAD: dict[str, set[str]] = {
     # exfiltration of environment variables. Detected by kam193 / bad-packages.kam193.eu.
     # OSV MAL-2026-5090
     "neuralforge-ml": {"0.9.9"},
+    # h4xupdate / hell-cipher PyPI malware batch (May 31 2026)
+    # h4xupdate: remote-control tool taking orders from a hardcoded Telegram bot;
+    # impersonates a legitimate company. OSV MAL-2026-5093
+    # hell-cipher: tampers with security settings during install and downloads + executes
+    # a malicious executable. OSV MAL-2026-5094
+    "h4xupdate": {"0.0.1"},
+    "hell-cipher": {"1.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
