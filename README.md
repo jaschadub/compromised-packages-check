@@ -100,7 +100,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | neuralforge-ml PyPI env-variable exfiltrator — May 30 2026 (OSV MAL-2026-5090) | `neuralforge-ml` 0.9.9 — stub package imitating an ML library; obfuscated exfiltration of environment variables; detected by kam193/bad-packages.kam193.eu |
 | h4xupdate / hell-cipher PyPI malware batch — May 31 2026 (OSV MAL-2026-5093/5094) | `h4xupdate` 0.0.1 — remote-control tool with hardcoded Telegram bot C2, impersonates a legitimate company; `hell-cipher` 1.0.1 — tampers with security settings during install and downloads/executes a malicious executable; both detected by kam193/bad-packages.kam193.eu |
 | cscc-glass-house PyPI cloud-credential exfiltrator — May 31 2026 (OSV MAL-2026-5096) | `cscc-glass-house` 1.0.1–1.0.4 — exfiltrates credentials from cloud environments to a hardcoded location; detected by kam193/bad-packages.kam193.eu |
-| @challenger6/vm-pattern-library / cms-storehub npm malware — May 31 2026 (OSV MAL-2026-5095/5097) | `@challenger6/vm-pattern-library` 99.0.0 and `cms-storehub` 1.3.6 — both communicate with a domain associated with malicious activity; detected by OpenSSF Package Analysis |
+| @challenger6/vm-pattern-library / cms-storehub / js-shared-modules npm malware — May 31 2026 (OSV MAL-2026-5095/5097/5098) | `@challenger6/vm-pattern-library` 99.0.0, `cms-storehub` 1.3.6, and `js-shared-modules` 1.11.7 — all communicate with a domain associated with malicious activity; detected by OpenSSF Package Analysis |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -351,6 +351,7 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5095 — @challenger6/vm-pattern-library npm malware](https://osv.dev/vulnerability/MAL-2026-5095)
 - [OSV MAL-2026-5096 — cscc-glass-house PyPI cloud-credential exfiltrator](https://osv.dev/vulnerability/MAL-2026-5096)
 - [OSV MAL-2026-5097 — cms-storehub npm malware](https://osv.dev/vulnerability/MAL-2026-5097)
+- [OSV MAL-2026-5098 — js-shared-modules npm malware](https://osv.dev/vulnerability/MAL-2026-5098)
 
 ## License
 
