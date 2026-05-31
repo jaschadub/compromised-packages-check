@@ -64,7 +64,9 @@ browser-credential infostealer May 30 2026 (OSV MAL-2026-5091), and the
 neuralforge-ml PyPI env-variable exfiltrator May 30 2026 (OSV MAL-2026-5090),
 and the retail-location-strategy-frontend npm malware May 30 2026
 (OSV MAL-2026-5092), and the js-shared-modules npm malware May 31 2026
-(OSV MAL-2026-5098).
+(OSV MAL-2026-5098), and the discord-massban PyPI browser-credential infostealer
+May 31 2026 (OSV MAL-2026-5099), and the obfuscation PyPI install-time malware
+May 31 2026 (OSV MAL-2026-5100).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -207,17 +209,21 @@ PYPI_BAD: dict[str, set[str]] = {
     # Likely a typosquat of polymarket-data-fetcher. Specific malicious versions only.
     # OSV MAL-2026-5086 (active, confirmed by kam193 / bad-packages.kam193.eu)
     "polymarket-data": {"2.0.0", "2.0.1"},
-    # crypto-helper / cryptolock PyPI install-time malware batch (May 30 2026)
-    # Both tamper with security settings and download + execute a malicious executable
+    # crypto-helper / cryptolock / obfuscation PyPI install-time malware batch (May 30–31 2026)
+    # All three tamper with security settings and download + execute a malicious executable
     # during pip install. Detected by kam193 / bad-packages.kam193.eu.
-    # OSV MAL-2026-5088 (crypto-helper), MAL-2026-5089 (cryptolock)
+    # OSV MAL-2026-5088 (crypto-helper), MAL-2026-5089 (cryptolock), MAL-2026-5100 (obfuscation)
+    # obfuscation: part of same 2026-05-cryptolock campaign; VirusTotal confirms setup.py backdoor
+    # with IOC URLs pointing to seIfrighteous/x GitHub releases and tmpfiles.org executables.
     "crypto-helper": {"1.0.0"},
     "cryptolock": {"1.0.0", "1.0.1"},
-    # discord-ban PyPI browser-credential infostealer (May 30 2026)
-    # Steals credentials, credit cards, and browsing history from web browsers.
-    # Three malicious versions; no legitimate use. Detected by kam193 / bad-packages.kam193.eu.
-    # OSV MAL-2026-5091
+    "obfuscation": {"3.23.0", "3.23.2", "3.23.3"},
+    # discord-ban / discord-massban PyPI browser-credential infostealers (May 30–31 2026)
+    # Both steal credentials, credit cards, and browsing history from web browsers.
+    # Part of the same 2026-05-discord-ban campaign; detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5091 (discord-ban), MAL-2026-5099 (discord-massban)
     "discord-ban": {"1.0.0", "1.0.1", "1.0.2"},
+    "discord-massban": {"0.1.0"},
     # neuralforge-ml PyPI env-variable exfiltrator (May 30 2026)
     # Stub package imitating a real ML library; version 0.9.9 adds obfuscated
     # exfiltration of environment variables. Detected by kam193 / bad-packages.kam193.eu.

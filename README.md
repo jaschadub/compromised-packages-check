@@ -95,8 +95,8 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | polymarket-data PyPI crypto/credentials infostealer — May 30 2026 (OSV MAL-2026-5086) | `polymarket-data` 2.0.0, 2.0.1 — exfiltrates cryptocurrency data and API keys; establishes persistence; likely typosquat of polymarket-data-fetcher |
 | buffer-utilities npm malware — May 30 2026 (OSV MAL-2026-5087) | `buffer-utilities` 1.0.0 — communicates with a domain associated with malicious activity and executes commands associated with malicious behavior; detected by OpenSSF Package Analysis |
 | retail-location-strategy-frontend npm malware — May 30 2026 (OSV MAL-2026-5092) | `retail-location-strategy-frontend` 1.1.1, 1.1.2 — communicates with a domain associated with malicious activity; detected by OpenSSF Package Analysis |
-| crypto-helper / cryptolock PyPI install-time malware — May 30 2026 (OSV MAL-2026-5088/5089) | `crypto-helper` 1.0.0; `cryptolock` 1.0.0, 1.0.1 — tamper with security settings and download/execute a malicious executable during pip install; detected by kam193/bad-packages.kam193.eu |
-| discord-ban PyPI browser-credential infostealer — May 30 2026 (OSV MAL-2026-5091) | `discord-ban` 1.0.0, 1.0.1, 1.0.2 — steals credentials, credit cards, and browsing history from web browsers; detected by kam193/bad-packages.kam193.eu |
+| crypto-helper / cryptolock / obfuscation PyPI install-time malware — May 30–31 2026 (OSV MAL-2026-5088/5089/5100) | `crypto-helper` 1.0.0; `cryptolock` 1.0.0, 1.0.1; `obfuscation` 3.23.0, 3.23.2, 3.23.3 — tamper with security settings and download/execute a malicious executable during pip install; VirusTotal IOC evidence for obfuscation; detected by kam193/bad-packages.kam193.eu |
+| discord-ban / discord-massban PyPI browser-credential infostealers — May 30–31 2026 (OSV MAL-2026-5091/5099) | `discord-ban` 1.0.0, 1.0.1, 1.0.2; `discord-massban` 0.1.0 — steal credentials, credit cards, and browsing history from web browsers; part of same 2026-05-discord-ban campaign; detected by kam193/bad-packages.kam193.eu |
 | neuralforge-ml PyPI env-variable exfiltrator — May 30 2026 (OSV MAL-2026-5090) | `neuralforge-ml` 0.9.9 — stub package imitating an ML library; obfuscated exfiltration of environment variables; detected by kam193/bad-packages.kam193.eu |
 | h4xupdate / hell-cipher PyPI malware batch — May 31 2026 (OSV MAL-2026-5093/5094) | `h4xupdate` 0.0.1 — remote-control tool with hardcoded Telegram bot C2, impersonates a legitimate company; `hell-cipher` 1.0.1 — tampers with security settings during install and downloads/executes a malicious executable; both detected by kam193/bad-packages.kam193.eu |
 | cscc-glass-house PyPI cloud-credential exfiltrator — May 31 2026 (OSV MAL-2026-5096) | `cscc-glass-house` 1.0.1–1.0.4 — exfiltrates credentials from cloud environments to a hardcoded location; detected by kam193/bad-packages.kam193.eu |
@@ -352,6 +352,8 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5096 — cscc-glass-house PyPI cloud-credential exfiltrator](https://osv.dev/vulnerability/MAL-2026-5096)
 - [OSV MAL-2026-5097 — cms-storehub npm malware](https://osv.dev/vulnerability/MAL-2026-5097)
 - [OSV MAL-2026-5098 — js-shared-modules npm malware](https://osv.dev/vulnerability/MAL-2026-5098)
+- [OSV MAL-2026-5099 — discord-massban PyPI browser-credential infostealer](https://osv.dev/vulnerability/MAL-2026-5099)
+- [OSV MAL-2026-5100 — obfuscation PyPI install-time malware](https://osv.dev/vulnerability/MAL-2026-5100)
 
 ## License
 
