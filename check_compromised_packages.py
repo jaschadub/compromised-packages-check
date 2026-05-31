@@ -229,6 +229,11 @@ PYPI_BAD: dict[str, set[str]] = {
     # a malicious executable. OSV MAL-2026-5094
     "h4xupdate": {"0.0.1"},
     "hell-cipher": {"1.0.1"},
+    # cscc-glass-house PyPI cloud-credential exfiltrator (May 31 2026)
+    # Exfiltrates credentials from cloud environments to a hardcoded location;
+    # analyst notes suggest possible CTF origin but intent is clearly malicious.
+    # OSV MAL-2026-5096 / https://bad-packages.kam193.eu/pypi/package/cscc-glass-house
+    "cscc-glass-house": {"1.0.1", "1.0.2", "1.0.3", "1.0.4"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1170,6 +1175,16 @@ NPM_BAD: dict[str, set[str]] = {
     # OpenSSF Package Analysis. Two specific versions published; no >=0 range.
     # OSV MAL-2026-5092
     "retail-location-strategy-frontend": {"1.1.1", "1.1.2"},
+    # @challenger6/vm-pattern-library npm malware (May 31 2026)
+    # Communicates with a domain associated with malicious activity; detected by
+    # OpenSSF Package Analysis. Single version published; no >=0 range.
+    # OSV MAL-2026-5095
+    "@challenger6/vm-pattern-library": {"99.0.0"},
+    # cms-storehub npm malware (May 31 2026)
+    # Communicates with a domain associated with malicious activity; detected by
+    # OpenSSF Package Analysis. Single version published; no >=0 range.
+    # OSV MAL-2026-5097
+    "cms-storehub": {"1.3.6"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
