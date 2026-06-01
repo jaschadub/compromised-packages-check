@@ -101,6 +101,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | h4xupdate / hell-cipher PyPI malware batch — May 31 2026 (OSV MAL-2026-5093/5094) | `h4xupdate` 0.0.1 — remote-control tool with hardcoded Telegram bot C2, impersonates a legitimate company; `hell-cipher` 1.0.1 — tampers with security settings during install and downloads/executes a malicious executable; both detected by kam193/bad-packages.kam193.eu |
 | cscc-glass-house PyPI cloud-credential exfiltrator — May 31 2026 (OSV MAL-2026-5096) | `cscc-glass-house` 1.0.1–1.0.4 — exfiltrates credentials from cloud environments to a hardcoded location; detected by kam193/bad-packages.kam193.eu |
 | @challenger6/vm-pattern-library / cms-storehub / js-shared-modules npm malware — May 31 2026 (OSV MAL-2026-5095/5097/5098) | `@challenger6/vm-pattern-library` 99.0.0, `cms-storehub` 1.3.6, and `js-shared-modules` 1.11.7 — all communicate with a domain associated with malicious activity; detected by OpenSSF Package Analysis |
+| June 1 2026 npm batch — CMS-dropper cluster, Amazon Inspector postinstall batch, Chai/AWS typosquats | CMS-dropper cluster: `to-cms` (postinstall downloads ChromeSetup.exe; OSV MAL-2026-4693/GHSA-789x-j439-qx3f), `cms-github` (GHSA-3r39-h7xh-jg85), `cms-helpgit` (GHSA-hjw8-jc8q-mvwj), `shopifyto-cms` (GHSA-92q8-c63v-g77x) — all any-version wildcards; Amazon Inspector postinstall batch: `collected-forms-embed-js` (recon + credential exfil; OSV MAL-2026-4175/GHSA-9j37-8wjm-pcxq), `audit-logsss` (shell recon + public IP fetch; OSV MAL-2026-4487/GHSA-gcq4-52q3-v4fm), `chainix` (fake pino-compatible logger; OSV MAL-2026-4817/GHSA-mrx8-p3w9-5cfm) — all any-version wildcards; Chai typosquat: `chai-as-minted` (OSV MAL-2026-5106/GHSA-85px-g4cg-g2g3); AWS/CLI typosquats: `@antoncallahan/aws-user-helper` (OSV MAL-2026-5101/GHSA-v2cq-j5gf-pf5g), `@tmecontinue/cli` (OSV MAL-2026-5105/GHSA-jq5f-g7j2-8f9g); test-scope packages with active OSV records: `@ewfewfewf/testhackerrr` (GHSA-p4gj-2hmg-hj4f), `@osamdefeirrighs/testhackfrrferrr` (GHSA-rrrc-gchv-j329), `@pcldpvkoewpogw/testhacker` (GHSA-xjcm-hjvm-fmhp) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -360,6 +361,19 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-3103 — amzn-codewhisperer-streaming-client crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3103)
 - [OSV MAL-2026-3126 — lsh crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3126)
 - [OSV MAL-2026-3129 — supertag crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3129)
+- [OSV MAL-2026-4175 / GHSA-9j37-8wjm-pcxq — collected-forms-embed-js postinstall recon + exfiltration](https://osv.dev/vulnerability/MAL-2026-4175)
+- [OSV MAL-2026-4487 / GHSA-gcq4-52q3-v4fm — audit-logsss postinstall recon](https://osv.dev/vulnerability/MAL-2026-4487)
+- [OSV MAL-2026-4693 / GHSA-789x-j439-qx3f — to-cms ChromeSetup.exe dropper](https://osv.dev/vulnerability/MAL-2026-4693)
+- [OSV MAL-2026-4817 / GHSA-mrx8-p3w9-5cfm — chainix fake pino-compatible logger malware](https://osv.dev/vulnerability/MAL-2026-4817)
+- [GHSA-v2cq-j5gf-pf5g / OSV MAL-2026-5101 — @antoncallahan/aws-user-helper malware](https://github.com/advisories/GHSA-v2cq-j5gf-pf5g)
+- [GHSA-p4gj-2hmg-hj4f / OSV MAL-2026-5102 — @ewfewfewf/testhackerrr malware](https://github.com/advisories/GHSA-p4gj-2hmg-hj4f)
+- [GHSA-rrrc-gchv-j329 / OSV MAL-2026-5103 — @osamdefeirrighs/testhackfrrferrr malware](https://github.com/advisories/GHSA-rrrc-gchv-j329)
+- [GHSA-xjcm-hjvm-fmhp / OSV MAL-2026-5104 — @pcldpvkoewpogw/testhacker malware](https://github.com/advisories/GHSA-xjcm-hjvm-fmhp)
+- [GHSA-jq5f-g7j2-8f9g / OSV MAL-2026-5105 — @tmecontinue/cli malware](https://github.com/advisories/GHSA-jq5f-g7j2-8f9g)
+- [GHSA-85px-g4cg-g2g3 / OSV MAL-2026-5106 — chai-as-minted malware](https://github.com/advisories/GHSA-85px-g4cg-g2g3)
+- [GHSA-3r39-h7xh-jg85 / OSV MAL-2026-5107 — cms-github malware](https://github.com/advisories/GHSA-3r39-h7xh-jg85)
+- [GHSA-hjw8-jc8q-mvwj / OSV MAL-2026-5108 — cms-helpgit malware](https://github.com/advisories/GHSA-hjw8-jc8q-mvwj)
+- [GHSA-92q8-c63v-g77x / OSV MAL-2026-5109 — shopifyto-cms malware](https://github.com/advisories/GHSA-92q8-c63v-g77x)
 
 ## License
 

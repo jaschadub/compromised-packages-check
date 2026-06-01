@@ -66,7 +66,15 @@ and the retail-location-strategy-frontend npm malware May 30 2026
 (OSV MAL-2026-5092), and the js-shared-modules npm malware May 31 2026
 (OSV MAL-2026-5098), and the discord-massban PyPI browser-credential infostealer
 May 31 2026 (OSV MAL-2026-5099), and the obfuscation PyPI install-time malware
-May 31 2026 (OSV MAL-2026-5100).
+May 31 2026 (OSV MAL-2026-5100), and the June 1 2026 npm batch: CMS-dropper
+typosquat cluster (to-cms, cms-github, cms-helpgit, shopifyto-cms; OSV
+MAL-2026-4693/5107/5108/5109), Amazon Inspector postinstall-exfiltration batch
+(collected-forms-embed-js, audit-logsss, chainix; OSV MAL-2026-4175/4487/4817),
+chai-as-minted Chai typosquat (OSV MAL-2026-5106), AWS/CLI typosquats
+(@antoncallahan/aws-user-helper, @tmecontinue/cli; OSV MAL-2026-5101/5105),
+and three GHSA-confirmed test-scope malware packages
+(@ewfewfewf/testhackerrr, @osamdefeirrighs/testhackfrrferrr,
+@pcldpvkoewpogw/testhacker; OSV MAL-2026-5102/5103/5104).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -79,7 +87,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-05-31
+Date:      2026-06-01
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1197,6 +1205,48 @@ NPM_BAD: dict[str, set[str]] = {
     # OpenSSF Package Analysis. Single version published; no >=0 range.
     # OSV MAL-2026-5098
     "js-shared-modules": {"1.11.7"},
+    # CMS-dropper typosquat cluster (June 1 2026)
+    # to-cms: postinstall downloads https://meet-fr.com/ChromeSetup.exe on install.
+    # cms-github / cms-helpgit / shopifyto-cms: GHSA full-compromise packages in the
+    # same CMS typosquat family; any installed version is treated as fully compromised.
+    # OSV MAL-2026-4693 / GHSA-789x-j439-qx3f (to-cms)
+    # OSV MAL-2026-5107 / GHSA-3r39-h7xh-jg85 (cms-github)
+    # OSV MAL-2026-5108 / GHSA-hjw8-jc8q-mvwj (cms-helpgit)
+    # OSV MAL-2026-5109 / GHSA-92q8-c63v-g77x (shopifyto-cms)
+    "to-cms": set(),
+    "cms-github": set(),
+    "cms-helpgit": set(),
+    "shopifyto-cms": set(),
+    # Amazon Inspector postinstall-exfiltration batch (June 1 2026)
+    # collected-forms-embed-js: postinstall hook performs recon + credential exfiltration.
+    # audit-logsss: postinstall runs id/whoami/hostname, fetches public IP from external API.
+    # chainix: presents as a pino-compatible logger; contains malicious postinstall payload.
+    # OSV MAL-2026-4175 / GHSA-9j37-8wjm-pcxq (collected-forms-embed-js)
+    # OSV MAL-2026-4487 / GHSA-gcq4-52q3-v4fm (audit-logsss)
+    # OSV MAL-2026-4817 / GHSA-mrx8-p3w9-5cfm (chainix)
+    "collected-forms-embed-js": set(),
+    "audit-logsss": set(),
+    "chainix": set(),
+    # Chai typosquat cluster extension (June 1 2026)
+    # Extends the existing chai-as-* / chai-bundle typosquat family.
+    # OSV MAL-2026-5106 / GHSA-85px-g4cg-g2g3
+    "chai-as-minted": set(),
+    # AWS/CLI typosquats (June 1 2026)
+    # @antoncallahan/aws-user-helper: AWS credential-helper typosquat; GHSA full-compromise.
+    # @tmecontinue/cli: CLI tool impersonation package; GHSA full-compromise.
+    # OSV MAL-2026-5101 / GHSA-v2cq-j5gf-pf5g (@antoncallahan/aws-user-helper)
+    # OSV MAL-2026-5105 / GHSA-jq5f-g7j2-8f9g (@tmecontinue/cli)
+    "@antoncallahan/aws-user-helper": set(),
+    "@tmecontinue/cli": set(),
+    # GHSA full-compromise test-scope packages (June 1 2026)
+    # Garbage-scoped names consistent with security-research pipeline test submissions;
+    # included because active OSV MAL records pass the evidence threshold.
+    # OSV MAL-2026-5102 / GHSA-p4gj-2hmg-hj4f (@ewfewfewf/testhackerrr)
+    # OSV MAL-2026-5103 / GHSA-rrrc-gchv-j329 (@osamdefeirrighs/testhackfrrferrr)
+    # OSV MAL-2026-5104 / GHSA-xjcm-hjvm-fmhp (@pcldpvkoewpogw/testhacker)
+    "@ewfewfewf/testhackerrr": set(),
+    "@osamdefeirrighs/testhackfrrferrr": set(),
+    "@pcldpvkoewpogw/testhacker": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
