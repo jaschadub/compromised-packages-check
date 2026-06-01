@@ -260,6 +260,14 @@ PYPI_BAD: dict[str, set[str]] = {
     # Malicious code detected by kam193 / bad-packages.kam193.eu; single version published.
     # OSV MAL-2026-5120
     "redteam-qxz7-utils": {"1.0.0"},
+    # imgmatrix-analysis PyPI remote-command executor (June 1 2026)
+    # Executes remote commands during import; 10 versions published before takedown.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5123
+    "imgmatrix-analysis": {
+        "0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.4",
+        "0.1.5", "0.1.6", "0.1.7", "0.1.8", "0.1.9",
+    },
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1259,26 +1267,40 @@ NPM_BAD: dict[str, set[str]] = {
     "@osamdefeirrighs/testhackfrrferrr": set(),
     "@pcldpvkoewpogw/testhacker": set(),
     # @redhat-cloud-services scope account compromise (June 1 2026)
-    # Nine packages in the Red Hat Cloud Services npm scope had malicious versions
-    # published simultaneously; each has a single pinned malicious version following
-    # the +0.0.1-patch pattern seen in prior maintainer-account-takeover waves.
-    # OSV MAL-2026-5111 / GHSA-942v-f47r-w9c3 (@redhat-cloud-services/chrome)
+    # Red Hat Cloud Services npm scope; malicious versions follow the +0.0.1-patch
+    # pattern seen in prior maintainer-account-takeover waves. Additional packages
+    # and supplemental versions published in the same wave on June 1.
+    # OSV MAL-2026-5111 / GHSA-942v-f47r-w9c3 (chrome; updated: 2.3.2, 2.3.4)
     # OSV MAL-2026-5112 / GHSA-c3mv-fjj4-2542 (eslint-config-redhat-cloud-services)
     # OSV MAL-2026-5113 / GHSA-mrgj-mcjh-5mf2 (frontend-components)
-    # OSV MAL-2026-5114 / GHSA-cxfw-p322-rfrv (frontend-components-config-utilities)
+    # OSV MAL-2026-5114 / GHSA-cxfw-p322-rfrv (frontend-components-config-utilities; updated: 4.11.3, 4.11.5)
     # OSV MAL-2026-5115 / GHSA-mj98-cgm5-6xrr (quickstarts-client)
-    # OSV MAL-2026-5116 / GHSA-2p99-xvqh-j893 (rbac-client)
+    # OSV MAL-2026-5116 / GHSA-2p99-xvqh-j893 (rbac-client; updated: 9.0.4, 9.0.6)
     # OSV MAL-2026-5117 / GHSA-c4gm-6fh3-76v9 (rule-components)
-    # OSV MAL-2026-5118 / GHSA-9wp8-557p-2hvf (topological-inventory-client)
+    # OSV MAL-2026-5118 / GHSA-9wp8-557p-2hvf (topological-inventory-client; updated: 3.0.11, 3.0.13)
     # OSV MAL-2026-5119 / GHSA-8xj2-9c64-m64h (types)
-    "@redhat-cloud-services/chrome": {"2.3.1"},
+    # OSV MAL-2026-5125 / GHSA-28hc-2275-h287 (entitlements-client)
+    # OSV MAL-2026-5126 / GHSA-h43w-g623-gfmv (frontend-components-config)
+    # OSV MAL-2026-5127 / GHSA-4rjr-7qhx-vjwg (frontend-components-remediations)
+    # OSV MAL-2026-5128 / GHSA-wgvx-w8g7-vh4h (frontend-components-testing)
+    # OSV MAL-2026-5129 / GHSA-vgm5-jmvr-cjgf (hcc-feo-mcp)
+    # OSV MAL-2026-5130 / GHSA-8x4g-q845-wpfc (integrations-client)
+    # OSV MAL-2026-5131 / GHSA-vp9c-9mjm-2f7w (sources-client)
+    "@redhat-cloud-services/chrome": {"2.3.1", "2.3.2", "2.3.4"},
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": {"3.2.1"},
+    "@redhat-cloud-services/entitlements-client": {"4.0.12", "4.0.14"},
     "@redhat-cloud-services/frontend-components": {"7.7.2"},
-    "@redhat-cloud-services/frontend-components-config-utilities": {"4.11.2"},
+    "@redhat-cloud-services/frontend-components-config": {"6.11.4", "6.11.6"},
+    "@redhat-cloud-services/frontend-components-config-utilities": {"4.11.2", "4.11.3", "4.11.5"},
+    "@redhat-cloud-services/frontend-components-remediations": {"4.9.3", "4.9.5"},
+    "@redhat-cloud-services/frontend-components-testing": {"1.2.2"},
+    "@redhat-cloud-services/hcc-feo-mcp": {"0.3.2", "0.3.4"},
+    "@redhat-cloud-services/integrations-client": {"6.0.5", "6.0.7"},
     "@redhat-cloud-services/quickstarts-client": {"4.0.11"},
-    "@redhat-cloud-services/rbac-client": {"9.0.3"},
+    "@redhat-cloud-services/rbac-client": {"9.0.3", "9.0.4", "9.0.6"},
     "@redhat-cloud-services/rule-components": {"4.7.2"},
-    "@redhat-cloud-services/topological-inventory-client": {"3.0.10"},
+    "@redhat-cloud-services/sources-client": {"3.0.11", "3.0.13"},
+    "@redhat-cloud-services/topological-inventory-client": {"3.0.10", "3.0.11", "3.0.13"},
     "@redhat-cloud-services/types": {"3.6.1"},
     # loading-session npm package compromise (June 1 2026)
     # Session-management package with malicious code injected; OSV reports both
@@ -1289,6 +1311,31 @@ NPM_BAD: dict[str, set[str]] = {
     # Gibberish-name pure-malware package; OSV confirmed any-version malicious.
     # OSV MAL-2026-5110 / GHSA-pc3j-w4f9-94hj
     "jingmeideshishi": set(),
+    # Amazon Inspector npm malware batch (June 1 2026)
+    # xarc-webpack-cli: preinstall hook with malicious payload; typosquat of @xarc/webpack-cli.
+    # json-to-simple-graphql-schema: contains poc.js script with malicious code.
+    # motion-tool: masquerades as pino logger; any-version malicious.
+    # randomlogs: main module carries malicious code across multiple versions.
+    # All four have OSV affected.ranges >=0 (any-version); use empty-set wildcard.
+    # OSV MAL-2026-4352 / GHSA-2xcr-5qfc-fq54 (xarc-webpack-cli)
+    # OSV MAL-2026-4590 / GHSA-2qqv-9mw5-52q2 (json-to-simple-graphql-schema)
+    # OSV MAL-2026-4615 / GHSA-hw79-5457-g9c3 (motion-tool)
+    # OSV MAL-2026-4657 / GHSA-6x8j-5cx8-5qv6 (randomlogs)
+    "xarc-webpack-cli": set(),
+    "json-to-simple-graphql-schema": set(),
+    "motion-tool": set(),
+    "randomlogs": set(),
+    # Dependency-confusion 9999.x batch (June 1 2026)
+    # nepsnowplow: targets Snowplow Analytics internal CI; high-version shadow package.
+    # picnic-react-mise-en-place: targets Picnic internal React packages in CI.
+    # Detected by OpenSSF Package Analysis; specific malicious version pinned (no >=0 range).
+    # OSV MAL-2026-5121 (nepsnowplow), MAL-2026-5122 (picnic-react-mise-en-place)
+    "nepsnowplow": {"9999.0.0"},
+    "picnic-react-mise-en-place": {"9999.0.0"},
+    # @chat-template/auth GHSA full-compromise (June 1 2026)
+    # Any installed version is malicious; OSV affected.ranges >=0.
+    # OSV MAL-2026-5124 / GHSA-5jx8-qv7v-hv32
+    "@chat-template/auth": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
