@@ -1303,6 +1303,18 @@ CRATES_BAD: dict[str, set[str]] = {
     "safe-agent-rs": set(),
     "mysten-metrics": set(),
     "sui-execution-cut": set(),
+    # crates.io dep-confusion batch (April 2026, ingested ossf/malicious-packages May 31 2026)
+    # High-version (99.x) packages published to the public registry to hijack internal CI
+    # dependency resolution. All detected by OpenSSF Package Analysis as communicating with
+    # domains associated with malicious activity and executing malicious commands.
+    # OSV MAL-2026-3101 (amzn-consolas-client), MAL-2026-3102 (semantic-search-client),
+    # MAL-2026-3103 (amzn-codewhisperer-streaming-client),
+    # MAL-2026-3126 (lsh), MAL-2026-3129 (supertag)
+    "amzn-consolas-client": {"99.0.1"},
+    "amzn-codewhisperer-streaming-client": {"99.0.1"},
+    "semantic-search-client": {"99.0.1"},
+    "lsh": {"99.0.1", "99.1.0"},
+    "supertag": {"99.1.1"},
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",

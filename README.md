@@ -110,6 +110,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Tailwind CSS plugin typosquat cluster — May 29–30 2026 | `tailwind-clamps-line` (GHSA-29g5-vw2p-x29p), `tailwind-effect`, `tailwind-smooth-slider`, `tailwindcss-basic-animation`, `tailwind-typography-cssstyle` — fake Tailwind CSS plugins, any-version wildcards |
 | zod-to-js Zod-ecosystem typosquat — May 29 2026 (GHSA-8cm2-vv7w-4c27) | `zod-to-js` 13.4.3, 13.4.4 — Zod-to-JS bridge library typosquat |
 | May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
+| crates.io dep-confusion batch — April 2026 (OSV MAL-2026-3101..3129) | 5 crates published at inflated 99.x versions to hijack internal CI dependency resolution: `amzn-consolas-client` 99.0.1, `amzn-codewhisperer-streaming-client` 99.0.1, `semantic-search-client` 99.0.1, `lsh` 99.0.1/99.1.0, `supertag` 99.1.1 — all detected by OpenSSF Package Analysis as communicating with malicious domains |
 | crates.io — RustSec malicious advisories | 64 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), and build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …). All entries are any-version wildcards (`patched = []` in RustSec). |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
@@ -354,6 +355,11 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5098 — js-shared-modules npm malware](https://osv.dev/vulnerability/MAL-2026-5098)
 - [OSV MAL-2026-5099 — discord-massban PyPI browser-credential infostealer](https://osv.dev/vulnerability/MAL-2026-5099)
 - [OSV MAL-2026-5100 — obfuscation PyPI install-time malware](https://osv.dev/vulnerability/MAL-2026-5100)
+- [OSV MAL-2026-3101 — amzn-consolas-client crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3101)
+- [OSV MAL-2026-3102 — semantic-search-client crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3102)
+- [OSV MAL-2026-3103 — amzn-codewhisperer-streaming-client crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3103)
+- [OSV MAL-2026-3126 — lsh crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3126)
+- [OSV MAL-2026-3129 — supertag crates.io dep-confusion](https://osv.dev/vulnerability/MAL-2026-3129)
 
 ## License
 
