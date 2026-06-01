@@ -45,7 +45,7 @@ FOUND 3 MALICIOUS PACKAGE VERSION(S):
 The scanner also emits a warning (no failure) for any package living under
 an advisory-affected npm scope (`@mistralai/`, `@uipath/`, `@opensearch-project/`,
 `@antv/`, `@car-loans/`, `@cloudplatform-single-spa/`, `@debit-ib/`, `@fb-deposit/`,
-`@mlspace/`, `@vpmdhaj/`, `@t-in-one/`) where the version doesn't exactly match the malicious list —
+`@mlspace/`, `@vpmdhaj/`, `@t-in-one/`, `@redhat-cloud-services/`) where the version doesn't exactly match the malicious list —
 useful for catching newly-disclosed entries before this repo has been updated.
 
 ## What's tracked
@@ -102,6 +102,10 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | cscc-glass-house PyPI cloud-credential exfiltrator — May 31 2026 (OSV MAL-2026-5096) | `cscc-glass-house` 1.0.1–1.0.4 — exfiltrates credentials from cloud environments to a hardcoded location; detected by kam193/bad-packages.kam193.eu |
 | @challenger6/vm-pattern-library / cms-storehub / js-shared-modules npm malware — May 31 2026 (OSV MAL-2026-5095/5097/5098) | `@challenger6/vm-pattern-library` 99.0.0, `cms-storehub` 1.3.6, and `js-shared-modules` 1.11.7 — all communicate with a domain associated with malicious activity; detected by OpenSSF Package Analysis |
 | June 1 2026 npm batch — CMS-dropper cluster, Amazon Inspector postinstall batch, Chai/AWS typosquats | CMS-dropper cluster: `to-cms` (postinstall downloads ChromeSetup.exe; OSV MAL-2026-4693/GHSA-789x-j439-qx3f), `cms-github` (GHSA-3r39-h7xh-jg85), `cms-helpgit` (GHSA-hjw8-jc8q-mvwj), `shopifyto-cms` (GHSA-92q8-c63v-g77x) — all any-version wildcards; Amazon Inspector postinstall batch: `collected-forms-embed-js` (recon + credential exfil; OSV MAL-2026-4175/GHSA-9j37-8wjm-pcxq), `audit-logsss` (shell recon + public IP fetch; OSV MAL-2026-4487/GHSA-gcq4-52q3-v4fm), `chainix` (fake pino-compatible logger; OSV MAL-2026-4817/GHSA-mrx8-p3w9-5cfm) — all any-version wildcards; Chai typosquat: `chai-as-minted` (OSV MAL-2026-5106/GHSA-85px-g4cg-g2g3); AWS/CLI typosquats: `@antoncallahan/aws-user-helper` (OSV MAL-2026-5101/GHSA-v2cq-j5gf-pf5g), `@tmecontinue/cli` (OSV MAL-2026-5105/GHSA-jq5f-g7j2-8f9g); test-scope packages with active OSV records: `@ewfewfewf/testhackerrr` (GHSA-p4gj-2hmg-hj4f), `@osamdefeirrighs/testhackfrrferrr` (GHSA-rrrc-gchv-j329), `@pcldpvkoewpogw/testhacker` (GHSA-xjcm-hjvm-fmhp) |
+| @redhat-cloud-services scope account compromise — June 1 2026 | Nine `@redhat-cloud-services/*` npm packages each had a single malicious version published simultaneously: `chrome` 2.3.1 (GHSA-942v-f47r-w9c3), `eslint-config-redhat-cloud-services` 3.2.1 (GHSA-c3mv-fjj4-2542), `frontend-components` 7.7.2 (GHSA-mrgj-mcjh-5mf2), `frontend-components-config-utilities` 4.11.2 (GHSA-cxfw-p322-rfrv), `quickstarts-client` 4.0.11 (GHSA-mj98-cgm5-6xrr), `rbac-client` 9.0.3 (GHSA-2p99-xvqh-j893), `rule-components` 4.7.2 (GHSA-c4gm-6fh3-76v9), `topological-inventory-client` 3.0.10 (GHSA-9wp8-557p-2hvf), `types` 3.6.1 (GHSA-8xj2-9c64-m64h); OSV MAL-2026-5111 through MAL-2026-5119; scope added to NPM_SUSPECT_SCOPES |
+| loading-session npm package compromise — June 1 2026 (GHSA-7vwr-8v2c-gjvr) | `loading-session` any-version wildcard (OSV has >=0 range + specific versions 4.2.1, 4.2.2; per convention, entire package is treated as malicious) |
+| jingmeideshishi npm throwaway malware — June 1 2026 (GHSA-pc3j-w4f9-94hj) | `jingmeideshishi` any-version wildcard (pure-malware gibberish-name package; OSV MAL-2026-5110) |
+| redteam-qxz7-utils PyPI malware — June 1 2026 (OSV MAL-2026-5120) | `redteam-qxz7-utils` 1.0.0 (PyPI; malicious code detected by kam193/bad-packages.kam193.eu) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -374,6 +378,19 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-3r39-h7xh-jg85 / OSV MAL-2026-5107 — cms-github malware](https://github.com/advisories/GHSA-3r39-h7xh-jg85)
 - [GHSA-hjw8-jc8q-mvwj / OSV MAL-2026-5108 — cms-helpgit malware](https://github.com/advisories/GHSA-hjw8-jc8q-mvwj)
 - [GHSA-92q8-c63v-g77x / OSV MAL-2026-5109 — shopifyto-cms malware](https://github.com/advisories/GHSA-92q8-c63v-g77x)
+- [GHSA-942v-f47r-w9c3 / OSV MAL-2026-5111 — @redhat-cloud-services/chrome malware](https://github.com/advisories/GHSA-942v-f47r-w9c3)
+- [GHSA-c3mv-fjj4-2542 / OSV MAL-2026-5112 — @redhat-cloud-services/eslint-config-redhat-cloud-services malware](https://github.com/advisories/GHSA-c3mv-fjj4-2542)
+- [GHSA-mrgj-mcjh-5mf2 / OSV MAL-2026-5113 — @redhat-cloud-services/frontend-components malware](https://github.com/advisories/GHSA-mrgj-mcjh-5mf2)
+- [GHSA-cxfw-p322-rfrv / OSV MAL-2026-5114 — @redhat-cloud-services/frontend-components-config-utilities malware](https://github.com/advisories/GHSA-cxfw-p322-rfrv)
+- [GHSA-mj98-cgm5-6xrr / OSV MAL-2026-5115 — @redhat-cloud-services/quickstarts-client malware](https://github.com/advisories/GHSA-mj98-cgm5-6xrr)
+- [GHSA-2p99-xvqh-j893 / OSV MAL-2026-5116 — @redhat-cloud-services/rbac-client malware](https://github.com/advisories/GHSA-2p99-xvqh-j893)
+- [GHSA-c4gm-6fh3-76v9 / OSV MAL-2026-5117 — @redhat-cloud-services/rule-components malware](https://github.com/advisories/GHSA-c4gm-6fh3-76v9)
+- [GHSA-9wp8-557p-2hvf / OSV MAL-2026-5118 — @redhat-cloud-services/topological-inventory-client malware](https://github.com/advisories/GHSA-9wp8-557p-2hvf)
+- [GHSA-8xj2-9c64-m64h / OSV MAL-2026-5119 — @redhat-cloud-services/types malware](https://github.com/advisories/GHSA-8xj2-9c64-m64h)
+- [GHSA-7vwr-8v2c-gjvr / OSV MAL-2026-4600 — loading-session npm malware](https://github.com/advisories/GHSA-7vwr-8v2c-gjvr)
+- [GHSA-pc3j-w4f9-94hj / OSV MAL-2026-5110 — jingmeideshishi npm malware](https://github.com/advisories/GHSA-pc3j-w4f9-94hj)
+- [OSV MAL-2026-5120 — redteam-qxz7-utils PyPI malware](https://osv.dev/vulnerability/MAL-2026-5120)
+- [bad-packages.kam193.eu — redteam-qxz7-utils](https://bad-packages.kam193.eu/pypi/package/redteam-qxz7-utils)
 
 ## License
 

@@ -74,7 +74,14 @@ chai-as-minted Chai typosquat (OSV MAL-2026-5106), AWS/CLI typosquats
 (@antoncallahan/aws-user-helper, @tmecontinue/cli; OSV MAL-2026-5101/5105),
 and three GHSA-confirmed test-scope malware packages
 (@ewfewfewf/testhackerrr, @osamdefeirrighs/testhackfrrferrr,
-@pcldpvkoewpogw/testhacker; OSV MAL-2026-5102/5103/5104).
+@pcldpvkoewpogw/testhacker; OSV MAL-2026-5102/5103/5104), the
+@redhat-cloud-services scope account compromise June 1 2026 (nine packages:
+chrome, eslint-config, frontend-components, frontend-components-config-utilities,
+quickstarts-client, rbac-client, rule-components, topological-inventory-client,
+types; OSV MAL-2026-5111 through MAL-2026-5119), loading-session npm package
+compromise June 1 2026 (OSV MAL-2026-4600 / GHSA-7vwr-8v2c-gjvr), jingmeideshishi
+npm throwaway malware June 1 2026 (OSV MAL-2026-5110 / GHSA-pc3j-w4f9-94hj), and
+redteam-qxz7-utils PyPI malware June 1 2026 (OSV MAL-2026-5120).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -249,6 +256,10 @@ PYPI_BAD: dict[str, set[str]] = {
     # analyst notes suggest possible CTF origin but intent is clearly malicious.
     # OSV MAL-2026-5096 / https://bad-packages.kam193.eu/pypi/package/cscc-glass-house
     "cscc-glass-house": {"1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    # redteam-qxz7-utils PyPI malware (June 1 2026)
+    # Malicious code detected by kam193 / bad-packages.kam193.eu; single version published.
+    # OSV MAL-2026-5120
+    "redteam-qxz7-utils": {"1.0.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1247,6 +1258,37 @@ NPM_BAD: dict[str, set[str]] = {
     "@ewfewfewf/testhackerrr": set(),
     "@osamdefeirrighs/testhackfrrferrr": set(),
     "@pcldpvkoewpogw/testhacker": set(),
+    # @redhat-cloud-services scope account compromise (June 1 2026)
+    # Nine packages in the Red Hat Cloud Services npm scope had malicious versions
+    # published simultaneously; each has a single pinned malicious version following
+    # the +0.0.1-patch pattern seen in prior maintainer-account-takeover waves.
+    # OSV MAL-2026-5111 / GHSA-942v-f47r-w9c3 (@redhat-cloud-services/chrome)
+    # OSV MAL-2026-5112 / GHSA-c3mv-fjj4-2542 (eslint-config-redhat-cloud-services)
+    # OSV MAL-2026-5113 / GHSA-mrgj-mcjh-5mf2 (frontend-components)
+    # OSV MAL-2026-5114 / GHSA-cxfw-p322-rfrv (frontend-components-config-utilities)
+    # OSV MAL-2026-5115 / GHSA-mj98-cgm5-6xrr (quickstarts-client)
+    # OSV MAL-2026-5116 / GHSA-2p99-xvqh-j893 (rbac-client)
+    # OSV MAL-2026-5117 / GHSA-c4gm-6fh3-76v9 (rule-components)
+    # OSV MAL-2026-5118 / GHSA-9wp8-557p-2hvf (topological-inventory-client)
+    # OSV MAL-2026-5119 / GHSA-8xj2-9c64-m64h (types)
+    "@redhat-cloud-services/chrome": {"2.3.1"},
+    "@redhat-cloud-services/eslint-config-redhat-cloud-services": {"3.2.1"},
+    "@redhat-cloud-services/frontend-components": {"7.7.2"},
+    "@redhat-cloud-services/frontend-components-config-utilities": {"4.11.2"},
+    "@redhat-cloud-services/quickstarts-client": {"4.0.11"},
+    "@redhat-cloud-services/rbac-client": {"9.0.3"},
+    "@redhat-cloud-services/rule-components": {"4.7.2"},
+    "@redhat-cloud-services/topological-inventory-client": {"3.0.10"},
+    "@redhat-cloud-services/types": {"3.6.1"},
+    # loading-session npm package compromise (June 1 2026)
+    # Session-management package with malicious code injected; OSV reports both
+    # specific versions and a >=0 range — per convention, entire package is malicious.
+    # OSV MAL-2026-4600 / GHSA-7vwr-8v2c-gjvr
+    "loading-session": set(),
+    # jingmeideshishi npm throwaway malware (June 1 2026)
+    # Gibberish-name pure-malware package; OSV confirmed any-version malicious.
+    # OSV MAL-2026-5110 / GHSA-pc3j-w4f9-94hj
+    "jingmeideshishi": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -1261,6 +1303,8 @@ NPM_SUSPECT_SCOPES = (
     "@vpmdhaj/",
     # oob-moika-tech Wave 2 (May 29 2026) — attacker's own npm username scope
     "@t-in-one/",
+    # Red Hat Cloud Services account compromise (June 1 2026)
+    "@redhat-cloud-services/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
