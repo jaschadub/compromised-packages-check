@@ -1267,18 +1267,18 @@ NPM_BAD: dict[str, set[str]] = {
     "@ewfewfewf/testhackerrr": set(),
     "@osamdefeirrighs/testhackfrrferrr": set(),
     "@pcldpvkoewpogw/testhacker": set(),
-    # @redhat-cloud-services scope account compromise (June 1 2026)
+    # @redhat-cloud-services scope account compromise (June 1–2 2026)
     # Red Hat Cloud Services npm scope; malicious versions follow the +0.0.1-patch
     # pattern seen in prior maintainer-account-takeover waves. Additional packages
-    # and supplemental versions published in the same wave on June 1.
-    # OSV MAL-2026-5111 / GHSA-942v-f47r-w9c3 (chrome; updated: 2.3.2, 2.3.4)
+    # and supplemental versions published across June 1–2.
+    # OSV MAL-2026-5111 / GHSA-942v-f47r-w9c3 (chrome)
     # OSV MAL-2026-5112 / GHSA-c3mv-fjj4-2542 (eslint-config-redhat-cloud-services)
     # OSV MAL-2026-5113 / GHSA-mrgj-mcjh-5mf2 (frontend-components)
-    # OSV MAL-2026-5114 / GHSA-cxfw-p322-rfrv (frontend-components-config-utilities; updated: 4.11.3, 4.11.5)
+    # OSV MAL-2026-5114 / GHSA-cxfw-p322-rfrv (frontend-components-config-utilities)
     # OSV MAL-2026-5115 / GHSA-mj98-cgm5-6xrr (quickstarts-client)
-    # OSV MAL-2026-5116 / GHSA-2p99-xvqh-j893 (rbac-client; updated: 9.0.4, 9.0.6)
+    # OSV MAL-2026-5116 / GHSA-2p99-xvqh-j893 (rbac-client)
     # OSV MAL-2026-5117 / GHSA-c4gm-6fh3-76v9 (rule-components)
-    # OSV MAL-2026-5118 / GHSA-9wp8-557p-2hvf (topological-inventory-client; updated: 3.0.11, 3.0.13)
+    # OSV MAL-2026-5118 / GHSA-9wp8-557p-2hvf (topological-inventory-client)
     # OSV MAL-2026-5119 / GHSA-8xj2-9c64-m64h (types)
     # OSV MAL-2026-5125 / GHSA-28hc-2275-h287 (entitlements-client)
     # OSV MAL-2026-5126 / GHSA-h43w-g623-gfmv (frontend-components-config)
@@ -1287,22 +1287,54 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-5129 / GHSA-vgm5-jmvr-cjgf (hcc-feo-mcp)
     # OSV MAL-2026-5130 / GHSA-8x4g-q845-wpfc (integrations-client)
     # OSV MAL-2026-5131 / GHSA-vp9c-9mjm-2f7w (sources-client)
+    # OSV MAL-2026-5133 (compliance-client)
+    # OSV MAL-2026-5134 (config-manager-client)
+    # OSV MAL-2026-5135 (frontend-components-advisor-components)
+    # OSV MAL-2026-5136 (frontend-components-notifications)
+    # OSV MAL-2026-5137 (frontend-components-translations)
+    # OSV MAL-2026-5138 (frontend-components-utilities)
+    # OSV MAL-2026-5139 (hcc-kessel-mcp)
+    # OSV MAL-2026-5140 (hcc-pf-mcp)
+    # OSV MAL-2026-5141 (host-inventory-client)
+    # OSV MAL-2026-5142 (insights-client)
+    # OSV MAL-2026-5143 (javascript-clients-shared)
+    # OSV MAL-2026-5144 (notifications-client)
+    # OSV MAL-2026-5145 (patch-client)
+    # OSV MAL-2026-5146 (remediations-client)
+    # OSV MAL-2026-5147 (tsc-transform-imports)
+    # OSV MAL-2026-5148 (vulnerabilities-client)
     "@redhat-cloud-services/chrome": {"2.3.1", "2.3.2", "2.3.4"},
-    "@redhat-cloud-services/eslint-config-redhat-cloud-services": {"3.2.1"},
-    "@redhat-cloud-services/entitlements-client": {"4.0.12", "4.0.14"},
-    "@redhat-cloud-services/frontend-components": {"7.7.2"},
-    "@redhat-cloud-services/frontend-components-config": {"6.11.4", "6.11.6"},
+    "@redhat-cloud-services/compliance-client": {"4.0.3", "4.0.4", "4.0.6"},
+    "@redhat-cloud-services/config-manager-client": {"5.0.4", "5.0.5", "5.0.7"},
+    "@redhat-cloud-services/entitlements-client": {"4.0.11", "4.0.12", "4.0.14"},
+    "@redhat-cloud-services/eslint-config-redhat-cloud-services": {"3.2.1", "3.2.2", "3.2.4"},
+    "@redhat-cloud-services/frontend-components": {"7.7.2", "7.7.3", "7.7.5"},
+    "@redhat-cloud-services/frontend-components-advisor-components": {"3.8.2", "3.8.4", "3.8.6"},
+    "@redhat-cloud-services/frontend-components-config": {"6.11.3", "6.11.4", "6.11.6"},
     "@redhat-cloud-services/frontend-components-config-utilities": {"4.11.2", "4.11.3", "4.11.5"},
-    "@redhat-cloud-services/frontend-components-remediations": {"4.9.3", "4.9.5"},
-    "@redhat-cloud-services/frontend-components-testing": {"1.2.2"},
-    "@redhat-cloud-services/hcc-feo-mcp": {"0.3.2", "0.3.4"},
-    "@redhat-cloud-services/integrations-client": {"6.0.5", "6.0.7"},
-    "@redhat-cloud-services/quickstarts-client": {"4.0.11"},
+    "@redhat-cloud-services/frontend-components-notifications": {"6.9.2", "6.9.3", "6.9.5"},
+    "@redhat-cloud-services/frontend-components-remediations": {"4.9.2", "4.9.3", "4.9.5"},
+    "@redhat-cloud-services/frontend-components-testing": {"1.2.1", "1.2.2", "1.2.4"},
+    "@redhat-cloud-services/frontend-components-translations": {"4.4.1", "4.4.2", "4.4.4"},
+    "@redhat-cloud-services/frontend-components-utilities": {"7.4.1", "7.4.2", "7.4.4"},
+    "@redhat-cloud-services/hcc-feo-mcp": {"0.3.1", "0.3.2", "0.3.4"},
+    "@redhat-cloud-services/hcc-kessel-mcp": {"0.3.1", "0.3.2", "0.3.4"},
+    "@redhat-cloud-services/hcc-pf-mcp": {"0.6.1", "0.6.2", "0.6.4"},
+    "@redhat-cloud-services/host-inventory-client": {"5.0.3", "5.0.4", "5.0.6"},
+    "@redhat-cloud-services/insights-client": {"4.0.4", "4.0.5", "4.0.7"},
+    "@redhat-cloud-services/integrations-client": {"6.0.4", "6.0.5", "6.0.7"},
+    "@redhat-cloud-services/javascript-clients-shared": {"2.0.8", "2.0.9", "2.0.11"},
+    "@redhat-cloud-services/notifications-client": {"6.1.4", "6.1.5", "6.1.7"},
+    "@redhat-cloud-services/patch-client": {"4.0.4", "4.0.5", "4.0.7"},
+    "@redhat-cloud-services/quickstarts-client": {"4.0.11", "4.0.12", "4.0.14"},
     "@redhat-cloud-services/rbac-client": {"9.0.3", "9.0.4", "9.0.6"},
-    "@redhat-cloud-services/rule-components": {"4.7.2"},
-    "@redhat-cloud-services/sources-client": {"3.0.11", "3.0.13"},
+    "@redhat-cloud-services/remediations-client": {"4.0.4", "4.0.5", "4.0.7"},
+    "@redhat-cloud-services/rule-components": {"4.7.2", "4.7.3", "4.7.5"},
+    "@redhat-cloud-services/sources-client": {"3.0.10", "3.0.11", "3.0.13"},
     "@redhat-cloud-services/topological-inventory-client": {"3.0.10", "3.0.11", "3.0.13"},
-    "@redhat-cloud-services/types": {"3.6.1"},
+    "@redhat-cloud-services/tsc-transform-imports": {"1.2.2", "1.2.4", "1.2.6"},
+    "@redhat-cloud-services/types": {"3.6.1", "3.6.2", "3.6.4"},
+    "@redhat-cloud-services/vulnerabilities-client": {"2.1.8", "2.1.9", "2.1.11"},
     # loading-session npm package compromise (June 1 2026)
     # Session-management package with malicious code injected; OSV reports both
     # specific versions and a >=0 range — per convention, entire package is malicious.
