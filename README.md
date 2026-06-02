@@ -110,6 +110,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Dependency-confusion 9999.x batch — June 1 2026 | `nepsnowplow` 9999.0.0 (MAL-2026-5121; targets Snowplow Analytics CI), `picnic-react-mise-en-place` 9999.0.0 (MAL-2026-5122; targets Picnic internal React packages); detected by OpenSSF Package Analysis |
 | @chat-template/auth GHSA full-compromise — June 1 2026 (GHSA-5jx8-qv7v-hv32) | `@chat-template/auth` any-version wildcard (MAL-2026-5124; OSV affected.ranges >=0) |
 | imgmatrix-analysis PyPI remote-command executor — June 1 2026 (OSV MAL-2026-5123) | `imgmatrix-analysis` 0.1.0–0.1.9 (PyPI; executes remote commands during import; detected by kam193/bad-packages.kam193.eu) |
+| rookie-security-test-pkg npm malware — June 1 2026 (OSV MAL-2026-5132) | `rookie-security-test-pkg` 1.0.0 (npm; communicates with malicious domain and executes malicious commands; detected by OpenSSF Package Analysis) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -404,6 +405,7 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-5jx8-qv7v-hv32 / OSV MAL-2026-5124 — @chat-template/auth malware](https://github.com/advisories/GHSA-5jx8-qv7v-hv32)
 - [OSV MAL-2026-5123 — imgmatrix-analysis PyPI malware](https://osv.dev/vulnerability/MAL-2026-5123)
 - [bad-packages.kam193.eu — imgmatrix-analysis](https://bad-packages.kam193.eu/pypi/package/imgmatrix-analysis)
+- [OSV MAL-2026-5132 — rookie-security-test-pkg npm malware](https://osv.dev/vulnerability/MAL-2026-5132)
 - [GHSA-28hc-2275-h287 / OSV MAL-2026-5125 — @redhat-cloud-services/entitlements-client malware](https://github.com/advisories/GHSA-28hc-2275-h287)
 - [GHSA-h43w-g623-gfmv / OSV MAL-2026-5126 — @redhat-cloud-services/frontend-components-config malware](https://github.com/advisories/GHSA-h43w-g623-gfmv)
 - [GHSA-4rjr-7qhx-vjwg / OSV MAL-2026-5127 — @redhat-cloud-services/frontend-components-remediations malware](https://github.com/advisories/GHSA-4rjr-7qhx-vjwg)
