@@ -81,7 +81,8 @@ quickstarts-client, rbac-client, rule-components, topological-inventory-client,
 types; OSV MAL-2026-5111 through MAL-2026-5119), loading-session npm package
 compromise June 1 2026 (OSV MAL-2026-4600 / GHSA-7vwr-8v2c-gjvr), jingmeideshishi
 npm throwaway malware June 1 2026 (OSV MAL-2026-5110 / GHSA-pc3j-w4f9-94hj), and
-redteam-qxz7-utils PyPI malware June 1 2026 (OSV MAL-2026-5120).
+redteam-qxz7-utils PyPI malware June 1 2026 (OSV MAL-2026-5120), and
+rookie-security-test-pkg npm malware June 1 2026 (OSV MAL-2026-5132).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1336,6 +1337,12 @@ NPM_BAD: dict[str, set[str]] = {
     # Any installed version is malicious; OSV affected.ranges >=0.
     # OSV MAL-2026-5124 / GHSA-5jx8-qv7v-hv32
     "@chat-template/auth": set(),
+    # rookie-security-test-pkg npm malware (June 1 2026)
+    # Communicates with a domain associated with malicious activity and executes
+    # commands associated with malicious behavior; detected by OpenSSF Package Analysis.
+    # Single version published; specific version pinned (no >=0 range in OSV record).
+    # OSV MAL-2026-5132
+    "rookie-security-test-pkg": {"1.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
