@@ -112,6 +112,11 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | imgmatrix-analysis PyPI remote-command executor — June 1 2026 (OSV MAL-2026-5123) | `imgmatrix-analysis` 0.1.0–0.1.9 (PyPI; executes remote commands during import; detected by kam193/bad-packages.kam193.eu) |
 | rookie-security-test-pkg npm malware — June 1 2026 (OSV MAL-2026-5132) | `rookie-security-test-pkg` 1.0.0 (npm; communicates with malicious domain and executes malicious commands; detected by OpenSSF Package Analysis) |
 | Dep-confusion + PyPI RAT/exfiltrator batch — June 2 2026 | npm: `@aonunited/angular` 99.0.1 (MAL-2026-5150; shadows AON United internal Angular library; communicates with malicious domain), `@att-ebiz/abs-components-bc` 99.9.1 (MAL-2026-5153; shadows AT&T eBusiness ABS Components BC; same detection pattern); PyPI: `parsimonius` 0.10.0–0.12.0 (MAL-2026-5151; typosquat of parsimonious PEG-parser, injects Telegram-bot RAT that exfiltrates env vars; geo-filtered to avoid Russian targets), `quant-backtest-helpers` 1.0.1 (MAL-2026-5152; exfiltrates env vars and cloud tokens to hardcoded ngrok endpoint; targets quant-finance developers), `bt-signal-utils` 1.0.0–1.0.1 (MAL-2026-5160; same campaign as quant-backtest-helpers; exfiltrates env vars and cloud tokens to same ngrok endpoint) |
+| @antv/color-util Mini Shai-Hulud supplemental — June 2 2026 (OSV MAL-2026-3862 / GHSA-rh6v-hwr4-6jcp) | `@antv/color-util` any-version wildcard (same campaign as @antv wave; SEMVER >=0 range + specific versions 2.1.6/2.2.6 confirmed by ghsa-malware, amazon-inspector, and google-open-source-security) |
+| Scandinavian telecom dep-confusion npm cluster — June 2 2026 | `@customer-threesixty/assets`, `@ownit/core`, `@telenor-se/core`, `@tse-digital/core` — all any-version wildcards; actor debating0166 used inflated version numbers (99.0.x) targeting Telenor SE, Ownit, Customer 360, and TSE Digital internal CI; OSV MAL-2026-5154/5155/5156/5157 |
+| oob-moika-tech Wave 3 / EMCD-impersonation dep-confusion cluster — June 2 2026 | `@emcd-vue/auth`, `@emcd-vue/b2b-pay-form`, `@emcd-vue/loans` — all any-version wildcards; attacker registered `@emcd-vue` npm scope impersonating EMCD (emcd.io) cryptocurrency exchange; same C2/campaign infrastructure as May 28–29 oob-moika-tech waves; OSV MAL-2026-5163/5164/5165 |
+| Dep-confusion 99.x npm batch — June 2 2026 | `page-info-service` 99.9.1 (MAL-2026-5158), `po-ops-local-dev` 99.9.1 (MAL-2026-5159), `sourceflow-tracker` 99.91.9 (MAL-2026-5166) — detected by OpenSSF Package Analysis communicating with malicious domains; high-version dep-confusion pattern |
+| jules-test-utils PyPI host-info exfiltrator — June 2 2026 (OSV MAL-2026-5167) | `jules-test-utils` 0.1.0 (PyPI; single-purpose recon package that exfiltrates basic host information on install or import; detected by kam193) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -438,6 +443,20 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5153 — @att-ebiz/abs-components-bc dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5153)
 - [OSV MAL-2026-5160 — bt-signal-utils env/cloud-token exfiltrator (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5160)
 - [bad-packages.kam193.eu — bt-signal-utils](https://bad-packages.kam193.eu/pypi/package/bt-signal-utils)
+- [OSV MAL-2026-3862 — @antv/color-util Mini Shai-Hulud supplemental (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-3862)
+- [GHSA-rh6v-hwr4-6jcp — @antv/color-util malware](https://github.com/advisories/GHSA-rh6v-hwr4-6jcp)
+- [OSV MAL-2026-5154 — @customer-threesixty/assets Scandinavian telecom dep-confusion (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5154)
+- [OSV MAL-2026-5155 — @ownit/core Scandinavian telecom dep-confusion (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5155)
+- [OSV MAL-2026-5156 — @telenor-se/core Scandinavian telecom dep-confusion (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5156)
+- [OSV MAL-2026-5157 — @tse-digital/core Scandinavian telecom dep-confusion (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5157)
+- [OSV MAL-2026-5158 — page-info-service dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5158)
+- [OSV MAL-2026-5159 — po-ops-local-dev dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5159)
+- [OSV MAL-2026-5163 — @emcd-vue/auth oob-moika-tech Wave 3 (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5163)
+- [OSV MAL-2026-5164 — @emcd-vue/b2b-pay-form oob-moika-tech Wave 3 (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5164)
+- [OSV MAL-2026-5165 — @emcd-vue/loans oob-moika-tech Wave 3 (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5165)
+- [OSV MAL-2026-5166 — sourceflow-tracker dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5166)
+- [OSV MAL-2026-5167 — jules-test-utils PyPI host-info exfiltrator (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5167)
+- [bad-packages.kam193.eu — jules-test-utils](https://bad-packages.kam193.eu/pypi/package/jules-test-utils)
 
 ## License
 
