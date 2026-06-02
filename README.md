@@ -117,6 +117,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | oob-moika-tech Wave 3 / EMCD-impersonation dep-confusion cluster — June 2 2026 | `@emcd-vue/auth`, `@emcd-vue/b2b-pay-form`, `@emcd-vue/loans` — all any-version wildcards; attacker registered `@emcd-vue` npm scope impersonating EMCD (emcd.io) cryptocurrency exchange; same C2/campaign infrastructure as May 28–29 oob-moika-tech waves; OSV MAL-2026-5163/5164/5165 |
 | Dep-confusion 99.x npm batch — June 2 2026 | `page-info-service` 99.9.1 (MAL-2026-5158), `po-ops-local-dev` 99.9.1 (MAL-2026-5159), `sourceflow-tracker` 99.91.9 (MAL-2026-5166) — detected by OpenSSF Package Analysis communicating with malicious domains; high-version dep-confusion pattern |
 | jules-test-utils PyPI host-info exfiltrator — June 2 2026 (OSV MAL-2026-5167) | `jules-test-utils` 0.1.0 (PyPI; single-purpose recon package that exfiltrates basic host information on install or import; detected by kam193) |
+| vg-interaction-model dep-confusion + chai-parse Chai typosquat — June 2 2026 | `vg-interaction-model` 40.0.1 (MAL-2026-5168; high-version dep-confusion shadow package detected by OpenSSF Package Analysis executing malicious commands); `chai-parse` any-version wildcard (MAL-2026-5169; GHSA-confirmed Chai typosquat — any installed version renders host fully compromised; SEMVER >=0 range) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -457,6 +458,8 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5166 — sourceflow-tracker dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5166)
 - [OSV MAL-2026-5167 — jules-test-utils PyPI host-info exfiltrator (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5167)
 - [bad-packages.kam193.eu — jules-test-utils](https://bad-packages.kam193.eu/pypi/package/jules-test-utils)
+- [OSV MAL-2026-5168 — vg-interaction-model dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5168)
+- [OSV MAL-2026-5169 — chai-parse Chai typosquat any-version malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5169)
 
 ## License
 
