@@ -82,7 +82,12 @@ types; OSV MAL-2026-5111 through MAL-2026-5119), loading-session npm package
 compromise June 1 2026 (OSV MAL-2026-4600 / GHSA-7vwr-8v2c-gjvr), jingmeideshishi
 npm throwaway malware June 1 2026 (OSV MAL-2026-5110 / GHSA-pc3j-w4f9-94hj), and
 redteam-qxz7-utils PyPI malware June 1 2026 (OSV MAL-2026-5120), and
-rookie-security-test-pkg npm malware June 1 2026 (OSV MAL-2026-5132).
+rookie-security-test-pkg npm malware June 1 2026 (OSV MAL-2026-5132), and
+the June 2 2026 dep-confusion + PyPI RAT batch: @aonunited/angular dependency
+confusion (OSV MAL-2026-5150), @att-ebiz/abs-components-bc dependency confusion
+(OSV MAL-2026-5153), parsimonius Telegram-RAT typosquat of parsimonious
+(OSV MAL-2026-5151), and quant-backtest-helpers env/cloud-token exfiltrator
+(OSV MAL-2026-5152).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -269,6 +274,24 @@ PYPI_BAD: dict[str, set[str]] = {
         "0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.4",
         "0.1.5", "0.1.6", "0.1.7", "0.1.8", "0.1.9",
     },
+    # parsimonius PyPI RAT (June 2 2026)
+    # Typosquat of the legitimate parsimonious PEG-parser library; all published
+    # versions are clones of the real package with an injected RAT that takes orders
+    # via a hardcoded Telegram bot and exfiltrates environment variables. The payload
+    # is geo-filtered to skip systems whose timezone or geolocation suggests Russia.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5151
+    "parsimonius": {
+        "0.10.0", "0.11.0", "0.11.1", "0.11.2", "0.11.3",
+        "0.11.4", "0.11.5", "0.11.6", "0.12.0",
+    },
+    # quant-backtest-helpers PyPI env-variable / cloud-token exfiltrator (June 2 2026)
+    # During import, exfiltrates environment variables and cloud tokens to a hardcoded
+    # ngrok endpoint (disrupt-evasive-sterility.ngrok-free.app). Targets quantitative
+    # finance / backtesting developers with cloud credentials in their environment.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5152
+    "quant-backtest-helpers": {"1.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1375,6 +1398,16 @@ NPM_BAD: dict[str, set[str]] = {
     # Single version published; specific version pinned (no >=0 range in OSV record).
     # OSV MAL-2026-5132
     "rookie-security-test-pkg": {"1.0.0"},
+    # Dependency-confusion 99.x batch (June 2 2026)
+    # @aonunited/angular: high-version (99.0.1) shadow package targeting AON United's
+    #   internal Angular component library in CI; detected by OpenSSF Package Analysis
+    #   communicating with a domain associated with malicious activity.
+    #   OSV MAL-2026-5150
+    # @att-ebiz/abs-components-bc: high-version (99.9.1) shadow package targeting AT&T
+    #   eBusiness ABS Components BC library in CI; same detection pattern.
+    #   OSV MAL-2026-5153
+    "@aonunited/angular": {"99.0.1"},
+    "@att-ebiz/abs-components-bc": {"99.9.1"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
