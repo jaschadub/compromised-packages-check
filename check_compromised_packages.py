@@ -86,8 +86,9 @@ rookie-security-test-pkg npm malware June 1 2026 (OSV MAL-2026-5132), and
 the June 2 2026 dep-confusion + PyPI RAT batch: @aonunited/angular dependency
 confusion (OSV MAL-2026-5150), @att-ebiz/abs-components-bc dependency confusion
 (OSV MAL-2026-5153), parsimonius Telegram-RAT typosquat of parsimonious
-(OSV MAL-2026-5151), and quant-backtest-helpers env/cloud-token exfiltrator
-(OSV MAL-2026-5152).
+(OSV MAL-2026-5151), quant-backtest-helpers env/cloud-token exfiltrator
+(OSV MAL-2026-5152), and bt-signal-utils env/cloud-token exfiltrator
+(OSV MAL-2026-5160; same campaign as quant-backtest-helpers).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -285,13 +286,15 @@ PYPI_BAD: dict[str, set[str]] = {
         "0.10.0", "0.11.0", "0.11.1", "0.11.2", "0.11.3",
         "0.11.4", "0.11.5", "0.11.6", "0.12.0",
     },
-    # quant-backtest-helpers PyPI env-variable / cloud-token exfiltrator (June 2 2026)
+    # quant-backtest-helpers / bt-signal-utils PyPI env-variable / cloud-token exfiltrator campaign (June 2 2026)
     # During import, exfiltrates environment variables and cloud tokens to a hardcoded
     # ngrok endpoint (disrupt-evasive-sterility.ngrok-free.app). Targets quantitative
     # finance / backtesting developers with cloud credentials in their environment.
     # Detected by kam193 / bad-packages.kam193.eu.
     # OSV MAL-2026-5152
     "quant-backtest-helpers": {"1.0.1"},
+    # OSV MAL-2026-5160 — same campaign (2026-06-quant-backtest-helpers)
+    "bt-signal-utils": {"1.0.0", "1.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
