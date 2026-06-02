@@ -97,7 +97,9 @@ oob-moika-tech EMCD-impersonation Wave 3 npm dep-confusion cluster June 2 2026
 (@emcd-vue/auth, @emcd-vue/b2b-pay-form, @emcd-vue/loans; OSV MAL-2026-5163/5164/5165),
 the dep-confusion 99.x npm batch June 2 2026 (page-info-service 99.9.1,
 po-ops-local-dev 99.9.1, sourceflow-tracker 99.91.9; OSV MAL-2026-5158/5159/5166),
-and the jules-test-utils PyPI host-info exfiltrator June 2 2026 (OSV MAL-2026-5167).
+and the jules-test-utils PyPI host-info exfiltrator June 2 2026 (OSV MAL-2026-5167),
+vg-interaction-model npm dep-confusion June 2 2026 (OSV MAL-2026-5168), and
+chai-parse Chai typosquat any-version malware June 2 2026 (OSV MAL-2026-5169).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1462,6 +1464,18 @@ NPM_BAD: dict[str, set[str]] = {
     "page-info-service": {"99.9.1"},
     "po-ops-local-dev": {"99.9.1"},
     "sourceflow-tracker": {"99.91.9"},
+    # vg-interaction-model dep-confusion (June 2 2026)
+    # Detected by OpenSSF Package Analysis executing malicious commands; version 40.0.1
+    # uses the high-version shadow pattern typical of dep-confusion attacks.
+    # Single malicious version pinned (no >=0 range in OSV record).
+    # OSV MAL-2026-5168
+    "vg-interaction-model": {"40.0.1"},
+    # chai-parse Chai typosquat (June 2 2026)
+    # GHSA-confirmed any-version malware: "Any computer that has this package installed or
+    # running should be considered fully compromised." OSV affected.ranges >=0 — use
+    # the empty-set wildcard so any re-uploaded version is caught.
+    # OSV MAL-2026-5169
+    "chai-parse": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
