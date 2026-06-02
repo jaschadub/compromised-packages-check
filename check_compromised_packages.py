@@ -88,7 +88,16 @@ confusion (OSV MAL-2026-5150), @att-ebiz/abs-components-bc dependency confusion
 (OSV MAL-2026-5153), parsimonius Telegram-RAT typosquat of parsimonious
 (OSV MAL-2026-5151), quant-backtest-helpers env/cloud-token exfiltrator
 (OSV MAL-2026-5152), and bt-signal-utils env/cloud-token exfiltrator
-(OSV MAL-2026-5160; same campaign as quant-backtest-helpers).
+(OSV MAL-2026-5160; same campaign as quant-backtest-helpers),
+the @antv/color-util npm infostealer (Mini Shai-Hulud supplemental, June 2 2026;
+OSV MAL-2026-3862 / GHSA-rh6v-hwr4-6jcp), the Scandinavian telecom dep-confusion
+npm cluster June 2 2026 (@customer-threesixty/assets, @ownit/core, @telenor-se/core,
+@tse-digital/core; actor debating0166; OSV MAL-2026-5154/5155/5156/5157), the
+oob-moika-tech EMCD-impersonation Wave 3 npm dep-confusion cluster June 2 2026
+(@emcd-vue/auth, @emcd-vue/b2b-pay-form, @emcd-vue/loans; OSV MAL-2026-5163/5164/5165),
+the dep-confusion 99.x npm batch June 2 2026 (page-info-service 99.9.1,
+po-ops-local-dev 99.9.1, sourceflow-tracker 99.91.9; OSV MAL-2026-5158/5159/5166),
+and the jules-test-utils PyPI host-info exfiltrator June 2 2026 (OSV MAL-2026-5167).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -101,7 +110,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-01
+Date:      2026-06-02
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -295,6 +304,11 @@ PYPI_BAD: dict[str, set[str]] = {
     "quant-backtest-helpers": {"1.0.1"},
     # OSV MAL-2026-5160 — same campaign (2026-06-quant-backtest-helpers)
     "bt-signal-utils": {"1.0.0", "1.0.1"},
+    # jules-test-utils PyPI host-info exfiltrator (June 2 2026)
+    # Single-purpose recon package: installing or importing the module exfiltrates basic
+    # information about the host. No other functionality. Detected by kam193.
+    # OSV MAL-2026-5167 / https://bad-packages.kam193.eu/pypi/package/jules-test-utils
+    "jules-test-utils": {"0.1.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -524,13 +538,18 @@ NPM_BAD: dict[str, set[str]] = {
     # Per safedep.io and ossf/malicious-packages. High-impact subset only;
     # the rest of the @antv/ scope is covered by NPM_SUSPECT_SCOPES below.
     # OSV MAL-2026-3973, MAL-2026-3982, MAL-2026-4033, MAL-2026-4077,
-    # MAL-2026-3839, MAL-2026-4083, MAL-2026-4153, MAL-2026-4132, MAL-2026-4156
+    # MAL-2026-3839, MAL-2026-4083, MAL-2026-4153, MAL-2026-4132, MAL-2026-4156,
+    # MAL-2026-3862 (@antv/color-util)
     "@antv/g2": {"5.5.8", "5.6.8"},
     "@antv/g6": {"5.2.1", "5.3.1"},
     "@antv/l7": {"2.26.10", "2.27.10"},
     "@antv/s2": {"2.8.1", "2.9.1"},
     "@antv/x6": {"3.2.7", "3.3.7"},
     "@antv/scale": {"0.6.2", "0.7.2"},
+    # @antv/color-util: both specific versions (2.1.6, 2.2.6) and SEMVER >=0 range in OSV;
+    # per SKILLS.md the combination means the whole package is malicious — use empty-set wildcard.
+    # OSV MAL-2026-3862 / GHSA-rh6v-hwr4-6jcp (ghsa-malware + amazon-inspector + google-open-source-security)
+    "@antv/color-util": set(),
     "size-sensor": {"1.0.4", "1.1.4", "1.2.4"},
     "echarts-for-react": {"3.0.7", "3.1.7", "3.2.7"},
     "timeago.js": {"4.1.2", "4.2.2"},
@@ -1007,6 +1026,17 @@ NPM_BAD: dict[str, set[str]] = {
     "@t-in-one/safe_local_storage_token": set(),
     "@t-in-one/save_application_hid_to_storage": set(),
     "@t-in-one/send_add_application": set(),
+    # oob-moika-tech Wave 3 / EMCD-impersonation npm dep-confusion cluster (June 2 2026)
+    # Attacker registered the @emcd-vue npm scope to impersonate EMCD (emcd.io), a legitimate
+    # Russian cryptocurrency exchange and mining pool, distributing packages posing as internal
+    # Vue.js front-end tooling. SEMVER >=0 range in all three OSV records; use empty-set wildcard.
+    # Same C2 infrastructure (oob.moika.tech) and discovery source as May 28–29 oob-moika-tech waves.
+    # OSV MAL-2026-5163 (@emcd-vue/auth), MAL-2026-5164 (@emcd-vue/b2b-pay-form),
+    # MAL-2026-5165 (@emcd-vue/loans)
+    # Source: safedep.io/oob-moika-tech-dependency-confusion-campaign/
+    "@emcd-vue/auth": set(),
+    "@emcd-vue/b2b-pay-form": set(),
+    "@emcd-vue/loans": set(),
     # Mixed npm malware batch (May 29 2026)
     # buffer-util-extend: decodes and executes base64 payload on require/import.
     #   OSV MAL-2026-2920 / GHSA-g44v-3gq3-j8p6 (Amazon Inspector primary discovery)
@@ -1411,6 +1441,27 @@ NPM_BAD: dict[str, set[str]] = {
     #   OSV MAL-2026-5153
     "@aonunited/angular": {"99.0.1"},
     "@att-ebiz/abs-components-bc": {"99.9.1"},
+    # Scandinavian telecom dep-confusion npm cluster (June 2 2026)
+    # Actor debating0166 published four packages to the public registry using inflated version
+    # numbers (99.0.x) to override private packages used by Telenor SE, Ownit, Customer 360
+    # (C360), and TSE Digital. No prior legitimate versions exist; SEMVER >=0 range in all four
+    # OSV records — use empty-set wildcard.
+    # OSV MAL-2026-5154 (@customer-threesixty/assets), MAL-2026-5155 (@ownit/core),
+    # MAL-2026-5156 (@telenor-se/core), MAL-2026-5157 (@tse-digital/core)
+    "@customer-threesixty/assets": set(),
+    "@ownit/core": set(),
+    "@telenor-se/core": set(),
+    "@tse-digital/core": set(),
+    # Dep-confusion 99.x npm batch (June 2 2026)
+    # Three packages detected by OpenSSF Package Analysis communicating with domains
+    # associated with malicious activity and executing malicious commands.
+    # page-info-service and po-ops-local-dev use version 99.9.1 (high-version shadow pattern).
+    # sourceflow-tracker uses version 99.91.9; same detection pattern.
+    # OSV MAL-2026-5158 (page-info-service), MAL-2026-5159 (po-ops-local-dev),
+    # MAL-2026-5166 (sourceflow-tracker)
+    "page-info-service": {"99.9.1"},
+    "po-ops-local-dev": {"99.9.1"},
+    "sourceflow-tracker": {"99.91.9"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
