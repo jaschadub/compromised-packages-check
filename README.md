@@ -117,9 +117,10 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | oob-moika-tech Wave 3 / EMCD-impersonation dep-confusion cluster — June 2 2026 | `@emcd-vue/auth`, `@emcd-vue/b2b-pay-form`, `@emcd-vue/loans` — all any-version wildcards; attacker registered `@emcd-vue` npm scope impersonating EMCD (emcd.io) cryptocurrency exchange; same C2/campaign infrastructure as May 28–29 oob-moika-tech waves; OSV MAL-2026-5163/5164/5165 |
 | Dep-confusion 99.x npm batch — June 2 2026 | `page-info-service` 99.9.1 (MAL-2026-5158), `po-ops-local-dev` 99.9.1 (MAL-2026-5159), `sourceflow-tracker` 99.91.9 (MAL-2026-5166) — detected by OpenSSF Package Analysis communicating with malicious domains; high-version dep-confusion pattern |
 | jules-test-utils PyPI host-info exfiltrator — June 2 2026 (OSV MAL-2026-5167) | `jules-test-utils` 0.1.0 (PyPI; single-purpose recon package that exfiltrates basic host information on install or import; detected by kam193) |
-| spaysrbdata / spaysdata PyPI Roblox-cookie infostealer campaign — June 2 2026 | `spaysrbdata` 0.1.0–0.5.0 (MAL-2026-5170), `spaysdata` 0.1.0–0.4.5 (MAL-2026-5171) — both packages exfiltrate Roblox session cookies from the victim machine; same campaign (2026-06-spaysrbdata); detected by kam193 |
+| spaysrbdata / spaysdata / spadata PyPI Roblox-cookie infostealer campaign — June 2–3 2026 | `spaysrbdata` 0.1.0–0.5.0 (MAL-2026-5170), `spaysdata` 0.1.0–0.4.5 (MAL-2026-5171), `spadata` 0.1.0–0.1.1 (MAL-2026-5173) — all three packages exfiltrate Roblox session cookies; same campaign (2026-06-spaysrbdata); detected by kam193 |
 | vg-interaction-model dep-confusion + chai-parse Chai typosquat — June 2 2026 | `vg-interaction-model` 40.0.1, 40.0.4 (MAL-2026-5168; high-version dep-confusion shadow package detected by OpenSSF Package Analysis — communicates with malicious domain, executes malicious commands; second version 40.0.4 added June 3 2026); `chai-parse` any-version wildcard (MAL-2026-5169; GHSA-confirmed Chai typosquat — any installed version renders host fully compromised; SEMVER >=0 range) |
-| fundraiserserv npm malware — June 3 2026 | `fundraiserserv` 1.0.0 (MAL-2026-5172; communicates with a domain associated with malicious activity; detected by OpenSSF Package Analysis) |
+| internal-tracker PyPI host-info exfiltrator — June 3 2026 (OSV MAL-2026-5176) | `internal-tracker` 0.0.1, 0.0.2, 0.0.5 (PyPI; overrides setup.py install command to exfiltrate basic host info — IP address and username — on install; no other functionality; detected by kam193) |
+| fundraiserserv / nodemon-pack / webpack-json npm malware — June 3 2026 | `fundraiserserv` 1.0.0 (MAL-2026-5172; communicates with malicious domain; OpenSSF Package Analysis); `nodemon-pack` any-version wildcard (MAL-2026-5174 / GHSA-pqxq-jw84-3x8f; full-compromise typosquat of nodemon; SEMVER >=0 range); `webpack-json` any-version wildcard (MAL-2026-5175 / GHSA-69hx-wrc9-h5wq; full-compromise typosquat of webpack; SEMVER >=0 range) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -467,6 +468,14 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5168 — vg-interaction-model dep-confusion npm malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5168)
 - [OSV MAL-2026-5169 — chai-parse Chai typosquat any-version malware (June 2 2026)](https://osv.dev/vulnerability/MAL-2026-5169)
 - [OSV MAL-2026-5172 — fundraiserserv npm malware (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5172)
+- [OSV MAL-2026-5173 — spadata PyPI Roblox-cookie infostealer (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5173)
+- [bad-packages.kam193.eu — spadata](https://bad-packages.kam193.eu/pypi/package/spadata)
+- [OSV MAL-2026-5174 — nodemon-pack npm full-compromise typosquat (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5174)
+- [GHSA-pqxq-jw84-3x8f — nodemon-pack (June 3 2026)](https://github.com/advisories/GHSA-pqxq-jw84-3x8f)
+- [OSV MAL-2026-5175 — webpack-json npm full-compromise typosquat (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5175)
+- [GHSA-69hx-wrc9-h5wq — webpack-json (June 3 2026)](https://github.com/advisories/GHSA-69hx-wrc9-h5wq)
+- [OSV MAL-2026-5176 — internal-tracker PyPI host-info exfiltrator (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5176)
+- [bad-packages.kam193.eu — internal-tracker](https://bad-packages.kam193.eu/pypi/package/internal-tracker)
 - [RUSTSEC-2026-0155 — exploration crates.io remote-execute dropper (June 2 2026)](https://rustsec.org/advisories/RUSTSEC-2026-0155.html)
 
 ## License
