@@ -311,6 +311,13 @@ PYPI_BAD: dict[str, set[str]] = {
     # information about the host. No other functionality. Detected by kam193.
     # OSV MAL-2026-5167 / https://bad-packages.kam193.eu/pypi/package/jules-test-utils
     "jules-test-utils": {"0.1.0"},
+    # spaysrbdata / spaysdata PyPI Roblox-cookie infostealer campaign (June 2 2026)
+    # Both packages exfiltrate Roblox session cookies from the victim machine.
+    # Same campaign (2026-06-spaysrbdata); reported by kam193.
+    # OSV MAL-2026-5170 / https://bad-packages.kam193.eu/pypi/package/spaysrbdata
+    "spaysrbdata": {"0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0"},
+    # OSV MAL-2026-5171 / https://bad-packages.kam193.eu/pypi/package/spaysdata
+    "spaysdata": {"0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.4.2", "0.4.4", "0.4.5"},
 }
 
 # npm: exact package name -> set of malicious versions.
