@@ -121,6 +121,8 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | vg-interaction-model dep-confusion + chai-parse Chai typosquat — June 2 2026 | `vg-interaction-model` 40.0.1, 40.0.4 (MAL-2026-5168; high-version dep-confusion shadow package detected by OpenSSF Package Analysis — communicates with malicious domain, executes malicious commands; second version 40.0.4 added June 3 2026); `chai-parse` any-version wildcard (MAL-2026-5169; GHSA-confirmed Chai typosquat — any installed version renders host fully compromised; SEMVER >=0 range) |
 | internal-tracker PyPI host-info exfiltrator — June 3 2026 (OSV MAL-2026-5176) | `internal-tracker` 0.0.1, 0.0.2, 0.0.5 (PyPI; overrides setup.py install command to exfiltrate basic host info — IP address and username — on install; no other functionality; detected by kam193) |
 | fundraiserserv / nodemon-pack / webpack-json npm malware — June 3 2026 | `fundraiserserv` 1.0.0 (MAL-2026-5172; communicates with malicious domain; OpenSSF Package Analysis); `nodemon-pack` any-version wildcard (MAL-2026-5174 / GHSA-pqxq-jw84-3x8f; full-compromise typosquat of nodemon; SEMVER >=0 range); `webpack-json` any-version wildcard (MAL-2026-5175 / GHSA-69hx-wrc9-h5wq; full-compromise typosquat of webpack; SEMVER >=0 range) |
+| chai-midpatch / nodemon-webpatch npm full-compromise typosquats — June 3 2026 | `chai-midpatch` any-version wildcard (MAL-2026-5179 / GHSA-qq87-jvv3-6c7r; continues Chai-typosquat campaign, cf. chai-parse; SEMVER >=0 range, any installed version renders host fully compromised); `nodemon-webpatch` any-version wildcard (MAL-2026-5180 / GHSA-q398-93fh-ghmj; continues nodemon-typosquat wave, cf. nodemon-pack) |
+| fia-signals / tronlab / tronlabpy3 PyPI malware batch — June 3 2026 | `fia-signals` 0.1.0, 0.1.3 (MAL-2026-5177; host-info exfiltrator, overrides setup.py to exfiltrate IP/username on install; detected by kam193); `tronlab` 0.0.1 (MAL-2026-5178; Tron/TRX private-key exfiltrator, sends stolen keys to mockapi.io/ngrok endpoints, 2025-04-tronix campaign); `tronlabpy3` 0.0.1 (MAL-2026-5181; same campaign as tronlab) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -476,6 +478,16 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-69hx-wrc9-h5wq — webpack-json (June 3 2026)](https://github.com/advisories/GHSA-69hx-wrc9-h5wq)
 - [OSV MAL-2026-5176 — internal-tracker PyPI host-info exfiltrator (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5176)
 - [bad-packages.kam193.eu — internal-tracker](https://bad-packages.kam193.eu/pypi/package/internal-tracker)
+- [OSV MAL-2026-5177 — fia-signals PyPI host-info exfiltrator (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5177)
+- [bad-packages.kam193.eu — fia-signals](https://bad-packages.kam193.eu/pypi/package/fia-signals)
+- [OSV MAL-2026-5178 — tronlab PyPI TRX private-key exfiltrator (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5178)
+- [bad-packages.kam193.eu — tronlab](https://bad-packages.kam193.eu/pypi/package/tronlab)
+- [OSV MAL-2026-5179 — chai-midpatch npm full-compromise typosquat (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5179)
+- [GHSA-qq87-jvv3-6c7r — chai-midpatch (June 3 2026)](https://github.com/advisories/GHSA-qq87-jvv3-6c7r)
+- [OSV MAL-2026-5180 — nodemon-webpatch npm full-compromise typosquat (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5180)
+- [GHSA-q398-93fh-ghmj — nodemon-webpatch (June 3 2026)](https://github.com/advisories/GHSA-q398-93fh-ghmj)
+- [OSV MAL-2026-5181 — tronlabpy3 PyPI TRX private-key exfiltrator (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5181)
+- [bad-packages.kam193.eu — tronlabpy3](https://bad-packages.kam193.eu/pypi/package/tronlabpy3)
 - [RUSTSEC-2026-0155 — exploration crates.io remote-execute dropper (June 2 2026)](https://rustsec.org/advisories/RUSTSEC-2026-0155.html)
 
 ## License

@@ -328,6 +328,19 @@ PYPI_BAD: dict[str, set[str]] = {
     # Overrides setup.py install command to exfiltrate basic host info (IP, username) on install.
     # OSV MAL-2026-5176 / https://bad-packages.kam193.eu/pypi/package/internal-tracker
     "internal-tracker": {"0.0.1", "0.0.2", "0.0.5"},
+    # fia-signals PyPI host-info exfiltrator (June 3 2026)
+    # Overrides setup.py install command to exfiltrate basic host data (IP, username)
+    # during installation; no other functionality. Detected by kam193.
+    # OSV MAL-2026-5177 / https://bad-packages.kam193.eu/pypi/package/fia-signals
+    "fia-signals": {"0.1.0", "0.1.3"},
+    # tronlab / tronlabpy3 PyPI Tron/TRX private-key exfiltrators (June 3 2026)
+    # Impersonate Tron blockchain tooling; designed for crypto private-key exfiltration,
+    # sending stolen data to hardcoded mockapi.io / ngrok endpoints. Part of the
+    # 2025-04-tronix campaign tracked by kam193.
+    # OSV MAL-2026-5178 / https://bad-packages.kam193.eu/pypi/package/tronlab
+    "tronlab": {"0.0.1"},
+    # OSV MAL-2026-5181 / https://bad-packages.kam193.eu/pypi/package/tronlabpy3
+    "tronlabpy3": {"0.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1505,6 +1518,15 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-5175 / GHSA-69hx-wrc9-h5wq (webpack-json)
     "nodemon-pack": set(),
     "webpack-json": set(),
+    # chai-midpatch / nodemon-webpatch npm full-compromise typosquats (June 3 2026)
+    # Both carry SEMVER >=0 range: "Any computer that has this package installed or
+    # running should be considered fully compromised." chai-midpatch continues the
+    # Chai-typosquat campaign (cf. chai-parse); nodemon-webpatch continues the
+    # nodemon-typosquat wave (cf. nodemon-pack).
+    # OSV MAL-2026-5179 / GHSA-qq87-jvv3-6c7r (chai-midpatch)
+    # OSV MAL-2026-5180 / GHSA-q398-93fh-ghmj (nodemon-webpatch)
+    "chai-midpatch": set(),
+    "nodemon-webpatch": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
