@@ -98,8 +98,10 @@ oob-moika-tech EMCD-impersonation Wave 3 npm dep-confusion cluster June 2 2026
 the dep-confusion 99.x npm batch June 2 2026 (page-info-service 99.9.1,
 po-ops-local-dev 99.9.1, sourceflow-tracker 99.91.9; OSV MAL-2026-5158/5159/5166),
 and the jules-test-utils PyPI host-info exfiltrator June 2 2026 (OSV MAL-2026-5167),
-vg-interaction-model npm dep-confusion June 2 2026 (OSV MAL-2026-5168), and
-chai-parse Chai typosquat any-version malware June 2 2026 (OSV MAL-2026-5169).
+vg-interaction-model npm dep-confusion June 2 2026 (OSV MAL-2026-5168; updated June 3
+2026 to add version 40.0.4), chai-parse Chai typosquat any-version malware June 2 2026
+(OSV MAL-2026-5169), and fundraiserserv npm malware June 3 2026 (OSV MAL-2026-5172;
+communicates with a malicious domain; detected by OpenSSF Package Analysis).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -112,7 +114,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-02
+Date:      2026-06-03
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1471,18 +1473,23 @@ NPM_BAD: dict[str, set[str]] = {
     "page-info-service": {"99.9.1"},
     "po-ops-local-dev": {"99.9.1"},
     "sourceflow-tracker": {"99.91.9"},
-    # vg-interaction-model dep-confusion (June 2 2026)
-    # Detected by OpenSSF Package Analysis executing malicious commands; version 40.0.1
-    # uses the high-version shadow pattern typical of dep-confusion attacks.
-    # Single malicious version pinned (no >=0 range in OSV record).
+    # vg-interaction-model dep-confusion (June 2 2026; updated June 3 2026)
+    # Detected by OpenSSF Package Analysis executing malicious commands; high-version shadow
+    # packages (40.0.1, 40.0.4) typical of dep-confusion attacks. Both versions communicate
+    # with a domain associated with malicious activity and execute malicious commands.
     # OSV MAL-2026-5168
-    "vg-interaction-model": {"40.0.1"},
+    "vg-interaction-model": {"40.0.1", "40.0.4"},
     # chai-parse Chai typosquat (June 2 2026)
     # GHSA-confirmed any-version malware: "Any computer that has this package installed or
     # running should be considered fully compromised." OSV affected.ranges >=0 — use
     # the empty-set wildcard so any re-uploaded version is caught.
     # OSV MAL-2026-5169
     "chai-parse": set(),
+    # fundraiserserv npm malware (June 3 2026)
+    # Detected by OpenSSF Package Analysis communicating with a domain associated with
+    # malicious activity. Single malicious version pinned (no >=0 range in OSV record).
+    # OSV MAL-2026-5172
+    "fundraiserserv": {"1.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
