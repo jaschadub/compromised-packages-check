@@ -320,6 +320,14 @@ PYPI_BAD: dict[str, set[str]] = {
     "spaysrbdata": {"0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0"},
     # OSV MAL-2026-5171 / https://bad-packages.kam193.eu/pypi/package/spaysdata
     "spaysdata": {"0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.4.2", "0.4.4", "0.4.5"},
+    # spadata PyPI Roblox-cookie infostealer (June 3 2026)
+    # Same campaign (2026-06-spaysrbdata); exfiltrates Roblox session cookies.
+    # OSV MAL-2026-5173 / https://bad-packages.kam193.eu/pypi/package/spadata
+    "spadata": {"0.1.0", "0.1.1"},
+    # internal-tracker PyPI host-info exfiltrator (June 3 2026)
+    # Overrides setup.py install command to exfiltrate basic host info (IP, username) on install.
+    # OSV MAL-2026-5176 / https://bad-packages.kam193.eu/pypi/package/internal-tracker
+    "internal-tracker": {"0.0.1", "0.0.2", "0.0.5"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1490,6 +1498,13 @@ NPM_BAD: dict[str, set[str]] = {
     # malicious activity. Single malicious version pinned (no >=0 range in OSV record).
     # OSV MAL-2026-5172
     "fundraiserserv": {"1.0.0"},
+    # nodemon-pack / webpack-json npm typosquats (June 3 2026)
+    # Full-compromise typosquats (of nodemon and webpack); GHSA flags any installed
+    # version as fully malicious. SEMVER >=0 range in OSV — use empty-set wildcard.
+    # OSV MAL-2026-5174 / GHSA-pqxq-jw84-3x8f (nodemon-pack)
+    # OSV MAL-2026-5175 / GHSA-69hx-wrc9-h5wq (webpack-json)
+    "nodemon-pack": set(),
+    "webpack-json": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
