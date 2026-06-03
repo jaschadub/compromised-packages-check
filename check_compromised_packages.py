@@ -1610,6 +1610,12 @@ CRATES_BAD: dict[str, set[str]] = {
     "semantic-search-client": {"99.0.1"},
     "lsh": {"99.0.1", "99.1.0"},
     "supertag": {"99.1.1"},
+    # exploration remote-execute dropper (June 2 2026)
+    # A method within the crate attempted to download and execute a payload from
+    # a remote site; 1 version published ~1 hour before removal. Any version is
+    # malicious (ranges: introduced 0.0.0-0, patched = []).
+    # RUSTSEC-2026-0155; reported by Socket Threat Research Team.
+    "exploration": set(),
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
