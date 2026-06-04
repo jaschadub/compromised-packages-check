@@ -101,7 +101,10 @@ and the jules-test-utils PyPI host-info exfiltrator June 2 2026 (OSV MAL-2026-51
 vg-interaction-model npm dep-confusion June 2 2026 (OSV MAL-2026-5168; updated June 3
 2026 to add version 40.0.4), chai-parse Chai typosquat any-version malware June 2 2026
 (OSV MAL-2026-5169), and fundraiserserv npm malware June 3 2026 (OSV MAL-2026-5172;
-communicates with a malicious domain; detected by OpenSSF Package Analysis).
+communicates with a malicious domain; detected by OpenSSF Package Analysis),
+and brave-search-mcp-server npm malware June 3 2026 (OSV MAL-2026-5182;
+communicates with a malicious domain and executes malicious commands; detected
+by OpenSSF Package Analysis).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1527,6 +1530,12 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-5180 / GHSA-q398-93fh-ghmj (nodemon-webpatch)
     "chai-midpatch": set(),
     "nodemon-webpatch": set(),
+    # brave-search-mcp-server npm malware (June 3 2026)
+    # Communicates with a domain associated with malicious activity and executes
+    # commands associated with malicious behavior; detected by OpenSSF Package
+    # Analysis. Single version published; specific version pinned (no >=0 range).
+    # OSV MAL-2026-5182
+    "brave-search-mcp-server": {"1.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
