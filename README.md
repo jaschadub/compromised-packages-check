@@ -125,6 +125,8 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | brave-search-mcp-server npm malware — June 3 2026 (OSV MAL-2026-5182) | `brave-search-mcp-server` 1.0.0 — communicates with a domain associated with malicious activity and executes commands associated with malicious behavior; detected by OpenSSF Package Analysis |
 | fia-signals / tronlab / tronlabpy3 PyPI malware batch — June 3 2026 | `fia-signals` 0.1.0, 0.1.3 (MAL-2026-5177; host-info exfiltrator, overrides setup.py to exfiltrate IP/username on install; detected by kam193); `tronlab` 0.0.1 (MAL-2026-5178; Tron/TRX private-key exfiltrator, sends stolen keys to mockapi.io/ngrok endpoints, 2025-04-tronix campaign); `tronlabpy3` 0.0.1 (MAL-2026-5181; same campaign as tronlab) |
 | hpe-glcp-automation-lib PyPI host-info exfiltrator — June 4 2026 (OSV MAL-2026-5183) | `hpe-glcp-automation-lib` 2.2160.0 — overrides setup.py install command to exfiltrate basic host data (IP, username) on install; impersonates an HPE GLCP automation library; detected by kam193 |
+| sf-silly-goose-requests PyPI TruffleHog-based secret exfiltrator — June 4 2026 (OSV MAL-2026-5184) | `sf-silly-goose-requests` 0.1.0, 0.2.0 — uses TruffleHog to scan the victim environment for secrets and exfiltrates discovered credentials to a hardcoded C2 endpoint (13.219.230.105:80/beacon); detected by kam193 |
+| June 4 2026 npm full-compromise batch (OSV MAL-2026-5185/5186/5187) | `@jagreehal/workflow` any-version wildcard (GHSA-6w7v-23mf-65g3; embedded malicious code, SEMVER >=0); `autotel-terminal` any-version wildcard (GHSA-cw9v-v9rh-r449; embedded malicious code, SEMVER >=0); `supabase` CLI any-version wildcard (GHSA-x96m-c5fj-q75c; fresh single-source advisory filed June 4 2026 same day as v2.105.0 publish, SEMVER >=0; official Supabase CLI — rotate all credentials if installed) |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -493,6 +495,14 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [RUSTSEC-2026-0155 — exploration crates.io remote-execute dropper (June 2 2026)](https://rustsec.org/advisories/RUSTSEC-2026-0155.html)
 - [OSV MAL-2026-5182 — brave-search-mcp-server npm malware (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5182)
 - [OSV MAL-2026-5183 — hpe-glcp-automation-lib PyPI host-info exfiltrator (June 4 2026)](https://osv.dev/vulnerability/MAL-2026-5183)
+- [OSV MAL-2026-5184 — sf-silly-goose-requests PyPI TruffleHog-based secret exfiltrator (June 4 2026)](https://osv.dev/vulnerability/MAL-2026-5184)
+- [bad-packages.kam193.eu — sf-silly-goose-requests](https://bad-packages.kam193.eu/pypi/package/sf-silly-goose-requests)
+- [OSV MAL-2026-5185 — @jagreehal/workflow npm malware (June 4 2026)](https://osv.dev/vulnerability/MAL-2026-5185)
+- [GHSA-6w7v-23mf-65g3 — @jagreehal/workflow (June 4 2026)](https://github.com/advisories/GHSA-6w7v-23mf-65g3)
+- [OSV MAL-2026-5186 — autotel-terminal npm malware (June 4 2026)](https://osv.dev/vulnerability/MAL-2026-5186)
+- [GHSA-cw9v-v9rh-r449 — autotel-terminal (June 4 2026)](https://github.com/advisories/GHSA-cw9v-v9rh-r449)
+- [OSV MAL-2026-5187 — supabase CLI npm malware (June 4 2026)](https://osv.dev/vulnerability/MAL-2026-5187)
+- [GHSA-x96m-c5fj-q75c — supabase (June 4 2026)](https://github.com/advisories/GHSA-x96m-c5fj-q75c)
 
 ## License
 

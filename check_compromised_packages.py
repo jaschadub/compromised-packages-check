@@ -104,7 +104,12 @@ vg-interaction-model npm dep-confusion June 2 2026 (OSV MAL-2026-5168; updated J
 communicates with a malicious domain; detected by OpenSSF Package Analysis),
 and brave-search-mcp-server npm malware June 3 2026 (OSV MAL-2026-5182;
 communicates with a malicious domain and executes malicious commands; detected
-by OpenSSF Package Analysis).
+by OpenSSF Package Analysis), the sf-silly-goose-requests PyPI TruffleHog-based
+secret exfiltrator June 4 2026 (OSV MAL-2026-5184), and the June 4 2026 npm
+full-compromise batch: @jagreehal/workflow (OSV MAL-2026-5185 / GHSA-6w7v-23mf-65g3),
+autotel-terminal (OSV MAL-2026-5186 / GHSA-cw9v-v9rh-r449), and supabase CLI
+(OSV MAL-2026-5187 / GHSA-x96m-c5fj-q75c; fresh single-source advisory filed on
+the same day version 2.105.0 was published).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -350,6 +355,12 @@ PYPI_BAD: dict[str, set[str]] = {
     # library. Detected by kam193 / bad-packages.kam193.eu.
     # OSV MAL-2026-5183
     "hpe-glcp-automation-lib": {"2.2160.0"},
+    # sf-silly-goose-requests PyPI TruffleHog-based secret exfiltrator (June 4 2026)
+    # Uses TruffleHog to scan the victim's environment for secrets, then exfiltrates
+    # discovered credentials to a hardcoded endpoint (13.219.230.105:80/beacon).
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5184
+    "sf-silly-goose-requests": {"0.1.0", "0.2.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1542,6 +1553,22 @@ NPM_BAD: dict[str, set[str]] = {
     # Analysis. Single version published; specific version pinned (no >=0 range).
     # OSV MAL-2026-5182
     "brave-search-mcp-server": {"1.0.0"},
+    # June 4 2026 npm full-compromise batch (ghsa-malware source)
+    # Three packages reported via GitHub Advisory Database automated malware detection.
+    # All three carry SEMVER >=0 range ("any installed version fully compromised");
+    # no specific versions enumerated by the reporters.
+    # @jagreehal/workflow: obscure workflow-automation package; SEMVER >=0.
+    #   OSV MAL-2026-5185 / GHSA-6w7v-23mf-65g3
+    "@jagreehal/workflow": set(),
+    # autotel-terminal: terminal-utility package; SEMVER >=0.
+    #   OSV MAL-2026-5186 / GHSA-cw9v-v9rh-r449
+    "autotel-terminal": set(),
+    # supabase (npm): the official Supabase CLI. Advisory was filed on June 4 2026
+    # (the same day version 2.105.0 was published from the supabase/cli GitHub Actions
+    # pipeline). GHSA source, single reporter, SEMVER >=0 — no specific compromised
+    # version enumerated. Gate: active OSV MAL record, not withdrawn.
+    # OSV MAL-2026-5187 / GHSA-x96m-c5fj-q75c
+    "supabase": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
