@@ -124,6 +124,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | chai-midpatch / nodemon-webpatch npm full-compromise typosquats — June 3 2026 | `chai-midpatch` any-version wildcard (MAL-2026-5179 / GHSA-qq87-jvv3-6c7r; continues Chai-typosquat campaign, cf. chai-parse; SEMVER >=0 range, any installed version renders host fully compromised); `nodemon-webpatch` any-version wildcard (MAL-2026-5180 / GHSA-q398-93fh-ghmj; continues nodemon-typosquat wave, cf. nodemon-pack) |
 | brave-search-mcp-server npm malware — June 3 2026 (OSV MAL-2026-5182) | `brave-search-mcp-server` 1.0.0 — communicates with a domain associated with malicious activity and executes commands associated with malicious behavior; detected by OpenSSF Package Analysis |
 | fia-signals / tronlab / tronlabpy3 PyPI malware batch — June 3 2026 | `fia-signals` 0.1.0, 0.1.3 (MAL-2026-5177; host-info exfiltrator, overrides setup.py to exfiltrate IP/username on install; detected by kam193); `tronlab` 0.0.1 (MAL-2026-5178; Tron/TRX private-key exfiltrator, sends stolen keys to mockapi.io/ngrok endpoints, 2025-04-tronix campaign); `tronlabpy3` 0.0.1 (MAL-2026-5181; same campaign as tronlab) |
+| hpe-glcp-automation-lib PyPI host-info exfiltrator — June 4 2026 (OSV MAL-2026-5183) | `hpe-glcp-automation-lib` 2.2160.0 — overrides setup.py install command to exfiltrate basic host data (IP, username) on install; impersonates an HPE GLCP automation library; detected by kam193 |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -491,6 +492,7 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [bad-packages.kam193.eu — tronlabpy3](https://bad-packages.kam193.eu/pypi/package/tronlabpy3)
 - [RUSTSEC-2026-0155 — exploration crates.io remote-execute dropper (June 2 2026)](https://rustsec.org/advisories/RUSTSEC-2026-0155.html)
 - [OSV MAL-2026-5182 — brave-search-mcp-server npm malware (June 3 2026)](https://osv.dev/vulnerability/MAL-2026-5182)
+- [OSV MAL-2026-5183 — hpe-glcp-automation-lib PyPI host-info exfiltrator (June 4 2026)](https://osv.dev/vulnerability/MAL-2026-5183)
 
 ## License
 

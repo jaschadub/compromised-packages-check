@@ -344,6 +344,12 @@ PYPI_BAD: dict[str, set[str]] = {
     "tronlab": {"0.0.1"},
     # OSV MAL-2026-5181 / https://bad-packages.kam193.eu/pypi/package/tronlabpy3
     "tronlabpy3": {"0.0.1"},
+    # hpe-glcp-automation-lib PyPI host-info exfiltrator (June 4 2026)
+    # Overrides setup.py install command to exfiltrate basic host data (IP, username)
+    # during installation; no other functionality. Impersonates an HPE GLCP automation
+    # library. Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5183
+    "hpe-glcp-automation-lib": {"2.2160.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
