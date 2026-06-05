@@ -134,6 +134,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | utils-mf npm WhatsApp-bot + exfiltration package — June 5 2026 (OSV MAL-2026-4699 / GHSA-4c54-hwv9-c5xm) | `utils-mf` 11.2.4–11.2.6, 11.4.1, 11.9.8–11.9.9, 12.0.1–12.0.2, 12.1.0–12.1.1 (10 versions) — ships a 15.7 MB obfuscator.io blob that opens a WhatsApp socket on require(), exfiltrates chat/contact/env state to the attacker's GitHub/GitLab repos on a 30-second timer, and silently self-updates from the npm registry at runtime; confirmed by amazon-inspector |
 | react-ui-polyfills remote-eval backdoor — June 5 2026 (OSV MAL-2026-4784 / GHSA-v7mj-pmr3-7x4p) | `react-ui-polyfills` any-version wildcard — fake React polyfills; exported getPlugin() fetches attacker-controlled JSON from a mutable jsonkeeper.com URL and passes the .cookie field to eval(); SEMVER >=0 range + specific versions 1.0.0/1.2.7 confirmed by amazon-inspector and GHSA |
 | glyphr / reactvora npm full-compromise pair — June 5 2026 | `glyphr` any-version wildcard (OSV MAL-2026-5269 / GHSA-c988-j68q-h8h4); `reactvora` any-version wildcard (OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f) — both GHSA-confirmed CWE-506 embedded malicious code; SEMVER >=0 range |
+| goodoldtoulas PyPI install-time dropper — June 5 2026 (OSV MAL-2026-5271) | `goodoldtoulas` 0.1.0 — overrides setup.py install command to download and execute a remote Windows executable from gofile.io CDN; detected by kam193; classified PROBABLY_PENTEST |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
 | @antv wave supplemental non-@antv npm packages — May 19 2026 | 15 packages compromised in the same 317-package @antv campaign but outside the @antv/ scope: `@lint-md/{cli,core,parser}`, `ast-plugin`, `canvas-nest.js`, `fixed-round`, `jest-date-mock`, `jest-less-loader`, `limit-size`, `miz`, `onfire.js`, `relationship.js`, `slice.js`, `word-width`, `xmorse` — exact version pairs per OSV MAL-2026-4123 through 4159 |
@@ -551,6 +552,7 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [GHSA-c988-j68q-h8h4 — glyphr malware](https://github.com/advisories/GHSA-c988-j68q-h8h4)
 - [OSV MAL-2026-5270 — reactvora npm full-compromise (June 5 2026)](https://osv.dev/vulnerability/MAL-2026-5270)
 - [GHSA-x4gw-cjrp-c89f — reactvora malware](https://github.com/advisories/GHSA-x4gw-cjrp-c89f)
+- [OSV MAL-2026-5271 — goodoldtoulas PyPI install-time dropper (June 5 2026)](https://osv.dev/vulnerability/MAL-2026-5271)
 
 ## License
 
