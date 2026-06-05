@@ -109,7 +109,11 @@ secret exfiltrator June 4 2026 (OSV MAL-2026-5184), and the June 4 2026 npm
 full-compromise batch: @jagreehal/workflow (OSV MAL-2026-5185 / GHSA-6w7v-23mf-65g3),
 autotel-terminal (OSV MAL-2026-5186 / GHSA-cw9v-v9rh-r449), and supabase CLI
 (OSV MAL-2026-5187 / GHSA-x96m-c5fj-q75c; fresh single-source advisory filed on
-the same day version 2.105.0 was published).
+the same day version 2.105.0 was published), and the binding.gyp npm worm campaign
+June 5 2026 (73 packages across multiple publishers: ai-sdk-ollama, @ethlete/* scope,
+@forjacms/* scope, @vapi-ai/server-sdk, autotel/awaitly/executable-stories/
+node-env-resolver ecosystems, Cloudflare Workers tools, and miscellaneous packages;
+OSV MAL-2026-5195 through MAL-2026-5267; StepSecurity + Endor Labs disclosure).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -122,7 +126,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-03
+Date:      2026-06-05
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1663,6 +1667,148 @@ NPM_BAD: dict[str, set[str]] = {
     "crypto-javascript": {"4.2.5", "4.2.10", "4.3.1", "4.3.4", "4.3.6"},
     "javascript-yaml": {"4.1.2"},
     "yaml-javascript": {"4.1.2"},
+    # binding.gyp npm worm campaign (June 5 2026) — multiple publisher accounts compromised
+    # A worm-style attack exploiting binding.gyp (native Node.js build files) to spread
+    # across packages during npm install. Initial discovery: ai-sdk-ollama. The worm
+    # spread to packages from many independent publishers: autotel, awaitly,
+    # executable-stories, node-env-resolver, @ethlete, @forjacms, @vapi-ai, and others.
+    # These are legitimate packages where specific versions were infected; pin exact
+    # versions (not empty-set wildcards). Two independent sources agree on version lists:
+    #   StepSecurity stepsecurity.io/blog/binding-gyp-npm-supply-chain-attack-spreads-like-worm
+    #   Endor Labs   endorlabs.com/learn/malicious-payload-in-ai-sdk-ollama-npm-package
+    #   OSV MAL-2026-5195 through MAL-2026-5267
+    # ai-sdk-ollama — initial discovery (OSV MAL-2026-5210)
+    "ai-sdk-ollama": {"0.13.1", "1.1.1", "2.2.1", "3.8.5"},
+    # @contaazul/n8n-nodes-contaazul (OSV MAL-2026-5195)
+    "@contaazul/n8n-nodes-contaazul": {"0.3.26"},
+    # @ethlete Angular component library scope — account compromise
+    # OSV MAL-2026-5196 (@ethlete/cdk), 5197 (cli), 5198 (components),
+    # 5199 (contentful), 5200 (core), 5201 (dsp), 5202 (query), 5203 (theming), 5204 (types)
+    "@ethlete/cdk": {"4.71.2"},
+    "@ethlete/cli": {"2.0.1"},
+    "@ethlete/components": {"3.3.1"},
+    "@ethlete/contentful": {"3.9.1"},
+    "@ethlete/core": {"4.31.1"},
+    "@ethlete/dsp": {"0.3.1"},
+    "@ethlete/query": {"5.43.2"},
+    "@ethlete/theming": {"2.7.1"},
+    "@ethlete/types": {"1.11.4"},
+    # @forjacms CMS scope compromise
+    # OSV MAL-2026-5205 (analytics), 5206 (client), 5207 (sections), 5208 (sections-react)
+    "@forjacms/analytics": {"1.8.4", "1.8.5"},
+    "@forjacms/client": {"1.8.4", "1.8.5"},
+    "@forjacms/sections": {"1.8.4", "1.8.5"},
+    "@forjacms/sections-react": {"1.8.4", "1.8.5"},
+    # @vapi-ai voice API SDK compromise (OSV MAL-2026-5209)
+    "@vapi-ai/server-sdk": {"0.11.1", "0.11.2", "1.2.1", "1.2.2"},
+    # autotel OpenTelemetry wrapper ecosystem
+    # OSV MAL-2026-5211 (autotel), 5212 (adapters), 5213 (audit), 5214 (aws),
+    # 5215 (backends), 5216 (cli), 5217 (cloudflare), 5218 (devtools), 5219 (drizzle),
+    # 5220 (edge), 5221 (eventcatalog), 5222 (hono), 5223 (mcp), 5224 (mcp-instrumentation),
+    # 5225 (mongoose), 5226 (pact), 5227 (playwright), 5228 (plugins), 5229 (sentry),
+    # 5230 (subscribers), 5231 (tanstack), 5232 (vitest), 5233 (web)
+    "autotel": {"2.26.4", "3.4.3"},
+    "autotel-adapters": {"0.3.5"},
+    "autotel-audit": {"0.1.15"},
+    "autotel-aws": {"0.13.10"},
+    "autotel-backends": {"2.12.26"},
+    "autotel-cli": {"0.8.14"},
+    "autotel-cloudflare": {"2.18.16"},
+    "autotel-devtools": {"0.1.1", "1.0.4", "2.1.1", "3.0.2", "4.0.1", "5.1.1", "6.1.2"},
+    "autotel-drizzle": {"0.0.27"},
+    "autotel-edge": {"3.16.13"},
+    "autotel-eventcatalog": {"1.0.1", "2.0.1", "3.0.1", "4.0.2", "5.0.1"},
+    "autotel-hono": {"0.4.26"},
+    "autotel-mcp": {
+        "0.1.14", "2.0.1", "3.0.1", "4.0.1", "5.0.1", "6.0.1", "7.0.1", "8.0.1",
+        "9.0.1", "10.0.1", "11.0.1", "13.0.1", "14.0.1", "15.0.2", "16.0.1",
+        "17.0.2", "18.0.1", "19.0.1", "20.0.1", "21.1.1", "22.0.1", "23.0.1",
+        "24.0.1", "25.0.1", "26.0.2", "27.0.1", "28.0.3", "29.0.1",
+    },
+    "autotel-mcp-instrumentation": {
+        "29.0.2", "30.0.5", "31.0.1", "32.0.1", "33.0.2", "34.0.1",
+    },
+    "autotel-mongoose": {"0.0.3", "1.0.2", "2.0.5", "3.0.1", "4.0.1", "5.0.2", "6.0.1"},
+    "autotel-pact": {"0.2.2", "1.0.3"},
+    "autotel-playwright": {"0.4.32"},
+    "autotel-plugins": {"0.19.26"},
+    "autotel-sentry": {"0.5.13"},
+    "autotel-subscribers": {
+        "4.1.1", "5.0.1", "6.0.1", "7.0.1", "8.0.1", "9.0.1", "10.0.1", "11.0.1",
+        "12.0.1", "13.0.1", "14.1.1", "15.0.1", "16.0.2", "17.0.1", "18.0.3",
+        "19.0.1", "20.0.1", "21.0.1", "22.0.2", "23.0.2", "24.0.1", "25.0.1",
+        "26.0.1", "27.0.2", "28.0.2", "29.0.6", "30.0.4", "31.1.4",
+    },
+    "autotel-tanstack": {"1.13.27"},
+    "autotel-vitest": {"0.4.26"},
+    "autotel-web": {"1.12.2"},
+    # awaitly async library ecosystem
+    # OSV MAL-2026-5234 (awaitly), 5235 (analyze), 5236 (libsql),
+    # 5237 (mongo), 5238 (postgres), 5239 (visualizer)
+    "awaitly": {"1.33.3"},
+    "awaitly-analyze": {"0.24.2", "1.1.1", "2.0.1", "3.0.1", "4.0.1", "5.0.1", "6.0.1", "7.0.1", "8.0.1"},
+    "awaitly-libsql": {
+        "0.1.1", "1.0.1", "2.0.1", "3.0.1", "4.0.1", "5.0.1", "6.0.1", "7.0.1",
+        "8.0.1", "9.0.1", "10.0.1", "11.0.1", "12.0.1", "13.0.1", "14.0.1",
+        "15.0.1", "16.0.1", "17.0.1", "18.1.1", "19.0.1", "20.0.1", "21.0.1", "22.0.1",
+    },
+    "awaitly-mongo": {
+        "0.1.1", "1.0.1", "2.0.1", "3.0.1", "4.0.1", "5.0.1", "6.0.1", "7.0.1",
+        "8.0.1", "9.1.1", "10.0.1", "11.0.1", "12.0.1", "13.0.1", "14.0.1",
+        "15.0.1", "16.0.1", "17.0.1", "18.0.1", "19.1.1", "20.0.1", "21.0.1",
+        "22.0.1", "23.0.1",
+    },
+    "awaitly-postgres": {
+        "0.1.1", "1.0.1", "2.0.1", "3.0.2", "4.0.1", "5.0.1", "6.0.1", "7.0.1",
+        "8.0.1", "9.0.1", "10.0.1", "11.0.1", "12.0.1", "13.0.1", "14.0.1",
+        "15.0.1", "16.0.1", "17.0.1", "18.0.1", "19.1.1", "20.0.1", "21.0.1",
+        "22.0.1", "23.0.1",
+    },
+    "awaitly-visualizer": {
+        "1.0.1", "2.0.2", "3.0.1", "4.0.1", "5.0.1", "6.0.1", "7.0.1", "8.0.1",
+        "9.0.1", "10.0.1", "11.0.1", "12.0.1", "13.0.1", "14.0.1", "15.0.1",
+        "16.0.1", "17.0.1", "18.1.1", "19.0.1", "20.0.2", "21.0.1", "22.0.2",
+    },
+    # executable-stories testing framework + awaitly eslint ecosystem
+    # OSV MAL-2026-5246 (eslint-plugin-awaitly), 5247 (eslint-plugin-executable-stories-jest),
+    # 5248 (eslint-plugin-executable-stories-playwright), 5249 (eslint-plugin-executable-stories-vitest),
+    # 5250 (executable-stories-cypress), 5251 (demo), 5252 (formatters), 5253 (init),
+    # 5254 (jest), 5255 (mcp), 5256 (playwright), 5257 (react), 5258 (vitest)
+    "eslint-plugin-awaitly": {"0.17.1", "1.0.1"},
+    "eslint-plugin-executable-stories-jest": {"1.2.1", "2.1.8"},
+    "eslint-plugin-executable-stories-playwright": {"1.2.1", "2.1.8"},
+    "eslint-plugin-executable-stories-vitest": {"1.2.1", "2.1.8"},
+    "executable-stories-cypress": {"3.1.1", "4.0.1", "5.0.1", "6.1.1", "7.0.3", "8.3.2"},
+    "executable-stories-demo": {"0.1.11"},
+    "executable-stories-formatters": {"0.11.2"},
+    "executable-stories-init": {"0.1.2"},
+    "executable-stories-jest": {"3.1.1", "4.0.1", "5.0.1", "6.1.1", "7.0.3", "8.3.2"},
+    "executable-stories-mcp": {"0.3.3"},
+    "executable-stories-playwright": {"3.1.1", "4.0.1", "5.0.1", "6.1.1", "7.0.3", "8.4.3"},
+    "executable-stories-react": {"0.1.7"},
+    "executable-stories-vitest": {"2.0.1", "3.1.1", "4.0.1", "5.0.1", "6.1.1", "7.0.3", "8.3.3"},
+    # node-env-resolver environment variable library ecosystem
+    # OSV MAL-2026-5262 (node-env-resolver), 5263 (aws), 5264 (dotenvx), 5265 (nextjs), 5266 (vite)
+    "node-env-resolver": {"6.5.1"},
+    "node-env-resolver-aws": {"9.1.2", "10.0.1", "11.0.1", "12.0.1"},
+    "node-env-resolver-dotenvx": {"1.0.1", "2.0.1"},
+    "node-env-resolver-nextjs": {"7.4.2"},
+    "node-env-resolver-vite": {"2.4.2"},
+    # Cloudflare Workers deployment tools
+    # OSV MAL-2026-5240 (create-cf-token), 5241 (create-wrangler-deploy), 5267 (wrangler-deploy)
+    "create-cf-token": {"1.1.2", "1.1.3"},
+    "create-wrangler-deploy": {"0.1.1"},
+    "wrangler-deploy": {"1.5.5"},
+    # Miscellaneous packages from the binding.gyp worm campaign
+    # OSV MAL-2026-5242 (creditcard.js), 5243 (dbmux), 5244 (discord-search),
+    # 5245 (effect-analyzer), 5259 (github-archiver), 5260 (mountly), 5261 (mountly-tailwind)
+    "creditcard.js": {"2.1.8", "3.0.60"},
+    "dbmux": {"1.0.5"},
+    "discord-search": {"0.1.1", "0.1.2"},
+    "effect-analyzer": {"0.3.1"},
+    "github-archiver": {"1.5.4", "1.5.5"},
+    "mountly": {"0.2.2"},
+    "mountly-tailwind": {"0.1.3"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
