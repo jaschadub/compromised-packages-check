@@ -113,7 +113,9 @@ the same day version 2.105.0 was published), and the binding.gyp npm worm campai
 June 5 2026 (73 packages across multiple publishers: ai-sdk-ollama, @ethlete/* scope,
 @forjacms/* scope, @vapi-ai/server-sdk, autotel/awaitly/executable-stories/
 node-env-resolver ecosystems, Cloudflare Workers tools, and miscellaneous packages;
-OSV MAL-2026-5195 through MAL-2026-5267; StepSecurity + Endor Labs disclosure).
+OSV MAL-2026-5195 through MAL-2026-5267; StepSecurity + Endor Labs disclosure),
+and the ulid-os npm full-compromise typosquat June 5 2026
+(OSV MAL-2026-5268 / GHSA-fxhm-35h8-7jc7).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1809,6 +1811,12 @@ NPM_BAD: dict[str, set[str]] = {
     "github-archiver": {"1.5.4", "1.5.5"},
     "mountly": {"0.2.2"},
     "mountly-tailwind": {"0.1.3"},
+    # ulid-os npm full-compromise typosquat (June 5 2026)
+    # GHSA-confirmed any-version malware: "Any computer that has this package installed or
+    # running should be considered fully compromised." OSV affected.ranges >=0 — use
+    # the empty-set wildcard so any re-uploaded version is caught.
+    # OSV MAL-2026-5268 / GHSA-fxhm-35h8-7jc7
+    "ulid-os": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
