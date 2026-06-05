@@ -1569,6 +1569,71 @@ NPM_BAD: dict[str, set[str]] = {
     # version enumerated. Gate: active OSV MAL record, not withdrawn.
     # OSV MAL-2026-5187 / GHSA-x96m-c5fj-q75c
     "supabase": set(),
+    # IronWorm supply-chain campaign (June 4 2026) — WeaveDB / Arweave ecosystem
+    # A Rust-compiled 976 KB ELF x86-64 binary (sha256
+    # 36abd242ddaa27f0160c539377a0e92cf781c1695137850acc87e3892b436d36) is shipped
+    # inside npm tarballs and executed automatically via preinstall hooks on
+    # `npm install`. The binary harvests developer credentials: cloud provider keys,
+    # SSH key material, npm auth tokens, and crypto wallet keystores, then exfiltrates
+    # them over HTTP. Targets the WeaveDB decentralised-database ecosystem and related
+    # Arweave / blockchain developer tooling. JFrog calls it "Shai-Hulud's rustier
+    # cousin"; OX Security confirmed the campaign independently with identical version lists.
+    # Two independent vendor writeups agree on the full version list:
+    #   OX Security ox.security/blog/ironworm-supply-chain-malware-hits-npm/
+    #   JFrog       research.jfrog.com/post/iron-worm-shai-hulud-rustier-cousin/
+    # OSV MAL-2026-4476 (ai3), 4480 (aonote), 4482 (arnext), 4483 (arnext-arkb),
+    # 4486 (atomic-notes), 4538 (create-arnext-app), 4544 (cwao), 4545 (cwao-tools),
+    # 4546 (cwao-units), 4566 (fpjson-lang), 4613 (monade), 4663 (roidjs),
+    # 4689 (test-ajs), 4690 (test-weavedb-sdk), 4691 (testnpmnmp), 4711 (wao),
+    # 4712 (warp-contracts-plugin-deploy-test), 4713 (wdb-cli), 4714 (wdb-sdk),
+    # 4715 (weavedb-base), 4716 (weavedb-client), 4717 (weavedb-console),
+    # 4718 (weavedb-exm-sdk), 4719 (weavedb-exm-sdk-web), 4720 (weavedb-lite),
+    # 4721 (weavedb-node-client), 4722 (weavedb-offchain), 4723 (weavedb-sdk),
+    # 4724 (weavedb-sdk-base), 4725 (weavedb-sdk-node), 4726 (weavedb-tools),
+    # 4727 (weavedb-warp-contracts-plugin-deploy), 4739 (zkjson),
+    # 5189 (arjson), 5190 (hbsig), 5191 (wdb-core), 5192 (weavedb-contracts)
+    "ai3": {"0.3.5"},
+    "aonote": {"0.11.1"},
+    "arnext": {"0.1.5"},
+    "arnext-arkb": {"0.0.2"},
+    "atomic-notes": {"0.5.3"},
+    "create-arnext-app": {"0.0.10"},
+    "cwao": {"0.5.6"},
+    "cwao-tools": {"0.3.1"},
+    "cwao-units": {"0.8.3"},
+    "fpjson-lang": {"0.1.7"},
+    "monade": {"0.0.7"},
+    "roidjs": {"0.1.7"},
+    "test-ajs": {"0.1.19"},
+    "test-weavedb-sdk": {"1.1.1"},
+    "testnpmnmp": {"1.0.21"},
+    "wao": {"0.41.2", "0.41.3"},
+    "warp-contracts-plugin-deploy-test": {"3.0.1"},
+    "wdb-cli": {"0.1.1"},
+    "wdb-sdk": {"0.1.2"},
+    "weavedb-base": {"0.45.3"},
+    "weavedb-client": {"0.45.3"},
+    "weavedb-console": {"0.2.1"},
+    "weavedb-exm-sdk": {"0.7.4"},
+    "weavedb-exm-sdk-web": {"0.7.4"},
+    "weavedb-lite": {"0.1.1"},
+    "weavedb-node-client": {"0.45.3"},
+    "weavedb-offchain": {"0.45.4"},
+    "weavedb-sdk": {"0.45.3"},
+    "weavedb-sdk-base": {"0.21.1"},
+    "weavedb-sdk-node": {"0.45.3"},
+    "weavedb-tools": {"0.45.3"},
+    "weavedb-warp-contracts-plugin-deploy": {"1.0.11"},
+    "zkjson": {"0.8.5"},
+    "arjson": {"0.1.4"},
+    "hbsig": {"0.3.2"},
+    "wdb-core": {"0.1.2"},
+    "weavedb-contracts": {"0.45.2"},
+    # hello244a npm malware (June 4 2026)
+    # Communicates with a domain associated with malicious activity and executes
+    # commands associated with malicious behavior; detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-5188
+    "hello244a": {"1.0.4", "1.0.1"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
