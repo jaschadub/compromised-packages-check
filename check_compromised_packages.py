@@ -115,7 +115,13 @@ June 5 2026 (73 packages across multiple publishers: ai-sdk-ollama, @ethlete/* s
 node-env-resolver ecosystems, Cloudflare Workers tools, and miscellaneous packages;
 OSV MAL-2026-5195 through MAL-2026-5267; StepSecurity + Endor Labs disclosure),
 and the ulid-os npm full-compromise typosquat June 5 2026
-(OSV MAL-2026-5268 / GHSA-fxhm-35h8-7jc7).
+(OSV MAL-2026-5268 / GHSA-fxhm-35h8-7jc7), the utils-mf npm WhatsApp-bot
+credential-exfiltration package June 5 2026 (OSV MAL-2026-4699 /
+GHSA-4c54-hwv9-c5xm; 10 specific versions), the react-ui-polyfills remote-eval
+backdoor npm package June 5 2026 (OSV MAL-2026-4784 / GHSA-v7mj-pmr3-7x4p),
+and the June 5 2026 GHSA full-compromise npm pair glyphr
+(OSV MAL-2026-5269 / GHSA-c988-j68q-h8h4) and reactvora
+(OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1817,6 +1823,37 @@ NPM_BAD: dict[str, set[str]] = {
     # the empty-set wildcard so any re-uploaded version is caught.
     # OSV MAL-2026-5268 / GHSA-fxhm-35h8-7jc7
     "ulid-os": set(),
+    # utils-mf npm WhatsApp-bot + data-exfiltration + silent self-updater (June 5 2026)
+    # Ships a 15.7 MB obfuscator.io blob padded with invisible Unicode whitespace to
+    # conceal its contents.  On require() it: (1) opens a WhatsApp socket that prompts
+    # on stdin for a pairing-code phone number and persists credential state in ./sessions/;
+    # (2) runs a 30-second setInterval that PUTs accumulated chat/contact/env state to the
+    # attacker's GitHub and GitLab repos; (3) fetches the latest tarball from the npm
+    # registry and silently overwrites node_modules/utils-mf/ at runtime to enable
+    # remote payload updates without a reinstall.  First published May 21 2026; GHSA alias
+    # confirmed June 5 2026 by amazon-inspector.  No >=0 range in OSV — pin exact versions.
+    # OSV MAL-2026-4699 / GHSA-4c54-hwv9-c5xm
+    "utils-mf": {
+        "11.2.4", "11.2.5", "11.2.6", "11.4.1",
+        "11.9.8", "11.9.9", "12.0.1", "12.0.2", "12.1.0", "12.1.1",
+    },
+    # react-ui-polyfills remote-eval backdoor (June 5 2026)
+    # Advertises itself as React polyfills / UI compatibility helpers but ships no React
+    # or polyfill code.  The exported getPlugin() function fetches JSON from a mutable
+    # jsonkeeper.com paste URL and passes the returned .cookie field directly to eval(),
+    # executing attacker-controlled JavaScript in the consumer's process.  First published
+    # May 26 2026; GHSA alias confirmed June 5 2026.  OSV has both specific versions (1.0.0,
+    # 1.2.7) and a >=0 SEMVER range — per convention the whole package is malicious; use
+    # the empty-set wildcard.
+    # OSV MAL-2026-4784 / GHSA-v7mj-pmr3-7x4p
+    "react-ui-polyfills": set(),
+    # June 5 2026 GHSA full-compromise npm pair
+    # glyphr: GHSA-confirmed any-version; CWE-506 embedded malicious code.
+    #   OSV MAL-2026-5269 / GHSA-c988-j68q-h8h4
+    # reactvora: GHSA-confirmed any-version; CWE-506 embedded malicious code.
+    #   OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f
+    "glyphr": set(),
+    "reactvora": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
