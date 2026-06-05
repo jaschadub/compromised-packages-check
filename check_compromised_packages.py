@@ -1634,6 +1634,35 @@ NPM_BAD: dict[str, set[str]] = {
     # commands associated with malicious behavior; detected by OpenSSF Package Analysis.
     # OSV MAL-2026-5188
     "hello244a": {"1.0.4", "1.0.1"},
+    # IronWorm supplemental packages (June 5 2026)
+    # Additional npm packages in the IronWorm campaign carrying the same Rust-compiled
+    # x86-64 ELF preinstall dropper that exfiltrates cloud keys, SSH material, npm tokens,
+    # and crypto wallet keystores. These impersonate widely-used JavaScript utility libraries
+    # (js-yaml, crypto-js, Microsoft Application Insights, Supabase client, etc.).
+    # Two independent vendors confirm the same package list and campaign attribution:
+    #   OX Security ox.security/blog/ironworm-supply-chain-malware-hits-npm/
+    #   JFrog       research.jfrog.com/post/iron-worm-shai-hulud-rustier-cousin/
+    # auth-javascript:                   OSV MAL-2026-3648 (SEMVER >=0 — any version)
+    # iceberg-javascript:                OSV MAL-2026-3649 (SEMVER >=0 — any version)
+    # microsoft-applicationinsights-common: OSV MAL-2026-3650 (SEMVER >=0 — any version)
+    # ms-graph-types:                    OSV MAL-2026-3651 (SEMVER >=0 — any version)
+    # supabase-javascript:               OSV MAL-2026-3652 (SEMVER >=0 — any version)
+    # crypto-javascri:                   OSV MAL-2026-3508 (15 specific versions; no >=0 range)
+    # crypto-javascript:                 OSV MAL-2026-4542 (5 specific versions; no >=0 range)
+    # javascript-yaml:                   OSV MAL-2026-5193 (1 specific version; no >=0 range)
+    # yaml-javascript:                   OSV MAL-2026-5194 (1 specific version; no >=0 range)
+    "auth-javascript": set(),
+    "iceberg-javascript": set(),
+    "microsoft-applicationinsights-common": set(),
+    "ms-graph-types": set(),
+    "supabase-javascript": set(),
+    "crypto-javascri": {
+        "1.0.1", "1.2.1", "1.2.6", "1.2.8", "1.2.10", "1.2.11", "1.2.12",
+        "1.3.6", "1.3.7", "1.4.1", "1.4.2", "1.4.3", "1.4.4", "1.4.5", "3.0.1",
+    },
+    "crypto-javascript": {"4.2.5", "4.2.10", "4.3.1", "4.3.4", "4.3.6"},
+    "javascript-yaml": {"4.1.2"},
+    "yaml-javascript": {"4.1.2"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
