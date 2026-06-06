@@ -121,8 +121,9 @@ GHSA-4c54-hwv9-c5xm; 10 specific versions), the react-ui-polyfills remote-eval
 backdoor npm package June 5 2026 (OSV MAL-2026-4784 / GHSA-v7mj-pmr3-7x4p),
 and the June 5 2026 GHSA full-compromise npm pair glyphr
 (OSV MAL-2026-5269 / GHSA-c988-j68q-h8h4) and reactvora
-(OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f), and the goodoldtoulas
-PyPI install-time dropper June 5 2026 (OSV MAL-2026-5271).
+(OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f), the goodoldtoulas / goodoltoulas
+PyPI install-time droppers June 5 2026 (OSV MAL-2026-5271/5272), and the
+anthropy PyPI reverse-shell infostealer June 5 2026 (OSV MAL-2026-5273).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -374,12 +375,19 @@ PYPI_BAD: dict[str, set[str]] = {
     # Detected by kam193 / bad-packages.kam193.eu.
     # OSV MAL-2026-5184
     "sf-silly-goose-requests": {"0.1.0", "0.2.0"},
-    # goodoldtoulas PyPI install-time dropper (June 5 2026)
-    # Overrides setup.py install command to download and execute a remote Windows
-    # executable (from cold-eu-par-1.gofile.io) during pip install.
-    # Classified PROBABLY_PENTEST by kam193; active OSV record, single version published.
+    # goodoldtoulas / goodoltoulas PyPI install-time droppers (June 5 2026)
+    # Both overrides setup.py install command to download and execute a remote Windows
+    # executable during pip install. Classified PROBABLY_PENTEST by kam193; active
+    # OSV records, single version each published before takedown.
     # OSV MAL-2026-5271 / https://bad-packages.kam193.eu/pypi/package/goodoldtoulas
     "goodoldtoulas": {"0.1.0"},
+    # OSV MAL-2026-5272 / https://bad-packages.kam193.eu/pypi/package/goodoltoulas
+    "goodoltoulas": {"0.1.0"},
+    # anthropy PyPI reverse-shell infostealer (June 5 2026)
+    # On import the package starts a reverse shell. Categorized MALICIOUS (clearly
+    # malicious intent) by kam193. Six consecutive versions published before takedown.
+    # OSV MAL-2026-5273 / https://bad-packages.kam193.eu/pypi/package/anthropy
+    "anthropy": {"0.0.1", "0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6"},
 }
 
 # npm: exact package name -> set of malicious versions.
