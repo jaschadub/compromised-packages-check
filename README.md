@@ -136,6 +136,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | glyphr / reactvora npm full-compromise pair — June 5 2026 | `glyphr` any-version wildcard (OSV MAL-2026-5269 / GHSA-c988-j68q-h8h4); `reactvora` any-version wildcard (OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f) — both GHSA-confirmed CWE-506 embedded malicious code; SEMVER >=0 range |
 | goodoldtoulas / goodoltoulas PyPI install-time droppers — June 5 2026 (OSV MAL-2026-5271/5272) | `goodoldtoulas` 0.1.0; `goodoltoulas` 0.1.0 — both override setup.py install command to download and execute a remote Windows executable during pip install; detected by kam193; classified PROBABLY_PENTEST |
 | anthropy PyPI reverse-shell infostealer — June 5 2026 (OSV MAL-2026-5273) | `anthropy` 0.0.1–0.0.6 — starts a reverse shell on import; categorized MALICIOUS by kam193; 6 consecutive versions published before takedown |
+| Dep-confusion 99.x npm batch — June 6 2026 (OSV MAL-2026-5286/5287/5288) | `encrypted-archive` 99.0.0, `uhd-setup` 99.0.0, `uisp-connector` 99.0.0 — all three detected by OpenSSF Package Analysis communicating with a domain associated with malicious activity; high-version (99.x) shadow packages targeting private CI pipelines |
 | Woodpecker PyPI infostealer campaign — June 6 2026 (OSV MAL-2026-5274 through MAL-2026-5285) | Twelve legitimate scientific/systems packages with specific versions compromised: `dynamo-release` 1.5.4; `napari-ufish` 0.0.2, 0.0.3; `nucbox` 0.1.2, 0.1.3; `pantheon-toolsets` 0.5.5, 0.5.6; `spateo-release` 1.1.2; `uprobe` 0.1.3, 0.1.4; `bramin` 0.0.3, 0.0.4; `executor-http` 0.1.3, 0.1.4; `mrbios` 0.1.1, 0.1.2; `okite` 0.0.7, 0.0.8; `synago` 0.1.1, 0.1.2; `ufish` 0.1.2, 0.1.3 — each ships a heavily obfuscated JS payload executed via Bun runtime on Python startup; collects API keys, registry credentials, crypto wallet keystores, and password-manager data; exfiltrates via GitHub; attempts persistence and self-propagation by republishing infected packages using stolen credentials; related to the Mini Shai Hulud campaign; detected by kam193/bad-packages.eu |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
 | Mini Shai-Hulud additional packages — May 2026 (GHSA-cqpw-mfqj-f2j7) | `@beproduct/nestjs-auth` 0.1.2–0.1.19 (18 versions); `@tallyui/storage-sqlite` 0.2.1–0.2.3 — same Shai-Hulud postinstall bundle as @tanstack/* packages |
@@ -574,6 +575,9 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5284 — synago PyPI Woodpecker infostealer (June 6 2026)](https://osv.dev/vulnerability/MAL-2026-5284)
 - [OSV MAL-2026-5285 — ufish PyPI Woodpecker infostealer (June 6 2026)](https://osv.dev/vulnerability/MAL-2026-5285)
 - [bad-packages.kam193.eu — Woodpecker campaign (2026-06-compr-woodpecker)](https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker)
+- [OSV MAL-2026-5286 — encrypted-archive npm dep-confusion malware (June 6 2026)](https://osv.dev/vulnerability/MAL-2026-5286)
+- [OSV MAL-2026-5287 — uhd-setup npm dep-confusion malware (June 6 2026)](https://osv.dev/vulnerability/MAL-2026-5287)
+- [OSV MAL-2026-5288 — uisp-connector npm dep-confusion malware (June 6 2026)](https://osv.dev/vulnerability/MAL-2026-5288)
 
 ## License
 
