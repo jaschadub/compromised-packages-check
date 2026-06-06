@@ -124,10 +124,11 @@ and the June 5 2026 GHSA full-compromise npm pair glyphr
 (OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f), the goodoldtoulas / goodoltoulas
 PyPI install-time droppers June 5 2026 (OSV MAL-2026-5271/5272), and the
 anthropy PyPI reverse-shell infostealer June 5 2026 (OSV MAL-2026-5273), and
-the Woodpecker PyPI infostealer campaign June 6 2026 (six legitimate scientific /
+the Woodpecker PyPI infostealer campaign June 6 2026 (twelve legitimate scientific /
 systems packages: dynamo-release, napari-ufish, nucbox, pantheon-toolsets,
-spateo-release, uprobe; obfuscated Bun-runtime JS payload exfiltrating credentials
-and crypto wallet data; OSV MAL-2026-5274 through MAL-2026-5279).
+spateo-release, uprobe, bramin, executor-http, mrbios, okite, synago, ufish;
+obfuscated Bun-runtime JS payload exfiltrating credentials and crypto wallet data;
+OSV MAL-2026-5274 through MAL-2026-5285).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -393,7 +394,7 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-5273 / https://bad-packages.kam193.eu/pypi/package/anthropy
     "anthropy": {"0.0.1", "0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6"},
     # Woodpecker PyPI infostealer campaign (June 6 2026)
-    # Six legitimate scientific / systems packages had specific versions compromised.
+    # Twelve legitimate scientific / systems packages had specific versions compromised.
     # Each ships a heavily obfuscated JavaScript payload executed via Bun runtime on
     # Python startup. The payload collects API keys, PyPI/npm/GitHub credentials,
     # cryptocurrency wallet keystores, and password-manager data, then exfiltrates
@@ -413,6 +414,19 @@ PYPI_BAD: dict[str, set[str]] = {
     "spateo-release": {"1.1.2"},
     # OSV MAL-2026-5279
     "uprobe": {"0.1.3", "0.1.4"},
+    # Six additional Woodpecker packages confirmed June 6 2026 (same campaign)
+    # OSV MAL-2026-5280
+    "bramin": {"0.0.3", "0.0.4"},
+    # OSV MAL-2026-5281
+    "executor-http": {"0.1.3", "0.1.4"},
+    # OSV MAL-2026-5282
+    "mrbios": {"0.1.1", "0.1.2"},
+    # OSV MAL-2026-5283
+    "okite": {"0.0.7", "0.0.8"},
+    # OSV MAL-2026-5284
+    "synago": {"0.1.1", "0.1.2"},
+    # OSV MAL-2026-5285
+    "ufish": {"0.1.2", "0.1.3"},
 }
 
 # npm: exact package name -> set of malicious versions.
