@@ -1908,6 +1908,15 @@ NPM_BAD: dict[str, set[str]] = {
     #   OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f
     "glyphr": set(),
     "reactvora": set(),
+    # Dep-confusion 99.x npm batch (June 6 2026)
+    # Three packages published at version 99.0.0 detected by OpenSSF Package Analysis
+    # communicating with a domain associated with malicious activity. High-version
+    # shadow pattern typical of dependency-confusion attacks targeting private CI pipelines.
+    # OSV MAL-2026-5286 (encrypted-archive), MAL-2026-5287 (uhd-setup),
+    # MAL-2026-5288 (uisp-connector)
+    "encrypted-archive": {"99.0.0"},
+    "uhd-setup": {"99.0.0"},
+    "uisp-connector": {"99.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
