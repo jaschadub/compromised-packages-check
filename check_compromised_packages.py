@@ -123,7 +123,11 @@ and the June 5 2026 GHSA full-compromise npm pair glyphr
 (OSV MAL-2026-5269 / GHSA-c988-j68q-h8h4) and reactvora
 (OSV MAL-2026-5270 / GHSA-x4gw-cjrp-c89f), the goodoldtoulas / goodoltoulas
 PyPI install-time droppers June 5 2026 (OSV MAL-2026-5271/5272), and the
-anthropy PyPI reverse-shell infostealer June 5 2026 (OSV MAL-2026-5273).
+anthropy PyPI reverse-shell infostealer June 5 2026 (OSV MAL-2026-5273), and
+the Woodpecker PyPI infostealer campaign June 6 2026 (six legitimate scientific /
+systems packages: dynamo-release, napari-ufish, nucbox, pantheon-toolsets,
+spateo-release, uprobe; obfuscated Bun-runtime JS payload exfiltrating credentials
+and crypto wallet data; OSV MAL-2026-5274 through MAL-2026-5279).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -136,7 +140,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-05
+Date:      2026-06-06
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -388,6 +392,27 @@ PYPI_BAD: dict[str, set[str]] = {
     # malicious intent) by kam193. Six consecutive versions published before takedown.
     # OSV MAL-2026-5273 / https://bad-packages.kam193.eu/pypi/package/anthropy
     "anthropy": {"0.0.1", "0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6"},
+    # Woodpecker PyPI infostealer campaign (June 6 2026)
+    # Six legitimate scientific / systems packages had specific versions compromised.
+    # Each ships a heavily obfuscated JavaScript payload executed via Bun runtime on
+    # Python startup. The payload collects API keys, PyPI/npm/GitHub credentials,
+    # cryptocurrency wallet keystores, and password-manager data, then exfiltrates
+    # via GitHub. It also attempts persistence and self-propagation by republishing
+    # infected copies using stolen registry credentials. Described by kam193 as
+    # related to the Mini Shai Hulud worm campaign.
+    # Primary source: OSV (kam193/bad-packages.eu); exact versions only (no >=0 range).
+    # OSV MAL-2026-5274 (dynamo-release)
+    "dynamo-release": {"1.5.4"},
+    # OSV MAL-2026-5275 / https://bad-packages.kam193.eu/pypi/package/napari-ufish
+    "napari-ufish": {"0.0.2", "0.0.3"},
+    # OSV MAL-2026-5276 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
+    "nucbox": {"0.1.2", "0.1.3"},
+    # OSV MAL-2026-5277
+    "pantheon-toolsets": {"0.5.5", "0.5.6"},
+    # OSV MAL-2026-5278
+    "spateo-release": {"1.1.2"},
+    # OSV MAL-2026-5279
+    "uprobe": {"0.1.3", "0.1.4"},
 }
 
 # npm: exact package name -> set of malicious versions.
