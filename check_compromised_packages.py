@@ -1995,6 +1995,12 @@ CRATES_BAD: dict[str, set[str]] = {
     # malicious (ranges: introduced 0.0.0-0, patched = []).
     # RUSTSEC-2026-0155; reported by Socket Threat Research Team.
     "exploration": set(),
+    # logflux Rust-job-application dropper (June 3 2026)
+    # Attempted to download and run a malicious payload; 1 version published
+    # 2026-04-26 (~1 month before removal); no actual usage. Part of a campaign
+    # targeting Rust job applicants via take-home assignments with malicious deps.
+    # RUSTSEC-2026-0171; reported by Paweł Bis.
+    "logflux": set(),
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
