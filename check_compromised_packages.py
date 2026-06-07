@@ -129,7 +129,12 @@ systems packages: dynamo-release, napari-ufish, nucbox, pantheon-toolsets,
 spateo-release, uprobe, bramin, executor-http, mrbios, okite, synago, ufish;
 obfuscated Bun-runtime JS payload exfiltrating credentials and crypto wallet data;
 OSV MAL-2026-5274 through MAL-2026-5285), and the dep-confusion 99.x npm batch
-extension June 6 2026 (unifi-portal 99.0.0; OSV MAL-2026-5289).
+extension June 6 2026 (unifi-portal 99.0.0; OSV MAL-2026-5289), and the
+clip-logger PyPI clipboard-stealing crypto campaign June 7 2026 (clip-logger
+8 versions, bittensor-burn-watch 16 versions; OSV MAL-2026-5292/5293), the
+Woodpecker PyPI campaign additional packages June 7 2026 (cmd2func 0.2.2/0.2.3,
+magique-ai 0.4.5; OSV MAL-2026-5290/5294), and sequoia-engineering npm malware
+June 7 2026 (OSV MAL-2026-5291).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -401,6 +406,23 @@ PYPI_BAD: dict[str, set[str]] = {
     # malicious intent) by kam193. Six consecutive versions published before takedown.
     # OSV MAL-2026-5273 / https://bad-packages.kam193.eu/pypi/package/anthropy
     "anthropy": {"0.0.1", "0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6"},
+    # clip-logger PyPI clipboard-stealing crypto campaign (June 7 2026)
+    # Both packages periodically monitor the clipboard for content matching patterns
+    # consistent with cryptocurrency secret phrases (BIP-39 mnemonics), then
+    # exfiltrate any match to a hardcoded remote endpoint. Early versions of
+    # clip-logger documented this behaviour explicitly in the README.
+    # Targeted data are likely cryptocurrency recovery phrases / private keys.
+    # Detected and reported by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5293 (clip-logger), MAL-2026-5292 (bittensor-burn-watch)
+    "clip-logger": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",
+        "1.1.0", "1.1.1", "1.1.2",
+    },
+    "bittensor-burn-watch": {
+        "1.2.0", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7",
+        "1.2.9", "1.2.10", "1.2.11", "1.2.12",
+        "1.3.0", "1.3.1", "1.3.2", "1.3.3", "1.3.4",
+    },
     # Woodpecker PyPI infostealer campaign (June 6 2026)
     # Twelve legitimate scientific / systems packages had specific versions compromised.
     # Each ships a heavily obfuscated JavaScript payload executed via Bun runtime on
@@ -435,6 +457,14 @@ PYPI_BAD: dict[str, set[str]] = {
     "synago": {"0.1.1", "0.1.2"},
     # OSV MAL-2026-5285
     "ufish": {"0.1.2", "0.1.3"},
+    # Two additional Woodpecker campaign packages confirmed June 7 2026 (same campaign)
+    # cmd2func: versions 0.2.2 and 0.2.3 were compromised with the same obfuscated
+    #   Bun-runtime JS infostealer payload as the rest of the Woodpecker cluster.
+    #   OSV MAL-2026-5290 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
+    "cmd2func": {"0.2.2", "0.2.3"},
+    # magique-ai: version 0.4.5 was compromised with the same Woodpecker payload.
+    #   OSV MAL-2026-5294 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
+    "magique-ai": {"0.4.5"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1926,6 +1956,11 @@ NPM_BAD: dict[str, set[str]] = {
     "uhd-setup": {"99.0.0"},
     "uisp-connector": {"99.0.0"},
     "unifi-portal": {"99.0.0"},
+    # sequoia-engineering npm malware (June 7 2026)
+    # Communicates with a domain associated with malicious activity;
+    # detected by OpenSSF Package Analysis. Single version published.
+    # OSV MAL-2026-5291
+    "sequoia-engineering": {"2.2.2"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
