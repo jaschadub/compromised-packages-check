@@ -128,7 +128,8 @@ the Woodpecker PyPI infostealer campaign June 6 2026 (twelve legitimate scientif
 systems packages: dynamo-release, napari-ufish, nucbox, pantheon-toolsets,
 spateo-release, uprobe, bramin, executor-http, mrbios, okite, synago, ufish;
 obfuscated Bun-runtime JS payload exfiltrating credentials and crypto wallet data;
-OSV MAL-2026-5274 through MAL-2026-5285).
+OSV MAL-2026-5274 through MAL-2026-5285), and the dep-confusion 99.x npm batch
+extension June 6 2026 (unifi-portal 99.0.0; OSV MAL-2026-5289).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1909,14 +1910,15 @@ NPM_BAD: dict[str, set[str]] = {
     "glyphr": set(),
     "reactvora": set(),
     # Dep-confusion 99.x npm batch (June 6 2026)
-    # Three packages published at version 99.0.0 detected by OpenSSF Package Analysis
+    # Four packages published at version 99.0.0 detected by OpenSSF Package Analysis
     # communicating with a domain associated with malicious activity. High-version
     # shadow pattern typical of dependency-confusion attacks targeting private CI pipelines.
     # OSV MAL-2026-5286 (encrypted-archive), MAL-2026-5287 (uhd-setup),
-    # MAL-2026-5288 (uisp-connector)
+    # MAL-2026-5288 (uisp-connector), MAL-2026-5289 (unifi-portal)
     "encrypted-archive": {"99.0.0"},
     "uhd-setup": {"99.0.0"},
     "uisp-connector": {"99.0.0"},
+    "unifi-portal": {"99.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
