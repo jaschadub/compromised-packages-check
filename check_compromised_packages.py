@@ -173,6 +173,13 @@ PYPI_BAD: dict[str, set[str]] = {
     # PyTorch Lightning maintainer compromise (April 30 2026)
     # GHSA-w37p-236h-pfx3 / CVE-2026-44484
     "pytorch-lightning": {"2.6.2", "2.6.3"},
+    # lightning: same campaign (2026-04-compr-lightning) and same maintainer compromise as
+    # pytorch-lightning above; `lightning` is the renamed unified package published by
+    # Lightning AI alongside `pytorch-lightning`. Both packages had versions 2.6.2 and 2.6.3
+    # removed from PyPI after the attack. Specific versions only (no >=0 range in OSV record).
+    # OSV MAL-2026-3201 (kam193); confirmed by Aikido aikido.dev/blog/pytorch-lightning-pypi-compromise-mini-shai-hulud
+    # and Socket socket.dev/blog/lightning-pypi-package-compromised
+    "lightning": {"2.6.2", "2.6.3"},
     # xinference maintainer-account compromise (April 22 2026) — 600k-download PyPI AI-inference framework
     # Three consecutive malicious versions published after account takeover; heavily obfuscated
     # base64 payload steals AWS/GCP/K8s/SSH/env credentials on import.
