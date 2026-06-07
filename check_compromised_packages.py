@@ -133,8 +133,11 @@ extension June 6 2026 (unifi-portal 99.0.0; OSV MAL-2026-5289), and the
 clip-logger PyPI clipboard-stealing crypto campaign June 7 2026 (clip-logger
 8 versions, bittensor-burn-watch 16 versions; OSV MAL-2026-5292/5293), the
 Woodpecker PyPI campaign additional packages June 7 2026 (cmd2func 0.2.2/0.2.3,
-magique-ai 0.4.5; OSV MAL-2026-5290/5294), and sequoia-engineering npm malware
-June 7 2026 (OSV MAL-2026-5291).
+magique-ai 0.4.5; OSV MAL-2026-5290/5294), four more Woodpecker packages June 7 2026
+(coolbox 0.4.1/0.4.2, magique 0.6.8/0.6.9, executor-engine 0.3.4/0.3.5,
+pantheon-agents 0.6.1/0.6.2; OSV MAL-2026-5295/5296/5298/5299),
+sequoia-engineering npm malware June 7 2026 (OSV MAL-2026-5291), and
+consumerweb-authflow npm malware June 7 2026 (OSV MAL-2026-5297).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -465,6 +468,15 @@ PYPI_BAD: dict[str, set[str]] = {
     # magique-ai: version 0.4.5 was compromised with the same Woodpecker payload.
     #   OSV MAL-2026-5294 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
     "magique-ai": {"0.4.5"},
+    # Four additional Woodpecker campaign packages confirmed June 7 2026 (same campaign)
+    # OSV MAL-2026-5295 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
+    "coolbox": {"0.4.1", "0.4.2"},
+    # OSV MAL-2026-5296
+    "magique": {"0.6.8", "0.6.9"},
+    # OSV MAL-2026-5298
+    "executor-engine": {"0.3.4", "0.3.5"},
+    # OSV MAL-2026-5299
+    "pantheon-agents": {"0.6.1", "0.6.2"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1961,6 +1973,11 @@ NPM_BAD: dict[str, set[str]] = {
     # detected by OpenSSF Package Analysis. Single version published.
     # OSV MAL-2026-5291
     "sequoia-engineering": {"2.2.2"},
+    # consumerweb-authflow npm malware (June 7 2026)
+    # Communicates with a domain associated with malicious activity;
+    # detected by OpenSSF Package Analysis. Two versions published.
+    # OSV MAL-2026-5297
+    "consumerweb-authflow": {"4.1.1", "4.1.3"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
