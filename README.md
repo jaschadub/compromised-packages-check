@@ -68,7 +68,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | @bitwarden/cli — April 22 2026 (GHSA-g98r-qjhg-4fmr) | `@bitwarden/cli` 2026.4.0 |
 | axios — March 31 2026 (GHSA-fw8c-xr5c-95f9, Sapphire Sleet / DPRK) | `axios` 0.30.4, 1.14.1; `plain-crypto-js` 4.2.0, 4.2.1 |
 | PyPI — May 2026 | `durabletask` 1.4.1 – 1.4.3, `mistralai` 2.4.6, `guardrails-ai` 0.10.1 |
-| PyTorch Lightning — April 30 2026 (GHSA-w37p-236h-pfx3, CVE-2026-44484) | `pytorch-lightning` 2.6.2, 2.6.3 |
+| PyTorch Lightning / Lightning — April 30 2026 (GHSA-w37p-236h-pfx3, CVE-2026-44484; OSV MAL-2026-3201) | `pytorch-lightning` 2.6.2, 2.6.3; `lightning` 2.6.2, 2.6.3 — both packages affected in the same maintainer-credential compromise (2026-04-compr-lightning campaign) |
 | intercom-client — April 30 2026 (GHSA-54pg-9963-v8vg) | `intercom-client` 7.0.4 (npm) — maintainer credential compromise, Shai-Hulud campaign |
 | @cap-js / mbt — April 2026 | `@cap-js/sqlite` 2.2.2, `@cap-js/postgres` 2.2.2, `@cap-js/db-service` 2.10.1, `mbt` 1.2.48 |
 | TrapDoor crypto-stealer — May 22 2026 | 21 npm typosquats (`async-pipeline-builder`, `build-scripts-utils`, `chain-key-validator`, …) flagged any-version; 7 PyPI typosquats (`eth-security-auditor`, `cryptowallet-safety`, `defi-risk-scanner`, `solidity-build-guard` @ 0.1.0; `data-pipeline-check`, `env-loader-cli`, `git-config-sync` @ 0.1.0, 0.1.1); 6 crates.io build.rs droppers (`move-analyzer-build`, `move-compiler-tools`, `move-project-builder`, `sui-framework-helpers`, `sui-move-build-helper`, `sui-sdk-build-utils`) targeting Sui/Move developers |
@@ -234,6 +234,9 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [The Hacker News — Bitwarden CLI compromised](https://thehackernews.com/2026/04/bitwarden-cli-compromised-in-ongoing.html)
 - [Palo Alto Unit 42 — Bitwarden CLI impersonation attack](https://www.paloaltonetworks.com/blog/cloud-security/bitwardencli-supply-chain-attack/)
 - [GHSA-w37p-236h-pfx3 — pytorch-lightning compromise](https://github.com/Lightning-AI/pytorch-lightning/security/advisories/GHSA-w37p-236h-pfx3)
+- [OSV MAL-2026-3201 — lightning PyPI package compromise](https://osv.dev/vulnerability/MAL-2026-3201)
+- [Socket — lightning PyPI supply chain attack](https://socket.dev/blog/lightning-pypi-package-compromised)
+- [Aikido — pytorch-lightning / lightning Mini Shai-Hulud compromise](https://www.aikido.dev/blog/pytorch-lightning-pypi-compromise-mini-shai-hulud)
 - [GHSA-54pg-9963-v8vg — intercom-client 7.0.4 compromise](https://github.com/advisories/GHSA-54pg-9963-v8vg)
 - [StepSecurity — intercom-client Shai-Hulud hijack](https://www.stepsecurity.io/blog/shai-hulud-worm-pivots-to-multi-cloud-intercom-client-hijacked)
 - [Socket — intercom-client npm supply chain attack](https://socket.dev/blog/intercom-s-npm-package-compromised-in-supply-chain-attack)
