@@ -137,7 +137,42 @@ magique-ai 0.4.5; OSV MAL-2026-5290/5294), four more Woodpecker packages June 7 
 (coolbox 0.4.1/0.4.2, magique 0.6.8/0.6.9, executor-engine 0.3.4/0.3.5,
 pantheon-agents 0.6.1/0.6.2; OSV MAL-2026-5295/5296/5298/5299),
 sequoia-engineering npm malware June 7 2026 (OSV MAL-2026-5291), and
-consumerweb-authflow npm malware June 7 2026 (OSV MAL-2026-5297).
+consumerweb-authflow npm malware June 7 2026 (OSV MAL-2026-5297), and
+additional Woodpecker PyPI infostealer campaign packages June 8–9 2026
+(funcdesc, mflux-streamlit, nhmpy, rlask, rsquests, tlask, dreamgen, mem8,
+orchestr8-platform, dstill; OSV MAL-2026-5300 through MAL-2026-5305, 5313,
+5319, 5321, 5345), and a bioinformatics supply-chain compromise June 8–9 2026
+targeting phenotype-analysis packages (embiggen, ensmallen, gpsea,
+phenopacket-store-toolkit, ppkt2synergy, pyphetools; OSV MAL-2026-5314 through
+MAL-2026-5316, 5322 through 5324), and the MCP-namespace PyPI typosquat cluster
+June 8–9 2026 (instructor-mcp, langchain-core-mcp, openai-mcp, ray-mcp-server,
+tiktoken-mcp; OSV MAL-2026-5317/5318/5320/5325/5326), and the Solana ecosystem
+PyPI typosquat cluster June 9 2026 (solana-cli-py, solana-web3, solana-web3-py,
+spl-token-py; OSV MAL-2026-5336 through MAL-2026-5339), and the Bittensor/crypto
+clipboard-stealer extension campaign June 8–27 2026 (bittensor-burn-monitor 7
+versions, bt-burn-watch, bittensor-burn-alert, bittensor-burn, bittensor-burn-message,
+bittensor-emission-tracker, trongap, trongapy, spaysdatarbx, spaysrbx,
+tao-subnet-metrics; OSV MAL-2026-5311/5312/5329/5330/5331/5334/5457/5489/
+5680/5681/5683), and the @langgraphjs/toolkit npm any-version wildcard malware
+(OSV MAL-2026-2509; SEMVER >=0 range), and June 8 2026 npm dep-confusion batches
+(@listings/energy-labels + @zimmo/last_search 99.0.x; @bancolonbia/menu-filter-
+widget-web 0.0.1; @demica/{core,resources,shared} 99.99.x;
+@doaction/* 15 packages 9.9.9/99.99.99; @0xlr/* 7 packages 999.0.0;
+@klapp-*/@easy-entry/@shell-* 12 packages 99.x; @nstrlabs/* 6 packages 99.x;
+@oplus/* 3 packages 99.99.99; @orion-design-system/* 3 packages 9999.x;
+@solana-labs/* 6 typosquat packages; @403name/* 3 packages;
+@onum-releases/* 6 packages; OSV MAL-2026-5327/5328/5344/5349 through 5383/
+5385 through 5391/5408 through 5429/5522 through 5525/5547 through 5549/
+5786 through 5788/6122 through 6127), and the @mastra npm scope compromise
+June 20–27 2026 (89 packages across the @mastra/* namespace, injecting a
+credential-exfiltration payload into the Mastra AI agent framework; OSV
+MAL-2026-5939 through 5964, 5996 through 6057, 6072 through 6074), and the
+easyaillm LLM-utility PyPI typosquat cluster June 18–23 2026 (easyaillm,
+easyaillm2, easyllmai, ezllmgen, llmgenerator, llamagenerator, generatellm,
+fastgptmini, gptminifast, llmfree; OSV MAL-2026-5756/5765/5766/5769 through
+5771/5773/5776/5795/5796), and dep-confusion PyPI batches June 8–27 2026
+(nerfstudio-gs 99.0.x, requests-toolbelt-plus 99.9.x, icinga 99.x,
+datacamp-light 99.0.0; OSV MAL-2026-5333/5519/5532/5868).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -150,7 +185,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-06
+Date:      2026-06-27
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -477,6 +512,105 @@ PYPI_BAD: dict[str, set[str]] = {
     "executor-engine": {"0.3.4", "0.3.5"},
     # OSV MAL-2026-5299
     "pantheon-agents": {"0.6.1", "0.6.2"},
+    # Woodpecker PyPI infostealer campaign continuation (June 8–9 2026)
+    # Same campaign actor; additional legitimate Python packages compromised
+    # with the Bun-runtime JS credential-exfiltration payload targeting API
+    # keys, registry credentials, crypto wallet keystores, and password-manager
+    # data, then exfiltrates via GitHub.
+    # OSV MAL-2026-5300 (funcdesc), 5301 (mflux-streamlit), 5302 (nhmpy),
+    # 5303 (rlask), 5304 (rsquests), 5305 (tlask), 5313 (dreamgen),
+    # 5319 (mem8), 5321 (orchestr8-platform), 5345 (dstill)
+    "funcdesc": {"0.2.2", "0.2.3"},
+    "mflux-streamlit": {"0.0.3", "0.0.4"},
+    "nhmpy": {"2.4.6", "2.4.7"},
+    "rlask": {"3.1.3", "3.1.4", "3.1.5", "3.1.6", "3.1.7"},
+    "rsquests": {"2.34.2", "2.34.3"},
+    "tlask": {"3.1.3", "3.1.4"},
+    "dreamgen": {"1.8.1"},
+    "mem8": {"6.0.1"},
+    "orchestr8-platform": {"3.3.2"},
+    "dstill": {"0.3.0"},
+    # Bioinformatics supply-chain compromise (June 8–9 2026)
+    # Six legitimate phenotype-analysis and bioinformatics packages compromised
+    # with a malicious payload using the same attacker technique as the
+    # Woodpecker campaign. All published as specific versions before takedown.
+    # OSV MAL-2026-5314 (embiggen), 5315 (ensmallen), 5316 (gpsea),
+    # 5322 (phenopacket-store-toolkit), 5323 (ppkt2synergy), 5324 (pyphetools)
+    "embiggen": {"0.11.97"},
+    "ensmallen": {"0.8.101"},
+    "gpsea": {"0.9.14"},
+    "phenopacket-store-toolkit": {"0.1.7"},
+    "ppkt2synergy": {"0.1.1"},
+    "pyphetools": {"0.9.120"},
+    # MCP-namespace PyPI typosquat cluster (June 8–9 2026)
+    # Five packages impersonating popular ML libraries with an "-mcp" or
+    # "-mcp-server" suffix; they silently exfiltrate environment variables
+    # and credentials on import. Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5317 (instructor-mcp), 5318 (langchain-core-mcp),
+    # 5320 (openai-mcp), 5325 (ray-mcp-server), 5326 (tiktoken-mcp)
+    "instructor-mcp": {"1.15.2", "1.15.3"},
+    "langchain-core-mcp": {"1.4.2", "1.4.3"},
+    "openai-mcp": {"2.41.1", "2.41.2"},
+    "ray-mcp-server": {"0.2.1"},
+    "tiktoken-mcp": {"0.13.1", "0.13.2"},
+    # Solana ecosystem PyPI typosquat cluster (June 9 2026)
+    # Four packages masquerading as official Solana Python SDK tooling; each
+    # publishes version 1.0.0 with an install-time credential/wallet exfiltrator.
+    # OSV MAL-2026-5336 (solana-cli-py), 5337 (solana-web3),
+    # 5338 (solana-web3-py), 5339 (spl-token-py)
+    "solana-cli-py": {"1.0.0"},
+    "solana-web3": {"1.0.0"},
+    "solana-web3-py": {"1.0.0"},
+    "spl-token-py": {"1.0.0"},
+    # Bittensor/crypto clipboard-stealer extension (June 8–27 2026)
+    # Related to the clip-logger / bittensor-burn-watch campaign already tracked.
+    # Multiple packages continuously published exfiltrating clipboard and env data,
+    # targeting BIP-39 mnemonics, crypto wallet seeds, and Bittensor keys.
+    # OSV MAL-2026-5311 (bittensor-burn-monitor), 5312 (bt-burn-watch),
+    # 5329 (spaysdatarbx), 5330 (bittensor-burn-alert), 5331 (bittensor-burn),
+    # 5334 (spaysrbx), 5457 (tao-subnet-metrics), 5489 (bittensor-emission-tracker),
+    # 5680 (bittensor-burn-message), 5681 (trongap), 5683 (trongapy)
+    "bt-burn-watch": {"1.4.0"},
+    "bittensor-burn-monitor": {
+        "1.5.0", "1.5.3", "1.5.5",
+        "1.6.0", "1.6.3", "1.6.5",
+        "1.7.0",
+    },
+    "spaysdatarbx": {"0.1.3", "0.1.5"},
+    "bittensor-burn-alert": {"1.7.3", "1.7.4", "1.7.5"},
+    "bittensor-burn": {"1.8.0", "1.8.1"},
+    "spaysrbx": {"0.3.0"},
+    "tao-subnet-metrics": {"1.0.1"},
+    "bittensor-emission-tracker": {"1.0.1"},
+    "bittensor-burn-message": {"1.0.1"},
+    "trongap": {"0.0.1"},
+    "trongapy": {"0.0.1"},
+    # easyaillm LLM-utility PyPI typosquat cluster (June 18–23 2026)
+    # Ten look-alike packages mimicking popular LLM utilities exfiltrating
+    # environment variables and API keys on import. Linked by shared
+    # version-numbering scheme (2.x series) and identical payload structure.
+    # OSV MAL-2026-5756 (easyaillm), 5765 (easyaillm2), 5766 (easyllmai),
+    # 5769 (ezllmgen), 5770 (llmgenerator), 5771 (llamagenerator),
+    # 5773 (generatellm), 5776 (fastgptmini), 5795 (gptminifast), 5796 (llmfree)
+    "easyaillm": {"2.0.15", "2.0.16"},
+    "easyaillm2": {"2.0.16", "2.0.17", "2.0.18", "2.0.67", "2.0.68"},
+    "easyllmai": {"2.1", "2.21"},
+    "ezllmgen": {"2.21"},
+    "llmgenerator": {"2.21"},
+    "llamagenerator": {"2.22"},
+    "generatellm": {"2.21", "2.22", "2.23"},
+    "fastgptmini": {"2.21", "2.22", "2.23", "2.24", "2.25", "2.26"},
+    "gptminifast": {"2.21"},
+    "llmfree": {"2.21"},
+    # Dep-confusion PyPI batches (June 8–27 2026)
+    # Packages published at inflated version numbers targeting private CI
+    # pipelines; no legitimate public release history at these versions.
+    # OSV MAL-2026-5333 (nerfstudio-gs), 5519 (requests-toolbelt-plus),
+    # 5532 (icinga), 5868 (datacamp-light)
+    "nerfstudio-gs": {"99.0.0", "99.0.1", "99.0.2", "99.0.3"},
+    "requests-toolbelt-plus": {"99.9.9", "99.9.10", "100.0.0"},
+    "icinga": {"99.1.0", "99.2.0"},
+    "datacamp-light": {"99.0.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1723,7 +1857,7 @@ NPM_BAD: dict[str, set[str]] = {
     "test-ajs": {"0.1.19"},
     "test-weavedb-sdk": {"1.1.1"},
     "testnpmnmp": {"1.0.21"},
-    "wao": {"0.41.2", "0.41.3"},
+    "wao": {"0.41.2", "0.41.3", "0.41.4"},
     "warp-contracts-plugin-deploy-test": {"3.0.1"},
     "wdb-cli": {"0.1.1"},
     "wdb-sdk": {"0.1.2"},
@@ -1978,6 +2112,231 @@ NPM_BAD: dict[str, set[str]] = {
     # detected by OpenSSF Package Analysis. Two versions published.
     # OSV MAL-2026-5297
     "consumerweb-authflow": {"4.1.1", "4.1.3"},
+    # @langgraphjs/toolkit npm any-version wildcard (MAL-2026-2509)
+    # Pure-malware typosquat of LangGraph's JavaScript toolkit; OSV record
+    # contains SEMVER >=0 range (any-version) plus specific versions 1.2.10/1.2.11.
+    # Per convention the entire package is treated as malicious.
+    "@langgraphjs/toolkit": set(),
+    # @listings/energy-labels + @zimmo/last_search dep-confusion (June 8 2026)
+    # Both packages published at high version 99.0.x; no legitimate public history.
+    # OSV MAL-2026-5327 (@listings/energy-labels), 5328 (@zimmo/last_search)
+    "@listings/energy-labels": {"99.0.0", "99.0.1"},
+    "@zimmo/last_search": {"99.0.0", "99.0.1"},
+    # @bancolonbia/menu-filter-widget-web dep-confusion (June 8 2026)
+    # Published at version 0.0.1 with malicious payload; targets BanColombia
+    # internal CI. OSV MAL-2026-5344.
+    "@bancolonbia/menu-filter-widget-web": {"0.0.1"},
+    # @demica/* dep-confusion cluster (June 8 2026)
+    # Three packages targeting Demica trade-finance internal CI; published at
+    # inflated 99.99.x versions. OSV MAL-2026-5349/5350/5351.
+    "@demica/core": {"99.99.99", "99.99.100"},
+    "@demica/resources": {"99.99.100"},
+    "@demica/shared": {"99.99.100"},
+    # @doaction/* dep-confusion cluster (June 8 2026)
+    # Fifteen packages targeting internal DoAction/banking CI infrastructure.
+    # Published at high versions (9.9.9 / 99.99.99); some with no specific
+    # versions recorded (OSV >=0 range). OSV MAL-2026-5369 through 5383.
+    "@doaction/auth": {"99.99.99"},
+    "@doaction/eventemitter": {"9.9.9"},
+    "@doaction/example": set(),
+    "@doaction/examples": {"99.99.99"},
+    "@doaction/http": {"9.9.9", "99.99.99"},
+    "@doaction/mapstore": {"9.9.9", "99.99.99"},
+    "@doaction/pay": {"9.9.9", "99.99.99"},
+    "@doaction/rrweb-sdk": {"9.9.9", "99.99.99"},
+    "@doaction/shared": {"9.9.9", "99.99.99"},
+    "@doaction/signalhub": {"9.9.9"},
+    "@doaction/storage": {"9.9.9", "99.99.99"},
+    "@doaction/sudo-prompt": set(),
+    "@doaction/systeminformation": {"9.9.9"},
+    "@doaction/types": {"9.9.9", "99.99.99"},
+    "@doaction/wasm-loader": {"9.9.9", "99.99.99"},
+    # @0xlr/* dep-confusion cluster (June 8 2026)
+    # Seven packages targeting a startup's internal CI; all published at 999.0.0.
+    # OSV MAL-2026-5385 through 5391.
+    "@0xlr/clerk-auth": {"999.0.0"},
+    "@0xlr/prisma-client-js": {"999.0.0"},
+    "@0xlr/sentry-web": {"999.0.0"},
+    "@0xlr/stripe-checkout-js": {"999.0.0"},
+    "@0xlr/stripe-frontend": {"999.0.0"},
+    "@0xlr/supabase-db": {"999.0.0"},
+    "@0xlr/vercel-analytics": {"999.0.0"},
+    # @klapp-* / @easy-entry / @shell-* dep-confusion cluster (June 8 2026)
+    # Twelve packages targeting Klapp banking-app and related internal pipelines;
+    # published at 99.x versions. OSV MAL-2026-5408 through 5417, 5428/5429.
+    "@easy-entry/landing-routes": {"99.9.5"},
+    "@easy-entry/outside-registration-fop-navigator": {"99.9.5"},
+    "@easy-entry/routes": {"99.9.5"},
+    "@klapp-about/routes": {"99.0.0", "99.0.1", "99.0.2"},
+    "@klapp-kyc/routes": {"99.0.0", "99.0.1"},
+    "@klapp-login-platform/native-sdk": {"99.0.0", "99.0.2"},
+    "@klapp-login-platform/oidc": {"99.0.0", "99.0.2"},
+    "@klapp-login-platform/routes": {"99.0.0", "99.0.2"},
+    "@klapp-otp/routes": {"99.0.0", "99.0.1"},
+    "@klapp-sca/routes": {"99.0.0", "99.0.1"},
+    "@shell-cabinet/routes": {"99.9.5"},
+    "@shell-landing/routes": {"99.9.5"},
+    # @nstrlabs/* dep-confusion cluster (June 8 2026)
+    # Six packages targeting NstrLabs internal CI; published at 99.0.x.
+    # OSV MAL-2026-5418 through 5423.
+    "@nstrlabs/api-client": {"99.0.0", "99.0.1"},
+    "@nstrlabs/auth": {"99.0.0", "99.0.1"},
+    "@nstrlabs/ixel": {"99.0.0", "99.0.1"},
+    "@nstrlabs/sdk": {"99.0.0", "99.0.1"},
+    "@nstrlabs/shared-components": {"99.0.0", "99.0.1"},
+    "@nstrlabs/utils": {"99.0.0", "99.0.1"},
+    # @oplus/* dep-confusion cluster (June 8 2026)
+    # Three packages targeting OnePlus/OPPO internal obus SDK pipeline;
+    # published at 99.99.99. OSV MAL-2026-5424/5425/5426.
+    "@oplus/obus-core": {"99.99.99"},
+    "@oplus/obus-web-sdk": {"99.99.99"},
+    "@oplus/obus-web-sdk-plugin-recovery": {"99.99.99"},
+    # @orion-design-system/* dep-confusion cluster (June 11 2026)
+    # Three packages targeting Orion design-system internal CI; published at
+    # inflated 9999.x versions. OSV MAL-2026-5522/5523/5524.
+    "@orion-design-system/components": {"9999.0.0", "9999.0.1", "9999.0.2", "9999.0.3"},
+    "@orion-design-system/foundation": {
+        "9999.0.0", "9999.0.1", "9999.0.2", "9999.0.3", "9999.0.4",
+    },
+    "@orion-design-system/store": {"9999.0.0", "9999.0.1", "9999.0.2"},
+    # @solana-labs/* npm typosquat cluster (June 8–22 2026)
+    # Six packages impersonating official @solana-labs tooling; each publishes
+    # multiple versions carrying a credential/wallet exfiltrator payload.
+    # Note: the legitimate @solana-labs/web3.js uses the exact name with a
+    # period — these all use alternate spellings or names. The real package is
+    # published by Anza and is not in this list.
+    # OSV MAL-2026-5362 (etherjs), 5363 (web3-js), 5525 (web3.js),
+    # 5786 (ancor), 5787 (spl-toke), 5788 (web3js)
+    "@solana-labs/etherjs": {
+        "1.0.0", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10",
+    },
+    "@solana-labs/web3-js": {
+        "1.0.0", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10",
+    },
+    "@solana-labs/web3.js": {
+        "1.0.0", "1.0.6", "1.0.7", "1.0.8", "1.0.10", "1.98.112",
+    },
+    "@solana-labs/ancor": {
+        "1.0.0", "1.0.1", "1.0.7", "1.0.8", "1.0.9", "1.0.11",
+    },
+    "@solana-labs/spl-toke": {
+        "1.0.0", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10",
+    },
+    "@solana-labs/web3js": {
+        "1.0.0", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10",
+    },
+    # @403name/* npm typosquat cluster (June 12 2026)
+    # Three packages impersonating popular native-build and crypto tooling;
+    # each publishes versions 1.0.0 and 1.0.1 with malicious payloads.
+    # OSV MAL-2026-5547 (electron-buidler), 5548 (ether-js), 5549 (fsevent)
+    "@403name/electron-buidler": {"1.0.0", "1.0.1"},
+    "@403name/ether-js": {"1.0.0", "1.0.1"},
+    "@403name/fsevent": {"1.0.0", "1.0.1"},
+    # @onum-releases/* dep-confusion cluster (June 22 2026)
+    # Six packages impersonating NstrLabs (@nstrlabs) internal packages under a
+    # new attacker scope; published at versions 1.0.1 through 1.0.3.
+    # OSV MAL-2026-6122 through 6127.
+    "@onum-releases/api-client": {"1.0.1", "1.0.2", "1.0.3"},
+    "@onum-releases/auth": {"1.0.1", "1.0.2", "1.0.3"},
+    "@onum-releases/ixel": {"1.0.1", "1.0.2", "1.0.3"},
+    "@onum-releases/sdk": {"1.0.1", "1.0.2", "1.0.3"},
+    "@onum-releases/shared-components": {"1.0.1", "1.0.2", "1.0.3"},
+    "@onum-releases/utils": {"1.0.1", "1.0.2"},
+    # @mastra/* npm scope compromise (June 20–27 2026)
+    # 89 packages across the @mastra namespace were compromised; the attacker
+    # published specific malicious versions of the Mastra AI agent framework
+    # injecting a credential-exfiltration payload. The @mastra scope is also
+    # added to NPM_SUSPECT_SCOPES to catch any additional undisclosed packages.
+    # OSV MAL-2026-5939 through 5964, 5996 through 6057, 6072 through 6074.
+    "@mastra/ai-sdk": {"1.4.6"},
+    "@mastra/auth": {"1.0.3"},
+    "@mastra/braintrust": {"1.1.4"},
+    "@mastra/clickhouse": {"1.10.1"},
+    "@mastra/datadog": {"1.2.5"},
+    "@mastra/duckdb": {"1.4.3"},
+    "@mastra/dynamodb": {"1.0.9"},
+    "@mastra/editor": {"0.11.3"},
+    "@mastra/evals": {"1.3.1"},
+    "@mastra/fastembed": {"1.1.3"},
+    "@mastra/fastify": {"1.3.31"},
+    "@mastra/hono": {"1.4.26"},
+    "@mastra/inngest": {"1.5.2"},
+    "@mastra/langfuse": {"1.3.6"},
+    "@mastra/langsmith": {"1.2.4"},
+    "@mastra/libsql": {"1.13.1"},
+    "@mastra/mcp": {"1.10.1"},
+    "@mastra/mcp-docs-server": {"1.1.47"},
+    "@mastra/mongodb": {"1.9.3"},
+    "@mastra/otel-bridge": {"1.2.3"},
+    "@mastra/pg": {"1.13.1"},
+    "@mastra/posthog": {"1.0.29"},
+    "@mastra/rag": {"2.2.2"},
+    "@mastra/s3": {"0.5.3"},
+    "@mastra/schema-compat": {"1.2.12"},
+    "@mastra/sentry": {"1.1.4"},
+    "@mastra/agent-browser": {"0.3.2"},
+    "@mastra/agent-builder": {"1.0.42"},
+    "@mastra/arize": {"1.2.3"},
+    "@mastra/auth-auth0": {"1.0.2"},
+    "@mastra/auth-better-auth": {"1.0.4"},
+    "@mastra/auth-clerk": {"1.0.3"},
+    "@mastra/auth-supabase": {"1.0.2"},
+    "@mastra/auth-workos": {"1.5.3"},
+    "@mastra/blaxel": {"0.4.2"},
+    "@mastra/chroma": {"1.0.2"},
+    "@mastra/claude": {"1.0.3"},
+    "@mastra/client-js": {"1.24.1"},
+    "@mastra/cloudflare": {"1.4.2"},
+    "@mastra/cloudflare-d1": {"1.0.7"},
+    "@mastra/convex": {"1.2.2"},
+    "@mastra/core": {"1.42.1"},
+    "@mastra/couchbase": {"1.0.4"},
+    "@mastra/cursor": {"0.2.1"},
+    "@mastra/daytona": {"0.4.2"},
+    "@mastra/deployer": {"1.42.1"},
+    "@mastra/deployer-cloudflare": {"1.1.44"},
+    "@mastra/deployer-netlify": {"1.1.20"},
+    "@mastra/deployer-vercel": {"1.1.38"},
+    "@mastra/docker": {"0.3.1"},
+    "@mastra/dsql": {"1.0.3"},
+    "@mastra/e2b": {"0.3.4"},
+    "@mastra/express": {"1.3.31"},
+    "@mastra/gcs": {"0.2.3"},
+    "@mastra/google-cloud-pubsub": {"1.0.6"},
+    "@mastra/koa": {"1.5.14"},
+    "@mastra/longmemeval": {"1.0.50"},
+    "@mastra/mcp-registry-registry": {"1.0.2"},
+    "@mastra/memory": {"1.20.4"},
+    "@mastra/mssql": {"1.3.2"},
+    "@mastra/nestjs": {"0.1.15"},
+    "@mastra/otel-exporter": {"1.2.3"},
+    "@mastra/pinecone": {"1.0.2"},
+    "@mastra/playground-ui": {"33.0.1"},
+    "@mastra/qdrant": {"1.0.3"},
+    "@mastra/s3vectors": {"1.0.7"},
+    "@mastra/server": {"2.1.1"},
+    "@mastra/stagehand": {"0.2.5"},
+    "@mastra/tavily": {"1.0.3"},
+    "@mastra/temporal": {"0.1.14"},
+    "@mastra/turbopuffer": {"1.0.3"},
+    "@mastra/upstash": {"1.1.3"},
+    "@mastra/vectorize": {"1.0.3"},
+    "@mastra/voice-aws-nova-sonic": {"0.1.4"},
+    "@mastra/voice-deepgram": {"0.12.2"},
+    "@mastra/voice-elevenlabs": {"0.12.2"},
+    "@mastra/voice-google": {"0.12.3"},
+    "@mastra/voice-google-gemini-live": {"0.12.2"},
+    "@mastra/voice-openai": {"0.12.3"},
+    "@mastra/voice-openai-realtime": {"0.12.6"},
+    "@mastra/github-signals": {"0.1.2"},
+    "@mastra/mem0": {"0.1.14"},
+    "@mastra/node-audio": {"0.1.8"},
+    "@mastra/node-speaker": {"0.1.1"},
+    "@mastra/react": {"1.0.1"},
+    "@mastra/voice-playai": {"0.12.2"},
+    "@mastra/loggers": {"1.1.3"},
+    "@mastra/observability": {"1.14.2"},
+    "@mastra/redis": {"1.1.3"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -1994,6 +2353,9 @@ NPM_SUSPECT_SCOPES = (
     "@t-in-one/",
     # Red Hat Cloud Services account compromise (June 1 2026)
     "@redhat-cloud-services/",
+    # @mastra scope compromise (June 20–27 2026) — 89 packages, exact versions
+    # pinned above; scope entry catches any undisclosed additional packages
+    "@mastra/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
