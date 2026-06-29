@@ -159,6 +159,14 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | @403name/* npm typosquat cluster — June 12 2026 (OSV MAL-2026-5547/5548/5549) | `@403name/{electron-buidler,ether-js,fsevent}` versions 1.0.0/1.0.1 — impersonate electron-builder, ethers.js, and fsevents |
 | @onum-releases/* dep-confusion cluster — June 22 2026 (OSV MAL-2026-6122 through 6127) | `@onum-releases/{api-client,auth,ixel,sdk,shared-components,utils}` at 1.0.1–1.0.3 — impersonates @nstrlabs internal packages under new attacker scope |
 | @mastra/* npm scope compromise — June 20–27 2026 (OSV MAL-2026-5939 through 5964, 5996 through 6057, 6072 through 6074) | **89 packages** across the `@mastra/` namespace compromised with a credential-exfiltration payload; the entire `@mastra/` scope is in NPM_SUSPECT_SCOPES. Core packages include `@mastra/core` 1.42.1, `@mastra/memory` 1.20.4, `@mastra/mcp` 1.10.1, `@mastra/deployer` 1.42.1, `@mastra/server` 2.1.1, `@mastra/rag` 2.2.2, and 83 other sub-packages |
+| Gartner gx-npm dep-confusion cluster — June 25 2026 (OSV MAL-2026-6466/6480/6481; GHSA-hhw7-23r7-qwj7 / GHSA-wcmr-4783-pq3p / GHSA-5jpv-9x2f-72jj) | `gx-npm-feature-flags`, `gx-npm-lib`, `gx-npm-ui` all published at 99.99.99 via dependency confusion — any-version wildcards |
+| @vpms/design-system dep-confusion — June 25 2026 (OSV MAL-2026-6467; GHSA-43r2-9cx9-pv7f) | `@vpms/design-system` at 0.1.3, 1.0.0, 1.0.1, 1.1.2 — any-version wildcard |
+| Crossmint wallets-sdk typosquat cluster — June 25–27 2026 (OSV MAL-2026-6522/6545; GHSA-x7jg-w433-8q2r / GHSA-7rfm-v32j-2583) | `crossmint-wallets-sdk` 1.0.0 (typosquat of @crossmint/wallets-sdk); `@epsteinlovekids483/crossmint-wallets-sdk-pentest` 8 versions — both any-version wildcards |
+| ts-einkle / ts-ankle typosquat cluster — June 26–27 2026 (OSV MAL-2026-6524/6525/6548; GHSA-mjcv-m7fg-mg8j / GHSA-8cxx-rp6g-mcr9 / GHSA-992p-988h-h55j) | `ts-einkle`, `ts-einkle-slot`, `ts-ankle` — three related credential-exfiltration typosquats; all any-version wildcards |
+| react-dynammic-table-component typosquat — June 26 2026 (OSV MAL-2026-6534) | `react-dynammic-table-component` 1.2.7 — postinstall-payload typosquat of react-dynamic-table-component |
+| Mixed npm malware batch — June 27–29 2026 | `claude-cup` (any-version; Claude CLI impersonation; MAL-2026-5789); `chai-as-persisted` (any-version; Chai typosquat; MAL-2026-6544); `ryan-pdf-js` (any-version; dep-confusion 99.9.1; MAL-2026-6546); `@k18n/creatormarketplace-admin-language` (any-version; dep-confusion 99.0.0; MAL-2026-6550); `anthropic-internal-tools` (any-version; fake internal package credential exfiltrator; MAL-2026-6551); `livekit-agents` (any-version; npm typosquat of @livekit/agents; MAL-2026-6555); `lc-chatbot` 0.9.0-rc.0 (MAL-2026-6559); `react-editable-calendar` (any-version; MAL-2026-6547); `polymarket-clob-math` (any-version; Polymarket CLOB typosquat; MAL-2026-6556) |
+| insomnia m4gester test-malware cluster — June 28 2026 (OSV MAL-2026-6552/6553/6554) | `insomnia-plugin-poc-m4gester`, `insomnia-plugin-poc-m4gester2`, `insomnia-test-util-m4gester` — Insomnia plugin/util stubs with credential-exfiltration postinstall; all any-version wildcards |
+| PyPI infostealer / credential-grabber batch — June 27–28 2026 (OSV MAL-2026-6549/6557/6558/6560/6561) | `discord-token-generator` 1.0.0–1.0.3 (token harvester); `fsociety-tools` 1.0.0–1.0.2 (reverse shell / credential stealer); `tdata-grabber` 1.0.0 (Telegram .tdata exfiltrator); `skillspector` 8 versions (env/credential exfiltrator); `pkg-fallback` any-version (dep-confusion dropper) |
 | easyaillm LLM-utility PyPI typosquat cluster — June 18–23 2026 (OSV MAL-2026-5756/5765/5766/5769 through 5771/5773/5776/5795/5796) | Ten packages exfiltrating env vars and API keys on import: `easyaillm` 2.0.15/2.0.16; `easyaillm2` 5 versions; `easyllmai` 2.1/2.21; `ezllmgen` 2.21; `llmgenerator` 2.21; `llamagenerator` 2.22; `generatellm` 3 versions; `fastgptmini` 6 versions; `gptminifast` 2.21; `llmfree` 2.21 |
 | Dep-confusion PyPI batches — June 8–27 2026 | `nerfstudio-gs` 99.0.0–99.0.3 (MAL-2026-5333); `requests-toolbelt-plus` 99.9.9/99.9.10/100.0.0 (MAL-2026-5519); `icinga` 99.1.0/99.2.0 (MAL-2026-5532); `datacamp-light` 99.0.0 (MAL-2026-5868) — all dep-confusion shadow packages at inflated version numbers targeting private CI |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
@@ -616,6 +624,34 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-5293 — clip-logger PyPI clipboard-stealing crypto campaign (June 7 2026)](https://osv.dev/vulnerability/MAL-2026-5293)
 - [bad-packages.kam193.eu — clip-logger](https://bad-packages.kam193.eu/pypi/package/clip-logger)
 - [bad-packages.kam193.eu — bittensor-burn-watch](https://bad-packages.kam193.eu/pypi/package/bittensor-burn-watch)
+
+- [GHSA-hhw7-23r7-qwj7 / OSV MAL-2026-6466 — gx-npm-feature-flags dep-confusion (June 25 2026)](https://github.com/advisories/GHSA-hhw7-23r7-qwj7)
+- [GHSA-wcmr-4783-pq3p / OSV MAL-2026-6480 — gx-npm-lib dep-confusion (June 25 2026)](https://github.com/advisories/GHSA-wcmr-4783-pq3p)
+- [GHSA-5jpv-9x2f-72jj / OSV MAL-2026-6481 — gx-npm-ui dep-confusion (June 25 2026)](https://github.com/advisories/GHSA-5jpv-9x2f-72jj)
+- [GHSA-43r2-9cx9-pv7f / OSV MAL-2026-6467 — @vpms/design-system dep-confusion (June 25 2026)](https://github.com/advisories/GHSA-43r2-9cx9-pv7f)
+- [GHSA-x7jg-w433-8q2r / OSV MAL-2026-6522 — @epsteinlovekids483/crossmint-wallets-sdk-pentest (June 26 2026)](https://github.com/advisories/GHSA-x7jg-w433-8q2r)
+- [GHSA-mjcv-m7fg-mg8j / OSV MAL-2026-6524 — ts-einkle typosquat (June 26 2026)](https://github.com/advisories/GHSA-mjcv-m7fg-mg8j)
+- [GHSA-8cxx-rp6g-mcr9 / OSV MAL-2026-6525 — ts-einkle-slot typosquat (June 26 2026)](https://github.com/advisories/GHSA-8cxx-rp6g-mcr9)
+- [OSV MAL-2026-6534 — react-dynammic-table-component typosquat (June 26 2026)](https://osv.dev/vulnerability/MAL-2026-6534)
+- [GHSA-7rfm-v32j-2583 / OSV MAL-2026-6545 — crossmint-wallets-sdk typosquat (June 27 2026)](https://github.com/advisories/GHSA-7rfm-v32j-2583)
+- [OSV MAL-2026-6544 — chai-as-persisted Chai typosquat (June 27 2026)](https://osv.dev/vulnerability/MAL-2026-6544)
+- [OSV MAL-2026-6546 — ryan-pdf-js dep-confusion (June 27 2026)](https://osv.dev/vulnerability/MAL-2026-6546)
+- [OSV MAL-2026-6547 — react-editable-calendar malware (June 27 2026)](https://osv.dev/vulnerability/MAL-2026-6547)
+- [GHSA-992p-988h-h55j / OSV MAL-2026-6548 — ts-ankle typosquat (June 27 2026)](https://github.com/advisories/GHSA-992p-988h-h55j)
+- [OSV MAL-2026-6549 — discord-token-generator PyPI token harvester (June 27 2026)](https://osv.dev/vulnerability/MAL-2026-6549)
+- [OSV MAL-2026-6550 — @k18n/creatormarketplace-admin-language dep-confusion (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6550)
+- [OSV MAL-2026-6551 — anthropic-internal-tools fake internal package (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6551)
+- [OSV MAL-2026-6552 — insomnia-plugin-poc-m4gester malware (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6552)
+- [OSV MAL-2026-6553 — insomnia-plugin-poc-m4gester2 malware (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6553)
+- [OSV MAL-2026-6554 — insomnia-test-util-m4gester malware (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6554)
+- [OSV MAL-2026-6555 — livekit-agents npm typosquat (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6555)
+- [GHSA-3q5w-m6wr-5jp2 / OSV MAL-2026-6556 — polymarket-clob-math Polymarket typosquat (June 28 2026)](https://github.com/advisories/GHSA-3q5w-m6wr-5jp2)
+- [OSV MAL-2026-6557 — pkg-fallback PyPI dep-confusion dropper (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6557)
+- [OSV MAL-2026-6558 — fsociety-tools PyPI reverse-shell / credential-stealer (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6558)
+- [OSV MAL-2026-6559 — lc-chatbot npm malware 0.9.0-rc.0 (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6559)
+- [OSV MAL-2026-6560 — tdata-grabber PyPI Telegram session exfiltrator (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6560)
+- [OSV MAL-2026-6561 — skillspector PyPI env/credential exfiltrator (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6561)
+- [OSV MAL-2026-5789 — claude-cup npm Claude-CLI impersonation malware (June 15–27 2026)](https://osv.dev/vulnerability/MAL-2026-5789)
 
 ## License
 
