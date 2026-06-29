@@ -611,6 +611,19 @@ PYPI_BAD: dict[str, set[str]] = {
     "requests-toolbelt-plus": {"99.9.9", "99.9.10", "100.0.0"},
     "icinga": {"99.1.0", "99.2.0"},
     "datacamp-light": {"99.0.0"},
+    # Malicious install-time infostealer / credential-grabber batch (June 27–28 2026)
+    # discord-token-generator: token-harvesting tool with C2 exfiltration.
+    # fsociety-tools: reverse-shell / credential-stealer named after Mr. Robot persona.
+    # tdata-grabber: Telegram session-data exfiltrator targeting .tdata directories.
+    # skillspector: env-var and credential exfiltrator using split versioning (0.0.x / 2.3.x).
+    # pkg-fallback: generic name dep-confusion dropper, any version.
+    # OSV MAL-2026-6549 (discord-token-generator), MAL-2026-6558 (fsociety-tools),
+    # MAL-2026-6560 (tdata-grabber), MAL-2026-6561 (skillspector), MAL-2026-6557 (pkg-fallback)
+    "discord-token-generator": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},
+    "fsociety-tools": {"1.0.0", "1.0.1", "1.0.2"},
+    "tdata-grabber": {"1.0.0"},
+    "skillspector": {"0.0.1", "0.0.2", "0.0.3", "0.0.4", "2.3.7", "2.3.8", "2.3.9", "2.3.10"},
+    "pkg-fallback": set(),
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -2337,6 +2350,68 @@ NPM_BAD: dict[str, set[str]] = {
     "@mastra/loggers": {"1.1.3"},
     "@mastra/observability": {"1.14.2"},
     "@mastra/redis": {"1.1.3"},
+    # Gartner gx-npm dep-confusion cluster (June 25 2026)
+    # Three internal Gartner npm packages published at 99.99.99 via dependency confusion;
+    # no legitimate public release history. GHSA-hhw7-23r7-qwj7 / GHSA-wcmr-4783-pq3p /
+    # GHSA-5jpv-9x2f-72jj. OSV MAL-2026-6466, MAL-2026-6480, MAL-2026-6481.
+    "gx-npm-feature-flags": set(),
+    "gx-npm-lib": set(),
+    "gx-npm-ui": set(),
+    # @vpms/design-system dep-confusion (June 25 2026)
+    # Private-scope package published at inflated versions (0.1.3, 1.0.x, 1.1.2) via
+    # dependency confusion. GHSA-43r2-9cx9-pv7f. OSV MAL-2026-6467.
+    "@vpms/design-system": set(),
+    # Crossmint wallets-sdk typosquat cluster (June 25–27 2026)
+    # crossmint-wallets-sdk: flat typosquat of the legitimate @crossmint/wallets-sdk.
+    # @epsteinlovekids483/crossmint-wallets-sdk-pentest: attacker-controlled scope
+    # with multiple pentest-labeled versions impersonating Crossmint.
+    # GHSA-7rfm-v32j-2583, GHSA-x7jg-w433-8q2r. OSV MAL-2026-6545, MAL-2026-6522.
+    "crossmint-wallets-sdk": set(),
+    "@epsteinlovekids483/crossmint-wallets-sdk-pentest": set(),
+    # ts-einkle / ts-ankle cluster (June 26–27 2026)
+    # Three related typosquat packages with credential-exfiltration payloads.
+    # GHSA-mjcv-m7fg-mg8j (ts-einkle), GHSA-8cxx-rp6g-mcr9 (ts-einkle-slot),
+    # GHSA-992p-988h-h55j (ts-ankle). OSV MAL-2026-6524, MAL-2026-6525, MAL-2026-6548.
+    "ts-einkle": set(),
+    "ts-einkle-slot": set(),
+    "ts-ankle": set(),
+    # react-dynammic-table-component typosquat (June 26 2026)
+    # Version 1.2.7 only; typosquat of react-dynamic-table-component with injected
+    # postinstall payload. OSV MAL-2026-6534.
+    "react-dynammic-table-component": {"1.2.7"},
+    # Miscellaneous malware batch (June 27–29 2026)
+    # claude-cup: pure-malware typosquat impersonating Claude CLI tooling.
+    # chai-as-persisted: Chai test-framework plugin typosquat with infostealer payload.
+    # ryan-pdf-js: dep-confusion dropper at 99.9.1.
+    # @k18n/creatormarketplace-admin-language: dep-confusion at 99.0.0.
+    # anthropic-internal-tools: fake Anthropic internal package, credential exfiltrator.
+    # livekit-agents: npm typosquat of @livekit/agents with malicious postinstall.
+    # lc-chatbot: chatbot malware package, version 0.9.0-rc.0.
+    # react-editable-calendar: malicious React calendar component.
+    # polymarket-clob-math: Polymarket CLOB typosquat with crypto-stealer payload.
+    # OSV MAL-2026-5789 (claude-cup), MAL-2026-6544 (chai-as-persisted),
+    # MAL-2026-6546 (ryan-pdf-js), MAL-2026-6550 (@k18n/creatormarketplace-admin-language),
+    # MAL-2026-6551 (anthropic-internal-tools), MAL-2026-6555 (livekit-agents),
+    # MAL-2026-6559 (lc-chatbot), MAL-2026-6547 (react-editable-calendar),
+    # MAL-2026-6556 (polymarket-clob-math).
+    "claude-cup": set(),
+    "chai-as-persisted": set(),
+    "ryan-pdf-js": set(),
+    "@k18n/creatormarketplace-admin-language": set(),
+    "anthropic-internal-tools": set(),
+    "livekit-agents": set(),
+    "lc-chatbot": {"0.9.0-rc.0"},
+    "react-editable-calendar": set(),
+    "polymarket-clob-math": set(),
+    # insomnia m4gester test-malware cluster (June 28 2026)
+    # Three packages under the "m4gester" identity published as Insomnia plugin/util
+    # stubs with credential-exfiltration postinstall scripts.
+    # OSV MAL-2026-6552 (insomnia-plugin-poc-m4gester),
+    # MAL-2026-6553 (insomnia-plugin-poc-m4gester2),
+    # MAL-2026-6554 (insomnia-test-util-m4gester).
+    "insomnia-plugin-poc-m4gester": set(),
+    "insomnia-plugin-poc-m4gester2": set(),
+    "insomnia-test-util-m4gester": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
