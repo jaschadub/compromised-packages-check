@@ -167,6 +167,12 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Mixed npm malware batch — June 27–29 2026 | `claude-cup` (any-version; Claude CLI impersonation; MAL-2026-5789); `chai-as-persisted` (any-version; Chai typosquat; MAL-2026-6544); `ryan-pdf-js` (any-version; dep-confusion 99.9.1; MAL-2026-6546); `@k18n/creatormarketplace-admin-language` (any-version; dep-confusion 99.0.0; MAL-2026-6550); `anthropic-internal-tools` (any-version; fake internal package credential exfiltrator; MAL-2026-6551); `livekit-agents` (any-version; npm typosquat of @livekit/agents; MAL-2026-6555); `lc-chatbot` 0.9.0-rc.0 (MAL-2026-6559); `react-editable-calendar` (any-version; MAL-2026-6547); `polymarket-clob-math` (any-version; Polymarket CLOB typosquat; MAL-2026-6556) |
 | insomnia m4gester test-malware cluster — June 28 2026 (OSV MAL-2026-6552/6553/6554) | `insomnia-plugin-poc-m4gester`, `insomnia-plugin-poc-m4gester2`, `insomnia-test-util-m4gester` — Insomnia plugin/util stubs with credential-exfiltration postinstall; all any-version wildcards |
 | PyPI infostealer / credential-grabber batch — June 27–28 2026 (OSV MAL-2026-6549/6557/6558/6560/6561) | `discord-token-generator` 1.0.0–1.0.3 (token harvester); `fsociety-tools` 1.0.0–1.0.2 (reverse shell / credential stealer); `tdata-grabber` 1.0.0 (Telegram .tdata exfiltrator); `skillspector` 8 versions (env/credential exfiltrator); `pkg-fallback` any-version (dep-confusion dropper) |
+| AI/LLM toolkit impersonation campaign — June 29–30 2026 (OSV MAL-2026-6673/5565/6581/6582) | `anthropic-toolkit` 21 versions 0.1.0–1.3.0 (fake Anthropic SDK; credential exfiltration); `ai-sdk-helpers` any-version (fake AI SDK helper; ranges >=0); `ollama-helpers` any-version (fake Ollama helper); `openai-agents-helpers` any-version (fake OpenAI Agents helper) |
+| Large dep-confusion wave — June 29 2026 (OSV MAL-2026-6594 through MAL-2026-6672) | 79 packages across diverse company scopes (Deel, Postman, Rakuten, Experian, LexisNexis, Sixt, Gallup, PlanetLabs, and others) with SEMVER ranges >=0; all any-version wildcards; detected by OpenSSF Package Analysis |
+| Targeted dep-confusion packages — June 29 2026 (25 packages) | `ing-web-v5`, `eslint-plugin-totara`, `react-resource-router-next`, `@ataslkit/profilecard`, `@shoobx/types`, `@source-row/source-container`, `@settle-sea/supporting-documents`, `@serasa/core`, `@oec-settlement/react-router`, `@mc-xp/mc-monolith-js-src-package`, `@piewasm/pie-web-npm-package`, `@citi-icg-171632/citicms-repo-component`, `@cloudways-lab/unified-design-system`, `@flipbit2-bb/test-auth-state`, `@riskine-frontend/design-elements`, `@sec-loans-ui/utils`, `wm-mapper`, `unleash-js`, `@webd-infra/query-designer-domain`, `@webda-features/dashboard`, `@webda-infra/search`, `tivo-codelib-a`, `ui-ng-components`, `uipath-sugar-sell`, `via-city-tools-m-particle` — all any-version wildcards; OSV MAL-2026-2822/2846/2855/2856/2857/2858/2952/2956/2978/4171/4172/4256/4257/4389/4425/4432/4826/4827/5431/5432/5433/5453/5454/5455/5456 |
+| Gartner GX dep-confusion cluster — June 29 2026 (OSV MAL-2026-6466/6480/6481) | `gx-npm-feature-flags`, `gx-npm-lib`, `gx-npm-ui` at 99.99.99 — three packages mirroring Gartner GX internal npm packages at inflated version to hijack CI; all any-version wildcards |
+| Miscellaneous npm malware batch — June 29 2026 (55 packages) | `path-internal-util`, `http-uploader-dev`, `react-json-chalk`, `tailwind-form`, `react-pinojs`, `node-denv`, `chain-chai-test`, `ssr-auth-sync`, `quirky-token`, `swift-parse-stream`, `uol-simple-api-futebol`, `stackus`, `clx-cookie-signature`, `routecraft`, `hunsterx-package`, `hardhat-test-log`, `base58-core`, `@vpms/design-system`, `unsafe-malicious-package`, `velocityfix`, `wellnpm`, `@appupdate/cdn-sync`, `chai-as-assured`, `crossmint-wallets-sdk`, `@uisp/utils`, `date-uuid`, `eslint-commit-parser`, `express-mocha-test`, `longzy-basic-ui`, `pkg-fallback` (npm), `react-wp-viewer`, `rebrandly-domains-digger`, `rebrandly-domains-search-client`, `yandex-geobase`, `@ibrahim1337/baksen`, `checkmarx-claude-cache`, `int_sezzle_sfra`, `layerd-unit-codec-parser`, `lessload`, `loadutils`, `pino-debugging`, `poly-kelly`, `stake-math`, `yastatic-s3`, `clob-client-math`, `endpointmap`, `envfile-sync`, `envfile-sync-cli`, `ledgerflow-deploy-utils`, `maplibre-gl-vue3`, `vkzmn`, and 4 more — OSV MAL-2026-3312/4580/4792/5487/5488/5734/5908/5934/6066/6068/6087/6098/6141/6229/6337/6369/6445/6467/6486/6487/6501/6531/6532/6545/6562/6563/6564/6565/6566/6567/6568/6569/6570/6571/6572/6573/6574/6575/6576/6577/6578/6579/6580/6581/6582/6583/6584/6585/6586/6587/6588/6589/6590/6591/6592/6594–6672 |
+| PyPI malware batch — June 29 2026 (OSV MAL-2026-6515/6516/6541/6593) | `sqligen` any-version (SQL-helper credential exfiltrator); `inlifegram` any-version (Instagram API wrapper with data exfiltration); `pdf-converter-pro` any-version (PDF converter with malicious postinstall dropper); `django-bkvision` 1.2.0 (Django module with install-time payload) |
 | easyaillm LLM-utility PyPI typosquat cluster — June 18–23 2026 (OSV MAL-2026-5756/5765/5766/5769 through 5771/5773/5776/5795/5796) | Ten packages exfiltrating env vars and API keys on import: `easyaillm` 2.0.15/2.0.16; `easyaillm2` 5 versions; `easyllmai` 2.1/2.21; `ezllmgen` 2.21; `llmgenerator` 2.21; `llamagenerator` 2.22; `generatellm` 3 versions; `fastgptmini` 6 versions; `gptminifast` 2.21; `llmfree` 2.21 |
 | Dep-confusion PyPI batches — June 8–27 2026 | `nerfstudio-gs` 99.0.0–99.0.3 (MAL-2026-5333); `requests-toolbelt-plus` 99.9.9/99.9.10/100.0.0 (MAL-2026-5519); `icinga` 99.1.0/99.2.0 (MAL-2026-5532); `datacamp-light` 99.0.0 (MAL-2026-5868) — all dep-confusion shadow packages at inflated version numbers targeting private CI |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
@@ -652,6 +658,67 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-6560 — tdata-grabber PyPI Telegram session exfiltrator (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6560)
 - [OSV MAL-2026-6561 — skillspector PyPI env/credential exfiltrator (June 28 2026)](https://osv.dev/vulnerability/MAL-2026-6561)
 - [OSV MAL-2026-5789 — claude-cup npm Claude-CLI impersonation malware (June 15–27 2026)](https://osv.dev/vulnerability/MAL-2026-5789)
+- [OSV MAL-2026-6673 — anthropic-toolkit npm AI-toolkit impersonation (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6673)
+- [OSV MAL-2026-5565 — ai-sdk-helpers npm fake AI-SDK helper (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-5565)
+- [OSV MAL-2026-6581 — ollama-helpers npm fake Ollama helper (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6581)
+- [OSV MAL-2026-6582 — openai-agents-helpers npm fake OpenAI-Agents helper (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6582)
+- [OSV MAL-2026-6562 — @epic-common/observability-node dep-confusion (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6562)
+- [OSV MAL-2026-6563 — @thone33/analytics-injector credential injector (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6563)
+- [OSV MAL-2026-6564 — @thone33/core-utils credential injector (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6564)
+- [OSV MAL-2026-6565 — @uisp/utils dep-confusion (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6565)
+- [OSV MAL-2026-6566 — date-uuid npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6566)
+- [OSV MAL-2026-6567 — eslint-commit-parser npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6567)
+- [OSV MAL-2026-6568 — express-mocha-test npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6568)
+- [OSV MAL-2026-6569 — longzy-basic-ui npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6569)
+- [OSV MAL-2026-6570 — pkg-fallback npm dep-confusion dropper (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6570)
+- [OSV MAL-2026-6571 — react-wp-viewer npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6571)
+- [OSV MAL-2026-6572 — rebrandly-domains-digger dep-confusion (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6572)
+- [OSV MAL-2026-6573 — rebrandly-domains-search-client dep-confusion (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6573)
+- [OSV MAL-2026-6574 — yandex-geobase npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6574)
+- [OSV MAL-2026-6575 — @ibrahim1337/baksen npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6575)
+- [OSV MAL-2026-6576 — checkmarx-claude-cache npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6576)
+- [OSV MAL-2026-6577 — int_sezzle_sfra npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6577)
+- [OSV MAL-2026-6578 — layerd-unit-codec-parser npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6578)
+- [OSV MAL-2026-6579 — lessload npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6579)
+- [OSV MAL-2026-6580 — loadutils npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6580)
+- [OSV MAL-2026-6583 — pino-debugging npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6583)
+- [OSV MAL-2026-6584 — poly-kelly npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6584)
+- [OSV MAL-2026-6585 — stake-math npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6585)
+- [OSV MAL-2026-6586 — yastatic-s3 npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6586)
+- [OSV MAL-2026-6587 — clob-client-math npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6587)
+- [OSV MAL-2026-6588 — endpointmap npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6588)
+- [OSV MAL-2026-6589 — envfile-sync npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6589)
+- [OSV MAL-2026-6590 — envfile-sync-cli npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6590)
+- [OSV MAL-2026-6591 — ledgerflow-deploy-utils npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6591)
+- [OSV MAL-2026-6592 — maplibre-gl-vue3 npm malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6592)
+- [OSV MAL-2026-6594 through MAL-2026-6672 — large dep-confusion wave June 29 2026 (79 packages)](https://osv.dev/vulnerability/MAL-2026-6594)
+- [OSV MAL-2026-6515 — sqligen PyPI malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6515)
+- [OSV MAL-2026-6516 — inlifegram PyPI malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6516)
+- [OSV MAL-2026-6541 — pdf-converter-pro PyPI malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6541)
+- [OSV MAL-2026-6593 — django-bkvision PyPI malware (June 29 2026)](https://osv.dev/vulnerability/MAL-2026-6593)
+- [OSV MAL-2026-3312 — path-internal-util npm malware](https://osv.dev/vulnerability/MAL-2026-3312)
+- [OSV MAL-2026-4580 — http-uploader-dev npm malware](https://osv.dev/vulnerability/MAL-2026-4580)
+- [OSV MAL-2026-4792 — react-json-chalk npm malware](https://osv.dev/vulnerability/MAL-2026-4792)
+- [OSV MAL-2026-5487 — tailwind-form npm dep-confusion](https://osv.dev/vulnerability/MAL-2026-5487)
+- [OSV MAL-2026-5488 — react-pinojs npm malware](https://osv.dev/vulnerability/MAL-2026-5488)
+- [OSV MAL-2026-5734 — node-denv npm malware](https://osv.dev/vulnerability/MAL-2026-5734)
+- [OSV MAL-2026-5908 — chain-chai-test npm malware](https://osv.dev/vulnerability/MAL-2026-5908)
+- [OSV MAL-2026-5934 — ssr-auth-sync npm malware](https://osv.dev/vulnerability/MAL-2026-5934)
+- [OSV MAL-2026-6066 — quirky-token npm malware](https://osv.dev/vulnerability/MAL-2026-6066)
+- [OSV MAL-2026-6068 — swift-parse-stream npm malware](https://osv.dev/vulnerability/MAL-2026-6068)
+- [OSV MAL-2026-6087 — uol-simple-api-futebol npm malware](https://osv.dev/vulnerability/MAL-2026-6087)
+- [OSV MAL-2026-6098 — stackus npm malware](https://osv.dev/vulnerability/MAL-2026-6098)
+- [OSV MAL-2026-6141 — clx-cookie-signature npm malware](https://osv.dev/vulnerability/MAL-2026-6141)
+- [OSV MAL-2026-6229 — routecraft npm malware](https://osv.dev/vulnerability/MAL-2026-6229)
+- [OSV MAL-2026-6337 — hunsterx-package npm malware](https://osv.dev/vulnerability/MAL-2026-6337)
+- [OSV MAL-2026-6369 — hardhat-test-log npm malware](https://osv.dev/vulnerability/MAL-2026-6369)
+- [OSV MAL-2026-6445 — base58-core npm malware](https://osv.dev/vulnerability/MAL-2026-6445)
+- [OSV MAL-2026-6467 — @vpms/design-system dep-confusion](https://osv.dev/vulnerability/MAL-2026-6467)
+- [OSV MAL-2026-6486 — unsafe-malicious-package npm malware](https://osv.dev/vulnerability/MAL-2026-6486)
+- [OSV MAL-2026-6487 — velocityfix npm malware](https://osv.dev/vulnerability/MAL-2026-6487)
+- [OSV MAL-2026-6501 — wellnpm npm malware](https://osv.dev/vulnerability/MAL-2026-6501)
+- [OSV MAL-2026-6531 — @appupdate/cdn-sync dep-confusion](https://osv.dev/vulnerability/MAL-2026-6531)
+- [OSV MAL-2026-6532 — chai-as-assured Chai typosquat](https://osv.dev/vulnerability/MAL-2026-6532)
 
 ## License
 
