@@ -172,7 +172,41 @@ easyaillm2, easyllmai, ezllmgen, llmgenerator, llamagenerator, generatellm,
 fastgptmini, gptminifast, llmfree; OSV MAL-2026-5756/5765/5766/5769 through
 5771/5773/5776/5795/5796), and dep-confusion PyPI batches June 8–27 2026
 (nerfstudio-gs 99.0.x, requests-toolbelt-plus 99.9.x, icinga 99.x,
-datacamp-light 99.0.0; OSV MAL-2026-5333/5519/5532/5868).
+datacamp-light 99.0.0; OSV MAL-2026-5333/5519/5532/5868), and the
+AI/LLM toolkit impersonation campaign June 29–30 2026 (anthropic-toolkit
+21 versions, ai-sdk-helpers/ollama-helpers/openai-agents-helpers any-version;
+OSV MAL-2026-6673/5565/6581/6582), the ts-einkle/ts-ankle TypeScript exploit
+cluster June 29 2026 (ts-einkle, ts-einkle-slot, ts-ankle; OSV MAL-2026-6524/
+6525/6548), the @thone33 credential-injector scope June 29 2026 (@thone33/
+analytics-injector, @thone33/core-utils; OSV MAL-2026-6563/6564), the
+@epic-common/observability-node dep-confusion June 29 2026 (OSV MAL-2026-6562),
+the Gartner GX dep-confusion cluster June 29 2026 (gx-npm-feature-flags,
+gx-npm-lib, gx-npm-ui; OSV MAL-2026-6466/6480/6481), the large dep-confusion
+wave June 29 2026 (79 packages across scopes targeting Deel, Postman, Rakuten,
+Experian, LexisNexis, Sixt, Gallup, PlanetLabs and others; OSV MAL-2026-6594
+through MAL-2026-6672), 25 additional targeted dep-confusion packages June 29 2026
+(ing-web-v5, eslint-plugin-totara, @ataslkit/profilecard, @shoobx/types,
+@source-row/source-container, @serasa/core, @citi-icg-171632/*, @cloudways-lab/*,
+@webd-infra/*, @webda-features/*, uipath-sugar-sell and others; OSV MAL-2026-2822/
+2846/2855/2856/2857/2858/2952/2956/2978/4171/4172/4256/4257/4389/4425/4432/4826/
+4827/5431/5432/5433/5453/5454/5455/5456), and the miscellaneous npm malware batch
+June 29 2026 (55 packages: path-internal-util, http-uploader-dev, react-json-chalk,
+tailwind-form, react-pinojs, node-denv, chain-chai-test, ssr-auth-sync, quirky-token,
+swift-parse-stream, uol-simple-api-futebol, stackus, clx-cookie-signature, routecraft,
+hunsterx-package, hardhat-test-log, base58-core, @vpms/design-system,
+unsafe-malicious-package, velocityfix, wellnpm, @appupdate/cdn-sync, chai-as-assured,
+crossmint-wallets-sdk, @uisp/utils, date-uuid, eslint-commit-parser, express-mocha-test,
+longzy-basic-ui, pkg-fallback (npm), react-wp-viewer, rebrandly-domains-digger/
+rebrandly-domains-search-client, yandex-geobase, @ibrahim1337/baksen,
+checkmarx-claude-cache, int_sezzle_sfra, layerd-unit-codec-parser, lessload, loadutils,
+pino-debugging, poly-kelly, stake-math, yastatic-s3, clob-client-math, endpointmap,
+envfile-sync, envfile-sync-cli, ledgerflow-deploy-utils, maplibre-gl-vue3, vkzmn;
+OSV MAL-2026-3312/4580/4792/5487/5488/5734/5908/5934/6066/6068/6087/6098/6141/6229/
+6337/6369/6445/6467/6486/6487/6501/6524/6525/6531/6532/6545/6548/6562/6563/6564/6565/
+6566/6567/6568/6569/6570/6571/6572/6573/6574/6575/6576/6577/6578/6579/6580/6581/6582/
+6583/6584/6585/6586/6587/6588/6589/6590/6591/6592/6594 through 6672/6673), and the
+PyPI malware batch June 29 2026 (sqligen, inlifegram, pdf-converter-pro any-version;
+django-bkvision 1.2.0; OSV MAL-2026-6515/6516/6541/6593).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -185,7 +219,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-27
+Date:      2026-06-30
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -624,6 +658,19 @@ PYPI_BAD: dict[str, set[str]] = {
     "tdata-grabber": {"1.0.0"},
     "skillspector": {"0.0.1", "0.0.2", "0.0.3", "0.0.4", "2.3.7", "2.3.8", "2.3.9", "2.3.10"},
     "pkg-fallback": set(),
+    # Miscellaneous PyPI malware batch (June 29 2026)
+    # sqligen: SQL-helper package with obfuscated credential-exfiltration postinstall;
+    #   any version is malicious (ranges: introduced 0). OSV MAL-2026-6515.
+    # inlifegram: Instagram-API wrapper with data-exfiltration payload;
+    #   any version is malicious (ranges: introduced 0). OSV MAL-2026-6516.
+    # pdf-converter-pro: PDF conversion tool with malicious postinstall dropper;
+    #   any version is malicious (ranges: introduced 0). OSV MAL-2026-6541.
+    # django-bkvision: Django vision module with malicious install-time payload;
+    #   only version 1.2.0 was published. OSV MAL-2026-6593.
+    "sqligen": set(),
+    "inlifegram": set(),
+    "pdf-converter-pro": set(),
+    "django-bkvision": {"1.2.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1973,7 +2020,7 @@ NPM_BAD: dict[str, set[str]] = {
     "autotel-backends": {"2.12.26"},
     "autotel-cli": {"0.8.14"},
     "autotel-cloudflare": {"2.18.16"},
-    "autotel-devtools": {"0.1.1", "1.0.4", "2.1.1", "3.0.2", "4.0.1", "5.1.1", "6.1.2"},
+    "autotel-devtools": {"0.1.1", "1.0.4", "2.1.1", "3.0.2", "4.0.1", "5.1.1", "6.1.2", "6.2.0"},
     "autotel-drizzle": {"0.0.27"},
     "autotel-edge": {"3.16.13"},
     "autotel-eventcatalog": {"1.0.1", "2.0.1", "3.0.1", "4.0.2", "5.0.1"},
@@ -2412,6 +2459,258 @@ NPM_BAD: dict[str, set[str]] = {
     "insomnia-plugin-poc-m4gester": set(),
     "insomnia-plugin-poc-m4gester2": set(),
     "insomnia-test-util-m4gester": set(),
+    # AI/LLM toolkit impersonation campaign (June 29–30 2026)
+    # Packages impersonating popular AI SDK toolkits with postinstall credential-exfiltration
+    # payloads. All are pure-malware typosquats with no legitimate use.
+    # anthropic-toolkit: fake Anthropic developer toolkit; 21 specific versions published.
+    #   OSV MAL-2026-6673.
+    # ai-sdk-helpers: fake AI SDK helper library; any version is malicious
+    #   (ranges: introduced 0). OSV MAL-2026-5565.
+    # ollama-helpers: fake Ollama integration library; any version is malicious.
+    #   OSV MAL-2026-6581.
+    # openai-agents-helpers: fake OpenAI Agents SDK helper; any version is malicious.
+    #   OSV MAL-2026-6582.
+    "anthropic-toolkit": {
+        "0.1.0", "0.1.1", "0.2.0", "0.2.1", "0.3.0", "0.3.1", "0.4.0", "0.4.1",
+        "0.5.0", "0.5.1", "0.6.0", "0.7.0", "0.8.0", "0.9.0", "1.0.0", "1.0.1",
+        "1.1.0", "1.1.1", "1.2.0", "1.2.1", "1.3.0",
+    },
+    "ai-sdk-helpers": set(),
+    "ollama-helpers": set(),
+    "openai-agents-helpers": set(),
+    # ts-einkle/ts-ankle TypeScript runtime exploit cluster (June 29 2026)
+    # Packages mimicking TypeScript utility libraries with postinstall exfiltration.
+    # All have SEMVER ranges: introduced 0 (any version is malicious).
+    # OSV MAL-2026-6524 (ts-einkle), MAL-2026-6525 (ts-einkle-slot), MAL-2026-6548 (ts-ankle).
+    "ts-einkle": set(),
+    "ts-einkle-slot": set(),
+    "ts-ankle": set(),
+    # @thone33 attacker-scope credential injector (June 29 2026)
+    # Two packages published under the @thone33 scope with postinstall analytics/core
+    # facades hiding credential-exfiltration payloads.
+    # OSV MAL-2026-6563 (@thone33/analytics-injector), MAL-2026-6564 (@thone33/core-utils).
+    "@thone33/analytics-injector": set(),
+    "@thone33/core-utils": set(),
+    # @epic-common/observability-node backdoor (June 29 2026)
+    # Dependency-confusion or typosquat targeting the Epic Games common library scope.
+    # OSV MAL-2026-6562.
+    "@epic-common/observability-node": set(),
+    # Targeted dep-confusion packages (June 29 2026)
+    # Company-specific packages published at inflated version numbers (99.x / 9999.x)
+    # to hijack internal dependency resolution in CI/CD pipelines.
+    # All have SEMVER ranges: introduced 0 and are pure-malware with no legitimate releases.
+    # OSV MAL-2026-2822 (ing-web-v5), MAL-2026-2846 (eslint-plugin-totara),
+    # MAL-2026-2855 (react-resource-router-next), MAL-2026-2856 (@ataslkit/profilecard),
+    # MAL-2026-2857 (@shoobx/types), MAL-2026-2858 (@source-row/source-container),
+    # MAL-2026-2952 (@settle-sea/supporting-documents), MAL-2026-2956 (@serasa/core),
+    # MAL-2026-2978 (@oec-settlement/react-router),
+    # MAL-2026-4171 (@mc-xp/mc-monolith-js-src-package),
+    # MAL-2026-4172 (@piewasm/pie-web-npm-package),
+    # MAL-2026-4256 (@citi-icg-171632/citicms-repo-component),
+    # MAL-2026-4257 (@cloudways-lab/unified-design-system),
+    # MAL-2026-4389 (@flipbit2-bb/test-auth-state),
+    # MAL-2026-4425 (@riskine-frontend/design-elements),
+    # MAL-2026-4432 (@sec-loans-ui/utils), MAL-2026-4826 (wm-mapper),
+    # MAL-2026-4827 (unleash-js),
+    # MAL-2026-5431 (@webd-infra/query-designer-domain),
+    # MAL-2026-5432 (@webda-features/dashboard), MAL-2026-5433 (@webda-infra/search),
+    # MAL-2026-5453 (tivo-codelib-a), MAL-2026-5454 (ui-ng-components),
+    # MAL-2026-5455 (uipath-sugar-sell), MAL-2026-5456 (via-city-tools-m-particle).
+    "ing-web-v5": set(),
+    "eslint-plugin-totara": set(),
+    "react-resource-router-next": set(),
+    "@ataslkit/profilecard": set(),
+    "@shoobx/types": set(),
+    "@source-row/source-container": set(),
+    "@settle-sea/supporting-documents": set(),
+    "@serasa/core": set(),
+    "@oec-settlement/react-router": set(),
+    "@mc-xp/mc-monolith-js-src-package": set(),
+    "@piewasm/pie-web-npm-package": set(),
+    "@citi-icg-171632/citicms-repo-component": set(),
+    "@cloudways-lab/unified-design-system": set(),
+    "@flipbit2-bb/test-auth-state": set(),
+    "@riskine-frontend/design-elements": set(),
+    "@sec-loans-ui/utils": set(),
+    "wm-mapper": set(),
+    "unleash-js": set(),
+    "@webd-infra/query-designer-domain": set(),
+    "@webda-features/dashboard": set(),
+    "@webda-infra/search": set(),
+    "tivo-codelib-a": set(),
+    "ui-ng-components": set(),
+    "uipath-sugar-sell": set(),
+    "via-city-tools-m-particle": set(),
+    # Gartner GX dependency-confusion cluster (June 29 2026)
+    # Three packages mirroring internal Gartner GX npm packages at 99.99.99.
+    # OSV MAL-2026-6466 (gx-npm-feature-flags), MAL-2026-6480 (gx-npm-lib),
+    # MAL-2026-6481 (gx-npm-ui). Related to @gartnerx/gx-npm-messenger-util (see below).
+    "gx-npm-feature-flags": set(),
+    "gx-npm-lib": set(),
+    "gx-npm-ui": set(),
+    # Large dep-confusion wave (June 29 2026)
+    # 79 packages published across diverse scopes and namespaces, all with
+    # SEMVER ranges: introduced 0 (any version is malicious), targeting companies
+    # ranging from Deel to Postman to Rakuten. Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-6594 through MAL-2026-6672.
+    "vkzmn": set(),
+    "@digitalcnzz/commonmodule": set(),
+    "@digitalcnzz/embedded-sdk": set(),
+    "@longzy/react-native-polyfill": set(),
+    "@sailing-package/core": set(),
+    "@alerts/components": set(),
+    "@anna-money/anna-web-lib": set(),
+    "@appsource/utils": set(),
+    "@bapiweb-ux/bapi-header": set(),
+    "@bc-workspace/utils": set(),
+    "@bodata/angular-client": set(),
+    "@bscom/styling": set(),
+    "@concerns/i18n": set(),
+    "@content-editor/common": set(),
+    "@contenteditor-shared/content-editor-common": set(),
+    "@contentprod-authoring/block-manager": set(),
+    "@cseo-hr/trpweb-shared": set(),
+    "@cxp-shared/string-utilities": set(),
+    "@ddh-libs/analytics": set(),
+    "@deel-core/client-payroll-onboarding-types": set(),
+    "@deel-ui/animation": set(),
+    "@digitalpharmacist/http-error-util": set(),
+    "@druidsoft/botframework-directlinejs": set(),
+    "@e50/utils": set(),
+    "@experian-shared/services": set(),
+    "@fed-sofia/jetify": set(),
+    "@finantix/webcomponents": set(),
+    "@flipbit2-bb/scope-test": set(),
+    "@gallup/pc-utils": set(),
+    "@gartnerx/gx-npm-messenger-util": set(),
+    "@gm-rvg/root-config": set(),
+    "@grappi/automations": set(),
+    "@hg-aka-prml/tapas-common": set(),
+    "@huobi-ui/activity-components": set(),
+    "@img-hls/vtt.js": set(),
+    "@lexisnexisrisk/insider-threat-platform": set(),
+    "@live-backstage-im/communication-chat": set(),
+    "@mcconnect/mcc-common-lib": set(),
+    "@meego-progressive/cdk": set(),
+    "@ms-ows/logging": set(),
+    "@multformats/multiaddr": set(),
+    "@orbis-lr-sdk/orbis-lr-sdk": set(),
+    "@partner-apps/ui": set(),
+    "@planetlabs/admin-ng": set(),
+    "@postidigital-feature/oneaccount-orgadmin-front": set(),
+    "@postman-app-monolith/renderer": set(),
+    "@rakuten-rewards/messaging-sdk": set(),
+    "@rakuten-rewards/messaging-sdk-js": set(),
+    "@react-thee/rapier": set(),
+    "@reference-web/pmp-i18n": set(),
+    "@report-portal/service-ui": set(),
+    "@rmlibrary/formatting": set(),
+    "@sentryx-libraries/auth-interceptor": set(),
+    "@services-lib/application-http-client": set(),
+    "@shopbop/api-models": set(),
+    "@sixt-payment/form-react": set(),
+    "@sumoinc/trashpanda": set(),
+    "@tbe-ui/ides": set(),
+    "@webda-infra-ui/static-images": set(),
+    "alpine-csp": set(),
+    "app-hotmart-blog-headless": set(),
+    "auth-state-service": set(),
+    "authmatrix": set(),
+    "authsessionbridge": set(),
+    "bundrix": set(),
+    "cdocs-data": set(),
+    "cdocs-markdoc": set(),
+    "clx-cookieparser": set(),
+    "cmp-api-stub": set(),
+    "gel-bootstrap": set(),
+    "hrb-cas-auth-js": set(),
+    "ltididp1": set(),
+    "magwien.sys": set(),
+    "player-core-ui": set(),
+    "player-theming": set(),
+    "pvd3": set(),
+    "rc-icon": set(),
+    "wac-atl-context": set(),
+    "ulid-xyz": set(),
+    # Miscellaneous npm malware batch (June 29 2026)
+    # Individual packages with varying payloads (infostealers, env-var exfiltrators,
+    # dep-confusion droppers, crypto-math typosquats). All have active OSV MAL records
+    # with no withdrawal. All entries are wildcard (any version malicious) unless noted.
+    # OSV MAL-2026-3312 (path-internal-util), MAL-2026-4580 (http-uploader-dev),
+    # MAL-2026-4792 (react-json-chalk), MAL-2026-5487 (tailwind-form),
+    # MAL-2026-5488 (react-pinojs), MAL-2026-5734 (node-denv),
+    # MAL-2026-5908 (chain-chai-test), MAL-2026-5934 (ssr-auth-sync),
+    # MAL-2026-6066 (quirky-token), MAL-2026-6068 (swift-parse-stream),
+    # MAL-2026-6087 (uol-simple-api-futebol), MAL-2026-6098 (stackus),
+    # MAL-2026-6141 (clx-cookie-signature), MAL-2026-6229 (routecraft),
+    # MAL-2026-6337 (hunsterx-package), MAL-2026-6369 (hardhat-test-log),
+    # MAL-2026-6445 (base58-core), MAL-2026-6467 (@vpms/design-system),
+    # MAL-2026-6486 (unsafe-malicious-package), MAL-2026-6487 (velocityfix),
+    # MAL-2026-6501 (wellnpm), MAL-2026-6531 (@appupdate/cdn-sync),
+    # MAL-2026-6532 (chai-as-assured), MAL-2026-6545 (crossmint-wallets-sdk),
+    # MAL-2026-6565 (@uisp/utils), MAL-2026-6566 (date-uuid),
+    # MAL-2026-6567 (eslint-commit-parser), MAL-2026-6568 (express-mocha-test),
+    # MAL-2026-6569 (longzy-basic-ui), MAL-2026-6570 (pkg-fallback npm),
+    # MAL-2026-6571 (react-wp-viewer), MAL-2026-6572 (rebrandly-domains-digger),
+    # MAL-2026-6573 (rebrandly-domains-search-client), MAL-2026-6574 (yandex-geobase),
+    # MAL-2026-6575 (@ibrahim1337/baksen), MAL-2026-6576 (checkmarx-claude-cache),
+    # MAL-2026-6577 (int_sezzle_sfra), MAL-2026-6578 (layerd-unit-codec-parser),
+    # MAL-2026-6579 (lessload), MAL-2026-6580 (loadutils),
+    # MAL-2026-6583 (pino-debugging), MAL-2026-6584 (poly-kelly),
+    # MAL-2026-6585 (stake-math), MAL-2026-6586 (yastatic-s3),
+    # MAL-2026-6587 (clob-client-math), MAL-2026-6588 (endpointmap),
+    # MAL-2026-6589 (envfile-sync), MAL-2026-6590 (envfile-sync-cli),
+    # MAL-2026-6591 (ledgerflow-deploy-utils), MAL-2026-6592 (maplibre-gl-vue3).
+    "path-internal-util": set(),
+    "http-uploader-dev": set(),
+    "react-json-chalk": set(),
+    "tailwind-form": set(),
+    "react-pinojs": set(),
+    "node-denv": set(),
+    "chain-chai-test": set(),
+    "ssr-auth-sync": set(),
+    "quirky-token": set(),
+    "swift-parse-stream": set(),
+    "uol-simple-api-futebol": set(),
+    "stackus": set(),
+    "clx-cookie-signature": set(),
+    "routecraft": set(),
+    "hunsterx-package": set(),
+    "hardhat-test-log": set(),
+    "base58-core": set(),
+    "@vpms/design-system": set(),
+    "unsafe-malicious-package": set(),
+    "velocityfix": set(),
+    "wellnpm": set(),
+    "@appupdate/cdn-sync": set(),
+    "chai-as-assured": set(),
+    "crossmint-wallets-sdk": set(),
+    "@uisp/utils": set(),
+    "date-uuid": set(),
+    "eslint-commit-parser": set(),
+    "express-mocha-test": set(),
+    "longzy-basic-ui": set(),
+    "pkg-fallback": set(),
+    "react-wp-viewer": set(),
+    "rebrandly-domains-digger": set(),
+    "rebrandly-domains-search-client": set(),
+    "yandex-geobase": set(),
+    "@ibrahim1337/baksen": set(),
+    "checkmarx-claude-cache": set(),
+    "int_sezzle_sfra": set(),
+    "layerd-unit-codec-parser": set(),
+    "lessload": set(),
+    "loadutils": set(),
+    "pino-debugging": set(),
+    "poly-kelly": set(),
+    "stake-math": set(),
+    "yastatic-s3": set(),
+    "clob-client-math": set(),
+    "endpointmap": set(),
+    "envfile-sync": set(),
+    "envfile-sync-cli": set(),
+    "ledgerflow-deploy-utils": set(),
+    "maplibre-gl-vue3": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
