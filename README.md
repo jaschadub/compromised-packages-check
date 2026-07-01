@@ -173,6 +173,9 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Gartner GX dep-confusion cluster — June 29 2026 (OSV MAL-2026-6466/6480/6481) | `gx-npm-feature-flags`, `gx-npm-lib`, `gx-npm-ui` at 99.99.99 — three packages mirroring Gartner GX internal npm packages at inflated version to hijack CI; all any-version wildcards |
 | Miscellaneous npm malware batch — June 29 2026 (55 packages) | `path-internal-util`, `http-uploader-dev`, `react-json-chalk`, `tailwind-form`, `react-pinojs`, `node-denv`, `chain-chai-test`, `ssr-auth-sync`, `quirky-token`, `swift-parse-stream`, `uol-simple-api-futebol`, `stackus`, `clx-cookie-signature`, `routecraft`, `hunsterx-package`, `hardhat-test-log`, `base58-core`, `@vpms/design-system`, `unsafe-malicious-package`, `velocityfix`, `wellnpm`, `@appupdate/cdn-sync`, `chai-as-assured`, `crossmint-wallets-sdk`, `@uisp/utils`, `date-uuid`, `eslint-commit-parser`, `express-mocha-test`, `longzy-basic-ui`, `pkg-fallback` (npm), `react-wp-viewer`, `rebrandly-domains-digger`, `rebrandly-domains-search-client`, `yandex-geobase`, `@ibrahim1337/baksen`, `checkmarx-claude-cache`, `int_sezzle_sfra`, `layerd-unit-codec-parser`, `lessload`, `loadutils`, `pino-debugging`, `poly-kelly`, `stake-math`, `yastatic-s3`, `clob-client-math`, `endpointmap`, `envfile-sync`, `envfile-sync-cli`, `ledgerflow-deploy-utils`, `maplibre-gl-vue3`, `vkzmn`, and 4 more — OSV MAL-2026-3312/4580/4792/5487/5488/5734/5908/5934/6066/6068/6087/6098/6141/6229/6337/6369/6445/6467/6486/6487/6501/6531/6532/6545/6562/6563/6564/6565/6566/6567/6568/6569/6570/6571/6572/6573/6574/6575/6576/6577/6578/6579/6580/6581/6582/6583/6584/6585/6586/6587/6588/6589/6590/6591/6592/6594–6672 |
 | PyPI malware batch — June 29 2026 (OSV MAL-2026-6515/6516/6541/6593) | `sqligen` any-version (SQL-helper credential exfiltrator); `inlifegram` any-version (Instagram API wrapper with data exfiltration); `pdf-converter-pro` any-version (PDF converter with malicious postinstall dropper); `django-bkvision` 1.2.0 (Django module with install-time payload) |
+| GHSA-confirmed any-version-malicious npm batch — July 1 2026 (OSV MAL-2026-3509/6675/6676/6677/6678/6679/6680/6681/6682/6683/6684/6685/6686/6687) | 14 packages confirmed via GitHub Advisory Database automated malware detection; each carries SEMVER >=0 range; all any-version wildcards: `pp-react-v5`, `rs-biginteger`, `terminal-prettier`, `ts-lint-builders-v2.1`, `ts-linting-builder`, `agent-starter-pack`, `brock-loader`, `brock-react-alerts`, `confluent-kafka-javascript`, `nbmolviz-js`, `postcss-property-rollup`, `quoting`, `setup-cicd`, `procwire` |
+| SafeDep DeFi fake-arbitrage-bot npm infostealer campaign — June 30 2026 (OSV MAL-2026-6688/6689/6690/6691/6692/6693/6694/6695) | 8 packages impersonating DeFi trading tools (Polymarket CLOB helpers, thirdweb SDK typosquats, BigNumber/protobuf utilities, CLI formatters, logger stubs); each drops a clipboard/env-var infostealer exfiltrating private keys, mnemonics, and API credentials; all any-version wildcards: `console-fmt-cli`, `decimal-format-core`, `log-taker1`, `polymarket-clob-maths`, `polymarket-trading-developer-tools`, `thirdwb`, `thirdwebb`, `ts-bn-proto` |
+| Miscellaneous dep-confusion + pure-malware npm batch — June 30–July 1 2026 (OSV MAL-2026-6674/6696/6697/6698/6699/6700/6701/6702) | 8 packages across dep-confusion and pure-malware sub-types: `@businessapp-microsites/apis` 9999.0.0–9999.0.1 (dep-confusion); `@sudoughnym/enviro-demo` 99.99.99 (attacker-scope dep-confusion); `cursed-modules` 2.0.0/999.0.0–999.0.3 (pure-malware + dep-confusion); `ecto-corsair-flag-7kq3mz` 1.0.0–1.0.2 (throwaway-name pure-malware); `module-index-cache` 1.0.0–1.0.2 (credential-exfiltration); `ripshakti` 80.0.0 / `ripshakti1` 81.0.0 (version-inflation pair); `vue-demi-fix` 10.0.4 (vue-demi typosquat) |
 | easyaillm LLM-utility PyPI typosquat cluster — June 18–23 2026 (OSV MAL-2026-5756/5765/5766/5769 through 5771/5773/5776/5795/5796) | Ten packages exfiltrating env vars and API keys on import: `easyaillm` 2.0.15/2.0.16; `easyaillm2` 5 versions; `easyllmai` 2.1/2.21; `ezllmgen` 2.21; `llmgenerator` 2.21; `llamagenerator` 2.22; `generatellm` 3 versions; `fastgptmini` 6 versions; `gptminifast` 2.21; `llmfree` 2.21 |
 | Dep-confusion PyPI batches — June 8–27 2026 | `nerfstudio-gs` 99.0.0–99.0.3 (MAL-2026-5333); `requests-toolbelt-plus` 99.9.9/99.9.10/100.0.0 (MAL-2026-5519); `icinga` 99.1.0/99.2.0 (MAL-2026-5532); `datacamp-light` 99.0.0 (MAL-2026-5868) — all dep-confusion shadow packages at inflated version numbers targeting private CI |
 | puppeteer maintainer-account compromise — May 29 2026 (GHSA-8r2f-2qg4-cv9v) | `puppeteer` 25.0.1 — Google's 25M+ downloads/week headless Chrome library; single malicious version; any compromised system should be considered fully compromised and credentials rotated |
@@ -719,6 +722,36 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-6501 — wellnpm npm malware](https://osv.dev/vulnerability/MAL-2026-6501)
 - [OSV MAL-2026-6531 — @appupdate/cdn-sync dep-confusion](https://osv.dev/vulnerability/MAL-2026-6531)
 - [OSV MAL-2026-6532 — chai-as-assured Chai typosquat](https://osv.dev/vulnerability/MAL-2026-6532)
+- [OSV MAL-2026-3509 — pp-react-v5 npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-3509)
+- [OSV MAL-2026-6675 — rs-biginteger npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6675)
+- [OSV MAL-2026-6676 — terminal-prettier npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6676)
+- [OSV MAL-2026-6677 — ts-lint-builders-v2.1 npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6677)
+- [OSV MAL-2026-6678 — ts-linting-builder npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6678)
+- [OSV MAL-2026-6679 — agent-starter-pack npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6679)
+- [OSV MAL-2026-6680 — brock-loader npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6680)
+- [OSV MAL-2026-6681 — brock-react-alerts npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6681)
+- [OSV MAL-2026-6682 — confluent-kafka-javascript npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6682)
+- [OSV MAL-2026-6683 — nbmolviz-js npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6683)
+- [OSV MAL-2026-6684 — postcss-property-rollup npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6684)
+- [OSV MAL-2026-6685 — quoting npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6685)
+- [OSV MAL-2026-6686 — setup-cicd npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6686)
+- [OSV MAL-2026-6687 — procwire npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6687)
+- [OSV MAL-2026-6688 — console-fmt-cli npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6688)
+- [OSV MAL-2026-6689 — decimal-format-core npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6689)
+- [OSV MAL-2026-6690 — log-taker1 npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6690)
+- [OSV MAL-2026-6691 — polymarket-clob-maths npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6691)
+- [OSV MAL-2026-6692 — polymarket-trading-developer-tools npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6692)
+- [OSV MAL-2026-6693 — thirdwb npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6693)
+- [OSV MAL-2026-6694 — thirdwebb npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6694)
+- [OSV MAL-2026-6695 — ts-bn-proto npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6695)
+- [OSV MAL-2026-6674 — ripshakti1 npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6674)
+- [OSV MAL-2026-6696 — @businessapp-microsites/apis dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6696)
+- [OSV MAL-2026-6697 — @sudoughnym/enviro-demo dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6697)
+- [OSV MAL-2026-6698 — cursed-modules npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6698)
+- [OSV MAL-2026-6699 — ecto-corsair-flag-7kq3mz npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6699)
+- [OSV MAL-2026-6700 — module-index-cache npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6700)
+- [OSV MAL-2026-6701 — ripshakti npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6701)
+- [OSV MAL-2026-6702 — vue-demi-fix npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6702)
 
 ## License
 

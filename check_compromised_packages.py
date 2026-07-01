@@ -206,7 +206,18 @@ OSV MAL-2026-3312/4580/4792/5487/5488/5734/5908/5934/6066/6068/6087/6098/6141/62
 6566/6567/6568/6569/6570/6571/6572/6573/6574/6575/6576/6577/6578/6579/6580/6581/6582/
 6583/6584/6585/6586/6587/6588/6589/6590/6591/6592/6594 through 6672/6673), and the
 PyPI malware batch June 29 2026 (sqligen, inlifegram, pdf-converter-pro any-version;
-django-bkvision 1.2.0; OSV MAL-2026-6515/6516/6541/6593).
+django-bkvision 1.2.0; OSV MAL-2026-6515/6516/6541/6593), and the July 1 2026 npm mixed
+malware batch: 14 GHSA-confirmed any-version-malicious packages (pp-react-v5, rs-biginteger,
+terminal-prettier, ts-lint-builders-v2.1, ts-linting-builder, agent-starter-pack, brock-loader,
+brock-react-alerts, confluent-kafka-javascript, nbmolviz-js, postcss-property-rollup, quoting,
+setup-cicd, procwire; OSV MAL-2026-3509/6675/6676/6677/6678/6679/6680/6681/6682/6683/6684/
+6685/6686/6687), the SafeDep DeFi fake-arbitrage-bot npm infostealer campaign June 30 2026
+(console-fmt-cli, decimal-format-core, log-taker1, polymarket-clob-maths,
+polymarket-trading-developer-tools, thirdwb, thirdwebb, ts-bn-proto;
+OSV MAL-2026-6688/6689/6690/6691/6692/6693/6694/6695), and miscellaneous dep-confusion +
+pure-malware npm packages June 30–July 1 2026 (@businessapp-microsites/apis,
+@sudoughnym/enviro-demo, cursed-modules, ecto-corsair-flag-7kq3mz, module-index-cache,
+ripshakti, ripshakti1, vue-demi-fix; OSV MAL-2026-6674/6696/6697/6698/6699/6700/6701/6702).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -219,7 +230,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-30
+Date:      2026-07-01
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -2711,6 +2722,82 @@ NPM_BAD: dict[str, set[str]] = {
     "envfile-sync-cli": set(),
     "ledgerflow-deploy-utils": set(),
     "maplibre-gl-vue3": set(),
+    # GHSA-confirmed any-version-malicious npm batch (July 1 2026)
+    # 14 packages confirmed via GitHub Advisory Database automated malware detection;
+    # each carries SEMVER >=0 range ("any installed version fully compromised").
+    # Includes typosquats of Confluent Kafka, nbmolviz, postcss plugins, CI/CD helpers,
+    # and general-purpose utilities with embedded credential-exfiltration payloads.
+    # pp-react-v5: OSV MAL-2026-3509
+    "pp-react-v5": set(),
+    # OSV MAL-2026-6675 / GHSA-xm5w-w96q-42f3
+    "rs-biginteger": set(),
+    # OSV MAL-2026-6676 / GHSA-m8cr-hv9p-pg3f
+    "terminal-prettier": set(),
+    # OSV MAL-2026-6677 / GHSA-vjgf-xg3j-g9c5
+    "ts-lint-builders-v2.1": set(),
+    # OSV MAL-2026-6678 / GHSA-8mpj-272v-jhv7
+    "ts-linting-builder": set(),
+    # OSV MAL-2026-6679 / GHSA-x676-qqgj-qfgg
+    "agent-starter-pack": set(),
+    # OSV MAL-2026-6680 / GHSA-gwv3-x257-r43c
+    "brock-loader": set(),
+    # OSV MAL-2026-6681 / GHSA-gh2m-x2qr-m2cm
+    "brock-react-alerts": set(),
+    # OSV MAL-2026-6682 / GHSA-j28m-58xp-3wgh
+    "confluent-kafka-javascript": set(),
+    # OSV MAL-2026-6683 / GHSA-fc4r-p4fh-6h4p
+    "nbmolviz-js": set(),
+    # OSV MAL-2026-6684 / GHSA-6g2x-2f5c-wp9w
+    "postcss-property-rollup": set(),
+    # OSV MAL-2026-6685 / GHSA-x8q6-66jr-wmp3
+    "quoting": set(),
+    # OSV MAL-2026-6686 / GHSA-5rc3-r829-w347
+    "setup-cicd": set(),
+    # OSV MAL-2026-6687 / GHSA-5r42-357x-f2mx
+    "procwire": set(),
+    # SafeDep DeFi fake-arbitrage-bot npm infostealer campaign (June 30 2026)
+    # Eight packages impersonating DeFi trading tools (Polymarket CLOB helpers, thirdweb
+    # SDK typosquats, BigNumber/protobuf utilities, CLI formatters, logger stubs).
+    # Each drops an infostealer that monitors clipboard and env vars for private keys,
+    # mnemonics, and API credentials, then exfiltrates to an attacker-controlled endpoint.
+    # Detected and reported by SafeDep (safedep.io/defi-infostealer-fake-arbitrage-bot-npm/;
+    # URL 403'd at crawl time — OSV records are the authoritative primary source).
+    # All carry SEMVER >=0 range; use empty-set wildcard. OSV MAL-2026-6688 through 6695.
+    "console-fmt-cli": set(),
+    "decimal-format-core": set(),
+    "log-taker1": set(),
+    "polymarket-clob-maths": set(),
+    "polymarket-trading-developer-tools": set(),
+    "thirdwb": set(),
+    "thirdwebb": set(),
+    "ts-bn-proto": set(),
+    # Miscellaneous dep-confusion + pure-malware npm batch (June 30–July 1 2026)
+    # @businessapp-microsites/apis: dep-confusion at 9999.x targeting an internal
+    #   business-apps microsite API package. OSV MAL-2026-6696.
+    "@businessapp-microsites/apis": {"9999.0.0", "9999.0.1"},
+    # @sudoughnym/enviro-demo: attacker-owned scope dep-confusion at 99.99.99.
+    #   OSV MAL-2026-6697.
+    "@sudoughnym/enviro-demo": {"99.99.99"},
+    # cursed-modules: pure-malware package; published both at normal version 2.0.0 and
+    #   at dep-confusion-style versions 999.x. All listed versions are confirmed malicious
+    #   by the OSV record; no >=0 range — pin exact versions.
+    #   OSV MAL-2026-6698.
+    "cursed-modules": {"2.0.0", "999.0.0", "999.0.1", "999.0.2", "999.0.3"},
+    # ecto-corsair-flag-7kq3mz: throwaway-name pure-malware package; three consecutive
+    #   versions published before takedown. OSV MAL-2026-6699.
+    "ecto-corsair-flag-7kq3mz": {"1.0.0", "1.0.1", "1.0.2"},
+    # module-index-cache: generic-name credential-exfiltration package;
+    #   three consecutive versions. OSV MAL-2026-6700.
+    "module-index-cache": {"1.0.0", "1.0.1", "1.0.2"},
+    # ripshakti / ripshakti1: related pair published at unusually high version numbers
+    #   (80.0.0 and 81.0.0); likely dep-confusion or version-inflation attack.
+    #   OSV MAL-2026-6701 (ripshakti), MAL-2026-6674 (ripshakti1).
+    "ripshakti": {"80.0.0"},
+    "ripshakti1": {"81.0.0"},
+    # vue-demi-fix: typosquat of the legitimate vue-demi Vue.js interop helper;
+    #   single version 10.0.4 with embedded malicious payload.
+    #   OSV MAL-2026-6702.
+    "vue-demi-fix": {"10.0.4"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
