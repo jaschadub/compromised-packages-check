@@ -186,6 +186,15 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | May 26 2026 pure-malware typosquat batch (17 packages, GHSA-confirmed) | Web3/DeFi: `web3-prices`, `web3.prc`, `int-node`, `@izumiswap/sdk`; JSON utilities: `jsonlogbundler`, `fastjsonlog`, `jsonbson`; Solidity/Hardhat: `solidity-coverage-plus`, `hardhat-gas-analytics`; document libraries: `pdf-lib-enhanced`, `xlsx-enhanced`; misc: `corelia`, `license-checker-plus`, `lynx-keeper`, `lynx-keeper-cli`, `zest-product`, `tailwind-style-typography` — all any-version (GHSA affected.ranges >=0) |
 | crates.io dep-confusion batch — April 2026 (OSV MAL-2026-3101..3129) | 5 crates published at inflated 99.x versions to hijack internal CI dependency resolution: `amzn-consolas-client` 99.0.1, `amzn-codewhisperer-streaming-client` 99.0.1, `semantic-search-client` 99.0.1, `lsh` 99.0.1/99.1.0, `supertag` 99.1.1 — all detected by OpenSSF Package Analysis as communicating with malicious domains |
 | crates.io — RustSec malicious advisories | 66 crates removed from crates.io and tagged `categories = ["malicious"]` in `rustsec/advisory-db`. Includes `rustdecimal` (2022 typosquat of `rust_decimal`), the 2023 `amaperf` typosquat cluster (`xrvrv`, `oncecell`, `serd`, `lazystatic`, `if-cfg`, `envlogger`, `postgress`, `postgresderive`, `tauri-winrt-notifications`, `windows-service-rs`, `monero-rpc-rs`, `acceptxmr-rs`, …), the 2026 Polymarket credential-stealer campaign (`polymarket-clients-sdk`, `polymarket-client-sdks`, `polymarkets-client-sdk`, `polymarkets-rs-clob-client`, `clob-sdk`, `rpc-check`), the timeapi.io impersonation cluster (`time_calibrator`, `time_calibrators`, `dnp3times`, `time-sync`, `chrono_anchor`, `tracings`, `tracing-check`, `tracing_checks`, `tracing-ethers`), build.rs droppers (`mysten-metrics`, `sui-execution-cut`, `pretty-changelog-logger`, `logtrace`, `replit_ruspty`, `finch_cli_rust`, `safe-agent-rs`, `microsoftsystem64`, …), `exploration` (June 2 2026 remote-execute dropper, RUSTSEC-2026-0155), and `logflux` (June 3 2026 Rust-job-application dropper, RUSTSEC-2026-0171). All entries are any-version wildcards (`patched = []` in RustSec). |
+| Polymarket ecosystem typosquat cluster — June 30–July 1 2026 (OSV MAL-2026-6691/6692/6712/6713/6714) | `polymarket-clob-maths` any-version; `polymarket-trading-developer-tools` any-version; `polymarket-risk-manager` 3.5.2; `polymarket-toolkit` 1.4.9; `polymarket-trading-developer-tool` 0.1.1 — postinstall payloads exfiltrate API keys, crypto wallet data, and environment variables |
+| TypeScript/ESLint/CLOB typosquat cluster — June 30–July 1 2026 (OSV MAL-2026-6677/6678/6695/6719/6720/6721) | `ts-lint-builders-v2.1` any-version (GHSA-vjgf-xg3j-g9c5); `ts-linting-builder` any-version (GHSA-8mpj-272v-jhv7); `ts-bn-proto` any-version; `ts-elinter` 3.3.9; `ts-eslint-helper` 4.0.3/4.0.4/4.0.5; `ts-clob-math-v2` 2.0.1 — credential-exfiltration payloads impersonating TypeScript build and ESLint utilities |
+| Frontend framework typosquats — July 1 2026 (OSV MAL-2026-6702/6707/6709/6715/6722/6723) | `date-fns-lite` 13 versions (1.0.0–1.0.12); `svgson-lite` 7 versions; `vega-lite-next` 19.2.1; `vue-demi-fix` 10.0.3–10.0.5; `electron-orbit` 31 versions (1.0.3–1.0.36); `svgcraft-core` 1.0.1–1.0.4 — six packages impersonating popular frontend libraries with credential-exfiltration postinstall payloads |
+| Hardhat/Solidity ecosystem typosquats — July 1 2026 (OSV MAL-2026-6705/6706) | `hardhat-compile-ethers` 13 versions (0.0.1, 0.4.0–0.4.12); `hardhat-plugin-solidity` 1.0.0/1.1.0/2.0.0/2.3.1 — two packages impersonating Hardhat build tools with credential-exfiltration postinstall |
+| GHSA full-compromise batch — July 1 2026 (16 packages; OSV MAL-2026-6675/6676/6679–6690/6693/6694) | `rs-biginteger` (GHSA-xm5w-w96q-42f3); `terminal-prettier` (GHSA-m8cr-hv9p-pg3f); `agent-starter-pack` (GHSA-x676-qqgj-qfgg); `brock-loader` (GHSA-gwv3-x257-r43c); `brock-react-alerts` (GHSA-gh2m-x2qr-m2cm); `confluent-kafka-javascript` (GHSA-j28m-58xp-3wgh); `nbmolviz-js` (GHSA-fc4r-p4fh-6h4p); `postcss-property-rollup` (GHSA-6g2x-2f5c-wp9w); `quoting` (GHSA-x8q6-66jr-wmp3); `setup-cicd` (GHSA-5rc3-r829-w347); `procwire` (GHSA-5r42-357x-f2mx); `console-fmt-cli`; `decimal-format-core`; `log-taker1`; `thirdwb`; `thirdwebb` — all any-version wildcards, ranges >=0 |
+| Miscellaneous npm malware — June 30–July 1 2026 (OSV MAL-2026-3509/6346/6405/6674/6699/6700/6701/6704/6708/6710/6716/6717/6718) | `pp-react-v5` any-version; `triage-bot` 1.0.1/1.0.2; `sypoi1` 1.0.0/1.0.1; `ripshakti` 80.0.0; `ripshakti1` 81.0.0; `ecto-corsair-flag-7kq3mz` 1.0.0–1.0.2; `module-index-cache` 1.0.0–1.0.2; `zyncmap` 0.0.0/0.0.1; `vitest-agent` 1.0.5/1.0.6; `base65-85x` 5.0.1; `test-pkg-pnpm` 1.0.1/1.0.4; `test-pkg-x0` 1.0.0–1.0.4; `test-pkg-yarn` 1.0.0–1.0.2 |
+| Dependency-confusion packages — June 30–July 1 2026 (OSV MAL-2026-6696/6697/6698/6703) | `@businessapp-microsites/apis` 9999.0.0/9999.0.1; `@sudoughnym/enviro-demo` 99.99.99; `@andes-tools/colors` 999.0.0; `cursed-modules` 19 versions (1.0.1–999.1.2) — high-version shadow packages targeting private CI dependency resolution |
+| Woodpecker PyPI campaign update — July 1 2026 (OSV MAL-2026-5294) | `magique-ai` 0.4.4 added to existing 0.4.5 entry; same Bun-runtime JS credential-exfiltration payload as the June 2026 Woodpecker campaign batch |
+| twrap-tool / starlette-healthcheck PyPI malware — July 1 2026 (OSV MAL-2026-6711/6724) | `twrap-tool` 1.0.0; `starlette-healthcheck` 1.2.0/1.3.0/1.3.1 — two PyPI packages with install-time credential-exfiltration payloads |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -719,6 +728,60 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-6501 — wellnpm npm malware](https://osv.dev/vulnerability/MAL-2026-6501)
 - [OSV MAL-2026-6531 — @appupdate/cdn-sync dep-confusion](https://osv.dev/vulnerability/MAL-2026-6531)
 - [OSV MAL-2026-6532 — chai-as-assured Chai typosquat](https://osv.dev/vulnerability/MAL-2026-6532)
+- [OSV MAL-2026-6691 — polymarket-clob-maths npm typosquat (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6691)
+- [OSV MAL-2026-6692 — polymarket-trading-developer-tools npm typosquat (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6692)
+- [OSV MAL-2026-6712 — polymarket-risk-manager npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6712)
+- [OSV MAL-2026-6713 — polymarket-toolkit npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6713)
+- [OSV MAL-2026-6714 — polymarket-trading-developer-tool npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6714)
+- [GHSA-vjgf-xg3j-g9c5 / OSV MAL-2026-6677 — ts-lint-builders-v2.1 typosquat (June 30 2026)](https://github.com/advisories/GHSA-vjgf-xg3j-g9c5)
+- [GHSA-8mpj-272v-jhv7 / OSV MAL-2026-6678 — ts-linting-builder typosquat (June 30 2026)](https://github.com/advisories/GHSA-8mpj-272v-jhv7)
+- [OSV MAL-2026-6695 — ts-bn-proto npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6695)
+- [OSV MAL-2026-6720 — ts-elinter npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6720)
+- [OSV MAL-2026-6721 — ts-eslint-helper npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6721)
+- [OSV MAL-2026-6719 — ts-clob-math-v2 npm typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6719)
+- [OSV MAL-2026-6722 — date-fns-lite frontend-framework typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6722)
+- [OSV MAL-2026-6707 — svgson-lite frontend-framework typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6707)
+- [OSV MAL-2026-6709 — vega-lite-next frontend-framework typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6709)
+- [OSV MAL-2026-6702 — vue-demi-fix frontend-framework typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6702)
+- [OSV MAL-2026-6723 — electron-orbit frontend-framework typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6723)
+- [OSV MAL-2026-6715 — svgcraft-core frontend-framework typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6715)
+- [OSV MAL-2026-6705 — hardhat-compile-ethers Hardhat typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6705)
+- [OSV MAL-2026-6706 — hardhat-plugin-solidity Hardhat typosquat (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6706)
+- [GHSA-xm5w-w96q-42f3 / OSV MAL-2026-6675 — rs-biginteger npm malware (July 1 2026)](https://github.com/advisories/GHSA-xm5w-w96q-42f3)
+- [GHSA-m8cr-hv9p-pg3f / OSV MAL-2026-6676 — terminal-prettier npm malware (July 1 2026)](https://github.com/advisories/GHSA-m8cr-hv9p-pg3f)
+- [GHSA-x676-qqgj-qfgg / OSV MAL-2026-6679 — agent-starter-pack npm malware (July 1 2026)](https://github.com/advisories/GHSA-x676-qqgj-qfgg)
+- [GHSA-gwv3-x257-r43c / OSV MAL-2026-6680 — brock-loader npm malware (July 1 2026)](https://github.com/advisories/GHSA-gwv3-x257-r43c)
+- [GHSA-gh2m-x2qr-m2cm / OSV MAL-2026-6681 — brock-react-alerts npm malware (July 1 2026)](https://github.com/advisories/GHSA-gh2m-x2qr-m2cm)
+- [GHSA-j28m-58xp-3wgh / OSV MAL-2026-6682 — confluent-kafka-javascript npm malware (July 1 2026)](https://github.com/advisories/GHSA-j28m-58xp-3wgh)
+- [GHSA-fc4r-p4fh-6h4p / OSV MAL-2026-6683 — nbmolviz-js npm malware (July 1 2026)](https://github.com/advisories/GHSA-fc4r-p4fh-6h4p)
+- [GHSA-6g2x-2f5c-wp9w / OSV MAL-2026-6684 — postcss-property-rollup npm malware (July 1 2026)](https://github.com/advisories/GHSA-6g2x-2f5c-wp9w)
+- [GHSA-x8q6-66jr-wmp3 / OSV MAL-2026-6685 — quoting npm malware (July 1 2026)](https://github.com/advisories/GHSA-x8q6-66jr-wmp3)
+- [GHSA-5rc3-r829-w347 / OSV MAL-2026-6686 — setup-cicd npm malware (July 1 2026)](https://github.com/advisories/GHSA-5rc3-r829-w347)
+- [GHSA-5r42-357x-f2mx / OSV MAL-2026-6687 — procwire npm malware (July 1 2026)](https://github.com/advisories/GHSA-5r42-357x-f2mx)
+- [OSV MAL-2026-6688 — console-fmt-cli npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6688)
+- [OSV MAL-2026-6689 — decimal-format-core npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6689)
+- [OSV MAL-2026-6690 — log-taker1 npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6690)
+- [OSV MAL-2026-6693 — thirdwb npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6693)
+- [OSV MAL-2026-6694 — thirdwebb npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6694)
+- [OSV MAL-2026-3509 — pp-react-v5 npm malware](https://osv.dev/vulnerability/MAL-2026-3509)
+- [OSV MAL-2026-6346 — triage-bot npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6346)
+- [OSV MAL-2026-6405 — sypoi1 npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6405)
+- [OSV MAL-2026-6701 — ripshakti npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6701)
+- [OSV MAL-2026-6674 — ripshakti1 npm malware (June 30 2026)](https://osv.dev/vulnerability/MAL-2026-6674)
+- [OSV MAL-2026-6699 — ecto-corsair-flag-7kq3mz npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6699)
+- [OSV MAL-2026-6700 — module-index-cache npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6700)
+- [OSV MAL-2026-6708 — zyncmap npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6708)
+- [OSV MAL-2026-6710 — vitest-agent npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6710)
+- [OSV MAL-2026-6704 — base65-85x npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6704)
+- [OSV MAL-2026-6716 — test-pkg-pnpm npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6716)
+- [OSV MAL-2026-6717 — test-pkg-x0 npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6717)
+- [OSV MAL-2026-6718 — test-pkg-yarn npm malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6718)
+- [OSV MAL-2026-6696 — @businessapp-microsites/apis dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6696)
+- [OSV MAL-2026-6697 — @sudoughnym/enviro-demo dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6697)
+- [OSV MAL-2026-6703 — @andes-tools/colors dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6703)
+- [OSV MAL-2026-6698 — cursed-modules dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6698)
+- [OSV MAL-2026-6711 — twrap-tool PyPI malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6711)
+- [OSV MAL-2026-6724 — starlette-healthcheck PyPI malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6724)
 
 ## License
 

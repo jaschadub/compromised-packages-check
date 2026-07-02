@@ -206,7 +206,30 @@ OSV MAL-2026-3312/4580/4792/5487/5488/5734/5908/5934/6066/6068/6087/6098/6141/62
 6566/6567/6568/6569/6570/6571/6572/6573/6574/6575/6576/6577/6578/6579/6580/6581/6582/
 6583/6584/6585/6586/6587/6588/6589/6590/6591/6592/6594 through 6672/6673), and the
 PyPI malware batch June 29 2026 (sqligen, inlifegram, pdf-converter-pro any-version;
-django-bkvision 1.2.0; OSV MAL-2026-6515/6516/6541/6593).
+django-bkvision 1.2.0; OSV MAL-2026-6515/6516/6541/6593), the Polymarket typosquat
+cluster June 30 – July 1 2026 (polymarket-clob-maths, polymarket-trading-developer-tools,
+polymarket-risk-manager, polymarket-toolkit, polymarket-trading-developer-tool;
+OSV MAL-2026-6691/6692/6712/6713/6714), the TypeScript / ESLint / CLOB typosquat
+cluster June 30 – July 1 2026 (ts-lint-builders-v2.1, ts-linting-builder, ts-bn-proto,
+ts-elinter, ts-eslint-helper, ts-clob-math-v2; OSV MAL-2026-6677/6678/6695/6719/6720/6721),
+frontend framework typosquats July 1 2026 (date-fns-lite, svgson-lite, vega-lite-next,
+vue-demi-fix, electron-orbit, svgcraft-core; OSV MAL-2026-6702/6707/6709/6715/6722/6723),
+Hardhat/Solidity typosquats July 1 2026 (hardhat-compile-ethers, hardhat-plugin-solidity;
+OSV MAL-2026-6705/6706), a 16-package GHSA full-compromise batch July 1 2026
+(rs-biginteger, terminal-prettier, agent-starter-pack, brock-loader, brock-react-alerts,
+confluent-kafka-javascript, nbmolviz-js, postcss-property-rollup, quoting, setup-cicd,
+procwire, console-fmt-cli, decimal-format-core, log-taker1, thirdwb, thirdwebb;
+OSV MAL-2026-6675/6676/6679/6680/6681/6682/6683/6684/6685/6686/6687/6688/6689/6690/6693/6694),
+miscellaneous npm malware June 30 – July 1 2026 (pp-react-v5, triage-bot, sypoi1,
+ripshakti, ripshakti1, ecto-corsair-flag-7kq3mz, module-index-cache, zyncmap,
+vitest-agent, base65-85x, test-pkg-pnpm, test-pkg-x0, test-pkg-yarn;
+OSV MAL-2026-3509/6346/6405/6674/6699/6700/6701/6704/6708/6710/6716/6717/6718),
+dependency-confusion packages June 30 – July 1 2026
+(@businessapp-microsites/apis, @sudoughnym/enviro-demo, @andes-tools/colors,
+cursed-modules; OSV MAL-2026-6696/6697/6698/6703), and Woodpecker campaign update
+July 1 2026 (magique-ai 0.4.4 added to existing 0.4.5 entry;
+OSV MAL-2026-5294) and new PyPI malware twrap-tool (OSV MAL-2026-6711) and
+starlette-healthcheck (OSV MAL-2026-6724).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -219,7 +242,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-06-30
+Date:      2026-07-02
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -534,9 +557,9 @@ PYPI_BAD: dict[str, set[str]] = {
     #   Bun-runtime JS infostealer payload as the rest of the Woodpecker cluster.
     #   OSV MAL-2026-5290 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
     "cmd2func": {"0.2.2", "0.2.3"},
-    # magique-ai: version 0.4.5 was compromised with the same Woodpecker payload.
+    # magique-ai: versions 0.4.4 and 0.4.5 were compromised with the same Woodpecker payload.
     #   OSV MAL-2026-5294 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
-    "magique-ai": {"0.4.5"},
+    "magique-ai": {"0.4.4", "0.4.5"},
     # Four additional Woodpecker campaign packages confirmed June 7 2026 (same campaign)
     # OSV MAL-2026-5295 / https://bad-packages.kam193.eu/pypi/campaign/2026-06-compr-woodpecker
     "coolbox": {"0.4.1", "0.4.2"},
@@ -671,6 +694,14 @@ PYPI_BAD: dict[str, set[str]] = {
     "inlifegram": set(),
     "pdf-converter-pro": set(),
     "django-bkvision": {"1.2.0"},
+    # twrap-tool PyPI malware (July 1 2026)
+    # Install-time credential-exfiltration dropper; single version published before takedown.
+    # OSV MAL-2026-6711.
+    "twrap-tool": {"1.0.0"},
+    # starlette-healthcheck PyPI malware (July 1 2026)
+    # Typosquat of starlette-healthcheck ASGI extension; three consecutive malicious versions.
+    # OSV MAL-2026-6724.
+    "starlette-healthcheck": {"1.2.0", "1.3.0", "1.3.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -2711,6 +2742,128 @@ NPM_BAD: dict[str, set[str]] = {
     "envfile-sync-cli": set(),
     "ledgerflow-deploy-utils": set(),
     "maplibre-gl-vue3": set(),
+    # Polymarket ecosystem typosquat cluster (June 30 – July 1 2026)
+    # Five packages impersonating Polymarket trading tools and risk management utilities;
+    # postinstall payloads exfiltrate API keys, crypto wallet data, and environment variables.
+    # OSV MAL-2026-6691 (polymarket-clob-maths), MAL-2026-6692 (polymarket-trading-developer-tools),
+    # MAL-2026-6712 (polymarket-risk-manager), MAL-2026-6713 (polymarket-toolkit),
+    # MAL-2026-6714 (polymarket-trading-developer-tool).
+    "polymarket-clob-maths": set(),
+    "polymarket-trading-developer-tools": set(),
+    "polymarket-risk-manager": {"3.5.2"},
+    "polymarket-toolkit": {"1.4.9"},
+    "polymarket-trading-developer-tool": {"0.1.1"},
+    # TypeScript / ESLint / CLOB typosquat cluster (June 30 – July 1 2026)
+    # Six packages impersonating TypeScript build utilities, ESLint helpers, and CLOB math
+    # libraries; OSV affected.ranges >=0 for all-version entries.
+    # OSV MAL-2026-6677 / GHSA-vjgf-xg3j-g9c5 (ts-lint-builders-v2.1),
+    # MAL-2026-6678 / GHSA-8mpj-272v-jhv7 (ts-linting-builder),
+    # MAL-2026-6695 (ts-bn-proto), MAL-2026-6720 (ts-elinter),
+    # MAL-2026-6721 (ts-eslint-helper), MAL-2026-6719 (ts-clob-math-v2).
+    "ts-lint-builders-v2.1": set(),
+    "ts-linting-builder": set(),
+    "ts-bn-proto": set(),
+    "ts-elinter": {"3.3.9"},
+    "ts-eslint-helper": {"4.0.3", "4.0.4", "4.0.5"},
+    "ts-clob-math-v2": {"2.0.1"},
+    # Frontend framework typosquats (June 30 – July 1 2026)
+    # Six packages impersonating popular frontend libraries (date-fns, svgson, vega-lite,
+    # vue-demi, electron, svg tooling) with credential-exfiltration postinstall payloads.
+    # OSV MAL-2026-6722 (date-fns-lite), MAL-2026-6707 (svgson-lite),
+    # MAL-2026-6709 (vega-lite-next), MAL-2026-6702 (vue-demi-fix),
+    # MAL-2026-6723 (electron-orbit), MAL-2026-6715 (svgcraft-core).
+    "date-fns-lite": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6",
+        "1.0.7", "1.0.8", "1.0.9", "1.0.10", "1.0.11", "1.0.12",
+    },
+    "svgson-lite": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+    },
+    "vega-lite-next": {"19.2.1"},
+    "vue-demi-fix": {"10.0.3", "10.0.4", "10.0.5"},
+    "electron-orbit": {
+        "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9",
+        "1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16",
+        "1.0.18", "1.0.20", "1.0.21", "1.0.22", "1.0.23", "1.0.24", "1.0.25",
+        "1.0.26", "1.0.27", "1.0.28", "1.0.29", "1.0.30", "1.0.31", "1.0.32",
+        "1.0.33", "1.0.34", "1.0.36",
+    },
+    "svgcraft-core": {"1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    # Hardhat / Solidity ecosystem typosquats (June 30 – July 1 2026)
+    # Two packages impersonating Hardhat build tools with credential-exfiltration postinstall.
+    # OSV MAL-2026-6705 (hardhat-compile-ethers), MAL-2026-6706 (hardhat-plugin-solidity).
+    "hardhat-compile-ethers": {
+        "0.0.1", "0.4.0", "0.4.2", "0.4.3", "0.4.4", "0.4.5", "0.4.6",
+        "0.4.7", "0.4.8", "0.4.9", "0.4.10", "0.4.11", "0.4.12",
+    },
+    "hardhat-plugin-solidity": {"1.0.0", "1.1.0", "2.0.0", "2.3.1"},
+    # GHSA full-compromise batch (June 30 – July 1 2026)
+    # 16 packages with SEMVER >=0 range: "Any computer that has this package installed or
+    # running should be considered fully compromised." All use empty-set wildcard.
+    # OSV MAL-2026-6675 / GHSA-xm5w-w96q-42f3 (rs-biginteger),
+    # MAL-2026-6676 / GHSA-m8cr-hv9p-pg3f (terminal-prettier),
+    # MAL-2026-6679 / GHSA-x676-qqgj-qfgg (agent-starter-pack),
+    # MAL-2026-6680 / GHSA-gwv3-x257-r43c (brock-loader),
+    # MAL-2026-6681 / GHSA-gh2m-x2qr-m2cm (brock-react-alerts),
+    # MAL-2026-6682 / GHSA-j28m-58xp-3wgh (confluent-kafka-javascript),
+    # MAL-2026-6683 / GHSA-fc4r-p4fh-6h4p (nbmolviz-js),
+    # MAL-2026-6684 / GHSA-6g2x-2f5c-wp9w (postcss-property-rollup),
+    # MAL-2026-6685 / GHSA-x8q6-66jr-wmp3 (quoting),
+    # MAL-2026-6686 / GHSA-5rc3-r829-w347 (setup-cicd),
+    # MAL-2026-6687 / GHSA-5r42-357x-f2mx (procwire),
+    # MAL-2026-6688 (console-fmt-cli), MAL-2026-6689 (decimal-format-core),
+    # MAL-2026-6690 (log-taker1), MAL-2026-6693 (thirdwb), MAL-2026-6694 (thirdwebb).
+    "rs-biginteger": set(),
+    "terminal-prettier": set(),
+    "agent-starter-pack": set(),
+    "brock-loader": set(),
+    "brock-react-alerts": set(),
+    "confluent-kafka-javascript": set(),
+    "nbmolviz-js": set(),
+    "postcss-property-rollup": set(),
+    "quoting": set(),
+    "setup-cicd": set(),
+    "procwire": set(),
+    "console-fmt-cli": set(),
+    "decimal-format-core": set(),
+    "log-taker1": set(),
+    "thirdwb": set(),
+    "thirdwebb": set(),
+    # Miscellaneous npm malware batch (June 30 – July 1 2026)
+    # Individual packages with varying payloads. OSV records active, not withdrawn.
+    # OSV MAL-2026-3509 (pp-react-v5), MAL-2026-6346 (triage-bot),
+    # MAL-2026-6405 (sypoi1), MAL-2026-6701 (ripshakti), MAL-2026-6674 (ripshakti1),
+    # MAL-2026-6699 (ecto-corsair-flag-7kq3mz), MAL-2026-6700 (module-index-cache),
+    # MAL-2026-6708 (zyncmap), MAL-2026-6710 (vitest-agent),
+    # MAL-2026-6704 (base65-85x), MAL-2026-6716 (test-pkg-pnpm),
+    # MAL-2026-6717 (test-pkg-x0), MAL-2026-6718 (test-pkg-yarn).
+    "pp-react-v5": set(),
+    "triage-bot": {"1.0.1", "1.0.2"},
+    "sypoi1": {"1.0.0", "1.0.1"},
+    "ripshakti": {"80.0.0"},
+    "ripshakti1": {"81.0.0"},
+    "ecto-corsair-flag-7kq3mz": {"1.0.0", "1.0.1", "1.0.2"},
+    "module-index-cache": {"1.0.0", "1.0.1", "1.0.2"},
+    "zyncmap": {"0.0.0", "0.0.1"},
+    "vitest-agent": {"1.0.5", "1.0.6"},
+    "base65-85x": {"5.0.1"},
+    "test-pkg-pnpm": {"1.0.1", "1.0.4"},
+    "test-pkg-x0": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    "test-pkg-yarn": {"1.0.0", "1.0.1", "1.0.2"},
+    # Dependency-confusion packages (June 30 – July 1 2026)
+    # High-version shadow packages targeting private CI pipelines.
+    # OSV MAL-2026-6696 (@businessapp-microsites/apis),
+    # MAL-2026-6697 (@sudoughnym/enviro-demo),
+    # MAL-2026-6703 (@andes-tools/colors),
+    # MAL-2026-6698 (cursed-modules).
+    "@businessapp-microsites/apis": {"9999.0.0", "9999.0.1"},
+    "@sudoughnym/enviro-demo": {"99.99.99"},
+    "@andes-tools/colors": {"999.0.0"},
+    "cursed-modules": {
+        "1.0.1", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "2.0.0",
+        "999.0.0", "999.0.1", "999.0.2", "999.0.3", "999.0.4", "999.0.5",
+        "999.0.6", "999.0.7", "999.0.8", "999.0.9", "999.1.0", "999.1.1", "999.1.2",
+    },
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
