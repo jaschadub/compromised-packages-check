@@ -702,6 +702,19 @@ PYPI_BAD: dict[str, set[str]] = {
     # Typosquat of starlette-healthcheck ASGI extension; three consecutive malicious versions.
     # OSV MAL-2026-6724.
     "starlette-healthcheck": {"1.2.0", "1.3.0", "1.3.1"},
+    # dt-validator PyPI malware (July 2 2026)
+    # Malicious code detected by kam193; single version published before takedown.
+    # OSV MAL-2026-6728.
+    "dt-validator": {"0.3.0"},
+    # Epic Games / Unreal Engine dep-confusion campaign (July 2 2026)
+    # Packages published at version 99999.0.0 impersonating Epic/Unreal internal tools.
+    # Detected by kam193. OSV MAL-2026-6733 (epic-build-scripts),
+    # MAL-2026-6734 (horde-python-client), MAL-2026-6735 (ue-python-tools),
+    # MAL-2026-6736 (unreal-mladapter).
+    "epic-build-scripts": {"99999.0.0"},
+    "horde-python-client": {"99999.0.0"},
+    "ue-python-tools": {"99999.0.0"},
+    "unreal-mladapter": {"99999.0.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -2864,6 +2877,33 @@ NPM_BAD: dict[str, set[str]] = {
         "999.0.0", "999.0.1", "999.0.2", "999.0.3", "999.0.4", "999.0.5",
         "999.0.6", "999.0.7", "999.0.8", "999.0.9", "999.1.0", "999.1.1", "999.1.2",
     },
+    # July 2 2026 npm malware batch — Amazon Inspector / GHSA detections
+    # tailwind-typography-stylecss: infostealer; OSV MAL-2026-4681 / GHSA-p258-w6jm-c6ff.
+    "tailwind-typography-stylecss": set(),
+    # cache-section-helper: infostealer; OSV MAL-2026-5604 / GHSA-wg39-m2jm-wxhp.
+    "cache-section-helper": set(),
+    # db-connector-log: malware; OSV MAL-2026-6142 / GHSA-w7hw-9wmw-hj5w.
+    "db-connector-log": set(),
+    # animatecss-postcss-plugin: malware; OSV MAL-2026-6495 / GHSA-p6ch-cw7w-ff5c.
+    "animatecss-postcss-plugin": set(),
+    # db-plog: malware; OSV MAL-2026-6538 / GHSA-j49r-84jx-vq3m.
+    "db-plog": set(),
+    # @modhamanish/rn-mm-template: single malicious version; OSV MAL-2026-6725 / GHSA-7v96-p295-826q.
+    "@modhamanish/rn-mm-template": {"1.1.3"},
+    # db-convertor: any-version wildcard; OSV MAL-2026-6726 / GHSA-p467-3jcx-48q5.
+    "db-convertor": set(),
+    # tailwind-animates: any-version wildcard; OSV MAL-2026-6727 / GHSA-3cr6-gpr8-pjfm.
+    "tailwind-animates": set(),
+    # Epic Games / Unreal Engine dep-confusion campaign (July 2 2026)
+    # All published at 99999.0.0 to shadow internal Epic/Unreal CI dependencies.
+    # OSV MAL-2026-6729 (robomerge), MAL-2026-6730 (ue-automation-scripts),
+    # MAL-2026-6731 (ue-jenkins-buildkite), MAL-2026-6732 (unreal-horde-dashboard),
+    # MAL-2026-6737 (epic-internal-tools).
+    "robomerge": {"99999.0.0"},
+    "ue-automation-scripts": {"99999.0.0"},
+    "ue-jenkins-buildkite": {"99999.0.0"},
+    "unreal-horde-dashboard": {"99999.0.0"},
+    "epic-internal-tools": {"99999.0.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
