@@ -242,7 +242,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-02
+Date:      2026-07-04
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -702,6 +702,39 @@ PYPI_BAD: dict[str, set[str]] = {
     # Typosquat of starlette-healthcheck ASGI extension; three consecutive malicious versions.
     # OSV MAL-2026-6724.
     "starlette-healthcheck": {"1.2.0", "1.3.0", "1.3.1"},
+    # dt-validator PyPI remote-code-executor (July 2 2026)
+    # Contains a function to execute remote code; single version 0.3.0 published before takedown.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-6728
+    "dt-validator": {"0.3.0"},
+    # Unreal Engine / Epic Games dep-confusion PyPI cluster (July 2 2026)
+    # Four packages published at version 99999.0.0 impersonating Unreal Engine and Epic
+    # Games internal Python tooling; installing or importing exfiltrates host information.
+    # All detected by kam193 / bad-packages.kam193.eu. No >=0 range in OSV records — pin version.
+    # OSV MAL-2026-6733 (epic-build-scripts), MAL-2026-6734 (horde-python-client),
+    # MAL-2026-6735 (ue-python-tools), MAL-2026-6736 (unreal-mladapter)
+    "epic-build-scripts": {"99999.0.0"},
+    "horde-python-client": {"99999.0.0"},
+    "ue-python-tools": {"99999.0.0"},
+    "unreal-mladapter": {"99999.0.0"},
+    # haproxy-config-client / ipa-user-collector PyPI downloader campaign (July 4 2026)
+    # Both packages use obfuscated install-time code to download a malicious executable
+    # (VirusTotal hash d47a2d1b96df84b10263a99866b865421b334448432d1b447b82c76253bcbe86).
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-6748 (haproxy-config-client), MAL-2026-6749 (ipa-user-collector)
+    "haproxy-config-client": {"8.5.3"},
+    "ipa-user-collector": {"8.5.3"},
+    # procwire PyPI campaign (July 4 2026)
+    # Multi-package campaign sharing a common VirusTotal-confirmed dropper payload.
+    # procwire: the trigger package; 4 malicious versions published. OSV MAL-2026-6750.
+    # bytekit: same campaign; 2 malicious versions. OSV MAL-2026-6751.
+    # confighub: depends on malicious procwire; 2 versions. OSV MAL-2026-6752.
+    # schemavault: same campaign payload; 2 malicious versions. OSV MAL-2026-6753.
+    # All detected by kam193 / bad-packages.kam193.eu.
+    "procwire": {"5.2.3", "5.2.5", "5.2.6", "5.2.7"},
+    "bytekit": {"3.4.1", "3.4.2"},
+    "confighub": {"7.0.1", "7.0.2"},
+    "schemavault": {"4.1.0", "4.1.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -1974,7 +2007,7 @@ NPM_BAD: dict[str, set[str]] = {
     # Communicates with a domain associated with malicious activity and executes
     # commands associated with malicious behavior; detected by OpenSSF Package Analysis.
     # OSV MAL-2026-5188
-    "hello244a": {"1.0.4", "1.0.1"},
+    "hello244a": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},
     # IronWorm supplemental packages (June 5 2026)
     # Additional npm packages in the IronWorm campaign carrying the same Rust-compiled
     # x86-64 ELF preinstall dropper that exfiltrates cloud keys, SSH material, npm tokens,
@@ -2864,6 +2897,76 @@ NPM_BAD: dict[str, set[str]] = {
         "999.0.0", "999.0.1", "999.0.2", "999.0.3", "999.0.4", "999.0.5",
         "999.0.6", "999.0.7", "999.0.8", "999.0.9", "999.1.0", "999.1.1", "999.1.2",
     },
+    # tailwind-typography-stylecss Tailwind CSS typosquat (July 2 2026)
+    # Impersonates tailwind-typography CSS plugin; SEMVER >=0 range — entire package malicious.
+    # OSV MAL-2026-4681 / GHSA-p258-w6jm-c6ff
+    "tailwind-typography-stylecss": set(),
+    # SQL/SQLite fake npm package cluster (July 2–3 2026)
+    # Three packages impersonating SQL access and SQLite tooling; each ships a
+    # postinstall credential-exfiltration payload. SEMVER >=0 range — entire packages malicious.
+    # OSV MAL-2026-5394 / GHSA-qpx3-6fx4-259q (@sql-access/nodesql)
+    # OSV MAL-2026-5395 / GHSA-9f9w-wg5j-m53j (@sql-trigger/nodesql)
+    # OSV MAL-2026-5396 / GHSA-9w2p-6gjc-vrqv (@sqlite-node/createsql)
+    "@sql-access/nodesql": set(),
+    "@sql-trigger/nodesql": set(),
+    "@sqlite-node/createsql": set(),
+    # Miscellaneous npm malware (July 2–3 2026)
+    # All five carry a postinstall hook or import-time payload exfiltrating credentials.
+    # SEMVER >=0 range in OSV records — entire packages are malicious.
+    # OSV MAL-2026-5604 / GHSA-wg39-m2jm-wxhp (cache-section-helper)
+    # OSV MAL-2026-6142 / GHSA-w7hw-9wmw-hj5w (db-connector-log)
+    # OSV MAL-2026-6209 / GHSA-c3r7-wcqm-j4v8 (@antoncarlos1/nodelamp)
+    # OSV MAL-2026-6495 / GHSA-p6ch-cw7w-ff5c (animatecss-postcss-plugin)
+    # OSV MAL-2026-6538 / GHSA-j49r-84jx-vq3m (db-plog)
+    "cache-section-helper": set(),
+    "db-connector-log": set(),
+    "@antoncarlos1/nodelamp": set(),
+    "animatecss-postcss-plugin": set(),
+    "db-plog": set(),
+    # GHSA-confirmed npm malware batch (July 2 2026)
+    # @modhamanish/rn-mm-template: only version 1.1.3 enumerated, no >=0 range — pin it.
+    #   OSV MAL-2026-6725 / GHSA-7v96-p295-826q
+    # db-convertor: SEMVER >=0 range, no specific versions — wildcard.
+    #   OSV MAL-2026-6726 / GHSA-p467-3jcx-48q5
+    # tailwind-animates: SEMVER >=0 range, no specific versions — wildcard.
+    #   OSV MAL-2026-6727 / GHSA-3cr6-gpr8-pjfm
+    "@modhamanish/rn-mm-template": {"1.1.3"},
+    "db-convertor": set(),
+    "tailwind-animates": set(),
+    # Unreal Engine / Epic Games dep-confusion npm cluster (July 2 2026)
+    # Five packages published at version 99999.0.0 to shadow private UE/Epic packages in CI/CD.
+    # Detected by OpenSSF Package Analysis. No >=0 range in OSV records — pin version.
+    # OSV MAL-2026-6729 (robomerge), MAL-2026-6730 (ue-automation-scripts),
+    # MAL-2026-6731 (ue-jenkins-buildkite), MAL-2026-6732 (unreal-horde-dashboard),
+    # MAL-2026-6737 (epic-internal-tools)
+    "robomerge": {"99999.0.0"},
+    "ue-automation-scripts": {"99999.0.0"},
+    "ue-jenkins-buildkite": {"99999.0.0"},
+    "unreal-horde-dashboard": {"99999.0.0"},
+    "epic-internal-tools": {"99999.0.0"},
+    # GHSA any-version malware cluster (July 3 2026)
+    # Ten packages confirmed fully malicious by GHSA automated detection;
+    # all have SEMVER >=0 range with no specific versions.
+    # OSV MAL-2026-6738 / GHSA-3mg6-vg6x-m62v (@jacobtan/decode-sdk)
+    # OSV MAL-2026-6739 / GHSA-37qp-frv4-562v (@lodash-en/lodash-en)
+    # OSV MAL-2026-6740 / GHSA-gv37-287r-g9vx (decode-sdks)
+    # OSV MAL-2026-6741 / GHSA-558p-3gxf-hm84 (@node-cloud/create)
+    # OSV MAL-2026-6742 / GHSA-j23f-jg9h-gjmc (alder_morrgan)
+    # OSV MAL-2026-6743 / GHSA-wj6w-3grq-735j (api-node-utils)
+    # OSV MAL-2026-6744 / GHSA-3w2r-9f5g-prj8 (api-ts-utils)
+    # OSV MAL-2026-6745 / GHSA-mjvg-2r5j-mg76 (ts-node-utils)
+    # OSV MAL-2026-6746 / GHSA-84mg-p866-528x (typescript-util-core)
+    # OSV MAL-2026-6747 / GHSA-j69c-7q52-h87f (web-api-node)
+    "@jacobtan/decode-sdk": set(),
+    "@lodash-en/lodash-en": set(),
+    "decode-sdks": set(),
+    "@node-cloud/create": set(),
+    "alder_morrgan": set(),
+    "api-node-utils": set(),
+    "api-ts-utils": set(),
+    "ts-node-utils": set(),
+    "typescript-util-core": set(),
+    "web-api-node": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any

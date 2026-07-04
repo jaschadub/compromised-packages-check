@@ -195,6 +195,17 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Dependency-confusion packages — June 30–July 1 2026 (OSV MAL-2026-6696/6697/6698/6703) | `@businessapp-microsites/apis` 9999.0.0/9999.0.1; `@sudoughnym/enviro-demo` 99.99.99; `@andes-tools/colors` 999.0.0; `cursed-modules` 19 versions (1.0.1–999.1.2) — high-version shadow packages targeting private CI dependency resolution |
 | Woodpecker PyPI campaign update — July 1 2026 (OSV MAL-2026-5294) | `magique-ai` 0.4.4 added to existing 0.4.5 entry; same Bun-runtime JS credential-exfiltration payload as the June 2026 Woodpecker campaign batch |
 | twrap-tool / starlette-healthcheck PyPI malware — July 1 2026 (OSV MAL-2026-6711/6724) | `twrap-tool` 1.0.0; `starlette-healthcheck` 1.2.0/1.3.0/1.3.1 — two PyPI packages with install-time credential-exfiltration payloads |
+| hello244a IronWorm update — July 3 2026 (OSV MAL-2026-5188) | `hello244a` expanded from 2 to 5 malicious versions (1.0.0–1.0.4); three additional versions confirmed by the same OpenSSF Package Analysis campaign |
+| dt-validator PyPI remote-code-executor — July 2 2026 (OSV MAL-2026-6728) | `dt-validator` 0.3.0 — single version published before takedown; contains a function to execute remote code; detected by kam193/bad-packages.kam193.eu |
+| Unreal Engine / Epic Games dep-confusion npm cluster — July 2 2026 | Five packages published at version 99999.0.0 to shadow private Unreal Engine and Epic Games internal packages: `robomerge`, `ue-automation-scripts`, `ue-jenkins-buildkite`, `unreal-horde-dashboard`, `epic-internal-tools`; OSV MAL-2026-6729/6730/6731/6732/6737 |
+| Unreal Engine / Epic Games dep-confusion PyPI cluster — July 2 2026 | Four packages at version 99999.0.0 impersonating UE/Epic internal Python tooling: `epic-build-scripts`, `horde-python-client`, `ue-python-tools`, `unreal-mladapter`; OSV MAL-2026-6733/6734/6735/6736; all detected by kam193 |
+| tailwind-typography-stylecss Tailwind CSS typosquat — July 2 2026 (OSV MAL-2026-4681 / GHSA-p258-w6jm-c6ff) | `tailwind-typography-stylecss` any-version wildcard — impersonates tailwind-typography CSS plugin; SEMVER >=0 range; entire package malicious |
+| SQL/SQLite fake npm package cluster — July 2–3 2026 | `@sql-access/nodesql`, `@sql-trigger/nodesql`, `@sqlite-node/createsql` — three packages impersonating SQL/SQLite tooling with postinstall credential-exfiltration payloads; all any-version wildcards; OSV MAL-2026-5394/5395/5396 |
+| Miscellaneous npm malware batch — July 2–3 2026 | `cache-section-helper`, `db-connector-log`, `@antoncarlos1/nodelamp`, `animatecss-postcss-plugin`, `db-plog` — five packages with postinstall hooks or import-time credential-exfiltration payloads; all any-version wildcards; OSV MAL-2026-5604/6142/6209/6495/6538 |
+| GHSA-confirmed npm malware batch — July 2 2026 | `@modhamanish/rn-mm-template` 1.1.3 (pinned; MAL-2026-6725); `db-convertor` any-version wildcard (MAL-2026-6726); `tailwind-animates` any-version wildcard (MAL-2026-6727) |
+| GHSA any-version npm malware cluster — July 3 2026 | Ten packages confirmed fully malicious: `@jacobtan/decode-sdk`, `@lodash-en/lodash-en`, `decode-sdks`, `@node-cloud/create`, `alder_morrgan`, `api-node-utils`, `api-ts-utils`, `ts-node-utils`, `typescript-util-core`, `web-api-node` — all SEMVER >=0 range wildcards; OSV MAL-2026-6738 through MAL-2026-6747 |
+| haproxy-config-client / ipa-user-collector PyPI downloader campaign — July 4 2026 (OSV MAL-2026-6748/6749) | `haproxy-config-client` 8.5.3; `ipa-user-collector` 8.5.3 — both packages use obfuscated install-time code to download a malicious executable (same VirusTotal-confirmed dropper hash); detected by kam193 |
+| procwire PyPI multi-package campaign — July 4 2026 (OSV MAL-2026-6750/6751/6752/6753) | `procwire` 5.2.3/5.2.5/5.2.6/5.2.7; `bytekit` 3.4.1/3.4.2; `confighub` 7.0.1/7.0.2; `schemavault` 4.1.0/4.1.1 — four packages sharing a common VirusTotal-confirmed dropper payload; detected by kam193 |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -782,6 +793,45 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-6698 — cursed-modules dep-confusion (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6698)
 - [OSV MAL-2026-6711 — twrap-tool PyPI malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6711)
 - [OSV MAL-2026-6724 — starlette-healthcheck PyPI malware (July 1 2026)](https://osv.dev/vulnerability/MAL-2026-6724)
+- [OSV MAL-2026-5188 — hello244a IronWorm npm malware (updated July 3 2026)](https://osv.dev/vulnerability/MAL-2026-5188)
+- [OSV MAL-2026-6728 — dt-validator PyPI remote-code-executor (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6728)
+- [OSV MAL-2026-6729 — robomerge npm dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6729)
+- [OSV MAL-2026-6730 — ue-automation-scripts npm dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6730)
+- [OSV MAL-2026-6731 — ue-jenkins-buildkite npm dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6731)
+- [OSV MAL-2026-6732 — unreal-horde-dashboard npm dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6732)
+- [OSV MAL-2026-6737 — epic-internal-tools npm dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6737)
+- [OSV MAL-2026-6733 — epic-build-scripts PyPI dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6733)
+- [OSV MAL-2026-6734 — horde-python-client PyPI dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6734)
+- [OSV MAL-2026-6735 — ue-python-tools PyPI dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6735)
+- [OSV MAL-2026-6736 — unreal-mladapter PyPI dep-confusion (July 2 2026)](https://osv.dev/vulnerability/MAL-2026-6736)
+- [GHSA-p258-w6jm-c6ff / OSV MAL-2026-4681 — tailwind-typography-stylecss Tailwind CSS typosquat (July 2 2026)](https://github.com/advisories/GHSA-p258-w6jm-c6ff)
+- [GHSA-qpx3-6fx4-259q / OSV MAL-2026-5394 — @sql-access/nodesql npm malware (July 2 2026)](https://github.com/advisories/GHSA-qpx3-6fx4-259q)
+- [GHSA-9f9w-wg5j-m53j / OSV MAL-2026-5395 — @sql-trigger/nodesql npm malware (July 2 2026)](https://github.com/advisories/GHSA-9f9w-wg5j-m53j)
+- [GHSA-9w2p-6gjc-vrqv / OSV MAL-2026-5396 — @sqlite-node/createsql npm malware (July 2 2026)](https://github.com/advisories/GHSA-9w2p-6gjc-vrqv)
+- [GHSA-wg39-m2jm-wxhp / OSV MAL-2026-5604 — cache-section-helper npm malware (July 2 2026)](https://github.com/advisories/GHSA-wg39-m2jm-wxhp)
+- [GHSA-w7hw-9wmw-hj5w / OSV MAL-2026-6142 — db-connector-log npm malware (July 2 2026)](https://github.com/advisories/GHSA-w7hw-9wmw-hj5w)
+- [GHSA-c3r7-wcqm-j4v8 / OSV MAL-2026-6209 — @antoncarlos1/nodelamp npm malware (July 2 2026)](https://github.com/advisories/GHSA-c3r7-wcqm-j4v8)
+- [GHSA-p6ch-cw7w-ff5c / OSV MAL-2026-6495 — animatecss-postcss-plugin npm malware (July 2 2026)](https://github.com/advisories/GHSA-p6ch-cw7w-ff5c)
+- [GHSA-j49r-84jx-vq3m / OSV MAL-2026-6538 — db-plog npm malware (July 2 2026)](https://github.com/advisories/GHSA-j49r-84jx-vq3m)
+- [GHSA-7v96-p295-826q / OSV MAL-2026-6725 — @modhamanish/rn-mm-template npm malware (July 2 2026)](https://github.com/advisories/GHSA-7v96-p295-826q)
+- [GHSA-p467-3jcx-48q5 / OSV MAL-2026-6726 — db-convertor npm malware (July 2 2026)](https://github.com/advisories/GHSA-p467-3jcx-48q5)
+- [GHSA-3cr6-gpr8-pjfm / OSV MAL-2026-6727 — tailwind-animates npm malware (July 2 2026)](https://github.com/advisories/GHSA-3cr6-gpr8-pjfm)
+- [GHSA-3mg6-vg6x-m62v / OSV MAL-2026-6738 — @jacobtan/decode-sdk npm malware (July 3 2026)](https://github.com/advisories/GHSA-3mg6-vg6x-m62v)
+- [GHSA-37qp-frv4-562v / OSV MAL-2026-6739 — @lodash-en/lodash-en npm malware (July 3 2026)](https://github.com/advisories/GHSA-37qp-frv4-562v)
+- [GHSA-gv37-287r-g9vx / OSV MAL-2026-6740 — decode-sdks npm malware (July 3 2026)](https://github.com/advisories/GHSA-gv37-287r-g9vx)
+- [GHSA-558p-3gxf-hm84 / OSV MAL-2026-6741 — @node-cloud/create npm malware (July 3 2026)](https://github.com/advisories/GHSA-558p-3gxf-hm84)
+- [GHSA-j23f-jg9h-gjmc / OSV MAL-2026-6742 — alder_morrgan npm malware (July 3 2026)](https://github.com/advisories/GHSA-j23f-jg9h-gjmc)
+- [GHSA-wj6w-3grq-735j / OSV MAL-2026-6743 — api-node-utils npm malware (July 3 2026)](https://github.com/advisories/GHSA-wj6w-3grq-735j)
+- [GHSA-3w2r-9f5g-prj8 / OSV MAL-2026-6744 — api-ts-utils npm malware (July 3 2026)](https://github.com/advisories/GHSA-3w2r-9f5g-prj8)
+- [GHSA-mjvg-2r5j-mg76 / OSV MAL-2026-6745 — ts-node-utils npm malware (July 3 2026)](https://github.com/advisories/GHSA-mjvg-2r5j-mg76)
+- [GHSA-84mg-p866-528x / OSV MAL-2026-6746 — typescript-util-core npm malware (July 3 2026)](https://github.com/advisories/GHSA-84mg-p866-528x)
+- [GHSA-j69c-7q52-h87f / OSV MAL-2026-6747 — web-api-node npm malware (July 3 2026)](https://github.com/advisories/GHSA-j69c-7q52-h87f)
+- [OSV MAL-2026-6748 — haproxy-config-client PyPI downloader malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6748)
+- [OSV MAL-2026-6749 — ipa-user-collector PyPI downloader malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6749)
+- [OSV MAL-2026-6750 — procwire PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6750)
+- [OSV MAL-2026-6751 — bytekit PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6751)
+- [OSV MAL-2026-6752 — confighub PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6752)
+- [OSV MAL-2026-6753 — schemavault PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6753)
 
 ## License
 
