@@ -206,6 +206,10 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | GHSA any-version npm malware cluster — July 3 2026 | Ten packages confirmed fully malicious: `@jacobtan/decode-sdk`, `@lodash-en/lodash-en`, `decode-sdks`, `@node-cloud/create`, `alder_morrgan`, `api-node-utils`, `api-ts-utils`, `ts-node-utils`, `typescript-util-core`, `web-api-node` — all SEMVER >=0 range wildcards; OSV MAL-2026-6738 through MAL-2026-6747 |
 | haproxy-config-client / ipa-user-collector PyPI downloader campaign — July 4 2026 (OSV MAL-2026-6748/6749) | `haproxy-config-client` 8.5.3; `ipa-user-collector` 8.5.3 — both packages use obfuscated install-time code to download a malicious executable (same VirusTotal-confirmed dropper hash); detected by kam193 |
 | procwire PyPI multi-package campaign — July 4 2026 (OSV MAL-2026-6750/6751/6752/6753) | `procwire` 5.2.3/5.2.5/5.2.6/5.2.7; `bytekit` 3.4.1/3.4.2; `confighub` 7.0.1/7.0.2; `schemavault` 4.1.0/4.1.1 — four packages sharing a common VirusTotal-confirmed dropper payload; detected by kam193 |
+| yt-api-dlp PyPI crypto-stealer typosquat — July 4 2026 (OSV MAL-2026-6754) | `yt-api-dlp` 0.1.0, 0.1.1 — impersonates a YouTube downloader / yt-dlp wrapper; install-time payload exfiltrates data to a Polygon blockchain smart contract C2; VirusTotal-confirmed |
+| httpprobe PyPI malware — July 4 2026 (OSV MAL-2026-6758) | `httpprobe` 1.0.0 — malicious code detected by kam193/bad-packages.kam193.eu |
+| urlllib321 PyPI urllib3 typosquat — July 5 2026 (OSV MAL-2026-6759) | `urlllib321` 2.7.0, 2.7.1 — typosquat of the widely-used urllib3 library; two malicious versions; detected by kam193/bad-packages.kam193.eu |
+| vps-maintenance / paperclip2 npm malware cluster — July 4 2026 (OSV MAL-2026-6755/6756/6757) | `paperclip2` 1.0.0; `vps-maintenance` 0.1.0; `vps-maintenance-paperclip-adapter` 0.1.2 — three packages from the same actor published in the same minute with postinstall credential-exfiltration payloads; detected by OpenSSF Package Analysis |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -832,6 +836,12 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-6751 — bytekit PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6751)
 - [OSV MAL-2026-6752 — confighub PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6752)
 - [OSV MAL-2026-6753 — schemavault PyPI dropper campaign (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6753)
+- [OSV MAL-2026-6754 — yt-api-dlp PyPI crypto-stealer typosquat (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6754)
+- [OSV MAL-2026-6755 — paperclip2 npm malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6755)
+- [OSV MAL-2026-6756 — vps-maintenance npm malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6756)
+- [OSV MAL-2026-6757 — vps-maintenance-paperclip-adapter npm malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6757)
+- [OSV MAL-2026-6758 — httpprobe PyPI malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6758)
+- [OSV MAL-2026-6759 — urlllib321 PyPI urllib3 typosquat (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-6759)
 
 ## License
 

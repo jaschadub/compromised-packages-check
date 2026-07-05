@@ -229,7 +229,12 @@ dependency-confusion packages June 30 – July 1 2026
 cursed-modules; OSV MAL-2026-6696/6697/6698/6703), and Woodpecker campaign update
 July 1 2026 (magique-ai 0.4.4 added to existing 0.4.5 entry;
 OSV MAL-2026-5294) and new PyPI malware twrap-tool (OSV MAL-2026-6711) and
-starlette-healthcheck (OSV MAL-2026-6724).
+starlette-healthcheck (OSV MAL-2026-6724), and the July 4–5 2026 batch:
+yt-api-dlp PyPI crypto-stealer typosquat (OSV MAL-2026-6754),
+httpprobe PyPI malware (OSV MAL-2026-6758), urlllib321 urllib3 PyPI
+typosquat (OSV MAL-2026-6759), and the vps-maintenance / paperclip2
+npm malware cluster (paperclip2, vps-maintenance,
+vps-maintenance-paperclip-adapter; OSV MAL-2026-6755/6756/6757).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -242,7 +247,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-04
+Date:      2026-07-05
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -735,6 +740,21 @@ PYPI_BAD: dict[str, set[str]] = {
     "bytekit": {"3.4.1", "3.4.2"},
     "confighub": {"7.0.1", "7.0.2"},
     "schemavault": {"4.1.0", "4.1.1"},
+    # yt-api-dlp PyPI crypto-stealer typosquat (July 4 2026)
+    # Impersonates a YouTube downloader / yt-dlp wrapper; install-time payload exfiltrates
+    # data to a Polygon blockchain smart contract address and VirusTotal-confirmed C2.
+    # References a malicious GitHub commit (DreyCode2/youtube-downloader).
+    # OSV MAL-2026-6754.
+    "yt-api-dlp": {"0.1.0", "0.1.1"},
+    # httpprobe PyPI malware (July 4 2026)
+    # Single version published before takedown; malicious code detected by kam193.
+    # OSV MAL-2026-6758 / https://bad-packages.kam193.eu/pypi/package/httpprobe
+    "httpprobe": {"1.0.0"},
+    # urlllib321 PyPI typosquat (July 5 2026)
+    # Typosquat of the widely-used urllib3 library (urlllib321 vs urllib3);
+    # two versions published with malicious code; detected by kam193.
+    # OSV MAL-2026-6759 / https://bad-packages.kam193.eu/pypi/package/urlllib321
+    "urlllib321": {"2.7.0", "2.7.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -2967,6 +2987,15 @@ NPM_BAD: dict[str, set[str]] = {
     "ts-node-utils": set(),
     "typescript-util-core": set(),
     "web-api-node": set(),
+    # vps-maintenance / paperclip2 npm malware cluster (July 4 2026)
+    # Three packages from the same actor published in the same minute;
+    # each carries a postinstall credential-exfiltration payload.
+    # Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-6755 (paperclip2), MAL-2026-6756 (vps-maintenance),
+    # MAL-2026-6757 (vps-maintenance-paperclip-adapter)
+    "paperclip2": {"1.0.0"},
+    "vps-maintenance": {"0.1.0"},
+    "vps-maintenance-paperclip-adapter": {"0.1.2"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
