@@ -2996,6 +2996,77 @@ NPM_BAD: dict[str, set[str]] = {
     "paperclip2": {"1.0.0"},
     "vps-maintenance": {"0.1.0"},
     "vps-maintenance-paperclip-adapter": {"0.1.2"},
+    # @marketfront/* dep-confusion cluster (July 5 2026, Yandex Market internal scope)
+    # 25 packages published to public npm to shadow private @marketfront packages.
+    # All carry a postinstall exfiltration payload; no legitimate public use.
+    # OSV MAL-2026-6763 through MAL-2026-6787.
+    "@marketfront/actualordersnippetpopup": set(),
+    "@marketfront/advertisingdevtool": set(),
+    "@marketfront/bannerpopup": set(),
+    "@marketfront/baobabtech": set(),
+    "@marketfront/basemarkettemplate": set(),
+    "@marketfront/blenderdevtool": set(),
+    "@marketfront/captchaservice": set(),
+    "@marketfront/changefilter": set(),
+    "@marketfront/commonecommerce": set(),
+    "@marketfront/customdealsfeed": set(),
+    "@marketfront/designsystemdevtool": set(),
+    "@marketfront/devtoolsloader": set(),
+    "@marketfront/digitalherobannercarousel": set(),
+    "@marketfront/dynamicpageparams": set(),
+    "@marketfront/errorcounter": set(),
+    "@marketfront/fashiononboardingpopup": set(),
+    "@marketfront/fingerprint": set(),
+    "@marketfront/footer": set(),
+    "@marketfront/gotoauthpopup": set(),
+    "@marketfront/header": set(),
+    "@marketfront/infopopup": set(),
+    "@marketfront/livestreampreviewpopup": set(),
+    "@marketfront/madvpopup": set(),
+    "@marketfront/mychatspreloader": set(),
+    "@marketfront/navbar": set(),
+    # @liquid-web / @self-sell / @team-event dep-confusion campaign (July 5 2026)
+    # All published at version 1.2.9213 to shadow private registry packages.
+    # OSV MAL-2025-47032, MAL-2025-47033, MAL-2025-47040,
+    #     MAL-2025-47045, MAL-2025-47046, MAL-2025-47047,
+    #     MAL-2025-47048, MAL-2025-47051.
+    "@liquid-web/app-services": set(),
+    "@liquid-web/common": set(),
+    "@liquid-web/utils": set(),
+    "@self-sell/guards": set(),
+    "@self-sell/self-sell-amplitude-events": set(),
+    "@self-sell/store": set(),
+    "@team-event/models": set(),
+    "@team-event/v2": set(),
+    # @google_cloud/precise-date typosquat (July 5 2026)
+    # Typosquats the legitimate @google-cloud/precise-date package.
+    # OSV MAL-2025-47029; affected.ranges >= 0 (any version malicious).
+    "@google_cloud/precise-date": set(),
+    # @swiggy-private dep-confusion (2024, recently updated in OSV)
+    # High-version dep-confusion packages targeting Swiggy internal registry.
+    # OSV MAL-2024-12164, MAL-2024-12168.
+    "@swiggy-private/aatm-nirbhar-build": {"8999999999999999.99999999.99999999999"},
+    "@swiggy-private/js-utils": {
+        "1.0.0", "1.0.1", "1.0.999999999",
+        "999.999999.99999", "9999.9999.9999", "99999.9999.9999",
+        "999999.999.99999", "9999999.99.9999", "99999999.10012.9999",
+    },
+    # Misc npm malware batch (July 5–6 2026)
+    # OSV MAL-2026-6760 through MAL-2026-6762, MAL-2026-6788 through MAL-2026-6795.
+    "@adobesign/as-dev-tools": {"99.9.9", "99.9.10"},
+    "gen-ai-opt-in": {"99.0.2"},
+    "node-pino": {"2.3.2"},
+    "datefmt-helper": {"1.0.0", "1.0.1"},
+    "@checkrhq/adjudication-api-client": {"0.0.2"},
+    "debugcli": {"4.3.5", "4.3.9"},
+    "npm-show-date-proof-strings": {"1.0.3"},
+    "wsh4-nmp": {"1.0.0"},
+    "neon-terminal": {"0.2.0", "0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", "0.9.0"},
+    "zod-pino434": {"1.0.127", "1.0.128"},
+    "zod-pino444": {"1.0.128", "1.0.129"},
+    # @antv/adjust malicious versions (July 5 2026, part of ongoing @antv wave)
+    # OSV MAL-2026-3849; two specific malicious versions among otherwise-legitimate releases.
+    "@antv/adjust": {"0.3.5", "0.4.5"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -3015,6 +3086,15 @@ NPM_SUSPECT_SCOPES = (
     # @mastra scope compromise (June 20–27 2026) — 89 packages, exact versions
     # pinned above; scope entry catches any undisclosed additional packages
     "@mastra/",
+    # @marketfront dep-confusion (July 5 2026) — 25 packages pinned above;
+    # scope entry catches any undisclosed additional @marketfront packages
+    "@marketfront/",
+    # @liquid-web / @self-sell / @team-event dep-confusion (July 5 2026)
+    "@liquid-web/", "@self-sell/", "@team-event/",
+    # @swiggy-private dep-confusion (2024, OSV updated July 2026)
+    "@swiggy-private/",
+    # @checkrhq dep-confusion batch (July 6 2026)
+    "@checkrhq/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.

@@ -45,7 +45,9 @@ FOUND 3 MALICIOUS PACKAGE VERSION(S):
 The scanner also emits a warning (no failure) for any package living under
 an advisory-affected npm scope (`@mistralai/`, `@uipath/`, `@opensearch-project/`,
 `@antv/`, `@car-loans/`, `@cloudplatform-single-spa/`, `@debit-ib/`, `@fb-deposit/`,
-`@mlspace/`, `@vpmdhaj/`, `@t-in-one/`, `@redhat-cloud-services/`, `@mastra/`) where the version doesn't exactly match the malicious list —
+`@mlspace/`, `@vpmdhaj/`, `@t-in-one/`, `@redhat-cloud-services/`, `@mastra/`,
+`@marketfront/`, `@liquid-web/`, `@self-sell/`, `@team-event/`, `@swiggy-private/`,
+`@checkrhq/`) where the version doesn't exactly match the malicious list —
 useful for catching newly-disclosed entries before this repo has been updated.
 
 ## What's tracked
@@ -210,6 +212,12 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | httpprobe PyPI malware — July 4 2026 (OSV MAL-2026-6758) | `httpprobe` 1.0.0 — malicious code detected by kam193/bad-packages.kam193.eu |
 | urlllib321 PyPI urllib3 typosquat — July 5 2026 (OSV MAL-2026-6759) | `urlllib321` 2.7.0, 2.7.1 — typosquat of the widely-used urllib3 library; two malicious versions; detected by kam193/bad-packages.kam193.eu |
 | vps-maintenance / paperclip2 npm malware cluster — July 4 2026 (OSV MAL-2026-6755/6756/6757) | `paperclip2` 1.0.0; `vps-maintenance` 0.1.0; `vps-maintenance-paperclip-adapter` 0.1.2 — three packages from the same actor published in the same minute with postinstall credential-exfiltration payloads; detected by OpenSSF Package Analysis |
+| @marketfront/* dep-confusion cluster — July 5 2026 (OSV MAL-2026-6763 through MAL-2026-6787) | 25 packages across the `@marketfront/` scope published to shadow Yandex Market's internal private registry; all carry postinstall exfiltration payloads; no legitimate public use for any of these packages; entire scope added to NPM_SUSPECT_SCOPES |
+| @liquid-web / @self-sell / @team-event dep-confusion — July 5 2026 (OSV MAL-2025-47032/47033/47040/47045/47046/47047/47048/47051) | 8 packages across three scopes (`@liquid-web/app-services`, `@liquid-web/common`, `@liquid-web/utils`, `@self-sell/guards`, `@self-sell/self-sell-amplitude-events`, `@self-sell/store`, `@team-event/models`, `@team-event/v2`) all published at version 1.2.9213 to shadow private registry packages |
+| @google_cloud/precise-date typosquat — July 5 2026 (OSV MAL-2025-47029) | Typosquats the legitimate `@google-cloud/precise-date` package; affected.ranges >= 0 (any version is malicious) |
+| @swiggy-private dep-confusion — 2024 (OSV MAL-2024-12164/12168, OSV updated July 2026) | High-version dep-confusion packages targeting Swiggy internal registry; `@swiggy-private/aatm-nirbhar-build` and `@swiggy-private/js-utils` with escalation-version numbers designed to override private registry |
+| Misc npm malware batch — July 5–6 2026 (OSV MAL-2026-6760 through MAL-2026-6762, MAL-2026-6788 through MAL-2026-6795) | `@adobesign/as-dev-tools` 99.9.9/99.9.10; `gen-ai-opt-in` 99.0.2; `node-pino` 2.3.2; `datefmt-helper` 1.0.0/1.0.1; `@checkrhq/adjudication-api-client` 0.0.2; `debugcli` 4.3.5/4.3.9; `npm-show-date-proof-strings` 1.0.3; `wsh4-nmp` 1.0.0; `neon-terminal` 0.2.0–0.9.0; `zod-pino434` 1.0.127/1.0.128; `zod-pino444` 1.0.128/1.0.129 |
+| @antv/adjust malicious versions — July 5 2026 (OSV MAL-2026-3849) | Two malicious versions (0.3.5, 0.4.5) within the broader ongoing `@antv/` scope campaign |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -842,6 +850,30 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-6757 — vps-maintenance-paperclip-adapter npm malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6757)
 - [OSV MAL-2026-6758 — httpprobe PyPI malware (July 4 2026)](https://osv.dev/vulnerability/MAL-2026-6758)
 - [OSV MAL-2026-6759 — urlllib321 PyPI urllib3 typosquat (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-6759)
+- [OSV MAL-2026-6760 — @adobesign/as-dev-tools dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-6760)
+- [OSV MAL-2026-6761 — gen-ai-opt-in npm malware (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-6761)
+- [OSV MAL-2026-6762 — node-pino npm malware (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-6762)
+- [OSV MAL-2026-6763 through MAL-2026-6787 — @marketfront/* dep-confusion cluster (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-6763)
+- [OSV MAL-2026-6788 — datefmt-helper npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6788)
+- [OSV MAL-2026-6789 — @checkrhq/adjudication-api-client dep-confusion (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6789)
+- [OSV MAL-2026-6790 — debugcli npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6790)
+- [OSV MAL-2026-6791 — npm-show-date-proof-strings npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6791)
+- [OSV MAL-2026-6792 — wsh4-nmp npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6792)
+- [OSV MAL-2026-6793 — neon-terminal npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6793)
+- [OSV MAL-2026-6794 — zod-pino434 npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6794)
+- [OSV MAL-2026-6795 — zod-pino444 npm malware (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6795)
+- [OSV MAL-2025-47029 — @google_cloud/precise-date typosquat (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47029)
+- [OSV MAL-2025-47032 — @liquid-web/app-services dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47032)
+- [OSV MAL-2025-47033 — @liquid-web/common dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47033)
+- [OSV MAL-2025-47040 — @liquid-web/utils dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47040)
+- [OSV MAL-2025-47045 — @self-sell/guards dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47045)
+- [OSV MAL-2025-47046 — @self-sell/self-sell-amplitude-events dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47046)
+- [OSV MAL-2025-47047 — @self-sell/store dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47047)
+- [OSV MAL-2025-47048 — @team-event/models dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47048)
+- [OSV MAL-2025-47051 — @team-event/v2 dep-confusion (July 5 2026)](https://osv.dev/vulnerability/MAL-2025-47051)
+- [OSV MAL-2024-12164 — @swiggy-private/aatm-nirbhar-build dep-confusion (2024)](https://osv.dev/vulnerability/MAL-2024-12164)
+- [OSV MAL-2024-12168 — @swiggy-private/js-utils dep-confusion (2024)](https://osv.dev/vulnerability/MAL-2024-12168)
+- [OSV MAL-2026-3849 — @antv/adjust malicious versions (July 5 2026)](https://osv.dev/vulnerability/MAL-2026-3849)
 
 ## License
 
