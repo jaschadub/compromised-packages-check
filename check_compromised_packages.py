@@ -755,6 +755,21 @@ PYPI_BAD: dict[str, set[str]] = {
     # two versions published with malicious code; detected by kam193.
     # OSV MAL-2026-6759 / https://bad-packages.kam193.eu/pypi/package/urlllib321
     "urlllib321": {"2.7.0", "2.7.1"},
+    # Paysafe payment-SDK typosquat campaign (July 7 2026)
+    # Four packages impersonate the Paysafe payments SDK; each published at
+    # version 1.0.0 with identical malicious install-time code.
+    # Detected by kam193 and Socket Threat Research Team.
+    # OSV MAL-2026-6926 (paysafe-api), MAL-2026-6927 (paysafe-kyc),
+    # MAL-2026-6928 (paysafe-payments), MAL-2026-6929 (paysafe-sdk)
+    # src: socket.dev/blog/npm-pypi-campaign-typosquats-popular-secure-payment-apps
+    "paysafe-api": {"1.0.0"},
+    "paysafe-kyc": {"1.0.0"},
+    "paysafe-payments": {"1.0.0"},
+    "paysafe-sdk": {"1.0.0"},
+    # jsonschemavalidation PyPI malware (July 7 2026)
+    # Single version published before takedown; malicious code detected by kam193.
+    # OSV MAL-2026-6945 / https://bad-packages.kam193.eu/pypi/package/jsonschemavalidation
+    "jsonschemavalidation": {"4.26.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3304,6 +3319,106 @@ NPM_BAD: dict[str, set[str]] = {
         "1.0.6", "1.0.7", "1.0.8", "1.0.9",
         "1.1.1", "1.1.2", "1.1.3", "1.1.5",
     },
+    # Misc typosquat / malware npm packages (Apr–Jun 2026; OSV records updated July 7 2026)
+    # These packages were published before the floor date but their OSV records
+    # were first ingested or materially updated on 2026-07-07.
+    # OSV MAL-2026-2505 (GHSA-4fc4-v9cp-846x), MAL-2026-4251 (GHSA-ghw7-gg88-gpmr),
+    # MAL-2026-4252 (GHSA-hqc4-gwfr-49r6), MAL-2026-4258 (GHSA-5hgc-pmxv-3xh7),
+    # MAL-2026-5618 (GHSA-mx93-wj6x-87wp), MAL-2026-5724 (GHSA-gxc9-xrxm-w788),
+    # MAL-2026-6210 (GHSA-8x7w-vjr2-7q4m), MAL-2026-6404 (GHSA-9mh8-xw8w-jh9g),
+    # MAL-2026-6472 (GHSA-5xpc-q26w-px3q)
+    "@aspect-security/argon2": set(),
+    "harmony-enablers-test-2026": set(),
+    "@43uh3ig43/telemetry-client": set(),
+    "@engagehub/core": set(),
+    "tailwind-animator-scroll": set(),
+    "warp-dependency": set(),
+    "@apexcraft/nano-key": set(),
+    "syco1": set(),
+    "tailwindcss-effector": set(),
+    # July 7 2026 npm batch — Chai/Express typosquats, fake SQLite scope, misc
+    # Chai-themed typosquats (MAL-2026-6907/GHSA-w3fq-7xj5-8gmv,
+    #   MAL-2026-6919/GHSA-2gcw-jv94-7mfq, MAL-2026-6931/GHSA-xc9r-f5wv-cvxx)
+    "chai-spycore": set(),
+    "chai-chain-dom": set(),
+    "chai-sdk": set(),
+    # Express typosquats (MAL-2026-6908/GHSA-968w-6262-r9f5,
+    #   MAL-2026-6909/GHSA-59r7-h2ch-m4v2)
+    "express-deflect": set(),
+    "express-firegate": set(),
+    # @engagehub follow-up (MAL-2026-6912/GHSA-q6cv-rc8j-6pp7)
+    "@engagehub/test-claim": set(),
+    # Dep-confusion / high-version exfil (MAL-2026-6910, MAL-2026-6911)
+    "zluri-ad-connector": {"9.9.9"},
+    "@higherlogic/ocfe": {"99.9.1"},
+    # Fake @sqlite-access / @sqlite-list scope (MAL-2026-6914/GHSA-m2mh-6v6x-qh4f,
+    #   MAL-2026-6915/GHSA-www8-7fg3-xg79, MAL-2026-6916/GHSA-2859-847v-c4v9,
+    #   MAL-2026-6917/GHSA-9hmc-5fx9-73cp)
+    "@sqlite-access/nodesql": set(),
+    "@sqlite-list/createsql": set(),
+    "@sqlite-list/schema-generator": set(),
+    "@sqlite-list/sql-creator": set(),
+    # Base58 / Solana-ecosystem typosquat cluster (July 7 2026)
+    # OSV MAL-2026-6918 (GHSA-fg2f-v569-6wqv), MAL-2026-6920 (GHSA-frf3-wxv2-p559),
+    # MAL-2026-6924 (GHSA-9jx5-jcp6-qmqq), MAL-2026-6925 (GHSA-rff8-755c-wqvw)
+    "base58-cli": set(),
+    "crypto-base58": set(),
+    "solana-address-codec": set(),
+    "typescript-base58": set(),
+    # MCP/utils typosquats (July 7 2026)
+    # OSV MAL-2026-6921 (GHSA-2jff-wp39-wgch), MAL-2026-6922 (GHSA-cfv7-74pc-vmff),
+    # MAL-2026-6923 (GHSA-vg5w-f83q-fhmj)
+    "jsf-utils": set(),
+    "mcp-server-pg": set(),
+    "notifier-utils": set(),
+    # Misc July 7 2026 malware / typosquat batch
+    # OSV MAL-2026-6913 (GHSA-hpc6-h2fp-hcpj), MAL-2026-6930 (GHSA-hpvm-wxmp-gcxg),
+    # MAL-2026-6932 (GHSA-c4gm-jp6q-h9hq), MAL-2026-6933 (GHSA-53f9-qr7j-x48v),
+    # MAL-2026-6934 (GHSA-qqp7-wmv2-mp34), MAL-2026-6935 (GHSA-6mpp-f748-7f4q),
+    # MAL-2026-6936 (GHSA-wxvr-4mc8-3qvj), MAL-2026-6937 (GHSA-hw4h-mjrw-4qv9),
+    # MAL-2026-6938 (GHSA-3gfp-7x5j-mp63), MAL-2026-6939 (GHSA-r7mv-rcm7-x7m3),
+    # MAL-2026-6940 (GHSA-q28c-5m68-92hm), MAL-2026-6941 (GHSA-fgr2-2c8j-mp2x),
+    # MAL-2026-6942 (GHSA-wcc7-m55m-mh57), MAL-2026-6943 (GHSA-8w4p-m2h2-2wj5),
+    # MAL-2026-6944 (GHSA-rmhj-j5m8-3cxj), MAL-2026-6947 (GHSA-m74w-fv2m-jcvw),
+    # MAL-2026-6948 (GHSA-v63r-xv67-wj6q), MAL-2026-6949 (GHSA-hvxm-858v-vhw9)
+    "brunomenozzi-test-pkg": set(),
+    "annotator-harvardx": set(),
+    "evm-typechain": set(),
+    "hook-augmenting-module": set(),
+    "load-nuxt": set(),
+    "load-nuxt-dev": set(),
+    "nonexistent-package": set(),
+    "nuxt-fonts-devtools": set(),
+    "pinokio-redis": set(),
+    "polytrade": set(),
+    "rnx-align-deps": set(),
+    "shopify-internel": set(),
+    "some-theme": set(),
+    "tx-guard-snap": set(),
+    "zredis-typed": set(),
+    "paperclip-host-utils": set(),
+    "runtimedev-link": set(),
+    "vps-adapter-core": set(),
+    # Dep-confusion / high-version probes (July 7 2026; MAL-2026-6955, MAL-2026-6956)
+    "hello244b": {"1.0.0"},
+    "rio-design-tokens": {"99.99.100"},
+    # whs4 npm name-squatting cluster (July 7 2026)
+    # Six package-name permutations of "whs4_npm" / "wsh4_npm" published by the
+    # same attacker to occupy all plausible typos.
+    # OSV MAL-2026-6946 (GHSA-85fx-62wv-932x), MAL-2026-6950 (GHSA-4fw4-5853-rqf8),
+    # MAL-2026-6951 (GHSA-3wm9-8rfp-wp25), MAL-2026-6952 (GHSA-pjv5-35wr-prrm),
+    # MAL-2026-6953 (GHSA-23v6-j5g5-7x9p), MAL-2026-6954 (GHSA-6h38-53x2-5jhm)
+    "@whs4/whs4_npm": set(),
+    "whs4_nmp": set(),
+    "whs4_npm": set(),
+    "whs4_npm_test": set(),
+    "whs4_pnm": set(),
+    "wsh4_npm": set(),
+    # July 8 2026 npm batch
+    # nodemon-node: nodemon typosquat (MAL-2026-6957/GHSA-58j3-rgh4-9rjc)
+    # ts-await: TypeScript async utility typosquat (MAL-2026-6958/GHSA-xpmf-x27p-9vcc)
+    "nodemon-node": set(),
+    "ts-await": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -3448,6 +3563,11 @@ CRATES_BAD: dict[str, set[str]] = {
     # targeting Rust job applicants via take-home assignments with malicious deps.
     # RUSTSEC-2026-0171; reported by Paweł Bis.
     "logflux": set(),
+    # proton-pfff crates.io dep-confusion probe (July 8 2026)
+    # High-version (99.99.5) package published to the public registry to hijack
+    # internal dependency resolution; single version before takedown.
+    # OSV MAL-2026-6959
+    "proton-pfff": {"99.99.5"},
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
