@@ -755,6 +755,53 @@ PYPI_BAD: dict[str, set[str]] = {
     # two versions published with malicious code; detected by kam193.
     # OSV MAL-2026-6759 / https://bad-packages.kam193.eu/pypi/package/urlllib321
     "urlllib321": {"2.7.0", "2.7.1"},
+    # Paysafe financial API credential-stealer cluster (July 7-8 2026)
+    # Four packages impersonating Paysafe payment-processing API clients;
+    # each exfiltrates credentials on import. OSV MAL-2026-6926 (paysafe-api),
+    # MAL-2026-6927 (paysafe-kyc), MAL-2026-6928 (paysafe-payments),
+    # MAL-2026-6929 (paysafe-sdk)
+    "paysafe-api": {"1.0.0"},
+    "paysafe-kyc": {"1.0.0"},
+    "paysafe-payments": {"1.0.0"},
+    "paysafe-sdk": {"1.0.0"},
+    # jsonschema typosquat cluster (July 7-8 2026)
+    # Two packages impersonating jsonschema with inflated version numbers.
+    # OSV MAL-2026-6945 (jsonschemavalidation), MAL-2026-6970 (jsonschemavalid)
+    "jsonschemavalidation": {"4.26.0"},
+    "jsonschemavalid": {"4.26.0"},
+    # PyQt6 dark-theme typosquat (July 7-8 2026, OSV MAL-2026-6960)
+    "pyqt6darktheme": {"0.1.0"},
+    # Waymo dep-confusion (July 7-8 2026, OSV MAL-2026-6961)
+    # High-version shadow package targeting Waymo's internal CI.
+    "waymo-waymax": {"99.0.0"},
+    # Tron/TRX private-key exfiltrator cluster (July 7-8 2026)
+    # Four new packages extending the tronlab / tronlabpy3 campaign (June 3 2026);
+    # all exfiltrate TRX wallet private keys to mockapi.io/ngrok endpoints.
+    # OSV MAL-2026-6971 (tronhap), MAL-2026-6974 (tronhapy),
+    # MAL-2026-6983 (tronpak), MAL-2026-7025 (tronsev)
+    "tronhap": {"0.0.1"},
+    "tronhapy": {"0.0.1"},
+    "tronpak": {"0.0.1"},
+    "tronsev": {"0.0.1"},
+    # py-slugify typosquat (July 7-8 2026, OSV MAL-2026-6976)
+    # Impersonates the legitimate python-slugify package.
+    "py-slugify": {"0.8.2"},
+    # Miscellaneous PyPI malware batch (July 7-8 2026)
+    # OSV MAL-2026-6975 (oxntime), MAL-2026-6977 (rarcore),
+    # MAL-2026-6978 (manin), MAL-2026-6979 (turbod),
+    # MAL-2026-7006 (manik), MAL-2026-7007 (manom),
+    # MAL-2026-7015 (turbom), MAL-2026-7023 (dbzy-tools)
+    "oxntime": {"0.0.1", "0.0.1.post1", "0.0.2", "0.0.3"},
+    "rarcore": {"0.1.1", "0.1.2"},
+    "manin": {"0.0.1", "0.1.0", "0.1.1"},
+    "turbod": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3",
+        "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+    },
+    "manik": {"1.2.1"},
+    "manom": {"1.2.2"},
+    "turbom": {"1.0.0", "1.0.1"},
+    "dbzy-tools": {"1.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3304,6 +3351,269 @@ NPM_BAD: dict[str, set[str]] = {
         "1.0.6", "1.0.7", "1.0.8", "1.0.9",
         "1.1.1", "1.1.2", "1.1.3", "1.1.5",
     },
+    # Redis/IORedis fake-client cluster (modified July 7-8 2026)
+    # Six packages impersonating ioredis and redis clients with postinstall
+    # credential-exfiltration payloads. All have affected.ranges >=0 (any-version).
+    # OSV MAL-2026-5675 (ioredis-orm), MAL-2026-5676 (ioredis-typed),
+    # MAL-2026-5879 (ioredis-os), MAL-2026-5882 (redis-type-os),
+    # MAL-2026-5883 (redis-xyz), MAL-2026-6944 (zredis-typed)
+    "ioredis-orm": set(),
+    "ioredis-typed": set(),
+    "ioredis-os": set(),
+    "redis-type-os": set(),
+    "redis-xyz": set(),
+    "zredis-typed": set(),
+    # Large misc npm malware batch (modified July 7-8 2026)
+    # Dozens of packages from independent campaigns with active OSV MAL-* records.
+    # any-version wildcards (affected.ranges >=0):
+    # OSV MAL-2026-5307 (classwind-utils), MAL-2026-5384 (enquriers),
+    # MAL-2026-5491 (xnder-sdk), MAL-2026-5635 (routing-controls),
+    # MAL-2026-5724 (warp-dependency), MAL-2026-5843 (chai-smart-assert),
+    # MAL-2026-5845 (prettier_v1), MAL-2026-5853 (sp-api-dev-assistant-mcp-server),
+    # MAL-2026-5873 (rbac-auth), MAL-2026-5888 (middleware-jwt),
+    # MAL-2026-6113 (intquery), MAL-2026-6119 (parket-helper),
+    # MAL-2026-6143 (node-vfs-polyfill), MAL-2026-6199 (ts-big-ecro),
+    # MAL-2026-6204 (ts-ecro-helper), MAL-2026-6278 (ts-wross),
+    # MAL-2026-6287 (poly-utils), MAL-2026-6288 (ts-numbering),
+    # MAL-2026-6333 (mjs-eslint-service), MAL-2026-6335 (server-parket),
+    # MAL-2026-6387 (multer-express), MAL-2026-6388 (rapidsearch),
+    # MAL-2026-6404 (syco1), MAL-2026-6442 (easy-time-format),
+    # MAL-2026-6506 (pump-laserstream-parser), MAL-2026-6508 (tw-style-utils),
+    # MAL-2026-6517 (ai-node-agent), MAL-2026-6518 (ai-node-relay)
+    "classwind-utils": set(),
+    "enquriers": set(),
+    "xnder-sdk": set(),
+    "routing-controls": set(),
+    "warp-dependency": set(),
+    "chai-smart-assert": set(),
+    "prettier_v1": set(),
+    "sp-api-dev-assistant-mcp-server": set(),
+    "rbac-auth": set(),
+    "middleware-jwt": set(),
+    "intquery": set(),
+    "parket-helper": set(),
+    "node-vfs-polyfill": set(),
+    "ts-big-ecro": set(),
+    "ts-ecro-helper": set(),
+    "ts-wross": set(),
+    "poly-utils": set(),
+    "ts-numbering": set(),
+    "mjs-eslint-service": set(),
+    "server-parket": set(),
+    "multer-express": set(),
+    "rapidsearch": set(),
+    "syco1": set(),
+    "easy-time-format": set(),
+    "pump-laserstream-parser": set(),
+    "tw-style-utils": set(),
+    "ai-node-agent": set(),
+    "ai-node-relay": set(),
+    # pinned-version packages in the misc batch:
+    # OSV MAL-2026-5342 (kecak256), MAL-2026-5346 (cookie-parser-legacy),
+    # MAL-2026-5629 (sass-formats), MAL-2026-5666 (downlynpm),
+    # MAL-2026-5682 (coral-wraith), MAL-2026-5707 (ttspc-server-sample),
+    # MAL-2026-5750 (mailconfirmer), MAL-2026-5791 (mddriver),
+    # MAL-2026-5837 (postcss-minify-selector), MAL-2026-5851 (epm-service-module-v2),
+    # MAL-2026-5931 (mci-sdk), MAL-2026-6075 (opt-archetype-check),
+    # MAL-2026-6198 (new-ecro-1), MAL-2026-6210 (@apexcraft/nano-key),
+    # MAL-2026-6271 (node-fetch-utils), MAL-2026-6273 (zod-pino),
+    # MAL-2026-6396 (signup-embedder), MAL-2026-6542 (@osmura/treeify)
+    "kecak256": {"1.0.0", "1.0.1", "1.0.2", "1.0.5"},
+    "cookie-parser-legacy": {"1.5.1", "1.5.2", "1.5.3", "1.5.4"},
+    "sass-formats": {"1.0.2", "1.0.4", "1.0.5"},
+    "downlynpm": {"1.0.0", "1.0.1", "1.0.2"},
+    "coral-wraith": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",
+        "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9",
+        "1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14",
+        "2.0.0", "2.0.1", "2.0.2", "2.0.3", "2.0.4",
+        "3.0.0", "4.0.0", "5.0.1", "5.0.2", "5.0.3",
+        "6.0.0", "7.0.0", "7.0.1", "7.0.2", "7.0.3",
+        "8.0.0", "9.0.0", "10.0.0", "11.0.0", "12.0.0",
+        "12.0.1", "13.0.0", "14.0.0", "15.0.0", "16.0.0",
+        "17.0.0", "19.0.0", "19.0.1", "20.0.0", "21.0.0",
+        "22.0.0",
+    },
+    "ttspc-server-sample": {
+        "9.0.0", "9.0.1",
+        "99.9.0", "99.9.1", "99.9.2", "99.9.3",
+    },
+    "mailconfirmer": {
+        "3.2.34", "3.2.35", "3.2.36", "3.2.38", "3.2.39",
+        "3.3.11", "3.3.12", "3.3.13", "3.3.15", "3.3.16",
+        "3.3.17", "3.3.18", "3.3.19", "3.3.20", "3.3.21",
+        "3.3.22", "3.3.23", "3.3.24", "3.3.25", "3.3.26",
+        "3.3.27", "3.3.28", "3.3.29", "3.3.30", "3.3.31",
+        "3.3.32", "3.3.34", "3.3.35", "3.3.36", "3.3.37",
+        "3.3.38", "3.3.39", "3.3.41", "3.3.42", "3.3.43",
+        "3.3.44", "3.3.45", "3.3.46", "3.3.47", "3.3.48",
+        "3.3.51", "3.3.52", "3.3.53", "3.3.54", "3.3.55",
+        "3.3.58",
+    },
+    "mddriver": {"1.8.1", "1.8.2", "1.8.3", "1.8.4", "1.8.5", "1.8.6"},
+    "postcss-minify-selector": {
+        "0.1.2", "0.1.3", "0.1.4", "0.1.5",
+        "0.1.6", "0.1.7", "0.1.8", "0.1.9",
+        "0.1.10", "0.1.11", "2.0.1", "2.0.2",
+    },
+    "epm-service-module-v2": {"1.0.1", "1.0.2", "1.0.3"},
+    "mci-sdk": {"1.2.8", "1.2.9", "1.2.10", "1.2.11"},
+    "opt-archetype-check": {"9.9.0", "9.9.1", "9.99.4"},
+    "new-ecro-1": {"0.1.9", "0.2.9", "0.3.9"},
+    "@apexcraft/nano-key": {
+        "1.2.4", "1.2.5",
+        "1.3.2", "1.3.3", "1.3.4", "1.3.5", "1.3.6", "1.3.7", "1.3.8",
+    },
+    "node-fetch-utils": {
+        "1.2.1", "1.2.2", "1.2.3", "1.2.4",
+        "1.2.5", "1.2.6", "1.2.7", "1.3.0",
+    },
+    "zod-pino": {
+        "1.0.122", "1.0.123", "1.0.124",
+        "1.0.125", "1.0.126", "1.0.127",
+    },
+    "signup-embedder": {"99.99.99", "99.99.99-poc2", "99.99.99-poc3"},
+    "@osmura/treeify": {"1.1.0", "1.1.2", "1.1.3"},
+    # SQLite fake-client cluster (July 7-8 2026)
+    # Four packages impersonating SQL/SQLite tooling (extends the July 2-3 wave:
+    # @sql-access/nodesql, @sql-trigger/nodesql, @sqlite-node/createsql).
+    # All have affected.ranges >=0; any version is malicious.
+    # OSV MAL-2026-6914 (@sqlite-access/nodesql), MAL-2026-6915 (@sqlite-list/createsql),
+    # MAL-2026-6916 (@sqlite-list/schema-generator), MAL-2026-6917 (@sqlite-list/sql-creator)
+    "@sqlite-access/nodesql": set(),
+    "@sqlite-list/createsql": set(),
+    "@sqlite-list/schema-generator": set(),
+    "@sqlite-list/sql-creator": set(),
+    # WHS4 actor cluster (July 7-8 2026, extends wsh4-nmp already tracked)
+    # Six packages from the same actor (whs4/wsh4 naming variants) with postinstall
+    # credential-exfiltration payloads; all have affected.ranges >=0.
+    # OSV MAL-2026-6946 (@whs4/whs4_npm), MAL-2026-6950 (whs4_nmp),
+    # MAL-2026-6951 (whs4_npm), MAL-2026-6952 (whs4_npm_test),
+    # MAL-2026-6953 (whs4_pnm), MAL-2026-6954 (wsh4_npm)
+    "@whs4/whs4_npm": set(),
+    "whs4_nmp": set(),
+    "whs4_npm": set(),
+    "whs4_npm_test": set(),
+    "whs4_pnm": set(),
+    "wsh4_npm": set(),
+    # Paperclip/VPS extension cluster (July 7-8 2026)
+    # Extends the July 4 vps-maintenance cluster (paperclip2, vps-maintenance,
+    # vps-maintenance-paperclip-adapter already tracked).
+    # OSV MAL-2026-6947 (paperclip-host-utils), MAL-2026-6948 (runtimedev-link),
+    # MAL-2026-6949 (vps-adapter-core), MAL-2026-6981 (paperclip-adapter-helpers),
+    # MAL-2026-7014 (vps-new-manager)
+    "paperclip-host-utils": set(),
+    "runtimedev-link": set(),
+    "vps-adapter-core": set(),
+    "paperclip-adapter-helpers": {
+        "1.0.1", "1.0.2", "1.0.4", "1.0.5",
+        "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.0.12",
+    },
+    "vps-new-manager": {"0.1.4"},
+    # Base58 / Solana credential-exfiltrator cluster (July 7-8 2026)
+    # Four packages impersonating Base58 / Solana encoding utilities;
+    # all have affected.ranges >=0 (any version is malicious).
+    # OSV MAL-2026-6918 (base58-cli), MAL-2026-6920 (crypto-base58),
+    # MAL-2026-6924 (solana-address-codec), MAL-2026-6925 (typescript-base58)
+    "base58-cli": set(),
+    "crypto-base58": set(),
+    "solana-address-codec": set(),
+    "typescript-base58": set(),
+    # Chai typosquat extension cluster (July 7-8 2026)
+    # Extends the ongoing Chai-typosquat campaign.
+    # OSV MAL-2026-6907 (chai-spycore), MAL-2026-6919 (chai-chain-dom),
+    # MAL-2026-6931 (chai-sdk), MAL-2026-7008 (chai-as-const),
+    # MAL-2026-6994 (chai-presentation), MAL-2026-6995 (chai-redirection)
+    "chai-spycore": set(),
+    "chai-chain-dom": set(),
+    "chai-sdk": set(),
+    "chai-as-const": {"1.4.5"},
+    "chai-presentation": {"0.0.1"},
+    "chai-redirection": {"0.0.1"},
+    # Express middleware extension cluster (July 7-8 2026)
+    # Three packages impersonating Express.js middleware with postinstall payloads.
+    # OSV MAL-2026-6908 (express-deflect), MAL-2026-6909 (express-firegate),
+    # MAL-2026-7012 (express-mongo-limit)
+    "express-deflect": set(),
+    "express-firegate": set(),
+    "express-mongo-limit": {"2.0.2", "2.0.6"},
+    # AI / MCP tooling impersonation (July 7-8 2026)
+    # OSV MAL-2026-6922 (mcp-server-pg) — has affected.ranges >=0 (any-version)
+    "mcp-server-pg": set(),
+    # Nuxt / dependency-confusion cluster (July 7-8 2026)
+    # Four packages impersonating Nuxt internals at version 99.0.3 to shadow
+    # private CI registry packages; all have affected.ranges >=0.
+    # OSV MAL-2026-6934 (load-nuxt), MAL-2026-6935 (load-nuxt-dev),
+    # MAL-2026-6937 (nuxt-fonts-devtools), MAL-2026-6933 (hook-augmenting-module)
+    "load-nuxt": set(),
+    "load-nuxt-dev": set(),
+    "nuxt-fonts-devtools": set(),
+    "hook-augmenting-module": set(),
+    # Luminary Cloud internal dep-confusion (July 7-8 2026)
+    # Two packages at 9999.0.x targeting Luminary Cloud internal CI.
+    # OSV MAL-2026-6986 (@luminarycloudinternal/frodo),
+    # MAL-2026-6987 (@luminarycloudinternal/lcvis-st)
+    "@luminarycloudinternal/frodo": {"9999.0.1", "9999.0.2"},
+    "@luminarycloudinternal/lcvis-st": {"9999.0.1", "9999.0.2"},
+    # Notable individual malicious packages (July 7-8 2026)
+    # OSV MAL-2026-6973 (gitlens), MAL-2026-6941 (shopify-internel),
+    # MAL-2026-6982 (paysafe-cards), MAL-2026-6962 (gas-log),
+    # MAL-2026-6938 (pinokio-redis), MAL-2026-6939 (polytrade),
+    # MAL-2026-6943 (tx-guard-snap), MAL-2026-6932 (evm-typechain),
+    # MAL-2026-6969 (vite-json-pwa)
+    "gitlens": {"9.4.0"},
+    "shopify-internel": set(),
+    "paysafe-cards": {"1.0.0"},
+    "gas-log": set(),
+    "pinokio-redis": set(),
+    "polytrade": set(),
+    "tx-guard-snap": set(),
+    "evm-typechain": set(),
+    "vite-json-pwa": set(),
+    # Miscellaneous dep-confusion / standalone npm malware batch (July 7-8 2026)
+    # any-version wildcards: annotator-harvardx, nodemon-node, ts-await, karem-dp,
+    # na-rony, nam-os-a-man (all have affected.ranges >=0)
+    # OSV MAL-2026-6910 (zluri-ad-connector), MAL-2026-6911 (@higherlogic/ocfe),
+    # MAL-2026-6930 (annotator-harvardx), MAL-2026-6955 (hello244b),
+    # MAL-2026-6956 (rio-design-tokens), MAL-2026-6957 (nodemon-node),
+    # MAL-2026-6958 (ts-await), MAL-2026-6963 (karem-dp),
+    # MAL-2026-6964 (na-rony), MAL-2026-6967 (nam-os-a-man),
+    # MAL-2026-6989 (ag-charts-test), MAL-2026-6990 (ai-gen-ai-opt-in),
+    # MAL-2026-6993 (bytefaas-sdk), MAL-2026-6997 (goofy-sdk),
+    # MAL-2026-7000 (pipo-sdk), MAL-2026-7005 (visa-cli-tools),
+    # MAL-2026-7009 (configration), MAL-2026-7010 (crypto-promiser),
+    # MAL-2026-7011 (events-alias), MAL-2026-7016 (@vraksha/gh-helper),
+    # MAL-2026-7017 (logger-daemon-regex), MAL-2026-7019 (npm-rce-poc),
+    # MAL-2026-7020 (react-v17), MAL-2026-7021 (@vite-js/ui),
+    # MAL-2026-7022 (tslint-conf), MAL-2026-7024 (none123s),
+    # MAL-2026-7026 (tailwind-core)
+    "zluri-ad-connector": {"9.9.9"},
+    "@higherlogic/ocfe": {"99.9.1"},
+    "annotator-harvardx": set(),
+    "hello244b": {"1.0.0"},
+    "rio-design-tokens": {"99.99.100"},
+    "nodemon-node": set(),
+    "ts-await": set(),
+    "karem-dp": set(),
+    "na-rony": set(),
+    "nam-os-a-man": set(),
+    "ag-charts-test": {"99.9.1"},
+    "ai-gen-ai-opt-in": {"99.0.0"},
+    "bytefaas-sdk": {"9999.0.0"},
+    "goofy-sdk": {"9999.0.0"},
+    "pipo-sdk": {"9999.0.0"},
+    "visa-cli-tools": {"99.9.1"},
+    "configration": {"2.3.5"},
+    "crypto-promiser": {"1.0.1", "1.0.2"},
+    "events-alias": {"15.0.1"},
+    "@vraksha/gh-helper": {"1.0.0"},
+    "logger-daemon-regex": {"1.0.124"},
+    "npm-rce-poc": {"1.0.13"},
+    "react-v17": {"20.0.1"},
+    "@vite-js/ui": {"7.15.16"},
+    "tslint-conf": {"7.2.1"},
+    "none123s": {"0.1.7"},
+    "tailwind-core": {"0.0.0", "4.3.0", "4.3.1", "4.3.2"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -3448,6 +3758,10 @@ CRATES_BAD: dict[str, set[str]] = {
     # targeting Rust job applicants via take-home assignments with malicious deps.
     # RUSTSEC-2026-0171; reported by Paweł Bis.
     "logflux": set(),
+    # proton-pfff Proton AG dep-confusion (July 7-8 2026, OSV MAL-2026-6959)
+    # Single high-version (99.99.5) crate published to crates.io to shadow Proton AG's
+    # internal crate and hijack its CI dependency resolution.
+    "proton-pfff": {"99.99.5"},
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
