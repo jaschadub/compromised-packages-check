@@ -234,7 +234,25 @@ yt-api-dlp PyPI crypto-stealer typosquat (OSV MAL-2026-6754),
 httpprobe PyPI malware (OSV MAL-2026-6758), urlllib321 urllib3 PyPI
 typosquat (OSV MAL-2026-6759), and the vps-maintenance / paperclip2
 npm malware cluster (paperclip2, vps-maintenance,
-vps-maintenance-paperclip-adapter; OSV MAL-2026-6755/6756/6757).
+vps-maintenance-paperclip-adapter; OSV MAL-2026-6755/6756/6757), and the
+July 9-10 2026 batch: @wagni_bot/* DeFi/crypto SDK typosquat cluster
+(16 packages; OSV MAL-2026-10022 through 10037), paysafe-* npm credential-
+stealer cluster (8 packages; OSV MAL-2026-10166 through 10173), notify-*
+npm malware cluster (7 packages; OSV MAL-2026-10152 through 10158),
+type-slint/type-plint/type-elint/type-async/type-atob type-* npm malware
+(OSV MAL-2026-10077/10130/10137/10164/10174), sidecar-mcp (OSV MAL-2026-10161),
+@injectivelabs/sdk-ts 1.20.21 compromise (OSV MAL-2026-10165),
+@bcryptln/becryptjs bcrypt typosquat (OSV MAL-2026-10162),
+stella-ai-cli/stella-coder AI-tool malware (OSV MAL-2026-10133/10134),
+chai-as/chain-chai new typosquat batch (22 packages; OSV MAL-2026-10039
+through 10056/2339/2641/10082/10175), nodemon-gulp/nodemon-patch/nodemon-slint
+(OSV MAL-2026-10065/10110/10117), polymarket-apis/kelly/kit/gamma new batch
+(9 packages; OSV MAL-2026-10067 through 10072/10147/10148/10149), moonbit-*
+PyPI cluster (OSV MAL-2026-2945/2946/2947), playwrightr PyPI typosquat
+(OSV MAL-2026-10020), telegramlite/telegram-lite-grabber Telegram grabbers
+(OSV MAL-2026-5531/6051), d0rk3r/nagios-xi/security-alerts-sdk/sufiagent/
+pwn-control/web3-py-checksum PyPI batch (OSV MAL-2026-6246/5698/6327/3370/
+3248/3411).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -247,7 +265,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-05
+Date:      2026-07-11
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -802,6 +820,47 @@ PYPI_BAD: dict[str, set[str]] = {
     "manom": {"1.2.2"},
     "turbom": {"1.0.0", "1.0.1"},
     "dbzy-tools": {"1.0.1"},
+    # moonbit-* PyPI malware cluster (July 9 2026)
+    # Three packages impersonating MoonBit language tooling; all contain
+    # malicious code per a linked wechat-editor-studio PR diff.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-2945 (moonbit-locale-compat), MAL-2026-2946 (moonbit-metrics-validator),
+    # MAL-2026-2947 (moonbit-schema-utils)
+    "moonbit-locale-compat": {"0.2.1", "0.2.3", "0.2.4"},
+    "moonbit-metrics-validator": {"1.0.0"},
+    "moonbit-schema-utils": {"1.1.0", "1.1.1"},
+    # playwrightr PyPI malware (July 9 2026)
+    # Typosquat of the Playwright browser-automation library; malicious payload
+    # confirmed by Triage (tria.ge) and VirusTotal hash analysis.
+    # OSV MAL-2026-10020.
+    "playwrightr": {"1.0.0", "1.0.1"},
+    # telegramlite / telegram-lite-grabber PyPI credential-stealer campaign (July 9 2026)
+    # telegramlite: installs a Telegram session grabber; two malicious versions.
+    # telegram-lite-grabber: single-version companion package in the same campaign.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5531 (telegramlite), MAL-2026-6051 (telegram-lite-grabber)
+    "telegramlite": {"1.0.0", "1.0.1"},
+    "telegram-lite-grabber": {"1.0.0"},
+    # d0rk3r PyPI malware (July 9 2026)
+    # Five published versions with malicious code; detected by kam193.
+    # OSV MAL-2026-6246.
+    "d0rk3r": {"1.0.0", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},
+    # nagios-xi PyPI dep-confusion (July 9 2026)
+    # Two high-version packages targeting Nagios XI internal Python tooling.
+    # Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-5698.
+    "nagios-xi": {"19.4.0", "19.5.0"},
+    # security-alerts-sdk PyPI malware (July 9 2026)
+    # Four malicious versions; detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-6327.
+    "security-alerts-sdk": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},
+    # sufiagent / pwn-control / web3-py-checksum PyPI malware batch (July 9 2026)
+    # sufiagent: three versions with malicious payload. OSV MAL-2026-3370.
+    # pwn-control: single version; detected by kam193. OSV MAL-2026-3248.
+    # web3-py-checksum: two versions impersonating web3 checksum utilities. OSV MAL-2026-3411.
+    "sufiagent": {"1.0.0", "1.0.1", "1.0.2"},
+    "pwn-control": {"1.0"},
+    "web3-py-checksum": {"1.0", "1.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3614,6 +3673,141 @@ NPM_BAD: dict[str, set[str]] = {
     "tslint-conf": {"7.2.1"},
     "none123s": {"0.1.7"},
     "tailwind-core": {"0.0.0", "4.3.0", "4.3.1", "4.3.2"},
+    # @wagni_bot/* DeFi/crypto SDK typosquat cluster (July 9 2026)
+    # Sixteen packages under the attacker-controlled @wagni_bot npm scope,
+    # impersonating popular DeFi/Web3 SDKs (Binance, BSC, Ethereum, Hyperliquid,
+    # Jupiter, Meteora, OpenSea, Orca, Polygon, Polymarket, PumpFun, Solana).
+    # Each package steals crypto-wallet keys and sends them to attacker-controlled C2.
+    # OSV MAL-2026-10022 through MAL-2026-10037.
+    "@wagni_bot/binance-sdk": {"1.0.0", "1.2.0"},
+    "@wagni_bot/bsc-sdk": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/eth-agent": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/ethereum-wallet": {"1.0.0", "1.2.0"},
+    "@wagni_bot/hyperliquid-sdk": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/jupiter-sdk": {"1.0.0", "1.2.0"},
+    "@wagni_bot/metemask-sdk": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/meteora-sdk": {"1.0.0", "1.2.0"},
+    "@wagni_bot/opensea-sdk": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/orca-sdk": {"1.0.0", "1.2.0"},
+    "@wagni_bot/polygon-sdk": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/polymarket-sdk": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5", "1.2.0"},
+    "@wagni_bot/pumpfun-sdk": {"1.0.0", "1.2.0"},
+    "@wagni_bot/solana-sdk": {"1.0.0", "1.2.0"},
+    "@wagni_bot/web3-agent": {"1.0.0", "1.1.0", "1.1.1", "1.1.3", "1.1.4", "1.1.5"},
+    "@wagni_bot/web3-toolkit": {"1.0.0", "1.2.0"},
+    # paysafe-* npm credential-stealer cluster (July 10 2026)
+    # Eight packages impersonating Paysafe payment-processing SDK components;
+    # each package exfiltrates API credentials and environment variables on install.
+    # Companion to the PyPI paysafe-* cluster (MAL-2026-6926 through 6929).
+    # OSV MAL-2026-10166 (paysafe-api), MAL-2026-10167 (paysafe-checkout),
+    # MAL-2026-10168 (paysafe-fraud), MAL-2026-10169 (paysafe-js),
+    # MAL-2026-10170 (paysafe-kyc), MAL-2026-10171 (paysafe-node),
+    # MAL-2026-10172 (paysafe-payments), MAL-2026-10173 (paysafe-vault)
+    "paysafe-api": {"1.0.0"},
+    "paysafe-checkout": {"1.0.0"},
+    "paysafe-fraud": {"1.0.0"},
+    "paysafe-js": {"1.0.0"},
+    "paysafe-kyc": {"1.0.0"},
+    "paysafe-node": {"1.0.0"},
+    "paysafe-payments": {"1.0.0"},
+    "paysafe-vault": {"1.0.0"},
+    # notify-* npm malware cluster (July 10 2026)
+    # Seven packages mimicking notification-utility libraries; each publishes
+    # one or more versions with a malicious postinstall payload.
+    # Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-10152 (notifier-funcs), MAL-2026-10153 (notifier-log),
+    # MAL-2026-10154 (notify-dist), MAL-2026-10155 (notify-funcs),
+    # MAL-2026-10156 (notify-logs), MAL-2026-10157 (notify-theme),
+    # MAL-2026-10158 (notify-utilities)
+    "notifier-funcs": {"1.3.4"},
+    "notifier-log": {"1.3.5"},
+    "notify-dist": {"1.3.7"},
+    "notify-funcs": {"1.3.5", "1.3.6"},
+    "notify-logs": {"1.3.5"},
+    "notify-theme": {"1.3.5", "1.3.6", "1.3.7"},
+    "notify-utilities": {"1.3.5"},
+    # type-* npm malware cluster (July 10 2026)
+    # Five packages mimicking TypeScript/lint utility types with malicious payloads.
+    # type-slint has an affected.ranges >=0 (any-version wildcard); others are pinned.
+    # OSV MAL-2026-10077 (type-slint / GHSA-634c-4fgc-67w9),
+    # MAL-2026-10130 (type-plint / GHSA-8mhh-r4mc-2293),
+    # MAL-2026-10137 (type-elint / GHSA-v69h-23wr-hjg4),
+    # MAL-2026-10164 (type-async), MAL-2026-10174 (type-atob)
+    "type-slint": set(),
+    "type-plint": {"3.3.7"},
+    "type-elint": {"3.3.7"},
+    "type-async": {"3.3.7"},
+    "type-atob": {"3.3.7"},
+    # sidecar-mcp npm malware (July 10 2026)
+    # Four malicious versions of a package impersonating an MCP sidecar utility.
+    # OSV MAL-2026-10161.
+    "sidecar-mcp": {"1.0.0", "1.0.1", "1.0.2", "1.0.4"},
+    # @injectivelabs/sdk-ts maintainer-account compromise (July 10 2026)
+    # Single compromised version of the legitimate Injective Labs TypeScript SDK;
+    # version 1.20.21 contains a malicious payload injected after account takeover.
+    # OSV MAL-2026-10165.
+    "@injectivelabs/sdk-ts": {"1.20.21"},
+    # @bcryptln/becryptjs bcrypt typosquat (July 10 2026)
+    # Typosquat of bcryptjs; three malicious versions exfiltrate credentials.
+    # OSV MAL-2026-10162.
+    "@bcryptln/becryptjs": {"3.0.8", "3.0.10", "3.0.11"},
+    # stella-ai-cli / stella-coder npm AI-tool malware (July 10 2026)
+    # Two packages masquerading as AI coding assistants; malicious payloads
+    # confirmed by OpenSSF Package Analysis.
+    # OSV MAL-2026-10133 (stella-ai-cli), MAL-2026-10134 (stella-coder)
+    "stella-ai-cli": {"2.0.0", "3.0.1"},
+    "stella-coder": {"4.0.0", "5.0.0", "5.0.1", "5.1.0", "5.1.1", "5.1.2"},
+    # chai-as / chain-chai new typosquat batch (July 9-10 2026)
+    # Continuation of the chai-as / chain-chai campaign; packages mimic
+    # chai assertion plugins with malicious postinstall payloads.
+    # chai-defender and chai-as-refined have affected.ranges >=0 (any-version).
+    # OSV MAL-2026-10039 through MAL-2026-10056, MAL-2026-10175,
+    # MAL-2026-2339 (chai-as-chains), MAL-2026-2641 (chai-as-refined),
+    # MAL-2026-10082 (chain-async-dom), MAL-2026-10055/10056 (chain-chai-*)
+    "chai-as-align": {"7.1.0"},
+    "chai-as-balanced": {"2.2.3"},
+    "chai-as-buffered": {"3.7.24"},
+    "chai-as-disarmed": {"3.2.3"},
+    "chai-as-modified": {"6.0.4"},
+    "chai-as-serialized": {"7.0.8"},
+    "chai-as-sharpened": {"7.0.9"},
+    "chai-as-smart": {"2.3.5"},
+    "chai-as-staged": {"6.0.4"},
+    "chai-as-thread": {"7.0.8"},
+    "chai-await-dom": {"1.3.7"},
+    "chai-defender": set(),
+    "chai-deflect": {"1.1.5", "1.1.6"},
+    "chai-promised-test": {"1.3.5"},
+    "chai-secure": {"1.2.3", "1.2.5"},
+    "chai-smart": {"2.3.5"},
+    "chai-as-chains": {"1.2.4", "1.2.7", "1.2.8"},
+    "chai-as-doc": {"2.3.5"},
+    "chai-as-refined": set(),
+    "chain-async-dom": {"1.3.6"},
+    "chain-chai-async": {"1.3.5"},
+    "chain-chai-await": {"1.3.5", "1.3.6", "1.3.7"},
+    # nodemon-gulp / nodemon-patch / nodemon-slint npm malware (July 10 2026)
+    # Three packages mimicking nodemon, all with affected.ranges >=0 (any-version).
+    # OSV MAL-2026-10065 (nodemon-gulp), MAL-2026-10110 (nodemon-patch),
+    # MAL-2026-10117 (nodemon-slint)
+    "nodemon-gulp": set(),
+    "nodemon-patch": set(),
+    "nodemon-slint": set(),
+    # polymarket-* new typosquat batch (July 9-10 2026)
+    # Additional packages targeting Polymarket traders; several have affected.ranges >=0.
+    # polymarket-apis, polymarket-kelly-stake-math, polymarket-trader-apis,
+    # polymarket-gamma-apis, polygon-gama-apis, polygon-gamma-apis: any-version (set()).
+    # polymarket-kelly-math, polymarket-kelly-maths, polymarket-kit: exact versions.
+    # OSV MAL-2026-10067 through MAL-2026-10072, MAL-2026-10147/10148/10149.
+    "polymarket-apis": set(),
+    "polymarket-kelly-math": {"3.5.2"},
+    "polymarket-kelly-maths": {"3.5.3"},
+    "polymarket-kelly-stake-math": set(),
+    "polymarket-kit": {"2.4.1"},
+    "polymarket-trader-apis": set(),
+    "polymarket-gamma-apis": set(),
+    "polygon-gama-apis": set(),
+    "polygon-gamma-apis": set(),
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -3642,6 +3836,9 @@ NPM_SUSPECT_SCOPES = (
     "@swiggy-private/",
     # @checkrhq dep-confusion batch (July 6 2026)
     "@checkrhq/",
+    # @wagni_bot DeFi/crypto SDK typosquat scope (July 9 2026)
+    # Entire attacker-controlled scope; exact versions pinned above
+    "@wagni_bot/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
