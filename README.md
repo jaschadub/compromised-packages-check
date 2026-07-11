@@ -226,6 +226,16 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | Misc dep-confusion / standalone npm batch — July 7–8 2026 | `zluri-ad-connector` 9.9.9; `@higherlogic/ocfe` 99.9.1; `hello244b` 1.0.0; `rio-design-tokens` 99.99.100; `ag-charts-test` 99.9.1; `ai-gen-ai-opt-in` 99.0.0; `bytefaas-sdk` 9999.0.0; `goofy-sdk` 9999.0.0; `pipo-sdk` 9999.0.0; `visa-cli-tools` 99.9.1; `configration` 2.3.5; `crypto-promiser` 2 versions; `events-alias` 15.0.1; `@vraksha/gh-helper` 1.0.0; `logger-daemon-regex` 1.0.124; `npm-rce-poc` 1.0.13; `react-v17` 20.0.1; `@vite-js/ui` 7.15.16; `tslint-conf` 7.2.1; `none123s` 0.1.7; `tailwind-core` 4 versions. Any-version wildcards: `annotator-harvardx`, `nodemon-node`, `ts-await`, `karem-dp`, `na-rony`, `nam-os-a-man`. OSV MAL-2026-6910/6911/6930/6955/6956/6957/6958/6963/6964/6967/6989/6990/6993/6997/7000/7005/7009/7010/7011/7016/7017/7019/7020/7021/7022/7024/7026 |
 | PyPI malware batch — July 7–8 2026 | **Paysafe cluster**: `paysafe-api`, `paysafe-kyc`, `paysafe-payments`, `paysafe-sdk` @ 1.0.0 (OSV MAL-2026-6926/6927/6928/6929). **jsonschema typosquats**: `jsonschemavalidation` 4.26.0; `jsonschemavalid` 4.26.0 (OSV MAL-2026-6945/6970). **Individual packages**: `pyqt6darktheme` 0.1.0 (OSV MAL-2026-6960); `waymo-waymax` 99.0.0 dep-confusion (OSV MAL-2026-6961); `py-slugify` 0.8.2 typosquat of python-slugify (OSV MAL-2026-6976). **Tron/TRX extension** (extends tronlab/tronlabpy3 June 3 2026): `tronhap`, `tronhapy`, `tronpak`, `tronsev` @ 0.0.1 (OSV MAL-2026-6971/6974/6983/7025). **Misc batch**: `oxntime` 4 versions; `rarcore` 2 versions; `manin` 3 versions; `turbod` 8 versions; `manik` 1.2.1; `manom` 1.2.2; `turbom` 2 versions; `dbzy-tools` 1.0.1 (OSV MAL-2026-6975/6977/6978/6979/7006/7007/7015/7023) |
 | crates.io — proton-pfff Proton AG dep-confusion — July 7–8 2026 (OSV MAL-2026-6959) | `proton-pfff` 99.99.5 — high-version crate published to crates.io to shadow Proton AG's internal tooling and hijack CI dependency resolution |
+| PyPI miscellaneous malware batch — July 9 2026 | `moonbit-locale-compat` 0.2.1/0.2.3/0.2.4; `moonbit-metrics-validator` 1.0.0; `moonbit-schema-utils` 1.1.0/1.1.1 (moonbit-* PyPI cluster; OSV MAL-2026-2945/2946/2947); `playwrightr` 1.0.0/1.0.1 (Playwright typosquat; OSV MAL-2026-10020); `telegramlite` 1.0.0/1.0.1; `telegram-lite-grabber` 1.0.0 (Telegram credential stealers; OSV MAL-2026-5531/6051); `d0rk3r` 1.0.0/1.0.2–1.0.5 (OSV MAL-2026-6246); `nagios-xi` 19.4.0/19.5.0 dep-confusion (OSV MAL-2026-5698); `security-alerts-sdk` 1.0.0–1.0.3 (OSV MAL-2026-6327); `sufiagent` 1.0.0–1.0.2; `pwn-control` 1.0; `web3-py-checksum` 1.0/1.1 (OSV MAL-2026-3370/3248/3411) |
+| @wagni_bot/* DeFi/crypto SDK typosquat cluster — July 9 2026 (OSV MAL-2026-10022 through MAL-2026-10037) | 16 packages across the `@wagni_bot/` scope impersonating DeFi/crypto SDK tooling with credential-exfiltration payloads: `@wagni_bot/binance-sdk`, `@wagni_bot/bsc-sdk`, `@wagni_bot/eth-agent`, `@wagni_bot/ethereum-wallet`, `@wagni_bot/hyperliquid-sdk`, `@wagni_bot/jupiter-sdk`, `@wagni_bot/metemask-sdk`, `@wagni_bot/meteora-sdk`, `@wagni_bot/opensea-sdk`, `@wagni_bot/orca-sdk`, `@wagni_bot/polygon-sdk`, `@wagni_bot/polymarket-sdk`, `@wagni_bot/pumpfun-sdk`, `@wagni_bot/solana-sdk`, `@wagni_bot/web3-agent`, `@wagni_bot/web3-toolkit` — multiple versions each; attacker-controlled scope added to NPM_SUSPECT_SCOPES |
+| paysafe-* npm cluster — July 10 2026 (OSV MAL-2026-10166 through MAL-2026-10173) | `paysafe-api`, `paysafe-checkout`, `paysafe-fraud`, `paysafe-js`, `paysafe-kyc`, `paysafe-node`, `paysafe-payments`, `paysafe-vault` all at 1.0.0 — eight packages impersonating Paysafe payment-API tooling |
+| notify-* npm cluster — July 10 2026 (OSV MAL-2026-10152 through MAL-2026-10158) | `notifier-funcs` 1.3.4; `notifier-log` 1.3.5; `notify-dist` 1.3.7; `notify-funcs` 1.3.5/1.3.6; `notify-logs` 1.3.5; `notify-theme` 1.3.5–1.3.7; `notify-utilities` 1.3.5 — seven notification-utility typosquats |
+| type-* npm malware cluster — July 10 2026 (OSV MAL-2026-10077/10130/10137/10164/10174) | `type-slint` any-version (introduced:0 range); `type-plint` 3.3.7; `type-elint` 3.3.7; `type-async` 3.3.7; `type-atob` 3.3.7 — five packages impersonating TypeScript type-check utilities |
+| sidecar-mcp / @injectivelabs/sdk-ts / @bcryptln/becryptjs npm malware — July 10 2026 | `sidecar-mcp` 1.0.0/1.0.1/1.0.2/1.0.4 (OSV MAL-2026-10161 — MCP-server impersonation with credential-exfiltration payload); `@injectivelabs/sdk-ts` 1.20.21 (OSV MAL-2026-10165 — official Injective Labs SDK, single malicious version; rotate all credentials if installed); `@bcryptln/becryptjs` 3.0.8/3.0.10/3.0.11 (OSV MAL-2026-10162 — bcryptjs typosquat) |
+| stella-ai-cli / stella-coder npm AI-assistant impersonation — July 10 2026 (OSV MAL-2026-10133/10134) | `stella-ai-cli` 2.0.0/3.0.1; `stella-coder` 4.0.0/5.0.0–5.0.1/5.1.0–5.1.2 — two packages impersonating AI coding assistants |
+| chai-as/chain-chai new batch — July 9–10 2026 | 22 packages extending the ongoing Chai typosquat campaign: `chai-as-align` 7.1.0; `chai-as-balanced` 2.2.3; `chai-as-buffered` 3.7.24; `chai-as-disarmed` 3.2.3; `chai-as-modified` 6.0.4; `chai-as-serialized` 7.0.8; `chai-as-sharpened` 7.0.9; `chai-as-smart` 2.3.5; `chai-as-staged` 6.0.4; `chai-as-thread` 7.0.8; `chai-await-dom` 1.3.7; `chai-defender` any-version; `chai-deflect` 1.1.5/1.1.6; `chai-promised-test` 1.3.5; `chai-secure` 1.2.3/1.2.5; `chai-smart` 2.3.5; `chai-as-chains` 1.2.4/1.2.7/1.2.8; `chai-as-doc` 2.3.5; `chai-as-refined` any-version; `chain-async-dom` 1.3.6; `chain-chai-async` 1.3.5; `chain-chai-await` 1.3.5–1.3.7 |
+| nodemon-gulp / nodemon-patch / nodemon-slint npm typosquats — July 10 2026 (OSV MAL-2026-10065/10110/10117) | `nodemon-gulp`, `nodemon-patch`, `nodemon-slint` — all any-version wildcards (affected.ranges >=0); three additional entries in the nodemon typosquat campaign |
+| Polymarket ecosystem new batch — July 9–10 2026 | `polymarket-apis` any-version; `polymarket-kelly-math` 3.5.2; `polymarket-kelly-maths` 3.5.3; `polymarket-kelly-stake-math` any-version; `polymarket-kit` 2.4.1; `polymarket-trader-apis` any-version; `polymarket-gamma-apis` any-version; `polygon-gama-apis` any-version; `polygon-gamma-apis` any-version — nine additional Polymarket ecosystem typosquats with credential-exfiltration payloads |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -894,6 +904,35 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-2891 / GHSA-7cq2-px9f-cq3g — chai-as-init (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-2891)
 - [OSV MAL-2026-2419 / GHSA-2847-rm77-74wh — express-session-js (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-2419)
 - [OSV MAL-2026-6543 / GHSA-fh43-48vc-c9r9 — express-initial (July 6 2026)](https://osv.dev/vulnerability/MAL-2026-6543)
+- [OSV MAL-2026-2945 — moonbit-locale-compat PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-2945)
+- [OSV MAL-2026-2946 — moonbit-metrics-validator PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-2946)
+- [OSV MAL-2026-2947 — moonbit-schema-utils PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-2947)
+- [OSV MAL-2026-10020 — playwrightr PyPI Playwright typosquat (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-10020)
+- [OSV MAL-2026-5531 — telegramlite PyPI credential stealer (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-5531)
+- [OSV MAL-2026-6051 — telegram-lite-grabber PyPI credential stealer (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-6051)
+- [OSV MAL-2026-6246 — d0rk3r PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-6246)
+- [OSV MAL-2026-5698 — nagios-xi PyPI dep-confusion (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-5698)
+- [OSV MAL-2026-6327 — security-alerts-sdk PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-6327)
+- [OSV MAL-2026-3370 — sufiagent PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-3370)
+- [OSV MAL-2026-3248 — pwn-control PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-3248)
+- [OSV MAL-2026-3411 — web3-py-checksum PyPI malware (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-3411)
+- [OSV MAL-2026-10022 through MAL-2026-10037 — @wagni_bot/* DeFi/crypto SDK typosquat cluster (July 9 2026)](https://osv.dev/vulnerability/MAL-2026-10022)
+- [OSV MAL-2026-10166 through MAL-2026-10173 — paysafe-* npm cluster (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10166)
+- [OSV MAL-2026-10152 through MAL-2026-10158 — notify-* npm cluster (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10152)
+- [OSV MAL-2026-10077 — type-slint npm malware (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10077)
+- [OSV MAL-2026-10130 — type-plint npm malware (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10130)
+- [OSV MAL-2026-10137 — type-elint npm malware (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10137)
+- [OSV MAL-2026-10164 — type-async npm malware (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10164)
+- [OSV MAL-2026-10174 — type-atob npm malware (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10174)
+- [OSV MAL-2026-10161 — sidecar-mcp npm MCP-server impersonation (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10161)
+- [OSV MAL-2026-10165 — @injectivelabs/sdk-ts npm compromise (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10165)
+- [OSV MAL-2026-10162 — @bcryptln/becryptjs bcryptjs typosquat (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10162)
+- [OSV MAL-2026-10133 — stella-ai-cli npm AI-assistant impersonation (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10133)
+- [OSV MAL-2026-10134 — stella-coder npm AI-assistant impersonation (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10134)
+- [OSV MAL-2026-10065 — nodemon-gulp npm typosquat (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10065)
+- [OSV MAL-2026-10110 — nodemon-patch npm typosquat (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10110)
+- [OSV MAL-2026-10117 — nodemon-slint npm typosquat (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10117)
+- [OSV PyPI bulk export — full MAL-* dataset (July 9–10 2026 snapshot)](https://osv-vulnerabilities.storage.googleapis.com/PyPI/all.zip)
 
 ## License
 
