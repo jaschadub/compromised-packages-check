@@ -236,6 +236,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | chai-as/chain-chai new batch — July 9–10 2026 | 22 packages extending the ongoing Chai typosquat campaign: `chai-as-align` 7.1.0; `chai-as-balanced` 2.2.3; `chai-as-buffered` 3.7.24; `chai-as-disarmed` 3.2.3; `chai-as-modified` 6.0.4; `chai-as-serialized` 7.0.8; `chai-as-sharpened` 7.0.9; `chai-as-smart` 2.3.5; `chai-as-staged` 6.0.4; `chai-as-thread` 7.0.8; `chai-await-dom` 1.3.7; `chai-defender` any-version; `chai-deflect` 1.1.5/1.1.6; `chai-promised-test` 1.3.5; `chai-secure` 1.2.3/1.2.5; `chai-smart` 2.3.5; `chai-as-chains` 1.2.4/1.2.7/1.2.8; `chai-as-doc` 2.3.5; `chai-as-refined` any-version; `chain-async-dom` 1.3.6; `chain-chai-async` 1.3.5; `chain-chai-await` 1.3.5–1.3.7 |
 | nodemon-gulp / nodemon-patch / nodemon-slint npm typosquats — July 10 2026 (OSV MAL-2026-10065/10110/10117) | `nodemon-gulp`, `nodemon-patch`, `nodemon-slint` — all any-version wildcards (affected.ranges >=0); three additional entries in the nodemon typosquat campaign |
 | Polymarket ecosystem new batch — July 9–10 2026 | `polymarket-apis` any-version; `polymarket-kelly-math` 3.5.2; `polymarket-kelly-maths` 3.5.3; `polymarket-kelly-stake-math` any-version; `polymarket-kit` 2.4.1; `polymarket-trader-apis` any-version; `polymarket-gamma-apis` any-version; `polygon-gama-apis` any-version; `polygon-gamma-apis` any-version — nine additional Polymarket ecosystem typosquats with credential-exfiltration payloads |
+| July 11–12 2026 npm batch — auth typosquats, dep-confusion, jscrambler compromise | `auth-next-gen` any-version (GHSA-8qpp-8j53-4wh7 / OSV MAL-2026-10180); `authvaultx` any-version (GHSA-frr6-2jc6-6fhr / OSV MAL-2026-10185); `awesome-ts-jest` 29.4.12 (ts-jest typosquat; OSV MAL-2026-10188); `client-cookies-agent` 99.9.5/99.9.6/99.9.7 (dep-confusion; OSV MAL-2026-10019); `google-caja-bower` 7 high-version dep-confusion entries (OSV MAL-2026-10186); `jscrambler` 8.14.0/8.16.0/8.18.0/8.20.0 (maintainer-account compromise injecting a native binary that harvests BIP-39 wallet seeds and browser sessions; Amazon Inspector confirmed; OSV MAL-2026-10187); `tinymask-js` 1.0.2 (OSV MAL-2026-10189); `tinyparrot` 0.4.1 (OSV MAL-2026-10190). Also: `svgcraft-core` updated with additional versions 1.0.5/1.0.6 (OSV MAL-2026-6715 updated) |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -933,6 +934,16 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-10110 — nodemon-patch npm typosquat (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10110)
 - [OSV MAL-2026-10117 — nodemon-slint npm typosquat (July 10 2026)](https://osv.dev/vulnerability/MAL-2026-10117)
 - [OSV PyPI bulk export — full MAL-* dataset (July 9–10 2026 snapshot)](https://osv-vulnerabilities.storage.googleapis.com/PyPI/all.zip)
+- [OSV MAL-2026-10180 / GHSA-8qpp-8j53-4wh7 — auth-next-gen npm auth typosquat (July 11 2026)](https://osv.dev/vulnerability/MAL-2026-10180)
+- [OSV MAL-2026-10185 / GHSA-frr6-2jc6-6fhr — authvaultx npm vault/auth typosquat (July 11 2026)](https://osv.dev/vulnerability/MAL-2026-10185)
+- [OSV MAL-2026-10188 — awesome-ts-jest npm ts-jest typosquat (July 11 2026)](https://osv.dev/vulnerability/MAL-2026-10188)
+- [OSV MAL-2026-10019 — client-cookies-agent npm dep-confusion (July 11 2026)](https://osv.dev/vulnerability/MAL-2026-10019)
+- [OSV MAL-2026-10186 — google-caja-bower npm dep-confusion (July 11 2026)](https://osv.dev/vulnerability/MAL-2026-10186)
+- [OSV MAL-2026-10187 — jscrambler npm maintainer-account compromise, crypto-wallet/browser-session stealer (July 11 2026)](https://osv.dev/vulnerability/MAL-2026-10187)
+- [OSV MAL-2026-10189 — tinymask-js npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10189)
+- [OSV MAL-2026-10190 — tinyparrot npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10190)
+- [OSV MAL-2026-6715 — svgcraft-core npm typosquat (updated July 12 2026, versions 1.0.5/1.0.6 added)](https://osv.dev/vulnerability/MAL-2026-6715)
+- [OSV npm bulk export — full MAL-* dataset (July 11–12 2026 snapshot)](https://osv-vulnerabilities.storage.googleapis.com/npm/all.zip)
 
 ## License
 

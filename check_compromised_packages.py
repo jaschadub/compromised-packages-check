@@ -252,7 +252,13 @@ PyPI cluster (OSV MAL-2026-2945/2946/2947), playwrightr PyPI typosquat
 (OSV MAL-2026-10020), telegramlite/telegram-lite-grabber Telegram grabbers
 (OSV MAL-2026-5531/6051), d0rk3r/nagios-xi/security-alerts-sdk/sufiagent/
 pwn-control/web3-py-checksum PyPI batch (OSV MAL-2026-6246/5698/6327/3370/
-3248/3411).
+3248/3411), and the July 11–12 2026 npm batch: auth-next-gen/authvaultx auth
+typosquats (OSV MAL-2026-10180/10185), awesome-ts-jest ts-jest typosquat
+(OSV MAL-2026-10188), client-cookies-agent/google-caja-bower dep-confusion
+packages (OSV MAL-2026-10019/10186), jscrambler maintainer-account compromise
+injecting a crypto-wallet/browser-session stealer (OSV MAL-2026-10187),
+tinymask-js/tinyparrot single-version malware (OSV MAL-2026-10189/10190),
+and svgcraft-core updated with versions 1.0.5/1.0.6 (OSV MAL-2026-6715).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -265,7 +271,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-11
+Date:      2026-07-12
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -2947,7 +2953,7 @@ NPM_BAD: dict[str, set[str]] = {
         "1.0.26", "1.0.27", "1.0.28", "1.0.29", "1.0.30", "1.0.31", "1.0.32",
         "1.0.33", "1.0.34", "1.0.36",
     },
-    "svgcraft-core": {"1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    "svgcraft-core": {"1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},
     # Hardhat / Solidity ecosystem typosquats (June 30 – July 1 2026)
     # Two packages impersonating Hardhat build tools with credential-exfiltration postinstall.
     # OSV MAL-2026-6705 (hardhat-compile-ethers), MAL-2026-6706 (hardhat-plugin-solidity).
@@ -3808,6 +3814,41 @@ NPM_BAD: dict[str, set[str]] = {
     "polymarket-gamma-apis": set(),
     "polygon-gama-apis": set(),
     "polygon-gamma-apis": set(),
+    # July 11–12 2026 npm batch: auth/vault typosquats, dep-confusion packages,
+    # jscrambler maintainer-account compromise, and misc single-version malware.
+    # auth-next-gen: pure-malware auth-library typosquat; SEMVER >=0 (any-version);
+    #   three versions captured before takedown (1.6.29, 1.7.2, 1.7.11).
+    #   OSV MAL-2026-10180 / GHSA-8qpp-8j53-4wh7.
+    "auth-next-gen": set(),
+    # authvaultx: pure-malware vault/auth typosquat; SEMVER >=0 (any-version); no
+    #   specific versions captured before takedown.
+    #   OSV MAL-2026-10185 / GHSA-frr6-2jc6-6fhr.
+    "authvaultx": set(),
+    # awesome-ts-jest: typosquat of ts-jest; single malicious version 29.4.12 published
+    #   with credential-exfiltration payload. OSV MAL-2026-10188.
+    "awesome-ts-jest": {"29.4.12"},
+    # client-cookies-agent: dep-confusion 99.x package; three high-version publications
+    #   targeting internal pipelines. OSV MAL-2026-10019.
+    "client-cookies-agent": {"99.9.5", "99.9.6", "99.9.7"},
+    # google-caja-bower: dep-confusion package targeting Google Caja / Bower CI;
+    #   seven high-version publications (20.x / 999.x / 1000.x). OSV MAL-2026-10186.
+    "google-caja-bower": {
+        "20.20.20", "999.20.20", "999.99.20", "999.999.20",
+        "1000.80.20", "1000.800.20", "1000.801.20",
+    },
+    # jscrambler: maintainer-account compromise of the legitimate JS obfuscator tool.
+    #   Versions 8.14.0, 8.16.0, 8.18.0, 8.20.0 inject a cross-platform native binary
+    #   that harvests BIP-39 crypto-wallet seeds and browser sessions (Chromium/BoringSSL
+    #   TLS internals present in payload). Amazon Inspector analysis confirmed the hidden
+    #   executable; CHANGELOG has no entries past 8.13.0.
+    #   OSV MAL-2026-10187.
+    "jscrambler": {"8.14.0", "8.16.0", "8.18.0", "8.20.0"},
+    # tinymask-js: single-version malicious npm package; detected by OpenSSF/ossf.
+    #   OSV MAL-2026-10189.
+    "tinymask-js": {"1.0.2"},
+    # tinyparrot: single-version malicious npm package; detected by OpenSSF/ossf.
+    #   OSV MAL-2026-10190.
+    "tinyparrot": {"0.4.1"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
