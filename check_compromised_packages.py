@@ -258,7 +258,20 @@ typosquats (OSV MAL-2026-10180/10185), awesome-ts-jest ts-jest typosquat
 packages (OSV MAL-2026-10019/10186), jscrambler maintainer-account compromise
 injecting a crypto-wallet/browser-session stealer (OSV MAL-2026-10187),
 tinymask-js/tinyparrot single-version malware (OSV MAL-2026-10189/10190),
-and svgcraft-core updated with versions 1.0.5/1.0.6 (OSV MAL-2026-6715).
+and svgcraft-core updated with versions 1.0.5/1.0.6 (OSV MAL-2026-6715),
+and the July 12–13 2026 batch: fastify-addone Fastify plugin typosquat
+(OSV MAL-2026-10098), 19 additional npm malware/dep-confusion packages
+(polymarket-kelly-math-stake, api-changelly, chain-await-dom, giantswarm,
+gptcore, library-explorer, nullrift, react-dom-v17, @meziizana/frontend-logger,
+auto-debug-tool, mcp-notes-server-poc-praetorian, react-next-vite, vuln-package,
+babel-preset-lib-client, polylabel-web-lib, bugexploit; OSV MAL-2026-10198
+through MAL-2026-10214; node-sysmetrics GHSA-w2wx-f2m6-332m / MAL-2026-10216,
+dotnet-runtime-base GHSA-9gr8-wg29-9wvv / MAL-2026-10217, pure-folder-three
+GHSA-9w58-3cgj-jw7v / MAL-2026-10218), and 10 PyPI DeFi/crypto
+credential-stealing packages (data-harvester, defi-tools, py-base58, solidity-dev,
+eth-agent, jupiter-sdk, metemask-sdk sharing VirusTotal hash 4dd018d8; plus
+proxy-check-i, pipspeed, fast-dotenv; OSV MAL-2026-10100/10191 through
+MAL-2026-10197/10213/10215).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -271,7 +284,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-12
+Date:      2026-07-13
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -867,6 +880,36 @@ PYPI_BAD: dict[str, set[str]] = {
     "sufiagent": {"1.0.0", "1.0.1", "1.0.2"},
     "pwn-control": {"1.0"},
     "web3-py-checksum": {"1.0", "1.1"},
+    # DeFi/crypto credential-stealing PyPI campaign (July 12 2026)
+    # data-harvester, defi-tools, py-base58, and solidity-dev share the same
+    # VirusTotal-confirmed dropper payload (hash 4dd018d84f2f9c35caed7a2c684cff2c1ea3af3a113cceb078a0788eefb93f66).
+    # eth-agent, jupiter-sdk, and metemask-sdk are additional packages in the
+    # same campaign targeting DeFi/crypto developers; all exfiltrate credentials
+    # and API keys on import. Detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-10191 (data-harvester), MAL-2026-10192 (defi-tools),
+    # MAL-2026-10193 (py-base58), MAL-2026-10194 (solidity-dev),
+    # MAL-2026-10195 (eth-agent), MAL-2026-10196 (jupiter-sdk),
+    # MAL-2026-10197 (metemask-sdk)
+    "data-harvester": {"0.3.1"},
+    "defi-tools": {"0.8.0"},
+    "py-base58": {"2.1.3", "2.1.4"},
+    "solidity-dev": {"1.3.0"},
+    "eth-agent": {"1.0.0", "1.0.1"},
+    "jupiter-sdk": {"0.1.0", "0.1.1"},
+    "metemask-sdk": {"1.2.0", "1.2.1"},
+    # proxy-check-i PyPI malware (July 9–12 2026)
+    # Two malicious versions published; detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-10100
+    "proxy-check-i": {"0.1.0", "0.1.1"},
+    # pipspeed PyPI malware (July 12–13 2026)
+    # Single malicious version; detected by kam193 / bad-packages.kam193.eu.
+    # OSV MAL-2026-10213
+    "pipspeed": {"0.1.0"},
+    # fast-dotenv PyPI malware (July 12 2026)
+    # dotenv-wrapper with malicious install-time payload; references
+    # gist.github.com/opensource-crypto C2 infrastructure.
+    # OSV MAL-2026-10215
+    "fast-dotenv": {"1.0.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3849,6 +3892,61 @@ NPM_BAD: dict[str, set[str]] = {
     # tinyparrot: single-version malicious npm package; detected by OpenSSF/ossf.
     #   OSV MAL-2026-10190.
     "tinyparrot": {"0.4.1"},
+    # July 12–13 2026 npm batch: mixed malware, dep-confusion, and framework typosquats
+    # fastify-addone: Fastify plugin typosquat; two consecutive malicious versions
+    #   published before takedown. OSV MAL-2026-10098.
+    "fastify-addone": {"5.1.0", "5.1.1"},
+    # polymarket-kelly-math-stake: extends the ongoing Polymarket ecosystem typosquat
+    #   campaign (see July 1 batch); single malicious version. OSV MAL-2026-10199.
+    "polymarket-kelly-math-stake": {"3.6.2"},
+    # api-changelly: crypto exchange API typosquat at inflated version 19.2.11.
+    #   OSV MAL-2026-10200.
+    "api-changelly": {"19.2.11"},
+    # chain-await-dom: single-version malware; detected by OpenSSF/ossf. OSV MAL-2026-10202.
+    "chain-await-dom": {"1.3.4"},
+    # giantswarm: dep-confusion at inflated version 22.0.1 targeting Giant Swarm CI.
+    #   OSV MAL-2026-10203.
+    "giantswarm": {"22.0.1"},
+    # gptcore: AI/GPT-toolkit typosquat; three consecutive malicious versions.
+    #   OSV MAL-2026-10204.
+    "gptcore": {"4.0.6", "4.0.7", "4.0.8"},
+    # library-explorer: dep-confusion at inflated version 25.2.1. OSV MAL-2026-10205.
+    "library-explorer": {"25.2.1"},
+    # nullrift: single-version malware; detected by OpenSSF/ossf. OSV MAL-2026-10206.
+    "nullrift": {"1.0.0"},
+    # react-dom-v17: typosquat of react-dom; single malicious version. OSV MAL-2026-10207.
+    "react-dom-v17": {"15.0.1"},
+    # @meziizana/frontend-logger: dep-confusion at inflated version 10.0.0.
+    #   OSV MAL-2026-10208.
+    "@meziizana/frontend-logger": {"10.0.0"},
+    # auto-debug-tool: three malicious versions with credential-exfiltration payload.
+    #   OSV MAL-2026-10209.
+    "auto-debug-tool": {"1.0.0", "1.0.2", "1.0.3"},
+    # mcp-notes-server-poc-praetorian: MCP server with malicious code; single version.
+    #   OSV MAL-2026-10210.
+    "mcp-notes-server-poc-praetorian": {"0.1.0"},
+    # react-next-vite: React/Vite framework typosquat; single malicious version.
+    #   OSV MAL-2026-10211.
+    "react-next-vite": {"1.2.9"},
+    # vuln-package: dep-confusion at inflated 99.x versions; four versions.
+    #   OSV MAL-2026-10212.
+    "vuln-package": {"99.9.9", "99.9.10", "99.9.11", "99.9.14"},
+    # babel-preset-lib-client: Babel preset typosquat; three consecutive malicious versions.
+    #   OSV MAL-2026-10214.
+    "babel-preset-lib-client": {"4.9.9", "4.9.10", "4.9.11"},
+    # polylabel-web-lib: dep-confusion at inflated version 99.9.1. OSV MAL-2026-10198.
+    "polylabel-web-lib": {"99.9.1"},
+    # bugexploit: dep-confusion at inflated version 99.9.9. OSV MAL-2026-10201.
+    "bugexploit": {"99.9.9"},
+    # node-sysmetrics: single-version npm malware (GHSA-w2wx-f2m6-332m).
+    #   OSV MAL-2026-10216.
+    "node-sysmetrics": {"1.0.0"},
+    # dotnet-runtime-base: two-version npm malware (GHSA-9gr8-wg29-9wvv).
+    #   OSV MAL-2026-10217.
+    "dotnet-runtime-base": {"1.0.4", "1.0.5"},
+    # pure-folder-three: Three.js-adjacent typosquat; five versions (GHSA-9w58-3cgj-jw7v).
+    #   OSV MAL-2026-10218.
+    "pure-folder-three": {"0.5.0", "0.6.0", "0.7.0", "0.7.1", "0.7.3"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any

@@ -237,6 +237,7 @@ useful for catching newly-disclosed entries before this repo has been updated.
 | nodemon-gulp / nodemon-patch / nodemon-slint npm typosquats — July 10 2026 (OSV MAL-2026-10065/10110/10117) | `nodemon-gulp`, `nodemon-patch`, `nodemon-slint` — all any-version wildcards (affected.ranges >=0); three additional entries in the nodemon typosquat campaign |
 | Polymarket ecosystem new batch — July 9–10 2026 | `polymarket-apis` any-version; `polymarket-kelly-math` 3.5.2; `polymarket-kelly-maths` 3.5.3; `polymarket-kelly-stake-math` any-version; `polymarket-kit` 2.4.1; `polymarket-trader-apis` any-version; `polymarket-gamma-apis` any-version; `polygon-gama-apis` any-version; `polygon-gamma-apis` any-version — nine additional Polymarket ecosystem typosquats with credential-exfiltration payloads |
 | July 11–12 2026 npm batch — auth typosquats, dep-confusion, jscrambler compromise | `auth-next-gen` any-version (GHSA-8qpp-8j53-4wh7 / OSV MAL-2026-10180); `authvaultx` any-version (GHSA-frr6-2jc6-6fhr / OSV MAL-2026-10185); `awesome-ts-jest` 29.4.12 (ts-jest typosquat; OSV MAL-2026-10188); `client-cookies-agent` 99.9.5/99.9.6/99.9.7 (dep-confusion; OSV MAL-2026-10019); `google-caja-bower` 7 high-version dep-confusion entries (OSV MAL-2026-10186); `jscrambler` 8.14.0/8.16.0/8.18.0/8.20.0 (maintainer-account compromise injecting a native binary that harvests BIP-39 wallet seeds and browser sessions; Amazon Inspector confirmed; OSV MAL-2026-10187); `tinymask-js` 1.0.2 (OSV MAL-2026-10189); `tinyparrot` 0.4.1 (OSV MAL-2026-10190). Also: `svgcraft-core` updated with additional versions 1.0.5/1.0.6 (OSV MAL-2026-6715 updated) |
+| July 12–13 2026 batch — mixed npm malware/dep-confusion + PyPI DeFi/crypto campaign | **npm (20 packages):** `fastify-addone` 5.1.0/5.1.1 (Fastify plugin typosquat; OSV MAL-2026-10098); `polymarket-kelly-math-stake` 3.6.2 (Polymarket extension; OSV MAL-2026-10199); `api-changelly` 19.2.11 (crypto API typosquat; OSV MAL-2026-10200); `chain-await-dom` 1.3.4 (OSV MAL-2026-10202); `giantswarm` 22.0.1 (dep-confusion; OSV MAL-2026-10203); `gptcore` 4.0.6–4.0.8 (AI toolkit typosquat; OSV MAL-2026-10204); `library-explorer` 25.2.1 (dep-confusion; OSV MAL-2026-10205); `nullrift` 1.0.0 (OSV MAL-2026-10206); `react-dom-v17` 15.0.1 (React typosquat; OSV MAL-2026-10207); `@meziizana/frontend-logger` 10.0.0 (dep-confusion; OSV MAL-2026-10208); `auto-debug-tool` 1.0.0/1.0.2/1.0.3 (OSV MAL-2026-10209); `mcp-notes-server-poc-praetorian` 0.1.0 (MCP server malware; OSV MAL-2026-10210); `react-next-vite` 1.2.9 (React/Vite typosquat; OSV MAL-2026-10211); `vuln-package` 99.9.9/10/11/14 (dep-confusion; OSV MAL-2026-10212); `babel-preset-lib-client` 4.9.9–4.9.11 (Babel typosquat; OSV MAL-2026-10214); `polylabel-web-lib` 99.9.1 (dep-confusion; OSV MAL-2026-10198); `bugexploit` 99.9.9 (dep-confusion; OSV MAL-2026-10201); `node-sysmetrics` 1.0.0 (GHSA-w2wx-f2m6-332m / OSV MAL-2026-10216); `dotnet-runtime-base` 1.0.4/1.0.5 (GHSA-9gr8-wg29-9wvv / OSV MAL-2026-10217); `pure-folder-three` 5 versions (Three.js typosquat; GHSA-9w58-3cgj-jw7v / OSV MAL-2026-10218). **PyPI (10 packages):** `data-harvester` 0.3.1, `defi-tools` 0.8.0, `py-base58` 2.1.3/2.1.4, `solidity-dev` 1.3.0, `eth-agent` 1.0.0/1.0.1, `jupiter-sdk` 0.1.0/0.1.1, `metemask-sdk` 1.2.0/1.2.1 (DeFi/crypto credential-stealing campaign, shared VT hash 4dd018d8; OSV MAL-2026-10191–10197); `proxy-check-i` 0.1.0/0.1.1 (OSV MAL-2026-10100); `pipspeed` 0.1.0 (OSV MAL-2026-10213); `fast-dotenv` 1.0.0 (OSV MAL-2026-10215) |
 
 Per Corgea research, the `@uipath/*` and `@mistralai/*` payloads contain a
 bug that renders the malware non-functional. Installed versions should still
@@ -943,7 +944,38 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-10189 — tinymask-js npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10189)
 - [OSV MAL-2026-10190 — tinyparrot npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10190)
 - [OSV MAL-2026-6715 — svgcraft-core npm typosquat (updated July 12 2026, versions 1.0.5/1.0.6 added)](https://osv.dev/vulnerability/MAL-2026-6715)
-- [OSV npm bulk export — full MAL-* dataset (July 11–12 2026 snapshot)](https://osv-vulnerabilities.storage.googleapis.com/npm/all.zip)
+- [OSV MAL-2026-10098 — fastify-addone npm Fastify plugin typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10098)
+- [OSV MAL-2026-10198 — polylabel-web-lib npm dep-confusion (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10198)
+- [OSV MAL-2026-10199 — polymarket-kelly-math-stake npm Polymarket typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10199)
+- [OSV MAL-2026-10200 — api-changelly npm crypto API typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10200)
+- [OSV MAL-2026-10201 — bugexploit npm dep-confusion (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10201)
+- [OSV MAL-2026-10202 — chain-await-dom npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10202)
+- [OSV MAL-2026-10203 — giantswarm npm dep-confusion (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10203)
+- [OSV MAL-2026-10204 — gptcore npm AI toolkit typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10204)
+- [OSV MAL-2026-10205 — library-explorer npm dep-confusion (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10205)
+- [OSV MAL-2026-10206 — nullrift npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10206)
+- [OSV MAL-2026-10207 — react-dom-v17 npm React typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10207)
+- [OSV MAL-2026-10208 — @meziizana/frontend-logger npm dep-confusion (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10208)
+- [OSV MAL-2026-10209 — auto-debug-tool npm malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10209)
+- [OSV MAL-2026-10210 — mcp-notes-server-poc-praetorian npm MCP server malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10210)
+- [OSV MAL-2026-10211 — react-next-vite npm React/Vite typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10211)
+- [OSV MAL-2026-10212 — vuln-package npm dep-confusion (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10212)
+- [OSV MAL-2026-10214 — babel-preset-lib-client npm Babel typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10214)
+- [OSV MAL-2026-10216 / GHSA-w2wx-f2m6-332m — node-sysmetrics npm malware (July 13 2026)](https://osv.dev/vulnerability/MAL-2026-10216)
+- [OSV MAL-2026-10217 / GHSA-9gr8-wg29-9wvv — dotnet-runtime-base npm malware (July 13 2026)](https://osv.dev/vulnerability/MAL-2026-10217)
+- [OSV MAL-2026-10218 / GHSA-9w58-3cgj-jw7v — pure-folder-three npm Three.js typosquat (July 13 2026)](https://osv.dev/vulnerability/MAL-2026-10218)
+- [OSV MAL-2026-10100 — proxy-check-i PyPI malware (July 9–12 2026)](https://osv.dev/vulnerability/MAL-2026-10100)
+- [OSV MAL-2026-10191 — data-harvester PyPI DeFi/crypto credential-stealer (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10191)
+- [OSV MAL-2026-10192 — defi-tools PyPI DeFi/crypto credential-stealer (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10192)
+- [OSV MAL-2026-10193 — py-base58 PyPI base58 typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10193)
+- [OSV MAL-2026-10194 — solidity-dev PyPI Solidity typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10194)
+- [OSV MAL-2026-10195 — eth-agent PyPI Ethereum credential-stealer (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10195)
+- [OSV MAL-2026-10196 — jupiter-sdk PyPI Jupiter DEX typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10196)
+- [OSV MAL-2026-10197 — metemask-sdk PyPI MetaMask typosquat (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10197)
+- [OSV MAL-2026-10213 — pipspeed PyPI malware (July 12–13 2026)](https://osv.dev/vulnerability/MAL-2026-10213)
+- [OSV MAL-2026-10215 — fast-dotenv PyPI malware (July 12 2026)](https://osv.dev/vulnerability/MAL-2026-10215)
+- [OSV npm bulk export — full MAL-* dataset (July 12–13 2026 snapshot)](https://osv-vulnerabilities.storage.googleapis.com/npm/all.zip)
+- [OSV PyPI bulk export — full MAL-* dataset (July 12–13 2026 snapshot)](https://osv-vulnerabilities.storage.googleapis.com/PyPI/all.zip)
 
 ## License
 
