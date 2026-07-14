@@ -271,7 +271,17 @@ GHSA-9w58-3cgj-jw7v / MAL-2026-10218), and 10 PyPI DeFi/crypto
 credential-stealing packages (data-harvester, defi-tools, py-base58, solidity-dev,
 eth-agent, jupiter-sdk, metemask-sdk sharing VirusTotal hash 4dd018d8; plus
 proxy-check-i, pipspeed, fast-dotenv; OSV MAL-2026-10100/10191 through
-MAL-2026-10197/10213/10215).
+MAL-2026-10197/10213/10215),
+and the July 13-14 2026 npm/PyPI batch: 343 new npm packages across 15 campaigns
+(dep-confusion MFE/internal-tools cluster, chai-as-*/fastify-bundler extension,
+nodemon-* extension, polymarket-* extension, type-* extension, node-proc/fs
+cluster, @gleamkit/@dervix socket.io typosquats, markable-table family,
+getd-* dep-confusion, inflated-version dep-confusion batches, the
+nottuff/abuden/ratelimitsucks/ishowfeet/speed/sixseven/imillegal/timmytuffknuckles/
+backupsitetuff npm worm cluster, random-words any-version companion packages,
+tipsen/antsrctest cluster, @gt-test-exp/profiler-exp-* cluster, and miscellaneous
+individual packages; OSV MAL-2026-5393 through MAL-2026-10522), and 2 new PyPI
+packages (turbocalcng OSV MAL-2026-10441, browser-use-headless OSV MAL-2026-10484).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -284,7 +294,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-13
+Date:      2026-07-14
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -910,6 +920,14 @@ PYPI_BAD: dict[str, set[str]] = {
     # gist.github.com/opensource-crypto C2 infrastructure.
     # OSV MAL-2026-10215
     "fast-dotenv": {"1.0.0"},
+    # turbocalcng PyPI malware (July 14 2026)
+    # Credential-exfiltrating calculator tool typosquat; two published versions.
+    # OSV MAL-2026-10441
+    "turbocalcng": {"0.1.0", "0.2.0"},
+    # browser-use-headless PyPI malware (July 13 2026)
+    # Headless browser wrapper with malicious postinstall payload.
+    # OSV MAL-2026-10484
+    "browser-use-headless": {"0.1.4"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3947,6 +3965,423 @@ NPM_BAD: dict[str, set[str]] = {
     # pure-folder-three: Three.js-adjacent typosquat; five versions (GHSA-9w58-3cgj-jw7v).
     #   OSV MAL-2026-10218.
     "pure-folder-three": {"0.5.0", "0.6.0", "0.7.0", "0.7.1", "0.7.3"},
+
+    # July 13-14 2026 dep-confusion / MFE internal-tools cluster
+    # Dozens of packages published at inflated or date-formatted version numbers
+    # targeting internal CI/CD pipelines of various organizations.
+    # OSV IDs: MAL-2026-10221 through MAL-2026-10237, MAL-2026-10517 through MAL-2026-10522
+    "@flex-ng/error-component": {"2.1.0"},  # MAL-2026-10221
+    "@flex-ng/filter-pipe": {"1.1.0"},  # MAL-2026-10222
+    "@flex-ng/header-component": {"0.1.0"},  # MAL-2026-10223
+    "@idms-corp/auth-ui": {"0.0.0", "1.0.0"},  # MAL-2026-10224
+    "@logdna-web/shared": {"13.19.37"},  # MAL-2026-10225
+    "@logdna-web/styles": {"0.8.40"},  # MAL-2026-10226
+    "box-react-uix": {"18.6.91"},  # MAL-2026-10227
+    "chat-adapter-zoom": {"12.1.31"},  # MAL-2026-10228
+    "enbd-react-error-boundry": {"6.0.0"},  # MAL-2026-10229
+    "enbd-react-lib": {"8.0.0"},  # MAL-2026-10230
+    "enbd-react-logger": {"4.0.0"},  # MAL-2026-10231
+    "salesforce-vscode-slds": {"2026.7.11"},  # MAL-2026-10232
+    "sams-sr-sdk-h5": {"7.0.0"},  # MAL-2026-10233
+    "slds-lsp-client": {"2026.7.11"},  # MAL-2026-10234
+    "tme-error": {"2.8.42"},  # MAL-2026-10235
+    "tme-xca": {"3.0.0"},  # MAL-2026-10236
+    "tme-xca-react": set(),  # MAL-2026-10237
+    "@tqm-mfe/main": {"5.4.7"},  # MAL-2026-10517
+    "@flcik/flick.js": set(),  # MAL-2026-10521
+    "flick-test-app": set(),  # MAL-2026-10522
+
+    # chai-as-* / fastify-bundler typosquat extension (July 13-14 2026)
+    # Continuation of the existing chai-as-*/chain-chai typosquat campaign;
+    # fastify-bundler is a Fastify plugin typosquat in the same wave.
+    # OSV MAL-2026-10219/10504/10518/10519/10426/10520
+    "chai-as-precision": {"7.0.6"},  # MAL-2026-10219
+    "chai-as-auth": {"2.3.5"},  # MAL-2026-10518
+    "chai-as-sets": {"3.1.3"},  # MAL-2026-10519
+    "chai-as-verified": {"7.1.5"},  # MAL-2026-10504
+    "chai-log": {"1.1.0"},  # MAL-2026-10426
+    "fastify-bundler": {"1.4.13"},  # MAL-2026-10520
+
+    # nodemon-* typosquat extension (July 13 2026)
+    # Additional packages in the ongoing nodemon-*/type-* typosquat campaign;
+    # each mimics nodemon tooling with credential-exfiltration payloads.
+    # OSV MAL-2026-10014/10454/10468/10507/10508/10513/10514/10515
+    "nodemon-sudo": {"3.1.16"},  # MAL-2026-10014
+    "nodemon-delog": {"3.1.13"},  # MAL-2026-10507
+    "nodemon-elint": {"3.1.13"},  # MAL-2026-10508
+    "nodemon-web": {"3.1.13"},  # MAL-2026-10515
+    "nodemon-async": set(),  # MAL-2026-10454
+    "nodemon-sync": set(),  # MAL-2026-10468
+    "nodemon-client": set(),  # MAL-2026-10513
+    "nodemon-eslint": set(),  # MAL-2026-10514
+
+    # polymarket-* typosquat extension (July 13 2026)
+    # Additional packages in the Polymarket ecosystem typosquat campaign;
+    # further Kelly-criterion and MCP-server impersonation packages.
+    # OSV MAL-2026-10466/10467/10481/10485/10516
+    "polymarket-mcp-v2": {"2.1.6"},  # MAL-2026-10481
+    "polymarket-stake-kelly-math": {"3.8.2"},  # MAL-2026-10467
+    "polymarket-math-stake-kelly": {"3.7.2"},  # MAL-2026-10466
+    "polymarket-stake-kelly-math-check": {"3.5.2"},  # MAL-2026-10485
+    "polymarket-bot-logger": {"1.0.1"},  # MAL-2026-10516
+
+    # type-* typosquat extension (July 13 2026)
+    # Additional packages in the type-* typosquat campaign targeting TypeScript tooling.
+    # OSV MAL-2026-10440/10510/10511/10512
+    "type-context": {"3.2.11", "3.2.7", "3.2.8", "3.2.9"},  # MAL-2026-10440
+    "type-astr": {"3.2.3"},  # MAL-2026-10510
+    "type-swap": {"3.1.3"},  # MAL-2026-10511
+    "type-unique": {"3.1.3"},  # MAL-2026-10512
+
+    # node-proc/fs/sysmon infostealer cluster (July 13 2026)
+    # A cluster of fake Node.js system-metrics / filesystem utilities;
+    # each runs a credential-exfiltration payload on install. Same actor
+    # as the broader nodemon-* typosquat wave.
+    # OSV MAL-2026-10420/10445/10463/10464/10465/10479/10480/10506
+    "node-procmetrics": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-10445
+    "node-procmetrics-data": {"1.0.1"},  # MAL-2026-10464
+    "node-fsagent": {"1.0.0", "1.0.4", "1.0.8", "1.1.1", "1.1.2", "1.1.3", "1.2.0", "1.2.1", "1.2.2"},  # MAL-2026-10506
+    "node-fsmetrics-native": {"1.0.0"},  # MAL-2026-10480
+    "node-fsmetrics-data": {"1.0.0", "1.0.1"},  # MAL-2026-10479
+    "node-sysmon-native": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-10465
+    "node-path-addon": {"1.0.8"},  # MAL-2026-10463
+    "path-addon-extend": {"1.0.10", "1.0.7", "1.0.8"},  # MAL-2026-10420
+
+    # @gleamkit / @dervix socket.io/ws typosquat cluster (July 13 2026)
+    # Both scopes impersonate socket.io, engine.io, and ws packages;
+    # any version is malicious for the engine.io/socket.io look-alikes.
+    # OSV MAL-2026-6306/6496/10402/10474/10475/10476/10477
+    "@gleamkit/ws": {"8.21.3"},  # MAL-2026-10402
+    "@gleamkit/probe": {"0.0.1"},  # MAL-2026-6306
+    "@gleamkit/engine.io": set(),  # MAL-2026-10476
+    "@gleamkit/socket.io": set(),  # MAL-2026-10477
+    "@dervix/ws": {"8.21.3", "8.21.4", "8.21.7"},  # MAL-2026-6496
+    "@dervix/engine.io": set(),  # MAL-2026-10474
+    "@dervix/socket.io": set(),  # MAL-2026-10475
+
+    # markable-table family (July 13 2026)
+    # Four packages impersonating markdown-table rendering utilities;
+    # exact versions published before takedown.
+    # OSV MAL-2026-10444/10446/10447/10452
+    "markable-table": {"3.1.2", "3.1.3", "3.1.4", "3.1.5", "3.1.6", "3.1.7", "3.1.8"},  # MAL-2026-10444
+    "markdown-editable-table": {"2.4.2", "2.4.3", "2.4.4"},  # MAL-2026-10452
+    "react-markable-table": {"2.4.10"},  # MAL-2026-10446
+    "remarkable-table": {"2.4.11"},  # MAL-2026-10447
+
+    # getd-* dep-confusion cluster (July 13 2026)
+    # Ten packages impersonating internal tooling of getd.io; all published
+    # at version 0.0.1 with malicious postinstall code.
+    # OSV MAL-2026-5465 through MAL-2026-5474
+    "getd-content-management": {"0.0.1"},  # MAL-2026-5465
+    "getd-eslint-rules": {"0.0.1"},  # MAL-2026-5466
+    "getd-handler-api": {"0.0.1"},  # MAL-2026-5467
+    "getd-pantallas-cliente": {"0.0.1"},  # MAL-2026-5468
+    "getd-transactional-web": {"0.0.1"},  # MAL-2026-5469
+    "getd-typescript-eslint-rules": {"0.0.1"},  # MAL-2026-5470
+    "getd-ui-library": {"0.0.1"},  # MAL-2026-5471
+    "getd-web-corporativa": {"0.0.1"},  # MAL-2026-5472
+    "gethandler-api": {"0.0.1"},  # MAL-2026-5473
+    "getui-library": {"0.0.1"},  # MAL-2026-5474
+
+    # Dep-confusion inflated-version batches (July 13-14 2026)
+    # Packages published at abnormally high / date-formatted version numbers
+    # targeting internal CI/CD pipelines of various organizations.
+    # OSV MAL-2025-6695 / MAL-2026-5393/5399/5517/10401/10415/10416/10419/10421/10422/10443/10458/10459/10498/10509
+    "firefly-utilities-helper": {"99.9.0", "99.9.1"},  # MAL-2026-5517
+    "test_adminet": {"99.9.9"},  # MAL-2026-10509
+    "home-sections-web-ui": {"99.9.9"},  # MAL-2026-10443
+    "kuaishou": {"99.9.10", "99.9.9"},  # MAL-2026-10416
+    "portway": {"99.9.1"},  # MAL-2026-10421
+    "sso-users-detection": {"99.9.1"},  # MAL-2026-10422
+    "notifications-broadcast": {"99.9.1"},  # MAL-2026-10419
+    "frontend-regulations": {"99.9.1"},  # MAL-2026-10415
+    "compliancepolicyserv": {"9.9.11"},  # MAL-2026-10458
+    "connectedmerchantsserv": {"9.9.11"},  # MAL-2026-10459
+    "eslint-angular-react": {"110.0.1"},  # MAL-2026-10498
+    "@espn-ping/react-dmed-oauth": {"666.0.0"},  # MAL-2026-10401
+    "@sflyinc-knapsack/shutterfly-react": {"999.0.0"},  # MAL-2026-5393
+    "kraken-ui": {"999.0.0"},  # MAL-2026-5399
+    "amdocs-core-package": {"11.11.11"},  # MAL-2025-6695
+
+    # nottuff/abuden/ratelimitsucks/ishowfeet/speed/sixseven/imillegal/
+    # timmytuffknuckles/backupsitetuff npm worm cluster (July 13 2026)
+    # A single prolific actor flooded npm with 127-package throwaway
+    # malware cluster, all sharing versions 1.1.7 / 1.7.7 / 2.0.0 and a
+    # postinstall credential-exfiltration payload. OSV IDs cover MAL-2026-5914
+    # through MAL-2026-10390 (not all sequential).
+    "nottuff1": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff2": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff3": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff4": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff5": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff6": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff7": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff8": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff9": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff10": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff11": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff12": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff13": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff14": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff15": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff16": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff17": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff18": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff19": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff20": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff21": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff22": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff23": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff24": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff25": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff26": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff27": {"1.1.7", "1.7.7"},
+    "nottuff28": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff29": {"1.1.7", "1.7.7", "2.0.0"},
+    "nottuff30": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden1": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden2": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden3": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden4": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden5": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden21": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden22": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden23": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden24": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden25": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden26": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden27": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden28": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden29": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden210": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden211": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden212": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden213": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden214": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden215": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden216": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden217": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden218": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden219": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden220": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden221": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden222": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden223": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden224": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden225": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden226": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden227": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden228": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden229": {"1.1.7", "1.7.7", "2.0.0"},
+    "abuden230": {"1.1.7", "1.7.7", "2.0.0"},
+    "ratelimitsucks": {"1.1.7", "1.7.7", "2.0.0"},
+    "ratelimitsucks1": {"1.1.3", "1.1.7", "2.0.0"},
+    "ratelimitsucks2": {"1.1.4", "1.1.7", "1.7.7", "2.0.0"},
+    "ratelimitsucks3": {"1.1.5", "1.1.7", "2.0.0"},
+    "ratelimitsucks4": {"1.1.6", "1.1.7", "2.0.0"},
+    "ratelimitsucks5": {"1.1.7", "1.7.7", "2.0.0"},
+    "ratelimitsucks6": {"1.1.7", "1.7.7", "2.0.0"},
+    "ratelimitsucks9": {"1.1.7", "2.0.0"},
+    "ratelimitsucks10": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet1": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet2": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet3": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet4": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet5": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet6": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet7": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet8": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet9": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet10": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet11": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet12": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet13": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet14": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet15": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet16": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet17": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet18": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet19": {"1.1.7", "1.7.7", "2.0.0"},
+    "ishowfeet20": {"1.1.7", "1.7.7", "2.0.0"},
+    "speed1": {"1.1.7", "2.0.0"},
+    "speed2": {"1.1.7", "2.0.0"},
+    "speed3": {"1.1.7", "2.0.0"},
+    "speed4": {"1.1.7", "2.0.0"},
+    "speed5": {"1.1.7", "2.0.0"},
+    "sixseven1": {"1.1.7", "1.7.7", "2.0.0"},
+    "sixseven2": {"1.1.7", "1.7.7", "2.0.0"},
+    "sixseven3": {"1.1.7", "1.7.7", "2.0.0"},
+    "sixseven4": {"1.1.7", "1.7.7", "2.0.0"},
+    "sixseven5": {"1.1.7", "1.7.7", "2.0.0"},
+    "sixseven6": {"1.1.7", "1.7.7", "2.0.0"},
+    "sixseven7": {"1.7.7"},
+    "sixseven8": {"1.7.7"},
+    "sixseven9": {"1.7.7"},
+    "sixseven10": {"1.7.7"},
+    "imillegal1": {"1.1.7", "1.7.7", "2.0.0"},
+    "imillegal2": {"1.1.7", "1.7.7", "2.0.0"},
+    "imillegal3": {"1.1.7", "1.7.7", "2.0.0"},
+    "imillegal4": {"1.1.7", "1.7.7", "2.0.0"},
+    "imillegal5": {"1.1.7", "1.7.7", "2.0.0"},
+    "timmytuffknuckles3": {"1.1.7"},
+    "timmytuffknuckles6": {"1.1.7"},
+    "timmytuffknuckles9": {"1.1.7"},
+    "backupsitetuff3": {"1.1.7", "2.0.0"},
+    "backupsitetuff6": {"1.1.7", "2.0.0"},
+    "backupsitetuff9": {"1.1.7", "2.0.0"},
+    "backupsitetuff10": {"1.1.7", "2.0.0"},
+    "backup1-gg": {"2.0.0"},
+    "backup2-asd": {"2.0.0"},
+    "backup3-ff": {"2.0.0"},
+    "backup4-gasp": {"2.0.0"},
+    "backup5-updated": {"2.0.0"},
+    "backupgenuine-updated": {"2.0.0"},
+
+    # Random-words any-version packages (same actor; July 13 2026)
+    # Companion packages to the nottuff/abuden/ratelimitsucks cluster;
+    # published at ANY version with identical malicious postinstall payload.
+    # OSV MAL-2026-10220/10282/10284/10295-10305/10331-10335/10361-10364/10386-10387/10394-10396/10430
+    "acidic": set(),  # MAL-2026-10282
+    "apps-gpt": set(),  # MAL-2026-10284
+    "bismillahitidakimas": set(),  # MAL-2026-10295
+    "bomboclatwallahi": set(),  # MAL-2026-10296
+    "captainindia": set(),  # MAL-2026-10297
+    "changiairportpromax": set(),  # MAL-2026-10298
+    "crazynut": set(),  # MAL-2026-10299
+    "dogfood-search": set(),  # MAL-2026-10300
+    "fflc-updated": set(),  # MAL-2026-10301
+    "gpapp": set(),  # MAL-2026-10302
+    "gpapps": set(),  # MAL-2026-10303
+    "howmanygreatbritain": set(),  # MAL-2026-10304
+    "ilovefemboys": set(),  # MAL-2026-10305
+    "kirkland": set(),  # MAL-2026-10331
+    "lowkeybored": set(),  # MAL-2026-10332
+    "lowkirkuenly": set(),  # MAL-2026-10333
+    "midnightrush": set(),  # MAL-2026-10334
+    "miguelphonk": set(),  # MAL-2026-10335
+    "omglucidesotuff": set(),  # MAL-2026-10361
+    "omgyesyesyes": set(),  # MAL-2026-10362
+    "openai-apps": set(),  # MAL-2026-10363
+    "pasirianspirit": set(),  # MAL-2026-10364
+    "testdonotredeemit": set(),  # MAL-2026-10386
+    "thebigyahu": set(),  # MAL-2026-10387
+    "vibewise": set(),  # MAL-2026-10394
+    "vibewise-cli": set(),  # MAL-2026-10395
+    "whatsadmaidk": set(),  # MAL-2026-10396
+    "@jplopezy/connectivity-test-do-not-install": set(),  # MAL-2026-10220
+    "prettier-plugin-base": set(),  # MAL-2026-10430
+
+    # tipsen / antsrctest single-version malware cluster (July 13 2026)
+    # Small throwaway cluster; likely researcher or red-team exploration.
+    # OSV MAL-2026-10038/10074/10075/10283/10391/10392/10393
+    "antsrcsrctest": {"1.0.0"},  # MAL-2026-10038
+    "testis-pack": {"1.0.0"},  # MAL-2026-10074
+    "testudo-pack": {"1.0.0"},  # MAL-2026-10075
+    "tipsen-last": {"1.0.0"},  # MAL-2026-10391
+    "tipsen-last-pls": {"1.0.0"},  # MAL-2026-10392
+    "tipsen-poc-again": {"1.0.0"},  # MAL-2026-10393
+    "another-poc-by-tipsen": {"1.0.0"},  # MAL-2026-10283
+
+    # @gt-test-exp/profiler-exp-* any-version malware cluster (July 13 2026)
+    # Fourteen packages in the @gt-test-exp scope; all published with
+    # malicious payload and flagged by OpenSSF. OSV MAL-2026-10238 through 10250.
+    "@gt-test-exp/profiler-exp-00000001": set(),  # MAL-2026-10238
+    "@gt-test-exp/profiler-exp-00000002": set(),  # MAL-2026-10239
+    "@gt-test-exp/profiler-exp-00000003": set(),  # MAL-2026-10240
+    "@gt-test-exp/profiler-exp-00000004": set(),  # MAL-2026-10241
+    "@gt-test-exp/profiler-exp-00000005": set(),  # MAL-2026-10242
+    "@gt-test-exp/profiler-exp-00000006": set(),  # MAL-2026-10243
+    "@gt-test-exp/profiler-exp-00000008": set(),  # MAL-2026-10244
+    "@gt-test-exp/profiler-exp-00000009": set(),  # MAL-2026-10245
+    "@gt-test-exp/profiler-exp-00000010": set(),  # MAL-2026-10246
+    "@gt-test-exp/profiler-exp-00000011": set(),  # MAL-2026-10247
+    "@gt-test-exp/profiler-exp-00000012": set(),  # MAL-2026-10248
+    "@gt-test-exp/profiler-exp-00000013": set(),  # MAL-2026-10249
+    "@gt-test-exp/profiler-exp-00000014": set(),  # MAL-2026-10250
+
+    # Miscellaneous npm malware batch (July 13-14 2026)
+    # Includes dep-confusion targets, credential-exfiltration stubs, and
+    # postinstall droppers across diverse topics. OSV MAL-2026-10062 through
+    # MAL-2026-10522 (selected IDs; see per-entry comments for exact IDs).
+    "es6-codify": {"1.0.0", "1.0.1", "1.1.0", "1.2.0", "1.3.0", "1.4.0", "2.0.0", "2.1.0", "2.2.0"},  # MAL-2026-10062
+    "execfences": {"5.0.2", "5.0.3", "5.0.4", "5.0.5", "5.0.6", "5.1.0", "5.1.1"},  # MAL-2026-10118
+    "eth-react-redirection": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-10127
+    "marked-prettier": {"1.0.4", "1.0.5"},  # MAL-2026-10143
+    "mdb-vite": {"1.5.2"},  # MAL-2026-10144
+    "tokenization-util": {"0.1.0", "0.2.0", "1.1.0"},  # MAL-2026-6440
+    "bs58-86": {"6.0.1", "6.0.2"},  # MAL-2026-6448
+    "loading-sessions": {"6.13.2"},  # MAL-2026-10471
+    "@torbeck/heap": {"4.3.10", "4.3.11", "4.3.14"},  # MAL-2026-10405
+    "@torbeck/priority-queue": {"6.3.6", "6.3.7", "6.3.9"},  # MAL-2026-10472
+    "claude-team-tracker": {"1.2.0", "1.2.1", "1.2.2"},  # MAL-2026-10473
+    "@kl-starfish/test-01": {"2.0.0"},  # MAL-2026-10097
+    "@car_loans/dealerships-approval": {"7.1.5"},  # MAL-2026-10397
+    "@db-tools/main-app": {"2026.6.30"},  # MAL-2026-10398
+    "@equansservices/codex": {"1.0.1"},  # MAL-2026-10399
+    "@equansservices/tool": {"1.0.2"},  # MAL-2026-10400
+    "@iana-rzms/bff-sdk": {"1.0.0"},  # MAL-2026-10403
+    "@ica-gaming/slot-engine": {"1.1.0"},  # MAL-2026-10404
+    "async-chain-dom": {"1.3.5"},  # MAL-2026-10406
+    "awesome-terminal": {"1.0.3"},  # MAL-2026-10407
+    "chain-js-utils": {"2.1.1"},  # MAL-2026-10408
+    "cold-debug-elevator": {"1.0.1", "1.0.3", "1.0.4"},  # MAL-2026-10409
+    "cookie-phase": {"2.3.5"},  # MAL-2026-10410
+    "cookie-sign": {"2.3.5"},  # MAL-2026-10411
+    "env-stream": {"1.0.1", "1.0.2"},  # MAL-2026-10412
+    "eth-base": {"1.0.0"},  # MAL-2026-10413
+    "express-request-engine": {"3.6.3"},  # MAL-2026-10414
+    "minigptcore": {"4.0.8"},  # MAL-2026-10417
+    "note-utilities": {"2.1.2"},  # MAL-2026-10418
+    "supertokens-web": {"1.16.0"},  # MAL-2026-10423
+    "terminal-mascot": {"3.5.2"},  # MAL-2026-10424
+    "trinity-scheme": {"20.0.0"},  # MAL-2026-10425
+    "svg-fetcher": {"2.4.1"},  # MAL-2026-10427
+    "sysb1": {"1.0.0"},  # MAL-2026-10428
+    "@nsub/nitxe": {"1.0.1"},  # MAL-2026-10429
+    "@tailwind-ts/eslint-plugin": {"0.1.0", "0.2.0", "0.3.0"},  # MAL-2026-10431
+    "animated-css-kit": {"1.0.1"},  # MAL-2026-10432
+    "chain-guardian": {"1.1.0"},  # MAL-2026-10433
+    "env-fast": {"1.0.0"},  # MAL-2026-10434
+    "fetchcraft": {"1.0.0", "1.0.1"},  # MAL-2026-10435
+    "jest-formatter": {"1.0.0"},  # MAL-2026-10436
+    "jsonfb": {"1.1.0", "1.1.0-beta.1", "1.1.0-beta.2"},  # MAL-2026-10437
+    "netspeedutil": {"1.0.13"},  # MAL-2026-10438
+    "react-hot-svg": {"1.1.4", "1.1.5"},  # MAL-2026-10439
+    "@oliviamcdaniel12/safer-buffer": {"2.2.0", "2.2.1"},  # MAL-2026-10442
+    "@sqlite-group/schema-generator": {"1.0.2"},  # MAL-2026-10448
+    "auth-gen-next": {"1.7.13"},  # MAL-2026-10449
+    "font-hub": {"1.5.2"},  # MAL-2026-10450
+    "gifuct": {"2.1.2"},  # MAL-2026-10451
+    "router-processor": {"1.5.2"},  # MAL-2026-10453
+    "@origindev/ethaccount": {"1.0.0", "1.0.1"},  # MAL-2026-10455
+    "@spzhongwin/skill-logger-plugin": {"1.0.10", "1.0.5", "1.0.7"},  # MAL-2026-10456
+    "cktool-core": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-10457
+    "datavaultx": {"1.7.1"},  # MAL-2026-10460
+    "gptlite": {"4.0.8"},  # MAL-2026-10461
+    "hehehee": {"1.0.9"},  # MAL-2026-10462
+    "@sheltr_/agent": {"1.0.2"},  # MAL-2026-10469
+    "@uw010010/vite-tree": {"3.4.2", "3.4.3", "3.6.1"},  # MAL-2026-10470
+    "@sqlite-panel/createsql": {"1.0.0"},  # MAL-2026-10490
+    "assertcoreutils": {"2.3.2", "2.3.3"},  # MAL-2026-10491
+    "font-huge": {"2.5.3"},  # MAL-2026-10492
+    "insomnia-plugin-poc-m4gester-run": {"1.0.0"},  # MAL-2026-10493
+    "@quickcall/krew": {"0.1.7"},  # MAL-2026-10494
+    "@quukk/opencode-clawmessenger": {"1.1.10"},  # MAL-2026-10495
+    "bubblestring": {"1.1.4"},  # MAL-2026-10496
+    "ddok-modal": {"1.0.0"},  # MAL-2026-10497
+    "eth-lib-utils": {"5.2.3", "5.2.4", "5.2.5"},  # MAL-2026-10499
+    "express-bunker": {"6.1.0"},  # MAL-2026-10500
+    "filewisee": {"0.1.0", "0.1.1"},  # MAL-2026-10501
+    "gamified-trading-system": {"3.1.0", "3.6.2"},  # MAL-2026-10502
+    "n8n-nodes-rce-poc": {"1.0.0"},  # MAL-2026-10503
+    "express-ini": {"12.1.10"},  # MAL-2026-10505
+    "@omniwatch-wick/cli": {"0.1.2"},  # MAL-2026-10486
+    "@outsmartly/metaobjects": {"0.3.3-rc.1"},  # MAL-2026-10487
+    "permcarmserver": {"1.0.0"},  # MAL-2026-10488
+    "permcserver": {"1.0.0", "1.0.1", "1.0.3"},  # MAL-2026-10489
+    "react-icons-svgo": {"1.0.0", "1.5.3", "1.5.4"},  # MAL-2026-10482
+    "route-processor": {"3.1.5"},  # MAL-2026-10483
+    "@sectest429/hello-npm-world": {"1.0.3"},  # MAL-2026-10478
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
