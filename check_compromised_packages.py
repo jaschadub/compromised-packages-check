@@ -281,7 +281,34 @@ nottuff/abuden/ratelimitsucks/ishowfeet/speed/sixseven/imillegal/timmytuffknuckl
 backupsitetuff npm worm cluster, random-words any-version companion packages,
 tipsen/antsrctest cluster, @gt-test-exp/profiler-exp-* cluster, and miscellaneous
 individual packages; OSV MAL-2026-5393 through MAL-2026-10522), and 2 new PyPI
-packages (turbocalcng OSV MAL-2026-10441, browser-use-headless OSV MAL-2026-10484).
+packages (turbocalcng OSV MAL-2026-10441, browser-use-headless OSV MAL-2026-10484),
+and the July 14 2026 batch: @asyncapi maintainer-account compromise
+(4 packages: @asyncapi/generator, @asyncapi/specs, @asyncapi/generator-components,
+@asyncapi/generator-helpers; MAL-2025-190636/190643/190656/190657), the
+@public-for-cdao dep-confusion cluster (6 packages at 99.99.99; MAL-2026-10599
+through 10604), the crypto/DeFi npm credential-stealer cluster (14 packages:
+@tabrex/bs58, @velkov/isows, @wrenfield/abitype, @wrenfield/viem, @web3-helpers/core,
+eth-dev, abi-encode, ethereum-lib-utils, solana-key-utils, eth-wallet-helpers,
+base58-utils, chain-sdk-js, chain-devkit, crypto-validate-lib; MAL-2026-10523/10524/
+10529/10549/10552/10571/10572/10586/10591/10606/10608/10611/10613/10531/10580),
+the Vite scope typosquat cluster (5 packages: @vite-mcp/vite-type, @vite-pro/vite-ui,
+@vite-ts/vite-ui, @vitets/vite-ts, @vite-js/vui; MAL-2026-10525/10526/10527/10528/
+10619), the developer-toolkit typosquat cluster (10 packages: chalkdev, chalkdevx,
+cheeriobox, dayjscore, momenntjs, nodeaxois, openaiwrapper, stripedev, twiliobox,
+yargsplus; MAL-2026-10583 through 10594), the akshajrawat DI-token/utility cluster
+(14 any-version packages; MAL-2026-10554/10555/10558 through 10570), the @cw-ui/
+micro-ui-loader dep-confusion (3 any-version packages; MAL-2026-10556/10557/10564),
+the @public-for-cdao dep-confusion (6 packages), chai-as-act/hardened/structured
+and nodemon-plint chai/nodemon extensions (MAL-2026-10595/10607/10621/10622),
+five older-ID packages updated July 14 (class-weaver, @rockawayx/utils,
+unified-ui-components-library, class-synth, @resolvx/core; MAL-2026-4521/5462/
+5648/5730/5798), and ~35 miscellaneous npm packages (fluterjs, motion-pull,
+n8n-nodes-social-facebook, neon-postgres, skrill/*, postcss-*, viteplugiin,
+bimi-maker, ethers-core, harpoon-package, smb-*-uikit, monitoring-service*,
+@sqlite-clone/nodesql, @sqlite-group/sql-creator, and others;
+MAL-2026-10530 through MAL-2026-10623), plus 6 new PyPI packages (pokee-data-utils,
+tennacity, proxy-check-ii, cosmos-cuda, cosmos-gradio, tronwe;
+MAL-2026-10547/10576/10610/10617/10618/10624).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -294,7 +321,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-14
+Date:      2026-07-15
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -928,6 +955,30 @@ PYPI_BAD: dict[str, set[str]] = {
     # Headless browser wrapper with malicious postinstall payload.
     # OSV MAL-2026-10484
     "browser-use-headless": {"0.1.4"},
+    # pokee-data-utils PyPI malware (July 14 2026)
+    # Single malicious version detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-10547
+    "pokee-data-utils": {"1.0.1"},
+    # tennacity PyPI malware (July 14 2026)
+    # Three malicious versions; detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-10576
+    "tennacity": {"1.0.0", "1.2.0", "1.2.2"},
+    # proxy-check-ii PyPI malware (July 14 2026)
+    # Single malicious version; companion to proxy-check-i (MAL-2026-10100).
+    # OSV MAL-2026-10610
+    "proxy-check-ii": {"0.1.0"},
+    # cosmos-cuda / cosmos-gradio PyPI dep-confusion cluster (July 14 2026)
+    # Two packages published at inflated version 9999.x targeting Cosmos/AI CI
+    # pipelines; contain credential-exfiltration payloads. Detected by OpenSSF.
+    # OSV MAL-2026-10617 (cosmos-cuda), MAL-2026-10618 (cosmos-gradio)
+    "cosmos-cuda": {"9999.0.0", "9999.0.1"},
+    "cosmos-gradio": {"9999.0.0", "9999.0.1"},
+    # tronwe PyPI Tron private-key exfiltrator (July 14 2026)
+    # Extension of the tronlab/tronlabpy3/tronhap/tronhapy/tronpak/tronsev campaign
+    # (June 3 – July 8 2026); exfiltrates TRX wallet private keys to a hardcoded
+    # mockapi.io / ngrok endpoint. Single version published before takedown.
+    # OSV MAL-2026-10624
+    "tronwe": {"0.0.1"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -4382,6 +4433,199 @@ NPM_BAD: dict[str, set[str]] = {
     "react-icons-svgo": {"1.0.0", "1.5.3", "1.5.4"},  # MAL-2026-10482
     "route-processor": {"3.1.5"},  # MAL-2026-10483
     "@sectest429/hello-npm-world": {"1.0.3"},  # MAL-2026-10478
+
+    # @asyncapi maintainer-account compromise (July 2026)
+    # Four packages in the @asyncapi scope had specific versions injected with
+    # a malicious payload following an account takeover. These are legitimate
+    # open-source AsyncAPI tooling packages with broad ecosystem adoption;
+    # only the listed versions are compromised.
+    # OSV MAL-2025-190636 (@asyncapi/generator)
+    "@asyncapi/generator": {"2.8.5", "2.8.6", "3.3.1"},
+    # OSV MAL-2025-190643 (@asyncapi/specs)
+    "@asyncapi/specs": {"6.8.2", "6.8.3", "6.9.1", "6.10.1", "6.11.2", "6.11.2-alpha.1"},
+    # OSV MAL-2025-190656 (@asyncapi/generator-components)
+    "@asyncapi/generator-components": {"0.3.2", "0.3.3", "0.7.1"},
+    # OSV MAL-2025-190657 (@asyncapi/generator-helpers)
+    "@asyncapi/generator-helpers": {"0.2.1", "0.2.2", "1.1.1"},
+
+    # @public-for-cdao dep-confusion cluster (July 14 2026)
+    # Six packages impersonating Coinbase/CDAO internal tooling at version
+    # 99.99.99 to hijack CI dependency resolution. All detected by OpenSSF.
+    # OSV MAL-2026-10599 through MAL-2026-10604
+    "@public-for-cdao/abi": {"99.99.99"},      # MAL-2026-10599
+    "@public-for-cdao/api": {"99.99.99"},      # MAL-2026-10600
+    "@public-for-cdao/common": {"99.99.99"},   # MAL-2026-10601
+    "@public-for-cdao/config": {"99.99.99"},   # MAL-2026-10602
+    "@public-for-cdao/token": {"99.99.99"},    # MAL-2026-10603
+    "@public-for-cdao/types": {"99.99.99"},    # MAL-2026-10604
+
+    # Crypto/DeFi npm credential-stealer cluster (July 14 2026)
+    # Fourteen packages impersonating web3/DeFi utilities (bs58, viem, abitype,
+    # ethers helpers, Solana key utilities, etc.); each exfiltrates wallet keys
+    # and credentials on import. Versions pinned per OSV affected.versions.
+    # OSV MAL-2026-10523 (@tabrex/bs58)
+    "@tabrex/bs58": {"6.0.3"},
+    # OSV MAL-2026-10524 (@velkov/isows)
+    "@velkov/isows": {"1.0.10"},
+    # OSV MAL-2026-10529 (@wrenfield/abitype)
+    "@wrenfield/abitype": {"1.2.6", "1.2.7"},
+    # OSV MAL-2026-10571 (@wrenfield/viem)
+    "@wrenfield/viem": {"2.53.4"},
+    # OSV MAL-2026-10611 (@web3-helpers/core)
+    "@web3-helpers/core": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},
+    # OSV MAL-2026-10549 (abi-encode)
+    "abi-encode": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    # OSV MAL-2026-10552 (eth-dev)
+    "eth-dev": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    # OSV MAL-2026-10572 (eth-wallet-helpers)
+    "eth-wallet-helpers": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},
+    # OSV MAL-2026-10580 (ethers-core)
+    "ethers-core": {"6.13.7"},
+    # OSV MAL-2026-10613 (ethereum-lib-utils)
+    "ethereum-lib-utils": {"1.3.7"},
+    # OSV MAL-2026-10591 (solana-key-utils)
+    "solana-key-utils": {"1.0.1", "1.0.2", "1.0.3"},
+    # OSV MAL-2026-10606 (base58-utils)
+    "base58-utils": {"1.0.0", "1.0.1", "1.0.3", "1.0.4", "1.0.5"},
+    # OSV MAL-2026-10608 (chain-sdk-js)
+    "chain-sdk-js": {"1.0.2", "1.0.3", "1.0.4", "1.0.5"},
+    # OSV MAL-2026-10531 (chain-devkit)
+    "chain-devkit": {"1.0.0"},
+    # OSV MAL-2026-10586 (crypto-validate-lib)
+    "crypto-validate-lib": {"1.0.1", "1.0.2", "1.0.3"},
+
+    # Vite scope typosquat cluster (July 14 2026)
+    # Five packages under attacker-controlled scopes mimicking the Vite build
+    # tool; each publishes a single version with a credential-exfiltration
+    # postinstall payload. OSV MAL-2026-10525 through MAL-2026-10528, MAL-2026-10619
+    "@vite-mcp/vite-type": {"6.44.1"},   # MAL-2026-10525
+    "@vite-pro/vite-ui": {"2.5.10"},     # MAL-2026-10526
+    "@vite-ts/vite-ui": {"6.44.1"},      # MAL-2026-10527
+    "@vitets/vite-ts": {"1.5.10"},       # MAL-2026-10528
+    "@vite-js/vui": {"7.14.16"},         # MAL-2026-10619
+
+    # Developer-toolkit typosquat cluster (July 14 2026)
+    # Ten packages impersonating popular Node.js utilities by appending "dev",
+    # "box", "core", "plus", or "wrapper" to well-known package names (chalk,
+    # dayjs, cheerio, moment, axios, stripe, twilio, yargs, openai).
+    # Each publishes a single version with a malicious postinstall payload.
+    # OSV MAL-2026-10583 through MAL-2026-10594
+    "chalkdev": {"1.0.0"},       # MAL-2026-10583
+    "chalkdevx": {"2.0.0"},      # MAL-2026-10584
+    "cheeriobox": {"1.0.0"},     # MAL-2026-10585
+    "dayjscore": {"1.0.0"},      # MAL-2026-10587
+    "momenntjs": {"1.0.0"},      # MAL-2026-10588
+    "nodeaxois": {"1.0.0"},      # MAL-2026-10589
+    "openaiwrapper": {"1.0.0"},  # MAL-2026-10590
+    "stripedev": {"1.0.0"},      # MAL-2026-10592
+    "twiliobox": {"1.0.0"},      # MAL-2026-10593
+    "yargsplus": {"1.0.0"},      # MAL-2026-10594
+
+    # chai-as-* / nodemon-plint extension batch (July 14 2026)
+    # Three new chai-as-* malware packages (chai-as-act, chai-as-hardened,
+    # chai-as-structured) extending the ongoing chai-as-* typosquat campaign
+    # already tracked above, plus nodemon-plint (any-version wildcard).
+    # OSV MAL-2026-10607 (chai-as-act), MAL-2026-10621 (chai-as-hardened),
+    # MAL-2026-10622 (chai-as-structured), MAL-2026-10595 (nodemon-plint)
+    "chai-as-act": {"1.0.2"},         # MAL-2026-10607
+    "chai-as-hardened": {"7.0.9"},    # MAL-2026-10621
+    "chai-as-structured": {"7.0.5"},  # MAL-2026-10622
+    "nodemon-plint": set(),           # MAL-2026-10595
+
+    # akshajrawat DI-token / utility malware cluster (July 14 2026)
+    # Fourteen any-version packages under attacker account akshajrawat and
+    # associated scopes (@akshajrawat/*, @codex2005/*); includes generic
+    # UI-utility names used as DI token packages to shadow internal tooling.
+    # OSV MAL-2026-10554 through MAL-2026-10570
+    "@akshajrawat/plugin-repo-cli": set(),  # MAL-2026-10554
+    "@codex2005/logger-core": set(),        # MAL-2026-10555
+    "akshajrawat.utils": set(),             # MAL-2026-10558
+    "avatar-forge": set(),                  # MAL-2026-10559
+    "clipboard-drop": set(),                # MAL-2026-10560
+    "dom-weave": set(),                     # MAL-2026-10561
+    "duration-kit": set(),                  # MAL-2026-10562
+    "humanize-kit": set(),                  # MAL-2026-10563
+    "relative-time-live": set(),            # MAL-2026-10565
+    "sight-bind": set(),                    # MAL-2026-10566
+    "string-morph": set(),                  # MAL-2026-10567
+    "sync-logger": set(),                   # MAL-2026-10568
+    "temp-cloak": set(),                    # MAL-2026-10569
+    "valid-scope": set(),                   # MAL-2026-10570
+
+    # @cw-ui / micro-ui-loader dep-confusion cluster (July 14 2026)
+    # Three any-version packages impersonating a corporate UI component
+    # library; both scoped and unscoped variants published to shadow
+    # private packages in internal CI. OSV MAL-2026-10556/10557/10564
+    "@cw-ui/asio-neon-themes": set(),   # MAL-2026-10556
+    "@cw-ui/micro-ui-loader": set(),    # MAL-2026-10557
+    "micro-ui-loader": set(),           # MAL-2026-10564
+
+    # SQLite-namespace fake packages (July 14 2026)
+    # Two any-version packages under attacker-created @sqlite-clone and
+    # @sqlite-group scopes shadowing earlier @sqlite-group/schema-generator
+    # (already tracked above). OSV MAL-2026-10577/10578
+    "@sqlite-clone/nodesql": set(),      # MAL-2026-10577
+    "@sqlite-group/sql-creator": set(),  # MAL-2026-10578
+
+    # Older-ID packages updated July 14 2026
+    # Five packages whose OSV MAL records were first filed earlier but modified
+    # on 2026-07-14 (first appearance in our floor date); all have >=0 ranges.
+    "class-weaver": set(),                  # MAL-2026-4521
+    "@rockawayx/utils": set(),              # MAL-2026-5462
+    "unified-ui-components-library": set(), # MAL-2026-5648
+    "class-synth": set(),                   # MAL-2026-5730
+    "@resolvx/core": set(),                 # MAL-2026-5798
+
+    # Miscellaneous npm malware batch July 14 2026
+    # Diverse set of packages detected by OpenSSF Package Analysis on July 14 2026;
+    # each carries a credential-exfiltration or postinstall dropper payload.
+    # @ayunlove/bails  MAL-2026-10596  monitoring-service  MAL-2026-10597
+    # monitoring-service-util  MAL-2026-10598  smb-common-uikit  MAL-2026-10615
+    # smb-portal-uikit  MAL-2026-10616
+    "@ayunlove/bails": set(),         # MAL-2026-10596
+    "monitoring-service": set(),      # MAL-2026-10597
+    "monitoring-service-util": set(), # MAL-2026-10598
+    "smb-common-uikit": {"15.2.0"},   # MAL-2026-10615
+    "smb-portal-uikit": {"18.1.1"},   # MAL-2026-10616
+    # home-mp-commons (dep-confusion 999.x), process-status-widget (dep-confusion 99.x)
+    "home-mp-commons": {"999.0.1", "999.0.3"},  # MAL-2026-10553
+    "process-status-widget": {"99.9.1"},         # MAL-2026-10581
+    # cbr-internal-utils, lusha-iam-widgets, utils-style-engine — internal-tooling shadows
+    "cbr-internal-utils": {"2.2.2"},    # MAL-2026-10530
+    "lusha-iam-widgets": {"1.5.2"},     # MAL-2026-10533
+    "utils-style-engine": {"10.2.4"},   # MAL-2026-10609
+    # motion-pull, @amedit/vercel-builder-probe — any-version wildcards
+    "motion-pull": set(),                      # MAL-2026-10534
+    "@amedit/vercel-builder-probe": set(),      # MAL-2026-10548
+    # fluterjs, my-empty-package, n8n-nodes-social-facebook — throwaway single-version malware
+    "fluterjs": {"1.0.0"},                 # MAL-2026-10532
+    "my-empty-package": {"1.0.0"},         # MAL-2026-10535
+    "n8n-nodes-social-facebook": {"0.1.96"},  # MAL-2026-10536
+    # neon-postgres, neteller, skrill cluster — payment/infra API typosquats
+    "neon-postgres": {"3.5.0", "3.5.1"},   # MAL-2026-10537
+    "neteller": {"1.0.0"},                  # MAL-2026-10538
+    "skrill": {"1.0.0"},                    # MAL-2026-10542
+    "skrill-payments": {"1.0.0"},           # MAL-2026-10543
+    "skrill-sdk": {"1.0.0"},                # MAL-2026-10544
+    # postcss-animatecss, postcss-processor-utils, postcss-selector-minify — PostCSS typosquats
+    "postcss-animatecss": {"1.0.1", "1.0.2"},  # MAL-2026-10539
+    "postcss-processor-utils": {"1.0.2"},       # MAL-2026-10540
+    "postcss-selector-minify": {"2.0.0"},       # MAL-2026-10614
+    # proxy-seller-mcp, vite-plugin-model, viteplugiin, vite-plugin-config-paths
+    "proxy-seller-mcp": {"0.1.7"},          # MAL-2026-10541
+    "vite-plugin-model": {"1.0.0"},         # MAL-2026-10545
+    "viteplugiin": {"1.0.28"},              # MAL-2026-10546
+    "vite-plugin-config-paths": {"1.4.2"},  # MAL-2026-10574
+    # bimi-maker, async-mutex-v2, ahooks-3.7.8, assertion-utils-js
+    "bimi-maker": {"8.2.4"},                # MAL-2026-10579
+    "async-mutex-v2": {"2.1.0"},            # MAL-2026-10582
+    "ahooks-3.7.8": {"13.1.1"},             # MAL-2026-10620
+    "assertion-utils-js": {"2.4.3"},        # MAL-2026-10612
+    # @radivi-ui/react-dialog, harpoon-package, web-pop, http-ws-listener
+    "@radivi-ui/react-dialog": {"1.1.3", "1.1.4"},  # MAL-2026-10605
+    "harpoon-package": {"1.0.0", "1.1.0", "1.2.0"}, # MAL-2026-10573
+    "web-pop": {"2.3.5"},                   # MAL-2026-10575
+    "http-ws-listener": {"1.0.5"},          # MAL-2026-10623
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
