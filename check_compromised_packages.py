@@ -308,7 +308,24 @@ bimi-maker, ethers-core, harpoon-package, smb-*-uikit, monitoring-service*,
 @sqlite-clone/nodesql, @sqlite-group/sql-creator, and others;
 MAL-2026-10530 through MAL-2026-10623), plus 6 new PyPI packages (pokee-data-utils,
 tennacity, proxy-check-ii, cosmos-cuda, cosmos-gradio, tronwe;
-MAL-2026-10547/10576/10610/10617/10618/10624).
+MAL-2026-10547/10576/10610/10617/10618/10624), the CanisterWorm @emilgroup
+npm publisher-account compromise July 15 2026 (27 packages across the
+@emilgroup scope — insurance, billing, claims, customer, and partner SDKs —
+injected with a reverse-shell/credential-exfiltration backdoor; socket.dev +
+JFrog primary sources; OSV MAL-2026-2031 through 2077), the gulp-jscrambler /
+jscrambler-metro-plugin maintainer-account compromise July 15 2026
+(OSV MAL-2026-10673/10674), the @bcs-mi-ui dep-confusion cluster July 15 2026
+(OSV MAL-2026-10645/10646/10647), the @pimy-b2cweb dep-confusion cluster
+July 15 2026 (OSV MAL-2026-10655/10656), the @sauruslord/* / zaldy-baileys /
+ssweb-wp WhatsApp Baileys typosquat cluster July 15 2026
+(OSV MAL-2026-10657 through 10663), the @fhkry/baileys-v2 and @fhkry/x-baileys
+additional packages July 15 2026 (OSV MAL-2026-10664/10665), and the July 15-16
+2026 miscellaneous npm/PyPI batch (~90 packages including ldpbootstrap-jquery
+PowerShell dropper, nativescript-swisspost-* dep-confusion, log-guru / pylogora
+Mythic/Poseidon C2 beacons, fflask Flask typosquat, and many smaller campaigns;
+OSV MAL-2026-4789/4803/5460/5461/5515/5566/5575/5579/5580/5704/5727/5741/
+5752/5790/5792/5793/5889/5890/5972/5980/6302/6325/6326/6365/6475/10091/
+10550/10551/10625 through 10692).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -321,7 +338,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-15
+Date:      2026-07-16
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -979,6 +996,30 @@ PYPI_BAD: dict[str, set[str]] = {
     # mockapi.io / ngrok endpoint. Single version published before takedown.
     # OSV MAL-2026-10624
     "tronwe": {"0.0.1"},
+
+    # July 15 2026 PyPI malware batch: Flask typosquat, C2 beacons, binary droppers,
+    # and credential-exfiltration packages across diverse ecosystems.
+    # fflask: Flask typosquat infostealer (MAL-2025-923; GHSA record)
+    "fflask": {"3.1.8.dev0", "3.1.9.dev0", "3.2.0.dev0"},
+    # qlinforge: Downloads opaque Linux binary from attacker IP (MAL-2026-10091)
+    "qlinforge": {"0.3.2"},
+    # data-proxy-for-test: Impersonates legitimate package, credential exfil (MAL-2026-10642)
+    "data-proxy-for-test": {"0.1.1"},
+    # ethereum-input-decorder: Typosquat of ethereum-input-decoder, payload on import (MAL-2026-10643)
+    "ethereum-input-decorder": {"1.2.2", "1.2.4"},
+    # proxy-checker-j: Bundles and runs rogue sshd binary (MAL-2026-10644)
+    "proxy-checker-j": {"0.1.0"},
+    # northstart-sdk: Executes attacker-controlled code on import (MAL-2026-10672)
+    "northstart-sdk": {"0.1.0", "0.2.0", "0.2.1", "0.2.2"},
+    # xyq-drama-skill: Downloads opaque binary from Volcano Engine tos-cn-beijing (MAL-2026-10681)
+    "xyq-drama-skill": {"0.1.0", "0.2.0", "0.3.0"},
+    # trongridweb: Tron / TRX private-key exfiltrator (MAL-2026-10685)
+    "trongridweb": {"0.0.1"},
+    # log-guru / pylogora: Mythic/Poseidon C2 framework beacon, same C2 domain (MAL-2026-10688/10689)
+    "log-guru": {"0.7.8"},
+    "pylogora": {"0.7.8"},
+    # qwen-asr-pvt: Pulls in malicious transitive dep transformers4576 (MAL-2026-10690)
+    "qwen-asr-pvt": {"0.0.6"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3219,7 +3260,7 @@ NPM_BAD: dict[str, set[str]] = {
     # MAL-2026-6757 (vps-maintenance-paperclip-adapter)
     "paperclip2": {"1.0.0"},
     "vps-maintenance": {"0.1.0"},
-    "vps-maintenance-paperclip-adapter": {"0.1.2"},
+    "vps-maintenance-paperclip-adapter": set(),  # MAL-2026-6757 (ranges >=0; all versions malicious)
     # @marketfront/* dep-confusion cluster (July 5 2026, Yandex Market internal scope)
     # 25 packages published to public npm to shadow private @marketfront packages.
     # All carry a postinstall exfiltration payload; no legitimate public use.
@@ -3682,10 +3723,7 @@ NPM_BAD: dict[str, set[str]] = {
     "paperclip-host-utils": set(),
     "runtimedev-link": set(),
     "vps-adapter-core": set(),
-    "paperclip-adapter-helpers": {
-        "1.0.1", "1.0.2", "1.0.4", "1.0.5",
-        "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.0.12",
-    },
+    "paperclip-adapter-helpers": set(),  # MAL-2026-6981 (ranges >=0; all versions malicious)
     "vps-new-manager": {"0.1.4"},
     # Base58 / Solana credential-exfiltrator cluster (July 7-8 2026)
     # Four packages impersonating Base58 / Solana encoding utilities;
@@ -3789,7 +3827,7 @@ NPM_BAD: dict[str, set[str]] = {
     "react-v17": {"20.0.1"},
     "@vite-js/ui": {"7.15.16"},
     "tslint-conf": {"7.2.1"},
-    "none123s": {"0.1.7"},
+    "none123s": set(),  # MAL-2026-7024 (ranges >=0; all versions malicious)
     "tailwind-core": {"0.0.0", "4.3.0", "4.3.1", "4.3.2"},
     # @wagni_bot/* DeFi/crypto SDK typosquat cluster (July 9 2026)
     # Sixteen packages under the attacker-controlled @wagni_bot npm scope,
@@ -4626,6 +4664,265 @@ NPM_BAD: dict[str, set[str]] = {
     "harpoon-package": {"1.0.0", "1.1.0", "1.2.0"}, # MAL-2026-10573
     "web-pop": {"2.3.5"},                   # MAL-2026-10575
     "http-ws-listener": {"1.0.5"},          # MAL-2026-10623
+
+    # CanisterWorm @emilgroup npm publisher-account compromise (July 15 2026)
+    # A malicious actor hijacked the npm publisher account for the @emilgroup scope
+    # and injected a backdoor payload into 27 insurance/fintech SDK packages published
+    # under that scope. The compromised versions carry a reverse-shell/credential-
+    # exfiltration payload; uncompromised versions exist at other version numbers.
+    # Sources: https://socket.dev/blog/canisterworm-npm-publisher-compromise-deploys-backdoor-across-29-packages
+    #          https://research.jfrog.com/post/canister-worm/
+    # OSV MAL-2026-2031 through 2077
+    "@emilgroup/account-sdk": {"1.41.1", "1.41.2"},                    # MAL-2026-2031
+    "@emilgroup/account-sdk-node": {"1.40.1", "1.40.2"},               # MAL-2026-2032
+    "@emilgroup/accounting-sdk": {"1.27.1", "1.27.2", "1.27.3"},       # MAL-2026-2033
+    "@emilgroup/accounting-sdk-node": {"1.26.1", "1.26.2"},            # MAL-2026-2034
+    "@emilgroup/auth-sdk": {"1.25.1", "1.25.2"},                       # MAL-2026-2036
+    "@emilgroup/billing-sdk": {"1.56.1", "1.56.2"},                    # MAL-2026-2038
+    "@emilgroup/billing-sdk-node": {"1.57.1", "1.57.2"},               # MAL-2026-2039
+    "@emilgroup/claim-sdk": {"1.41.1", "1.41.2"},                      # MAL-2026-2041
+    "@emilgroup/claim-sdk-node": {"1.39.1", "1.39.2"},                 # MAL-2026-2042
+    "@emilgroup/customer-sdk": {"1.54.1", "1.54.2", "1.54.3", "1.54.4", "1.54.5"},  # MAL-2026-2044
+    "@emilgroup/customer-sdk-node": {"1.55.1", "1.55.2"},              # MAL-2026-2045
+    "@emilgroup/document-sdk": {"1.45.1", "1.45.2"},                   # MAL-2026-2046
+    "@emilgroup/document-sdk-node": {
+        "1.43.1", "1.43.2", "1.43.3", "1.43.4", "1.43.5", "1.43.6"
+    },                                                                   # MAL-2026-2075
+    "@emilgroup/gdv-sdk": {"2.6.1", "2.6.2"},                          # MAL-2026-2048
+    "@emilgroup/gdv-sdk-node": {"2.6.1", "2.6.2", "2.6.3"},            # MAL-2026-2049
+    "@emilgroup/insurance-sdk": {
+        "1.97.1", "1.97.2", "1.97.3", "1.97.4", "1.97.6"
+    },                                                                   # MAL-2026-2050
+    "@emilgroup/insurance-sdk-node": {"1.95.1", "1.95.2"},             # MAL-2026-2051
+    "@emilgroup/notification-sdk-node": {"1.4.1", "1.4.2"},            # MAL-2026-2052
+    "@emilgroup/partner-portal-sdk": {"1.1.1", "1.1.2", "1.1.3"},      # MAL-2026-2053
+    "@emilgroup/partner-portal-sdk-node": {"1.1.1", "1.1.2"},          # MAL-2026-2054
+    "@emilgroup/partner-sdk-node": {"1.19.1", "1.19.2"},               # MAL-2026-2055
+    "@emilgroup/payment-sdk": {"1.15.1", "1.15.2"},                    # MAL-2026-2056
+    "@emilgroup/payment-sdk-node": {"1.23.1", "1.23.2"},               # MAL-2026-2057
+    "@emilgroup/public-api-sdk": {"1.33.1", "1.33.2"},                 # MAL-2026-2058
+    "@emilgroup/public-api-sdk-node": {"1.35.1", "1.35.2"},            # MAL-2026-2077
+    "@emilgroup/tenant-sdk": {"1.34.1", "1.34.2"},                     # MAL-2026-2060
+    "@emilgroup/tenant-sdk-node": {"1.33.1", "1.33.2"},                # MAL-2026-2061
+
+    # gulp-jscrambler / jscrambler-metro-plugin maintainer-account compromise (July 15 2026)
+    # Specific versions of two legitimate JSScrambler npm packages were injected
+    # with a malicious payload following a publisher-account takeover.
+    # OSV MAL-2026-10673 (GHSA-2cjx-v4hm-f5gf), MAL-2026-10674 (GHSA-v442-7fpg-636g)
+    "gulp-jscrambler": {"8.6.2"},           # MAL-2026-10673
+    "jscrambler-metro-plugin": {"9.0.2"},   # MAL-2026-10674
+
+    # @bcs-mi-ui dep-confusion cluster (July 15 2026)
+    # Three packages under the @bcs-mi-ui scope published at any version to shadow
+    # internal corporate packages; all flagged as fully-compromised by GHSA.
+    # OSV MAL-2026-10645 (GHSA-4ppp-p4x6-p4w5), MAL-2026-10646, MAL-2026-10647
+    "@bcs-mi-ui/message": set(),            # MAL-2026-10645
+    "@bcs-mi-ui/message-block": set(),      # MAL-2026-10646
+    "@bcs-mi-ui/test1243npmpacket76": set(), # MAL-2026-10647
+
+    # @pimy-b2cweb dep-confusion cluster (July 15 2026)
+    # Two packages published at inflated version 99.99.99 to shadow internal
+    # @pimy-b2cweb packages in CI pipelines. Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-10655, MAL-2026-10656
+    "@pimy-b2cweb/apiclient-b2cweb-r2": {"99.99.99"},  # MAL-2026-10655
+    "@pimy-b2cweb/frontend-lib": {"99.99.99"},          # MAL-2026-10656
+
+    # @sauruslord / zaldy-baileys / ssweb-wp WhatsApp Baileys typosquat cluster (July 15 2026)
+    # Multiple packages impersonating the Baileys WhatsApp Web API library;
+    # each silently performs unauthorized newsletter actions / exfiltrates credentials
+    # on every WebSocket connection. Same actor as the existing @fhkry/baileys entry.
+    # OSV MAL-2026-10657 (GHSA-gq5v-w47h-r596), MAL-2026-10658, MAL-2026-10659,
+    #     MAL-2026-10660, MAL-2026-10661, MAL-2026-10662, MAL-2026-10663
+    "@sauruslord/baileys": set(),                           # MAL-2026-10657
+    "@sauruslord/eslint-config": set(),                     # MAL-2026-10658
+    "@sauruslord/libsignal": {"2.0.2"},                     # MAL-2026-10659
+    "saurus-assets": set(),                                 # MAL-2026-10660
+    "sauruslord-baileys": {"3.0.0", "3.0.1", "3.0.2"},     # MAL-2026-10661
+    "ssweb-wp": {"1.0.0"},                                  # MAL-2026-10662
+    "zaldy-baileys": set(),                                 # MAL-2026-10663
+
+    # @fhkry/* additional packages (July 15 2026)
+    # Extension of the @fhkry/baileys entry (MAL-2026-4803) already tracked above;
+    # two more forks published by the same actor.
+    # OSV MAL-2026-10664, MAL-2026-10665
+    "@fhkry/baileys-v2": set(),                                           # MAL-2026-10664
+    "@fhkry/x-baileys": {"1.0.0", "1.1.0", "1.2.0", "1.3.0", "1.4.0",
+                         "1.5.0", "1.6.0", "1.7.0"},                     # MAL-2026-10665
+
+    # chai-as-byte extension (July 15 2026)
+    # Another entry in the ongoing chai-as-* typosquat campaign.
+    # OSV MAL-2026-10630
+    "chai-as-byte": {"3.1.5", "3.1.6"},  # MAL-2026-10630
+
+    # @ebay/ui-core-react maintainer-account compromise (updated July 15 2026)
+    # Multiple specific versions of the legitimate eBay UI component library
+    # were found to contain malicious code (GHSA-536f-jp4m-fgrw).
+    # OSV MAL-2024-1006
+    "@ebay/ui-core-react": {"6.2.5", "9.6.4", "9.6.5", "9.6.6", "9.7.0", "9.8.0", "9.8.1"},
+
+    # ggk-happy CLI typosquat (updated July 15 2026)
+    # Impersonates the slopus/happy CLI; includes postinstall credential-exfiltration
+    # payload. Published 12 versions before takedown. OSV MAL-2026-4789
+    "ggk-happy": {
+        "1.0.9", "1.2.0", "1.2.12", "1.2.20", "1.2.22", "1.2.24",
+        "1.2.28", "1.2.30", "1.2.32", "1.2.33", "1.2.34", "1.2.43"
+    },
+
+    # fhirproxy / fhirproxy-utils malicious loader cluster (updated July 15 2026)
+    # fhirproxy@90.0.0 is a thin loader that pulls and executes fhirproxy-utils,
+    # which carries the actual credential-exfiltration payload.
+    # OSV MAL-2026-5460 (GHSA-g7wh-3cfq-x8m2), MAL-2026-5461
+    "fhirproxy": {"90.0.0"},    # MAL-2026-5460
+    "fhirproxy-utils": {"1.0.8"},  # MAL-2026-5461
+
+    # fastify-addon Fastify typosquat (updated July 15 2026)
+    # Typosquat of the legitimate fastify-plugin package; single version with
+    # credential-exfiltration payload. OSV MAL-2026-5566 (GHSA-3237-pr3f-cm2g)
+    "fastify-addon": {"5.1.0"},  # MAL-2026-5566
+
+    # webpack-cache-* postinstall malware cluster (updated July 15 2026)
+    # Two packages with obfuscated remote-code-execution postinstall loaders.
+    # OSV MAL-2026-5579 (GHSA-2p34-5qgm-wr3f), MAL-2026-5580 (GHSA-x29m-589q-wmg6)
+    "webpack-cache-cycle": {"0.1.4"},  # MAL-2026-5579
+    "webpack-cache-reset": {"0.1.4"},  # MAL-2026-5580
+
+    # yelp-react-component-chaos dep-confusion (updated July 15 2026)
+    # Preinstall script collects hostname/username/network info and env var names
+    # matching TOKEN/SECRET/KEY patterns; exfiltrates to attacker server.
+    # OSV MAL-2026-5515 (GHSA-3chg-w9g2-778v)
+    "yelp-react-component-chaos": {"8.14.5"},  # MAL-2026-5515
+
+    # testzapier dep-confusion (updated July 15 2026)
+    # OSV MAL-2026-5575
+    "testzapier": {"1.0.0", "1.0.1"},  # MAL-2026-5575
+
+    # vite-config-optimizer Vite typosquat (updated July 15 2026)
+    # Postinstall hook spawns detached process with credential-exfiltration payload.
+    # OSV MAL-2026-5727 (GHSA-5rwj-cgwr-q954)
+    "vite-config-optimizer": {"1.1.4"},  # MAL-2026-5727
+
+    # @achuthvp/postinstall-poc (updated July 15 2026)
+    # Despite "poc" in the name, confirmed malware: runs system commands and
+    # POSTs results to attacker server on npm install. OSV MAL-2026-5741 (GHSA-rpc3-vhwp-44cv)
+    "@achuthvp/postinstall-poc": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},  # MAL-2026-5741
+
+    # patientdocuments dep-confusion / wget exfiltration (updated July 15 2026)
+    # Preinstall script runs wget to exfiltrate username, cwd, and network info
+    # to an attacker-controlled Cloudflare Worker. OSV MAL-2026-5752 (GHSA-28q9-vg2f-r5m7)
+    "patientdocuments": {"75.0.0"},  # MAL-2026-5752
+
+    # ldpbootstrap-jquery Windows PowerShell dropper (updated July 15 2026)
+    # Ships and executes an obfuscated PowerShell payload as part of documented usage.
+    # 14 versions published before takedown. OSV MAL-2026-5790
+    "ldpbootstrap-jquery": {
+        "1.0.0", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+        "1.0.9", "1.0.10", "1.0.11", "1.0.13", "1.0.14", "1.0.15", "1.0.16"
+    },
+
+    # nativescript-swisspost-* dep-confusion cluster (updated July 15 2026)
+    # Two packages impersonating SwissPost NativeScript plugins; preinstall hook
+    # exfiltrates project-root env vars to attacker server.
+    # OSV MAL-2026-5792 (GHSA-vcxp-rm4v-qh5h), MAL-2026-5793
+    "nativescript-swisspost-imagepicker": {"52.31.0"},               # MAL-2026-5792
+    "nativescript-swisspost-pcc-creative-editor": {"54.16.3"},       # MAL-2026-5793
+
+    # @dsft/ft-* dep-confusion cluster (updated July 15 2026)
+    # Preinstall hook in each package reads INIT_CWD and exfiltrates project-root
+    # files to attacker server. OSV MAL-2026-5889 (GHSA-5g88-35hm-8xr7), MAL-2026-5890
+    "@dsft/ft-element": {"2.5.9"},  # MAL-2026-5889
+    "@dsft/ft-utils": {"1.5.8"},    # MAL-2026-5890
+
+    # canary-ci-test dep-confusion (updated July 15 2026)
+    # OSV MAL-2026-5972
+    "canary-ci-test": {"1.0.0"},  # MAL-2026-5972
+
+    # gpu-accelerator multi-version malware (updated July 15 2026)
+    # OSV MAL-2026-5980
+    "gpu-accelerator": {"1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7"},  # MAL-2026-5980
+
+    # hashd-edu postinstall exfiltrator (updated July 15 2026)
+    # OSV MAL-2026-6302
+    "hashd-edu": {"1.0.0", "1.0.1", "1.0.2", "1.0.4", "1.0.5"},  # MAL-2026-6302
+
+    # web3-eth-util / web3-eth-utils Ethereum typosquat cluster (updated July 15 2026)
+    # Both packages impersonate @ethereumjs/util / ethereumjs-util; README is copied
+    # verbatim from upstream but postinstall exfiltrates wallet keys.
+    # OSV MAL-2026-6325 (GHSA-g69q-p7f8-4jp3), MAL-2026-6326
+    "web3-eth-util": {"6.2.8"},   # MAL-2026-6325
+    "web3-eth-utils": {"6.2.8"},  # MAL-2026-6326
+
+    # assertcore multi-version credential-exfiltrator (updated July 15 2026)
+    # OSV MAL-2026-6365
+    "assertcore": {"3.1.7"},  # MAL-2026-6365
+
+    # textshape-css any-version malware (updated July 15 2026)
+    # OSV MAL-2026-6475
+    "textshape-css": {"1.0.0"},  # MAL-2026-6475
+
+    # @magda/semantic-indexer-sdk (updated July 15 2026)
+    # OSV MAL-2025-47009 (GHSA-r2gq-mhfx-9mh3)
+    "@magda/semantic-indexer-sdk": {"6.1.0-alpha.0"},  # MAL-2025-47009
+
+    # rhynpm malware (updated July 15 2026)
+    # OSV MAL-2025-32206 (GHSA-5jr8-4283-75xm)
+    "rhynpm": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},  # MAL-2025-32206
+
+    # July 15-16 2026 miscellaneous npm malware batch
+    # Diverse packages detected by OpenSSF Package Analysis, Amazon Inspector,
+    # and GHSA malware reports; each carries credential-exfiltration or postinstall
+    # dropper payloads.
+    "better-tailwindcss": {"4.6.3"},                    # MAL-2026-10550
+    "elsisi-cli": {"9.9.9"},                             # MAL-2026-10551
+    "@leviosa86com/leviosa86-test": {
+        "4.999.0", "5.999.0", "6.0.0", "6.2.1"
+    },                                                   # MAL-2026-10625
+    "leviosa86-test": {"4.999.0"},                       # MAL-2026-10636
+    "@react-case/option": {"1.0.0"},                     # MAL-2026-10626
+    "@sqlite-frame/nodesql": {"1.0.2", "1.0.3"},         # MAL-2026-10627
+    "ai-explain": {"0.3.4"},                             # MAL-2026-10628
+    "ai-pro-sdk": {"2.0.1", "2.0.3"},                   # MAL-2026-10629
+    "core-dotenv": {"1.4.1"},                            # MAL-2026-10631
+    "cppt-common": {"13.1.1"},                           # MAL-2026-10632
+    "creditgauge": {"1.0.0"},                            # MAL-2026-10633
+    "estore-client": {"5.0.0"},                          # MAL-2026-10634
+    "gmail-changer": {"2.0.2"},                          # MAL-2026-10635
+    "mc-reg": {"1.0.3", "1.0.4"},                        # MAL-2026-10637
+    "monogrok": {"1.0.30", "1.0.33"},                    # MAL-2026-10638
+    "ogensec-sdk": {"1.1.1", "1.2.1"},                   # MAL-2026-10639
+    "polygon-toolkit-validation": {"1.0.9", "1.1.0"},   # MAL-2026-10640
+    "polygon-toolkit-validator": {"1.1.2"},              # MAL-2026-10641
+    "@hkyyy/portal-widget-helper-0601": {"1.0.0"},       # MAL-2026-10648
+    "@saladin0x1/js-shared-modules": set(),              # MAL-2026-10649
+    "install-skia": {"1.0.0"},                           # MAL-2026-10650
+    "iwsdk": {"22.0.0"},                                 # MAL-2026-10651
+    "json-bigint-extend": set(),                         # MAL-2026-10652
+    "webpack-session-cache": {"0.1.4"},                  # MAL-2026-10653
+    "@debile/require-dir": {"1.9.1", "1.9.2"},           # MAL-2026-10654
+    "crypto-hasher": {"3.1.2", "3.1.3"},                 # MAL-2026-10666
+    "true": {"0.0.1", "0.0.2", "0.0.3", "0.0.4"},       # MAL-2026-10667
+    "chain-as-log": {"3.0.1"},                           # MAL-2026-10668
+    "dbconnectify": {"1.0.1"},                           # MAL-2026-10669
+    "eslintcmd": {"0.2.0"},                              # MAL-2026-10670
+    "spytrack": {"1.1.0"},                               # MAL-2026-10671
+    "ac-raf-emitter": {"3.0.1"},                         # MAL-2026-10675
+    "commonjs-assert": {"1.0.3"},                        # MAL-2026-10676
+    "deployowl": {"2.1.0"},                              # MAL-2026-10677
+    "ls-env-config": {"1.0.5"},                          # MAL-2026-10678
+    "rakibox": {"2.0.0"},                                # MAL-2026-10679
+    "syncgrove": {"1.4.0"},                              # MAL-2026-10680
+    "code-formatter-setup": {"1.0.0"},                   # MAL-2026-10682
+    "formatters.ts": {"14.2.1"},                         # MAL-2026-10683
+    "react-hook-scripts": {"5.4.2"},                     # MAL-2026-10684
+    "@ddh-libraries/analytics": {"99.0.0"},              # MAL-2026-10686
+    "selparsecss-selector": {
+        "1.0.0", "1.1.0", "2.0.0", "2.1.0"
+    },                                                   # MAL-2026-10687
+    "friendly-greeter-demo": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",
+        "1.0.6", "1.0.9", "1.0.10", "1.0.11", "1.0.13", "1.0.14"
+    },                                                   # MAL-2026-5704
+    "internallib_v907": set(),                           # MAL-2026-10691
+    "nyt-cms": set(),                                    # MAL-2026-10692
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
