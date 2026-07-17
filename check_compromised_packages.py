@@ -1020,6 +1020,29 @@ PYPI_BAD: dict[str, set[str]] = {
     "pylogora": {"0.7.8"},
     # qwen-asr-pvt: Pulls in malicious transitive dep transformers4576 (MAL-2026-10690)
     "qwen-asr-pvt": {"0.0.6"},
+
+    # July 16 2026 PyPI malware batch: Discord-themed remote-execution droppers,
+    # AI-agent C2 beacons, Airflow/captcha/encoder typosquats, and credential exfiltrators.
+    # discord-telemetry: downloads and executes remote binary on install (MAL-2026-10701)
+    "discord-telemetry": {"0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.4", "0.1.5"},
+    # discordia-telemetria: same remote-execution dropper campaign as discord-telemetry (MAL-2026-10702)
+    "discordia-telemetria": {"0.1.1", "0.1.2"},
+    # a3s-code: loads attacker-controlled native binary on first import (MAL-2026-10753)
+    "a3s-code": {"5.2.8", "5.3.3"},
+    # airflow-provider-spirit: Airflow provider typosquat; exfiltrates env/creds at runtime (MAL-2026-10754)
+    "airflow-provider-spirit": {"0.0.1"},
+    # captcha-solve-api: downloads and executes remote payload under guise of CAPTCHA client (MAL-2026-10755)
+    "captcha-solve-api": {"0.0.1"},
+    # darkglitch: persistent WebSocket C2 beacon (MAL-2026-10756)
+    "darkglitch": {"1.2.0"},
+    # dde-common: advertises as 'base types and interfaces'; exfiltrates environment on import (MAL-2026-10757)
+    "dde-common": {"0.0.1"},
+    # mfq-private-encoder: fetches and executes remote payload via guise of a source encoder (MAL-2026-10758)
+    "mfq-private-encoder": {"1.0.0"},
+    # ryry-cli: long-lived WebSocket agent beaconing to hardcoded attacker endpoint (MAL-2026-10759)
+    "ryry-cli": {"6.26", "6.28"},
+    # abseil-py: typosquat of absl-py (Google Abseil); exfiltrates host info on import/install (MAL-2026-10760)
+    "abseil-py": {"0.1.0"},
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -4880,7 +4903,7 @@ NPM_BAD: dict[str, set[str]] = {
     "@react-case/option": {"1.0.0"},                     # MAL-2026-10626
     "@sqlite-frame/nodesql": {"1.0.2", "1.0.3"},         # MAL-2026-10627
     "ai-explain": {"0.3.4"},                             # MAL-2026-10628
-    "ai-pro-sdk": {"2.0.1", "2.0.3"},                   # MAL-2026-10629
+    "ai-pro-sdk": {"2.0.1", "2.0.2", "2.0.3", "2.0.4"},  # MAL-2026-10629
     "core-dotenv": {"1.4.1"},                            # MAL-2026-10631
     "cppt-common": {"13.1.1"},                           # MAL-2026-10632
     "creditgauge": {"1.0.0"},                            # MAL-2026-10633
@@ -4923,6 +4946,111 @@ NPM_BAD: dict[str, set[str]] = {
     },                                                   # MAL-2026-5704
     "internallib_v907": set(),                           # MAL-2026-10691
     "nyt-cms": set(),                                    # MAL-2026-10692
+
+    # July 16–17 2026 npm malware batch: AI-agent C2 cluster, dep-confusion wave
+    # (@across-toolkit/*, @hibachi-xyz/* at 99.x), prominent typosquats (astro 7.1.0,
+    # nordpass, @equans-services/codex → @openai/codex), and miscellaneous infostealers.
+    # OSV MAL-2026-10693 through MAL-2026-10761 plus MAL-2025-6694, MAL-2026-5777/5885/6966.
+
+    # any-version P2P/MCP and WebSocket C2 (introduced: 0 in OSV ranges)
+    "claude-token-tracker-mcp": set(),                   # MAL-2026-10693
+    "vor8zakon": set(),                                  # MAL-2026-10694
+    "ai-p2p": set(),                                     # MAL-2026-10695
+    "loader1": set(),                                    # MAL-2026-10696
+    "websight-p2p": set(),                               # MAL-2026-10697
+    "websight2-p2p": set(),                              # MAL-2026-10698
+    "field-plus": set(),                                 # MAL-2026-5777
+    "wordpad-text-ui": set(),                            # MAL-2026-5885
+    "na-rony-test-karem": set(),                         # MAL-2026-6966
+    "my-tailwind-gutenberg-block": set(),                # MAL-2026-10761
+
+    # @across-toolkit dep-confusion (Across Protocol; 99.x versions, July 16 2026)
+    "@across-toolkit/eslint-config": {"99.0.0", "99.0.1"},      # MAL-2026-10703
+    "@across-toolkit/typescript-config": {"99.0.0", "99.0.1"},  # MAL-2026-10704
+
+    # @hibachi-xyz dep-confusion cluster (5 packages at 99.0.0, July 16 2026)
+    # env exfiltration on require(); exact versions pinned; scope also added to suspect list
+    "@hibachi-xyz/common": {"99.0.0"},                   # MAL-2026-10712
+    "@hibachi-xyz/config": {"99.0.0"},                   # MAL-2026-10713
+    "@hibachi-xyz/sdk": {"99.0.0"},                      # MAL-2026-10714
+    "@hibachi-xyz/types": {"99.0.0"},                    # MAL-2026-10715
+    "@hibachi-xyz/ui": {"99.0.0"},                       # MAL-2026-10716
+
+    # AI-agent / remote-access-tool C2 cluster (July 16 2026)
+    # All open outbound WebSocket / PTY tunnels to attacker-controlled infrastructure.
+    "@agent-link/agent": {"0.1.269"},                    # MAL-2026-10705
+    "@agentvox/host": {"0.1.5"},                         # MAL-2026-10706
+    "@ai-support-agent/cli": {"0.3.2-beta.1"},           # MAL-2026-10707
+    "@aicommander/agent": {"1.0.34"},                    # MAL-2026-10708
+    "@cyberrant-rantai/rantai": {"1.0.15"},              # MAL-2026-10709
+    "@equans-services/codex": {"1.0.0"},                 # MAL-2026-10710 (@openai/codex typosquat)
+    "@funny-booth/agent-core": {                         # MAL-2026-10711
+        "0.1.1", "0.1.2", "0.1.3", "0.1.4", "0.1.5", "0.1.6",
+    },
+    "@onescience/onecode": {                             # MAL-2026-10717
+        "1.14.50-202607161038", "1.14.50-202607161139", "1.14.50-202607161710",
+    },
+    "@sciagent/cli": {"1.0.68", "1.0.69"},               # MAL-2026-10718
+    "@thepayulink/server": {"2.0.0"},                    # MAL-2026-10719
+    "@vibelet/cli": {"1.2.154"},                         # MAL-2026-10720
+    "@whalent/agent": {"0.3.231"},                       # MAL-2026-10721
+    "@whalent/agent-core": {                             # MAL-2026-10722
+        "0.3.230", "0.3.231", "0.3.232", "0.3.233",
+    },
+    "@yeaft/webchat-agent": {"1.0.171"},                 # MAL-2026-10723
+    "@yuandc/aica": {"0.1.1", "0.1.4"},                  # MAL-2026-10724
+    "agentto": {"0.5.36"},                               # MAL-2026-10725
+    "bvm-core": {"1.1.42", "1.1.43"},                   # MAL-2026-10728
+    "channel-worker": {"2.5.39"},                        # MAL-2026-10729
+    "codeam-cli": {"2.61.1", "2.61.3"},                  # MAL-2026-10730
+    "http-req-lite": {"1.0.0"},                          # MAL-2026-10699
+    "isite": {"2026.7.2"},                               # MAL-2026-10735
+    "memtry-cli": {"1.0.4"},                             # MAL-2026-10736
+    "netcontrol-agent": {"1.0.5"},                       # MAL-2026-10741
+    "patchwork-os": {                                    # MAL-2026-10744
+        "1.1.0-beta.3.canary.414", "1.1.0-beta.3.canary.415",
+        "1.1.0-beta.3.canary.416", "1.1.0-beta.3.canary.417",
+    },
+    "phantomx-tool-client": {"1.0.8"},                   # MAL-2026-10745
+    "sakuraai": {"0.0.11"},                              # MAL-2026-10746
+    "sensorium-mcp": {"3.0.95"},                         # MAL-2026-10747
+    "vanexa-agent": {"1.1.9", "1.1.10"},                 # MAL-2026-10751
+
+    # Prominent typosquats and supply-chain impersonation (July 16–17 2026)
+    "astro": {"7.1.0"},                                  # MAL-2026-10726 (Astro framework typosquat)
+    "nordpass": {"1.0.0", "1.0.2", "1.0.4"},            # MAL-2026-10743 (NordPass password mgr typosquat)
+    "axios-test-one": {"1.19.0"},                        # MAL-2026-10727 (axios typosquat)
+    "idlive-document-capture-web": {"14.2.1"},           # MAL-2026-10733 (idlive-document-capture typosquat)
+    "telemetry-metrics": {"0.2.1"},                      # MAL-2026-10750 (@telemetry-sdk typosquat)
+    "amdocs-auth-package": {"99.1.0", "114.2.1", "115.2.1"},  # MAL-2025-6694 (dep-confusion)
+
+    # dep-confusion inflated-version packages (July 16 2026)
+    "infrastructure-common": {"99.9.9"},                 # MAL-2026-10734
+    "myreviews-core": {"99.0.0"},                        # MAL-2026-10740
+
+    # generic malware / infostealers (July 16–17 2026)
+    "px8my": {                                           # MAL-2026-10104 (browser extension stealer, 34 versions)
+        "1.0.13", "1.0.22", "1.0.23", "1.0.24", "1.0.25",
+        "1.0.26", "1.0.27", "1.0.28", "1.0.29", "1.0.30",
+        "1.0.31", "1.0.32", "1.0.33", "1.0.34", "1.0.35",
+        "1.0.36", "1.0.37", "1.0.38", "1.0.39", "1.0.40",
+        "1.0.41", "1.0.42", "1.0.43", "1.0.44", "1.0.45",
+        "1.0.46", "1.0.47", "1.0.48", "1.0.49", "1.0.50",
+        "1.0.51", "1.0.52", "1.0.53", "1.0.54",
+    },
+    "theta-sdk-js": {"1.2.14", "1.2.15", "1.2.16", "1.2.17"},  # MAL-2026-10135 (decrypt.js credential stealer)
+    "time-format-kit": {"1.0.0", "1.0.1", "1.0.2"},     # MAL-2026-10700
+    "date-utils-light": {"1.0.1"},                       # MAL-2026-10731
+    "hehehe": {"2.0.1", "2.0.2"},                        # MAL-2026-10732
+    "mmagrt": {"0.1.10"},                                # MAL-2026-10737
+    "mui-option": {"1.0.0"},                             # MAL-2026-10738
+    "mw-server-util": {"2.0.0", "2.0.1"},               # MAL-2026-10739
+    "node-as-api": {"2.1.6"},                            # MAL-2026-10742
+    "string-formatter-pro": {"1.0.0", "1.0.1"},          # MAL-2026-10748
+    "sync-grove": {"1.0.0", "1.0.1", "1.0.2"},           # MAL-2026-10749
+    "xxdxa": {                                           # MAL-2026-10752
+        "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.7",
+    },
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -4954,6 +5082,12 @@ NPM_SUSPECT_SCOPES = (
     # @wagni_bot DeFi/crypto SDK typosquat scope (July 9 2026)
     # Entire attacker-controlled scope; exact versions pinned above
     "@wagni_bot/",
+    # @across-toolkit dep-confusion (July 16 2026) — 2 packages pinned above;
+    # scope entry catches any undisclosed additional @across-toolkit packages
+    "@across-toolkit/",
+    # @hibachi-xyz dep-confusion (July 16 2026) — 5 packages at 99.0.0 pinned above;
+    # scope entry catches any undisclosed additional @hibachi-xyz packages
+    "@hibachi-xyz/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
