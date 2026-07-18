@@ -1043,6 +1043,12 @@ PYPI_BAD: dict[str, set[str]] = {
     "ryry-cli": {"6.26", "6.28"},
     # abseil-py: typosquat of absl-py (Google Abseil); exfiltrates host info on import/install (MAL-2026-10760)
     "abseil-py": {"0.1.0"},
+
+    # Tron/TRX private-key typosquats impersonating TronGrid developer APIs (July 17–18 2026)
+    "trongridev": {"0.0.1"},    # MAL-2026-10768 GHSA-hx6g-6877-qvg8
+    "trongridme": {"0.0.1"},    # MAL-2026-10771 GHSA-4fhx-73c8-xxhv
+    # govpkg: generic malware with remote-execution payload (July 17–18 2026)
+    "govpkg": {"0.1.0", "0.2.0"},   # MAL-2026-10770
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5051,6 +5057,26 @@ NPM_BAD: dict[str, set[str]] = {
     "xxdxa": {                                           # MAL-2026-10752
         "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.7",
     },
+
+    # syft-acp dep-confusion cluster (July 16–18 2026)
+    # Four packages in the syft-acp-* namespace shadow Anchore Syft ACP internal components.
+    # OSV affected.ranges >= 0 with no fixed event; any version is malicious.
+    "syft-acp-atoms": set(),    # MAL-2026-10764 GHSA-j5f4-f3f3-634h
+    "syft-acp-core": set(),     # MAL-2026-10765 GHSA-289v-6j56-44w8
+    "syft-acp-uikit": set(),    # MAL-2026-10766 GHSA-rvgp-458h-wjc3
+    "syft-acp-util": set(),     # MAL-2026-10767
+    # @edgecommons dep-confusion (July 16–18 2026); scope in NPM_SUSPECT_SCOPES
+    "@edgecommons/edgecommons": set(),      # MAL-2026-10762 GHSA-8p39-h6xv-p2g9
+    "@edgecommons/streamlog-node": set(),   # MAL-2026-10763 GHSA-4rqf-6883-f59f
+    # axios typosquats — OSV ranges >= 0 (July 17 2026)
+    "axios-native": set(),      # MAL-2026-10772 GHSA-9j78-5mc3-56h7
+    "telemetry-axios": set(),   # MAL-2026-10773 GHSA-89mf-39r2-ff96
+    # anthropic-claude-latest: fake Anthropic SDK typosquat — OSV ranges >= 0 (first published June 25 2026)
+    "anthropic-claude-latest": set(),   # MAL-2026-6415 GHSA-j588-p757-86r9
+    # scan-only: pure-malware package — OSV ranges >= 0 (first published June 17 2026)
+    "scan-only": set(),         # MAL-2026-6067 GHSA-72g3-g9xj-wxp6
+    # easyway2: generic malware, exact-version pins (July 17–18 2026)
+    "easyway2": {"1.0.3", "1.0.7"},    # MAL-2026-10769 GHSA-68c2-54w2-m326
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -5088,6 +5114,9 @@ NPM_SUSPECT_SCOPES = (
     # @hibachi-xyz dep-confusion (July 16 2026) — 5 packages at 99.0.0 pinned above;
     # scope entry catches any undisclosed additional @hibachi-xyz packages
     "@hibachi-xyz/",
+    # @edgecommons dep-confusion (July 16–18 2026) — 2 packages pinned above;
+    # scope entry catches any undisclosed additional @edgecommons packages
+    "@edgecommons/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
