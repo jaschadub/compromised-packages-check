@@ -325,7 +325,12 @@ PowerShell dropper, nativescript-swisspost-* dep-confusion, log-guru / pylogora
 Mythic/Poseidon C2 beacons, fflask Flask typosquat, and many smaller campaigns;
 OSV MAL-2026-4789/4803/5460/5461/5515/5566/5575/5579/5580/5704/5727/5741/
 5752/5790/5792/5793/5889/5890/5972/5980/6302/6325/6326/6365/6475/10091/
-10550/10551/10625 through 10692).
+10550/10551/10625 through 10692),
+and the July 18 2026 npm/PyPI batch: n8n-nodes-api-finder / n8n-nodes-devops-utils /
+n8n-nodes-final-mile / n8n-nodes-probe malicious n8n community node cluster
+(OSV MAL-2026-10774/10775/10776/10777), relativity-pdfjs-dist dep-confusion/typosquat
+targeting pdfjs-dist / Relativity (OSV MAL-2026-10778), and mlflow-ui PyPI
+MLflow impersonation (OSV MAL-2026-10779).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1049,6 +1054,8 @@ PYPI_BAD: dict[str, set[str]] = {
     "trongridme": {"0.0.1"},    # MAL-2026-10771 GHSA-4fhx-73c8-xxhv
     # govpkg: generic malware with remote-execution payload (July 17–18 2026)
     "govpkg": {"0.1.0", "0.2.0"},   # MAL-2026-10770
+    # mlflow-ui: PyPI typosquat / impersonation of mlflow (July 18 2026)
+    "mlflow-ui": {"2.7.1", "2.7.2", "2.7.3"},   # MAL-2026-10779
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5077,6 +5084,15 @@ NPM_BAD: dict[str, set[str]] = {
     "scan-only": set(),         # MAL-2026-6067 GHSA-72g3-g9xj-wxp6
     # easyway2: generic malware, exact-version pins (July 17–18 2026)
     "easyway2": {"1.0.3", "1.0.7"},    # MAL-2026-10769 GHSA-68c2-54w2-m326
+    # malicious n8n community node cluster (July 18 2026)
+    # Four packages mimic legitimate n8n automation platform community nodes;
+    # each embeds a malicious payload (credential/env exfiltration or remote exec).
+    "n8n-nodes-api-finder": {"1.0.0"},     # MAL-2026-10774
+    "n8n-nodes-devops-utils": {"1.0.7"},   # MAL-2026-10775
+    "n8n-nodes-final-mile": {"1.0.5"},     # MAL-2026-10776
+    "n8n-nodes-probe": {"1.0.6"},          # MAL-2026-10777
+    # relativity-pdfjs-dist: dep-confusion/typosquat of pdfjs-dist targeting Relativity (July 18 2026)
+    "relativity-pdfjs-dist": {"5.8.2", "99.9.9"},  # MAL-2026-10778
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
