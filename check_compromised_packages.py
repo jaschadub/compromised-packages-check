@@ -1056,6 +1056,8 @@ PYPI_BAD: dict[str, set[str]] = {
     "govpkg": {"0.1.0", "0.2.0"},   # MAL-2026-10770
     # mlflow-ui: PyPI typosquat / impersonation of mlflow (July 18 2026)
     "mlflow-ui": {"2.7.1", "2.7.2", "2.7.3"},   # MAL-2026-10779
+    # data-parser-utils: generic data-exfiltration malware (July 19 2026)
+    "data-parser-utils": {"2.4.1"},              # MAL-2026-10780
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5093,6 +5095,23 @@ NPM_BAD: dict[str, set[str]] = {
     "n8n-nodes-probe": {"1.0.6"},          # MAL-2026-10777
     # relativity-pdfjs-dist: dep-confusion/typosquat of pdfjs-dist targeting Relativity (July 18 2026)
     "relativity-pdfjs-dist": {"5.8.2", "99.9.9"},  # MAL-2026-10778
+
+    # npm malware batch (July 8–20 2026)
+    # Miscellaneous malicious packages confirmed active, no prior grouping.
+    # uac-package: 14-version credential-stealer; GHSA-7cmm-649r-p3q2
+    "uac-package": {
+        "1.1.0", "1.1.1", "1.1.2", "1.1.3",
+        "1.2.1", "1.3.0",
+        "1.4.0", "1.4.1", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7", "1.4.8",
+    },                                               # MAL-2026-10138 GHSA-7cmm-649r-p3q2
+    # next-locomotive-init: malware disguised as a Next.js scaffold helper; GHSA-v4q3-jmq9-q449
+    "next-locomotive-init": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},  # MAL-2026-7013 GHSA-v4q3-jmq9-q449
+    # luludawang-kit: malicious package; ranges >= 0, any version is malicious; GHSA-vgv8-886r-fvp5
+    "luludawang-kit": set(),                         # MAL-2026-6999 GHSA-vgv8-886r-fvp5
+    # chart-animation-helper: malicious package; ranges >= 0, any version is malicious; GHSA-8vgc-wrpv-6v7h
+    "chart-animation-helper": set(),                 # MAL-2026-10781 GHSA-8vgc-wrpv-6v7h
+    # dependency_confusions: dep-confusion attack package (version 99.9.9)
+    "dependency_confusions": {"99.9.9"},             # MAL-2026-10085
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
