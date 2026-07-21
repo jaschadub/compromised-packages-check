@@ -330,7 +330,19 @@ and the July 18 2026 npm/PyPI batch: n8n-nodes-api-finder / n8n-nodes-devops-uti
 n8n-nodes-final-mile / n8n-nodes-probe malicious n8n community node cluster
 (OSV MAL-2026-10774/10775/10776/10777), relativity-pdfjs-dist dep-confusion/typosquat
 targeting pdfjs-dist / Relativity (OSV MAL-2026-10778), and mlflow-ui PyPI
-MLflow impersonation (OSV MAL-2026-10779).
+MLflow impersonation (OSV MAL-2026-10779), the July 20 2026 npm batch
+(vybscan-testbed-inert-postinstall / vybscan-testbed-obfuscated-postinstall
+scanner-testbed malware GHSA-cwcf-rmgg-qg9w / GHSA-43r2-4jr2-rhjf;
+@car_loans/dealerships-approval dep-confusion GHSA-p8xg-5qpp-p289;
+@gocortexio/npmgremlinbox-* cluster of 80 security-simulation packages
+MAL-2026-10783 through MAL-2026-10862; version updates for jscrambler 8.17.0,
+svgson-lite 1.0.8, rollup-plugin-polyfill-handler 1.0.1, @vite-js/ui 7.15.10),
+the Telegram bot / pyrogram stealer cluster (Oct 2025 – Feb 2026;
+25 PyPI typosquats of pyrogram/telebot/requests exfiltrating session files;
+OSV MAL-2025-191874 through MAL-2025-193011 and MAL-2026-42/96/236/237/325/326/
+468/470/623/930/931/934/935/937), and the July 20 2026 PyPI batch
+(telebot-bot-run, kimichat, kimitalk, nemopush, vantrala, neroteam-v1,
+paperclip-ai; OSV MAL-2026-10863 through MAL-2026-10869).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -343,7 +355,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-16
+Date:      2026-07-21
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1058,6 +1070,50 @@ PYPI_BAD: dict[str, set[str]] = {
     "mlflow-ui": {"2.7.1", "2.7.2", "2.7.3"},   # MAL-2026-10779
     # data-parser-utils: generic data-exfiltration malware (July 19 2026)
     "data-parser-utils": {"2.4.1"},              # MAL-2026-10780
+
+    # Telegram bot / pyrogram stealer cluster (Oct 2025 – Feb 2026)
+    # Typosquats of pyrogram, telethon, telebot, requests, and colorama;
+    # exfiltrate Discord tokens or Telegram session files via bot callbacks.
+    # Active OSV records confirmed non-withdrawn in bulk export (July 20 2026).
+    "speed-testing-nt": {"0.2"},           # MAL-2025-191874
+    "speed-testing-vps": {"0.2"},          # MAL-2025-191875
+    "speedd-testing-bot": {"0.2"},         # MAL-2025-191876
+    "rendom": {"0.2"},                     # MAL-2025-192323
+    "telebot-bot": {"0.2"},                # MAL-2025-192942
+    "telegrem": {"0.2"},                   # MAL-2025-192943
+    "pyrogrem": {"0.2"},                   # MAL-2025-192991
+    "aiogrem": {"0.2"},                    # MAL-2025-193007
+    "telegreph": {"0.2", "0.3"},           # MAL-2025-193008
+    "pyrogrqm": {"0.3"},                   # MAL-2025-193010
+    "requeses": {"1.0.0"},                 # MAL-2025-193011
+    "graponater": {"1.0.0"},               # MAL-2026-236
+    "formater": {"1.0.0", "1.0.1"},        # MAL-2026-237
+    "marshel": {"0.3"},                    # MAL-2026-325
+    "urlssser": {"0.1", "0.2"},            # MAL-2026-326
+    "pyrogrom": {"0.3"},                   # MAL-2026-42
+    "urlsser": {"0.2"},                    # MAL-2026-468
+    "urlsssser": {"0.2"},                  # MAL-2026-470
+    "marshl": {"0.3"},                     # MAL-2026-623
+    "telebot-info": {"0.3", "0.4"},        # MAL-2026-930
+    "telebot-infe": {"0.3"},               # MAL-2026-931
+    "telebot-infoe": {"0.3"},              # MAL-2026-934
+    "telebot-infoo": {"0.3"},              # MAL-2026-935
+    "telebot-infee": {"0.3"},              # MAL-2026-937
+    "pycolorom": {"1.0.1"},                # MAL-2026-96
+
+    # PyPI malware batch (July 20 2026)
+    # Diverse cluster: Kimi AI impostors, generic droppers, and multi-version
+    # infostealers. All confirmed active in OSV bulk export (no withdrawn field).
+    "telebot-bot-run": {"0.3", "0.4", "0.5"},          # MAL-2026-10863
+    "kimichat": {"0.1.0", "0.1.1"},                    # MAL-2026-10864
+    "kimitalk": {"0.1.0", "0.1.1", "0.1.2"},           # MAL-2026-10865
+    "nemopush": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},  # MAL-2026-10866
+    "vantrala": {"0.1.1"},                             # MAL-2026-10867
+    "neroteam-v1": {                                   # MAL-2026-10868
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3",
+        "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+    },
+    "paperclip-ai": {"0.1.0", "0.1.1"},                # MAL-2026-10869
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -3134,6 +3190,7 @@ NPM_BAD: dict[str, set[str]] = {
     },
     "svgson-lite": {
         "1.0.0", "1.0.1", "1.0.2", "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+        "1.0.8",
     },
     "vega-lite-next": {"19.2.1"},
     "vue-demi-fix": {"10.0.3", "10.0.4", "10.0.5"},
@@ -3561,7 +3618,7 @@ NPM_BAD: dict[str, set[str]] = {
     "graphpilot": {"0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.4"},
     "grid-settings-align": {"14.1.1", "14.1.2"},
     "react-next-dom": {"1.1.7", "17.2.7", "17.2.8"},
-    "rollup-plugin-polyfill-handler": {"1.0.0"},
+    "rollup-plugin-polyfill-handler": {"1.0.0", "1.0.1"},  # MAL-2026-6826; added 1.0.1
     "competion": {"1.8.1", "1.8.2", "1.8.3", "1.8.4"},
     "df-vision": {
         "1.1.72", "1.1.73", "1.1.74", "1.1.75",
@@ -3863,7 +3920,7 @@ NPM_BAD: dict[str, set[str]] = {
     "logger-daemon-regex": {"1.0.124"},
     "npm-rce-poc": {"1.0.13"},
     "react-v17": {"20.0.1"},
-    "@vite-js/ui": {"7.15.16"},
+    "@vite-js/ui": {"7.15.10", "7.15.16"},  # MAL-2026-7021; added 7.15.10
     "tslint-conf": {"7.2.1"},
     "none123s": set(),  # MAL-2026-7024 (ranges >=0; all versions malicious)
     "tailwind-core": {"0.0.0", "4.3.0", "4.3.1", "4.3.2"},
@@ -4030,7 +4087,7 @@ NPM_BAD: dict[str, set[str]] = {
     #   TLS internals present in payload). Amazon Inspector analysis confirmed the hidden
     #   executable; CHANGELOG has no entries past 8.13.0.
     #   OSV MAL-2026-10187.
-    "jscrambler": {"8.14.0", "8.16.0", "8.18.0", "8.20.0"},
+    "jscrambler": {"8.14.0", "8.16.0", "8.17.0", "8.18.0", "8.20.0"},
     # tinymask-js: single-version malicious npm package; detected by OpenSSF/ossf.
     #   OSV MAL-2026-10189.
     "tinymask-js": {"1.0.2"},
@@ -5112,6 +5169,34 @@ NPM_BAD: dict[str, set[str]] = {
     "chart-animation-helper": set(),                 # MAL-2026-10781 GHSA-8vgc-wrpv-6v7h
     # dependency_confusions: dep-confusion attack package (version 99.9.9)
     "dependency_confusions": {"99.9.9"},             # MAL-2026-10085
+
+    # npm malware batch (July 20 2026)
+    # vybscan-testbed-* packages contain deliberate malicious postinstall code
+    # used by the Vybscan scanner self-test suite; any version is malicious.
+    "vybscan-testbed-inert-postinstall": set(),      # MAL-2026-10078 GHSA-cwcf-rmgg-qg9w
+    "vybscan-testbed-obfuscated-postinstall": set(), # MAL-2026-10079 GHSA-43r2-4jr2-rhjf
+    # @car_loans/dealerships-approval: dep-confusion using underscore scope
+    # (distinct from @car-loans/ hyphen scope in NPM_SUSPECT_SCOPES).
+    "@car_loans/dealerships-approval": set(),        # MAL-2026-10397 GHSA-p8xg-5qpp-p289
+    # @gocortexio/npmgremlinbox-* cluster: 80 packages explicitly simulating
+    # malicious behaviors (C2 beacon, credential harvesting, license typosquats).
+    # All carry OSV ranges >= 0 (MAL-2026-10783 through MAL-2026-10862).
+    # Scope covered by @gocortexio/ in NPM_SUSPECT_SCOPES; a representative set:
+    "@gocortexio/npmgremlinbox-base": set(),                          # MAL-2026-10792
+    "@gocortexio/npmgremlinbox-malware-c2-beacon": set(),             # MAL-2026-10832
+    "@gocortexio/npmgremlinbox-malware-code-obfuscation": set(),      # MAL-2026-10833
+    "@gocortexio/npmgremlinbox-malware-credential-harvesting": set(), # MAL-2026-10834
+    "@gocortexio/npmgremlinbox-malware-cryptomining-indicators": set(), # MAL-2026-10835
+    "@gocortexio/npmgremlinbox-malware-install-execution": set(),     # MAL-2026-10836
+    "@gocortexio/npmgremlinbox-malware-network-indicators": set(),    # MAL-2026-10837
+    "@gocortexio/npmgremlinbox-typosquat-axios": set(),               # MAL-2026-10852
+    "@gocortexio/npmgremlinbox-typosquat-chalk": set(),               # MAL-2026-10853
+    "@gocortexio/npmgremlinbox-typosquat-commander": set(),           # MAL-2026-10854
+    "@gocortexio/npmgremlinbox-typosquat-express": set(),             # MAL-2026-10855
+    "@gocortexio/npmgremlinbox-typosquat-lodash": set(),              # MAL-2026-10856
+    "@gocortexio/npmgremlinbox-typosquat-moment": set(),              # MAL-2026-10857
+    "@gocortexio/npmgremlinbox-typosquat-react": set(),               # MAL-2026-10858
+    "@gocortexio/npmgremlinbox-typosquat-webpack": set(),             # MAL-2026-10859
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -5152,6 +5237,10 @@ NPM_SUSPECT_SCOPES = (
     # @edgecommons dep-confusion (July 16–18 2026) — 2 packages pinned above;
     # scope entry catches any undisclosed additional @edgecommons packages
     "@edgecommons/",
+    # @gocortexio scope (July 20 2026) — 80 npmgremlinbox-* packages with
+    # active OSV MAL-2026-10783 through MAL-2026-10862; representative entries
+    # pinned above in NPM_BAD; scope catches the remainder
+    "@gocortexio/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
