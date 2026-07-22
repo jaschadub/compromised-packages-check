@@ -5178,6 +5178,9 @@ NPM_BAD: dict[str, set[str]] = {
     # @car_loans/dealerships-approval: dep-confusion using underscore scope
     # (distinct from @car-loans/ hyphen scope in NPM_SUSPECT_SCOPES).
     "@car_loans/dealerships-approval": set(),        # MAL-2026-10397 GHSA-p8xg-5qpp-p289
+    # zoom-widget-xss-poc-paresh: named as an XSS PoC but confirmed by GHSA as
+    # carrying deliberate malicious postinstall code; ranges >= 0, any version.
+    "zoom-widget-xss-poc-paresh": set(),             # MAL-2026-10782
     # @gocortexio/npmgremlinbox-* cluster: 80 packages explicitly simulating
     # malicious behaviors (C2 beacon, credential harvesting, license typosquats).
     # All carry OSV ranges >= 0 (MAL-2026-10783 through MAL-2026-10862).
