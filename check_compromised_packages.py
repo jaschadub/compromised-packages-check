@@ -1114,6 +1114,50 @@ PYPI_BAD: dict[str, set[str]] = {
         "1.0.4", "1.0.5", "1.0.6", "1.0.7",
     },
     "paperclip-ai": {"0.1.0", "0.1.1"},                # MAL-2026-10869
+
+    # PyPI malware batch (July 22-24 2026)
+    # num2words (MAL-2025-6794 / GHSA-jxr6-qrxx-2ph2 / PYSEC-2025-72): legitimate
+    # number-to-words library; versions 0.5.15-0.5.16 contained malicious payload.
+    "num2words": {"0.5.15", "0.5.16"},                  # MAL-2025-6794 GHSA-jxr6-qrxx-2ph2
+    # pycryptoshuffle: crypto-themed infostealer; 6 versions published before takedown.
+    "pycryptoshuffle": {
+        "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.1.0", "1.1.1",
+    },                                                   # MAL-2026-7458
+    # trongrider / trongridmy: Tron ecosystem typosquats (cluster also includes
+    # trongridme MAL-2026-10771 and trongridev MAL-2026-10768, tracked above).
+    "trongrider": {"0.0.1"},                             # MAL-2026-10929
+    "trongridmy": {"0.0.1"},                             # MAL-2026-10930
+    # defi-kit / roles-royce: DeFi-themed credential stealers; both at 2.1.1.
+    "defi-kit": {"2.1.1"},                               # MAL-2026-10926
+    "roles-royce": {"2.1.1"},                            # MAL-2026-10927
+    # Tinkoff/DWH dep-confusion cluster: high-version packages (0.0.1, 8.5.x)
+    # targeting internal Tinkoff and data-warehouse packages.
+    "dwh-kafka-client": {"0.0.1"},                       # MAL-2026-10915
+    "python-devplatform-client": {"0.0.1", "8.5.3", "8.5.4"},   # MAL-2026-10916
+    "tinkoff-cloud-apis-internal": {"0.0.1", "8.5.3", "8.5.4"}, # MAL-2026-10917
+    "ml-core-airflow-auth": {"0.0.1"},                   # MAL-2026-10919
+    # GitHub-autoname cluster: random-name packages used as install-time malware droppers.
+    "automatic-octo-invention": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},  # MAL-2026-10918
+    "fluffy-octo-broccoli": {"0.1.0"},                   # MAL-2026-10973
+    "reimagined-broccoli": {"0.1.0"},                    # MAL-2026-10978
+    "animated-octo-spoon": {"0.1.0", "0.1.1"},           # MAL-2026-10985
+    # ibreak / shark-e2e-bnsneo: install-time malware droppers.
+    "ibreak": {"0.1.2", "0.1.3", "0.1.4"},              # MAL-2026-10909
+    "shark-e2e-bnsneo": {"0.2.9", "0.2.10", "0.3.1"},   # MAL-2026-10912
+    # torch-musa: PyTorch MUSA extension impostor.
+    "torch-musa": {"0.0.0", "1.0.0"},                   # MAL-2026-10993
+    # govapkg: typosquat of govpkg (MAL-2026-10770, tracked above).
+    "govapkg": {"0.1.0"},                               # MAL-2026-11031
+    # rasterkit / rasterkit-demo: raster-graphics library impostor with payload.
+    "rasterkit": {"1.0.0", "1.0.2", "1.0.4"},           # MAL-2026-10974
+    "rasterkit-demo": {"0.1.0"},                         # MAL-2026-10975
+    # colorstack / comp-colors / lebinfmt: color/formatter utility malware.
+    "colorstack": {"0.1.0", "0.1.1"},                   # MAL-2026-10976
+    "comp-colors": {"0.1.5"},                            # MAL-2026-10986
+    "lebinfmt": {"1.0.0"},                               # MAL-2026-10977
+    # make-helper / dev-helper-bg: generic helper package malware cluster.
+    "make-helper": {"0.1.0", "0.1.1"},                  # MAL-2026-10991
+    "dev-helper-bg": {"0.1.3", "0.1.4", "0.1.6", "0.1.7"},  # MAL-2026-10992
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5200,6 +5244,423 @@ NPM_BAD: dict[str, set[str]] = {
     "@gocortexio/npmgremlinbox-typosquat-moment": set(),              # MAL-2026-10857
     "@gocortexio/npmgremlinbox-typosquat-react": set(),               # MAL-2026-10858
     "@gocortexio/npmgremlinbox-typosquat-webpack": set(),             # MAL-2026-10859
+
+    # npm multi-campaign wave (July 22-24 2026)
+    # 244 packages from OSV bulk export (modified >= 2026-07-22), all with active
+    # MAL-* records (no withdrawn field). Organized by named sub-cluster below.
+
+    # Solana typosquat cluster (July 22-24 2026)
+    # Fourteen packages impersonating @solana/web3.js, @solana/spl-token, and
+    # related Solana ecosystem libraries with install-time credential-exfiltration payloads.
+    # OSV MAL-2026-5559/5560/5573/5787/5788/10898-10904.
+    "@solana-labs/web3js": {
+        "1.0.0", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10",
+        "1.98.103", "1.98.105", "1.98.107", "1.98.108", "1.98.109",
+        "1.98.110", "1.98.111", "1.98.112",
+    },                                                              # MAL-2026-5788
+    "@solana-labs/spl-toke": {
+        "1.0.0", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10",
+        "1.98.103", "1.98.105", "1.98.107", "1.98.108", "1.98.109",
+        "1.98.110", "1.98.111", "1.98.112",
+    },                                                              # MAL-2026-5787
+    "solana-web3-community": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5",
+    },                                                              # MAL-2026-5560
+    "solana-rpc-client": {"1.0.0"},                                # MAL-2026-10898
+    "solana-web3-fixed": {"1.0.0"},                                # MAL-2026-10899
+    "solana-web3-fork": {"1.0.0"},                                 # MAL-2026-10900
+    "solana-web3-lts": {"1.0.0"},                                  # MAL-2026-10901
+    "solana-web3-patched": {"1.0.0"},                              # MAL-2026-10902
+    "solana-web3-stable": {"1.0.0"},                               # MAL-2026-10903
+    "solana-web3-v1": {"1.0.0"},                                   # MAL-2026-10904
+    "solana-dev-tools": {"1.0.0"},                                 # MAL-2026-5559
+    "solana-rpc-pool": {"1.0.0"},                                  # MAL-2026-5573
+    "solana-js-client": {"1.0.0"},                                 # MAL-2026-5860
+    "solana-mev-bot": {"1.0.0"},                                   # MAL-2026-5861
+
+    # n8n malicious nodes cluster (July 22-24 2026)
+    # Seven malicious n8n community nodes with port-scanner, net-utils, and
+    # postinstall-exec payloads. OSV MAL-2026-10997 through MAL-2026-11006.
+    "n8n-nodes-http-probe": {"1.0.0", "1.0.1", "1.0.2"},          # MAL-2026-10997
+    "n8n-nodes-port-scanner": {"1.0.0", "1.0.1", "1.0.2"},        # MAL-2026-10998
+    "n8n-nodes-task-runner": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",
+        "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.0.16",
+    },                                                              # MAL-2026-10999
+    "n8n-nodes-net-utils": {"1.0.0", "1.0.1", "1.0.2"},           # MAL-2026-11003
+    "n8n-nodes-pwn": {"1.0.0", "1.0.5", "1.0.6", "1.0.7", "1.0.8"},  # MAL-2026-11004
+    "n8n-nodes-quick-utils": {"1.0.0", "1.0.1", "1.0.2"},         # MAL-2026-11005
+    "n8n-nodes-utils-helper": {"1.0.0", "1.0.1", "1.0.2"},        # MAL-2026-11006
+
+    # @dxcl dep-confusion 99.99.99 cluster (July 22-24 2026)
+    # Eight packages shadowing an internal @dxcl fintech scope at 99.99.99.
+    # OSV MAL-2026-10872 through MAL-2026-10879.
+    "@dxcl/account-js": {"99.99.99"},                              # MAL-2026-10872
+    "@dxcl/customer-js": {"99.99.99"},                             # MAL-2026-10873
+    "@dxcl/fund-js": {"99.99.99"},                                 # MAL-2026-10874
+    "@dxcl/http-common-js": {"99.99.99"},                          # MAL-2026-10875
+    "@dxcl/indicators-js": {"99.99.99"},                           # MAL-2026-10876
+    "@dxcl/log-function-js": {"99.99.99"},                         # MAL-2026-10877
+    "@dxcl/transaction-js": {"99.99.99"},                          # MAL-2026-10878
+    "@dxcl/user-js": {"99.99.99"},                                 # MAL-2026-10879
+
+    # @public-for-cdao dep-confusion 99.99.99 cluster (July 22-24 2026)
+    # Eight packages targeting an internal @public-for-cdao scope at 99.99.99.
+    # OSV MAL-2026-10882 through MAL-2026-10889.
+    "@public-for-cdao/backend": {"99.99.99"},                      # MAL-2026-10882
+    "@public-for-cdao/bot": {"99.99.99"},                          # MAL-2026-10883
+    "@public-for-cdao/contracts": {"99.99.99"},                    # MAL-2026-10884
+    "@public-for-cdao/core": {"99.99.99"},                         # MAL-2026-10885
+    "@public-for-cdao/deploy": {"99.99.99"},                       # MAL-2026-10886
+    "@public-for-cdao/sdk": {"99.99.99"},                          # MAL-2026-10887
+    "@public-for-cdao/signer": {"99.99.99"},                       # MAL-2026-10888
+    "@public-for-cdao/utils": {"99.99.99"},                        # MAL-2026-10889
+
+    # Twilio dep-confusion cluster (July 22-24 2026)
+    # Eight packages impersonating internal Twilio packages; any-version malicious.
+    # OSV MAL-2026-10931 through MAL-2026-10938.
+    "org-twilio-phone-numbers-utils": set(),                       # MAL-2026-10931
+    "twilio-assets": set(),                                        # MAL-2026-10932
+    "twilio-deploy": set(),                                        # MAL-2026-10933
+    "twilio-internal": set(),                                      # MAL-2026-10934
+    "twilio-platform-async-data-fetch": set(),                     # MAL-2026-10935
+    "twilio-platform-request": set(),                              # MAL-2026-10936
+    "twilio-serverless": set(),                                    # MAL-2026-10937
+    "twiliointernal-messaging-toolbox": set(),                     # MAL-2026-10938
+
+    # iphouse/markscan/akrai typosquat cluster (July 22-24 2026)
+    # Nineteen packages in a coordinated cluster impersonating crypto scanning and
+    # IP-intelligence tools; credential-exfiltration payloads; any-version malicious.
+    # OSV MAL-2026-10946 through MAL-2026-10964.
+    "@akrai/core": set(),                                          # MAL-2026-10946
+    "@akrai/report": set(),                                        # MAL-2026-10947
+    "@akrai/report_new": set(),                                    # MAL-2026-10948
+    "@iphouse/api": set(),                                         # MAL-2026-10949
+    "@iphouse/core": set(),                                        # MAL-2026-10950
+    "@markscan/api": set(),                                        # MAL-2026-10951
+    "@markscan/core": set(),                                       # MAL-2026-10952
+    "@markscan/reports": set(),                                    # MAL-2026-10953
+    "@markscan/utils": set(),                                      # MAL-2026-10954
+    "akrai-report": set(),                                         # MAL-2026-10955
+    "akrai-report-new": set(),                                     # MAL-2026-10956
+    "iphouse": set(),                                              # MAL-2026-10957
+    "iphouse-api": set(),                                          # MAL-2026-10958
+    "iphouse-core": set(),                                         # MAL-2026-10959
+    "markscan": set(),                                             # MAL-2026-10960
+    "markscan-api": set(),                                         # MAL-2026-10961
+    "markscan-core": set(),                                        # MAL-2026-10962
+    "markscan-reports": set(),                                     # MAL-2026-10963
+    "markscan-utils": set(),                                       # MAL-2026-10964
+
+    # react-tabulix malware cluster (July 22-24 2026)
+    # Five packages in a fake React table component library with malicious payloads.
+    # OSV MAL-2026-10987/10988/10989/11015/11040.
+    "react-tabulix-extended": {"0.1.7"},                           # MAL-2026-11040
+    "react-tabulix-virtual": {"0.1.1"},                            # MAL-2026-10989
+    "react-tabulix-core": set(),                                   # MAL-2026-10987 GHSA-5w4q-8fc9-88f4
+    "react-tabulix-ui": set(),                                     # MAL-2026-10988 GHSA-5jr9-f9w4-93v3
+    "react-tabulix-query": set(),                                  # MAL-2026-11015 GHSA-4rrq-g9w7-39c3
+
+    # hemi-protocol 999.0.0 dep-confusion cluster (July 22-24 2026)
+    # Seven packages targeting the Hemi protocol's internal build system at 999.0.0.
+    # OSV MAL-2026-5778/5779/5781/5782/5783/5784/5785.
+    "hemi-earn-actions": {"999.0.0"},                              # MAL-2026-5778
+    "hemi-supply-cron": {"999.0.0"},                               # MAL-2026-5779
+    "portal-backend": {"999.0.0"},                                 # MAL-2026-5781
+    "token-prices-cron": {"999.0.0"},                              # MAL-2026-5782
+    "vault-strategies": {"999.0.0"},                               # MAL-2026-5783
+    "vaults-monitor-cron": {"999.0.0"},                            # MAL-2026-5784
+    "ve-hemi-rewards": {"999.0.0"},                                # MAL-2026-5785
+
+    # commonweb 99.9.1 dep-confusion cluster (July 22-24 2026)
+    # Seven packages targeting an internal consumer-web monorepo at 99.9.1.
+    # OSV MAL-2026-10965 through MAL-2026-10971.
+    "requestor-util": {"99.9.1"},                                  # MAL-2026-10965
+    "commonweb-card": {"99.9.1"},                                  # MAL-2026-10966
+    "commonweb-moneymovement": {"99.9.1"},                         # MAL-2026-10967
+    "commonweb-rewards": {"99.9.1"},                               # MAL-2026-10968
+    "commonweb-wallet": {"99.9.1"},                                # MAL-2026-10969
+    "consumerweb-calurls": {"99.9.1"},                             # MAL-2026-10970
+    "cxpw-offers": {"99.9.1"},                                     # MAL-2026-10971
+
+    # DeFi/crypto protocol impostors — any-version (July 22-24 2026)
+    # OSV MAL-2026-10941/10942/10943/10944/10945.
+    "aftermath-finance": set(),                                    # MAL-2026-10941
+    "aftermath-sui": set(),                                        # MAL-2026-10942
+    "aftermathfi": set(),                                          # MAL-2026-10943
+    "zer0onetencent": set(),                                       # MAL-2026-10944
+    "zer0onetencent2": set(),                                      # MAL-2026-10945
+
+    # AWS CDK dep-confusion cluster (July 22-24 2026)
+    # Six packages impersonating internal AWS CDK constructs; any-version malicious.
+    # OSV MAL-2026-10920/10921/10922/10923/10924/10928.
+    "alb-lambda-cdk": set(),                                       # MAL-2026-10920 GHSA-crmc-3m53-3crf
+    "iot-kfh-s3": set(),                                           # MAL-2026-10921 GHSA-qg52-c79f-3q5c
+    "lambda-cloudwatch-cdk": set(),                                # MAL-2026-10922 GHSA-m74r-g438-3r92
+    "lwc-slds-lbc": set(),                                         # MAL-2026-10923 GHSA-xm8f-w286-57x5
+    "s3-lambda-dynamodb-cdk": set(),                               # MAL-2026-10924 GHSA-6xqw-c34f-9275
+    "upjsma": set(),                                               # MAL-2026-10928 GHSA-9g67-fm87-8p6v
+
+    # Streak/svelte/calendar typosquat cluster (July 22-24 2026)
+    # Eight packages impersonating streak-tracking and Svelte utility libraries.
+    # OSV MAL-2026-10980/10981/10982/10983/11035/11036/11037/11038.
+    "streak-calendar": set(),                                      # MAL-2026-10981 GHSA-2p69-mmpj-h84r
+    "streak-daycount": set(),                                      # MAL-2026-10982 GHSA-2v57-6hmf-hpfj
+    "svelte-streaks": set(),                                       # MAL-2026-10983 GHSA-8vq2-5c69-fm3w
+    "nolby": set(),                                                # MAL-2026-10980 GHSA-x724-q7wp-wx6q
+    "streak-bucket-lib": set(),                                    # MAL-2026-11035 GHSA-rg2p-8587-wx3w
+    "streak-lib-math": set(),                                      # MAL-2026-11036 GHSA-c7rv-9j9g-pqh2
+    "svelte-goal-streak": set(),                                   # MAL-2026-11037 GHSA-jw9g-wvg5-7rjg
+    "svelte-streak-metrics": set(),                                # MAL-2026-11038 GHSA-fc4x-xfq3-5f35
+
+    # Chai plugin typosquat cluster (July 22-24 2026)
+    # Eleven malicious packages mimicking chai assertion plugins.
+    # OSV MAL-2026-2743/2887/4168/5699/5843/5901/5903/5908/10939/10940/11032.
+    "chai-as-elevated": set(),                                     # MAL-2026-2887 GHSA-p5jq-3963-9qmx
+    "chai-as-vec": set(),                                          # MAL-2026-4168 GHSA-g2hx-wqmp-2fhg
+    "chai-use-chain": set(),                                       # MAL-2026-2743 GHSA-77gr-x9m6-cm8g
+    "chai-web3-testkit": set(),                                    # MAL-2026-5699 GHSA-j8qr-4p5h-mwqj
+    "chai-smart-assert": set(),                                    # MAL-2026-5843 GHSA-897c-qgxj-rv65
+    "chai-as-polished": {"7.0.8"},                                 # MAL-2026-5901 GHSA-jpr9-h23w-g7gg
+    "chai-guid": {"1.1.5"},                                        # MAL-2026-5903
+    "chain-chai-test": set(),                                      # MAL-2026-5908 GHSA-6626-c428-r9qf
+    "chai-as-reddit": set(),                                       # MAL-2026-10939 GHSA-vc32-h28h-pmhm
+    "chai-leaf": set(),                                            # MAL-2026-10940 GHSA-m3c7-2j38-rjh7
+    "chai-as-stringify": set(),                                    # MAL-2026-11032 GHSA-vh7h-h87g-qv6x
+
+    # Ethers/Web3/crypto typosquat cluster (July 22-24 2026)
+    # Fifteen packages impersonating popular Web3 libraries with credential theft.
+    # OSV MAL-2026-4553/4554/5494/5495/5496/5497/5498/5501/5651/5652/11023/11025/11026/11033/11034.
+    "ethers-wallet-package": set(),                                # MAL-2026-4553 GHSA-7pvf-g7jg-rxpj
+    "ethers-wallet-packages": set(),                               # MAL-2026-4554 GHSA-gm49-5q33-vf6f
+    "@meme-sdk/trade": set(),                                      # MAL-2026-5494 GHSA-4c2m-9v9c-75xv
+    "@solana-launchpad/sdk": set(),                                # MAL-2026-5495 GHSA-364r-rq62-6gx5
+    "@validate-ethereum-address/core": set(),                      # MAL-2026-5496 GHSA-c29q-842f-rcjc
+    "@validate-sdk/v2": set(),                                     # MAL-2026-5497 GHSA-vqg9-785x-8j39
+    "@validator-sdk/pubkey": set(),                                # MAL-2026-5498 GHSA-w9ch-gj3p-2cj9
+    "ethers-jss": set(),                                           # MAL-2026-5501 GHSA-xh65-7qcm-493w
+    "ozonex-sdk": set(),                                           # MAL-2026-5651 GHSA-v2hc-cmv5-999p
+    "theta-sdk": set(),                                            # MAL-2026-5652 GHSA-x7m6-5hw9-gj7f
+    "bs58-88": set(),                                              # MAL-2026-11023 GHSA-qj7h-vp7h-8v85
+    "da-sc-sdk": set(),                                            # MAL-2026-11025 GHSA-vxfh-w38r-2g54
+    "ethers-packge": set(),                                        # MAL-2026-11026 GHSA-67vw-rvv3-mh93
+    "eth-codergen": set(),                                         # MAL-2026-11033 GHSA-87w3-vjw9-8h4w
+    "eth-slint": set(),                                            # MAL-2026-11034 GHSA-xp97-c4c4-7928
+
+    # Generic invented-name malware cluster (July 22-24 2026)
+    # Random-name pure-malware packages with GHSA records.
+    # OSV MAL-2026-10984/11008/11009/11010/11014/11016/11017/11018/11019/11039.
+    "veskra": set(),                                               # MAL-2026-10984 GHSA-pr2p-6xpw-q8vw
+    "caldryn": set(),                                              # MAL-2026-11008 GHSA-h9c8-8wq8-r6q2
+    "calmora": set(),                                              # MAL-2026-11009 GHSA-7wwx-476f-c8gm
+    "calvora": set(),                                              # MAL-2026-11010 GHSA-jwm3-4ffq-hr73
+    "kijai": set(),                                                # MAL-2026-11014 GHSA-5mgj-24pj-pj6f
+    "vantora": set(),                                              # MAL-2026-11016 GHSA-4fm5-fwqx-8r39
+    "vectormark": set(),                                           # MAL-2026-11017 GHSA-g48p-2cr5-5hm2
+    "veldora": set(),                                              # MAL-2026-11018 GHSA-wxrm-vmq9-jp23
+    "veskr": set(),                                                # MAL-2026-11019 GHSA-77c3-35xp-6chp
+    "yuinpm": set(),                                               # MAL-2026-11039 GHSA-vpgm-qmgp-w4h4
+
+    # encrypt-string typosquat cluster (July 22-24 2026)
+    # OSV MAL-2026-11011/11012/11013.
+    "encrypt-string-ttak": set(),                                  # MAL-2026-11011 GHSA-mpgp-492w-x7xj
+    "encryptstringadmin": set(),                                   # MAL-2026-11012 GHSA-x92w-56m5-jchf
+    "encryptstringadmincore": set(),                               # MAL-2026-11013 GHSA-hgfq-c4x3-jx2r
+
+    # Misc Web3/DeFi typosquats — any-version (July 22-24 2026)
+    "comos-sdk": set(),                                            # MAL-2026-5405 GHSA-xr7v-2mxc-cw5x
+    "graphbase-js": set(),                                         # MAL-2026-5502 GHSA-29w9-hfv4-jjxh
+    "anaylze-json": set(),                                         # MAL-2026-5505 GHSA-wjgw-rm6m-wgr3
+    "argoncrypt": set(),                                           # MAL-2026-5506 GHSA-h3m2-g8jh-9p37
+    "@bcryptln/bcryptjs": set(),                                   # MAL-2026-11021 GHSA-qw92-vxcv-397r
+    "aio-commerce-lib-app": set(),                                 # MAL-2026-11022 GHSA-897j-xx2q-x2h9
+    "create-kumo-project": set(),                                  # MAL-2026-11024 GHSA-7jg3-v58m-2f3p
+    "fs-extra-core": set(),                                        # MAL-2026-11027 GHSA-f246-8cf4-26v7
+    "helix-deploy": set(),                                         # MAL-2026-11028 GHSA-fhpm-cq57-j289
+    "lychee-norm-cache": set(),                                    # MAL-2026-11029 GHSA-pj38-6jj4-4x3p
+    "vitest-axios": set(),                                         # MAL-2026-11030 GHSA-6v5g-7h35-h33q
+    "nw-demo-utils": set(),                                        # MAL-2026-5511 GHSA-q849-7xxq-hh4g
+    "ts-vitest": set(),                                            # MAL-2026-10990
+
+    # @su-doughnym dep-confusion cluster (July 22-24 2026)
+    # Four packages impersonating an internal @su-doughnym scope.
+    # OSV MAL-2026-6407/6408/6409/6410.
+    "@su-doughnym/hubspot-loginui-poc": set(),                     # MAL-2026-6407 GHSA-jgj9-pm28-4m94
+    "@su-doughnym/loginui": set(),                                 # MAL-2026-6408 GHSA-3rvq-gwcv-295m
+    "@su-doughnym/metrics-js": set(),                              # MAL-2026-6409 GHSA-wj6x-p526-mv2w
+    "@su-doughnym/react-dlb": set(),                               # MAL-2026-6410 GHSA-3g2q-cw4h-3g67
+
+    # Large enterprise frontend dep-confusion batch (July 22-24 2026)
+    # 50+ packages targeting named enterprise orgs; all any-version malicious.
+    # OSV MAL-2026-4186/4440/4460/4463/4464/4465/5437/5438/5446/5451/5655/5658
+    # /5662/5663/5664/5665/5667/5668/5670/5671/5693/5696/5697/5700/5701/5793
+    # /6599/6600/6601/6605/6606/6607/6608/6609/6611/6613/6614/6615/6616/6617
+    # /6618/6619/6620/6622/6624/6625/6626/6627/6628/6629/6630/6632/6633/6634
+    # /6635/6636/6640/6641/6652.
+    "@deel-core/client-payroll-onboarding-types": set(),           # MAL-2026-6613 GHSA-v8wg-p2qh-9q7g
+    "@deel-ui/animation": set(),                                   # MAL-2026-6614 GHSA-9rwq-pr4x-fhqg
+    "@rakuten-rewards/messaging-sdk": set(),                       # MAL-2026-6640 GHSA-fjrr-hfh2-c44q
+    "@rakuten-rewards/messaging-sdk-js": set(),                    # MAL-2026-6641 GHSA-9hcr-h425-gc22
+    "@anna-money/anna-web-lib": set(),                             # MAL-2026-6600 GHSA-f2cq-vvgf-2rrx
+    "@alerts/components": set(),                                   # MAL-2026-6599 GHSA-m86f-3q43-wmpg
+    "@appsource/utils": set(),                                     # MAL-2026-6601 GHSA-28xf-wrjx-23mj
+    "@bscom/styling": set(),                                       # MAL-2026-6605 GHSA-29c6-c7cm-r8ch
+    "@concerns/i18n": set(),                                       # MAL-2026-6606 GHSA-rp2m-w359-5cqp
+    "@content-editor/common": set(),                               # MAL-2026-6607 GHSA-wwc7-v7xr-q4pc
+    "@contenteditor-shared/content-editor-common": set(),          # MAL-2026-6608 GHSA-3v59-3pc3-p6qm
+    "@contentprod-authoring/block-manager": set(),                 # MAL-2026-6609 GHSA-cpfg-m96g-j4j9
+    "@cxp-shared/string-utilities": set(),                         # MAL-2026-6611 GHSA-fmg2-rq45-rc5r
+    "@digitalpharmacist/http-error-util": set(),                   # MAL-2026-6615 GHSA-jw9w-w49g-cx4h
+    "@druidsoft/botframework-directlinejs": set(),                  # MAL-2026-6616 GHSA-h76h-pchq-6m2g
+    "@e50/utils": set(),                                           # MAL-2026-6617 GHSA-w945-prph-8545
+    "@experian-shared/services": set(),                            # MAL-2026-6618 GHSA-vhf7-5xf6-3fwr
+    "@fed-sofia/jetify": set(),                                    # MAL-2026-6619 GHSA-59mp-5h6w-4mpp
+    "@finantix/webcomponents": set(),                              # MAL-2026-6620 GHSA-hf7q-222g-654m
+    "@gallup/pc-utils": set(),                                     # MAL-2026-6622 GHSA-8f5r-5xw2-f3r4
+    "@gm-rvg/root-config": set(),                                  # MAL-2026-6624 GHSA-9crf-2vxq-9j4r
+    "@grappi/automations": set(),                                  # MAL-2026-6625 GHSA-85ph-rvjg-3hmr
+    "@hg-aka-prml/tapas-common": set(),                            # MAL-2026-6626 GHSA-cmr6-9388-xg9g
+    "@huobi-ui/activity-components": set(),                        # MAL-2026-6627 GHSA-h7hg-5749-jc66
+    "@img-hls/vtt.js": set(),                                      # MAL-2026-6628 GHSA-7752-87g2-6jgf
+    "@lexisnexisrisk/insider-threat-platform": set(),              # MAL-2026-6629 GHSA-q77j-rhqv-28m6
+    "@live-backstage-im/communication-chat": set(),                # MAL-2026-6630 GHSA-h887-mrmh-2fjr
+    "@meego-progressive/cdk": set(),                               # MAL-2026-6632 GHSA-f7vv-5p73-c4rr
+    "@ms-ows/logging": set(),                                      # MAL-2026-6633 GHSA-46wp-9qm3-2vv4
+    "@multformats/multiaddr": set(),                               # MAL-2026-6634 GHSA-92ch-4pr4-pmgj
+    "@orbis-lr-sdk/orbis-lr-sdk": set(),                           # MAL-2026-6635 GHSA-8w2w-98mc-3qqc
+    "@partner-apps/ui": set(),                                     # MAL-2026-6636 GHSA-5vf9-5xgw-84rw
+    "@webda-infra-ui/static-images": set(),                        # MAL-2026-6652 GHSA-pp6c-f2ph-gxmm
+    "@doctolib-apps/native-personalized-services": set(),          # MAL-2026-4186 GHSA-hgpx-hj7x-3cx9
+    "@serviceshub/x-web-core": set(),                              # MAL-2026-4440 GHSA-xjvj-r6v9-q99q
+    "@trackking/core": set(),                                      # MAL-2026-4460 GHSA-2qqx-q4v2-495g
+    "@vivaux/telemetry": set(),                                    # MAL-2026-4463 GHSA-hq2r-xw8m-v4q8
+    "@vtmn-play/react": set(),                                     # MAL-2026-4464 GHSA-vpcv-xpqm-w228
+    "@web-3d-tool/sdk": set(),                                     # MAL-2026-4465 GHSA-qmfq-m796-v557
+    "@hatcha-captcha/core": set(),                                 # MAL-2026-5655 GHSA-2v2g-hp62-vhwj
+    "@marketplace-shared/components": set(),                       # MAL-2026-5658 GHSA-5cx4-3w47-xm4h
+    "@snowsight/debug-tooling": set(),                             # MAL-2026-5662 GHSA-c33m-qf7q-vg8q
+    "@tenforce/toolbox-fontmap": set(),                            # MAL-2026-5663 GHSA-4pgr-qgvj-c2wh
+    "@tribe-digital/shopify-starter-theme": set(),                 # MAL-2026-5664 GHSA-6cc8-4vwg-c56v
+    "@visma-net-platform/module-navigator": set(),                 # MAL-2026-5665 GHSA-r344-wgf5-fqf4
+    "commons-ui-styles": set(),                                    # MAL-2026-5437 GHSA-3w2q-76fx-mcgj
+    "corporate-front-vue": set(),                                  # MAL-2026-5438 GHSA-j2pq-r63w-52j5
+    "housecall-ui": set(),                                         # MAL-2026-5446 GHSA-h2mj-mwm8-g9qp
+    "privacy-sdk": set(),                                          # MAL-2026-5451 GHSA-wrgr-9636-hfmh
+    "experian-analytics-components": set(),                        # MAL-2026-5667 GHSA-wg43-49xc-v68q
+    "fed-callnative": set(),                                       # MAL-2026-5668 GHSA-hwp4-g2h4-2v7r
+    "pui-diagnostics": set(),                                      # MAL-2026-5670 GHSA-96f9-39p2-gjwm
+    "sitecore-mm-component-style": set(),                          # MAL-2026-5671 GHSA-mp9q-fvp5-ww2c
+    "sea-bound-siren": set(),                                      # MAL-2026-5693 GHSA-cp5x-35vp-rj7j
+    "voyager-web": set(),                                          # MAL-2026-5696 GHSA-3vr9-xc7m-h6qx
+    "web-model-bridge": set(),                                     # MAL-2026-5697 GHSA-69cw-2vc8-9jm7
+    "transportator": set(),                                        # MAL-2026-5700 GHSA-6wwm-jx4f-p4xq
+    "vite-react-toolkit": set(),                                   # MAL-2026-5701 GHSA-4vwq-cp5w-hx5g
+    "nativescript-swisspost-pcc-creative-editor": set(),           # MAL-2026-5793 GHSA-h5g9-q449-jr2c
+    "simple-auth-basic": set(),                                    # MAL-2026-2905 GHSA-4v3c-c5pj-m2qq
+    "swplayer-react-sl": set(),                                    # MAL-2026-2906 GHSA-959p-q4g9-cc8r
+    "modern-events": set(),                                        # MAL-2026-2914 GHSA-wwr2-883g-52c2
+    "path-extend": set(),                                          # MAL-2026-2929 GHSA-qvmc-2hcj-8h4f
+    "ccl-component-resources": set(),                              # MAL-2024-1959 GHSA-892p-5g9m-p64x
+    "launch-darkly-js": set(),                                     # MAL-2026-1050 GHSA-g8jj-44f9-c9rv
+    "dgxeon-soket": set(),                                         # MAL-2026-1074 GHSA-838q-63vp-c27h
+    "workspace-lint": set(),                                       # MAL-2026-10112 GHSA-2667-2whh-v3mf
+    "workspace-scripts": set(),                                    # MAL-2026-10113 GHSA-pcrx-c762-59jm
+    "motiondnb": set(),                                            # MAL-2026-10145 GHSA-278r-46x5-pfjm
+    "ng-search-api": set(),                                        # MAL-2026-10146 GHSA-rgrc-mmg8-pgrr
+    "mvn-runtime": set(),                                          # MAL-2026-1202 GHSA-5937-7cj9-h84g
+    "ng-vzbootstrap": set(),                                       # MAL-2026-1100 GHSA-25jj-4j8c-cgrq
+    "rnx-align-deps": set(),                                       # MAL-2026-6940 GHSA-q28c-5m68-92hm
+    "vscode-test-web": set(),                                      # MAL-2026-6361 GHSA-vxwh-gqjr-fxcw
+    "kdrive-utils": set(),                                         # MAL-2026-6295 GHSA-v9x6-7mvw-mf22
+    "hs-locale-management": set(),                                 # MAL-2026-6394 GHSA-rv32-4gr2-5g7w
+    "signup-embedder": set(),                                      # MAL-2026-6396 GHSA-8j4q-hx83-pfq9
+    "data-fetching-client": set(),                                 # MAL-2026-6411 GHSA-j99m-jc5r-9w58
+    "nabisco": set(),                                              # MAL-2026-6412 GHSA-m97m-v5gv-jm47
+    "two-factor-prompt-lib": set(),                                # MAL-2026-6414 GHSA-94jg-r3hx-4v8v
+    "xrblocks-remote-control": set(),                              # MAL-2026-6530 GHSA-24xr-qqmw-jvvf
+    "rbac-auth": set(),                                            # MAL-2026-5873 GHSA-vhxh-pphh-cjmr
+    "pampipes": set(),                                             # MAL-2026-5872 GHSA-j43p-473c-2jjx
+    "hot-validation-sdk": set(),                                   # MAL-2026-5870 GHSA-86rx-hcgg-q42r
+    "fabric-graphics": set(),                                      # MAL-2026-5869 GHSA-p7vq-w45x-hmmj
+    "terminal-structured-logger": set(),                           # MAL-2026-5867 GHSA-9ggp-5rq8-jmff
+    "terminal-pretty-logger": set(),                               # MAL-2026-5866 GHSA-2266-qhvj-h8r5
+    "vemos-sdk": set(),                                            # MAL-2026-5855 GHSA-xfv6-m3cj-53m7
+    "vite-enhancer-config": set(),                                 # MAL-2026-5850 GHSA-gmwm-6xjg-8wxr
+    "slow-surf": set(),                                            # MAL-2026-5848 GHSA-4qxq-82wv-jq32
+    "reading-cookies": set(),                                      # MAL-2026-5847 GHSA-mf62-v96j-mg7g
+    "prettier_v2": set(),                                          # MAL-2026-5846 GHSA-cmfj-34j9-8w66
+    "browserslist-db-sync": set(),                                 # MAL-2026-5842 GHSA-mfw9-5hqc-vc53
+    "index-ulid": set(),                                           # MAL-2026-5827 GHSA-95pm-8vrw-2wrp
+    "base65-85x": set(),                                           # MAL-2026-6704 GHSA-mv5w-mcrv-wmx9
+    "vue-demi-fix": set(),                                         # MAL-2026-6702 GHSA-p53q-mf26-4h26
+    "procwire": set(),                                             # MAL-2026-6687 GHSA-5r42-357x-f2mx
+    "terminal-prettier": set(),                                    # MAL-2026-6676 GHSA-m8cr-hv9p-pg3f
+    "wac-atl-context": set(),                                      # MAL-2026-6671 GHSA-hx4g-w4gr-x32f
+    "pvd3": set(),                                                 # MAL-2026-6669 GHSA-4m95-g5w6-4x4w
+    "cmp-api-stub": set(),                                         # MAL-2026-6662 GHSA-q9xg-g7r9-mqrx
+    "clx-cookieparser": set(),                                     # MAL-2026-6661 GHSA-jpg2-3r22-63v7
+    "bundrix": set(),                                              # MAL-2026-6658 GHSA-vrw9-m2mj-2fp9
+    "app-hotmart-blog-headless": set(),                            # MAL-2026-6654 GHSA-vq57-p4j4-v553
+    "clx-cookie-signature": set(),                                 # MAL-2026-6141 GHSA-vwwm-x6xj-cfmf
+    "ratelimitsucks": set(),                                       # MAL-2026-6135 GHSA-x94f-fgw2-crm2
+    "routecraft": set(),                                           # MAL-2026-6229 GHSA-mw8m-x3ph-h3x7
+    "endpointmap": set(),                                          # MAL-2026-6588 GHSA-p3qr-5g48-8w89
+
+    # Pinned-version npm malware packages (July 22-24 2026)
+    # Packages with exact known-malicious versions; pin these.
+    "analysis-chart": {
+        "2.0.8", "2.0.9", "2.0.10", "2.0.11", "2.0.12", "2.0.13", "2.0.14",
+        "2.0.15", "2.0.16", "2.0.17", "2.0.18", "2.0.19", "2.0.20", "2.0.21",
+        "2.0.22", "2.0.23", "2.0.24", "2.0.25", "2.0.26", "2.0.27", "2.0.28",
+    },                                                              # MAL-2026-10890 GHSA-2h56-6c2c-2475
+    "@apexfdn/apex": {
+        "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8",
+        "1.0.9", "1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16",
+        "1.0.17", "1.0.18", "1.0.19", "1.0.20", "1.0.21", "1.0.22", "1.0.23", "1.0.24",
+        "1.0.25", "1.0.26", "1.0.27", "1.0.28", "1.0.29", "1.0.30", "1.0.31", "1.0.32",
+    },                                                              # MAL-2026-10979 GHSA-w63r-vpcf-2wwf
+    "svgcraft-core": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+    },                                                              # MAL-2026-6715 GHSA-j9vc-q728-qcx4
+    "date-fns-lite": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6",
+        "1.0.7", "1.0.8", "1.0.9", "1.0.10", "1.0.11", "1.0.12",
+    },                                                              # MAL-2026-6722
+    "vega-lite-next": {"19.2.1"},                                  # MAL-2026-6709
+    "ts-eslinter": {"1.0.0"},                                      # MAL-2026-6896 GHSA-h269-vrf6-9f75
+    "pino-slite": {"4.1.12", "4.1.16"},                            # MAL-2026-6078
+    "params-valid-js": {"1.0.0", "1.0.1", "1.0.3"},               # MAL-2026-5988
+    "req-parmas-valid": {"1.0.2"},                                 # MAL-2026-5991
+    "requests-middleware": {"1.0.2"},                              # MAL-2026-6096
+    "electron-internal-utils": {"1.0.0"},                          # MAL-2026-6186
+    "ts-bn-lint-helper": {"3.1.19"},                               # MAL-2026-6318
+    "hyperpure": {"1.0.0"},                                        # MAL-2026-6370
+    "macos-ci-utils": {"1.0.0", "1.0.1"},                          # MAL-2026-6378
+    "path-addon": {
+        "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7",
+    },                                                              # MAL-2026-3311
+    "date-format-utils-xz": {"1.0.3", "1.0.4"},                   # MAL-2026-11001
+    "signzy-field-level-encrypter": {"12.9.12", "12.9.13"},        # MAL-2026-10972
+    "airbnb-airlock": {"99.0.0"},                                  # MAL-2026-6293
+    "myebaynode": {"99.0.0"},                                      # MAL-2026-6296
+    "@outmarket/utils": {"9.9.9", "9.9.10", "9.9.11"},            # MAL-2026-6292
+    "@atlaskit-internal_.smart-card/hover-card": {"99.0.0"},       # MAL-2026-10870
+    "@azure-lab-services/ml-ts": {"99.0.0"},                       # MAL-2026-10871
+    "crosswalker": {"1.0.0", "1.0.1", "18.2.1"},                  # MAL-2024-2031
+    "oauth-connect": {"0.1.1", "2.0.1"},                           # MAL-2024-2779
+    "@uwr/colors": {"1.3.6"},                                      # MAL-2026-10179
+    "consumerweb": {"2200.4.2"},                                   # MAL-2026-10181
+    "fkext-browser-min": {"1.0.14"},                               # MAL-2026-10183
+    "conversionvaluemanager": {"3.0.0"},                           # MAL-2026-10084
+    "bytecraft": {"1.5.0", "2.0.0"},                               # MAL-2026-10891
+    "flow-eslint-oxidized": {"0.0.1", "74.2.1"},                   # MAL-2026-10896
+    "@irys-solutions/odesa-main": {"1.0.0"},                       # MAL-2026-10881
+    "hardhat-gas-tracker": {"1.0.1"},                              # MAL-2026-11020
+    "app-data-ist": {"2.1.6"},                                     # MAL-2026-10994
+    "habingeer": {"2.1.6"},                                        # MAL-2026-10995
+    "application-util": {"2.1.6"},                                 # MAL-2026-11000
+    "habinger": {"2.1.6"},                                         # MAL-2026-11002
+    "web3-terminal": {"2.1.6"},                                    # MAL-2026-11007
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
