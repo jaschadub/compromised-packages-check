@@ -1129,7 +1129,7 @@ PYPI_BAD: dict[str, set[str]] = {
     "trongridmy": {"0.0.1"},                             # MAL-2026-10930
     # defi-kit / roles-royce: DeFi-themed credential stealers; both at 2.1.1.
     "defi-kit": {"2.1.1"},                               # MAL-2026-10926
-    "roles-royce": {"2.1.1"},                            # MAL-2026-10927
+    "roles-royce": {"2.1.0", "2.1.1"},                      # MAL-2026-10927
     # Tinkoff/DWH dep-confusion cluster: high-version packages (0.0.1, 8.5.x)
     # targeting internal Tinkoff and data-warehouse packages.
     "dwh-kafka-client": {"0.0.1"},                       # MAL-2026-10915
@@ -1158,6 +1158,22 @@ PYPI_BAD: dict[str, set[str]] = {
     # make-helper / dev-helper-bg: generic helper package malware cluster.
     "make-helper": {"0.1.0", "0.1.1"},                  # MAL-2026-10991
     "dev-helper-bg": {"0.1.3", "0.1.4", "0.1.6", "0.1.7"},  # MAL-2026-10992
+    # mrmustard legitimate-package compromise — July 25 2026
+    # XanaduAI/MrMustard#656; OSV MAL-2026-11049
+    "mrmustard": {"0.7.4"},                              # MAL-2026-11049
+    # discordnv: Discord token / Roblox cookie stealer — July 25 2026
+    # OSV MAL-2026-11050 / bad-packages.kam193.eu
+    "discordnv": {"0.8.0"},                              # MAL-2026-11050
+    # trongridy: Tron private key exfiltrator — July 25 2026
+    # OSV MAL-2026-11051 / bad-packages.kam193.eu
+    "trongridy": {"0.0.1"},                              # MAL-2026-11051
+    # intel-cicd-repo-infrastructure: host info exfiltrator — July 25 2026
+    # OSV MAL-2026-11046 / bad-packages.kam193.eu
+    "intel-cicd-repo-infrastructure": {"0.0.0", "1.0.0"},   # MAL-2026-11046
+    # karpatkey / karpatkit dep-confusion credential exfiltrators — July 25 2026
+    # OSV MAL-2026-11047 / MAL-2026-11048 / bad-packages.kam193.eu
+    "karpatkey": {"2.1.1"},                              # MAL-2026-11047
+    "karpatkit": {"2.1.0", "2.1.1"},                     # MAL-2026-11048
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5661,6 +5677,22 @@ NPM_BAD: dict[str, set[str]] = {
     "application-util": {"2.1.6"},                                 # MAL-2026-11000
     "habinger": {"2.1.6"},                                         # MAL-2026-11002
     "web3-terminal": {"2.1.6"},                                    # MAL-2026-11007
+    # CodeLake Research install-time droppers — July 25 2026
+    # OSV MAL-2026-11042 / MAL-2026-11043 / MAL-2026-11044
+    "faust-cont": {"1.0.0"},                                       # MAL-2026-11042
+    "supplyhub": {"1.0.2"},                                        # MAL-2026-11043
+    "tailwind-gutenberg-block-zero": {"1.0.0"},                    # MAL-2026-11044
+    # @daylightqc/date-fmt-lite: malicious domain C2 — July 25 2026
+    # OSV MAL-2026-11041 / OpenSSF detection
+    "@daylightqc/date-fmt-lite": {"1.0.0", "1.0.1", "1.1.1"},     # MAL-2026-11041
+    # subapp-pkg-util: dep-confusion high-version — July 25 2026
+    # OSV MAL-2026-11045
+    "subapp-pkg-util": {"99.0.1"},                                 # MAL-2026-11045
+    # app-data-layer / app-data-lts / app-node-layer: full-compromise wildcards — July 25 2026
+    # GHSA-346c-3w9c-8pmh / GHSA-c6xr-m3x3-23fm / GHSA-4xc7-2jx9-rp5j
+    "app-data-layer": set(),                                       # MAL-2026-11052 GHSA-346c-3w9c-8pmh
+    "app-data-lts": set(),                                         # MAL-2026-11053 GHSA-c6xr-m3x3-23fm
+    "app-node-layer": set(),                                       # MAL-2026-11054 GHSA-4xc7-2jx9-rp5j
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
