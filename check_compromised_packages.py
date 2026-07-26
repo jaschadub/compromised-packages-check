@@ -1174,6 +1174,9 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-11047 / MAL-2026-11048 / bad-packages.kam193.eu
     "karpatkey": {"2.1.1"},                              # MAL-2026-11047
     "karpatkit": {"2.1.0", "2.1.1"},                     # MAL-2026-11048
+    # blessclient: host-info exfiltrator impersonating Netflix BLESS SSH tool — July 25 2026
+    # Overrides install command to exfiltrate IP/username; OSV MAL-2026-11067
+    "blessclient": {"0.0.1", "0.0.2"},                   # MAL-2026-11067
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5693,6 +5696,25 @@ NPM_BAD: dict[str, set[str]] = {
     "app-data-layer": set(),                                       # MAL-2026-11052 GHSA-346c-3w9c-8pmh
     "app-data-lts": set(),                                         # MAL-2026-11053 GHSA-c6xr-m3x3-23fm
     "app-node-layer": set(),                                       # MAL-2026-11054 GHSA-4xc7-2jx9-rp5j
+    # PayPal / f0 dep-confusion cluster (July 25 2026) — internal PayPal service names
+    # published at v28.0.0 (dep-confusion probe); all communicate with malicious C2 domain
+    # OSV MAL-2026-11055 through MAL-2026-11063; MAL-2023-1491 / MAL-2023-8293 updated with 28.0.0 variant
+    "fundraiserservicepp": {"1.5.0"},                              # MAL-2026-11055
+    "gpaas-paypal": {"28.0.0"},                                    # MAL-2026-11056
+    "merchantprefsservice-paypal": {"28.0.0"},                     # MAL-2026-11057
+    "payoutsvettingserv-paypal": {"28.0.0"},                       # MAL-2026-11058
+    "pp-react-ui5": {"28.0.0"},                                    # MAL-2026-11059
+    "f0-form-manipulator": {"28.0.0"},                             # MAL-2026-11060
+    "identityscimapiserv": {"28.0.0"},                             # MAL-2026-11061
+    "preferenceslifecycle-paypal": {"28.0.0"},                     # MAL-2026-11062
+    "xo-member-components": {"28.0.0"},                            # MAL-2026-11063
+    "f0-data-constructor": {"1.0.0", "28.0.0"},                    # MAL-2023-1491 (28.0.0 added Jul 25)
+    "f0-fpti-tracking-manager": {"5.6.8", "28.0.0"},               # MAL-2023-8293 (28.0.0 added Jul 25)
+    # Misc npm malware — July 25 2026
+    # OSV MAL-2026-11064 / MAL-2026-11065 / MAL-2026-11066
+    "page-navigation": {"1.0.1"},                                  # MAL-2026-11064
+    "swiper_angular": {"5.9999.0"},                                # MAL-2026-11065
+    "@ks-radar/radar": {"22.0.0"},                                 # MAL-2026-11066
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
