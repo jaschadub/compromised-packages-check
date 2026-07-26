@@ -1167,6 +1167,21 @@ New advisory? Open an issue or PR adding entries to `NPM_BAD` / `PYPI_BAD`
 - [OSV MAL-2026-11052 / GHSA-346c-3w9c-8pmh — app-data-layer npm full-compromise (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11052)
 - [OSV MAL-2026-11053 / GHSA-c6xr-m3x3-23fm — app-data-lts npm full-compromise (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11053)
 - [OSV MAL-2026-11054 / GHSA-4xc7-2jx9-rp5j — app-node-layer npm full-compromise (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11054)
+- [OSV MAL-2026-11055 — fundraiserservicepp npm PayPal/f0 dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11055)
+- [OSV MAL-2026-11056 — gpaas-paypal npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11056)
+- [OSV MAL-2026-11057 — merchantprefsservice-paypal npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11057)
+- [OSV MAL-2026-11058 — payoutsvettingserv-paypal npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11058)
+- [OSV MAL-2026-11059 — pp-react-ui5 npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11059)
+- [OSV MAL-2026-11060 — f0-form-manipulator npm PayPal/f0 dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11060)
+- [OSV MAL-2026-11061 — identityscimapiserv npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11061)
+- [OSV MAL-2026-11062 — preferenceslifecycle-paypal npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11062)
+- [OSV MAL-2026-11063 — xo-member-components npm PayPal dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11063)
+- [OSV MAL-2023-1491 — f0-data-constructor npm malicious C2 (updated July 25 2026 with v28.0.0)](https://osv.dev/vulnerability/MAL-2023-1491)
+- [OSV MAL-2023-8293 — f0-fpti-tracking-manager npm malicious C2 (updated July 25 2026 with v28.0.0)](https://osv.dev/vulnerability/MAL-2023-8293)
+- [OSV MAL-2026-11064 — page-navigation npm malicious domain C2 (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11064)
+- [OSV MAL-2026-11065 — swiper_angular npm typosquat dep-confusion (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11065)
+- [OSV MAL-2026-11066 — @ks-radar/radar npm malicious commands + C2 (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11066)
+- [OSV MAL-2026-11067 — blessclient PyPI host-info exfiltrator (July 25 2026)](https://osv.dev/vulnerability/MAL-2026-11067)
 
 ## License
 
