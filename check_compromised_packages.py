@@ -342,7 +342,12 @@ the Telegram bot / pyrogram stealer cluster (Oct 2025 – Feb 2026;
 OSV MAL-2025-191874 through MAL-2025-193011 and MAL-2026-42/96/236/237/325/326/
 468/470/623/930/931/934/935/937), and the July 20 2026 PyPI batch
 (telebot-bot-run, kimichat, kimitalk, nemopush, vantrala, neroteam-v1,
-paperclip-ai; OSV MAL-2026-10863 through MAL-2026-10869).
+paperclip-ai; OSV MAL-2026-10863 through MAL-2026-10869), the July 22–25 2026
+npm/PyPI multi-campaign wave (~283 packages; MAL-2026-10872 through
+MAL-2026-11067), and the July 26–27 2026 npm/PyPI malware batch
+(random-ua-generator PyPI keylogger, clerk-next-fix-auth-protection npm
+Clerk.js impersonator, whs4_deu/whs4_eud/wsh4_edu npm malware cluster;
+OSV MAL-2026-11068 through MAL-2026-11072).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -355,7 +360,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-21
+Date:      2026-07-27
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1177,6 +1182,10 @@ PYPI_BAD: dict[str, set[str]] = {
     # blessclient: host-info exfiltrator impersonating Netflix BLESS SSH tool — July 25 2026
     # Overrides install command to exfiltrate IP/username; OSV MAL-2026-11067
     "blessclient": {"0.0.1", "0.0.2"},                   # MAL-2026-11067
+    # random-ua-generator: keylogger / environment exfiltrator — July 26 2026
+    # Starts a keylogger on import and exfiltrates data; source: bad-packages.kam193.eu
+    # OSV MAL-2026-11068
+    "random-ua-generator": {"0.0.1"},                    # MAL-2026-11068
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5715,6 +5724,15 @@ NPM_BAD: dict[str, set[str]] = {
     "page-navigation": {"1.0.1"},                                  # MAL-2026-11064
     "swiper_angular": {"5.9999.0"},                                # MAL-2026-11065
     "@ks-radar/radar": {"22.0.0"},                                 # MAL-2026-11066
+    # Misc npm malware — July 26-27 2026
+    # clerk-next-fix-auth-protection: Clerk.js auth-library impersonator, suspicious high
+    # versions (8.8.8, 7.7.7); detected by OpenSSF Package Analysis. OSV MAL-2026-11069
+    # whs4_deu / whs4_eud / wsh4_edu: malware cluster (similar naming pattern),
+    # all detected by OpenSSF Package Analysis. OSV MAL-2026-11070/11071/11072
+    "clerk-next-fix-auth-protection": {"8.8.8", "7.7.7"},        # MAL-2026-11069
+    "whs4_deu": {"1.0.1"},                                        # MAL-2026-11070
+    "whs4_eud": {"1.0.1"},                                        # MAL-2026-11071
+    "wsh4_edu": {"1.0.0"},                                        # MAL-2026-11072
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
