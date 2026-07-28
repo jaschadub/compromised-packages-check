@@ -347,7 +347,18 @@ npm/PyPI multi-campaign wave (~283 packages; MAL-2026-10872 through
 MAL-2026-11067), and the July 26–27 2026 npm/PyPI malware batch
 (random-ua-generator PyPI keylogger, clerk-next-fix-auth-protection npm
 Clerk.js impersonator, whs4_deu/whs4_eud/wsh4_edu npm malware cluster;
-OSV MAL-2026-11068 through MAL-2026-11072).
+OSV MAL-2026-11068 through MAL-2026-11072), and the July 27–28 2026
+npm/PyPI malware wave (49 npm packages across 11 campaigns:
+thirdweb/RainbowKit/log-taker/polymarket typosquat extension,
+ts-escrow/escro TypeScript typosquats, @sqlite-frame/@sqlite-tag
+SQLite malware cluster, @thone33 scope extension, WhatsApp/Baileys/
+kalipto/fazz credential cluster, @my_name_is_khn express-security
+cluster, express-self-destruct/timer cluster, edu-npm postinstall
+exfiltrators, txs-* SDK cluster, @heartlandone-private/@ceeferenderer
+dep-confusion, and misc malware; OSV MAL-2026-2406/2407/5529/5550–5555/
+5623/5624/5712/5723/5772/5922/6097/6319/6320/6338–6340/6342–6345/6439/
+11073–11093); plus cfgzen PyPI native-module infostealer 7 versions
+(OSV MAL-2026-11094).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -360,7 +371,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-27
+Date:      2026-07-28
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1186,6 +1197,10 @@ PYPI_BAD: dict[str, set[str]] = {
     # Starts a keylogger on import and exfiltrates data; source: bad-packages.kam193.eu
     # OSV MAL-2026-11068
     "random-ua-generator": {"0.0.1"},                    # MAL-2026-11068
+    # cfgzen: native-module infostealer (downloads encrypted blob, decrypts to executable) — July 27 2026
+    # PTH file embedded since 1.0.6 triggers malicious code at import; VirusTotal confirmed.
+    # OSV MAL-2026-11094; source: bad-packages.kam193.eu
+    "cfgzen": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},  # MAL-2026-11094
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -4633,8 +4648,8 @@ NPM_BAD: dict[str, set[str]] = {
     "express-ini": {"12.1.10"},  # MAL-2026-10505
     "@omniwatch-wick/cli": {"0.1.2"},  # MAL-2026-10486
     "@outsmartly/metaobjects": {"0.3.3-rc.1"},  # MAL-2026-10487
-    "permcarmserver": {"1.0.0"},  # MAL-2026-10488
-    "permcserver": {"1.0.0", "1.0.1", "1.0.3"},  # MAL-2026-10489
+    "permcarmserver": set(),       # MAL-2026-10488 (range >=0)
+    "permcserver": set(),          # MAL-2026-10489 (range >=0; versions 1.0.0-1.0.4 published)
     "react-icons-svgo": {"1.0.0", "1.5.3", "1.5.4"},  # MAL-2026-10482
     "route-processor": {"3.1.5"},  # MAL-2026-10483
     "@sectest429/hello-npm-world": {"1.0.3"},  # MAL-2026-10478
@@ -5733,6 +5748,93 @@ NPM_BAD: dict[str, set[str]] = {
     "whs4_deu": {"1.0.1"},                                        # MAL-2026-11070
     "whs4_eud": {"1.0.1"},                                        # MAL-2026-11071
     "wsh4_edu": {"1.0.0"},                                        # MAL-2026-11072
+    # thirdweb/RainbowKit/log-taker typosquat extension — July 27 2026
+    # Same typosquat campaign as thirdwb/thirdwebb (July 1 batch); additional variants
+    # and RainbowKit/log-taker look-alike packages. All SEMVER >=0 ranges.
+    # OSV MAL-2026-6338/6339/6340/6342/6343/6344/6345/6439
+    "log-taker": set(),                                            # MAL-2026-6338
+    "rainbokit": set(),                                            # MAL-2026-6339
+    "rainbownkit": set(),                                          # MAL-2026-6340
+    "therdweb": set(),                                             # MAL-2026-6342
+    "thidweb": set(),                                              # MAL-2026-6343
+    "thirdwebjs": set(),                                           # MAL-2026-6344
+    "thurdweb": set(),                                             # MAL-2026-6345
+    "polymarket-stake-maths": set(),                               # MAL-2026-6439
+    # ts-escrow / ts-escro TypeScript escrow typosquats — July 27 2026
+    # OSV MAL-2026-6319/6320
+    "ts-escro": set(),                                             # MAL-2026-6319
+    "ts-escrow": set(),                                            # MAL-2026-6320
+    # @sqlite-frame / @sqlite-tag sqlite-related malware cluster — July 27 2026
+    # New packages in same family as @sqlite-clone/nodesql and @sqlite-group/sql-creator.
+    # OSV MAL-2026-11075/11076/11077
+    "@sqlite-frame/createsql": set(),                              # MAL-2026-11075
+    "@sqlite-tag/schema-generator": set(),                         # MAL-2026-11076
+    "@sqlite-tag/sql-creator": set(),                              # MAL-2026-11077
+    # @thone33 scope extension — July 27 2026
+    # New package in same attacker scope as @thone33/analytics-injector and @thone33/core-utils.
+    # OSV MAL-2026-11078 GHSA-vxmg-ff8j-2552
+    "@thone33/react-helpers": set(),                               # MAL-2026-11078
+    # WhatsApp/Baileys/kalipto/fazz credential-exfiltration cluster — July 27 2026
+    # Packages impersonating the WhatsApp Baileys library and social-media utilities;
+    # exfiltrate credentials and session data. OSV MAL-2026-5922/6097/11073/11079-11081/11085-11088
+    "@fazzcode/baileys": set(),                                    # MAL-2026-11073
+    "@vinnxcode/libsignal-node": set(),                            # MAL-2026-11079
+    "@vinnxcode/xbailsync": set(),                                 # MAL-2026-11080
+    "amanexzyra-baileys": set(),                                   # MAL-2026-11081
+    "sixbails": set(),                                             # MAL-2026-11088
+    "fazzanime": set(),                                            # MAL-2026-11085
+    "fazzgram": set(),                                             # MAL-2026-11086
+    "kalipto-runtime": set(),                                      # MAL-2026-11087
+    "@kalipto/local": set(),                                       # MAL-2026-5922
+    "roblox-api-client": set(),                                    # MAL-2026-6097
+    # @my_name_is_khn express-security-tool cluster — July 27 2026
+    # Four versioned malicious Express "security" packages by the same actor.
+    # OSV MAL-2026-5550/5551/5552/11074
+    "@my_name_is_khn/express-security-tool": set(),                # MAL-2026-5550
+    "@my_name_is_khn/express-security-tool-v1": set(),             # MAL-2026-5551
+    "@my_name_is_khn/express-security-tool-v2": set(),             # MAL-2026-11074
+    "@my_name_is_khn/express-security-tool-v3": set(),             # MAL-2026-5552
+    # express-self-destruct / express-timer malware cluster — July 27 2026
+    # Packages publishing under "self-destruct" and "timer" Express middleware names;
+    # all OSV SEMVER >=0. OSV MAL-2026-5553/5554/5555/11084
+    "express-self-destruct": set(),                                # MAL-2026-5553
+    "express-self-destruct1": set(),                               # MAL-2026-11084
+    "express-self-destruct2": set(),                               # MAL-2026-5554
+    "express-timer": set(),                                        # MAL-2026-5555
+    # edu-npm / demo-probe postinstall exfiltrators — July 27 2026
+    # Packages with "edu" and "demo" names that run malicious postinstall scripts
+    # exfiltrating environment data. OSV MAL-2026-5623/5624/5723/5772/11082/11083
+    "edu-npm-dependency-chain-demo": set(),                        # MAL-2026-5623
+    "edu-npm-postinstall-demo2": set(),                            # MAL-2026-5624
+    "edu-npm-helper-alpha": set(),                                 # MAL-2026-11082
+    "edu-npm-helper-beta": set(),                                  # MAL-2026-11083
+    "@ci-lifecycle-test/postinstall-ping": set(),                  # MAL-2026-5723
+    "npx-whoami-demo": set(),                                      # MAL-2026-5772
+    # txs-* transaction SDK malware cluster — July 27 2026
+    # Four packages impersonating a transaction SDK; SEMVER >=0 ranges.
+    # OSV MAL-2026-11089/11090/11091/11092
+    "txs-builder": set(),                                          # MAL-2026-11089
+    "txs-random-lib": set(),                                       # MAL-2026-11090
+    "txs-runner-lib": set(),                                       # MAL-2026-11091
+    "txs-sdk-lib": set(),                                          # MAL-2026-11092
+    # @heartlandone-private dep-confusion — July 27 2026
+    # Dep-confusion probe targeting Heartland One's private FontAwesome Pro registry.
+    # OSV MAL-2026-11093; version 6.3.3 pinned (no >=0 range, dep-confusion probe only).
+    "@heartlandone-private/fontawesome-pro": {"6.3.3"},            # MAL-2026-11093
+    # @ceeferenderer dep-confusion cluster — July 27 2026
+    # Two packages at 99.9.9 targeting Ceef/Erenderer internal SDKs.
+    # OSV MAL-2026-2406/2407 GHSA-mw7m-6vvq-q69p / GHSA-3v4h-w4g3-h6r2; SafeDep primary source.
+    "@ceeferenderer/fe-renderer-sdk": set(),                       # MAL-2026-2406
+    "@ceeferenderer/itg-renderer-sdk": set(),                      # MAL-2026-2407
+    # Misc npm malware — July 27 2026
+    # ap3-components-ui: dep-confusion probe at 9.999.0; SEMVER >=0 range. OSV MAL-2026-10150
+    # llama-tokenizer: LLM-tool typosquat at 1.2.2; SEMVER >=0 range. OSV MAL-2026-10163
+    # v018-axios-cdntest: axios CDN test malware; 4 versions, SEMVER >=0. OSV MAL-2026-5529
+    # jextic-eclib: miscellaneous malware at 1.0.0. OSV MAL-2026-5712
+    "ap3-components-ui": set(),                                    # MAL-2026-10150
+    "llama-tokenizer": set(),                                      # MAL-2026-10163
+    "v018-axios-cdntest": set(),                                   # MAL-2026-5529
+    "jextic-eclib": set(),                                         # MAL-2026-5712
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
