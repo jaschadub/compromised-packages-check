@@ -358,7 +358,27 @@ exfiltrators, txs-* SDK cluster, @heartlandone-private/@ceeferenderer
 dep-confusion, and misc malware; OSV MAL-2026-2406/2407/5529/5550–5555/
 5623/5624/5712/5723/5772/5922/6097/6319/6320/6338–6340/6342–6345/6439/
 11073–11093); plus cfgzen PyPI native-module infostealer 7 versions
-(OSV MAL-2026-11094).
+(OSV MAL-2026-11094), and the July 28–29 2026 npm/PyPI malware wave
+(~60 new packages across 10 campaigns: PayPal/internal dep-confusion
+cluster extension — filifecycleserv-paypal/crm-reportinsightserv-paypal/
+identityauthorizationserv/riskunifiedgatewayserv/stargateproxyserv/
+xo-twofa (OSV MAL-2025-190499/MAL-2026-11095–11105); @array-util/
+dep-confusion (@array-util/nodepull/subsearch; OSV MAL-2026-6084/11095);
+@vaultflow/ dep-confusion (@vaultflow/create-flow/update-flow; OSV
+MAL-2026-11096/11097); motion/tailwind CSS typosquats (motion-forge-css/
+tailwind-motionkit; OSV MAL-2026-11101/11104); @immobiliarelabs/
+backstage-plugin-gitlab binding.gyp worm (7 versions; OSV MAL-2026-6526);
+app-*/api-*-sdk postinstall cluster (6 packages at 2.1.6; OSV MAL-2026-
+11124–11129); streak-*/lib-streak-math cluster (4 packages; OSV
+MAL-2026-11141/11148–11150); xerohub-discord-voice v2/v3 (OSV
+MAL-2026-11154/11155); generic helper/util malware (9 packages; OSV
+MAL-2026-11106–11151); miscellaneous malware (23 packages including
+@crbrc/xbt, json-schema-inspector, nemo-jaws, syspo, rollup-packages-
+polyfill-core, @apexfnd/apex and others; OSV MAL-2026-2785/6406/10115/
+10160/11099/11120–11159); vtranalytic PyPI Telegram-bot RAT (OSV
+MAL-2026-11156); and 3 entry updates: fundraiserserv upgraded to
+any-version wildcard (OSV MAL-2026-5172 SEMVER >=0 range), and
+@daylightqc/date-fmt-lite version 1.1.2 added (OSV MAL-2026-11041)).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -371,7 +391,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-28
+Date:      2026-07-29
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1201,6 +1221,11 @@ PYPI_BAD: dict[str, set[str]] = {
     # PTH file embedded since 1.0.6 triggers malicious code at import; VirusTotal confirmed.
     # OSV MAL-2026-11094; source: bad-packages.kam193.eu
     "cfgzen": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},  # MAL-2026-11094
+    # vtranalytic: Telegram-bot RAT disguised as VPS control system (July 28 2026)
+    # Polling loop executes remote shell commands; walks filesystem for .py/.json/.conf/.env
+    # SSH keys and credentials exfiltrated via api.telegram.org sendDocument.
+    # OSV MAL-2026-11156; Amazon Inspector detection.
+    "vtranalytic": {"9.0.1"},                               # MAL-2026-11156
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -2370,7 +2395,7 @@ NPM_BAD: dict[str, set[str]] = {
     # Detected by OpenSSF Package Analysis communicating with a domain associated with
     # malicious activity. Single malicious version pinned (no >=0 range in OSV record).
     # OSV MAL-2026-5172
-    "fundraiserserv": {"1.0.0"},
+    "fundraiserserv": set(),  # any version — OSV SEMVER >=0 range (updated Jul 28 2026)
     # nodemon-pack / webpack-json npm typosquats (June 3 2026)
     # Full-compromise typosquats (of nodemon and webpack); GHSA flags any installed
     # version as fully malicious. SEMVER >=0 range in OSV — use empty-set wildcard.
@@ -5711,7 +5736,7 @@ NPM_BAD: dict[str, set[str]] = {
     "tailwind-gutenberg-block-zero": {"1.0.0"},                    # MAL-2026-11044
     # @daylightqc/date-fmt-lite: malicious domain C2 — July 25 2026
     # OSV MAL-2026-11041 / OpenSSF detection
-    "@daylightqc/date-fmt-lite": {"1.0.0", "1.0.1", "1.1.1"},     # MAL-2026-11041
+    "@daylightqc/date-fmt-lite": {"1.0.0", "1.0.1", "1.1.1", "1.1.2"},  # MAL-2026-11041 (1.1.2 added Jul 28)
     # subapp-pkg-util: dep-confusion high-version — July 25 2026
     # OSV MAL-2026-11045
     "subapp-pkg-util": {"99.0.1"},                                 # MAL-2026-11045
@@ -5835,6 +5860,111 @@ NPM_BAD: dict[str, set[str]] = {
     "llama-tokenizer": set(),                                      # MAL-2026-10163
     "v018-axios-cdntest": set(),                                   # MAL-2026-5529
     "jextic-eclib": set(),                                         # MAL-2026-5712
+    # -----------------------------------------------------------------------
+    # July 28 2026 npm/PyPI malware wave (~60 new packages across 10 campaigns)
+    # -----------------------------------------------------------------------
+    # PayPal/internal dep-confusion cluster extension — July 27-28 2026
+    # Targets PayPal internal service names with dep-confusion probes; GHSA/OSV
+    # confirmed malicious payloads communicating with external C2.
+    # OSV MAL-2025-190499 / MAL-2026-11095-11105
+    "filifecycleserv-paypal": {"3.0.0"},                          # MAL-2025-190499
+    "crm-reportinsightserv-paypal": set(),                         # MAL-2026-11098
+    "identityauthorizationserv": set(),                            # MAL-2026-11100
+    "riskunifiedgatewayserv": set(),                               # MAL-2026-11102
+    "stargateproxyserv": set(),                                    # MAL-2026-11103
+    "xo-twofa": set(),                                             # MAL-2026-11105
+    # @array-util/ dep-confusion cluster — June-July 28 2026
+    # Ships a single obfuscated JS file phoning home; targets private @array-util scope.
+    # OSV MAL-2026-6084 / MAL-2026-11095
+    "@array-util/nodepull": {"1.0.0", "1.1.0", "1.1.1"},         # MAL-2026-6084
+    "@array-util/subsearch": set(),                                # MAL-2026-11095
+    # @vaultflow/ dep-confusion cluster — July 28 2026
+    # OSV MAL-2026-11096 / MAL-2026-11097; GHSA any-computer-fully-compromised warning.
+    "@vaultflow/create-flow": set(),                               # MAL-2026-11096
+    "@vaultflow/update-flow": set(),                               # MAL-2026-11097
+    # motion-forge-css / tailwind-motionkit CSS framework typosquats — July 28 2026
+    # Impersonate CSS animation / Tailwind utility packages; SEMVER >=0 range.
+    # OSV MAL-2026-11101 / MAL-2026-11104
+    "motion-forge-css": set(),                                     # MAL-2026-11101
+    "tailwind-motionkit": set(),                                   # MAL-2026-11104
+    # @immobiliarelabs/backstage-plugin-gitlab: binding.gyp worm (June 26 - July 28 2026)
+    # Legitimate Backstage GitLab plugin; 7 specific versions infected by the binding.gyp
+    # worm campaign (June 5 2026). Pin exact versions — this is a legitimate package.
+    # OSV MAL-2026-6526; Amazon Inspector detection.
+    "@immobiliarelabs/backstage-plugin-gitlab": {
+        "1.0.1", "2.1.2", "3.0.3", "4.0.2", "5.2.1", "6.13.1", "7.0.2",
+    },                                                             # MAL-2026-6526
+    # app-*-layer / api-*-sdk postinstall exfiltrator cluster — July 28 2026
+    # Six packages sharing the same 2.1.6 version and malicious postinstall hook
+    # pattern; extension of app-node-layer / app-data-layer (July 25 2026) campaign.
+    # OSV MAL-2026-11124/11125/11126/11127/11128/11129
+    "api-node-sdk": {"2.1.6"},                                    # MAL-2026-11124
+    "api-rust-sdk": {"2.1.6"},                                    # MAL-2026-11125
+    "app-sim-layer": {"2.1.6"},                                   # MAL-2026-11126
+    "app-sima-layer": {"2.1.6"},                                  # MAL-2026-11127
+    "app-soda-layer": {"2.1.6"},                                  # MAL-2026-11128
+    "app-svm-layer": {"2.1.6"},                                   # MAL-2026-11129
+    # streak-*/lib-streak-math postinstall credential cluster — July 28 2026
+    # Packages presenting as "streak tracking" / math utilities; run malicious postinstall
+    # scripts. All at 1.0.0. OSV MAL-2026-11141/11148/11149/11150
+    "lib-streak-math": {"1.0.0"},                                 # MAL-2026-11141
+    "streak-core-lib": {"1.0.0"},                                 # MAL-2026-11148
+    "streak-core-math": {"1.0.0"},                                # MAL-2026-11149
+    "streak-daily-lib": {"1.0.0"},                                # MAL-2026-11150
+    # xerohub-discord-voice malware cluster — July 28 2026
+    # Packages impersonating a Discord voice library; OSV MAL-2026-11154/11155
+    "xerohub-discord-voice-v2": {"1.8.0"},                       # MAL-2026-11154
+    "xerohub-discord-voice-v3": {"3.0.0", "3.0.2", "3.0.3"},    # MAL-2026-11155
+    # Generic helper/utility malware cluster — July 28 2026
+    # Amazon Inspector detections: packages advertising as array/JSON/date/string utilities
+    # but running malicious postinstall scripts or phoning home.
+    # OSV MAL-2026-11106/11107/11108/11118/11119/11130/11142/11147/11151
+    "date-sanitize-helper": {"1.0.0"},                            # MAL-2026-11106
+    "num-format-helper": {"1.0.0"},                               # MAL-2026-11107
+    "string-format-kit": {"1.0.2"},                               # MAL-2026-11108
+    "array-sort-helper": {"1.0.0"},                               # MAL-2026-11118
+    "json-to-table-util": {"1.0.0"},                              # MAL-2026-11119
+    "array-node-utils": {"1.0.9"},                                # MAL-2026-11130
+    "node-array-plus": {"1.0.9"},                                 # MAL-2026-11142
+    "simple-probe-utils": {"1.0.1"},                              # MAL-2026-11147
+    "text-line-parser": {"1.0.0"},                                # MAL-2026-11151
+    # Miscellaneous npm malware — July 28 2026
+    # Mixture of typosquats, dep-confusion probes, and standalone malware packages
+    # detected by Amazon Inspector and OpenSSF Package Analysis.
+    # OSV MAL-2026-2785 / MAL-2025-190499 / MAL-2026-6406 / MAL-2026-10115 / MAL-2026-10160
+    # / MAL-2026-11120-11145 / MAL-2026-11152-11159
+    "nemo-jaws": {"3.99.99", "99.99.9"},                         # MAL-2026-2785
+    "syspo": {"1.0.0", "1.0.1"},                                 # MAL-2026-6406
+    "fmt-date-lite": {"1.0.0"},                                   # MAL-2026-10115
+    "rollup-packages-polyfill-core": {"0.13.7", "0.13.8", "0.14.1"},  # MAL-2026-10160
+    "@ai_/autoprefixers": {"1.2.0"},                              # MAL-2026-11120
+    "@apexfnd/apex": {"1.0.0", "1.0.1"},                         # MAL-2026-11121
+    "@crbrc/xbt": {
+        "1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.2.1",
+    },                                                             # MAL-2026-11122
+    "@yancyyu/agentcli": {"1.9.32"},                             # MAL-2026-11123
+    "basic-vite": {"1.0.0"},                                      # MAL-2026-11131
+    "bianira-ui": {"1.27.0"},                                     # MAL-2026-11132
+    "chain-analyze": {"1.0.2"},                                   # MAL-2026-11133
+    "color-convert-helper": {"1.0.0"},                            # MAL-2026-11134
+    "ethers-secure": {"1.0.0"},                                   # MAL-2026-11135
+    "fluid-type-ui": {"2.0.8"},                                   # MAL-2026-11136
+    "jobber-app-template-react": {"1.0.1"},                      # MAL-2026-11137
+    "json-schema-inspector": {"1.1.4", "1.1.5", "1.1.6", "1.1.7"},  # MAL-2026-11138
+    "kordyn": {"0.9.16", "0.9.18"},                              # MAL-2026-11139
+    "korvica": {"1.0.0"},                                         # MAL-2026-11140
+    "parallely": {"10.0.3"},                                      # MAL-2026-11143
+    "react-puller": {"1.0.0"},                                    # MAL-2026-11144
+    "rollup-runtime-core-polyfills": {"0.0.1"},                  # MAL-2026-11145
+    "sigchain-js": {"1.0.1"},                                     # MAL-2026-11146
+    "demo-awesome-date-parser-test": {
+        "0.0.1", "0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7",
+    },                                                             # MAL-2026-11099
+    "tidal-embed-player": {"1.0.1"},                             # MAL-2026-11152
+    "triage_bot_using_sdkv3": {"2.0.1"},                         # MAL-2026-11153
+    "blots": {"2.1.0"},                                           # MAL-2026-11158
+    "toll_free": {"1.0.1"},                                       # MAL-2026-11159
+    "@mypwn/hawkeye": {"99.0.0"},                                 # MAL-2026-11157
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
