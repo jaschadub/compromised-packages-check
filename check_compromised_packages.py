@@ -5965,6 +5965,31 @@ NPM_BAD: dict[str, set[str]] = {
     "blots": {"2.1.0"},                                           # MAL-2026-11158
     "toll_free": {"1.0.1"},                                       # MAL-2026-11159
     "@mypwn/hawkeye": {"99.0.0"},                                 # MAL-2026-11157
+    # July 29 2026 npm malware wave (11 packages)
+    # -----------------------------------------------------------------------
+    # @joyfill account compromise — July 29 2026
+    # Specific beta/RC versions of legitimate @joyfill UI packages published
+    # with malicious payloads. Pin exact compromised versions only.
+    # OSV MAL-2026-11160 (GHSA-x4p3-wjxx-m4x5) / MAL-2026-11161 (GHSA-887f-rwr9-wp54)
+    "@joyfill/components": {"4.0.0-rc24-2773-beta.4"},            # MAL-2026-11160
+    "@joyfill/layouts": {"0.1.2-2773.beta.0"},                    # MAL-2026-11161
+    # aone-* typosquat cluster — July 29 2026
+    # Pure-malware packages (SEMVER range >=0); any installed version is malicious.
+    # OSV MAL-2026-11162 / MAL-2026-11163 / MAL-2026-11164
+    "aone-kit": set(),                                             # MAL-2026-11162
+    "aone-kit-cli": set(),                                         # MAL-2026-11163
+    "aone-sandbox": set(),                                         # MAL-2026-11164
+    # config/utility typosquat cluster — July 29 2026
+    # Pure-malware packages impersonating config-fetcher / parser / lib utilities.
+    # OSV MAL-2026-11165 / MAL-2026-11166 / MAL-2026-11167 / MAL-2026-11168 / MAL-2026-11169
+    "cloud-config-fetcher": set(),                                 # MAL-2026-11165
+    "lib-mtop": set(),                                             # MAL-2026-11166
+    "local-config-parser": set(),                                  # MAL-2026-11167
+    "postcss-motion-utils": set(),                                 # MAL-2026-11168
+    "smart-config-manager": set(),                                 # MAL-2026-11169
+    # @finxsecdemo/utils security-demo malware — July 29 2026
+    # OSV MAL-2026-11170
+    "@finxsecdemo/utils": {"1.0.2"},                              # MAL-2026-11170
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
