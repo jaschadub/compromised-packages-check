@@ -1226,6 +1226,17 @@ PYPI_BAD: dict[str, set[str]] = {
     # SSH keys and credentials exfiltrated via api.telegram.org sendDocument.
     # OSV MAL-2026-11156; Amazon Inspector detection.
     "vtranalytic": {"9.0.1"},                               # MAL-2026-11156
+    # ml-* dep-confusion cluster — July 30 2026
+    # OSV MAL-2026-11199 / MAL-2026-11200 / MAL-2026-11201 / MAL-2026-11202
+    "ml-data-shared": {"12.0.1", "16.0.1"},                 # MAL-2026-11199
+    "ml-fdbk-shared": {"1.0.0", "2.3.1"},                   # MAL-2026-11200
+    "ml-nps-shared": {"6.0.3", "8.2.3"},                    # MAL-2026-11201
+    "ml-shared": {"6.3.0", "8.8.0"},                        # MAL-2026-11202
+    # phabricator-client dep-confusion / ai-perf-toolkit / mcp-search-server — July 30 2026
+    # OSV MAL-2026-11195 / MAL-2026-11197 / MAL-2026-11198
+    "phabricator-client": {"99.0.0", "99.0.1", "99.0.2", "99.0.3", "99.0.4"},  # MAL-2026-11195
+    "ai-perf-toolkit": {"2.4.2"},                           # MAL-2026-11197
+    "mcp-search-server": {"1.0.0", "2.0.0", "2.0.1"},      # MAL-2026-11198
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -5990,6 +6001,143 @@ NPM_BAD: dict[str, set[str]] = {
     # @finxsecdemo/utils security-demo malware — July 29 2026
     # OSV MAL-2026-11170
     "@finxsecdemo/utils": {"1.0.2"},                              # MAL-2026-11170
+    # July 30 2026 npm malware wave (35 packages)
+    # -----------------------------------------------------------------------
+    # Older OSV IDs freshly confirmed active (modified >= 2026-07-30):
+    # chakll / date-fns-2 / neon-poly-utls pure-malware typosquats.
+    # OSV MAL-2025-1210 / MAL-2025-6086 / MAL-2026-10089
+    "chakll": set(),                                               # MAL-2025-1210
+    "date-fns-2": set(),                                           # MAL-2025-6086
+    "neon-poly-utls": set(),                                       # MAL-2026-10089
+    # Polymarket-impersonating typosquat cluster (July 30 2026)
+    # Pure-malware packages; OSV ranges show introduced:"0" on all.
+    # OSV MAL-2026-3770 / MAL-2026-3771 / MAL-2026-6368 / MAL-2026-6437 /
+    # MAL-2026-6438 / MAL-2026-6469 / MAL-2026-6490 / MAL-2026-6502
+    "prisma-callback": set(),                                      # MAL-2026-3770
+    "request-logger-canary": set(),                                # MAL-2026-3771
+    "decimal-format-utils": set(),                                 # MAL-2026-6368
+    "logfmt-core": set(),                                          # MAL-2026-6437
+    "polymarket-stake-math": set(),                                # MAL-2026-6438
+    "ts-precision": set(),                                         # MAL-2026-6469
+    "data-parser-utils": set(),                                    # MAL-2026-6490
+    "js-client-node": set(),                                       # MAL-2026-6502
+    # @ai-agent-node typosquat cluster — July 30 2026
+    # OSV MAL-2026-11171 / MAL-2026-11172 / MAL-2026-11173
+    "@ai-agent-node/agent-node": set(),                            # MAL-2026-11171
+    "@ai-agent-node/createnode": set(),                            # MAL-2026-11172
+    "@ai-agent-node/nodesql": set(),                               # MAL-2026-11173
+    # @ai-plus typosquat cluster — July 30 2026
+    # OSV MAL-2026-11174 / MAL-2026-11175
+    "@ai-plus/de-agent": set(),                                    # MAL-2026-11174
+    "@ai-plus/de-agent-sdk": set(),                                # MAL-2026-11175
+    # baileys WhatsApp-client typosquat cluster — July 30 2026
+    # @bowozzz: wildcard (OSV range introduced:0); @zannstore: explicit versions only.
+    # OSV MAL-2026-11176 / MAL-2026-11179
+    "@bowozzz/baileys": set(),                                     # MAL-2026-11176
+    "@zannstore/baileys": {                                        # MAL-2026-11179
+        "2.4.4", "2.4.3", "2.4.2", "2.4.1", "2.4.0",
+        "2.3.9", "2.3.7", "2.3.6", "2.3.5", "2.3.4",
+        "2.3.3", "2.3.2", "2.3.1", "2.3.0",
+        "2.2.8", "2.2.7", "2.2.6",
+    },
+    # @peptide-unit typosquat cluster — July 30 2026
+    # OSV MAL-2026-11177 / MAL-2026-11178
+    "@peptide-unit/js-unimode": set(),                             # MAL-2026-11177
+    "@peptide-unit/peptide-modify": set(),                         # MAL-2026-11178
+    # aone-cloud-cli — extension of aone-* cluster (July 30 2026)
+    # OSV MAL-2026-11180
+    "aone-cloud-cli": set(),                                       # MAL-2026-11180
+    # Misc typosquat/malware cluster — July 30 2026
+    # OSV MAL-2026-11181 through MAL-2026-11194
+    "chain-manager": set(),                                        # MAL-2026-11181
+    "colder-cli": set(),                                           # MAL-2026-11182
+    "def-open-client": set(),                                      # MAL-2026-11183
+    "feedback-ai-sdk": set(),                                      # MAL-2026-11184
+    "flight-compare-analyzer": set(),                              # MAL-2026-11185
+    "lwp-web-client": set(),                                       # MAL-2026-11186
+    "lzd-unified-station-sdk": set(),                              # MAL-2026-11187
+    "open-worker-cli": set(),                                      # MAL-2026-11188
+    "uniapi-bridge": set(),                                        # MAL-2026-11190
+    "zer0code": {"0.2.0"},                                         # MAL-2026-11191
+    "litespeed-cache": set(),                                      # MAL-2026-11193
+    "n8n-nodes-trust-me-im-totally-safe": set(),                   # MAL-2026-11194
+    # @wbnr/design dep-confusion — July 30 2026
+    # Version 99.3.0 published to internal package name; OSV MAL-2026-11196
+    "@wbnr/design": {"99.3.0"},                                    # MAL-2026-11196
+    # July 31 2026 npm malware wave (30 packages)
+    # -----------------------------------------------------------------------
+    # @dexwilt/node-fetch — node-fetch typosquat (July 31 2026)
+    # OSV MAL-2026-11203
+    "@dexwilt/node-fetch": {"2.7.3"},                              # MAL-2026-11203
+    # nano-perf / redis-type-xyz typosquats — July 31 2026
+    # OSV MAL-2026-11204 / MAL-2026-11205
+    "nano-perf": {"2.2.0"},                                        # MAL-2026-11204
+    "redis-type-xyz": {"1.10.6"},                                  # MAL-2026-11205
+    # @dotconf-pro/* typosquat cluster — July 31 2026
+    # OSV MAL-2026-11208 / MAL-2026-11209
+    "@dotconf-pro/dotconf-pro": set(),                             # MAL-2026-11208
+    "@dotconf-pro/dotenv": set(),                                  # MAL-2026-11209
+    # @ethers-sdk/* crypto typosquat cluster — July 31 2026
+    # OSV MAL-2026-11210 / MAL-2026-11211
+    "@ethers-sdk/ethers": set(),                                   # MAL-2026-11210
+    "@ethers-sdk/wallet": set(),                                   # MAL-2026-11211
+    # @goodjavascript/dotenv — dotenv typosquat (July 31 2026)
+    # OSV MAL-2026-11212
+    "@goodjavascript/dotenv": set(),                               # MAL-2026-11212
+    # @grua/* typosquat cluster — July 31 2026
+    # OSV MAL-2026-11213 / MAL-2026-11214
+    "@grua/core": set(),                                           # MAL-2026-11213
+    "@grua/icons": set(),                                          # MAL-2026-11214
+    # @meteora-sdk/core — Meteora DEX crypto typosquat (July 31 2026)
+    # OSV MAL-2026-11215
+    "@meteora-sdk/core": set(),                                    # MAL-2026-11215
+    # @node-console-log/log — console-log typosquat (July 31 2026)
+    # OSV MAL-2026-11216
+    "@node-console-log/log": set(),                                # MAL-2026-11216
+    # @nordea-web/* dep-confusion — July 31 2026
+    # Impersonates legitimate @nordea-web packages from Nordea Bank.
+    # OSV MAL-2026-11217 / MAL-2026-11218
+    "@nordea-web/core": set(),                                     # MAL-2026-11217
+    "@nordea-web/ui": set(),                                       # MAL-2026-11218
+    # @patternfly-4/* dep-confusion cluster — July 31 2026
+    # Impersonates Red Hat PatternFly design-system packages.
+    # OSV MAL-2026-11219 / MAL-2026-11220 / MAL-2026-11221 / MAL-2026-11222
+    "@patternfly-4/quickstarts": set(),                            # MAL-2026-11219
+    "@patternfly-4/react-core": set(),                             # MAL-2026-11220
+    "@patternfly-4/react-table": set(),                            # MAL-2026-11221
+    "@patternfly-4/react-tokens": set(),                           # MAL-2026-11222
+    # @pumpdot-fun/* crypto typosquat cluster — July 31 2026
+    # OSV MAL-2026-11223 / MAL-2026-11224
+    "@pumpdot-fun/pump-sdk": set(),                                # MAL-2026-11223
+    "@pumpdot-fun/pump-swap-sdk": set(),                           # MAL-2026-11224
+    # @relforce-dev/console-log — console-log typosquat (July 31 2026)
+    # OSV MAL-2026-11225
+    "@relforce-dev/console-log": set(),                            # MAL-2026-11225
+    # @santieich/homebridge-midea-lan — homebridge plugin typosquat (July 31 2026)
+    # OSV MAL-2026-11226
+    "@santieich/homebridge-midea-lan": set(),                      # MAL-2026-11226
+    # Solana crypto typosquat cluster — July 31 2026
+    # OSV MAL-2026-11227 / MAL-2026-11228
+    "@solana-sdk/web3.js": set(),                                  # MAL-2026-11227
+    "@solana-utils/common": set(),                                  # MAL-2026-11228
+    # @sourav_chanduka/* typosquat cluster — July 31 2026
+    # OSV MAL-2026-11229 / MAL-2026-11230 / MAL-2026-11231
+    "@sourav_chanduka/core": set(),                                # MAL-2026-11229
+    "@sourav_chanduka/core-no-ngrok": set(),                       # MAL-2026-11230
+    "@sourav_chanduka/oidc-client": set(),                         # MAL-2026-11231
+    # @spectraltest/loglevel — loglevel typosquat (July 31 2026)
+    # OSV MAL-2026-11232
+    "@spectraltest/loglevel": set(),                               # MAL-2026-11232
+    # @web3-util/common / @web3utils/common crypto typosquats — July 31 2026
+    # OSV MAL-2026-11233 / MAL-2026-11234
+    "@web3-util/common": set(),                                    # MAL-2026-11233
+    "@web3utils/common": set(),                                    # MAL-2026-11234
+    # create-backend-scaffold supply-chain compromise — July 31 2026
+    # All published versions contain malicious payload; OSV MAL-2026-11270
+    "create-backend-scaffold": {                                   # MAL-2026-11270
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",
+        "1.0.5", "1.1.0", "1.1.1", "1.1.2",
+    },
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -6034,6 +6182,27 @@ NPM_SUSPECT_SCOPES = (
     # active OSV MAL-2026-10783 through MAL-2026-10862; representative entries
     # pinned above in NPM_BAD; scope catches the remainder
     "@gocortexio/",
+    # @ai-agent-node scope (July 30 2026) — 3 packages pinned above;
+    # scope catches any undisclosed additional @ai-agent-node packages
+    "@ai-agent-node/",
+    # @ai-plus scope (July 30 2026) — 2 packages pinned above
+    "@ai-plus/",
+    # @peptide-unit scope (July 30 2026) — 2 packages pinned above
+    "@peptide-unit/",
+    # @dotconf-pro scope (July 31 2026) — 2 packages pinned above
+    "@dotconf-pro/",
+    # @ethers-sdk scope (July 31 2026) — 2 crypto-targeting packages pinned above
+    "@ethers-sdk/",
+    # @grua scope (July 31 2026) — 2 packages pinned above
+    "@grua/",
+    # @nordea-web dep-confusion scope (July 31 2026) — 2 packages pinned above
+    "@nordea-web/",
+    # @patternfly-4 dep-confusion scope (July 31 2026) — 4 packages pinned above
+    "@patternfly-4/",
+    # @pumpdot-fun scope (July 31 2026) — 2 crypto packages pinned above
+    "@pumpdot-fun/",
+    # @sourav_chanduka scope (July 31 2026) — 3 packages pinned above
+    "@sourav_chanduka/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
