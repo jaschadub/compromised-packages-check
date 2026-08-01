@@ -1237,6 +1237,32 @@ PYPI_BAD: dict[str, set[str]] = {
     "phabricator-client": {"99.0.0", "99.0.1", "99.0.2", "99.0.3", "99.0.4"},  # MAL-2026-11195
     "ai-perf-toolkit": {"2.4.2"},                           # MAL-2026-11197
     "mcp-search-server": {"1.0.0", "2.0.0", "2.0.1"},      # MAL-2026-11198
+    # August 1 2026 PyPI malware wave
+    # -----------------------------------------------------------------------
+    # AI-named credential-stealer cluster — August 1 2026
+    # OSV MAL-2026-11414 / MAL-2026-11415 / MAL-2026-11416 / MAL-2026-11417
+    # OSV MAL-2026-11418 / MAL-2026-11419
+    # Source: @L0Psec disclosure; bad-packages.kam193.eu
+    "aiassistcore": {"0.1.2"},                                    # MAL-2026-11414
+    "aichannel": {"0.1.2"},                                       # MAL-2026-11415
+    "ailaunchkit": {"0.1.2"},                                     # MAL-2026-11416
+    "aiprepkit": {"0.1.2"},                                       # MAL-2026-11417
+    "catalogai": {"0.1.2"},                                       # MAL-2026-11418
+    "cognikit": {"0.1.2"},                                        # MAL-2026-11419
+    # ASDK dep-confusion cluster — August 1 2026
+    # OSV MAL-2026-11421 / MAL-2026-11422 / MAL-2026-11423
+    "asdk-plugin-ai-platform": {"0.0.1", "9999.0.0"},            # MAL-2026-11421
+    "asdk-plugin-alphagen": {"0.0.1", "9999.0.0"},               # MAL-2026-11422
+    "asdk-plugin-legacy": {"0.0.1", "9999.0.0"},                 # MAL-2026-11423
+    # reguestsc — requests typosquat (August 1 2026)
+    # OSV MAL-2026-11413; VirusTotal confirmed (db86ed61afec83acb523e8b00558ee7641b2ddc388d542dc0ff2922625da013f)
+    "reguestsc": {"2.34.2"},                                      # MAL-2026-11413
+    # telerape — Telegram-leveraging RAT (August 1 2026)
+    # OSV MAL-2026-11424
+    "telerape": {"0.0.0.dev0", "1.0.0", "1.0.1"},               # MAL-2026-11424
+    # walmart-genai-trace — dep-confusion (August 1 2026)
+    # OSV MAL-2026-11420
+    "walmart-genai-trace": {"99.0.0"},                            # MAL-2026-11420
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6138,6 +6164,244 @@ NPM_BAD: dict[str, set[str]] = {
         "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",
         "1.0.5", "1.1.0", "1.1.1", "1.1.2",
     },
+    # August 1 2026 npm malware wave (180 packages — typosquats, crypto stealers, misc malware)
+    # -----------------------------------------------------------------------
+    # ethers/web3 crypto typosquat cluster — August 1 2026
+    # OSV MAL-2026-11293 / MAL-2026-11294 / MAL-2026-11295 / MAL-2026-11296
+    # OSV MAL-2026-11297 / MAL-2026-11298 / MAL-2026-11299 / MAL-2026-11300 / MAL-2026-11301
+    "eth.json": set(),                                            # MAL-2026-11293
+    "ethe": set(),                                                # MAL-2026-11294
+    "ethe.json": set(),                                           # MAL-2026-11295
+    "ethers-io-ethers": set(),                                    # MAL-2026-11296
+    "ethers-v6": set(),                                           # MAL-2026-11297
+    "ethers.json": set(),                                         # MAL-2026-11298
+    "ethers.jsonn": set(),                                        # MAL-2026-11299
+    "ethersss": set(),                                            # MAL-2026-11300
+    "etwl": set(),                                                # MAL-2026-11301
+    # crypto-encoding library typosquats — August 1 2026
+    # OSV MAL-2026-11246 / MAL-2026-11247 / MAL-2026-11249 / MAL-2026-11250
+    # OSV MAL-2026-11371 / MAL-2026-11372
+    "base-x-ts": set(),                                           # MAL-2026-11246
+    "base58-ts": set(),                                           # MAL-2026-11247
+    "bn.js-4": set(),                                             # MAL-2026-11249
+    "bn.js-5": set(),                                             # MAL-2026-11250
+    "rlp-master": set(),                                          # MAL-2026-11371
+    "rlp.git": set(),                                             # MAL-2026-11372
+    # Uniswap / Raydium DEX typosquats — August 1 2026
+    # OSV MAL-2026-11363 / MAL-2026-11407
+    "raydiums": set(),                                            # MAL-2026-11363
+    "uniswapintefrace": set(),                                    # MAL-2026-11407
+    # express.js typosquat cluster — August 1 2026
+    # OSV MAL-2026-11288 / MAL-2026-11302 / MAL-2026-11303 / MAL-2026-11304
+    # OSV MAL-2026-11305 / MAL-2026-11306 / MAL-2026-11307 / MAL-2026-11308
+    "ekspress": set(),                                            # MAL-2026-11288
+    "expres.js": set(),                                           # MAL-2026-11302
+    "express-bubble": set(),                                      # MAL-2026-11303
+    "express-sequelize-wrapper": set(),                           # MAL-2026-11304
+    "express-test-dependency": set(),                             # MAL-2026-11305
+    "express-wrapper": set(),                                     # MAL-2026-11306
+    "express.ja": set(),                                          # MAL-2026-11307
+    "express.jd": set(),                                          # MAL-2026-11308
+    # react.js typosquat cluster — August 1 2026
+    # OSV MAL-2026-11322 / MAL-2026-11364 / MAL-2026-11365 / MAL-2026-11366
+    # OSV MAL-2026-11367 / MAL-2026-11368 / MAL-2026-11369 / MAL-2026-11370
+    "installreact": set(),                                        # MAL-2026-11322
+    "reac.js": set(),                                             # MAL-2026-11364
+    "react-ag-grid": set(),                                       # MAL-2026-11365
+    "react-fast-refresh-helper": set(),                           # MAL-2026-11366
+    "react.j": set(),                                             # MAL-2026-11367
+    "react.ja": set(),                                            # MAL-2026-11368
+    "react.jd": set(),                                            # MAL-2026-11369
+    "reakt.js": set(),                                            # MAL-2026-11370
+    # socket.io typosquat cluster — August 1 2026
+    # OSV MAL-2026-11376 / MAL-2026-11381 / MAL-2026-11382 / MAL-2026-11383
+    "scketio": set(),                                             # MAL-2026-11376
+    "soccketio": set(),                                           # MAL-2026-11381
+    "socketi": set(),                                             # MAL-2026-11382
+    "socktio": set(),                                             # MAL-2026-11383
+    # chalk typosquat cluster — August 1 2026
+    # OSV MAL-2026-11255 / MAL-2026-11256 / MAL-2026-11257 / MAL-2026-11258
+    "chalk-butons": set(),                                        # MAL-2026-11255
+    "chalk-button": set(),                                        # MAL-2026-11256
+    "chalk-buttons": set(),                                       # MAL-2026-11257
+    "chalk-helper": set(),                                        # MAL-2026-11258
+    # fs-extra / node-fs typosquat cluster — August 1 2026
+    # OSV MAL-2026-11312 / MAL-2026-11313 / MAL-2026-11339 / MAL-2026-11340
+    "fs-extra-master": set(),                                     # MAL-2026-11312
+    "fsextrra": set(),                                            # MAL-2026-11313
+    "node-fetch-core": set(),                                     # MAL-2026-11339
+    "node-fs-extra-master": set(),                                # MAL-2026-11340
+    # discord fake package cluster — August 1 2026
+    # OSV MAL-2026-11277 / MAL-2026-11278 / MAL-2026-11279 / MAL-2026-11280
+    "discord-csr": set(),                                         # MAL-2026-11277
+    "discord-ms": set(),                                          # MAL-2026-11278
+    "discord-rsc": set(),                                         # MAL-2026-11279
+    "discord-starter": set(),                                     # MAL-2026-11280
+    # lodash / winston / logform typosquats — August 1 2026
+    # OSV MAL-2026-11327 / MAL-2026-11328 / MAL-2026-11341
+    "lodash-ex": set(),                                           # MAL-2026-11327
+    "logform-core": set(),                                        # MAL-2026-11328
+    "node-logger-winston": set(),                                 # MAL-2026-11341
+    # ncc typosquat cluster — August 1 2026
+    # OSV MAL-2026-11336 / MAL-2026-11337 / MAL-2026-11338
+    "ncc-fonts": set(),                                           # MAL-2026-11336
+    "ncc-hyperapp": set(),                                        # MAL-2026-11337
+    "ncc-web": set(),                                             # MAL-2026-11338
+    # clo-adspect click-fraud / redirect cluster — August 1 2026
+    # OSV MAL-2026-11206 / MAL-2026-11239 / MAL-2026-11259 / MAL-2026-11260
+    # OSV MAL-2026-11261 / MAL-2026-11262 / MAL-2026-11263
+    "1apijs": set(),                                              # MAL-2026-11206
+    "apijsclo": set(),                                            # MAL-2026-11239
+    "clo-adspect": set(),                                         # MAL-2026-11259
+    "clo2": set(),                                                # MAL-2026-11260
+    "clo321": set(),                                              # MAL-2026-11261
+    "clo321-server": set(),                                       # MAL-2026-11262
+    "clotest": set(),                                             # MAL-2026-11263
+    # tailwind typosquat cluster — August 1 2026
+    # OSV MAL-2026-11393 / MAL-2026-11394
+    "tailwindcssss": set(),                                       # MAL-2026-11393
+    "tailwindcsssss": set(),                                      # MAL-2026-11394
+    # pullingpackage* exfiltrator cluster — August 1 2026
+    # OSV MAL-2026-11350 – MAL-2026-11360
+    "pulleeelll": set(),                                          # MAL-2026-11350
+    "pullingpackage": set(),                                      # MAL-2026-11351
+    "pullingpackaged": set(),                                     # MAL-2026-11352
+    "pullingpackagee": set(),                                     # MAL-2026-11353
+    "pullingpackageee": set(),                                    # MAL-2026-11354
+    "pullingpackageeee": set(),                                   # MAL-2026-11355
+    "pullingpackageeeeeee": set(),                                # MAL-2026-11356
+    "pullingpackageeeeeeee": set(),                               # MAL-2026-11357
+    "pullingpackageeeeeeeee": set(),                              # MAL-2026-11358
+    "pullingpackageeeeeeeeee": set(),                             # MAL-2026-11359
+    "pullingpackageeeeeeeeeee": set(),                            # MAL-2026-11360
+    # streak-metrics / svelte-streak malware cluster — August 1 2026
+    # OSV MAL-2026-11387 / MAL-2026-11388 / MAL-2026-11390 / MAL-2026-11391
+    "streak-metrics-core": set(),                                 # MAL-2026-11387
+    "streak-metrics-math": set(),                                 # MAL-2026-11388
+    "svelte-metric-map": set(),                                   # MAL-2026-11390
+    "svelte-streak-metric": set(),                                # MAL-2026-11391
+    # spectral typosquat cluster — August 1 2026
+    # OSV MAL-2026-11384 / MAL-2026-11385
+    "spectral-corsair": set(),                                    # MAL-2026-11384
+    "spectral-wraith": set(),                                     # MAL-2026-11385
+    # axios typosquat cluster (maalxios / malxios) — August 1 2026
+    # OSV MAL-2026-11329 / MAL-2026-11330
+    "maalxios": set(),                                            # MAL-2026-11329
+    "malxios": set(),                                             # MAL-2026-11330
+    # mongoose typosquat cluster — August 1 2026
+    # OSV MAL-2026-11333 / MAL-2026-11334
+    "mongostose": set(),                                          # MAL-2026-11333
+    "moontose": set(),                                            # MAL-2026-11334
+    # bluebird typosquat — August 1 2026
+    # OSV MAL-2026-11248
+    "blbird": set(),                                              # MAL-2026-11248
+    # ag-grid typosquat — August 1 2026
+    # OSV MAL-2026-11235
+    "ag-grid-boost": set(),                                       # MAL-2026-11235
+    # passport typosquats — August 1 2026
+    # OSV MAL-2026-11344 / MAL-2026-11345
+    "passsport1": set(),                                          # MAL-2026-11344
+    "passtpor": set(),                                            # MAL-2026-11345
+    # puppeteer typosquat — August 1 2026
+    # OSV MAL-2026-11361
+    "puppetewebr": set(),                                         # MAL-2026-11361
+    # dotenv typosquats — August 1 2026
+    # OSV MAL-2026-11281 / MAL-2026-11282
+    "dotenv-core": set(),                                         # MAL-2026-11281
+    "dotex-plugin": set(),                                        # MAL-2026-11282
+    # @404c3s4r test-malware package — August 1 2026
+    # OSV MAL-2026-11207
+    "@404c3s4r/testxxx": set(),                                   # MAL-2026-11207
+    # @sie-ppr-web-checkout dep-confusion — OSV MAL-2026-2865
+    "@sie-ppr-web-checkout/app": set(),                           # MAL-2026-2865
+    # Miscellaneous malware — August 1 2026
+    # OSV MAL-2026-11236 through MAL-2026-11412 (various)
+    "android-web-logger": set(),                                  # MAL-2026-11236
+    "api-gateway-lambda-router": set(),                           # MAL-2026-11237
+    "apihost": set(),                                             # MAL-2026-11238
+    "aruda": set(),                                               # MAL-2026-11240
+    "asdsafsadad": set(),                                         # MAL-2026-11241
+    "asdsafsafdasdsaasdasda": set(),                              # MAL-2026-11242
+    "aven_shared": set(),                                         # MAL-2026-11243
+    "bajkvahzv8allnltvr7x4s5hdxkjvyji": set(),                   # MAL-2026-11244
+    "baofdadbybmqeefeeginweoamxlphrjq": set(),                   # MAL-2026-11245
+    "broccoli-watcher-siphon": set(),                             # MAL-2026-11251
+    "build-time-metrics": set(),                                  # MAL-2026-11252
+    "cancelling": set(),                                          # MAL-2026-11253
+    "canvas-to": set(),                                           # MAL-2026-11254
+    "cmd-auth": set(),                                            # MAL-2026-11264
+    "cocktail-lib": set(),                                        # MAL-2026-11265
+    "columns_changed": set(),                                     # MAL-2026-11266
+    "compose-logger-stand": set(),                                # MAL-2026-11267
+    "confetti-rebuilds": set(),                                   # MAL-2026-11268
+    "consumerweb-risk": set(),                                    # MAL-2026-11269
+    "cross-sell": set(),                                          # MAL-2026-11271
+    "curse-dependent": set(),                                     # MAL-2026-11272
+    "d3-bbox": set(),                                             # MAL-2026-11273
+    "dash-merge": set(),                                          # MAL-2026-11274
+    "datdbs": set(),                                              # MAL-2026-11275
+    "decline": set(),                                             # MAL-2026-11276
+    "dsilva-react-module-seed": set(),                            # MAL-2026-11283
+    "dwa-tridion-webapp": set(),                                  # MAL-2026-11284
+    "easycommons": set(),                                         # MAL-2026-11285
+    "easyinstaller": set(),                                       # MAL-2026-11286
+    "ecto-logger": set(),                                         # MAL-2026-11287
+    "ember-cli-deploy-derploy": set(),                            # MAL-2026-11289
+    "ember-cli-deploy-secrets": set(),                            # MAL-2026-11290
+    "ember-livereload-indicator": set(),                          # MAL-2026-11291
+    "equiviewer": set(),                                          # MAL-2026-11292
+    "famshot": set(),                                             # MAL-2026-11309
+    "fcogvspgigatanzcydfyvgtjhvxibyau": set(),                   # MAL-2026-11310
+    "files-bucket-server": set(),                                 # MAL-2026-11311
+    "fwf": set(),                                                 # MAL-2026-11314
+    "gatorhelper": set(),                                         # MAL-2026-11315
+    "hjw-nasa-lib": set(),                                        # MAL-2026-11316
+    "host-inspector-module": set(),                               # MAL-2026-11317
+    "ideascloud": set(),                                          # MAL-2026-11318
+    "impv": set(),                                                # MAL-2026-11319
+    "imut-set": set(),                                            # MAL-2026-11320
+    "inkalabs": set(),                                            # MAL-2026-11321
+    "isix": set(),                                                # MAL-2026-11323
+    "js-focus-within": set(),                                     # MAL-2026-11324
+    "kajl": set(),                                                # MAL-2026-11325
+    "live-reload-on-error": set(),                                # MAL-2026-11326
+    "merg-descripters": set(),                                    # MAL-2026-11331
+    "model-data-cache-service": set(),                            # MAL-2026-11332
+    "n158": set(),                                                # MAL-2026-11335
+    "npum": set(),                                                # MAL-2026-11342
+    "page_colors": set(),                                         # MAL-2026-11343
+    "payu-node": set(),                                           # MAL-2026-11346
+    "pjm-dls": set(),                                             # MAL-2026-11347
+    "pretierr": set(),                                            # MAL-2026-11348
+    "pretty-log-cli": set(),                                      # MAL-2026-11349
+    "qserver": set(),                                             # MAL-2026-11362
+    "rph-validator": set(),                                       # MAL-2026-11373
+    "rshell": set(),                                              # MAL-2026-11374
+    "rumjs": set(),                                               # MAL-2026-11375
+    "scol": set(),                                                # MAL-2026-11377
+    "shnc": set(),                                                # MAL-2026-11378
+    "shsk": set(),                                                # MAL-2026-11379
+    "slowest-build-nodes": set(),                                 # MAL-2026-11380
+    "srgb-linear": set(),                                         # MAL-2026-11386
+    "sunpro-3dmodel-renderer": set(),                             # MAL-2026-11389
+    "switchpaymentsapiserv-paypal": set(),                        # MAL-2026-11392
+    "termly-namespace": set(),                                    # MAL-2026-11395
+    "test-wastu": set(),                                          # MAL-2026-11396
+    "testsetset": set(),                                          # MAL-2026-11397
+    "testtwix": set(),                                            # MAL-2026-11398
+    "tgnode": set(),                                              # MAL-2026-11399
+    "thedata": set(),                                             # MAL-2026-11400
+    "thoughtgear": set(),                                         # MAL-2026-11401
+    "time-to-reload": set(),                                      # MAL-2026-11402
+    "tsetnpmackage": set(),                                       # MAL-2026-11403
+    "ttest333": set(),                                            # MAL-2026-11404
+    "ttest3333": set(),                                           # MAL-2026-11405
+    "unified-help-center-alpha": set(),                           # MAL-2026-11406
+    "vcse": set(),                                                # MAL-2026-11408
+    "wastu": set(),                                               # MAL-2026-11409
+    "wistia_namespace": set(),                                    # MAL-2026-11410
+    "xp-node-logger": set(),                                      # MAL-2026-11411
+    "zcas": set(),                                                # MAL-2026-11412
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
