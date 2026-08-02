@@ -1263,6 +1263,11 @@ PYPI_BAD: dict[str, set[str]] = {
     # walmart-genai-trace — dep-confusion (August 1 2026)
     # OSV MAL-2026-11420
     "walmart-genai-trace": {"99.0.0"},                            # MAL-2026-11420
+    # NVIDIA dep-confusion cluster — August 1 2026
+    # OSV MAL-2026-11425 / MAL-2026-11426; source: kam193
+    # Versions 99999.x used to supersede internal packages; exfiltrates host data on install
+    "nvtorch-oot-nightly": {"99999.0.0", "99999.0.1"},           # MAL-2026-11425
+    "trtllm-subdir-test": {"99999.0.0", "99999.0.1"},            # MAL-2026-11426
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6402,6 +6407,9 @@ NPM_BAD: dict[str, set[str]] = {
     "wistia_namespace": set(),                                    # MAL-2026-11410
     "xp-node-logger": set(),                                      # MAL-2026-11411
     "zcas": set(),                                                # MAL-2026-11412
+    # pp-react-worldready — PayPal/worldready typosquat — August 1 2026
+    # OSV MAL-2026-11427; communicates with malicious domain
+    "pp-react-worldready": {"1.0.0"},                            # MAL-2026-11427
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
