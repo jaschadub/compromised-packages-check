@@ -1268,6 +1268,11 @@ PYPI_BAD: dict[str, set[str]] = {
     # Versions 99999.x used to supersede internal packages; exfiltrates host data on install
     "nvtorch-oot-nightly": {"99999.0.0", "99999.0.1"},           # MAL-2026-11425
     "trtllm-subdir-test": {"99999.0.0", "99999.0.1"},            # MAL-2026-11426
+    # PyPI malware batch — August 2–3 2026
+    # OSV MAL-2026-11428 (wacve-utils), MAL-2026-11429 (trongriden); source: kam193
+    # Install-time infostealers; no legitimate prior use
+    "wacve-utils": {"1.0.7"},                                     # MAL-2026-11428
+    "trongriden": {"0.0.1"},                                      # MAL-2026-11429
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6410,6 +6415,96 @@ NPM_BAD: dict[str, set[str]] = {
     # pp-react-worldready — PayPal/worldready typosquat — August 1 2026
     # OSV MAL-2026-11427; communicates with malicious domain
     "pp-react-worldready": {"1.0.0"},                            # MAL-2026-11427
+    # August 2–3 2026 dep-confusion cluster — 22 scoped packages targeting
+    # corporate npm registries; all have `introduced: 0` / no fixed version
+    # (entire package is malicious); OSV MAL-2026-11431 through MAL-2026-11452
+    "@0xlr/dep-confusion-poc": set(),                            # MAL-2026-11431
+    "@0xlr/question-types": set(),                               # MAL-2026-11432
+    "@0xlr/test-callback": set(),                                # MAL-2026-11433
+    "@cr-invested-ui-components/chart": set(),                   # MAL-2026-11435
+    "@finance-ui/finance-view": set(),                           # MAL-2026-11436
+    "@finance-ui/snackbar-ifpe": set(),                          # MAL-2026-11437
+    "@fuji-web-components/maps": set(),                          # MAL-2026-11438
+    "@global-theme/context": set(),                              # MAL-2026-11439
+    "@meli-testing/jest-react": set(),                           # MAL-2026-11440
+    "@moxfive-llc/common": set(),                                # MAL-2026-11441
+    "@mp-op-ss-front-lib/tracks": set(),                         # MAL-2026-11442
+    "@mplay-core-lib/utilities": set(),                          # MAL-2026-11443
+    "@mplay-frontend-ui/link": set(),                            # MAL-2026-11444
+    "@nordic-dev/linting-tools": set(),                          # MAL-2026-11445
+    "@one-chat/react": set(),                                    # MAL-2026-11446
+    "@peptide-packets/js-unimode": set(),                        # MAL-2026-11447
+    "@peptide-packets/peptide-modify": set(),                    # MAL-2026-11448
+    "@sof-assistant-fe-lib/vertical-faqs": set(),                # MAL-2026-11449
+    "@spending-behavior-ui/cashflow-widget": set(),              # MAL-2026-11450
+    "@spending-behavior-ui/widget-insights": set(),              # MAL-2026-11451
+    "@sw-commons-components/message-upsell": set(),              # MAL-2026-11452
+    # August 2 2026 misc pure-malware typosquats — `introduced: 0` wildcard
+    # OSV MAL-2026-11430, 11461, 11473, 11478–11479, 11483–11485, 11487–11497
+    "list-issue-predecessor-dependencies-block": {"99.0.0"},     # MAL-2026-11430
+    "eth-bridge": set(),                                         # MAL-2026-11461
+    "metrics-ui": set(),                                         # MAL-2026-11473
+    "rollup-plugin-polyfill-helper": set(),                      # MAL-2026-11478
+    "rollup-plugin-polyfill-hold": set(),                        # MAL-2026-11479
+    "simple-date-formatter-util": set(),                         # MAL-2026-11483
+    "simple-date-formatter-util-1": {"1.0.0"},                  # MAL-2026-11484
+    "simple-date-formatter-util-2": set(),                       # MAL-2026-11485
+    "tailwindcss-anim": set(),                                   # MAL-2026-11487
+    "test-dev-boot": set(),                                      # MAL-2026-11488
+    "test-dev-dispatch": set(),                                  # MAL-2026-11489
+    "test-dev-exec": set(),                                      # MAL-2026-11490
+    "test-dev-host": set(),                                      # MAL-2026-11491
+    "test-dev-link": set(),                                      # MAL-2026-11492
+    "test-dev-store": set(),                                      # MAL-2026-11493
+    "test-dev-sync": set(),                                      # MAL-2026-11494
+    "test-dev-watch": set(),                                     # MAL-2026-11495
+    "vite-config-svg": set(),                                    # MAL-2026-11496
+    "vite-tsconfig-svg": set(),                                  # MAL-2026-11497
+    # August 2 2026 MCP-toolkit typosquat cluster — 13 fake MCP server packages
+    # OSV MAL-2026-11458, 11464, 11466, 11469–11472, 11475, 11477, 11480–11482, 11486
+    "chaos-mcp": {"1.0.0"},                                      # MAL-2026-11458
+    "gtm-mcp-auth": {"1.0.0"},                                   # MAL-2026-11464
+    "hit-mcp": {"1.0.0"},                                        # MAL-2026-11466
+    "iwomm-mcp": {"1.0.0"},                                      # MAL-2026-11469
+    "kip-mcp-http": {"1.0.0"},                                   # MAL-2026-11470
+    "maximumsats-mcp": {"1.0.0"},                                # MAL-2026-11471
+    "mcp-server-boilerplate": {"1.0.0"},                         # MAL-2026-11472
+    "pm-claude-skills-mcp": {"1.0.0"},                           # MAL-2026-11475
+    "refbase-mcp": {"1.0.0"},                                    # MAL-2026-11477
+    "routerbase-mcp": {"1.0.0"},                                 # MAL-2026-11480
+    "sap-mcp-config": {"1.0.0"},                                 # MAL-2026-11481
+    "sap-mcp-facilitator": {"1.0.0"},                            # MAL-2026-11482
+    "smart-npv-mcp": {"1.0.0"},                                  # MAL-2026-11486
+    # August 2 2026 miscellaneous malware batch — specific pinned versions
+    # OSV MAL-2026-11434, 11453–11457, 11459–11460, 11462–11463, 11465, 11467–11468,
+    #      11474, 11476, 11498
+    "@404c3s4r/lodash": {"9.0.0"},                               # MAL-2026-11434
+    "@custombots/custombot": {"1.0.0"},                          # MAL-2026-11498
+    "adpanel-core": {"1.0.0"},                                   # MAL-2026-11453
+    "ai-backup-script": {"0.0.2", "1.0.0", "1.0.2"},            # MAL-2026-11454
+    "allurectl": {"1.0.0"},                                      # MAL-2026-11455
+    "attio-discover": {"1.0.0"},                                 # MAL-2026-11456
+    "capacitor-assets": {"1.0.0"},                               # MAL-2026-11457
+    "community-published": {"1.0.0"},                            # MAL-2026-11459
+    "create-remotion": {"0.0.2", "0.0.3"},                       # MAL-2026-11460
+    "fast-csv-helper": {"1.0.0"},                                # MAL-2026-11462
+    "goldenflow-js": {"1.0.0"},                                  # MAL-2026-11463
+    "hazmat-cfr": {"1.0.0"},                                     # MAL-2026-11465
+    "iac-scanner": {"0.0.2", "1.0.0"},                           # MAL-2026-11467
+    "install-native-host": {"1.0.0"},                            # MAL-2026-11468
+    "paraglide-js": {"1.0.1"},                                   # MAL-2026-11474
+    "polyprompt": {"1.0.0"},                                     # MAL-2026-11476
+    # Older packages confirmed / updated August 2 2026
+    # Amazon Inspector source; install-time infostealers; whole package malicious
+    # OSV MAL-2026-5729 (houzidawang806), MAL-2026-5731 (houzidawang807),
+    #     MAL-2026-5732 (houzidawang808), MAL-2026-6482 (kelly-stake)
+    "houzidawang806": set(),                                     # MAL-2026-5729
+    "houzidawang807": set(),                                     # MAL-2026-5731
+    "houzidawang808": set(),                                     # MAL-2026-5732
+    "kelly-stake": set(),                                        # MAL-2026-6482
+    # html-to-gutenberg — compromised versions confirmed August 2 2026
+    # OSV MAL-2026-6359; specific malicious versions only
+    "html-to-gutenberg": {"4.2.11", "4.2.14"},                   # MAL-2026-6359
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
