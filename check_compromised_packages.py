@@ -378,7 +378,15 @@ polyfill-core, @apexfnd/apex and others; OSV MAL-2026-2785/6406/10115/
 10160/11099/11120–11159); vtranalytic PyPI Telegram-bot RAT (OSV
 MAL-2026-11156); and 3 entry updates: fundraiserserv upgraded to
 any-version wildcard (OSV MAL-2026-5172 SEMVER >=0 range), and
-@daylightqc/date-fmt-lite version 1.1.2 added (OSV MAL-2026-11041)).
+@daylightqc/date-fmt-lite version 1.1.2 added (OSV MAL-2026-11041)),
+and the August 3–4 2026 npm/PyPI malware batch (simple-date-formatter-util-5/
+simple-date-formatter-new-1 typosquat cluster extension, @types-beta/sdk
+4-version infostealer, tailwind-anim tailwind typosquat, accounts-final-form/
+accounts-loading-state/beaver-ui-date-range-picker/beaver-ui-grid/beaver-ui-header/
+beaver-ui-items-with-more/beaver-ui-layout UI-component impersonation cluster,
+bigops-chat-messages/internallib_v524/internallib_v568/lifestyle-test-utils misc
+pure-malware npm packages; instalogin1234 PyPI credential-stealer;
+OSV MAL-2026-11499 through MAL-2026-11514).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -391,7 +399,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-07-29
+Date:      2026-08-04
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1273,6 +1281,9 @@ PYPI_BAD: dict[str, set[str]] = {
     # Install-time infostealers; no legitimate prior use
     "wacve-utils": {"1.0.7"},                                     # MAL-2026-11428
     "trongriden": {"0.0.1"},                                      # MAL-2026-11429
+    # instalogin1234 — PyPI credential-stealer (August 3 2026)
+    # OSV MAL-2026-11503; install-time infostealer targeting Instagram credentials
+    "instalogin1234": {"0.0.1"},                                  # MAL-2026-11503
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6505,6 +6516,33 @@ NPM_BAD: dict[str, set[str]] = {
     # html-to-gutenberg — compromised versions confirmed August 2 2026
     # OSV MAL-2026-6359; specific malicious versions only
     "html-to-gutenberg": {"4.2.11", "4.2.14"},                   # MAL-2026-6359
+    # August 3 2026 simple-date-formatter typosquat cluster (continued)
+    # Additional variants beyond MAL-2026-11483/11484/11485 added August 2
+    # OSV MAL-2026-11501 (simple-date-formatter-util-5), MAL-2026-11502 (simple-date-formatter-new-1)
+    "simple-date-formatter-util-5": {"1.0.0"},                   # MAL-2026-11501
+    "simple-date-formatter-new-1": {"1.0.0"},                    # MAL-2026-11502
+    # August 3 2026 miscellaneous npm malware
+    # @types-beta/sdk (MAL-2026-11499): four versions exfiltrate data on install
+    # tailwind-anim (MAL-2026-11500): tailwind-anim typosquat, any version malicious
+    "@types-beta/sdk": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},   # MAL-2026-11499
+    "tailwind-anim": set(),                                       # MAL-2026-11500
+    # August 3–4 2026 pure-malware npm batch — accounts/beaver-ui/misc cluster
+    # accounts-* are form/state management impersonators; beaver-ui-* impersonate
+    # a UI component library; internallib_v524/v568 are dep-confusion packages;
+    # bigops-chat-messages and lifestyle-test-utils are standalone throwaway malware.
+    # All have SEMVER ranges `introduced: 0` (any version is malicious).
+    # OSV MAL-2026-11504 through MAL-2026-11514
+    "accounts-final-form": set(),                                 # MAL-2026-11504
+    "accounts-loading-state": set(),                              # MAL-2026-11505
+    "beaver-ui-date-range-picker": set(),                         # MAL-2026-11506
+    "beaver-ui-grid": set(),                                      # MAL-2026-11507
+    "beaver-ui-header": set(),                                    # MAL-2026-11508
+    "beaver-ui-items-with-more": set(),                           # MAL-2026-11509
+    "beaver-ui-layout": set(),                                    # MAL-2026-11510
+    "bigops-chat-messages": set(),                                # MAL-2026-11511
+    "internallib_v524": set(),                                    # MAL-2026-11512
+    "internallib_v568": set(),                                    # MAL-2026-11513
+    "lifestyle-test-utils": set(),                                # MAL-2026-11514
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
