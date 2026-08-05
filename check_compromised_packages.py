@@ -386,7 +386,21 @@ accounts-loading-state/beaver-ui-date-range-picker/beaver-ui-grid/beaver-ui-head
 beaver-ui-items-with-more/beaver-ui-layout UI-component impersonation cluster,
 bigops-chat-messages/internallib_v524/internallib_v568/lifestyle-test-utils misc
 pure-malware npm packages; instalogin1234 PyPI credential-stealer;
-OSV MAL-2026-11499 through MAL-2026-11514).
+OSV MAL-2026-11499 through MAL-2026-11514),
+and the Aug 4–5 2026 keyv/cache-manager npm account compromise (attacker
+injected malicious payloads into cache-manager 7.2.10, keyv 6.0.0, all 19
+@keyv/* packages at 6.0.0, 4 @cacheable/* packages, and many other scopes
+including @servicetitan/* 141 packages, @onereach/* 78 packages, @or-sdk/*
+74 packages, @ornikar/* 42 packages, @qlik/* 28 packages, @nebula.js/* 22
+packages, @umacloud/* 8 packages, and dozens of non-scoped packages; total
+562 npm entries; OSV MAL-2026-11523 through MAL-2026-12079),
+and the @zzzgenesis00/* crypto-wallet stealer scope (14 npm packages impersonating
+bip39, ethers, solana-web3, hdkey, xrp-lib etc.; OSV MAL-2026-11515/11529–11534/
+11994/12030–12031/12055–12058), and the Aug 4–5 2026 miscellaneous npm/PyPI batch
+(Tinkoff dep-confusion, bigops/beaver-ui/streak continuation, sextant-cli,
+nagix cluster, crypto hardware wallet fakes, cors-version/tailwind-anime wildcards,
+4 PyPI crypto/AI-SDK typosquats; OSV MAL-2026-11192/11516–11550/11962–11999/
+12026–12079).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -399,7 +413,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-04
+Date:      2026-08-05
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1284,6 +1298,15 @@ PYPI_BAD: dict[str, set[str]] = {
     # instalogin1234 — PyPI credential-stealer (August 3 2026)
     # OSV MAL-2026-11503; install-time infostealer targeting Instagram credentials
     "instalogin1234": {"0.0.1"},                                  # MAL-2026-11503
+    # Aug 4–5 2026 PyPI crypto / AI-SDK typosquat batch
+    # Coldcard hardware wallet fake, LaunchDarkly AI SDK impersonator, and two
+    # Bitcoin PSBT helper fakes that steal credentials on install.
+    # OSV MAL-2026-11516, 11519–11521;
+    # refs: bad-packages.kam193.eu/pypi/package/coldcard-helpers, pypi.org/project/psbt-utils/1.0.0/
+    "coldcard-helpers": {"1.4.2"},                                # MAL-2026-11516
+    "launchdarkly-ai-server-sdk": {"1.0.1", "1.9.9"},            # MAL-2026-11519
+    "psbt-helpers": {"1.0.0"},                                    # MAL-2026-11521
+    "psbt-utils": {"1.0.0"},                                      # MAL-2026-11520
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6543,6 +6566,637 @@ NPM_BAD: dict[str, set[str]] = {
     "internallib_v524": set(),                                    # MAL-2026-11512
     "internallib_v568": set(),                                    # MAL-2026-11513
     "lifestyle-test-utils": set(),                                # MAL-2026-11514
+
+    # keyv/cache-manager npm account compromise Aug 4–5 2026 — attacker gained access
+    # to the keyv and cacheable maintainer accounts and injected credential-exfiltration
+    # payloads into new releases of popular cache-manager / keyv / @keyv/* / @cacheable/*
+    # packages (cache-manager 15M+ weekly downloads, keyv 10M+). The same campaign also
+    # compromised maintainer accounts across many companies, publishing malicious versions
+    # of @servicetitan/*, @onereach/*, @or-sdk/*, @ornikar/*, @qlik/*, @nebula.js/*,
+    # and many other private/semi-private scopes. OSV MAL-2026-11523 through MAL-2026-12079;
+    # sources: socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-
+    # compromised-in-active-supply-chain; aikido.dev/blog/keyv-and-friends-compromised-in-
+    # npm-supply-chain-attack; safedep.io/keyv-npm-supply-chain-compromise/
+    # Core keyv / cacheable ecosystem — compromised at specific versions (pin exact versions)
+    "cache-manager": {"7.2.10"},  # MAL-2026-11523
+    "keyv": {"6.0.0"},  # MAL-2026-11524
+    "cacheable": {"2.5.1"},  # MAL-2026-11963
+    "cacheable-request": {"13.0.20"},  # MAL-2026-11964
+    "file-entry-cache": {"11.1.6"},  # MAL-2026-11970
+    "flat-cache": {"6.1.24"},  # MAL-2026-11971
+    # @cacheable/* scope — full namespace compromised alongside cache-manager
+    "@cacheable/memory": {"2.2.1"},  # MAL-2026-11558
+    "@cacheable/net": {"2.1.1"},  # MAL-2026-11559
+    "@cacheable/node-cache": {"3.1.2"},  # MAL-2026-11560
+    "@cacheable/utils": {"2.5.1"},  # MAL-2026-11561
+    # @keyv/* scope — full v6.0.0 release of entire namespace is malicious
+    "@keyv/bigmap": {"6.0.0"},  # MAL-2026-12007
+    "@keyv/cloudflare-kv": {"6.0.0"},  # MAL-2026-12008
+    "@keyv/compress-brotli": {"6.0.0"},  # MAL-2026-12009
+    "@keyv/compress-gzip": {"6.0.0"},  # MAL-2026-12010
+    "@keyv/compress-lz4": {"6.0.0"},  # MAL-2026-12011
+    "@keyv/dynamo": {"6.0.0"},  # MAL-2026-12012
+    "@keyv/encrypt-node": {"6.0.0"},  # MAL-2026-12013
+    "@keyv/encrypt-web": {"6.0.0"},  # MAL-2026-12014
+    "@keyv/etcd": {"6.0.0"},  # MAL-2026-12015
+    "@keyv/memcache": {"6.0.0"},  # MAL-2026-12016
+    "@keyv/mongo": {"6.0.0"},  # MAL-2026-12017
+    "@keyv/mysql": {"6.0.0"},  # MAL-2026-12018
+    "@keyv/postgres": {"6.0.0"},  # MAL-2026-12019
+    "@keyv/redis": {"6.0.0"},  # MAL-2026-12020
+    "@keyv/serialize-msgpackr": {"6.0.0"},  # MAL-2026-12021
+    "@keyv/serialize-superjson": {"6.0.0"},  # MAL-2026-12022
+    "@keyv/sqlite": {"6.0.0"},  # MAL-2026-12023
+    "@keyv/test-suite": {"6.0.0"},  # MAL-2026-12024
+    "@keyv/valkey": {"6.0.0"},  # MAL-2026-12025
+    # Other packages compromised in the keyv/cacheable campaign (non-scoped)
+    "babel-plugin-linaria-css-to-undefined": {"0.3.1", "0.3.10", "0.3.11", "0.3.12", "0.3.13", "0.3.14", "0.3.15", "0.3.16", "0.3.17", "0.3.2", "0.3.3", "0.3.4", "0.3.5", "0.3.6", "0.3.7", "0.3.8", "0.3.9"},  # MAL-2026-11962
+    "conv-context-next": {"1.0.1", "1.0.10", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11965
+    "ecto": {"5.0.1"},  # MAL-2026-11966
+    "editable-contracts": {"0.0.12", "0.0.13", "0.0.14", "0.0.15", "0.0.16", "0.0.17", "0.0.18", "0.0.19", "0.0.20", "0.0.21", "0.0.22", "0.0.23", "0.0.24", "0.0.25", "0.0.26", "0.0.27"},  # MAL-2026-11967
+    "eslint-plugin-folder-schema": {"1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19", "1.0.20", "1.0.21", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11968
+    "example-js-project": {"1.0.10", "1.0.11", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11969
+    "folder-lint": {"1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19", "1.0.20", "1.0.21", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11972
+    "frontend-orb": {"4.4.1", "4.4.10", "4.4.11", "4.4.12", "4.4.13", "4.4.14", "4.4.15", "4.4.16", "4.4.17", "4.4.18", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "4.4.6", "4.4.7", "4.4.8", "4.4.9"},  # MAL-2026-11973
+    "hamus.js": {"0.4.1"},  # MAL-2026-11974
+    "http-metrics-middleware": {"2.2.2"},  # MAL-2026-11975
+    "native-frontend-orb": {"1.1.10", "1.1.11", "1.1.12", "1.1.13", "1.1.14", "1.1.15", "1.1.16", "1.1.17", "1.1.18", "1.1.19", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9"},  # MAL-2026-11976
+    "picasso-plugin-hammer": {"2.11.6"},  # MAL-2026-11977
+    "picasso-plugin-q": {"2.11.6"},  # MAL-2026-11978
+    "picasso.js": {"2.11.6"},  # MAL-2026-11979
+    "pob-test-package-in-monorepo": {"5.2.1", "5.2.10", "5.2.11", "5.2.12", "5.2.13", "5.2.14", "5.2.15", "5.2.16", "5.2.2", "5.2.3", "5.2.4", "5.2.5", "5.2.6", "5.2.7", "5.2.8", "5.2.9"},  # MAL-2026-11980
+    "pob-test-typescript-package-in-monorepo": {"4.2.1", "4.2.10", "4.2.11", "4.2.12", "4.2.13", "4.2.14", "4.2.15", "4.2.16", "4.2.17", "4.2.2", "4.2.3", "4.2.4", "4.2.5", "4.2.6", "4.2.7", "4.2.8", "4.2.9"},  # MAL-2026-11981
+    "qlik-chart-modules": {"1.1.1"},  # MAL-2026-11982
+    "qlik-modifiers": {"0.10.1"},  # MAL-2026-11983
+    "qlik-object-conversion": {"0.17.2"},  # MAL-2026-11984
+    "rwc-client": {"0.29.10", "0.29.11", "0.29.12", "0.29.13", "0.29.14", "0.29.15", "0.29.16", "0.29.17", "0.29.18", "0.29.19"},  # MAL-2026-11985
+    "server-hemera-mongo": {"0.0.12"},  # MAL-2026-11986
+    "sn-listbox": {"0.3.3"},  # MAL-2026-11987
+    "tslint-folder-schema": {"1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19", "1.0.20", "1.0.21", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11988
+    "umadev": {"1.0.74"},  # MAL-2026-11989
+    "verdaccio-okta-oauth": {"38.1.1", "38.1.10", "38.1.11", "38.1.12", "38.1.13", "38.1.14", "38.1.15", "38.1.16", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7", "38.1.8", "38.1.9"},  # MAL-2026-11990
+    "verdaccio-tarball-local-storage": {"38.1.1", "38.1.10", "38.1.11", "38.1.12", "38.1.13", "38.1.14", "38.1.15", "38.1.16", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7", "38.1.8", "38.1.9"},  # MAL-2026-11991
+    "workbench-browser-server": {"0.0.2"},  # MAL-2026-11992
+    # @adminide-stack/* — compromised in the keyv/cacheable campaign
+    "@adminide-stack/clock-tik-browser": {"12.0.24"},  # MAL-2026-11551
+    "@adminide-stack/yantra-mobile": {"12.0.33"},  # MAL-2026-11552
+    # @arv-bedrock/* — compromised in the keyv/cacheable campaign
+    "@arv-bedrock/auth": {"1.1.7", "1.1.8"},  # MAL-2026-11553
+    "@arv-bedrock/auth-admin": {"1.0.2", "1.0.3"},  # MAL-2026-11554
+    "@arv-bedrock/auth-sso": {"1.6.1", "1.6.2"},  # MAL-2026-11555
+    "@arv-bedrock/auth-sso-backend": {"1.7.1", "1.7.2"},  # MAL-2026-11556
+    "@arv-bedrock/logger": {"1.7.1", "1.7.2"},  # MAL-2026-11557
+    # @deliveroo/* — compromised in the keyv/cacheable campaign
+    "@deliveroo/determinator": {"0.2.1"},  # MAL-2026-11562
+    "@deliveroo/reevent": {"1.0.1"},  # MAL-2026-11563
+    # @hubsync/* — compromised in the keyv/cacheable campaign
+    "@hubsync/web-sdk-react": {"6.3.10", "6.3.11", "6.3.12", "6.3.13", "6.3.14", "6.3.15", "6.3.16", "6.3.17", "6.3.18", "6.3.19", "6.3.20", "6.3.21", "6.3.22", "6.3.23", "6.3.24", "6.3.25", "6.3.26", "6.3.27", "6.3.28", "6.3.29", "6.3.30", "6.3.31", "6.3.32", "6.3.33", "6.3.7", "6.3.8", "6.3.9"},  # MAL-2026-11564
+    # @picsart/* — compromised in the keyv/cacheable campaign
+    "@picsart/ai-sdk": {"3.32.2"},  # MAL-2026-11781
+    "@picsart/gen-ai": {"2.55.11"},  # MAL-2026-11782
+    # @thiennq/* — compromised in the keyv/cacheable campaign
+    "@thiennq/docs-viewer": {"1.6.2", "1.6.3", "1.6.4"},  # MAL-2026-11952
+    # @workbench-stack/* — compromised in the keyv/cacheable campaign
+    "@workbench-stack/core": {"3.9.8"},  # MAL-2026-11961
+    # @umacloud/* — 8 packages compromised in the keyv/cacheable campaign
+    "@umacloud/cli-darwin-arm64": {"1.0.74"},  # MAL-2026-11953
+    "@umacloud/cli-darwin-x64": {"1.0.74"},  # MAL-2026-11954
+    "@umacloud/cli-linux-arm64": {"1.0.74"},  # MAL-2026-11955
+    "@umacloud/cli-linux-musl-arm64": {"1.0.74"},  # MAL-2026-11956
+    "@umacloud/cli-linux-musl-x64": {"1.0.74"},  # MAL-2026-11957
+    "@umacloud/cli-linux-x64": {"1.0.74"},  # MAL-2026-11958
+    "@umacloud/cli-win32-x64": {"1.0.74"},  # MAL-2026-11959
+    "@umacloud/knowledge": {"1.0.74"},  # MAL-2026-11960
+    # @nebula.js/* — Qlik visualization framework (22 packages) compromised
+    "@nebula.js/cli": {"7.1.2"},  # MAL-2026-11565
+    "@nebula.js/cli-build": {"7.1.2"},  # MAL-2026-11566
+    "@nebula.js/cli-sense": {"7.1.2"},  # MAL-2026-11567
+    "@nebula.js/cli-serve": {"7.1.2"},  # MAL-2026-11568
+    "@nebula.js/locale": {"0.6.2"},  # MAL-2026-11569
+    "@nebula.js/nucleus": {"0.5.1"},  # MAL-2026-11570
+    "@nebula.js/sn-action-button": {"2.3.1"},  # MAL-2026-11571
+    "@nebula.js/sn-animator": {"2.13.1"},  # MAL-2026-11572
+    "@nebula.js/sn-distributionplot": {"1.0.7"},  # MAL-2026-11573
+    "@nebula.js/sn-layout-container": {"4.4.1"},  # MAL-2026-11574
+    "@nebula.js/sn-line-chart": {"2.7.1"},  # MAL-2026-11575
+    "@nebula.js/sn-listbox": {"0.19.3"},  # MAL-2026-11576
+    "@nebula.js/sn-map": {"0.12.7"},  # MAL-2026-11577
+    "@nebula.js/sn-nav-menu": {"0.14.2"},  # MAL-2026-11578
+    "@nebula.js/sn-org-chart": {"1.7.1"},  # MAL-2026-11579
+    "@nebula.js/sn-shape": {"1.5.1"},  # MAL-2026-11580
+    "@nebula.js/sn-slider": {"0.20.1"},  # MAL-2026-11581
+    "@nebula.js/sn-tabbed-container": {"2.4.1"},  # MAL-2026-11582
+    "@nebula.js/snapshooter": {"0.6.1"},  # MAL-2026-11583
+    "@nebula.js/stardust": {"7.1.2"},  # MAL-2026-11584
+    "@nebula.js/test-utils": {"0.6.1"},  # MAL-2026-11585
+    "@nebula.js/theme": {"0.6.1"},  # MAL-2026-11586
+    # picasso.js / qlik-* non-scoped packages compromised in the same campaign
+    "picasso-plugin-hammer": {"2.11.6"},  # MAL-2026-11977
+    "picasso-plugin-q": {"2.11.6"},  # MAL-2026-11978
+    "picasso.js": {"2.11.6"},  # MAL-2026-11979
+    "qlik-chart-modules": {"1.1.1"},  # MAL-2026-11982
+    "qlik-modifiers": {"0.10.1"},  # MAL-2026-11983
+    "qlik-object-conversion": {"0.17.2"},  # MAL-2026-11984
+    "sn-listbox": {"0.3.3"},  # MAL-2026-11987
+    # @qlik/* — Qlik Analytics scope (28 packages) compromised
+    "@qlik/api": {"2.14.2"},  # MAL-2026-11783
+    "@qlik/browserslist-config": {"3.0.2"},  # MAL-2026-11784
+    "@qlik/carbon-core": {"2.1.1"},  # MAL-2026-11785
+    "@qlik/carboncopy": {"1.1.6"},  # MAL-2026-11786
+    "@qlik/design-tokens": {"1.3.13"},  # MAL-2026-11787
+    "@qlik/dts-bundler": {"2.0.3"},  # MAL-2026-11788
+    "@qlik/embed-react": {"2.5.3"},  # MAL-2026-11789
+    "@qlik/embed-runtime": {"1.6.4"},  # MAL-2026-11790
+    "@qlik/embed-svelte": {"1.1.4"},  # MAL-2026-11791
+    "@qlik/embed-web-components": {"1.7.3"},  # MAL-2026-11792
+    "@qlik/eslint-config": {"2.0.20"},  # MAL-2026-11793
+    "@qlik/eslint-config-base": {"0.1.1"},  # MAL-2026-11794
+    "@qlik/eslint-config-react": {"0.1.1"},  # MAL-2026-11795
+    "@qlik/eslint-config-svelte": {"0.1.1"},  # MAL-2026-11796
+    "@qlik/eslint-config-vue": {"0.1.1"},  # MAL-2026-11797
+    "@qlik/nebula-table-utils": {"2.6.9"},  # MAL-2026-11798
+    "@qlik/oxfmt-config": {"0.1.6"},  # MAL-2026-11799
+    "@qlik/oxlint-config": {"0.7.2"},  # MAL-2026-11800
+    "@qlik/prettier-config": {"1.0.3"},  # MAL-2026-11801
+    "@qlik/react-native-simple-grid": {"1.5.5"},  # MAL-2026-11802
+    "@qlik/runtime-module-loader": {"1.5.1"},  # MAL-2026-11803
+    "@qlik/sdk": {"0.28.1"},  # MAL-2026-11804
+    "@qlik/sprout-design-docs": {"1.0.2"},  # MAL-2026-11805
+    "@qlik/sprout-gesture": {"0.0.13"},  # MAL-2026-11806
+    "@qlik/sprout-icons": {"0.12.3"},  # MAL-2026-11807
+    "@qlik/sprout-react": {"6.45.3"},  # MAL-2026-11808
+    "@qlik/sprout-react-table": {"0.16.7"},  # MAL-2026-11809
+    "@qlik/tsconfig": {"1.0.3"},  # MAL-2026-11810
+    # @ornikar/* — Ornikar internal packages dep-confusion (42 packages)
+    "@ornikar/apollo-link-timeout": {"1.4.10", "1.4.11", "1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7", "1.4.8", "1.4.9"},  # MAL-2026-11739
+    "@ornikar/babel-preset-base": {"6.0.10", "6.0.11", "6.0.12", "6.0.13", "6.0.14", "6.0.3", "6.0.4", "6.0.5", "6.0.6", "6.0.7", "6.0.8", "6.0.9"},  # MAL-2026-11740
+    "@ornikar/babel-preset-kitt-universal": {"8.0.10", "8.0.11", "8.0.12", "8.0.3", "8.0.4", "8.0.5", "8.0.6", "8.0.7", "8.0.8", "8.0.9"},  # MAL-2026-11741
+    "@ornikar/babel-preset-react": {"6.1.10", "6.1.11", "6.1.12", "6.1.13", "6.1.14", "6.1.4", "6.1.5", "6.1.6", "6.1.7", "6.1.8", "6.1.9"},  # MAL-2026-11742
+    "@ornikar/browserslist-config": {"8.0.10", "8.0.11", "8.0.3", "8.0.4", "8.0.5", "8.0.6", "8.0.7", "8.0.8", "8.0.9"},  # MAL-2026-11743
+    "@ornikar/commitlint-config": {"8.3.10", "8.3.11", "8.3.12", "8.3.2", "8.3.3", "8.3.4", "8.3.5", "8.3.6", "8.3.7", "8.3.8", "8.3.9"},  # MAL-2026-11744
+    "@ornikar/eslint-config": {"24.0.1", "24.0.10", "24.0.11", "24.0.12", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11745
+    "@ornikar/eslint-config-babel": {"24.0.1", "24.0.10", "24.0.11", "24.0.12", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11746
+    "@ornikar/eslint-config-babel-use": {"13.2.1", "13.2.10", "13.2.11", "13.2.12", "13.2.2", "13.2.3", "13.2.4", "13.2.5", "13.2.6", "13.2.7", "13.2.8", "13.2.9"},  # MAL-2026-11747
+    "@ornikar/eslint-config-formatjs": {"24.0.1", "24.0.10", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11748
+    "@ornikar/eslint-config-node": {"12.2.1", "12.2.10", "12.2.2", "12.2.3", "12.2.4", "12.2.5", "12.2.6", "12.2.7", "12.2.8", "12.2.9"},  # MAL-2026-11749
+    "@ornikar/eslint-config-react": {"24.0.1", "24.0.10", "24.0.11", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11750
+    "@ornikar/eslint-config-typescript": {"24.0.1", "24.0.10", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11751
+    "@ornikar/eslint-config-typescript-nestjs": {"24.0.1", "24.0.10", "24.0.11", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11752
+    "@ornikar/eslint-config-typescript-react": {"24.0.1", "24.0.10", "24.0.11", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11753
+    "@ornikar/eslint-plugin-neverthrow": {"1.3.1", "1.3.10", "1.3.11", "1.3.12", "1.3.2", "1.3.3", "1.3.4", "1.3.5", "1.3.6", "1.3.7", "1.3.8", "1.3.9"},  # MAL-2026-11754
+    "@ornikar/eslint-plugin-ornikar": {"24.0.1", "24.0.10", "24.0.11", "24.0.2", "24.0.3", "24.0.4", "24.0.5", "24.0.6", "24.0.7", "24.0.8", "24.0.9"},  # MAL-2026-11755
+    "@ornikar/graphql-config": {"1.1.1", "1.1.10", "1.1.11", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9"},  # MAL-2026-11756
+    "@ornikar/intl-config": {"10.0.2", "10.0.3", "10.0.4", "10.0.5", "10.0.6", "10.0.7", "10.0.8", "10.0.9"},  # MAL-2026-11757
+    "@ornikar/jest-config": {"13.0.10", "13.0.11", "13.0.12", "13.0.13", "13.0.3", "13.0.4", "13.0.5", "13.0.6", "13.0.7", "13.0.8", "13.0.9"},  # MAL-2026-11758
+    "@ornikar/jest-config-react": {"18.0.10", "18.0.11", "18.0.2", "18.0.3", "18.0.4", "18.0.5", "18.0.6", "18.0.7", "18.0.8", "18.0.9"},  # MAL-2026-11759
+    "@ornikar/jest-config-react-native": {"17.0.10", "17.0.11", "17.0.12", "17.0.2", "17.0.3", "17.0.4", "17.0.5", "17.0.6", "17.0.7", "17.0.8", "17.0.9"},  # MAL-2026-11760
+    "@ornikar/jest-config-react-native-web": {"12.0.10", "12.0.11", "12.0.12", "12.0.13", "12.0.3", "12.0.4", "12.0.5", "12.0.6", "12.0.7", "12.0.8", "12.0.9"},  # MAL-2026-11761
+    "@ornikar/kitt2": {"1.0.1", "1.0.10", "1.0.11", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11762
+    "@ornikar/lerna-config": {"11.0.1", "11.0.10", "11.0.11", "11.0.2", "11.0.3", "11.0.4", "11.0.5", "11.0.6", "11.0.7", "11.0.8", "11.0.9"},  # MAL-2026-11763
+    "@ornikar/monorepo-config": {"14.3.10", "14.3.11", "14.3.12", "14.3.13", "14.3.2", "14.3.3", "14.3.4", "14.3.5", "14.3.6", "14.3.7", "14.3.8", "14.3.9"},  # MAL-2026-11764
+    "@ornikar/postcss-config": {"9.1.10", "9.1.11", "9.1.12", "9.1.2", "9.1.3", "9.1.4", "9.1.5", "9.1.6", "9.1.7", "9.1.8", "9.1.9"},  # MAL-2026-11765
+    "@ornikar/prettier-config": {"9.0.10", "9.0.11", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7", "9.0.8", "9.0.9"},  # MAL-2026-11766
+    "@ornikar/prismic-components": {"0.0.10", "0.0.11", "0.0.12", "0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8", "0.0.9"},  # MAL-2026-11767
+    "@ornikar/react-modern-calendar-datepicker": {"3.2.1", "3.2.10", "3.2.11", "3.2.2", "3.2.3", "3.2.4", "3.2.5", "3.2.6", "3.2.7", "3.2.8", "3.2.9"},  # MAL-2026-11768
+    "@ornikar/react-native-svg-transformer": {"1.0.10", "1.0.11", "1.0.12", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11769
+    "@ornikar/renovate-config": {"9.0.10", "9.0.11", "9.0.12", "9.0.13", "9.0.2", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7", "9.0.8", "9.0.9"},  # MAL-2026-11770
+    "@ornikar/repo-config": {"15.3.10", "15.3.11", "15.3.12", "15.3.13", "15.3.3", "15.3.4", "15.3.5", "15.3.6", "15.3.7", "15.3.8", "15.3.9"},  # MAL-2026-11771
+    "@ornikar/repo-config-react": {"13.0.10", "13.0.11", "13.0.12", "13.0.13", "13.0.14", "13.0.15", "13.0.16", "13.0.17", "13.0.18", "13.0.19", "13.0.8", "13.0.9"},  # MAL-2026-11772
+    "@ornikar/repo-config-react-legacy-css": {"15.1.10", "15.1.11", "15.1.12", "15.1.13", "15.1.2", "15.1.3", "15.1.4", "15.1.5", "15.1.6", "15.1.7", "15.1.8", "15.1.9"},  # MAL-2026-11773
+    "@ornikar/rollup-config": {"11.1.10", "11.1.11", "11.1.12", "11.1.13", "11.1.2", "11.1.3", "11.1.4", "11.1.5", "11.1.6", "11.1.7", "11.1.8", "11.1.9"},  # MAL-2026-11774
+    "@ornikar/rollup-plugin-postcss": {"2.0.10", "2.0.11", "2.0.12", "2.0.13", "2.0.14", "2.0.15", "2.0.5", "2.0.6", "2.0.7", "2.0.8", "2.0.9"},  # MAL-2026-11775
+    "@ornikar/slate-react-fork": {"1.0.1", "1.0.10", "1.0.11", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9"},  # MAL-2026-11776
+    "@ornikar/storybook-config": {"12.1.10", "12.1.2", "12.1.3", "12.1.4", "12.1.5", "12.1.6", "12.1.7", "12.1.8", "12.1.9"},  # MAL-2026-11777
+    "@ornikar/stylelint-config": {"14.0.10", "14.0.11", "14.0.12", "14.0.13", "14.0.3", "14.0.4", "14.0.5", "14.0.6", "14.0.7", "14.0.8", "14.0.9"},  # MAL-2026-11778
+    "@ornikar/typed-css-modules-loader": {"0.8.10", "0.8.11", "0.8.12", "0.8.2", "0.8.3", "0.8.4", "0.8.5", "0.8.6", "0.8.7", "0.8.8", "0.8.9"},  # MAL-2026-11779
+    "@ornikar/webpack-config": {"12.0.10", "12.0.11", "12.0.12", "12.0.2", "12.0.3", "12.0.4", "12.0.5", "12.0.6", "12.0.7", "12.0.8", "12.0.9"},  # MAL-2026-11780
+    # @or-sdk/* — OneReach.ai SDK packages compromised (74 packages)
+    "@or-sdk/account-settings": {"1.3.6", "1.3.7", "1.3.8"},  # MAL-2026-11665
+    "@or-sdk/accounts": {"2.3.5", "2.3.6", "2.3.7"},  # MAL-2026-11666
+    "@or-sdk/adapters": {"0.3.6", "0.3.7", "0.3.8"},  # MAL-2026-11667
+    "@or-sdk/agents": {"4.21.3", "4.21.4", "4.21.5"},  # MAL-2026-11668
+    "@or-sdk/api-tokens": {"1.4.2", "1.4.3", "1.4.4"},  # MAL-2026-11669
+    "@or-sdk/api-tokens-lambda": {"1.4.2", "1.4.3", "1.4.4"},  # MAL-2026-11670
+    "@or-sdk/apps": {"1.2.6", "1.2.7", "1.2.8"},  # MAL-2026-11671
+    "@or-sdk/auth": {"0.38.1", "0.38.2", "0.38.3"},  # MAL-2026-11672
+    "@or-sdk/authorizer": {"0.26.7", "0.26.8", "0.26.9"},  # MAL-2026-11673
+    "@or-sdk/base": {"0.44.4", "0.44.5", "0.44.6"},  # MAL-2026-11674
+    "@or-sdk/billing": {"27.2.1", "27.2.2", "27.2.3"},  # MAL-2026-11675
+    "@or-sdk/billing-internal": {"27.2.1", "27.2.2", "27.2.3"},  # MAL-2026-11676
+    "@or-sdk/bot-templates": {"2.2.5", "2.2.6", "2.2.7"},  # MAL-2026-11677
+    "@or-sdk/bots": {"1.7.1", "1.7.2", "1.7.3"},  # MAL-2026-11678
+    "@or-sdk/card-templates": {"2.2.5", "2.2.6", "2.2.7"},  # MAL-2026-11679
+    "@or-sdk/cards": {"1.2.5", "1.2.6", "1.2.7"},  # MAL-2026-11680
+    "@or-sdk/ccp": {"10.15.4", "10.15.5", "10.15.6"},  # MAL-2026-11681
+    "@or-sdk/chat": {"0.3.1", "0.3.2", "0.3.3"},  # MAL-2026-11682
+    "@or-sdk/contacts": {"4.7.5", "4.7.6", "4.7.7"},  # MAL-2026-11683
+    "@or-sdk/content-request": {"0.2.6", "0.2.7", "0.2.8"},  # MAL-2026-11684
+    "@or-sdk/data-hub": {"0.26.5", "0.26.6", "0.26.7"},  # MAL-2026-11685
+    "@or-sdk/data-hub-svc": {"2.3.5", "2.3.6", "2.3.7"},  # MAL-2026-11686
+    "@or-sdk/deployer": {"1.7.5", "1.7.6", "1.7.7"},  # MAL-2026-11687
+    "@or-sdk/deployments": {"2.1.5", "2.1.6", "2.1.7"},  # MAL-2026-11688
+    "@or-sdk/discovery": {"1.12.1", "1.12.2", "1.12.3"},  # MAL-2026-11689
+    "@or-sdk/druid": {"1.4.7", "1.4.8", "1.4.9"},  # MAL-2026-11690
+    "@or-sdk/event-manager": {"1.1.5", "1.1.6", "1.1.7"},  # MAL-2026-11691
+    "@or-sdk/files": {"3.11.6", "3.11.7", "3.11.8"},  # MAL-2026-11692
+    "@or-sdk/files-sync-node": {"0.1.10", "0.1.8", "0.1.9"},  # MAL-2026-11693
+    "@or-sdk/flow-templates": {"2.1.5", "2.1.6", "2.1.7"},  # MAL-2026-11694
+    "@or-sdk/flows": {"2.7.10", "2.7.8", "2.7.9"},  # MAL-2026-11695
+    "@or-sdk/graph": {"1.10.5", "1.10.6", "1.10.7"},  # MAL-2026-11696
+    "@or-sdk/hitl": {"0.41.1", "0.41.2", "0.41.3"},  # MAL-2026-11697
+    "@or-sdk/identifiers": {"0.27.6", "0.27.7", "0.27.8"},  # MAL-2026-11698
+    "@or-sdk/idw": {"9.0.4", "9.0.5", "9.0.6"},  # MAL-2026-11699
+    "@or-sdk/idw-public": {"1.6.6", "1.6.7", "1.6.8"},  # MAL-2026-11700
+    "@or-sdk/idw-skill": {"1.4.1", "1.4.2", "1.4.3"},  # MAL-2026-11701
+    "@or-sdk/invitations": {"1.4.10", "1.4.8", "1.4.9"},  # MAL-2026-11702
+    "@or-sdk/key-value-storage": {"0.28.6", "0.28.7", "0.28.8"},  # MAL-2026-11703
+    "@or-sdk/keys": {"1.2.6", "1.2.7", "1.2.8"},  # MAL-2026-11704
+    "@or-sdk/knowledge-models": {"0.25.5", "0.25.6", "0.25.7"},  # MAL-2026-11705
+    "@or-sdk/library": {"0.5.6", "0.5.7", "0.5.8"},  # MAL-2026-11706
+    "@or-sdk/library-categories": {"0.2.6", "0.2.7", "0.2.8"},  # MAL-2026-11707
+    "@or-sdk/library-source": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11708
+    "@or-sdk/library-types-v1": {"9.0.1", "9.0.2", "9.0.3"},  # MAL-2026-11709
+    "@or-sdk/library-types-v2": {"9.0.1", "9.0.2", "9.0.3"},  # MAL-2026-11710
+    "@or-sdk/lookup": {"1.25.1", "1.25.2", "1.25.3"},  # MAL-2026-11711
+    "@or-sdk/markdowner": {"0.5.1", "0.5.2", "0.5.3"},  # MAL-2026-11712
+    "@or-sdk/mcp-tools": {"0.5.2", "0.5.3", "0.5.4"},  # MAL-2026-11713
+    "@or-sdk/notifications": {"1.7.5", "1.7.6", "1.7.7"},  # MAL-2026-11714
+    "@or-sdk/password": {"1.3.6", "1.3.7", "1.3.8"},  # MAL-2026-11715
+    "@or-sdk/payments": {"3.2.5", "3.2.6", "3.2.7"},  # MAL-2026-11716
+    "@or-sdk/permissions": {"2.8.1", "2.8.2", "2.8.3"},  # MAL-2026-11717
+    "@or-sdk/permissions-cli": {"1.4.1", "1.4.2", "1.4.3"},  # MAL-2026-11718
+    "@or-sdk/permissions-lambda": {"2.5.1", "2.5.2", "2.5.3"},  # MAL-2026-11719
+    "@or-sdk/pgsql": {"1.5.1", "1.5.2", "1.5.3"},  # MAL-2026-11720
+    "@or-sdk/providers": {"0.3.6", "0.3.7", "0.3.8"},  # MAL-2026-11721
+    "@or-sdk/qna": {"3.4.2", "3.4.3", "3.4.4"},  # MAL-2026-11722
+    "@or-sdk/queue-manager": {"1.4.6", "1.4.7", "1.4.8"},  # MAL-2026-11723
+    "@or-sdk/sdk-api": {"0.29.2", "0.29.3", "0.29.4"},  # MAL-2026-11724
+    "@or-sdk/settings": {"0.25.6", "0.25.7", "0.25.8"},  # MAL-2026-11725
+    "@or-sdk/sku-builder": {"2.5.1", "2.5.2", "2.5.3"},  # MAL-2026-11726
+    "@or-sdk/source": {"2.1.5", "2.1.6", "2.1.7"},  # MAL-2026-11727
+    "@or-sdk/source-api": {"1.1.1", "1.1.2", "1.1.3"},  # MAL-2026-11728
+    "@or-sdk/step-templates": {"2.2.5", "2.2.6", "2.2.7"},  # MAL-2026-11729
+    "@or-sdk/store": {"2.1.5", "2.1.6", "2.1.7"},  # MAL-2026-11730
+    "@or-sdk/tables": {"0.28.5", "0.28.6", "0.28.7"},  # MAL-2026-11731
+    "@or-sdk/tags": {"1.1.5", "1.1.6", "1.1.7"},  # MAL-2026-11732
+    "@or-sdk/tickets": {"1.9.5", "1.9.6", "1.9.7"},  # MAL-2026-11733
+    "@or-sdk/transcripts": {"1.2.5", "1.2.6", "1.2.7"},  # MAL-2026-11734
+    "@or-sdk/users": {"3.8.1", "3.8.2", "3.8.3"},  # MAL-2026-11735
+    "@or-sdk/view-templates": {"2.2.5", "2.2.6", "2.2.7"},  # MAL-2026-11736
+    "@or-sdk/views": {"3.1.5", "3.1.6", "3.1.7"},  # MAL-2026-11737
+    "@or-sdk/web-search": {"0.6.1", "0.6.2", "0.6.3"},  # MAL-2026-11738
+    # @onereach/* — OneReach.ai platform packages compromised (78 packages)
+    "@onereach/authorizer-helper": {"0.0.11", "0.0.12", "0.0.13"},  # MAL-2026-11587
+    "@onereach/bandwidth-steps-voice-bxml": {"0.1.1", "0.1.2", "0.1.3"},  # MAL-2026-11588
+    "@onereach/billing-dto": {"27.2.1", "27.2.2", "27.2.3"},  # MAL-2026-11589
+    "@onereach/billing-shared": {"27.2.1", "27.2.2", "27.2.3"},  # MAL-2026-11590
+    "@onereach/cb-schema-translator": {"1.3.1", "1.3.2", "1.3.3"},  # MAL-2026-11591
+    "@onereach/channel-transformer": {"0.0.66", "0.0.67", "0.0.68"},  # MAL-2026-11592
+    "@onereach/channel-transformers": {"0.0.5", "0.0.6", "0.0.7"},  # MAL-2026-11593
+    "@onereach/ckeditor5-build-classic": {"30.0.1", "30.0.2", "30.0.3"},  # MAL-2026-11594
+    "@onereach/condition-builder": {"1.0.10", "1.0.8", "1.0.9"},  # MAL-2026-11595
+    "@onereach/content-builder": {"0.0.18", "0.0.19", "0.0.20"},  # MAL-2026-11596
+    "@onereach/content-builder-template-compiler": {"0.0.3", "0.0.4", "0.0.5"},  # MAL-2026-11597
+    "@onereach/expression-components": {"9.1.1", "9.1.2", "9.1.3"},  # MAL-2026-11598
+    "@onereach/font-icons": {"27.0.2", "27.0.3", "27.0.4"},  # MAL-2026-11599
+    "@onereach/get-version-data": {"3.1.2", "3.1.3", "3.1.4"},  # MAL-2026-11600
+    "@onereach/idw-apps": {"0.1.3", "0.1.4", "0.1.5"},  # MAL-2026-11601
+    "@onereach/idw-contracts": {"0.1.2", "0.1.3", "0.1.4"},  # MAL-2026-11602
+    "@onereach/idw-init-account-resources": {"1.0.1", "1.0.2", "1.0.3"},  # MAL-2026-11603
+    "@onereach/idw-sdk": {"0.1.2", "0.1.3", "0.1.4"},  # MAL-2026-11604
+    "@onereach/idw-ui-components": {"0.1.2", "0.1.3", "0.1.4"},  # MAL-2026-11605
+    "@onereach/lambda-invocation": {"1.2.1", "1.2.2", "1.2.3"},  # MAL-2026-11606
+    "@onereach/messengers-infobip-sdk": {"0.1.1", "0.1.2", "0.1.3"},  # MAL-2026-11607
+    "@onereach/or-browser": {"0.0.48", "0.0.49", "0.0.50"},  # MAL-2026-11608
+    "@onereach/or-browser-next": {"0.0.11", "0.0.12", "0.0.13"},  # MAL-2026-11609
+    "@onereach/or-content-builder-renderer": {"0.0.2", "0.0.3", "0.0.4"},  # MAL-2026-11610
+    "@onereach/or-file-uploader-next": {"0.0.10", "0.0.8", "0.0.9"},  # MAL-2026-11611
+    "@onereach/or-pro": {"1.13.1", "1.13.2", "1.13.3"},  # MAL-2026-11612
+    "@onereach/or-sdk-agent-cli": {"0.0.6", "0.0.7", "0.0.8"},  # MAL-2026-11613
+    "@onereach/orest-cli": {"2.4.1", "2.4.2", "2.4.3"},  # MAL-2026-11614
+    "@onereach/orest-input-cli": {"1.18.1", "1.18.2", "1.18.3"},  # MAL-2026-11615
+    "@onereach/orest-jest-presets": {"0.0.3", "0.0.4", "0.0.5"},  # MAL-2026-11616
+    "@onereach/orest-vue-demi-vue2": {"0.0.4", "0.0.5", "0.0.6"},  # MAL-2026-11617
+    "@onereach/orest-vue-demi-vue3": {"0.0.4", "0.0.5", "0.0.6"},  # MAL-2026-11618
+    "@onereach/orest-vue3": {"0.0.4", "0.0.5", "0.0.6"},  # MAL-2026-11619
+    "@onereach/phonenumber-interpreter": {"0.0.18", "0.0.19", "0.0.20"},  # MAL-2026-11620
+    "@onereach/pnpm-audit-junit": {"1.0.3", "1.0.4", "1.0.5"},  # MAL-2026-11621
+    "@onereach/postcss-scoped-selector": {"1.2.1", "1.2.2", "1.2.3"},  # MAL-2026-11622
+    "@onereach/regex-helper": {"0.5.16", "0.5.17", "0.5.18"},  # MAL-2026-11623
+    "@onereach/regular-expressions": {"0.5.23", "0.5.24", "0.5.25"},  # MAL-2026-11624
+    "@onereach/regular-expressions-test": {"0.0.4", "0.0.5", "0.0.6"},  # MAL-2026-11625
+    "@onereach/rwc-client": {"6.4.7", "6.4.8", "6.4.9"},  # MAL-2026-11626
+    "@onereach/salesforce-miaw-client": {"0.0.3", "0.0.4", "0.0.5"},  # MAL-2026-11627
+    "@onereach/si-a-button": {"0.0.3", "0.0.4", "0.0.5"},  # MAL-2026-11628
+    "@onereach/si-alert": {"0.4.11", "0.4.12", "0.4.13"},  # MAL-2026-11629
+    "@onereach/si-checkbox": {"0.6.5", "0.6.6", "0.6.7"},  # MAL-2026-11630
+    "@onereach/si-checkbox-group": {"0.3.5", "0.3.6", "0.3.7"},  # MAL-2026-11631
+    "@onereach/si-code": {"0.6.4", "0.6.5", "0.6.6"},  # MAL-2026-11632
+    "@onereach/si-collapsible-group": {"0.6.4", "0.6.5", "0.6.6"},  # MAL-2026-11633
+    "@onereach/si-copyable-text": {"0.4.11", "0.4.12", "0.4.13"},  # MAL-2026-11634
+    "@onereach/si-datepicker": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11635
+    "@onereach/si-divider": {"0.4.11", "0.4.12", "0.4.13"},  # MAL-2026-11636
+    "@onereach/si-dropdown-advanced": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11637
+    "@onereach/si-dropdown-simple": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11638
+    "@onereach/si-header": {"0.4.11", "0.4.12", "0.4.13", "0.4.14"},  # MAL-2026-11639
+    "@onereach/si-list": {"0.7.4", "0.7.5", "0.7.6"},  # MAL-2026-11640
+    "@onereach/si-merge-tag-input": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11641
+    "@onereach/si-radio-group": {"0.3.5", "0.3.6", "0.3.7"},  # MAL-2026-11642
+    "@onereach/si-root": {"0.9.4", "0.9.5", "0.9.6"},  # MAL-2026-11643
+    "@onereach/si-select": {"0.1.3", "0.1.4", "0.1.5"},  # MAL-2026-11644
+    "@onereach/si-step-chooser": {"0.4.4", "0.4.5", "0.4.6"},  # MAL-2026-11645
+    "@onereach/si-switch": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11646
+    "@onereach/si-text-message": {"0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11647
+    "@onereach/si-textinput": {"0.5.5", "0.5.6", "0.5.7"},  # MAL-2026-11648
+    "@onereach/si-validated-timestring-input": {"0.3.5", "0.3.6", "0.3.7"},  # MAL-2026-11649
+    "@onereach/slack-helpers": {"1.0.3", "1.0.4", "1.0.5"},  # MAL-2026-11650
+    "@onereach/ssml-editor": {"2.0.12", "2.0.13", "2.0.14"},  # MAL-2026-11651
+    "@onereach/step-components": {"0.1.37", "0.1.38", "0.1.39"},  # MAL-2026-11652
+    "@onereach/step-conversation": {"1.0.41", "1.0.42", "1.0.43"},  # MAL-2026-11653
+    "@onereach/step-run-snowflake-query": {"0.1.1", "0.1.2", "0.1.3"},  # MAL-2026-11654
+    "@onereach/step-voice": {"7.0.32", "7.0.33", "7.0.34"},  # MAL-2026-11655
+    "@onereach/styles": {"27.0.2", "27.0.3", "27.0.4"},  # MAL-2026-11656
+    "@onereach/time-interpreter": {"1.0.30", "1.0.31", "1.0.32"},  # MAL-2026-11657
+    "@onereach/ts-memoize": {"1.0.2", "1.0.3", "1.0.4"},  # MAL-2026-11658
+    "@onereach/types-contacts-api": {"9.0.10", "9.0.8", "9.0.9"},  # MAL-2026-11659
+    "@onereach/ui-components": {"27.0.2", "27.0.3", "27.0.4"},  # MAL-2026-11660
+    "@onereach/ui-components-common": {"27.0.2", "27.0.3", "27.0.4"},  # MAL-2026-11661
+    "@onereach/ui-components-vue2": {"27.0.2", "27.0.3", "27.0.4"},  # MAL-2026-11662
+    "@onereach/v-event-calendar": {"0.1.22", "0.1.23", "0.1.24"},  # MAL-2026-11663
+    "@onereach/webform": {"0.3.13", "0.3.14", "0.3.15"},  # MAL-2026-11664
+    # @servicetitan/* — ServiceTitan internal packages compromised (141 packages)
+    "@servicetitan/acquisition-functions": {"5.22.1", "5.22.2", "5.22.3", "5.22.4", "5.22.5", "5.22.6", "5.22.7"},  # MAL-2026-11811
+    "@servicetitan/admin-layout": {"2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.4.8", "2.4.9"},  # MAL-2026-11812
+    "@servicetitan/admin-sql-table": {"1.0.14", "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19", "1.0.20"},  # MAL-2026-11813
+    "@servicetitan/ajax-handlers": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11814
+    "@servicetitan/anvil-css-utilities": {"14.5.10", "14.5.4", "14.5.5", "14.5.6", "14.5.7", "14.5.8", "14.5.9"},  # MAL-2026-11815
+    "@servicetitan/anvil-fonts": {"14.5.10", "14.5.4", "14.5.5", "14.5.6", "14.5.7", "14.5.8", "14.5.9"},  # MAL-2026-11816
+    "@servicetitan/anvil-icon": {"0.5.1", "0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6", "0.5.7"},  # MAL-2026-11817
+    "@servicetitan/anvil-icons": {"14.5.10", "14.5.4", "14.5.5", "14.5.6", "14.5.7", "14.5.8", "14.5.9"},  # MAL-2026-11818
+    "@servicetitan/anvil-react": {"0.11.3", "0.11.4", "0.11.5", "0.11.6", "0.11.7", "0.11.8", "0.11.9"},  # MAL-2026-11819
+    "@servicetitan/anvil-themes": {"14.5.10", "14.5.4", "14.5.5", "14.5.6", "14.5.7", "14.5.8", "14.5.9"},  # MAL-2026-11820
+    "@servicetitan/anvil-token": {"0.4.1", "0.4.2", "0.4.3", "0.4.4", "0.4.5", "0.4.6", "0.4.7"},  # MAL-2026-11821
+    "@servicetitan/anvil2": {"3.9.1", "3.9.2", "3.9.3", "3.9.4", "3.9.5", "3.9.6", "3.9.7"},  # MAL-2026-11822
+    "@servicetitan/anvil2-codemods": {"0.11.2", "0.11.3", "0.11.4", "0.11.5", "0.11.6", "0.11.7", "0.11.8"},  # MAL-2026-11823
+    "@servicetitan/anvil2-ext-atlas": {"4.0.2", "4.0.3", "4.0.4", "4.0.5", "4.0.6", "4.0.7", "4.0.8"},  # MAL-2026-11824
+    "@servicetitan/anvil2-ext-charts": {"0.2.10", "0.2.4", "0.2.5", "0.2.6", "0.2.7", "0.2.8", "0.2.9"},  # MAL-2026-11825
+    "@servicetitan/anvil2-ext-common": {"0.7.1", "0.7.2", "0.7.3", "0.7.4", "0.7.5", "0.7.6", "0.7.7"},  # MAL-2026-11826
+    "@servicetitan/anvil2-ext-mwv": {"0.0.10", "0.0.11", "0.0.5", "0.0.6", "0.0.7", "0.0.8", "0.0.9"},  # MAL-2026-11827
+    "@servicetitan/anvil2-illustrations": {"1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8"},  # MAL-2026-11828
+    "@servicetitan/anvil2-mcp": {"0.0.10", "0.0.11", "0.0.12", "0.0.13", "0.0.14", "0.0.15", "0.0.9"},  # MAL-2026-11829
+    "@servicetitan/assist-ui": {"2.1.1", "2.1.2", "2.1.3", "2.1.4", "2.1.5", "2.1.6", "2.1.7"},  # MAL-2026-11830
+    "@servicetitan/assist-utils": {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8"},  # MAL-2026-11831
+    "@servicetitan/carto-charts-core": {"0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8"},  # MAL-2026-11832
+    "@servicetitan/carto-charts-react": {"0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8"},  # MAL-2026-11833
+    "@servicetitan/carto-charts-rn": {"0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8"},  # MAL-2026-11834
+    "@servicetitan/carto-react-kit": {"0.8.10", "0.8.4", "0.8.5", "0.8.6", "0.8.7", "0.8.8", "0.8.9"},  # MAL-2026-11835
+    "@servicetitan/carto-rn-kit": {"0.0.10", "0.0.11", "0.0.12", "0.0.13", "0.0.14", "0.0.15", "0.0.16"},  # MAL-2026-11836
+    "@servicetitan/carto-tokens": {"0.3.1", "0.3.2", "0.3.3", "0.3.4", "0.3.5", "0.3.6", "0.3.7"},  # MAL-2026-11837
+    "@servicetitan/component-usage": {"28.5.1", "28.5.2", "28.5.3", "28.5.4", "28.5.5", "28.5.6", "28.5.7"},  # MAL-2026-11838
+    "@servicetitan/confirm": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11839
+    "@servicetitan/confirm-navigation": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11840
+    "@servicetitan/contentful": {"0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8", "0.0.9"},  # MAL-2026-11841
+    "@servicetitan/contentful-proxy": {"1.1.12", "1.1.13", "1.1.14", "1.1.15", "1.1.16", "1.1.17", "1.1.18"},  # MAL-2026-11842
+    "@servicetitan/cp-api": {"1.115.1", "1.115.2", "1.115.3", "1.115.4", "1.115.5", "1.115.6", "1.115.7"},  # MAL-2026-11843
+    "@servicetitan/cp-mfe": {"1.115.1", "1.115.2", "1.115.3", "1.115.4", "1.115.5", "1.115.6", "1.115.7"},  # MAL-2026-11844
+    "@servicetitan/cp-mfe-dev": {"1.115.1", "1.115.2", "1.115.3", "1.115.4", "1.115.5", "1.115.6", "1.115.7"},  # MAL-2026-11845
+    "@servicetitan/cp-react-hooks": {"1.115.1", "1.115.2", "1.115.3", "1.115.4", "1.115.5", "1.115.6", "1.115.7"},  # MAL-2026-11846
+    "@servicetitan/cp-ui": {"1.115.1", "1.115.2", "1.115.3", "1.115.4", "1.115.5", "1.115.6", "1.115.7"},  # MAL-2026-11847
+    "@servicetitan/culture": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11848
+    "@servicetitan/data-query": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11849
+    "@servicetitan/datadog-rum": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11850
+    "@servicetitan/datetime-utils": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11851
+    "@servicetitan/design-system": {"14.5.10", "14.5.4", "14.5.5", "14.5.6", "14.5.7", "14.5.8", "14.5.9"},  # MAL-2026-11852
+    "@servicetitan/docs-anvil-uikit-contrib": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11853
+    "@servicetitan/docs-uikit": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11854
+    "@servicetitan/document-title": {"2.4.1", "2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7"},  # MAL-2026-11855
+    "@servicetitan/dte-pdf-editor": {"1.76.1", "1.76.2", "1.76.3", "1.76.4", "1.76.5", "1.76.6", "1.76.7"},  # MAL-2026-11856
+    "@servicetitan/dte-unlayer": {"0.150.1", "0.150.2", "0.150.3", "0.150.4", "0.150.5", "0.150.6", "0.150.7"},  # MAL-2026-11857
+    "@servicetitan/eh-module-communication": {"0.2.1", "0.2.2", "0.2.3", "0.2.4", "0.2.5", "0.2.6", "0.2.7"},  # MAL-2026-11858
+    "@servicetitan/error-boundary": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11859
+    "@servicetitan/eslint-config": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11860
+    "@servicetitan/eslint-plugin": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11861
+    "@servicetitan/eslint-plugin-decorators-declare": {"12.8.15", "12.8.16", "12.8.17", "12.8.18", "12.8.19", "12.8.20", "12.8.21"},  # MAL-2026-11862
+    "@servicetitan/eslint-plugin-folder-schema": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11863
+    "@servicetitan/eslint-plugin-mobx-6": {"12.8.15", "12.8.16", "12.8.17", "12.8.18", "12.8.19", "12.8.20"},  # MAL-2026-11864
+    "@servicetitan/eslint-plugin-processors-stub": {"12.8.15", "12.8.16", "12.8.17", "12.8.18", "12.8.19", "12.8.20", "12.8.21"},  # MAL-2026-11865
+    "@servicetitan/examples": {"1.2.10", "1.2.11", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9"},  # MAL-2026-11866
+    "@servicetitan/feature-spotlight": {"3.9.1", "3.9.2", "3.9.3", "3.9.4", "3.9.5", "3.9.6", "3.9.7"},  # MAL-2026-11867
+    "@servicetitan/folder-lint": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11868
+    "@servicetitan/forge": {"0.5.1", "0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6", "0.5.7"},  # MAL-2026-11869
+    "@servicetitan/form": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11870
+    "@servicetitan/form-state": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11871
+    "@servicetitan/grid": {"0.0.63", "0.0.64", "0.0.65", "0.0.66", "0.0.67", "0.0.68", "0.0.69"},  # MAL-2026-11872
+    "@servicetitan/hammer-icon": {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7"},  # MAL-2026-11873
+    "@servicetitan/hammer-react": {"1.42.2", "1.42.3", "1.42.4", "1.42.5", "1.42.6", "1.42.7", "1.42.8"},  # MAL-2026-11874
+    "@servicetitan/hammer-token": {"3.1.1", "3.1.2", "3.1.3", "3.1.4", "3.1.5", "3.1.6", "3.1.7"},  # MAL-2026-11875
+    "@servicetitan/hash-browser-router": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11876
+    "@servicetitan/help-center": {"1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.8", "1.0.9"},  # MAL-2026-11877
+    "@servicetitan/html-sketchapp": {"4.2.10", "4.2.11", "4.2.12", "4.2.13", "4.2.14", "4.2.8", "4.2.9"},  # MAL-2026-11878
+    "@servicetitan/install": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11879
+    "@servicetitan/intl": {"7.2.1", "7.2.2", "7.2.3", "7.2.4", "7.2.5", "7.2.6", "7.2.7"},  # MAL-2026-11880
+    "@servicetitan/json-render-react": {"0.4.10", "0.4.11", "0.4.12", "0.4.6", "0.4.7", "0.4.8", "0.4.9"},  # MAL-2026-11881
+    "@servicetitan/kendo-theme": {"0.0.27", "0.0.28", "0.0.29", "0.0.30", "0.0.31", "0.0.32", "0.0.33"},  # MAL-2026-11882
+    "@servicetitan/ko-bridge": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11883
+    "@servicetitan/launchdarkly-service": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11884
+    "@servicetitan/lazy-module": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11885
+    "@servicetitan/ld-type-generator": {"0.2.1", "0.2.2", "0.2.3", "0.2.4", "0.2.5", "0.2.6", "0.2.7"},  # MAL-2026-11886
+    "@servicetitan/line-item-editor": {"1.5.1", "1.5.2", "1.5.3", "1.5.4", "1.5.5", "1.5.6", "1.5.7"},  # MAL-2026-11887
+    "@servicetitan/link-item": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11888
+    "@servicetitan/log-service": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11889
+    "@servicetitan/marketing-direct-mail-components": {"20.1.1", "20.1.2", "20.1.3", "20.1.4", "20.1.5", "20.1.6", "20.1.7"},  # MAL-2026-11890
+    "@servicetitan/marketing-email-components": {"20.2.3", "20.2.4", "20.2.5", "20.2.6", "20.2.7", "20.2.8", "20.2.9"},  # MAL-2026-11891
+    "@servicetitan/marketing-form": {"0.1.2", "0.1.3", "0.1.4", "0.1.5", "0.1.6", "0.1.7", "0.1.8"},  # MAL-2026-11892
+    "@servicetitan/marketing-global-route": {"1.14.1", "1.14.2", "1.14.3", "1.14.4", "1.14.5", "1.14.6", "1.14.7"},  # MAL-2026-11893
+    "@servicetitan/marketing-integration-widgets": {"1.0.40", "1.0.41", "1.0.42", "1.0.43", "1.0.44", "1.0.45", "1.0.46"},  # MAL-2026-11894
+    "@servicetitan/marketing-route": {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7"},  # MAL-2026-11895
+    "@servicetitan/marketing-ui": {"9.3.1", "9.3.2", "9.3.3", "9.3.4", "9.3.5", "9.3.6", "9.3.7"},  # MAL-2026-11896
+    "@servicetitan/marketing-widgets": {"1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7"},  # MAL-2026-11897
+    "@servicetitan/measure-sheet-data": {"2.6.1", "2.6.2", "2.6.3", "2.6.4", "2.6.5", "2.6.6", "2.6.7"},  # MAL-2026-11898
+    "@servicetitan/mfe-quick-actions": {"0.5.49", "0.5.50", "0.5.51", "0.5.52", "0.5.53", "0.5.54", "0.5.55"},  # MAL-2026-11899
+    "@servicetitan/micro-frontend": {"0.0.10", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8", "0.0.9"},  # MAL-2026-11900
+    "@servicetitan/microfront": {"0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8"},  # MAL-2026-11901
+    "@servicetitan/microfront-auth": {"0.0.10", "0.0.11", "0.0.5", "0.0.6", "0.0.7", "0.0.8", "0.0.9"},  # MAL-2026-11902
+    "@servicetitan/microfront-tests": {"0.0.11", "0.0.12", "0.0.13", "0.0.14", "0.0.15", "0.0.16", "0.0.17"},  # MAL-2026-11903
+    "@servicetitan/microfront-utils": {"1.4.1", "1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7"},  # MAL-2026-11904
+    "@servicetitan/modularpayments-webfields": {"1.0.53", "1.0.54", "1.0.55", "1.0.56", "1.0.57", "1.0.58", "1.0.59"},  # MAL-2026-11905
+    "@servicetitan/moneyout-api-client": {"1.29.1", "1.29.2", "1.29.3", "1.29.4", "1.29.5", "1.29.6", "1.29.7"},  # MAL-2026-11906
+    "@servicetitan/mpa-components": {"2.5.1", "2.5.2", "2.5.3", "2.5.4", "2.5.5", "2.5.6", "2.5.7"},  # MAL-2026-11907
+    "@servicetitan/navigation": {"14.1.1", "14.1.2", "14.1.3", "14.1.4", "14.1.5", "14.1.6", "14.1.7"},  # MAL-2026-11908
+    "@servicetitan/notifications": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11909
+    "@servicetitan/onboarding-ui": {"18.5.1", "18.5.2", "18.5.3", "18.5.4", "18.5.5", "18.5.6", "18.5.7"},  # MAL-2026-11910
+    "@servicetitan/quick-actions": {"1.15.2", "1.15.3", "1.15.4", "1.15.5", "1.15.6", "1.15.7", "1.15.8"},  # MAL-2026-11911
+    "@servicetitan/react-hooks": {"7.7.1", "7.7.2", "7.7.3", "7.7.4", "7.7.5", "7.7.6", "7.7.7"},  # MAL-2026-11912
+    "@servicetitan/react-ioc": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11913
+    "@servicetitan/responsive": {"6.1.1", "6.1.2", "6.1.3", "6.1.4", "6.1.5", "6.1.6", "6.1.7"},  # MAL-2026-11914
+    "@servicetitan/restrict-imports": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11915
+    "@servicetitan/schema-comparison": {"0.1.3", "0.1.4", "0.1.5", "0.1.6", "0.1.7", "0.1.8", "0.1.9"},  # MAL-2026-11916
+    "@servicetitan/skeleton": {"9.2.10", "9.2.4", "9.2.5", "9.2.6", "9.2.7", "9.2.8", "9.2.9"},  # MAL-2026-11917
+    "@servicetitan/standalone-core-feature-gates": {"1.11.10", "1.11.4", "1.11.5", "1.11.6", "1.11.7", "1.11.8", "1.11.9"},  # MAL-2026-11918
+    "@servicetitan/standalone-feature-flags": {"2.3.2", "2.3.3", "2.3.4", "2.3.5", "2.3.6", "2.3.7", "2.3.8"},  # MAL-2026-11919
+    "@servicetitan/standalone-root": {"1.11.3", "1.11.4", "1.11.5", "1.11.6", "1.11.7", "1.11.8", "1.11.9"},  # MAL-2026-11920
+    "@servicetitan/standalone-tm-api": {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7"},  # MAL-2026-11921
+    "@servicetitan/standalone-ui": {"2.2.10", "2.2.4", "2.2.5", "2.2.6", "2.2.7", "2.2.8", "2.2.9"},  # MAL-2026-11922
+    "@servicetitan/startup": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11923
+    "@servicetitan/startup-jest": {"2.2.1", "2.2.2", "2.2.3", "2.2.4", "2.2.5", "2.2.6", "2.2.7"},  # MAL-2026-11924
+    "@servicetitan/startup-mfe-compat": {"0.5.1", "0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6", "0.5.7"},  # MAL-2026-11925
+    "@servicetitan/startup-utils": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11926
+    "@servicetitan/stylelint-config": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11927
+    "@servicetitan/suppress-warnings": {"34.0.1", "34.1.0", "34.2.0", "34.2.1", "34.3.0", "34.3.0-beta.0", "34.3.0-beta.1", "34.3.0-beta.2", "35.0.0", "35.1.0", "35.2.0", "35.3.0", "36.0.0", "36.1.0", "36.1.1", "36.1.1-beta.1", "36.2.0", "36.3.0", "36.3.1", "36.4.0", "37.0.0", "37.0.1", "37.0.2", "38.0.0", "38.1.0", "38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11928
+    "@servicetitan/table": {"41.3.1", "41.3.2", "41.3.3", "41.3.4", "41.3.5", "41.3.6", "41.3.7"},  # MAL-2026-11929
+    "@servicetitan/tanstack-query-mobx": {"6.2.1", "6.2.2", "6.2.3", "6.2.4", "6.2.5", "6.2.6", "6.2.7"},  # MAL-2026-11930
+    "@servicetitan/temporal-lite": {"3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", "3.4.6", "3.4.7"},  # MAL-2026-11931
+    "@servicetitan/testing-library": {"6.6.1", "6.6.2", "6.6.3", "6.6.4", "6.6.5", "6.6.6", "6.6.7"},  # MAL-2026-11932
+    "@servicetitan/thoughtspot-theme": {"1.7.1", "1.7.2", "1.7.3", "1.7.4", "1.7.5", "1.7.6", "1.7.7"},  # MAL-2026-11933
+    "@servicetitan/time-zones": {"3.8.1", "3.8.2", "3.8.3", "3.8.4", "3.8.5", "3.8.6", "3.8.7"},  # MAL-2026-11934
+    "@servicetitan/titan-chat-ui": {"7.1.3", "7.1.4", "7.1.5", "7.1.6", "7.1.7", "7.1.8", "7.1.9"},  # MAL-2026-11935
+    "@servicetitan/titan-chat-ui-anvil2": {"9.0.1", "9.0.2", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7"},  # MAL-2026-11936
+    "@servicetitan/titan-chat-ui-common": {"9.0.1", "9.0.2", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7"},  # MAL-2026-11937
+    "@servicetitan/titan-chat-ui-cypress": {"2.1.3", "2.1.4", "2.1.5", "2.1.6", "2.1.7", "2.1.8", "2.1.9"},  # MAL-2026-11938
+    "@servicetitan/titan-chatbot-api": {"9.0.1", "9.0.2", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7"},  # MAL-2026-11939
+    "@servicetitan/titan-chatbot-client": {"2.1.3", "2.1.4", "2.1.5", "2.1.6", "2.1.7", "2.1.8", "2.1.9"},  # MAL-2026-11940
+    "@servicetitan/titan-chatbot-ui": {"7.1.3", "7.1.4", "7.1.5", "7.1.6", "7.1.7", "7.1.8", "7.1.9"},  # MAL-2026-11941
+    "@servicetitan/titan-chatbot-ui-anvil2": {"9.0.1", "9.0.2", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7"},  # MAL-2026-11942
+    "@servicetitan/titan-chatbot-ui-cypress": {"9.0.1", "9.0.2", "9.0.3", "9.0.4", "9.0.5", "9.0.6", "9.0.7"},  # MAL-2026-11943
+    "@servicetitan/tokens": {"12.9.1", "12.9.2", "12.9.3", "12.9.4", "12.9.5", "12.9.6", "12.9.7"},  # MAL-2026-11944
+    "@servicetitan/toolbelt-shared-registry": {"1.14.1", "1.14.2", "1.14.3", "1.14.4", "1.14.5", "1.14.6", "1.14.7"},  # MAL-2026-11945
+    "@servicetitan/uikit-docs": {"22.11.1", "22.11.2", "22.11.3", "22.11.4", "22.11.5", "22.11.6", "22.11.7"},  # MAL-2026-11946
+    "@servicetitan/unit-tests": {"0.0.2", "0.0.3", "0.0.4", "0.0.5", "0.0.6", "0.0.7", "0.0.8"},  # MAL-2026-11947
+    "@servicetitan/va-mfe-loader": {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7"},  # MAL-2026-11948
+    "@servicetitan/web-components": {"38.1.1", "38.1.2", "38.1.3", "38.1.4", "38.1.5", "38.1.6", "38.1.7"},  # MAL-2026-11949
+    "@servicetitan/widget-platform": {"5.6.1", "5.6.2", "5.6.3", "5.6.4", "5.6.5", "5.6.6", "5.6.7"},  # MAL-2026-11950
+    "@servicetitan/widget-platform-monolith": {"5.6.1", "5.6.2", "5.6.3", "5.6.4", "5.6.5", "5.6.6", "5.6.7"},  # MAL-2026-11951
+    # @zzzgenesis00/* crypto-wallet key-stealer scope Aug 4–5 2026 (14 packages)
+    # Attacker-controlled scope publishing fake impersonators of popular crypto/Web3 libraries
+    # (bip39, ethers, solana-web3, hdkey, xrp-lib, etc.) that exfiltrate wallet keys and
+    # mnemonics. All packages are new publishes with no legitimate history.
+    # OSV MAL-2026-11515, 11529–11534, 11994, 12030–12031, 12055–12058
+    "@zzzgenesis00/bip39-generator": {"3.1.2"},  # MAL-2026-11515
+    "@zzzgenesis00/bip39-mnemonic": {"2.3.1"},  # MAL-2026-12030
+    "@zzzgenesis00/crypto-config": {"2.0.1"},  # MAL-2026-11529
+    "@zzzgenesis00/docker-api-client": {"2.0.2"},  # MAL-2026-12055
+    "@zzzgenesis00/etherjs": {"6.15.0"},  # MAL-2026-11530
+    "@zzzgenesis00/ethers-wallet": {"6.13.5"},  # MAL-2026-12031
+    "@zzzgenesis00/hdkey-wallet": {"2.1.0"},  # MAL-2026-11531
+    "@zzzgenesis00/mnemonic-to-key": {"1.2.0"},  # MAL-2026-12056
+    "@zzzgenesis00/playwrite": {"1.48.0"},  # MAL-2026-12057
+    "@zzzgenesis00/solana-wallet-adapter": {"0.18.0"},  # MAL-2026-11532
+    "@zzzgenesis00/solana-web3": {"2.1.0"},  # MAL-2026-11533
+    "@zzzgenesis00/spl-token-utils": {"1.4.2"},  # MAL-2026-12058
+    "@zzzgenesis00/web3-provider-engine": {"16.0.5"},  # MAL-2026-11994
+    "@zzzgenesis00/xrp-lib": {"2.14.0"},  # MAL-2026-11534
+    # @jsimplify/* — misc malware Aug 4–5 2026
+    "@jsimplify/errno": set(),  # MAL-2026-12006
+    # @ks-openclaw/* — misc malware Aug 4–5 2026
+    "@ks-openclaw/kim": {"99.0.0", "99.0.1"},  # MAL-2026-11528
+    # @tuluax/* — misc malware Aug 4–5 2026
+    "@tuluax/errb": {"3.0.1"},  # MAL-2026-11993
+    # beaver-ui-* continuation — additional fake UI component packages Aug 4–5 2026
+    # Extends the beaver-ui cluster from MAL-2026-11506/11507/11508/11509/11510
+    # OSV MAL-2026-11522, 12034, 12060
+    "beaver-ui-card-large": {"12.4.3", "9.6.2", "9.6.3", "9.6.4", "9.6.5"},  # MAL-2026-12060
+    "beaver-ui-form": {"34.9.1"},  # MAL-2026-11522
+    "beaver-ui-form-modal": {"12.7.6", "34.6.3"},  # MAL-2026-12034
+    # bigops-* continuation — additional fake bigops dep-confusion packages Aug 4–5 2026
+    # Extends bigops-chat-messages from MAL-2026-11511; versions at 35.x
+    # OSV MAL-2026-11535, 12035–12038, 12061
+    "bigops-auth-utils": {"35.4.5"},  # MAL-2026-12035
+    "bigops-backend": {"35.8.3"},  # MAL-2026-11535
+    "bigops-chat-tmsg": {"35.8.5"},  # MAL-2026-12036
+    "bigops-create-manifest": {"35.2.4"},  # MAL-2026-12037
+    "bigops-customer": {"35.1.1"},  # MAL-2026-12038
+    "bigops-eslint": {"35.9.5"},  # MAL-2026-12061
+    # Tinkoff/T-Bank dep-confusion cluster Aug 4–5 2026
+    # Private packages of Tinkoff (Russian neobank) published to public npm at version 20.x,
+    # targeting internal CI/CD dependency resolution. OSV MAL-2026-11549–11550, 12041–12042,
+    # 12044–12046, 12048–12053, 12063, 12069–12077, 12079
+    "checkout-create-pos-order-am": {"20.9.5"},  # MAL-2026-12063
+    "eacq-payform-core": {"20.3.6"},  # MAL-2026-11538
+    "nxify-unic": {"20.3.2"},  # MAL-2026-12069
+    "platform-ui-codemods": {"20.6.7"},  # MAL-2026-12041
+    "platform-ui-island": {"20.5.9"},  # MAL-2026-12042
+    "shopping-shared-atom-mobile-cart-counter": {"20.6.6"},  # MAL-2026-12070
+    "sotqa-test": {"20.3.8"},  # MAL-2026-12071
+    "specials-mvno-client": {"20.9.8"},  # MAL-2026-12044
+    "specials-obid-webpack": {"20.5.4"},  # MAL-2026-12072
+    "sso-tramvai-module-context-auth": {"20.4.5"},  # MAL-2026-12073
+    "statist-browser-typed-client-hra.workplacer.events": {"20.9.1"},  # MAL-2026-12045
+    "statist-browser-typed-client-nfs.grocery.mobile.events": {"20.3.3"},  # MAL-2026-12074
+    "statist-browser-typed-client-test.jumpwork.circuitbreaker": {"20.8.2"},  # MAL-2026-12046
+    "tinkoff-boxy-desktop-features-banner": {"20.2.4"},  # MAL-2026-12048
+    "tinkoff-boxy-mobile-vivid-heading": {"20.7.5"},  # MAL-2026-12075
+    "tinkoff-cache-path": {"20.8.3"},  # MAL-2026-12076
+    "tinkoff-component-infopanel": {"20.8.3"},  # MAL-2026-12049
+    "tinkoff-statist-browser-typed-client-sme.compliance.web.events": {"20.4.4"},  # MAL-2026-12077
+    "tinkoff-statist-browser-typed-client-sme.reporting.reporting": {"20.5.4"},  # MAL-2026-12050
+    "tinkoff-terminal-kit-carousel": {"20.6.3"},  # MAL-2026-11549
+    "tinkoff-ui-action": {"20.5.7"},  # MAL-2026-12051
+    "tramvai-tinkoff-module-legacy-popup": {"20.4.9"},  # MAL-2026-12052
+    "tui-react-mobile-styles": {"20.8.7"},  # MAL-2026-12053
+    "volna-boxy-di-test": {"20.3.8"},  # MAL-2026-12079
+    # streak-* dep-confusion cluster Aug 4–5 2026 (8 packages targeting Streak CRM)
+    # OSV MAL-2026-11527–11548, 11999–12003, 12047
+    "streak-day-utils": {"1.0.0"},  # MAL-2026-12047
+    "streak-map-metrics": {"1.0.0"},  # MAL-2026-11999
+    "streak-math-abz": {"1.0.0"},  # MAL-2026-11548
+    "streak-math-metrics": {"1.0.0"},  # MAL-2026-12000
+    "streak-metricazbd": {"1.0.0"},  # MAL-2026-12001
+    "streak-metricsaz": {"1.0.0"},  # MAL-2026-11527
+    "streak-metricsazb": {"1.0.0"},  # MAL-2026-12002
+    "streak-test-mathcore": {"1.0.0"},  # MAL-2026-12003
+    # sextant-cli dep-confusion cluster Aug 4–5 2026 (4 platform binaries)
+    # OSV MAL-2026-11997, 12028–12029, 12043
+    "sextant-cli-darwin-amd64": {"0.0.1-rc34"},  # MAL-2026-12028
+    "sextant-cli-darwin-arm64": {"0.0.1-rc24"},  # MAL-2026-11997
+    "sextant-cli-linux-amd64": {"0.0.1-rc26", "0.0.1-rc32", "0.0.1-rc34"},  # MAL-2026-12029
+    "sextant-cli-linux-arm64": {"0.0.1-rc11", "0.0.1-rc12", "0.0.1-rc25", "0.0.1-rc29"},  # MAL-2026-12043
+    # simple-date-formatter-* continuation — additional fake util packages Aug 4–5 2026
+    # Extends cluster from MAL-2026-11483/11484/11485/11501/11502; OSV MAL-2026-11543–11547, 11998
+    "simple-date-formatter-new-5": {"1.0.0"},  # MAL-2026-11543
+    "simple-date-formatter-util-10": {"1.0.0"},  # MAL-2026-11544
+    "simple-date-formatter-util-15": {"1.0.0"},  # MAL-2026-11545
+    "simple-date-formatter-util-6": {"1.0.0"},  # MAL-2026-11546
+    "simple-date-formatter-util-7": {"1.0.0"},  # MAL-2026-11998
+    "simple-date-formatter-util-9": {"1.0.0"},  # MAL-2026-11547
+    # nagix-* cluster Aug 4–5 2026 (nagix-node, nagix-nodejs, nagixjs)
+    # OSV MAL-2026-11525–11526, 11541
+    "nagix-node": {"2.1.6"},  # MAL-2026-11525
+    "nagix-nodejs": {"2.1.6"},  # MAL-2026-11526
+    "nagixjs": {"2.1.6"},  # MAL-2026-11541
+    # Crypto hardware wallet fake npm packages Aug 5 2026
+    # Fake impersonators of hardware wallet utility libraries (Coldcard/HWI/Ledger/Trezor);
+    # OSV MAL-2026-12064, 12067–12068, 12078
+    "ckcc-protocol": {"1.0.0"},  # MAL-2026-12064
+    "hwi-lib": {"1.0.0", "1.0.1"},  # MAL-2026-12067
+    "ledger-lib": {"1.0.0"},  # MAL-2026-12068
+    "trezor-lib": {"1.0.0"},  # MAL-2026-12078
+    # Miscellaneous npm malware Aug 4–5 2026 (no cluster pattern)
+    # OSV MAL-2026-11192, 11517–11518, 11536–11539, 11542, 11993–11998, 12032–12033,
+    #      12039–12040, 12054, 12059, 12061–12062, 12065–12066
+    "add-two-numbers-x7q9m": {"1.0.0"},  # MAL-2026-12032
+    "aedes_clusters": {"1.0.1"},  # MAL-2026-12033
+    "approval-guardian": {"1.0.1", "1.0.6"},  # MAL-2026-11995
+    "bcore-bravo-eslint-config": {"12.5.7", "9.5.6", "9.5.7", "9.5.8", "9.5.9"},  # MAL-2026-12059
+    "boardwalk-js-tests": {"1.1.1"},  # MAL-2026-12062
+    "cors-version": set(),  # MAL-2026-12026
+    "data-format-helper": {"1.0.0", "1.0.1"},  # MAL-2026-12039
+    "discord-vibegrations-api-helpers": {"1.0.0"},  # MAL-2026-11536
+    "discord-vibegrations-api-natives": {"1.0.5"},  # MAL-2026-11537
+    "emulative": {"1.0.1"},  # MAL-2026-11996
+    "entropyeasybots": {"2.0.2"},  # MAL-2026-11539
+    "exnesss": {"0.0.1"},  # MAL-2026-11518
+    "forge-extended": {"1.0.1"},  # MAL-2026-12040
+    "greatcall-customers-commandapi": {"99.0.0"},  # MAL-2026-12065
+    "hubert-application-get-document-preview-am": {"20.4.6"},  # MAL-2026-11540
+    "hubert-appointment-v2-task-create-am": {"20.4.4"},  # MAL-2026-12066
+    "internallib_v688": set(),  # MAL-2026-11517
+    "osinthell": {"1.0.1", "1.0.5", "1.6.6", "1.6.9", "1.9.1", "1.9.5"},  # MAL-2026-11542
+    "tailwind-anime": set(),  # MAL-2026-12027
+    "test2221": {"2.2.4"},  # MAL-2026-11192
+    "twork-data-services-aggregator-api-v2-data-view-company-company-profile-mf-data-transformer": {"20.5.3"},  # MAL-2026-11550
+    "uibabai": {"5.7.5"},  # MAL-2026-12054
+    "vitest-preview-pro": {"10.0.3"},  # MAL-2026-12004
+    "webdev-conf": {"5.0.0"},  # MAL-2026-12005
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -6608,6 +7262,17 @@ NPM_SUSPECT_SCOPES = (
     "@pumpdot-fun/",
     # @sourav_chanduka scope (July 31 2026) — 3 packages pinned above
     "@sourav_chanduka/",
+    # keyv/cacheable npm account compromise (Aug 4–5 2026) — large scopes with individual
+    # packages pinned above in NPM_BAD; scope entries catch any additional unreported packages
+    "@keyv/",           # 19 packages at 6.0.0 pinned above
+    "@nebula.js/",      # 22 Qlik visualization packages pinned above
+    "@onereach/",       # 78 OneReach.ai packages pinned above
+    "@ornikar/",        # 42 Ornikar packages pinned above
+    "@or-sdk/",         # 74 OneReach.ai SDK packages pinned above
+    "@qlik/",           # 28 Qlik Analytics packages pinned above
+    "@servicetitan/",   # 141 ServiceTitan packages pinned above
+    "@umacloud/",       # 8 UmaCloud packages pinned above
+    "@zzzgenesis00/",   # 14 crypto-wallet stealer packages pinned above
 )
 
 # crates.io: exact crate name -> set of malicious versions.
