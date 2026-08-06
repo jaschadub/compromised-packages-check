@@ -400,7 +400,28 @@ bip39, ethers, solana-web3, hdkey, xrp-lib etc.; OSV MAL-2026-11515/11529–1153
 (Tinkoff dep-confusion, bigops/beaver-ui/streak continuation, sextant-cli,
 nagix cluster, crypto hardware wallet fakes, cors-version/tailwind-anime wildcards,
 4 PyPI crypto/AI-SDK typosquats; OSV MAL-2026-11192/11516–11550/11962–11999/
-12026–12079).
+12026–12079),
+and the Aug 5–6 2026 multi-campaign npm/PyPI batch: the @wethenorth12/
+crypto-wallet-drainer scope (23 packages impersonating BIP39/Ethereum/Solana/
+NEAR/TRON SDKs; OSV MAL-2026-12085 through MAL-2026-12107), the @zzzcrypto/
+companion scope (5 packages; OSV MAL-2026-13211 through MAL-2026-13215), the
+@cryptosrvc and @shiftmarkets exchange SDK typosquat pair (6 packages duplicating
+shift-exchange/no-brainer-sdk at .9.9 versions; OSV MAL-2026-12315/12316/12317/
+12329/12508/12509), the @zahlen checkout-flow malware pair (OSV MAL-2026-12332/
+12333), the @copilot-mcp/apex MCP impersonator (13 versions; OSV MAL-2026-12314),
+standalone crypto typosquats bip32-js/bip39-generator/bitcoinjs-wallet/ethers-lib/
+ethers-signer/uniswap-sdk-v4/viem-toolkit/wagmi-react/web3-utils-crypto (OSV MAL-
+2026-12109/12111/13257/13258/13343/13354/12490/12495/12498), akamai sensor
+typosquats akamai-sensorv1/v2/v3/akamaijs-sensor (OSV MAL-2026-12139/12337/
+13216/13217), async-mutex typosquats (OSV MAL-2026-12339/12513/12514), tailwind
+scrollbar typosquats (OSV MAL-2026-12116/12224), alipclutch-baileys WhatsApp
+typosquat (OSV MAL-2026-12108), anthropic-setup malware (OSV MAL-2026-12510),
+aws-sdk-v4 typosquat (OSV MAL-2026-13218), streak-calc-math/metrics continuation
+(OSV MAL-2026-12114/12115/12311), simple-date-formatter-* continuation 12 packages
+(OSV MAL-2026-12194 through MAL-2026-12206), and the PyPI crypto-wallet-drainer
+cluster bip39-py/bitcoinlib-py/crypto-trading-toolkit/crypto-wallet-sdk/defi-sdk-py/
+eth-account-wallet/gcli-control/mnemonic-py/numpyp/solana-sniper-bot/uncrypt
+(OSV MAL-2026-12080/12081/12082/12083/12502/12503/13361/13362/13372/13373/13380).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -413,7 +434,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-05
+Date:      2026-08-06
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1307,6 +1328,22 @@ PYPI_BAD: dict[str, set[str]] = {
     "launchdarkly-ai-server-sdk": {"1.0.1", "1.9.9"},            # MAL-2026-11519
     "psbt-helpers": {"1.0.0"},                                    # MAL-2026-11521
     "psbt-utils": {"1.0.0"},                                      # MAL-2026-11520
+    # PyPI crypto-wallet-drainer cluster Aug 5 2026
+    # Multiple packages impersonating BIP39/BIP32 mnemonic tools, Ethereum account helpers,
+    # Solana sniper bots, and DeFi SDKs; all exfiltrate private keys / mnemonics at install.
+    # gcli-control and numpyp are CI/numpy typosquats in the same wave.
+    # OSV MAL-2026-12080/12081/12082/12083/12502/12503/13361/13362/13372/13373/13380
+    "bip39-py": {"1.0.6"},                                        # MAL-2026-12080
+    "bitcoinlib-py": {"0.9.0"},                                   # MAL-2026-12081
+    "crypto-trading-toolkit": {"3.2.0"},                          # MAL-2026-12082
+    "crypto-wallet-sdk": {"1.8.3"},                               # MAL-2026-12083
+    "defi-sdk-py": {"2.5.1"},                                     # MAL-2026-13361
+    "eth-account-wallet": {"0.11.2"},                             # MAL-2026-13372
+    "gcli-control": {"0.5.0", "0.11.1", "0.12.2", "0.12.4"},    # MAL-2026-12502
+    "mnemonic-py": {"0.21"},                                      # MAL-2026-13362
+    "numpyp": {"0.7.7"},                                          # MAL-2026-12503
+    "solana-sniper-bot": {"1.4.2"},                               # MAL-2026-13373
+    "uncrypt": {"0.1.0", "0.1.1", "0.1.2"},                     # MAL-2026-13380
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -7197,6 +7234,147 @@ NPM_BAD: dict[str, set[str]] = {
     "uibabai": {"5.7.5"},  # MAL-2026-12054
     "vitest-preview-pro": {"10.0.3"},  # MAL-2026-12004
     "webdev-conf": {"5.0.0"},  # MAL-2026-12005
+
+    # @wethenorth12 crypto-wallet-drainer campaign Aug 5 2026
+    # Attacker-controlled scope publishing fake Web3/DeFi SDK impersonators designed to
+    # exfiltrate private keys, mnemonics, and wallet credentials. 23 packages across
+    # BIP39, Ethereum, Solana, NEAR, TRON, XRP ecosystems; also includes infra packages
+    # (docker-api-client, env-loader, playwrite) as delivery vectors.
+    # OSV MAL-2026-12085 through MAL-2026-12107
+    "@wethenorth12/bip39-generator": {"3.1.2"},       # MAL-2026-12085
+    "@wethenorth12/bip39-mnemonic": {"2.3.1"},         # MAL-2026-12086
+    "@wethenorth12/bitcoin-lib": {"6.1.7"},             # MAL-2026-12087
+    "@wethenorth12/bitcoinjs-wallet": {"5.4.2"},        # MAL-2026-12088
+    "@wethenorth12/crypto-config": {"2.0.1"},           # MAL-2026-12089
+    "@wethenorth12/docker-api-client": {"2.0.2"},       # MAL-2026-12090
+    "@wethenorth12/env-loader": {"4.2.0"},              # MAL-2026-12091
+    "@wethenorth12/etherjs": {"6.15.0", "6.15.1", "6.15.2", "6.15.3", "6.15.4"},  # MAL-2026-12092
+    "@wethenorth12/ethers-signer": {"3.2.1"},           # MAL-2026-12093
+    "@wethenorth12/ethers-wallet": {"6.13.5"},          # MAL-2026-12094
+    "@wethenorth12/hd-key-generator": {"1.6.3"},        # MAL-2026-12095
+    "@wethenorth12/hdkey-wallet": {"2.1.0"},            # MAL-2026-12096
+    "@wethenorth12/mnemonic-to-key": {"1.2.0"},         # MAL-2026-12097
+    "@wethenorth12/near-api": {"3.0.1"},                # MAL-2026-12098
+    "@wethenorth12/playwrite": {"1.48.0"},              # MAL-2026-12099
+    "@wethenorth12/solana-spl-token": {"0.4.0"},        # MAL-2026-12100
+    "@wethenorth12/solana-wallet-adapter": {"0.18.0"},  # MAL-2026-12101
+    "@wethenorth12/solana-web3": {"2.1.0"},             # MAL-2026-12102
+    "@wethenorth12/spl-token-utils": {"1.4.2"},         # MAL-2026-12103
+    "@wethenorth12/test-fresh": {"1.0.0"},              # MAL-2026-12104
+    "@wethenorth12/tronweb3": {"5.3.2"},                # MAL-2026-12105
+    "@wethenorth12/web3-provider-engine": {"16.0.5"},   # MAL-2026-12106
+    "@wethenorth12/web3-utils-crypto": {"1.10.4"},      # MAL-2026-12107
+
+    # @zzzcrypto crypto-stealer scope Aug 5 2026
+    # Companion scope to @wethenorth12; 5 packages mirroring the same BTC/ETH/Solana/XRP
+    # fake-SDK credential-theft pattern. OSV MAL-2026-13211 through MAL-2026-13215
+    "@zzzcrypto/bitcoin-lib": {"6.1.7"},       # MAL-2026-13211
+    "@zzzcrypto/etherjs": {"6.15.4"},          # MAL-2026-13212
+    "@zzzcrypto/playwrite": {"1.48.0"},        # MAL-2026-13213
+    "@zzzcrypto/solana-spl-token": {"0.4.0"},  # MAL-2026-13214
+    "@zzzcrypto/xrp-lib": {"2.14.0"},          # MAL-2026-13215
+
+    # @cryptosrvc / @shiftmarkets exchange SDK typosquat pair Aug 5 2026
+    # Two scopes publishing identical fake "shift-exchange" and "no-brainer-sdk" packages,
+    # impersonating legitimate ShiftMarkets crypto exchange SDKs. Versions bump at .9.9
+    # (1.9.9, 2.9.9, 3.9.9) signal dependency confusion intent.
+    # OSV MAL-2026-12315/12316/12317/12329/12508/12509
+    "@cryptosrvc/no-brainer-sdk": {"1.0.18"},                        # MAL-2026-12315
+    "@cryptosrvc/shift-exchange-root": {"1.9.9", "2.9.9", "3.9.9"}, # MAL-2026-12316
+    "@cryptosrvc/shift-sdk-v4": {"1.0.77"},                          # MAL-2026-12317
+    "@shiftmarkets/no-brainer-sdk": {"1.0.18"},                      # MAL-2026-12508
+    "@shiftmarkets/shift-exchange-root": {"1.9.9", "2.9.9", "3.9.9"}, # MAL-2026-12509
+    "@shiftmarkets/shift-sdk-v4": {"1.0.77"},                        # MAL-2026-12329
+
+    # @zahlen checkout-flow malware pair Aug 5–6 2026
+    # Two packages impersonating a payment/checkout flow library.
+    # OSV MAL-2026-12332/12333
+    "@zahlen/checkout-angular": {"0.1.4"},  # MAL-2026-12332
+    "@zahlen/checkout-react": {"0.1.1"},    # MAL-2026-12333
+
+    # @copilot-mcp/apex MCP server impersonator Aug 5 2026
+    # Impersonates a GitHub Copilot MCP (Model Context Protocol) server extension.
+    # 13 versions published; OSV MAL-2026-12314
+    "@copilot-mcp/apex": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5",
+                          "1.0.6", "1.0.7", "1.0.8", "1.0.16", "1.0.17", "1.0.21",
+                          "1.0.22"},  # MAL-2026-12314
+
+    # Standalone crypto-wallet-drainer typosquats Aug 5 2026
+    # Bare (un-scoped) versions of the same fake Web3 SDK packages as @wethenorth12/
+    # and related scopes. All are pure-malware impersonators with no legitimate
+    # prior history. OSV MAL-2026-12109/12111/13257/13258/13343/13354/12490/12495/12498
+    "bip32-js": {"1.0.0", "1.0.1", "1.0.2"},                    # MAL-2026-12109
+    "bip39-generator": {"3.1.2"},                                # MAL-2026-13257
+    "bitcoinjs-wallet": {"5.4.2"},                               # MAL-2026-13258
+    "ethers-lib": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"}, # MAL-2026-12111
+    "ethers-signer": {"3.2.1"},                                  # MAL-2026-13343
+    "uniswap-sdk-v4": {"1.0.0"},                                 # MAL-2026-12490
+    "viem-toolkit": {"1.0.0"},                                   # MAL-2026-12495
+    "wagmi-react": {"1.0.0"},                                    # MAL-2026-12498
+    "web3-utils-crypto": {"1.10.4"},                             # MAL-2026-13354
+
+    # akamai sensor typosquats Aug 5 2026
+    # Four packages impersonating Akamai bot-detection sensor scripts.
+    # OSV MAL-2026-12139/12337/13216/13217
+    "akamai-sensorv1": {"1.0.0"},   # MAL-2026-13216
+    "akamai-sensorv2": {"1.0.0"},   # MAL-2026-13217
+    "akamai-sensorv3": {"1.0.0"},   # MAL-2026-12139
+    "akamaijs-sensor": {"3.0.0"},   # MAL-2026-12337
+
+    # async-mutex typosquats Aug 5–6 2026
+    # Three packages typosquatting the popular `async-mutex` concurrency library.
+    # async-mutex-lock uses ranges: introduced 0 (any version malicious).
+    # OSV MAL-2026-12339/12513/12514
+    "async-mutex-hook": {"2.1.0"},  # MAL-2026-12339
+    "async-mutex-lock": set(),      # MAL-2026-12513
+    "async-mutex-v3": {"3.1.0"},    # MAL-2026-12514
+
+    # tailwind scrollbar typosquats Aug 6 2026
+    # Two packages impersonating the popular `tailwindcss-scrollbar-hide` / `tailwind-scrollbar`
+    # utility plugins. Both have ranges: introduced 0 (entire history is malicious).
+    # OSV MAL-2026-12116/12224
+    "tailwind-hide-scrollbar": set(),      # MAL-2026-12116
+    "tailwindcss-scrollbar-hide": set(),   # MAL-2026-12224
+
+    # alipclutch-baileys WhatsApp bot credential typosquat Aug 5 2026
+    # Typosquats the legitimate @whiskeysockets/baileys WhatsApp library;
+    # 5 versions exfiltrate WhatsApp session credentials. OSV MAL-2026-12108
+    "alipclutch-baileys": {"8.6.58", "8.6.59", "8.6.60", "8.6.75", "8.6.77"},  # MAL-2026-12108
+
+    # anthropic-setup malware Aug 5 2026
+    # Impersonates an Anthropic SDK setup helper; single version 1.0.1.
+    # OSV MAL-2026-12510
+    "anthropic-setup": {"1.0.1"},  # MAL-2026-12510
+
+    # aws-sdk-v4 AWS SDK typosquat Aug 5 2026
+    # Impersonates the AWS SDK v3 under a fake "v4" name; single version 3.650.0
+    # (mirrors the real @aws-sdk/* version numbering). OSV MAL-2026-13218
+    "aws-sdk-v4": {"3.650.0"},  # MAL-2026-13218
+
+    # streak-* postinstall credential cluster continuation Aug 5–6 2026
+    # Three more packages extending the existing streak-math / streak-metrics cluster.
+    # streak-calc-metrics and streak-math-calc have ranges: introduced 0 (any version).
+    # OSV MAL-2026-12114/12115/12311
+    "streak-calc-math": {"1.0.0"},   # MAL-2026-12114
+    "streak-calc-metrics": set(),    # MAL-2026-12311
+    "streak-math-calc": set(),       # MAL-2026-12115
+
+    # simple-date-formatter-* typosquat cluster continuation Aug 5 2026
+    # Extends the existing simple-date-formatter-* dep-confusion cluster (new-5/util-6
+    # through util-10 already tracked). 12 additional variants at version 1.0.0.
+    # OSV MAL-2026-12194 through MAL-2026-12206
+    "simple-date-formatter-new-2": {"1.0.0"},   # MAL-2026-12194
+    "simple-date-formatter-new-3": {"1.0.0"},   # MAL-2026-12195
+    "simple-date-formatter-new-4": {"1.0.0"},   # MAL-2026-12196
+    "simple-date-formatter-new-6": {"1.0.0"},   # MAL-2026-12197
+    "simple-date-formatter-new-7": {"1.0.0"},   # MAL-2026-12198
+    "simple-date-formatter-new-8": {"1.0.0"},   # MAL-2026-12199
+    "simple-date-formatter-util-8": {"1.0.0"},  # MAL-2026-12206
+    "simple-date-formatter-util-11": {"1.0.0"}, # MAL-2026-12200
+    "simple-date-formatter-util-12": {"1.0.0"}, # MAL-2026-12201
+    "simple-date-formatter-util-13": {"1.0.0"}, # MAL-2026-12202
+    "simple-date-formatter-util-14": {"1.0.0"}, # MAL-2026-12203
+    "simple-date-formatter-util-16": {"1.0.0"}, # MAL-2026-12204
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -7241,6 +7419,20 @@ NPM_SUSPECT_SCOPES = (
     # active OSV MAL-2026-10783 through MAL-2026-10862; representative entries
     # pinned above in NPM_BAD; scope catches the remainder
     "@gocortexio/",
+    # @wethenorth12 crypto-wallet-drainer scope (Aug 5 2026) — 23 packages pinned above;
+    # entire attacker-controlled scope; scope catches any undisclosed additional packages
+    "@wethenorth12/",
+    # @zzzcrypto crypto-stealer scope (Aug 5 2026) — 5 packages pinned above;
+    # companion scope to @wethenorth12
+    "@zzzcrypto/",
+    # @cryptosrvc exchange SDK typosquat scope (Aug 5 2026) — 3 packages pinned above
+    "@cryptosrvc/",
+    # @shiftmarkets exchange SDK typosquat scope (Aug 5 2026) — 3 packages pinned above
+    "@shiftmarkets/",
+    # @zahlen checkout-flow malware scope (Aug 5–6 2026) — 2 packages pinned above
+    "@zahlen/",
+    # @copilot-mcp MCP server impersonator scope (Aug 5 2026) — 1 package pinned above
+    "@copilot-mcp/",
     # @ai-agent-node scope (July 30 2026) — 3 packages pinned above;
     # scope catches any undisclosed additional @ai-agent-node packages
     "@ai-agent-node/",
