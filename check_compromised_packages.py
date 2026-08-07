@@ -421,7 +421,48 @@ aws-sdk-v4 typosquat (OSV MAL-2026-13218), streak-calc-math/metrics continuation
 (OSV MAL-2026-12194 through MAL-2026-12206), and the PyPI crypto-wallet-drainer
 cluster bip39-py/bitcoinlib-py/crypto-trading-toolkit/crypto-wallet-sdk/defi-sdk-py/
 eth-account-wallet/gcli-control/mnemonic-py/numpyp/solana-sniper-bot/uncrypt
-(OSV MAL-2026-12080/12081/12082/12083/12502/12503/13361/13362/13372/13373/13380).
+(OSV MAL-2026-12080/12081/12082/12083/12502/12503/13361/13362/13372/13373/13380),
+and the Aug 5–7 2026 multi-campaign npm/PyPI batch: the Tinkoff/T-Bank / BigOps /
+DevPlatform dep-confusion continuation (229 additional fake internal packages across
+tinkoff-*, bigops-*, beaver-ui-*, bnpl-*, dolyame-boxy-*, devplatform-*, statist-*,
+pfa-*, pfp-*, sme-*, tramvai-*, twork-*, and related tooling; OSV MAL-2026-12145
+through MAL-2026-13379), the @ccfly/setup-* CI tool typosquat cluster (4 packages
+impersonating @actions/setup-* tooling for macOS/Linux; OSV MAL-2026-12084/12313/
+13417/13418), the "common" dep-confusion scope cluster (@hoteldev, @nasddatax,
+@nasdtickets, @rentwise, @vboxdev, @afasinatickets; OSV MAL-2026-12318/12323/12324/
+12328/12330/13387), the @activepieces scope compromise (4 Google integration pieces:
+piece-google-bigquery, piece-google-contacts, piece-google-forms, piece-base44; OSV
+MAL-2026-13394/13395/13396/13408), the AI/LLM-tool malware cluster (19 packages
+impersonating Claude, GPT, LLM, agent-hub, and AI-tooling names: @guangnao/claude-cli,
+@cliphijack/santaclaude, remote-claude-daemon, llm-interceptor, wormgpt-cli,
+gpt-terminal-cli, @agenthub-ai/agent, @addai/*, @vanexalabs-ai/vanexa-agent,
+@agent-link/agent, @ai-support-agent/cli, and others; OSV MAL-2026-10705/10707/12312/
+13209/13355/13363/13364/13370/13397–13400/13409–13411/13413/13419/13420), the
+WhatsApp/Baileys typosquat extension (@xsat10/baileys-xsat, diezyyasha-baileys,
+@diezyyasha/libsignal-node, santana-baileys, diezyclutch-baileys, ynastore-baileys,
+@prototypevip/baileys, shadowx-fca; OSV MAL-2026-13390/13443/13456/13457/13470/
+13474/13480/13482), the payment gateway malware cluster (simplipayng,
+@simplipayng/checkout, @voxepay/checkout, @zahlen/checkout, ach-detail,
+wallet-monitor-snap; OSV MAL-2026-12334/12437/13388/13389/13391/13393), the Svelte
+ecosystem typosquat cluster (svelte-mapped-metrics, svelte-mapping-core,
+svelte-visual-map; OSV MAL-2026-13383/13384/13477), the Sui blockchain malware
+extension (sui-graphql-client, sui-migration-audit-cli; OSV MAL-2026-13475/13476),
+the CLOB/polymarket cluster extension (poly-provider-api, polyclob-api, tick-forge;
+OSV MAL-2026-13381/13382/13385), the streak-cache-map/streak-map-cache cluster
+extension (OSV MAL-2026-13403/13459), the @united-airlines-org/atmos-design-system
+dep-confusion (OSV MAL-2026-13435), the @cats-cdf dep-confusion cluster
+(@cats-cdf/authentication, @cats-cdf/browser-metrics-meter, cdf-tag-commander-helper;
+OSV MAL-2026-13478/13479/13481), the commonweb/consumerweb/merchantweb dep-confusion
+extension (commonweb-flow, commonweb-balance, consumerweb-creditcollection,
+merchantweb-lang-cookie-reset; OSV MAL-2025-6894/MAL-2026-13439/13441/13449), the
+tailwindcss-form-components Tailwind typosquat (OSV MAL-2026-12223), and ~63
+miscellaneous npm malware packages (delivery-ci-*, @lizhao1/memorax-code-internal,
+electrode-ota-ui-app, new-native-tools-linux-x64-gnu, @cy4dev/cydemo-bg-color,
+crypto-checkout-api, dbk-ui-forms, and others; OSV MAL-2026-12320/12368/12402/12504/
+12666/12669/12680–12688/13360/13392/13401–13416/13421–13471/13483–13485), and the
+AlphaLend DeFi PyPI typosquat cluster (alphalend-abi, alphalend-layouts; OSV
+MAL-2026-13472/13473), decapod-common PyPI malware (OSV MAL-2026-13386), and
+xayoub-xctxteam PyPI throwaway (OSV MAL-2026-13426).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1344,6 +1385,17 @@ PYPI_BAD: dict[str, set[str]] = {
     "numpyp": {"0.7.7"},                                          # MAL-2026-12503
     "solana-sniper-bot": {"1.4.2"},                               # MAL-2026-13373
     "uncrypt": {"0.1.0", "0.1.1", "0.1.2"},                     # MAL-2026-13380
+    # AlphaLend DeFi protocol PyPI typosquat cluster Aug 6 2026
+    # Two packages impersonating AlphaLend DeFi protocol Python libraries.
+    # OSV MAL-2026-13472/13473
+    "alphalend-abi": {"1.0.0", "1.0.1", "1.1.0"},  # MAL-2026-13472
+    "alphalend-layouts": {"4.0.0", "4.0.1", "4.0.2", "4.1.0"},  # MAL-2026-13473
+    # decapod-common PyPI typosquat Aug 6 2026 (3 versions)
+    # OSV MAL-2026-13386
+    "decapod-common": {"0.0.0", "1.2.dev1", "1.2.dev2"},  # MAL-2026-13386
+    # xayoub-xctxteam PyPI throwaway malware Aug 6 2026 (3 versions)
+    # OSV MAL-2026-13426
+    "xayoub-xctxteam": {"0.1.0", "0.1.1", "0.1.2"},  # MAL-2026-13426
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -7375,6 +7427,444 @@ NPM_BAD: dict[str, set[str]] = {
     "simple-date-formatter-util-13": {"1.0.0"}, # MAL-2026-12202
     "simple-date-formatter-util-14": {"1.0.0"}, # MAL-2026-12203
     "simple-date-formatter-util-16": {"1.0.0"}, # MAL-2026-12204
+
+# Tinkoff/T-Bank / BigOps / DevPlatform dep-confusion continuation Aug 5–7 2026
+    # 229 additional fake internal npm packages across the Tinkoff ecosystem
+    # (tinkoff-*, bigops-*, beaver-ui-*, bnpl-*, dolyame-boxy-*, devplatform-*, statist-*,
+    # pfa-*, pfp-*, sme-*, tramvai-*, twork-*, eventea-*, tcb-web-*, and related tooling).
+    # All have ranges: introduced 0 (pure dep-confusion malware, no legitimate versions).
+    # OSV MAL-2026-12145 through MAL-2026-13379
+    "beaver-ui-form-object": set(),  # MAL-2026-12145
+    "beaver-ui-hooks": set(),  # MAL-2026-12146
+    "beaver-ui-list": set(),  # MAL-2026-12817
+    "beaver-ui-multi-select-with-all": set(),  # MAL-2026-12818
+    "beaver-ui-object-card": set(),  # MAL-2026-12819
+    "beaver-ui-pagination": set(),  # MAL-2026-12820
+    "beaver-ui-popover-card": set(),  # MAL-2026-12821
+    "beaver-ui-search-dropdown": set(),  # MAL-2026-12822
+    "beaver-ui-side-navigation": set(),  # MAL-2026-12823
+    "beaver-ui-smart-filter": set(),  # MAL-2026-12824
+    "beaver-ui-split-view": set(),  # MAL-2026-12825
+    "beaver-ui-storybook-addon-code-description": set(),  # MAL-2026-12826
+    "beaver-ui-subheader": set(),  # MAL-2026-12827
+    "beaver-ui-table": set(),  # MAL-2026-12828
+    "bi-core-bi-core-core": set(),  # MAL-2026-12829
+    "bigops-activity-headers-interceptor": set(),  # MAL-2026-12830
+    "bigops-alerts-widget": set(),  # MAL-2026-12831
+    "bigops-api": set(),  # MAL-2026-12832
+    "bigops-api-customer": set(),  # MAL-2026-12833
+    "bigops-api-mobile": set(),  # MAL-2026-12148
+    "bigops-auth": set(),  # MAL-2026-12149
+    "bigops-status-selection": set(),  # MAL-2026-13251
+    "bigops-storio": set(),  # MAL-2026-13252
+    "bigops-storio-ngrx": set(),  # MAL-2026-13253
+    "bigops-storio-ngrx-component-store": set(),  # MAL-2026-13254
+    "bigops-storio-schematics": set(),  # MAL-2026-13255
+    "bigops-storio-store-adapter": set(),  # MAL-2026-13256
+    "bigops-stylelint": set(),  # MAL-2026-12834
+    "bigops-tasks": set(),  # MAL-2026-12835
+    "bigops-tasks-client": set(),  # MAL-2026-12836
+    "bigops-tcrm-auth": set(),  # MAL-2026-12837
+    "bigops-tcrm-identity-auth": set(),  # MAL-2026-12838
+    "bigops-telephony": set(),  # MAL-2026-12840
+    "bigops-telephony-client": set(),  # MAL-2026-12841
+    "bigops-telephony-ui": set(),  # MAL-2026-12842
+    "bigops-telephony-ui-adapter": set(),  # MAL-2026-12843
+    "bigops-timeline-ui": set(),  # MAL-2026-12845
+    "bigops-tinkoff-telephony-mock": set(),  # MAL-2026-12847
+    "bigops-tslint": set(),  # MAL-2026-12848
+    "bigops-ui-kit": set(),  # MAL-2026-12849
+    "bigops-ui-kit-styles": set(),  # MAL-2026-12850
+    "bigops-ui-themes": set(),  # MAL-2026-12851
+    "bigops-videocalls": set(),  # MAL-2026-12854
+    "bigops-voximplant": set(),  # MAL-2026-12172
+    "bigops-watchdog-worker": set(),  # MAL-2026-12856
+    "bigops-watermark": set(),  # MAL-2026-12857
+    "bigops-web-analytics": set(),  # MAL-2026-12858
+    "blocks-sahred-atom-mobile-app-bar-action": set(),  # MAL-2026-12859
+    "bnpl-api": set(),  # MAL-2026-12860
+    "bnpl-blocks-analytics": set(),  # MAL-2026-12861
+    "bnpl-blocks-atom-bnpl-action-card": set(),  # MAL-2026-12862
+    "bnpl-blocks-atom-bnpl-anchor-menu": set(),  # MAL-2026-12863
+    "bnpl-blocks-atom-bnpl-badge": set(),  # MAL-2026-12864
+    "bnpl-blocks-atom-bnpl-base-popup": set(),  # MAL-2026-12865
+    "bnpl-blocks-atom-bnpl-breadcrumbs": set(),  # MAL-2026-12866
+    "bnpl-blocks-atom-bnpl-button": set(),  # MAL-2026-12867
+    "bnpl-blocks-atom-bnpl-card": set(),  # MAL-2026-12868
+    "bnpl-blocks-atom-bnpl-dangerously-html": set(),  # MAL-2026-12870
+    "bnpl-blocks-atom-bnpl-dolyame-button": set(),  # MAL-2026-12871
+    "bnpl-blocks-atom-bnpl-dropdown": set(),  # MAL-2026-12872
+    "bnpl-blocks-atom-bnpl-email-form": set(),  # MAL-2026-12873
+    "bnpl-blocks-atom-bnpl-fade-overflow": set(),  # MAL-2026-12874
+    "bnpl-blocks-atom-bnpl-feedback": set(),  # MAL-2026-12875
+    "bnpl-blocks-atom-bnpl-image": set(),  # MAL-2026-12876
+    "bnpl-blocks-atom-bnpl-image-popup": set(),  # MAL-2026-12877
+    "bnpl-blocks-atom-bnpl-info-card": set(),  # MAL-2026-12878
+    "bnpl-blocks-atom-bnpl-integrations-breadcrumbs": set(),  # MAL-2026-12879
+    "bnpl-blocks-atom-bnpl-link-avatar": set(),  # MAL-2026-12880
+    "bnpl-blocks-atom-bnpl-navigation-arrow": set(),  # MAL-2026-12881
+    "bnpl-blocks-atom-bnpl-news-card": set(),  # MAL-2026-12882
+    "boxy-fixture-allure": set(),  # MAL-2026-12342
+    "cardsmobile-collection": set(),  # MAL-2026-12346
+    "deposits-overnight": set(),  # MAL-2026-12361
+    "devplatform-api-v2-resource-mock": set(),  # MAL-2026-12695
+    "devplatform-auth-client": set(),  # MAL-2026-12698
+    "devplatform-cli-plugin-lint": set(),  # MAL-2026-12702
+    "devplatform-data-table": set(),  # MAL-2026-12708
+    "devplatform-http-client": set(),  # MAL-2026-12712
+    "devplatform-humanize-network-error": set(),  # MAL-2026-12713
+    "devplatform-i18n": set(),  # MAL-2026-12714
+    "devplatform-jscodeshift-utils": set(),  # MAL-2026-12719
+    "devplatform-npm-versions-checker": set(),  # MAL-2026-12721
+    "devplatform-nx-husky": set(),  # MAL-2026-12724
+    "devplatform-nx-react": set(),  # MAL-2026-12726
+    "devplatform-nx-stylelint": set(),  # MAL-2026-12728
+    "devplatform-po-declaration-generator": set(),  # MAL-2026-12731
+    "devplatform-react-form": set(),  # MAL-2026-12735
+    "devplatform-react-micro-frontend": set(),  # MAL-2026-12737
+    "devplatform-react-rest-client": set(),  # MAL-2026-12740
+    "devplatform-react-sentry": set(),  # MAL-2026-12742
+    "devplatform-react-utils": set(),  # MAL-2026-12743
+    "devplatform-rest-client": set(),  # MAL-2026-12744
+    "devplatform-select-fields": set(),  # MAL-2026-12751
+    "devplatform-spa-cli": set(),  # MAL-2026-12755
+    "devplatform-spa-plugin-devtools": set(),  # MAL-2026-12764
+    "devplatform-spa-plugin-error-boundary": set(),  # MAL-2026-12766
+    "devplatform-spa-plugin-history": set(),  # MAL-2026-12767
+    "devplatform-spa-plugin-i18next": set(),  # MAL-2026-12768
+    "devplatform-spa-plugin-location": set(),  # MAL-2026-12770
+    "devplatform-spa-plugin-root-sentry": set(),  # MAL-2026-12776
+    "devplatform-spa-plugin-router": set(),  # MAL-2026-12777
+    "devplatform-spa-plugin-s3-router": set(),  # MAL-2026-13261
+    "devplatform-spa-plugin-suspense": set(),  # MAL-2026-12781
+    "devplatform-sre-devplatform-sre-core": set(),  # MAL-2026-13264
+    "devplatform-table": set(),  # MAL-2026-13266
+    "devplatform-ui-kit": set(),  # MAL-2026-13269
+    "devplatform-vite-plugin-external": set(),  # MAL-2026-13272
+    "devplatform-vite-plugin-gle": set(),  # MAL-2026-13273
+    "dlp-dlp-core": set(),  # MAL-2026-13278
+    "dolyame-boxy-atom-bnpl-badge": set(),  # MAL-2026-13282
+    "dolyame-boxy-atom-bnpl-button": set(),  # MAL-2026-13283
+    "dolyame-boxy-atom-bnpl-card": set(),  # MAL-2026-13284
+    "dolyame-boxy-atom-bnpl-dangerously-html": set(),  # MAL-2026-13285
+    "dolyame-boxy-atom-bnpl-dolyame-button": set(),  # MAL-2026-13286
+    "dolyame-boxy-atom-bnpl-email-form": set(),  # MAL-2026-12363
+    "dolyame-boxy-atom-bnpl-image-card": set(),  # MAL-2026-13287
+    "dolyame-boxy-atom-bnpl-info-card": set(),  # MAL-2026-13288
+    "dolyame-boxy-atom-bnpl-popup": set(),  # MAL-2026-13289
+    "dolyame-boxy-atom-bnpl-text": set(),  # MAL-2026-13291
+    "dolyame-boxy-atom-desktop-bnpl-container": set(),  # MAL-2026-13293
+    "dolyame-boxy-atom-desktop-bnpl-dangerously-html": set(),  # MAL-2026-13294
+    "dolyame-boxy-atom-desktop-bnpl-highlighted-text": set(),  # MAL-2026-13295
+    "dolyame-boxy-atom-desktop-bnpl-text": set(),  # MAL-2026-13296
+    "dolyame-boxy-atom-icon-loader": set(),  # MAL-2026-13297
+    "dolyame-boxy-desktop-bnpl-button-set": set(),  # MAL-2026-13300
+    "dolyame-boxy-desktop-bnpl-card-gallery": set(),  # MAL-2026-13301
+    "dolyame-boxy-desktop-bnpl-footer": set(),  # MAL-2026-13303
+    "dolyame-boxy-desktop-bnpl-header": set(),  # MAL-2026-13304
+    "dolyame-boxy-desktop-bnpl-hero-title": set(),  # MAL-2026-13305
+    "dolyame-boxy-desktop-bnpl-image-plus-text": set(),  # MAL-2026-13306
+    "dolyame-boxy-desktop-bnpl-picture-gallery": set(),  # MAL-2026-13307
+    "dolyame-boxy-desktop-bnpl-popup": set(),  # MAL-2026-13308
+    "dolyame-boxy-desktop-bnpl-text-block": set(),  # MAL-2026-13309
+    "dolyame-boxy-desktop-bnpl-title": set(),  # MAL-2026-13310
+    "dolyame-boxy-fonts": set(),  # MAL-2026-13311
+    "dolyame-boxy-independent-bnpl-breadcrumbs": set(),  # MAL-2026-13312
+    "dolyame-boxy-independent-bnpl-button": set(),  # MAL-2026-13313
+    "dolyame-boxy-independent-bnpl-cards": set(),  # MAL-2026-13314
+    "dolyame-boxy-independent-bnpl-code-text": set(),  # MAL-2026-13315
+    "dolyame-boxy-independent-bnpl-features": set(),  # MAL-2026-13317
+    "dolyame-boxy-independent-bnpl-info-slider": set(),  # MAL-2026-13318
+    "dolyame-boxy-independent-bnpl-items": set(),  # MAL-2026-13319
+    "dolyame-boxy-independent-bnpl-main-banner": set(),  # MAL-2026-13320
+    "dolyame-boxy-independent-bnpl-mobile-application": set(),  # MAL-2026-13321
+    "dolyame-boxy-independent-bnpl-navigation": set(),  # MAL-2026-13322
+    "dolyame-boxy-independent-bnpl-open-api": set(),  # MAL-2026-12366
+    "dolyame-boxy-independent-bnpl-origination": set(),  # MAL-2026-13323
+    "dolyame-boxy-independent-bnpl-partners": set(),  # MAL-2026-13324
+    "dolyame-boxy-independent-bnpl-picture-gallery": set(),  # MAL-2026-13325
+    "dolyame-boxy-independent-bnpl-preset-container": set(),  # MAL-2026-13326
+    "dolyame-boxy-independent-bnpl-scheme": set(),  # MAL-2026-13327
+    "dolyame-boxy-independent-bnpl-search": set(),  # MAL-2026-13328
+    "eslint-plugin-vitest-ts": set(),  # MAL-2026-12370
+    "eventea-diag": set(),  # MAL-2026-12373
+    "eventea-router": set(),  # MAL-2026-12374
+    "evo-web-base-analytics-data": set(),  # MAL-2026-12375
+    "fb-hr-sites--boxified-form-meetup-subcribe": set(),  # MAL-2026-12381
+    "fry-page-maker-types": set(),  # MAL-2026-12385
+    "hubert-react-query": set(),  # MAL-2026-12181
+    "peter-desktop-peter-big-column": set(),  # MAL-2026-12184
+    "pfa-autotests-reporter": set(),  # MAL-2026-12185
+    "pfa-prettier-config": set(),  # MAL-2026-12407
+    "pfp-block-independent-iframe": set(),  # MAL-2026-12408
+    "pfp-block-mobile-past-meetup-list": set(),  # MAL-2026-12409
+    "pfp-block-mobile-vacancy-description": set(),  # MAL-2026-12411
+    "pfp-forms-mobile-sme-group-tiles": set(),  # MAL-2026-12413
+    "pfp-forms-sme-registration-ooo": set(),  # MAL-2026-12187
+    "pfp-integration-mobile-heading": set(),  # MAL-2026-12188
+    "scandoc-scandoc-core": set(),  # MAL-2026-12191
+    "sme-auth-core": set(),  # MAL-2026-12207
+    "sme-crm-services-sme-crm-services-core": set(),  # MAL-2026-12438
+    "sme-foundation-frame-manager": set(),  # MAL-2026-12439
+    "sso-tramvai-lib-roles": set(),  # MAL-2026-12442
+    "statist-browser-typed-client-automlplatform.nlppl.searchy": set(),  # MAL-2026-12443
+    "statist-browser-typed-client-coretech.web.metrics": set(),  # MAL-2026-12444
+    "statist-browser-typed-client-ddp.mentat.ui.web": set(),  # MAL-2026-12209
+    "statist-browser-typed-client-eventea.projects.pfpacquiring": set(),  # MAL-2026-12445
+    "statist-browser-typed-client-investing.product.loginandauthorization": set(),  # MAL-2026-12210
+    "statist-browser-typed-client-itsa.digitalinterview.events": set(),  # MAL-2026-12446
+    "statist-browser-typed-client-mb.product.mclaccount": set(),  # MAL-2026-12447
+    "statist-browser-typed-client-mb.product.payments": set(),  # MAL-2026-12212
+    "statist-browser-typed-client-mb.product.sme.cards": set(),  # MAL-2026-12213
+    "statist-browser-typed-client-risktech.uwfrontantifraud.events": set(),  # MAL-2026-12450
+    "statist-browser-typed-client-rubliq.platform.keycloak": set(),  # MAL-2026-12451
+    "statist-browser-typed-client-sme.platform.mobile.voip.common.events": set(),  # MAL-2026-12452
+    "statist-browser-typed-client-sme.rko.finance.web": set(),  # MAL-2026-12453
+    "statist-browser-typed-client-sme.rko.tariffs.web": set(),  # MAL-2026-13379
+    "statist-browser-typed-client-social.shorts.editor": set(),  # MAL-2026-12454
+    "statist-statist-core": set(),  # MAL-2026-12456
+    "sui-migration-audit-rules": set(),  # MAL-2026-12472
+    "tcb-web-header": set(),  # MAL-2026-12476
+    "tcb-web-images": set(),  # MAL-2026-12477
+    "tinkoff-boxy-desktop-mgm-product-filter": set(),  # MAL-2026-12229
+    "tinkoff-boxy-desktop-two-panel-right-image": set(),  # MAL-2026-12230
+    "tinkoff-boxy-gitlab-labels": set(),  # MAL-2026-12232
+    "tinkoff-codeceptjs-storyshots": set(),  # MAL-2026-12236
+    "tinkoff-codeceptjs-storyshots-alpha": set(),  # MAL-2026-12237
+    "tinkoff-component-limits": set(),  # MAL-2026-12238
+    "tinkoff-fb-app-frame-page-height-dippy": set(),  # MAL-2026-12240
+    "tinkoff-fb-fieldset-car-reference-kasko": set(),  # MAL-2026-12241
+    "tinkoff-pfp-atom-desktop-carousel": set(),  # MAL-2026-12245
+    "tinkoff-pfp-block-desktop-tabs": set(),  # MAL-2026-12247
+    "tinkoff-pfp-block-mobile-advert-footer": set(),  # MAL-2026-12248
+    "tinkoff-pfpa-tools": set(),  # MAL-2026-12251
+    "tinkoff-statist-browser-typed-client-cardsmobile.events.promotest": set(),  # MAL-2026-12255
+    "tinkoff-statist-browser-typed-client-coretech.statist.mobile.ci": set(),  # MAL-2026-12256
+    "tinkoff-statist-browser-typed-client-eventea.projects.finhealthwebmicroblocks": set(),  # MAL-2026-12259
+    "tinkoff-statist-browser-typed-client-itsa.candy.selfservicesupport.frontend.events": set(),  # MAL-2026-12263
+    "tinkoff-statist-browser-typed-client-itsa.corporatemessenger.clientv1.web.events": set(),  # MAL-2026-12264
+    "tinkoff-statist-browser-typed-client-jumptaxi.feature.contacts": set(),  # MAL-2026-12265
+    "tinkoff-statist-browser-typed-client-sme.rko.origsmartphonepaytb.common.mobile.events": set(),  # MAL-2026-12275
+    "tinkoff-statist-browser-typed-client-sme.users.origination.web": set(),  # MAL-2026-12277
+    "tinkoff-statist-web-typed-client-test.golden.retriever": set(),  # MAL-2026-12279
+    "tinkoff-test-app-child-app": set(),  # MAL-2026-12282
+    "tinkoff-volna-zustate": set(),  # MAL-2026-12284
+    "tramvai-module-feature-toggle": set(),  # MAL-2026-12285
+    "trapp-check-logs": set(),  # MAL-2026-12286
+    "trapp-configuration": set(),  # MAL-2026-12485
+    "travel-core-typings-reducers": set(),  # MAL-2026-12486
+    "ts-toolkit-plus": set(),  # MAL-2026-12812
+    "tt-help-cli-ycl": {"1.4.57", "1.4.58", "1.4.59", "1.4.60", "1.4.61", "1.4.62", "1.4.63", "1.4.64", "1.4.65", "1.4.66", "1.4.67", "1.4.68", "1.4.69", "1.4.70", "1.4.71", "1.4.72", "1.4.73", "1.4.74"},  # MAL-2026-12488
+    "tui-react-tooltip": set(),  # MAL-2026-12489
+    "twork-data-services-product-design-data": set(),  # MAL-2026-12296
+    "twork-data-services-proxy-b2b-crm-api-v1-partners-companies-info": set(),  # MAL-2026-12297
+    "twork-data-services-sme-agent-company-relation": set(),  # MAL-2026-12301
+    "twork-products-taiga2-products-investment": set(),  # MAL-2026-12305
+    "utility-kit-ts": set(),  # MAL-2026-12493
+    "vvvedernikov-test-another-test": set(),  # MAL-2026-12308
+    "wallet-analytics": set(),  # MAL-2026-12499
+
+    # @ccfly/setup-* CI tool typosquat cluster Aug 5–7 2026
+    # Four packages impersonating CI setup tools (@actions/setup-* pattern) for macOS/Linux.
+    # OSV MAL-2026-12084/12313/13417/13418
+    "@ccfly/setup-darwin-arm64": {"0.1.10", "0.1.13", "0.1.14", "0.1.2", "0.1.20", "0.1.5", "0.1.7", "0.1.8", "0.1.9"},  # MAL-2026-12084
+    "@ccfly/setup-darwin-x64": {"0.1.0", "0.1.1", "0.1.13", "0.1.14", "0.1.15", "0.1.16", "0.1.3", "0.1.6", "0.1.7", "0.1.8", "0.1.9"},  # MAL-2026-12313
+    "@ccfly/setup-linux-arm64": {"0.1.0"},  # MAL-2026-13417
+    "@ccfly/setup-linux-x64": {"0.1.0", "0.1.1", "0.1.10", "0.1.14", "0.1.17", "0.1.19", "0.1.2", "0.1.3", "0.1.4", "0.1.9"},  # MAL-2026-13418
+
+    # "common" dep-confusion scope cluster Aug 5–6 2026
+    # Six packages targeting internal dep-confusion: @hoteldev, @nasddatax, @nasdtickets,
+    # @rentwise, @vboxdev, @afasinatickets — each publishing a "common" internal module.
+    # OSV MAL-2026-12318/12323/12324/12328/12330/13387
+    "@afasinatickets/common": set(),  # MAL-2026-13387
+    "@hoteldev/common": set(),  # MAL-2026-12318
+    "@nasddatax/common": set(),  # MAL-2026-12323
+    "@nasdtickets/common": set(),  # MAL-2026-12324
+    "@rentwise/common": set(),  # MAL-2026-12328
+    "@vboxdev/common": set(),  # MAL-2026-12330
+
+    # @activepieces scope compromise Aug 6 2026
+    # Four Google integration "piece" packages in the Activepieces no-code automation
+    # platform were compromised: piece-google-bigquery, piece-google-contacts,
+    # piece-google-forms, and piece-base44. Specific malicious versions only.
+    # OSV MAL-2026-13394/13395/13396/13408
+    "@activepieces/piece-base44": {"0.1.7"},  # MAL-2026-13408
+    "@activepieces/piece-google-bigquery": {"0.0.5", "0.0.6"},  # MAL-2026-13394
+    "@activepieces/piece-google-contacts": {"0.4.7", "0.4.8"},  # MAL-2026-13395
+    "@activepieces/piece-google-forms": {"0.5.5", "0.5.6", "0.5.7"},  # MAL-2026-13396
+
+    # AI/LLM-tool malware cluster Aug 5–7 2026
+    # 19 packages impersonating Claude, GPT, LLM, agent-hub, and AI-tooling names.
+    # Includes @guangnao/claude-cli, @cliphijack/santaclaude, remote-claude-daemon,
+    # llm-interceptor, wormgpt-cli, gpt-terminal-cli, @agenthub-ai/agent, @addai/*,
+    # @vanexalabs-ai/vanexa-agent, @agent-link/agent, @ai-support-agent/cli, and others.
+    # OSV MAL-2026-10705/10707/12312/13209/13355/13363/13364/13370/13397–13400/13409–13411/13413/13419/13420
+    "@addai/ainode": {"0.3.0", "0.3.1"},  # MAL-2026-13409
+    "@addai/entity-runtime": {"0.2.45", "0.2.46", "0.2.47", "0.2.48", "0.2.49", "0.2.50", "0.2.51", "0.2.52", "0.2.53", "0.2.55", "0.2.56", "0.2.58"},  # MAL-2026-13410
+    "@addai/node": {"0.11.0", "0.11.1", "0.11.2", "0.4.0", "0.5.0", "0.7.0", "0.8.0", "0.8.1", "0.8.2", "0.9.0"},  # MAL-2026-13411
+    "@agenthub-ai/agent": {"0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.10.1", "0.12.2", "0.14.1", "0.14.2", "0.2.0", "0.2.1", "0.3.0", "0.4.0", "0.5.0", "0.5.1", "0.6.0", "0.6.1", "0.6.2", "0.8.0", "0.8.1", "0.8.2", "0.8.3", "0.8.4", "0.8.5", "0.8.6", "0.8.7", "0.9.0", "0.9.1", "0.9.2", "0.9.3", "0.9.4", "0.9.5"},  # MAL-2026-12312
+    "@astralcore/aura-wb": {"1.0.0", "1.0.1", "1.0.4"},  # MAL-2026-13413
+    "@astralcore/sl-aura": {"1.0.0", "1.0.1", "1.0.4", "1.0.5", "1.0.6"},  # MAL-2026-13355
+    "@cliphijack/santaclaude": {"1.0.100", "1.0.102", "1.0.103", "1.0.104", "1.0.106", "1.0.107", "1.0.108"},  # MAL-2026-13363
+    "@guangnao/claude-cli": {"1.0.12", "1.0.13", "1.0.5"},  # MAL-2026-13209
+    "@holocronlab/botruntime-runtime": {"2.1.15", "2.2.5", "2.2.7", "2.4.2", "2.5.0", "2.5.4", "2.6.0", "2.6.1", "2.6.3", "2.6.4", "2.9.7"},  # MAL-2026-13419
+    "@ikbal_fadilah_vanexa01/vanexa-agent": {"1.1.51", "1.1.52", "1.1.53", "1.1.54", "1.1.55", "1.1.56", "1.1.57", "1.1.58", "1.1.59", "1.2.0", "1.3.10", "1.3.12", "1.3.14", "1.3.15", "1.3.17", "1.3.19", "1.3.21", "1.3.23", "1.3.27", "1.3.28", "1.3.29", "1.3.3", "1.3.31", "1.3.32", "1.3.34", "1.3.35", "1.3.37", "1.3.4", "1.3.40", "1.3.44", "1.3.45", "1.3.6", "1.3.7", "1.3.8", "1.3.9"},  # MAL-2026-13364
+    "@innocarpe/deepseek-build": {"1.0.0"},  # MAL-2026-13420
+    "@vanexalabs-ai/vanexa-agent": {"1.3.50", "1.3.51", "1.3.52", "1.3.53", "1.3.54", "1.3.55", "1.3.56", "1.3.57", "1.3.59", "1.3.60", "1.3.61", "1.3.62"},  # MAL-2026-13397
+    "@xiaohhhh1/canvas-agent": {"0.4.4"},  # MAL-2026-13398
+    "agenthub-multiagent-mcp": {"1.57.0"},  # MAL-2026-13399
+    "agenttunnels": {"0.1.11", "0.1.12", "0.1.5", "0.1.6", "0.1.9"},  # MAL-2026-13400
+    "gpt-terminal-cli": {"1.0.0"},  # MAL-2026-13447
+    "llm-interceptor": {"0.3.0", "0.3.1", "0.3.3", "0.3.4", "0.3.8", "0.4.0", "0.4.1"},  # MAL-2026-13370
+    "remote-claude-daemon": {"0.3.0", "0.3.4", "0.3.5", "0.3.6", "0.3.7", "0.3.8", "0.3.9", "0.4.2", "0.4.6", "0.4.7", "0.5.0", "0.5.2", "0.5.4", "0.5.5", "0.5.7", "0.5.9", "0.6.0", "0.6.1", "0.6.2", "0.6.6"},  # MAL-2026-13455
+    "wormgpt-cli": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8"},  # MAL-2026-13466
+
+    # WhatsApp/Baileys typosquat extension Aug 6–7 2026
+    # Eight packages extending the ongoing Baileys-based WhatsApp credential-stealing
+    # campaign: @xsat10/baileys-xsat, diezyyasha-baileys (wildcard), @diezyyasha/libsignal-node,
+    # santana-baileys, diezyclutch-baileys, ynastore-baileys, @prototypevip/baileys, shadowx-fca.
+    # OSV MAL-2026-13390/13443/13456/13457/13470/13474/13480/13482
+    "@diezyyasha/libsignal-node": set(),  # MAL-2026-13474
+    "@prototypevip/baileys": {"0.0.3"},  # MAL-2026-13480
+    "@xsat10/baileys-xsat": {"2.0.0"},  # MAL-2026-13390
+    "diezyclutch-baileys": {"8.6.78"},  # MAL-2026-13482
+    "diezyyasha-baileys": set(),  # MAL-2026-13443
+    "santana-baileys": {"2.0.2", "2.0.3", "2.0.4"},  # MAL-2026-13456
+    "shadowx-fca": {"10.0.0", "10.1.0"},  # MAL-2026-13457
+    "ynastore-baileys": {"1.0.21"},  # MAL-2026-13470
+
+    # Payment gateway malware cluster Aug 5–6 2026
+    # Six packages targeting payment / fintech: simplipayng, @simplipayng/checkout,
+    # @voxepay/checkout, @zahlen/checkout (extension of existing @zahlen entries),
+    # ach-detail, wallet-monitor-snap.
+    # OSV MAL-2026-12334/12437/13388/13389/13391/13393
+    "@simplipayng/checkout": set(),  # MAL-2026-13388
+    "@voxepay/checkout": set(),  # MAL-2026-13389
+    "@zahlen/checkout": set(),  # MAL-2026-13391
+    "ach-detail": {"99.0.1", "99.0.2"},  # MAL-2026-12334
+    "simplipayng": set(),  # MAL-2026-12437
+    "wallet-monitor-snap": {"1.0.2", "1.0.4"},  # MAL-2026-13393
+
+    # Svelte ecosystem typosquat cluster Aug 6–7 2026
+    # Three packages impersonating Svelte mapping/visualization libraries:
+    # svelte-mapped-metrics, svelte-mapping-core, svelte-visual-map.
+    # All have ranges: introduced 0. OSV MAL-2026-13383/13384/13477
+    "svelte-mapped-metrics": set(),  # MAL-2026-13383
+    "svelte-mapping-core": set(),  # MAL-2026-13384
+    "svelte-visual-map": set(),  # MAL-2026-13477
+
+    # Sui blockchain malware extension Aug 6–7 2026
+    # Two additional Sui-ecosystem packages (sui-graphql-client, sui-migration-audit-cli)
+    # extending the existing sui-migration-audit-rules entry from Aug 5–6 2026.
+    # Both have ranges: introduced 0. OSV MAL-2026-13475/13476
+    "sui-graphql-client": set(),  # MAL-2026-13475
+    "sui-migration-audit-cli": set(),  # MAL-2026-13476
+
+    # CLOB/polymarket typosquat extension Aug 6 2026
+    # Three packages extending the existing polymarket/CLOB cluster:
+    # poly-provider-api, polyclob-api, tick-forge. All wildcard.
+    # OSV MAL-2026-13381/13382/13385
+    "poly-provider-api": set(),  # MAL-2026-13381
+    "polyclob-api": set(),  # MAL-2026-13382
+    "tick-forge": set(),  # MAL-2026-13385
+
+    # streak-cache-map / streak-map-cache Aug 6–7 2026 (streak cluster extension)
+    # OSV MAL-2026-13403/13459
+    "streak-cache-map": set(),  # MAL-2026-13403
+    "streak-map-cache": {"1.0.0"},  # MAL-2026-13459
+
+    # tailwindcss-form-components Aug 5 2026 — Tailwind CSS form plugin typosquat (wildcard)
+    # OSV MAL-2026-12223
+    "tailwindcss-form-components": set(),  # MAL-2026-12223
+
+    # @united-airlines-org/atmos-design-system dep-confusion Aug 6–7 2026 (wildcard)
+    # OSV MAL-2026-13435
+    "@united-airlines-org/atmos-design-system": set(),  # MAL-2026-13435
+
+    # @cats-cdf dep-confusion cluster Aug 7 2026
+    # Three packages targeting a French CDF bank internal tooling:
+    # @cats-cdf/authentication, @cats-cdf/browser-metrics-meter, cdf-tag-commander-helper.
+    # OSV MAL-2026-13478/13479/13481
+    "@cats-cdf/authentication": {"2.17.1", "3.1.1"},  # MAL-2026-13478
+    "@cats-cdf/browser-metrics-meter": {"2.0.0", "3.1.1"},  # MAL-2026-13479
+    "cdf-tag-commander-helper": {"3.1.1", "3.6.2"},  # MAL-2026-13481
+
+    # commonweb/consumerweb/merchantweb dep-confusion extension Aug 6 2026
+    # Four packages extending the Tinkoff commonweb/consumerweb/merchantweb dep-confusion cluster.
+    # OSV MAL-2025-6894/MAL-2026-13439/13441/13449
+    "commonweb-balance": {"99.9.1"},  # MAL-2026-13439
+    "commonweb-flow": {"1.0.0", "10.11.0", "10.12.0", "10.13.0", "10.14.0", "10.15.0", "5.8.999", "5.999.999", "6.0.999", "6.999.999", "7.1.999", "7.2.999", "7.3.999", "7.999.999", "99.99.99"},  # MAL-2025-6894
+    "consumerweb-creditcollection": {"99.9.1"},  # MAL-2026-13441
+    "merchantweb-lang-cookie-reset": {"99.99.99"},  # MAL-2026-13449
+
+    # Miscellaneous npm malware Aug 5–7 2026 (no cluster pattern)
+    # 63 packages: assorted malware, typosquats, and dep-confusion not fitting a named cluster.
+    # OSV MAL-2026-12320/12368/12402/12504/12666/12669/12680–12688/13360/13392/13401/13402
+    #      13404/13405/13406/13407/13412/13414/13415/13416/13421–13425/13427–13434/13436–13448
+    #      13450–13454/13458/13460–13462/13463–13469/13471/13483–13485
+    "9remote": {"2.1.1", "2.1.14", "2.1.16", "2.1.20", "2.1.21", "2.1.5", "2.1.6", "2.1.9", "2.2.5", "2.2.6"},  # MAL-2026-13406
+    "@0l00000l/auth": {"1.1.3", "1.1.4"},  # MAL-2026-13407
+    "@apicity/meta": {"0.8.0", "0.8.1", "0.8.2", "0.8.3", "0.8.4", "0.8.5", "0.8.6"},  # MAL-2026-13412
+    "@atom8n/inspector": {"0.17.32"},  # MAL-2026-13414
+    "@aubea/mars": {"1.0.0", "1.1.0", "1.2.0", "1.2.10", "1.2.11", "1.2.12", "1.2.2", "1.2.3", "1.2.4", "1.2.6", "1.2.7", "1.2.8", "1.2.9"},  # MAL-2026-13415
+    "@avi892nash/aegis-grid-runner": {"0.3.3"},  # MAL-2026-13429
+    "@bananacool467/ui-tools": {"0.1.0-beta", "0.1.1-beta", "0.1.2-beta", "0.1.3-beta", "0.1.4-beta", "0.1.5-beta", "0.1.6-beta", "0.1.7-beta"},  # MAL-2026-13416
+    "@ch4acko3/frontal-lobe": {"0.1.12", "0.1.12-preview.2", "0.1.14"},  # MAL-2026-13430
+    "@cy4dev/cydemo-bg-color": {"4.0.0", "5.0.0", "6.0.0", "7.0.0"},  # MAL-2026-12504
+    "@itsreduxtm/unpkg-xss-test": {"1.0.5", "1.0.9"},  # MAL-2026-13431
+    "@junyoung-kim/reins": {"0.1.6", "0.1.7"},  # MAL-2026-13432
+    "@ks-video/kwai-player-web": {"9.1.2"},  # MAL-2026-13433
+    "@leejungkiin/awkit": {"3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5", "3.3.8", "3.3.9", "3.4.0", "3.4.1", "3.4.2", "3.4.3", "3.4.4", "3.4.5", "3.4.6", "3.4.7", "3.4.8", "3.5.0", "3.5.10", "3.5.5", "3.5.6", "3.5.7", "3.5.8", "3.5.9", "3.6.0", "3.6.1", "3.6.2"},  # MAL-2026-13427
+    "@lizhao1/memorax-code-internal": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},  # MAL-2026-12320
+    "@love-moon/conductor-cli": {"0.7.4", "0.7.5", "0.7.6", "0.8.0"},  # MAL-2026-13428
+    "@lyxa.ai/core": {"1.0.129", "1.0.13", "1.0.144-test", "1.0.145-debug", "1.0.16", "1.0.162-test", "1.0.201", "1.0.206", "1.0.23", "1.0.281", "1.0.333", "1.0.37", "1.0.386", "1.0.56", "1.0.79", "1.0.8-debug-1", "1.1.36", "1.1.47", "1.2.24", "1.2.43"},  # MAL-2026-13434
+    "@trackunit/iris-app-sdk-vite": {"1.2.10-alpha-d785aff3531.0"},  # MAL-2026-13421
+    "@wbnr/frontend-shared": {"99.0.0", "99.0.1"},  # MAL-2026-13436
+    "aitable-workflow-server": {"9.9.9"},  # MAL-2026-13437
+    "beautiful-ui-monitoring": {"1.0.8"},  # MAL-2026-13422
+    "cewe-npm-cops": {"99.9.9"},  # MAL-2026-13438
+    "connect-contingency": {"99.9.1"},  # MAL-2026-13440
+    "content-common": {"99.9.9"},  # MAL-2026-13442
+    "crypto-checkout-api": set(),  # MAL-2026-12666
+    "dbk-ui-forms": {"99.0.0", "99.0.1"},  # MAL-2026-12669
+    "delivery-ci-sage": set(),  # MAL-2026-12680
+    "delivery-ci-storybook": set(),  # MAL-2026-12681
+    "delivery-ci-update-gitlab": set(),  # MAL-2026-12685
+    "delivery-ci-upgrade-from": set(),  # MAL-2026-12687
+    "dpdgroup-css": {"2.0.1"},  # MAL-2026-13444
+    "electrode-ota-ui-app": {"99.0.0", "99.0.1"},  # MAL-2026-12368
+    "elephant-tusk-runner": {"1.0.0", "1.0.1"},  # MAL-2026-13445
+    "express-chai": {"3.7.9"},  # MAL-2026-13446
+    "fetchrtds": {"1.1.0"},  # MAL-2026-13423
+    "golaaa": {"1.0.0"},  # MAL-2026-13392
+    "helmet-pro": {"10.0.4"},  # MAL-2026-13401
+    "internallib_v514": {"1.0.0"},  # MAL-2026-13483
+    "jagproject": {"28.1.0", "28.2.0", "28.3.0"},  # MAL-2026-13402
+    "lib-frontsga": {"9.999.999"},  # MAL-2026-13448
+    "merge-grid-stats": {"1.0.0", "1.0.1", "1.1.0", "1.2.0", "1.3.0", "1.4.0", "1.5.0"},  # MAL-2026-13484
+    "move-bcs-codec": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-13450
+    "new-native-tools-linux-x64-gnu": {"3.1.40-as2-9923-378-1785154830", "3.1.40-as2-9962-369-1784812980", "3.1.40-browser-release-151-359-1784544869", "3.1.40-browser-release-151-362-1784553070", "3.1.40-browser-release-151-363-1784553412", "3.1.40-browser-release-151-365-1784638523", "3.1.40-browser-release-151-368-1784717346", "3.1.40-browser-release-151-371-1784887043", "3.1.40-browser-release-151-373-1784890024", "3.1.40-browser-release-151-375-1784897296", "3.1.40-browser-release-151-380-1785161758", "3.1.40-chrom-381-new-browser-icons-367-1784657143", "3.1.40-chrom-381-new-browser-icons-377-1785143176", "3.1.40-chrom-468-delete-windows-32-bit-358-1784544836", "3.1.40-chrom-553-fix-undeletable-import-cookies-355-1784226602", "3.1.40-chrom-553-fix-undeletable-import-cookies-360-1784545605", "3.1.41-as2-9980-test-400-1785776624", "3.1.41-browser-release-151-389-1785423950", "3.1.41-browser-release-151-upd-native-tools-397-1785772979", "3.1.41-browser-release-151-upd-native-tools-398-1785774129", "3.1.41-chrom-381-new-browser-icons-391-1785747283", "3.1.41-origin-chrom-468-delete-windows-32-bit-changelog-fix-408-1785838091", "3.1.41-origin-chrom-468-delete-windows-32-bit-changelog-fix-409-1785839050", "3.1.41-v2026.217.1-native-tools-392-1785759657", "3.1.42", "3.1.42-as2-9980-419-1785846283", "3.1.42-origin-chrom-468-delete-windows-32-bit-changelog-fix-410-1785839786", "3.1.42-origin-chrom-468-delete-windows-32-bit-changelog-fix-411-1785839911", "3.1.42-origin-chrom-468-delete-windows-32-bit-changelog-fix-412-1785840430", "3.1.42-origin-chrom-468-delete-windows-32-bit-changelog-fix-415-1785842368", "3.1.42-origin-chrom-468-delete-windows-32-bit-changelog-fix-416-1785842977", "3.1.43", "3.1.43-as2-9980-424-1785851759", "3.1.44-as2-9980-433-1786011509"},  # MAL-2026-12402
+    "nms-dashboard-js": {"9.9.11"},  # MAL-2026-13451
+    "opencode-optimised-toolings": {"3.4.0", "4.0.0", "4.0.1"},  # MAL-2026-13452
+    "pilgrimage-portal-client": {"99.0.0"},  # MAL-2026-13453
+    "poc-ch4rlygr": {"1.1.0", "1.2.0", "1.3.0", "1.4.0", "1.5.0", "1.6.0"},  # MAL-2026-13454
+    "squeez": {"1.38.0", "1.40.0", "1.42.1", "1.44.1"},  # MAL-2026-13458
+    "stretchshop": {"0.7.5"},  # MAL-2026-13460
+    "supersig": {"1.0.5"},  # MAL-2026-13461
+    "tailwindcss-hide-scrollbar": {"2.5.3", "2.5.4"},  # MAL-2026-13424
+    "trimprompt": {"1.0.35", "1.0.42", "1.0.46", "1.0.47", "1.0.48", "1.0.49"},  # MAL-2026-13462
+    "tsihealth-client": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},  # MAL-2026-13404
+    "typst-resume-cli": {"1.0.2", "1.0.3"},  # MAL-2026-13425
+    "uzair-rajput-new": {"1.0.1", "1.1.0", "1.2.0", "1.3.0"},  # MAL-2026-13360
+    "vite-plugin-cleaner": {"4.1.3"},  # MAL-2026-13463
+    "vite-svg-parse": {"1.1.3"},  # MAL-2026-13464
+    "vite-vue-path-map": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-13465
+    "vitest-preview-pro-all": {"10.0.3"},  # MAL-2026-13405
+    "weight2loss": {"1.0.5"},  # MAL-2026-13485
+    "wos-library-ui": {"99.0.0"},  # MAL-2026-13467
+    "xdaxx": {"1.0.1"},  # MAL-2026-13468
+    "xxdxax": {"1.0.0", "1.0.1"},  # MAL-2026-13469
+    "zyr-agent": {"1.5.7", "1.6.2"},  # MAL-2026-13471
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
