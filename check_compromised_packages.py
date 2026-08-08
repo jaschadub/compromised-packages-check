@@ -462,7 +462,25 @@ crypto-checkout-api, dbk-ui-forms, and others; OSV MAL-2026-12320/12368/12402/12
 12666/12669/12680–12688/13360/13392/13401–13416/13421–13471/13483–13485), and the
 AlphaLend DeFi PyPI typosquat cluster (alphalend-abi, alphalend-layouts; OSV
 MAL-2026-13472/13473), decapod-common PyPI malware (OSV MAL-2026-13386), and
-xayoub-xctxteam PyPI throwaway (OSV MAL-2026-13426).
+xayoub-xctxteam PyPI throwaway (OSV MAL-2026-13426),
+and the Aug 7–8 2026 Dolyame / SME-RKO Russian banking dep-confusion cluster
+(131 npm packages targeting Dolyame BNPL and SME-RKO finance internal tooling
+at high-version 35.x.x; OSV MAL-2026-13494 through MAL-2026-13663),
+and the Aug 7–8 2026 miscellaneous npm malware batch (40 packages: rdfxvela/
+rdfxvela-build/velabuild typosquat cluster with introduced:0 range, hardhat-set/
+hardhat-cap Hardhat typosquats, forge-gas-diff/gas-diff-core EVM tools, @depup/*
+package-update impersonators, @nestjs-passport/jwt NestJS typosquat, @coralxyz/anchor
+Solana Anchor impersonator, @vertexa/prisma-fetch-engine Prisma fake, mangomind-agent/
+aclade-agent/agenthub-ai AI-agent infostealers, @rbxst/services + @rbx-ts/services
+Roblox typosquats, streak-kit-map/streak-map-kit/map-streak-kit cluster,
+localization-fixer/modern-localization cluster, titan-exchange-shared-permissions
+dep-confusion 99.9.9, transform-es2015-unicode-regex Babel typosquat,
+tailwindcss-motion-advanced Tailwind typosquat, @decido/backend-core,
+@catamania/front-components, and misc; OSV MAL-2026-13491 through MAL-2026-13664),
+and the Aug 7–8 2026 PyPI typosquat batch (8 packages: fastapii/flasq/idnna/
+pydanticc web-framework typosquats, fast-hashes/speed-hashes hash-lib fakes,
+cdktn-provider-azurerm CDKTF typosquat, atlas-internal dep-confusion;
+OSV MAL-2026-13486/13487/13488/13489/13490/13606/13607/13619).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -475,7 +493,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-06
+Date:      2026-08-08
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1396,6 +1414,20 @@ PYPI_BAD: dict[str, set[str]] = {
     # xayoub-xctxteam PyPI throwaway malware Aug 6 2026 (3 versions)
     # OSV MAL-2026-13426
     "xayoub-xctxteam": {"0.1.0", "0.1.1", "0.1.2"},  # MAL-2026-13426
+    # Aug 7–8 2026 PyPI typosquat batch (8 packages)
+    # fastapii/flasq/idnna/pydanticc are pure web-framework name typosquats
+    # (fastapi, flask, idna, pydantic); fast-hashes/speed-hashes are hash-lib
+    # fakes; cdktn-provider-azurerm is a CDKTF azurerm provider impersonator;
+    # atlas-internal is a dep-confusion package. All detected by Amazon Inspector.
+    # OSV MAL-2026-13486/13487/13488/13489/13490/13606/13607/13619
+    "atlas-internal": {"1.8.1"},                                # MAL-2026-13619
+    "cdktn-provider-azurerm": {"17.0.0"},                       # MAL-2026-13606
+    "fast-hashes": {"0.1.0"},                                   # MAL-2026-13490
+    "fastapii": {"0.1.1", "0.1.2", "0.2.0", "0.3.0"},         # MAL-2026-13486
+    "flasq": {"0.1.1", "0.1.2", "0.2.0", "0.3.0"},            # MAL-2026-13487
+    "idnna": {"0.1.1", "0.1.2", "0.2.0", "0.3.0"},            # MAL-2026-13488
+    "pydanticc": {"0.1.1", "0.1.2", "0.2.0", "0.3.0"},        # MAL-2026-13489
+    "speed-hashes": {"0.1.0"},                                  # MAL-2026-13607
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -7865,6 +7897,193 @@ NPM_BAD: dict[str, set[str]] = {
     "xdaxx": {"1.0.1"},  # MAL-2026-13468
     "xxdxax": {"1.0.0", "1.0.1"},  # MAL-2026-13469
     "zyr-agent": {"1.5.7", "1.6.2"},  # MAL-2026-13471
+
+    # Dolyame / SME-RKO Russian banking dep-confusion cluster (Aug 7–8 2026)
+    # 131 packages targeting Dolyame BNPL service and SME-RKO (small/medium
+    # enterprise current-account finance) internal npm tooling. High-version
+    # (35.x.x) packages published to the public registry to hijack internal CI
+    # dependency resolution. All detected by Amazon Inspector / OpenSSF.
+    # OSV MAL-2026-13494 through MAL-2026-13663 (see individual # comments).
+    "beaver-ui-popover-marker": {"35.5.8"},  # MAL-2026-13523
+    "bigops-abstract-entity-data": {"35.1.7"},  # MAL-2026-13524
+    "bigops-security": {"35.8.8"},  # MAL-2026-13525
+    "bigops-shared-product-design": {"35.9.3"},  # MAL-2026-13526
+    "bigops-telephony-mock": {"35.7.2"},  # MAL-2026-13494
+    "bnpl-blocks-atom-bnpl-checkbox": {"35.6.1"},  # MAL-2026-13527
+    "bnpl-blocks-atom-bnpl-faq-item": {"35.8.2"},  # MAL-2026-13528
+    "bnpl-blocks-atom-bnpl-image-card": {"35.6.1"},  # MAL-2026-13529
+    "bnpl-blocks-atom-bnpl-loader": {"35.1.2"},  # MAL-2026-13530
+    "damir-cbr-dawdntrnssbf": {"35.8.1"},  # MAL-2026-13531
+    "ded-pwa-bnpl-forms-test-demo": {"35.7.8"},  # MAL-2026-13532
+    "ded-pwa-c-boxy": {"35.9.1"},  # MAL-2026-13533
+    "ded-pwa-c-boxy-di": {"35.2.2"},  # MAL-2026-13534
+    "ded-pwa-c-cms": {"35.9.9"},  # MAL-2026-13496
+    "ded-pwa-c-mapping": {"35.8.7"},  # MAL-2026-13535
+    "ded-pwa-c-micro": {"35.8.3"},  # MAL-2026-13536
+    "ded-pwa-c-page-maker-props": {"35.7.7"},  # MAL-2026-13497
+    "ded-pwa-ded-pwa-core": {"35.6.3"},  # MAL-2026-13498
+    "ded-pwa-test-pub-pkg": {"35.8.4"},  # MAL-2026-13537
+    "delivery-ci-cli": {"35.3.5"},  # MAL-2026-13538
+    "delivery-ci-codeceptjs": {"35.1.7"},  # MAL-2026-13539
+    "delivery-ci-codeceptjs-fork": {"35.4.5"},  # MAL-2026-13499
+    "delivery-ci-core": {"35.3.7"},  # MAL-2026-13540
+    "delivery-ci-documentation": {"35.3.7"},  # MAL-2026-13541
+    "delivery-ci-dpat": {"35.1.5"},  # MAL-2026-13500
+    "delivery-ci-jira": {"35.5.2"},  # MAL-2026-13542
+    "delivery-ci-jira-rnd": {"35.5.4"},  # MAL-2026-13501
+    "devplatform-api-v1-resources": {"35.4.7"},  # MAL-2026-13543
+    "devplatform-eslint-config": {"35.8.9"},  # MAL-2026-13544
+    "devplatform-react-mcp": {"35.5.6"},  # MAL-2026-13502
+    "devplatform-spa-errors": {"35.5.7"},  # MAL-2026-13545
+    "devplatform-spa-plugin-feature-toggle": {"35.7.4"},  # MAL-2026-13546
+    "devplatform-spa-plugin-remote-module": {"35.9.6"},  # MAL-2026-13547
+    "devplatform-stylelint-config": {"35.7.4"},  # MAL-2026-13548
+    "distributorblock": {"35.8.1"},  # MAL-2026-13503
+    "dolyame-boxy-atom-bnpl-navigation-arrow": {"35.6.5"},  # MAL-2026-13550
+    "dolyame-boxy-independent-bnpl-faq": {"35.8.7"},  # MAL-2026-13551
+    "dolyame-boxy-independent-bnpl-main-title": {"35.5.6"},  # MAL-2026-13552
+    "dolyame-boxy-independent-bnpl-product-grid": {"35.9.2"},  # MAL-2026-13553
+    "dolyame-ui-attachfile": {"35.8.1"},  # MAL-2026-13504
+    "dolyame-ui-buttonstore": {"35.8.1"},  # MAL-2026-13554
+    "dolyame-ui-cardlogo": {"35.8.1"},  # MAL-2026-13555
+    "dolyame-ui-carouselline": {"35.8.1"},  # MAL-2026-13556
+    "dolyame-ui-checkablegroup": {"35.8.1"},  # MAL-2026-13557
+    "dolyame-ui-clickoutsidehoc": {"35.8.1"},  # MAL-2026-13558
+    "dolyame-ui-collapseblock": {"35.8.1"},  # MAL-2026-13559
+    "dolyame-ui-contenteditable": {"35.8.1"},  # MAL-2026-13560
+    "dolyame-ui-contextmenu": {"35.8.1"},  # MAL-2026-13561
+    "dolyame-ui-contextmenusearchable": {"35.8.1"},  # MAL-2026-13562
+    "dolyame-ui-controlgroup": {"35.8.1"},  # MAL-2026-13563
+    "dolyame-ui-dataqa": {"35.8.1"},  # MAL-2026-13564
+    "dolyame-ui-datatable": {"35.8.1"},  # MAL-2026-13565
+    "dolyame-ui-deprecatepropshoc": {"35.8.1"},  # MAL-2026-13566
+    "dolyame-ui-draghoc": {"35.8.1"},  # MAL-2026-13567
+    "dolyame-ui-eventoutside": {"35.8.1"},  # MAL-2026-13568
+    "dolyame-ui-flatcorners": {"35.8.1"},  # MAL-2026-13569
+    "dolyame-ui-focusstatehoc": {"35.8.1"},  # MAL-2026-13570
+    "dolyame-ui-generateid": {"35.8.1"},  # MAL-2026-13571
+    "dolyame-ui-iconloaderhoc": {"35.8.1"},  # MAL-2026-13505
+    "dolyame-ui-iconspack": {"35.8.1"},  # MAL-2026-13572
+    "dolyame-ui-inlineedit": {"35.8.1"},  # MAL-2026-13573
+    "dolyame-ui-inputautocomplete": {"35.8.1"},  # MAL-2026-13574
+    "dolyame-ui-inputbox": {"35.8.1"},  # MAL-2026-13506
+    "dolyame-ui-inputcard": {"35.8.1"},  # MAL-2026-13575
+    "dolyame-ui-inputcolor": {"35.8.1"},  # MAL-2026-13507
+    "dolyame-ui-inputcount": {"35.8.1"},  # MAL-2026-13576
+    "dolyame-ui-inputdate": {"35.8.1"},  # MAL-2026-13577
+    "dolyame-ui-inputfio": {"35.8.1"},  # MAL-2026-13578
+    "dolyame-ui-inputmoney": {"35.8.1"},  # MAL-2026-13579
+    "dolyame-ui-inputpassword": {"35.8.1"},  # MAL-2026-13508
+    "dolyame-ui-inputphone": {"35.8.1"},  # MAL-2026-13580
+    "dolyame-ui-inputrange": {"35.8.1"},  # MAL-2026-13581
+    "dolyame-ui-inputsearch": {"35.8.1"},  # MAL-2026-13582
+    "dolyame-ui-inputsearchtagged": {"35.8.1"},  # MAL-2026-13583
+    "dolyame-ui-inputsecure": {"35.8.1"},  # MAL-2026-13584
+    "dolyame-ui-inputtag": {"35.8.1"},  # MAL-2026-13585
+    "dolyame-ui-inputtime": {"35.8.1"},  # MAL-2026-13586
+    "dolyame-ui-inputtools": {"35.8.1"},  # MAL-2026-13587
+    "dolyame-ui-lazyrender": {"35.8.1"},  # MAL-2026-13509
+    "dolyame-ui-mediainfohoc": {"35.8.1"},  # MAL-2026-13588
+    "dolyame-ui-memoizeweak": {"35.8.1"},  # MAL-2026-13589
+    "dolyame-ui-noindex": {"35.8.1"},  # MAL-2026-13590
+    "dolyame-ui-overridestyles": {"35.8.1"},  # MAL-2026-13591
+    "dolyame-ui-pageheader": {"35.8.1"},  # MAL-2026-13592
+    "dolyame-ui-popupcarousel": {"35.8.1"},  # MAL-2026-13593
+    "dolyame-ui-postcssconfig": {"35.8.1"},  # MAL-2026-13594
+    "dolyame-ui-postcsscustomproperties": {"35.8.1"},  # MAL-2026-13595
+    "dolyame-ui-progresscircle": {"35.8.1"},  # MAL-2026-13510
+    "dolyame-ui-progressline": {"35.8.1"},  # MAL-2026-13596
+    "dolyame-ui-scrollblock": {"35.8.1"},  # MAL-2026-13597
+    "dolyame-ui-selectaccount": {"35.8.1"},  # MAL-2026-13598
+    "dolyame-ui-sortablelist": {"35.8.1"},  # MAL-2026-13599
+    "dolyame-ui-stateutils": {"35.8.1"},  # MAL-2026-13511
+    "dolyame-ui-tableinline": {"35.8.1"},  # MAL-2026-13600
+    "dolyame-ui-tablemobile": {"35.8.1"},  # MAL-2026-13601
+    "dolyame-ui-tabsblock": {"35.8.1"},  # MAL-2026-13512
+    "dolyame-ui-tabslayout": {"35.8.1"},  # MAL-2026-13602
+    "eacq-cdk": {"35.8.1"},  # MAL-2026-13513
+    "eacq-core": {"35.8.1"},  # MAL-2026-13514
+    "eacq-dialog": {"35.8.1"},  # MAL-2026-13515
+    "platform-ui-colors": {"35.8.1"},  # MAL-2026-13603
+    "sme-rko-finance-front-operations-domain": {"35.8.1"},  # MAL-2026-13634
+    "sme-rko-finance-front-operations-fee": {"35.8.1"},  # MAL-2026-13635
+    "sme-rko-finance-front-operations-feed-impl": {"35.8.1"},  # MAL-2026-13636
+    "sme-rko-finance-front-operations-feed-models": {"35.8.1"},  # MAL-2026-13637
+    "sme-rko-finance-front-operations-holding-domain": {"35.8.1"},  # MAL-2026-13638
+    "sme-rko-finance-front-operations-income": {"35.8.1"},  # MAL-2026-13639
+    "sme-rko-finance-front-operations-notifications-impl": {"35.8.1"},  # MAL-2026-13640
+    "sme-rko-finance-front-operations-notifications-models": {"35.8.1"},  # MAL-2026-13641
+    "sme-rko-finance-front-operations-other": {"35.8.1"},  # MAL-2026-13642
+    "sme-rko-finance-front-operations-overnight": {"35.8.1"},  # MAL-2026-13643
+    "sme-rko-finance-front-operations-pegasus": {"35.8.1"},  # MAL-2026-13644
+    "sme-rko-finance-front-operations-penalty": {"35.8.1"},  # MAL-2026-13645
+    "sme-rko-finance-front-operations-providers": {"35.8.1"},  # MAL-2026-13646
+    "sme-rko-finance-front-operations-shared": {"35.8.1"},  # MAL-2026-13647
+    "sme-rko-finance-front-operations-special-payments": {"35.8.1"},  # MAL-2026-13648
+    "sme-rko-finance-front-operations-tax": {"35.8.1"},  # MAL-2026-13649
+    "sme-rko-finance-front-operations-widget-domain": {"35.8.1"},  # MAL-2026-13650
+    "sme-rko-finance-front-operations-widget-impl": {"35.8.1"},  # MAL-2026-13651
+    "sme-rko-finance-front-operations-widget-models": {"35.8.1"},  # MAL-2026-13652
+    "sme-rko-finance-front-payment-registers-operations-domain": {"35.8.1"},  # MAL-2026-13653
+    "sme-rko-finance-front-payments-allowed-tariffs-filter": {"35.8.1"},  # MAL-2026-13654
+    "sme-rko-finance-front-payments-classic-payment-actions-operations-repeat-impl": {"35.8.1"},  # MAL-2026-13655
+    "sme-rko-finance-front-payments-classic-payment-actions-operations-repeat-models": {"35.8.1"},  # MAL-2026-13656
+    "sme-rko-finance-front-payments-currency-payment-actions-operations-repeat-impl": {"35.8.1"},  # MAL-2026-13657
+    "sme-rko-finance-front-payments-currency-payment-actions-operations-repeat-models": {"35.8.1"},  # MAL-2026-13658
+    "sme-rko-finance-front-payments-currency-payment-domain": {"35.8.1"},  # MAL-2026-13659
+    "sme-rko-finance-front-payments-domain": {"35.8.1"},  # MAL-2026-13660
+    "sme-rko-finance-front-payments-feed-adapter": {"35.8.1"},  # MAL-2026-13661
+    "sme-rko-finance-front-payments-feed-display-list": {"35.8.1"},  # MAL-2026-13662
+    "sme-rko-finance-front-payments-feed-display-list-impl": {"35.8.1"},  # MAL-2026-13663
+
+    # Miscellaneous npm malware Aug 7–8 2026 (40 packages)
+    # Assorted typosquats, dep-confusion, and infostealers. Includes the
+    # rdfxvela/velabuild typosquat cluster (introduced:0 SEMVER range → any-version
+    # wildcard), Hardhat/EVM tool fakes, @depup/* package-update impersonators,
+    # AI-agent infostealers, Roblox/Solana/NestJS/Prisma typosquats, and misc.
+    # All detected by Amazon Inspector.
+    # OSV MAL-2026-13491/13492/13493/13495/13516–13522/13549/13604/13605/13608–13618/
+    #      13620–13633/13664
+    "@aster110/cc2wechat": {"5.1.0"},  # MAL-2026-13520
+    "@catamania/front-components": {"1.0.5"},  # MAL-2026-13620
+    "@coralxyz/anchor": {"0.30.2"},  # MAL-2026-13629
+    "@decido/backend-core": {"4.1.1", "4.1.12", "4.1.18", "4.1.19"},  # MAL-2026-13621
+    "@depup/astro": {"7.1.3-depup.2", "7.2.0-depup.0"},  # MAL-2026-13622
+    "@depup/aws-sdk__credential-provider-process": {"3.972.59-depup.0", "3.972.62-depup.0", "3.972.63-depup.0", "3.972.66-depup.0"},  # MAL-2026-13623
+    "@depup/memfs": {"4.67.0-depup.0"},  # MAL-2026-13624
+    "@depup/nuxt": {"4.5.0-depup.0"},  # MAL-2026-13625
+    "@mrbenty8jf1p9y5/oidc-bind-canary": {"0.0.3"},  # MAL-2026-13626
+    "@nestjs-passport/jwt": {"1.0.4", "1.0.7"},  # MAL-2026-13627
+    "@rbx-ts/services": {"1.6.0"},  # MAL-2026-13630
+    "@rbxst/services": {"1.0.756"},  # MAL-2026-13521
+    "@vertexa/prisma-fetch-engine": {"7.8.0", "7.8.1", "7.8.2", "7.8.3", "7.8.4", "7.8.5"},  # MAL-2026-13608
+    "aclade-agent": {"1.0.1", "1.0.2", "1.0.4", "1.0.5", "1.0.6"},  # MAL-2026-13614
+    "agenthub-ai": {"0.20.1", "0.20.2", "0.20.3", "0.20.4"},  # MAL-2026-13615
+    "base-ui-cli": {"1.1.47"},  # MAL-2026-13522
+    "big-tss": {"5.0.5"},  # MAL-2026-13613
+    "blekit": {"1.2.0", "1.2.1"},  # MAL-2026-13495
+    "dojo-rn-interview": {"1.0.1"},  # MAL-2026-13549
+    "f-termx": {"1.2.6"},  # MAL-2026-13610
+    "forge-gas-diff": {"1.0.0", "1.0.1"},  # MAL-2026-13516
+    "gas-diff-core": {"1.0.0"},  # MAL-2026-13517
+    "hardhat-cap": {"2.21.1"},  # MAL-2026-13616
+    "hardhat-set": {"2.21.0"},  # MAL-2026-13609
+    "localization-fixer": {"1.0.1", "1.1.1"},  # MAL-2026-13631
+    "mangomind-agent": {"0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.4", "0.1.5", "0.1.6", "0.1.7", "0.1.8", "0.1.9", "0.2.0", "0.2.1"},  # MAL-2026-13611
+    "map-streak-kit": {"1.0.0"},  # MAL-2026-13632
+    "modern-localization": {"1.1.1", "1.2.1"},  # MAL-2026-13633
+    "postcss-theme-provider": {"1.0.2"},  # MAL-2026-13518
+    "rdfxvela": set(),  # MAL-2026-13491 (SEMVER introduced:0 — any-version wildcard)
+    "rdfxvela-build": set(),  # MAL-2026-13492 (SEMVER introduced:0)
+    "streak-kit-map": {"1.0.0"},  # MAL-2026-13519
+    "streak-map-kit": {"1.0.0"},  # MAL-2026-13628
+    "tailwindcss-motion-advanced": {"1.0.1"},  # MAL-2026-13604
+    "titan-exchange-shared-permissions": {"99.9.9"},  # MAL-2026-13664
+    "transform-es2015-unicode-regex": {"6.24.1"},  # MAL-2026-13612
+    "ts-utility-plus": {"1.3.2"},  # MAL-2026-13617
+    "velabuild": set(),  # MAL-2026-13493 (SEMVER introduced:0)
+    "w-screenctl": {"1.0.4", "1.0.6", "1.0.7"},  # MAL-2026-13618
+    "yakuza0": {"2.23.40", "2.23.40-beta.3"},  # MAL-2026-13605
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
