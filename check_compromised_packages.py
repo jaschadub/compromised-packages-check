@@ -1428,6 +1428,11 @@ PYPI_BAD: dict[str, set[str]] = {
     "idnna": {"0.1.1", "0.1.2", "0.2.0", "0.3.0"},            # MAL-2026-13488
     "pydanticc": {"0.1.1", "0.1.2", "0.2.0", "0.3.0"},        # MAL-2026-13489
     "speed-hashes": {"0.1.0"},                                  # MAL-2026-13607
+    # riakcs PyPI install-time exfiltrator Aug 8 2026
+    # Overwrites setup.py install command to exfiltrate basic host info (IP, username)
+    # on install. Categorised PROBABLY_PENTEST by ossf/malicious-packages.
+    # OSV MAL-2026-13665
+    "riakcs": {"0.0.1", "0.5.0"},                              # MAL-2026-13665
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6144,7 +6149,13 @@ NPM_BAD: dict[str, set[str]] = {
     "@crbrc/xbt": {
         "1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.2.1",
     },                                                             # MAL-2026-11122
-    "@yancyyu/agentcli": {"1.9.32"},                             # MAL-2026-11123
+    "@yancyyu/agentcli": {                                       # MAL-2026-11123
+        "1.9.25", "1.9.26", "1.9.27", "1.9.28", "1.9.29", "1.9.30",
+        "1.9.32", "1.9.33", "1.9.35", "1.9.36", "1.9.40", "1.9.42",
+        "1.9.43", "1.9.44", "1.9.48", "1.9.50", "1.9.52", "1.9.53",
+        "1.9.58", "1.9.61", "1.9.66", "1.9.67", "1.9.71", "1.9.77",
+        "1.9.78", "1.9.79", "1.9.80",
+    },
     "basic-vite": {"1.0.0"},                                      # MAL-2026-11131
     "bianira-ui": {"1.27.0"},                                     # MAL-2026-11132
     "chain-analyze": {"1.0.2"},                                   # MAL-2026-11133
@@ -7871,7 +7882,7 @@ NPM_BAD: dict[str, set[str]] = {
     "golaaa": {"1.0.0"},  # MAL-2026-13392
     "helmet-pro": {"10.0.4"},  # MAL-2026-13401
     "internallib_v514": {"1.0.0"},  # MAL-2026-13483
-    "jagproject": {"28.1.0", "28.2.0", "28.3.0"},  # MAL-2026-13402
+    "jagproject": {"28.1.0", "28.2.0", "28.3.0", "28.7.0"},  # MAL-2026-13402
     "lib-frontsga": {"9.999.999"},  # MAL-2026-13448
     "merge-grid-stats": {"1.0.0", "1.0.1", "1.1.0", "1.2.0", "1.3.0", "1.4.0", "1.5.0"},  # MAL-2026-13484
     "move-bcs-codec": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-13450
