@@ -493,7 +493,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-08
+Date:      2026-08-10
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1433,6 +1433,12 @@ PYPI_BAD: dict[str, set[str]] = {
     # on install. Categorised PROBABLY_PENTEST by ossf/malicious-packages.
     # OSV MAL-2026-13665
     "riakcs": {"0.0.1", "0.5.0"},                              # MAL-2026-13665
+    # Aug 9–10 2026 PyPI malware batch (2 packages)
+    # cubesat-upstream-driver: supply-chain malware detected by OpenSSF Package Analysis.
+    # kotanku: supply-chain malware detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-13666/13667
+    "cubesat-upstream-driver": {"1.0.1"},  # MAL-2026-13666
+    "kotanku": {"0.1.0"},  # MAL-2026-13667
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -7327,7 +7333,7 @@ NPM_BAD: dict[str, set[str]] = {
     "test2221": {"2.2.4"},  # MAL-2026-11192
     "twork-data-services-aggregator-api-v2-data-view-company-company-profile-mf-data-transformer": {"20.5.3"},  # MAL-2026-11550
     "uibabai": {"5.7.5"},  # MAL-2026-12054
-    "vitest-preview-pro": {"10.0.3"},  # MAL-2026-12004
+    "vitest-preview-pro": set(),  # MAL-2026-12004 (SEMVER introduced:0 — any-version wildcard)
     "webdev-conf": {"5.0.0"},  # MAL-2026-12005
 
     # @wethenorth12 crypto-wallet-drainer campaign Aug 5 2026
@@ -8072,7 +8078,7 @@ NPM_BAD: dict[str, set[str]] = {
     "agenthub-ai": {"0.20.1", "0.20.2", "0.20.3", "0.20.4"},  # MAL-2026-13615
     "base-ui-cli": {"1.1.47"},  # MAL-2026-13522
     "big-tss": {"5.0.5"},  # MAL-2026-13613
-    "blekit": {"1.2.0", "1.2.1"},  # MAL-2026-13495
+    "blekit": {"0.1.0", "0.2.0", "0.3.0", "0.3.1", "0.3.2", "1.0.0", "1.1.0", "1.2.0", "1.2.1"},  # MAL-2026-13495
     "dojo-rn-interview": {"1.0.1"},  # MAL-2026-13549
     "f-termx": {"1.2.6"},  # MAL-2026-13610
     "forge-gas-diff": {"1.0.0", "1.0.1"},  # MAL-2026-13516
@@ -8095,6 +8101,32 @@ NPM_BAD: dict[str, set[str]] = {
     "velabuild": set(),  # MAL-2026-13493 (SEMVER introduced:0)
     "w-screenctl": {"1.0.4", "1.0.6", "1.0.7"},  # MAL-2026-13618
     "yakuza0": {"2.23.40", "2.23.40-beta.3"},  # MAL-2026-13605
+
+    # Miscellaneous npm malware Aug 9–10 2026 (14 packages)
+    # Tinkoff/Dolyame extended packages (6): bnpl-blocks-desktop-bnpl-anchor-title
+    # extends the Dolyame BNPL dep-confusion family (SEMVER introduced:0 wildcard);
+    # statist-browser-typed-client-eventea.projects.{pwafamily,pwahelp,pwainsurance,
+    # pwakasko,tdeal,tdevice} extend the Tinkoff statist analytics dep-confusion wave.
+    # Svelte ecosystem typosquat cluster (4): svelte-cache-kit, svelte-kit-cache,
+    # svelte-map-visual, svelte-streak-kit — all SEMVER introduced:0 wildcards.
+    # Miscellaneous (4): @lambda-platform/lambda-vue, specials-resources-server,
+    # test-noexist-xyz-99 (wildcard), and the @lambda-platform entry (pinned version).
+    # OSV MAL-2026-12912/13668/13669/13670/13671/13672/13673/13674/13675/
+    #      13676/13677/13678/13679/13680
+    "@lambda-platform/lambda-vue": {"3.3.24"},  # MAL-2026-13668
+    "bnpl-blocks-desktop-bnpl-anchor-title": set(),  # MAL-2026-12912 (SEMVER introduced:0)
+    "specials-resources-server": set(),  # MAL-2026-13669 (SEMVER introduced:0)
+    "statist-browser-typed-client-eventea.projects.pwafamily": set(),  # MAL-2026-13670
+    "statist-browser-typed-client-eventea.projects.pwahelp": set(),  # MAL-2026-13671
+    "statist-browser-typed-client-eventea.projects.pwainsurance": set(),  # MAL-2026-13672
+    "statist-browser-typed-client-eventea.projects.pwakasko": set(),  # MAL-2026-13673
+    "statist-browser-typed-client-eventea.projects.tdeal": set(),  # MAL-2026-13674
+    "statist-browser-typed-client-eventea.projects.tdevice": set(),  # MAL-2026-13675
+    "svelte-cache-kit": set(),  # MAL-2026-13676 (SEMVER introduced:0)
+    "svelte-kit-cache": set(),  # MAL-2026-13677 (SEMVER introduced:0)
+    "svelte-map-visual": set(),  # MAL-2026-13678 (SEMVER introduced:0)
+    "svelte-streak-kit": set(),  # MAL-2026-13679 (SEMVER introduced:0)
+    "test-noexist-xyz-99": set(),  # MAL-2026-13680 (SEMVER introduced:0)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
