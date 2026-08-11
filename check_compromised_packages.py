@@ -1439,6 +1439,23 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-13666/13667
     "cubesat-upstream-driver": {"1.0.1"},  # MAL-2026-13666
     "kotanku": {"0.1.0"},  # MAL-2026-13667
+    # Aug 10–11 2026 PyPI malware batch (9 packages)
+    # Crypto infostealers: btcflip, btcflx, kotoraka 0.1.0 each — exfiltrate
+    # credentials/wallets; detected by Amazon Inspector + kam193 (Kamil Mańkowski).
+    # bigtime 0.1.0, chaintest 0.1.0: misc malware (kam193).
+    # pytablute 1.0.3: spellchecker-disguised RAT (refs: helixguard.ai / Aikido blog).
+    # neutrl-contracts/neutrl-core/plp-contract 2.0.0–2.0.2: crypto-contract toolkit
+    # infostealers attributed to mhoonumabaamercy-hub (C2 in config.py).
+    # OSV MAL-2026-13681/13682/13683/13685/13686/13709/13710/13711/13712
+    "btcflip": {"0.1.0"},  # MAL-2026-13681
+    "btcflx": {"0.1.0"},  # MAL-2026-13682
+    "kotoraka": {"0.1.0"},  # MAL-2026-13683
+    "pytablute": {"1.0.3"},  # MAL-2026-13685
+    "chaintest": {"0.1.0"},  # MAL-2026-13686
+    "neutrl-contracts": {"2.0.0", "2.0.1", "2.0.2"},  # MAL-2026-13709
+    "neutrl-core": {"2.0.0", "2.0.1", "2.0.2"},  # MAL-2026-13710
+    "plp-contract": {"2.0.0", "2.0.1", "2.0.2"},  # MAL-2026-13711
+    "bigtime": {"0.1.0"},  # MAL-2026-13712
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -8127,6 +8144,98 @@ NPM_BAD: dict[str, set[str]] = {
     "svelte-map-visual": set(),  # MAL-2026-13678 (SEMVER introduced:0)
     "svelte-streak-kit": set(),  # MAL-2026-13679 (SEMVER introduced:0)
     "test-noexist-xyz-99": set(),  # MAL-2026-13680 (SEMVER introduced:0)
+
+    # Aug 10–11 2026 npm malware batch (40 packages across 8 clusters)
+    #
+    # Chai typosquat cluster (8): packages impersonating chai testing framework or
+    # chai plugins, detected by Amazon Inspector; exact versions pinned.
+    # OSV MAL-2026-13692/13699/13700/13701/13702/13703/13704
+    "chai-jsonss": {"3.7.7"},  # MAL-2026-13692
+    "chai-as-bench": {"7.0.3"},  # MAL-2026-13699
+    "chai-as-deployer": {"2.3.5", "2.3.6"},  # MAL-2026-13700
+    "chai-as-format": {"2.3.5"},  # MAL-2026-13701
+    "chai-as-map": {"2.3.5"},  # MAL-2026-13702
+    "chai-as-promised-plus": {"6.1.3"},  # MAL-2026-13703
+    "chai-tracker": {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.2.1"},  # MAL-2026-13704
+    #
+    # Fake SQLite namespace cluster (6): attacker-controlled scopes
+    # @sqlite-labs, @sqlite-prime, @sqlite-table publishing SQLite-themed packages;
+    # SEMVER introduced:0 wildcards (pure malware); source: GitHub Advisory Database.
+    # GHSA-qwqp-6xhg-jhhv/86f7-qh62-pq7c/v49c-g99c-qvf9/f348-mwv9-7p8h/
+    # f86c-mf53-7934/4hxf-37q3-vfxh; OSV MAL-2026-13713/13714/13715/13716/13717/13718
+    "@sqlite-labs/createsql": set(),  # MAL-2026-13713
+    "@sqlite-labs/nodesql": set(),  # MAL-2026-13714
+    "@sqlite-prime/createsql": set(),  # MAL-2026-13715
+    "@sqlite-prime/nodesql": set(),  # MAL-2026-13716
+    "@sqlite-table/schema-generator": set(),  # MAL-2026-13717
+    "@sqlite-table/sql-creator": set(),  # MAL-2026-13718
+    #
+    # Ethereum/crypto toolkit typosquats (4): eth-library-toolkit and eth-library-utils
+    # are SEMVER wildcard packages mimicking Ethereum utility libs (GHSA-mqxc-259c-25w3,
+    # GHSA-rp49-3975-7q6c); cryptostock and polymarket-stake-mathss are pinned-version
+    # crypto-targeting malware (Amazon Inspector).
+    # OSV MAL-2026-13693/13707/13720/13721
+    "cryptostock": {"1.0.0", "1.0.1"},  # MAL-2026-13693
+    "polymarket-stake-mathss": {"3.5.2"},  # MAL-2026-13707
+    "eth-library-toolkit": set(),  # MAL-2026-13720 (SEMVER introduced:0)
+    "eth-library-utils": set(),  # MAL-2026-13721 (SEMVER introduced:0)
+    #
+    # PostCSS impersonator cluster (2): SEMVER wildcard packages masquerading as
+    # PostCSS plugins; source: Amazon Inspector + GitHub Advisory Database.
+    # GHSA-f5h9-q436-8chv / GHSA-44hx-h55m-c65w; OSV MAL-2026-12417/13696
+    "post-css-transfer": set(),  # MAL-2026-12417 (SEMVER introduced:0)
+    "postcss-initial-provider": set(),  # MAL-2026-13696 (SEMVER introduced:0)
+    #
+    # commonjs-assertion (1): extends the commonjs-assert family (MAL-2026-10676
+    # already tracked); SEMVER wildcard; GHSA-mfjj-4625-mpvr; OSV MAL-2026-13719
+    "commonjs-assertion": set(),  # MAL-2026-13719 (SEMVER introduced:0)
+    #
+    # Additional svelte/streak/map cluster (3): extends the Aug 9–10 2026
+    # svelte ecosystem typosquat cluster; all SEMVER introduced:0 wildcards.
+    # OSV MAL-2026-13724/13726/13727
+    "kit-map-streak": set(),  # MAL-2026-13724 (SEMVER introduced:0)
+    "svelte-kit-streak": set(),  # MAL-2026-13726 (SEMVER introduced:0)
+    "tailwind-elements-ui": set(),  # MAL-2026-13727 (SEMVER introduced:0)
+    #
+    # hex-encode-utils (1): SEMVER wildcard trojan masquerading as hex encode/decode
+    # utility; published by devr* npm account; detected by Amazon Inspector + SafeDep.
+    # OSV MAL-2026-13695
+    "hex-encode-utils": set(),  # MAL-2026-13695 (SEMVER introduced:0)
+    #
+    # Miscellaneous Aug 10–11 2026 npm malware (14 packages)
+    # Roblox/Discord impersonators: @rblxts/services (Roblox service typosquat,
+    # Amazon Inspector; MAL-2026-13691) and xerohub-discord-voice (Discord bot
+    # credential stealer, Amazon Inspector; MAL-2026-13708).
+    # @noobaihome/* AMIS widget impersonators (Amazon Inspector; MAL-2026-13689/13690).
+    # env-local 18.4.2: dotenv-style env loader malware (Amazon Inspector; MAL-2026-13694).
+    # iconova-react: React icon lib typosquat, wildcard (Amazon Inspector; MAL-2026-13705).
+    # neverthrow-js 2.0.0: neverthrow library impersonator (Amazon Inspector; MAL-2026-13706).
+    # runtimekit: runtime SDK typosquat, wildcard (Amazon Inspector; MAL-2026-6477).
+    # @ssgw/icon 9.999.999: icon library dep-confusion (OpenSSF PA; MAL-2026-13684).
+    # tokocrytodev 1.0.0: crypto typosquat (Amazon Inspector; MAL-2026-13687).
+    # @kuperka/chainguard-sdk: Chainguard SDK impersonator (Amazon Inspector; MAL-2026-13688).
+    # simple-date-formatter-new-9/10: extends the simple-date-formatter-new-* cluster
+    # (Amazon Inspector; MAL-2026-13697/13698).
+    # fsbrowse 0.2.28, godot-kit, spoint 0.1.695–0.1.700: misc malware
+    # (GHSA-pvvh-h7rh-2c7g / GHSA-j7m9-r9h4-rfw8 / GHSA-72h3-pwwh-68cx).
+    # OSV MAL-2026-13684/13687/13688/13689/13690/13691/13694/13697/13698/
+    #      13705/13706/13722/13723/13725; MAL-2026-6477
+    "@rblxts/services": {"1.6.0", "1.6.2"},  # MAL-2026-13691
+    "@noobaihome/amis-simple-area-widget": {"1.0.0"},  # MAL-2026-13689
+    "@noobaihome/amis-uni-area-widget": {"1.0.0", "1.0.1", "1.0.2", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.10", "1.0.11"},  # MAL-2026-13690
+    "@ssgw/icon": {"9.999.999"},  # MAL-2026-13684
+    "@kuperka/chainguard-sdk": {"1.0.1", "1.0.2"},  # MAL-2026-13688
+    "env-local": {"18.4.2"},  # MAL-2026-13694
+    "iconova-react": set(),  # MAL-2026-13705 (SEMVER introduced:0)
+    "neverthrow-js": {"2.0.0"},  # MAL-2026-13706
+    "runtimekit": set(),  # MAL-2026-6477 (SEMVER introduced:0)
+    "simple-date-formatter-new-9": {"1.0.0"},  # MAL-2026-13698
+    "simple-date-formatter-new-10": {"1.0.0"},  # MAL-2026-13697
+    "tokocrytodev": {"1.0.0"},  # MAL-2026-13687
+    "xerohub-discord-voice": {"1.0.0", "1.0.1"},  # MAL-2026-13708
+    "fsbrowse": {"0.2.28"},  # MAL-2026-13722 (GHSA-pvvh-h7rh-2c7g)
+    "godot-kit": {"1.0.1786316795"},  # MAL-2026-13723 (GHSA-j7m9-r9h4-rfw8)
+    "spoint": {"0.1.695", "0.1.696", "0.1.697", "0.1.698", "0.1.699", "0.1.700"},  # MAL-2026-13725 (GHSA-72h3-pwwh-68cx)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
