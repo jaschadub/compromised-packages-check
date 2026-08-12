@@ -480,7 +480,17 @@ tailwindcss-motion-advanced Tailwind typosquat, @decido/backend-core,
 and the Aug 7–8 2026 PyPI typosquat batch (8 packages: fastapii/flasq/idnna/
 pydanticc web-framework typosquats, fast-hashes/speed-hashes hash-lib fakes,
 cdktn-provider-azurerm CDKTF typosquat, atlas-internal dep-confusion;
-OSV MAL-2026-13486/13487/13488/13489/13490/13606/13607/13619).
+OSV MAL-2026-13486/13487/13488/13489/13490/13606/13607/13619), and the
+Aug 11–12 2026 npm/PyPI malware batch (44 new packages + 2 version updates:
+DeFi/Ethereum protocol typosquat cluster (@aerodrome-finance/contracts+slipstream,
+@openzeppelin-4+5/contracts, ethereum-vault-connector), base-x/base65/bs58
+typosquat cluster (9 packages), dep-confusion/postinstall-canary batch (6),
+Svelte/vim/kit extension + Sui blockchain (4), GHSA full-compromise wildcards
+(5), miscellaneous (8: tilaver-mfa, newtun, @nzeros/codebreak, safe-local-env-loader,
+zeal-rq-hooks, whs4_ued, dakumangalsingh_virus + 1 more); PyPI DeFi/Telegram SDK
+typosquats (dlmm, dlmm-sdk, euler-sdk, morpho-sdk, joule-btp-extension,
+joule-sbx-poc, telebot-pro); whs4_deu/whs4_eud updated to include 1.0.0;
+OSV MAL-2026-10925/11070/11071/13728–13769).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -493,7 +503,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-10
+Date:      2026-08-12
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1456,6 +1466,21 @@ PYPI_BAD: dict[str, set[str]] = {
     "neutrl-core": {"2.0.0", "2.0.1", "2.0.2"},  # MAL-2026-13710
     "plp-contract": {"2.0.0", "2.0.1", "2.0.2"},  # MAL-2026-13711
     "bigtime": {"0.1.0"},  # MAL-2026-13712
+
+    # Aug 11 2026 PyPI DeFi/Telegram SDK typosquat batch (7 packages)
+    # DeFi protocol SDK typosquats impersonating Meteora DLMM, Euler Finance,
+    # Morpho Protocol, and Joule Finance (BTP); install-time credential/env
+    # exfiltrators detected by Amazon Inspector + kam193 (Kamil Mańkowski).
+    # telebot-pro 2.3.7–2.3.8: pyTelegramBotAPI typosquat; starts a reporting
+    # thread on bot initialization to exfiltrate bot tokens and user data.
+    # OSV MAL-2026-13728/13729/13730/13731/13732/13756/13757
+    "dlmm": {"1.0.0"},  # MAL-2026-13728
+    "dlmm-sdk": {"1.0.0"},  # MAL-2026-13729
+    "euler-sdk": {"1.0.0"},  # MAL-2026-13730
+    "morpho-sdk": {"1.0.0"},  # MAL-2026-13731
+    "joule-btp-extension": {"0.1.0", "0.1.1", "0.1.3", "0.1.4", "0.1.6"},  # MAL-2026-13732
+    "joule-sbx-poc": {"0.1.0"},  # MAL-2026-13756
+    "telebot-pro": {"2.3.7", "2.3.8"},  # MAL-2026-13757
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6000,8 +6025,8 @@ NPM_BAD: dict[str, set[str]] = {
     # whs4_deu / whs4_eud / wsh4_edu: malware cluster (similar naming pattern),
     # all detected by OpenSSF Package Analysis. OSV MAL-2026-11070/11071/11072
     "clerk-next-fix-auth-protection": {"8.8.8", "7.7.7"},        # MAL-2026-11069
-    "whs4_deu": {"1.0.1"},                                        # MAL-2026-11070
-    "whs4_eud": {"1.0.1"},                                        # MAL-2026-11071
+    "whs4_deu": {"1.0.0", "1.0.1"},                               # MAL-2026-11070
+    "whs4_eud": {"1.0.0", "1.0.1"},                               # MAL-2026-11071
     "wsh4_edu": {"1.0.0"},                                        # MAL-2026-11072
     # thirdweb/RainbowKit/log-taker typosquat extension — July 27 2026
     # Same typosquat campaign as thirdwb/thirdwebb (July 1 batch); additional variants
@@ -8236,6 +8261,89 @@ NPM_BAD: dict[str, set[str]] = {
     "fsbrowse": {"0.2.28"},  # MAL-2026-13722 (GHSA-pvvh-h7rh-2c7g)
     "godot-kit": {"1.0.1786316795"},  # MAL-2026-13723 (GHSA-j7m9-r9h4-rfw8)
     "spoint": {"0.1.695", "0.1.696", "0.1.697", "0.1.698", "0.1.699", "0.1.700"},  # MAL-2026-13725 (GHSA-72h3-pwwh-68cx)
+
+    # Aug 11–12 2026 npm malware batch (37 packages across 6 clusters)
+    #
+    # DeFi/Ethereum protocol typosquat cluster (5): packages impersonating Aerodrome Finance
+    # (Base L2 DEX contracts/Slipstream), OpenZeppelin contracts v4/v5, and Euler Labs EVC;
+    # all detected by Amazon Inspector; exact versions pinned.
+    # OSV MAL-2026-13734/13735/13737/13738/13739
+    "@aerodrome-finance/contracts": {"1.0.0", "1.1.0", "1.1.1"},  # MAL-2026-13734
+    "@aerodrome-finance/slipstream": {"1.0.0", "1.1.0", "1.1.1"},  # MAL-2026-13735
+    "@openzeppelin-4/contracts": {"1.0.0", "1.0.1"},  # MAL-2026-13737
+    "@openzeppelin-5/contracts": {"1.0.0", "1.0.1"},  # MAL-2026-13738
+    "ethereum-vault-connector": {"1.0.0", "1.1.0", "1.1.1"},  # MAL-2026-13739
+    #
+    # base-x / base65 / bs58 typosquat cluster (9): name-lookalikes of the widely-used
+    # base-x encoder and bs58 library; all ship obfuscated payloads or embedded ELF binaries.
+    # base65-{11,12,13}x carry SEMVER introduced:0 (wildcards); base65-{15,33,77}x are pinned.
+    # bs58-1{1,2,3} are GHSA-confirmed full-compromise wildcards.
+    # GHSA-39c6-h85q-hpcw / GHSA-mw39-7442-3p8m / GHSA-x9c8-g63x-mh7q / GHSA-72pr-qcvq-fgpg
+    # OSV MAL-2026-13745/13746/13747/13748/13749/13750/13758/13759/13760
+    "base65-11x": set(),  # MAL-2026-13745 (SEMVER introduced:0, GHSA-39c6-h85q-hpcw)
+    "base65-12x": set(),  # MAL-2026-13746 (SEMVER introduced:0)
+    "base65-13x": set(),  # MAL-2026-13747 (SEMVER introduced:0)
+    "base65-15x": {"5.0.2"},  # MAL-2026-13748
+    "base65-33x": {"5.0.2"},  # MAL-2026-13749
+    "base65-77x": {"5.0.2"},  # MAL-2026-13750
+    "bs58-11": set(),  # MAL-2026-13758 (GHSA-mw39-7442-3p8m)
+    "bs58-12": set(),  # MAL-2026-13759 (GHSA-x9c8-g63x-mh7q)
+    "bs58-13": set(),  # MAL-2026-13760 (GHSA-72pr-qcvq-fgpg)
+    #
+    # dep-confusion / postinstall-canary batch Aug 11–12 2026 (6 packages):
+    # classic 99.x / 9.999.x dep-confusion versions; postinstall hooks collect
+    # hostname/username/cwd and exfiltrate to attacker C2.
+    # GHSA-6xhq-px35-hhv9 / GHSA-g62q-mq3x-765x
+    # OSV MAL-2026-13744/13751/13752/13753/13754/13755
+    "@dgn-src-click-to-pay-org/srcdcfreleasecert": {"999.0.1"},  # MAL-2026-13744
+    "bjm-low-code-components": {"99.0.0"},  # MAL-2026-13751
+    "chapters-core": {"9.999.999"},  # MAL-2026-13752
+    "dcfarguscert": {"999.0.1"},  # MAL-2026-13753
+    "dependencyfsdsfdsfg": set(),  # MAL-2026-13754 (SEMVER introduced:0, GHSA-6xhq-px35-hhv9)
+    "ghazaly": set(),  # MAL-2026-13755 (SEMVER introduced:0, GHSA-g62q-mq3x-765x)
+    #
+    # Svelte/vim/kit cluster extension + Sui blockchain typosquats (4 packages):
+    # kit-vim-map and svelte-vim-kit extend the Svelte/streak/map cluster (fake
+    # calendar/streak libs shipping Linux ELF binaries; GHSA-mj69-vr76-h2mq /
+    # GHSA-rvh4-87p7-h5pm). sui-bcs-codec and sui-gql-client extend the Sui
+    # blockchain SDK typosquat cluster from Aug 6–7 2026.
+    # OSV MAL-2026-13740/13767/13768/13769
+    "kit-vim-map": set(),  # MAL-2026-13740 (SEMVER introduced:0, GHSA-mj69-vr76-h2mq)
+    "sui-bcs-codec": set(),  # MAL-2026-13767 (SEMVER introduced:0)
+    "sui-gql-client": set(),  # MAL-2026-13768 (SEMVER introduced:0)
+    "svelte-vim-kit": set(),  # MAL-2026-13769 (GHSA-rvh4-87p7-h5pm)
+    #
+    # GHSA full-compromise wildcards Aug 12 2026 (5 packages):
+    # developer-dashboard, fetch-runtime, internallib_v164, lines-columns,
+    # node-internal-svg-loader — all confirmed "full compromise" by the GitHub
+    # Advisory Database (ghsa-malware source); any installed version is malicious.
+    # GHSA-vf74-54mr-mp44 / GHSA-3hqj-592v-g33j / GHSA-3qvf-g7pq-m3m3 /
+    # GHSA-572q-x4v9-m474 / GHSA-9rgf-6m2p-q73f
+    # OSV MAL-2026-13762/13763/13764/13765/13766
+    "developer-dashboard": set(),  # MAL-2026-13762 (GHSA-vf74-54mr-mp44)
+    "fetch-runtime": set(),  # MAL-2026-13763 (GHSA-3hqj-592v-g33j)
+    "internallib_v164": set(),  # MAL-2026-13764 (GHSA-3qvf-g7pq-m3m3)
+    "lines-columns": set(),  # MAL-2026-13765 (GHSA-572q-x4v9-m474)
+    "node-internal-svg-loader": set(),  # MAL-2026-13766 (GHSA-9rgf-6m2p-q73f)
+    #
+    # Miscellaneous npm malware Aug 11–12 2026 (8 packages):
+    # tilaver-mfa: heavily obfuscated custom-VM MFA SDK malware, SEMVER introduced:0
+    # (Amazon Inspector; GHSA-4j5x-wjw6-qvq5). newtun 1.0.0–1.0.27: CLI tool that opens
+    # a plaintext WebSocket for data exfiltration; all versions malicious by design
+    # (Amazon Inspector). @nzeros/codebreak 1.3.0: declares native/solver.c as a binary
+    # payload (Amazon Inspector). safe-local-env-loader 1.0.0: env-loader typosquat
+    # (Amazon Inspector). zeal-rq-hooks 0.0.0: imports canary.js at require-time
+    # (Amazon Inspector). whs4_ued 1.0.0: postinstall exfiltrator; extends the
+    # whs4_deu/whs4_eud cluster (Amazon Inspector). dakumangalsingh_virus: all versions
+    # confirmed full compromise (GHSA-ppp3-vpgx-2v73).
+    # OSV MAL-2026-10925/13733/13736/13741/13742/13743/13761
+    "tilaver-mfa": set(),  # MAL-2026-10925 (SEMVER introduced:0, GHSA-4j5x-wjw6-qvq5)
+    "newtun": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.8", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19", "1.0.20", "1.0.21", "1.0.22", "1.0.23", "1.0.24", "1.0.25", "1.0.26", "1.0.27"},  # MAL-2026-13733
+    "@nzeros/codebreak": {"1.3.0"},  # MAL-2026-13736
+    "safe-local-env-loader": {"1.0.0"},  # MAL-2026-13741
+    "zeal-rq-hooks": {"0.0.0"},  # MAL-2026-13742
+    "whs4_ued": {"1.0.0"},  # MAL-2026-13743 (extends whs4_deu/whs4_eud cluster)
+    "dakumangalsingh_virus": {"1.0.0", "1.2.0", "1.3.0"},  # MAL-2026-13761 (GHSA-ppp3-vpgx-2v73)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
