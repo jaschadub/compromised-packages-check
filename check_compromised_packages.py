@@ -7944,11 +7944,11 @@ NPM_BAD: dict[str, set[str]] = {
     "supersig": {"1.0.5"},  # MAL-2026-13461
     "tailwindcss-hide-scrollbar": {"2.5.3", "2.5.4"},  # MAL-2026-13424
     "trimprompt": {"1.0.35", "1.0.42", "1.0.46", "1.0.47", "1.0.48", "1.0.49"},  # MAL-2026-13462
-    "tsihealth-client": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},  # MAL-2026-13404
+    "tsihealth-client": set(),  # MAL-2026-13404 (upgraded to SEMVER >=0; any version)
     "typst-resume-cli": {"1.0.2", "1.0.3"},  # MAL-2026-13425
     "uzair-rajput-new": {"1.0.1", "1.1.0", "1.2.0", "1.3.0"},  # MAL-2026-13360
     "vite-plugin-cleaner": {"4.1.3"},  # MAL-2026-13463
-    "vite-svg-parse": {"1.1.3"},  # MAL-2026-13464
+    "vite-svg-parse": set(),  # MAL-2026-13464 (upgraded to SEMVER >=0; any version)
     "vite-vue-path-map": {"1.0.0", "1.0.1", "1.0.2"},  # MAL-2026-13465
     "vitest-preview-pro-all": {"10.0.3"},  # MAL-2026-13405
     "weight2loss": {"1.0.5"},  # MAL-2026-13485
@@ -8344,6 +8344,191 @@ NPM_BAD: dict[str, set[str]] = {
     "zeal-rq-hooks": {"0.0.0"},  # MAL-2026-13742
     "whs4_ued": {"1.0.0"},  # MAL-2026-13743 (extends whs4_deu/whs4_eud cluster)
     "dakumangalsingh_virus": {"1.0.0", "1.2.0", "1.3.0"},  # MAL-2026-13761 (GHSA-ppp3-vpgx-2v73)
+
+    "boring-vault": set(),                    # MAL-2026-13771
+    "camelot-ammv2-core": set(),              # MAL-2026-13772
+    "camelot-ammv2-periphery": set(),         # MAL-2026-13773
+    "permit2": set(),                         # MAL-2026-13775
+    "upshift-config": set(),                  # MAL-2026-13776
+    "upshift-finance": set(),                 # MAL-2026-13777
+    "augustdigital-sdk": set(),               # MAL-2026-13774
+    # Aug 12 2026 — @telekom-ods/react-ui-kit dep-confusion
+    # OSV MAL-2026-13770
+    "@telekom-ods/react-ui-kit": {"2.6.0", "2.6.9"},  # MAL-2026-13770
+    # Aug 12 2026 — @bikli publisher-account npm cluster (6 packages)
+    # Attacker-controlled @bikli scope + standalone packages; all any-version malware.
+    # OSV MAL-2026-13778/13779/13782/13786/13787/13788 (GHSA-jrmr-j9fg-c874, GHSA-cc5p-hf7h-rrjh,
+    # GHSA-6fpw-43qx-wxvf, GHSA-pcfp-4v4q-w735, GHSA-f5c6-4rpr-wjhp, GHSA-3qxv-77j4-mg7c)
+    "@bikli/bikli": set(),     # MAL-2026-13778
+    "@bikli/cli": set(),       # MAL-2026-13779
+    "airdzticket": set(),      # MAL-2026-13782
+    "biklimaster": set(),      # MAL-2026-13786
+    "biklirouter": set(),      # MAL-2026-13787
+    "bikliwrapper": set(),     # MAL-2026-13788
+    # Aug 12 2026 — @noxzacode npm cluster (3 packages)
+    # Attacker-controlled scope publishing fake eslint-config and libsignal-node packages.
+    # OSV MAL-2026-13780/13781/13831 (GHSA-7x8x-h24p-92f4, GHSA-7p3j-35rp-g3v5,
+    # GHSA-rch8-8p8v-23j7)
+    "@noxzacode/eslint-config": set(),   # MAL-2026-13780
+    "@noxzacode/libsignal-node": set(),  # MAL-2026-13781
+    "noxleys": set(),                    # MAL-2026-13831
+    "sui-gql": set(),         # MAL-2026-13926
+    "kit-map-vim": set(),    # MAL-2026-13915
+    "svelte-kit-vim": set(), # MAL-2026-13927
+    # Aug 12 2026 — @years17–20 n8n malicious-community-node campaign (78 packages)
+    # Four attacker-controlled scopes (@years17/@years18/@years19/@years20) publishing
+    # fake n8n workflow-automation community nodes; all at version 1.0.0 except
+    # @years17/n8n-nodes-helper-utils (7 versions) and @years17/n8n-nodes-utils-helper (2 versions).
+    # OSV MAL-2026-13847 through MAL-2026-13919
+    "@years17/n8n-nodes-helper-utils": {
+        "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6",
+    },  # MAL-2026-13869
+    "@years17/n8n-nodes-utils-helper": {"1.0.0", "1.0.1"},  # MAL-2026-13870
+    "@years17/n8n-nodes-utils-helper-b": {"1.0.0"},  # MAL-2026-13871
+    "@years17/n8n-nodes-utils-helper-c": {"1.0.0"},  # MAL-2026-13872
+    "@years17/n8n-nodes-utils-helper-d": {"1.0.0"},  # MAL-2026-13873
+    "@years17/n8n-nodes-utils-helper-e": {"1.0.0"},  # MAL-2026-13874
+    "@years17/n8n-nodes-utils-helper-f": {"1.0.0"},  # MAL-2026-13875
+    "@years17/n8n-nodes-utils-helper-g": {"1.0.0"},  # MAL-2026-13876
+    "@years17/n8n-nodes-utils-helper-h": {"1.0.0"},  # MAL-2026-13877
+    "@years17/n8n-nodes-utils-helper-i": {"1.0.0"},  # MAL-2026-13878
+    "@years18/n8n-nodes-utils-helper-a": {"1.0.0"},  # MAL-2026-13847
+    "@years18/n8n-nodes-utils-helper-b": {"1.0.0"},  # MAL-2026-13848
+    "@years18/n8n-nodes-utils-helper-c": {"1.0.0"},  # MAL-2026-13849
+    "@years18/n8n-nodes-utils-helper-d": {"1.0.0"},  # MAL-2026-13850
+    "@years18/n8n-nodes-utils-helper-e": {"1.0.0"},  # MAL-2026-13851
+    "@years18/n8n-nodes-utils-helper-f": {"1.0.0"},  # MAL-2026-13852
+    "@years18/n8n-nodes-utils-helper-g": {"1.0.0"},  # MAL-2026-13853
+    "@years18/n8n-nodes-utils-helper-j": {"1.0.0"},  # MAL-2026-13854
+    "@years18/n8n-nodes-utils-helper-k": {"1.0.0"},  # MAL-2026-13855
+    "@years18/n8n-nodes-utils-helper-l": {"1.0.0"},  # MAL-2026-13856
+    "@years18/n8n-nodes-utils-helper-m": {"1.0.0"},  # MAL-2026-13857
+    "@years18/n8n-nodes-utils-helper-n": {"1.0.0"},  # MAL-2026-13858
+    "@years18/n8n-nodes-utils-helper-o": {"1.0.0"},  # MAL-2026-13859
+    "@years18/n8n-nodes-utils-helper-p": {"1.0.0"},  # MAL-2026-13860
+    "@years18/n8n-nodes-utils-helper-q": {"1.0.0"},  # MAL-2026-13861
+    "@years18/n8n-nodes-utils-helper-r": {"1.0.0"},  # MAL-2026-13862
+    "@years18/n8n-nodes-utils-helper-s": {"1.0.0"},  # MAL-2026-13863
+    "@years18/n8n-nodes-utils-helper-t": {"1.0.0"},  # MAL-2026-13864
+    "@years18/n8n-nodes-utils-helper-u": {"1.0.0"},  # MAL-2026-13865
+    "@years18/n8n-nodes-utils-helper-v": {"1.0.0"},  # MAL-2026-13866
+    "@years18/n8n-nodes-utils-helper-w": {"1.0.0"},  # MAL-2026-13867
+    "@years18/n8n-nodes-utils-helper-x": {"1.0.0"},  # MAL-2026-13868
+    "@years18/n8n-nodes-utils-helper-y": {"1.0.0"},  # MAL-2026-13883
+    "@years19/n8n-nodes-utils-helper-a": {"1.0.0"},  # MAL-2026-13884
+    "@years19/n8n-nodes-utils-helper-b": {"1.0.0"},  # MAL-2026-13885
+    "@years19/n8n-nodes-utils-helper-c": {"1.0.0"},  # MAL-2026-13886
+    "@years19/n8n-nodes-utils-helper-d": {"1.0.0"},  # MAL-2026-13887
+    "@years19/n8n-nodes-utils-helper-e": {"1.0.0"},  # MAL-2026-13888
+    "@years19/n8n-nodes-utils-helper-f": {"1.0.0"},  # MAL-2026-13889
+    "@years19/n8n-nodes-utils-helper-g": {"1.0.0"},  # MAL-2026-13890
+    "@years19/n8n-nodes-utils-helper-h": {"1.0.0"},  # MAL-2026-13891
+    "@years19/n8n-nodes-utils-helper-i": {"1.0.0"},  # MAL-2026-13892
+    "@years19/n8n-nodes-utils-helper-j": {"1.0.0"},  # MAL-2026-13893
+    "@years19/n8n-nodes-utils-helper-k": {"1.0.0"},  # MAL-2026-13894
+    "@years19/n8n-nodes-utils-helper-l": {"1.0.0"},  # MAL-2026-13895
+    "@years19/n8n-nodes-utils-helper-m": {"1.0.0"},  # MAL-2026-13896
+    "@years19/n8n-nodes-utils-helper-n": {"1.0.0"},  # MAL-2026-13897
+    "@years19/n8n-nodes-utils-helper-o": {"1.0.0"},  # MAL-2026-13898
+    "@years19/n8n-nodes-utils-helper-p": {"1.0.0"},  # MAL-2026-13899
+    "@years19/n8n-nodes-utils-helper-q": {"1.0.0"},  # MAL-2026-13900
+    "@years19/n8n-nodes-utils-helper-r": {"1.0.0"},  # MAL-2026-13901
+    "@years19/n8n-nodes-utils-helper-s": {"1.0.0"},  # MAL-2026-13902
+    "@years19/n8n-nodes-utils-helper-t": {"1.0.0"},  # MAL-2026-13903
+    "@years19/n8n-nodes-utils-helper-u": {"1.0.0"},  # MAL-2026-13904
+    "@years19/n8n-nodes-utils-helper-v": {"1.0.0"},  # MAL-2026-13905
+    "@years19/n8n-nodes-utils-helper-w": {"1.0.0"},  # MAL-2026-13906
+    "@years19/n8n-nodes-utils-helper-x": {"1.0.0"},  # MAL-2026-13907
+    "@years19/n8n-nodes-utils-helper-y": {"1.0.0"},  # MAL-2026-13908
+    "@years20/n8n-nodes-utils-helper-a": {"1.0.0"},  # MAL-2026-13909
+    "@years20/n8n-nodes-utils-helper-b": {"1.0.0"},  # MAL-2026-13910
+    "@years20/n8n-nodes-utils-helper-c": {"1.0.0"},  # MAL-2026-13911
+    "@years20/n8n-nodes-utils-helper-d": {"1.0.0"},  # MAL-2026-13912
+    "@years20/n8n-nodes-utils-helper-e": {"1.0.0"},  # MAL-2026-13913
+    "@years20/n8n-nodes-utils-helper-f": {"1.0.0"},  # MAL-2026-13914
+    "@years20/n8n-nodes-utils-helper-g": {"1.0.0"},  # MAL-2026-13916
+    "@years20/n8n-nodes-utils-helper-h": {"1.0.0"},  # MAL-2026-13917
+    "@years20/n8n-nodes-utils-helper-i": {"1.0.0"},  # MAL-2026-13918
+    "@years20/n8n-nodes-utils-helper-j": {"1.0.0"},  # MAL-2026-13919
+    # Aug 12 2026 — @assetshop/verify-cli dep-confusion pair
+    # OSV MAL-2026-13881/13882
+    "@assetshop/verify-cli": {"99.0.0", "99.0.1"},  # MAL-2026-13881
+    "verify-cli": {"99.0.0"},                        # MAL-2026-13882
+    "internallib_v392": set(),        # MAL-2026-13924 GHSA-j9qq-rx28-vcjh
+    "internallib_v756": set(),        # MAL-2026-13928 GHSA-933g-5588-v5hp
+    "bcs-compact": set(),             # MAL-2026-13925 GHSA-xr26-x39h-746w
+    "mcp-util-helpers": {"1.0.0"},    # MAL-2026-13880
+    "bb-twl-k7x2": {"1.0.0", "1.0.1"},  # MAL-2026-13920
+    "envpack-conf": {"1.0.1"},        # MAL-2026-13921
+    "passkeys-react": {"1.0.1"},      # MAL-2026-13922
+    "tailwind-form-templates": {"0.7.4"},  # MAL-2026-13923
+    "dakumangalsingh": {"1.0.0", "1.0.1", "1.1.0"},          # MAL-2026-13879
+    # Aug 12 2026 — throwaway/junk npm malware cluster (~55 packages)
+    # GHSA-backed entries covering a spray of short-lived throwaway packages
+    # published by multiple actors; all confirmed active (SEMVER >=0 range).
+    # Includes country-themed stubs (china_airlines, egair0810, egypt0811),
+    # mobi-* telecom fakes, random-string junk, and nation-themed identifiers.
+    # OSV MAL-2026-13783 through MAL-2026-13846 (selected)
+    "bcnfjndwbkf2": set(),     # MAL-2026-13783 GHSA-7cv8-7v66-c3mh
+    "bgncvhferucfds": set(),   # MAL-2026-13784 GHSA-p783-m8pp-74w8
+    "bgzxcuite2": set(),       # MAL-2026-13785 GHSA-35pm-fj6m-m6v6
+    "bmgki3g6fh3": set(),      # MAL-2026-13789 GHSA-wm4g-m94m-47vj
+    "bvdfhdfvnk3": set(),      # MAL-2026-13790 GHSA-cp2x-vxp4-762f
+    "china_airlines": set(),   # MAL-2026-13791 GHSA-6gv6-cwww-6793
+    "chmjdsidwlf5": set(),     # MAL-2026-13792 GHSA-cgrq-g6cw-53vg
+    "cjdfswifuem3": set(),     # MAL-2026-13793 GHSA-w32m-789q-9hgh
+    "clxofwfjskaz7": set(),    # MAL-2026-13794 GHSA-j89c-cv6h-xxq6
+    "csbcldfvivwfgd4": set(),  # MAL-2026-13795 GHSA-5pjw-x44v-j286
+    "cvbmxiowkwqla6": set(),   # MAL-2026-13796 GHSA-mgr2-2cf3-5j8q
+    "cvbniydplwe3": set(),     # MAL-2026-13797 GHSA-x9wp-p3fp-f3rm
+    "cvjwyinkpas": set(),      # MAL-2026-13798 GHSA-5g9r-vh85-2p2v
+    "cvmbxcjiasdg": set(),     # MAL-2026-13799 GHSA-cvfr-666p-q22g
+    "cvvkshuelwiu": set(),     # MAL-2026-13800 GHSA-9m4j-9m44-ff75
+    "cxcbdjxcmncvfg2": set(),  # MAL-2026-13801 GHSA-3pvf-8w6j-33xg
+    "dhjksficgwu2": set(),     # MAL-2026-13802 GHSA-f4wq-4wgj-f595
+    "dzcvhfruwluwe": set(),    # MAL-2026-13803 GHSA-vfhv-rjx5-6c95
+    "dzvchorehui2": set(),     # MAL-2026-13804 GHSA-cj4c-xm2v-8m5g
+    "egair0810": set(),        # MAL-2026-13805 GHSA-5vqp-mfpc-2j65
+    "egypt0811": set(),        # MAL-2026-13806 GHSA-h37q-gcmq-hv56
+    "fdhcvriwecv3": set(),     # MAL-2026-13807 GHSA-jpxw-96xx-w7qx
+    "fghvbmniwu": set(),       # MAL-2026-13808 GHSA-52gv-9g4f-9j62
+    "fhj8cv9dkwm4": set(),     # MAL-2026-13809 GHSA-35gq-2hpg-3r2v
+    "gdwkh6vcbu": set(),       # MAL-2026-13810 GHSA-9hmh-j4x7-6958
+    "hcfguyfrmblp": set(),     # MAL-2026-13811 GHSA-px7c-ghpp-h47q
+    "hfkcdyuwbdx1": set(),     # MAL-2026-13812 GHSA-6px9-6xh2-4ggc
+    "hgdvfuflnb": set(),       # MAL-2026-13813 GHSA-wvxr-9c7x-6r9g
+    "hlksdcixycvf": set(),     # MAL-2026-13814 GHSA-q294-wj6j-h556
+    "hngfykuvgh4": set(),      # MAL-2026-13815 GHSA-pvhh-8339-3m5j
+    "hxckdoeaqjlc8": set(),    # MAL-2026-13816 GHSA-6gwr-m2g4-3mfv
+    "jhkxcixudnvm1": set(),    # MAL-2026-13817 GHSA-fm6c-v7f7-9q2g
+    "jkbnwsdf8": set(),        # MAL-2026-13818 GHSA-j8ph-h5x5-m729
+    "kanyut": set(),           # MAL-2026-13819 GHSA-7mmm-hmf4-g8vm
+    "khanbmnxls": set(),       # MAL-2026-13820 GHSA-f4qx-qcrw-f6f5
+    "mnchfnvbue1": set(),      # MAL-2026-13821 GHSA-mvqj-h65j-wcmq
+    "mnhdjoweuq": set(),       # MAL-2026-13822 GHSA-ph9q-v37r-28hp
+    "mnmobicom": set(),        # MAL-2026-13823 GHSA-58v9-wj62-vmh2
+    "mnteckets": set(),        # MAL-2026-13824 GHSA-ghqw-mfq6-xh36
+    "mnzjgxciwadk": set(),     # MAL-2026-13825 GHSA-6f78-7mv4-g9vh
+    "mobicommn": set(),        # MAL-2026-13826 GHSA-gpmq-h9wr-wm89
+    "mobicwkgjmx": set(),      # MAL-2026-13827 GHSA-5qfm-5r6q-m38q
+    "ms_aidc_com_tw": set(),   # MAL-2026-13828 GHSA-2fg7-gfq8-c24g
+    "nhdxzthponv5": set(),     # MAL-2026-13829 GHSA-cjq3-7m75-5vf9
+    "nihzvdeowx5": set(),      # MAL-2026-13830 GHSA-x3fw-v5wg-g95j
+    "passport811": set(),      # MAL-2026-13832 GHSA-hqm8-hrc2-wr63
+    "prezdentkxheiw": set(),   # MAL-2026-13833 GHSA-943h-xm4q-hpg6
+    "thundertiger": set(),     # MAL-2026-13834 GHSA-j7j3-pvfq-ph94
+    "truecxikdsal": set(),     # MAL-2026-13835 GHSA-983w-pp54-2vhc
+    "twcvhjlksdmx": set(),     # MAL-2026-13836 GHSA-pw3v-jpfx-hh5w
+    "unitel3": set(),          # MAL-2026-13837 GHSA-cw5f-jjc7-rhc7
+    "unitel4": set(),          # MAL-2026-13838 GHSA-hqxg-cjfw-pghj
+    "vczxijghsvizu4": set(),   # MAL-2026-13839 GHSA-25mh-x4hm-gcpg
+    "vfgnhlkxchrd": set(),     # MAL-2026-13840 GHSA-2f8h-r7v3-gpj3
+    "vkldhcmieru6": set(),     # MAL-2026-13841 GHSA-6m3r-x867-rw6g
+    "vlbhvgovbbhfab": set(),   # MAL-2026-13842 GHSA-hhjm-g3g8-qrpv
+    "xcnvjfsiewlk9": set(),    # MAL-2026-13843 GHSA-4wmq-62wf-6hcf
+    "xhjckswqivb": set(),      # MAL-2026-13844 GHSA-6w4f-884x-xjcf
+    "yangming708": set(),      # MAL-2026-13845 GHSA-vgr6-626m-8w22
+    "yangming8": set(),        # MAL-2026-13846 GHSA-f3hv-h6vj-6j6r
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -8434,6 +8619,23 @@ NPM_SUSPECT_SCOPES = (
     "@servicetitan/",   # 141 ServiceTitan packages pinned above
     "@umacloud/",       # 8 UmaCloud packages pinned above
     "@zzzgenesis00/",   # 14 crypto-wallet stealer packages pinned above
+    # @bikli publisher-account scope (Aug 12 2026) — 5 packages pinned above;
+    # entire attacker-controlled scope; scope catches any undisclosed additional packages
+    "@bikli/",
+    # @noxzacode scope (Aug 12 2026) — 2 packages pinned above
+    "@noxzacode/",
+    # @years17-20 n8n malicious-community-node scopes (Aug 12 2026) — 78 packages pinned above;
+    # four attacker-controlled scopes publishing fake n8n workflow-automation nodes
+    "@years17/",
+    "@years18/",
+    "@years19/",
+    "@years20/",
+    # fake @openzeppelin-4/5 scopes (Aug 12 2026) — 2 packages pinned above;
+    # scope catches any further fake OpenZeppelin versions
+    "@openzeppelin-4/",
+    "@openzeppelin-5/",
+    # @assetshop dep-confusion scope (Aug 12 2026) — 1 package pinned above
+    "@assetshop/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
