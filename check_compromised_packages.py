@@ -8529,6 +8529,167 @@ NPM_BAD: dict[str, set[str]] = {
     "xhjckswqivb": set(),      # MAL-2026-13844 GHSA-6w4f-884x-xjcf
     "yangming708": set(),      # MAL-2026-13845 GHSA-vgr6-626m-8w22
     "yangming8": set(),        # MAL-2026-13846 GHSA-f3hv-h6vj-6j6r
+    # nolimit-agent C2 cluster (Aug 13 2026)
+    # MAL-2026-12183 GHSA-f9mj-p83x-395v, MAL-2026-13996 GHSA-x98w-5xvp-qpxj, MAL-2026-13997 GHSA-473g-3cfv-3m59
+    "nolimit-agent": set(),
+    "@nolimit-agent/linux-x64": set(),
+    "@nolimit-agent/win32-x64": set(),
+    # @sapappgyver appgyver-descriptors (Aug 13 2026)
+    # MAL-2026-12507 GHSA-33x7-6mwq-xg5j
+    "@sapappgyver/appgyver-descriptors": set(),
+    # @dreamguyxeon/@dgxeon13 libsignal/baileyx typosquats (Aug 13 2026)
+    # MAL-2026-13929, MAL-2026-13930, MAL-2026-13931
+    "@dgxeon13/libsignal-node": {"1.0.0"},
+    "@dreamguyxeon/baileyx": {"1.0.0", "2.0.0", "3.0.0", "4.0.0", "5.0.0"},
+    "@dreamguyxeon/libsignal-node": {"1.0.1"},
+    # social-media automation / followers cluster (Aug 13 2026)
+    # MAL-2026-13932, MAL-2026-13933, MAL-2026-13934, MAL-2026-13986
+    "my-auto-follow": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},
+    "cc-skills-helper": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},
+    "ai-analyzer": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6",
+                    "1.0.7", "1.0.8", "1.0.9", "1.0.10", "1.0.11", "1.0.12", "1.0.13",
+                    "1.0.14", "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19"},
+    "notafollower": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5",
+                     "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.0.10", "1.0.11"},
+    # date/fmt utility typosquat cluster (Aug 13 2026)
+    # MAL-2026-13935, MAL-2026-13936, MAL-2026-13946, MAL-2026-13947, MAL-2026-13950, MAL-2026-13978
+    "datetime-fmt-xutil": {"1.0.0"},
+    "datetime-format-xutil": {"1.0.0"},
+    "date-fmt-helper-xz": {"1.0.4"},
+    "date-fmt-utils-helper": {"1.0.0"},
+    "fmt-util-k7x2": {"1.0.0", "1.0.1"},
+    "datefmt-util-helper": {"1.0.0", "1.0.1"},
+    # Web3 / DeFi typosquats (Aug 13 2026)
+    # MAL-2026-13937, MAL-2026-13940, MAL-2026-13941, MAL-2026-13964
+    "@ethers-js/contracts": {"6.9.0"},
+    "@opezneppelin/contracts": {"5.0.2"},
+    "@solana-js/web3": {"1.91.3"},
+    "bs58-15": {"6.0.1"},
+    # @hzero-front-ui dependency-confusion cluster (Aug 13 2026)
+    # MAL-2026-13967, MAL-2026-13968, MAL-2026-13969, MAL-2026-13970, MAL-2026-13971
+    "@hzero-front-ui/c7n-ui": {"99.99.99"},
+    "@hzero-front-ui/cfg": {"99.99.99"},
+    "@hzero-front-ui/core": {"99.99.99"},
+    "@hzero-front-ui/hzero-ui": {"99.99.99"},
+    "@hzero-front-ui/themes": {"99.99.99"},
+    # @khaznatech dependency-confusion cluster (Aug 13 2026)
+    # MAL-2026-13973, MAL-2026-13974, MAL-2026-13975
+    "@khaznatech/common": {"99.0.0"},
+    "@khaznatech/core": {"99.0.0"},
+    "@khaznatech/utils": {"99.0.0"},
+    # 99.9.1 dev-tooling dependency-confusion cluster (Aug 13 2026)
+    # MAL-2026-13976, MAL-2026-13977, MAL-2026-13979, MAL-2026-13980, MAL-2026-13981
+    # MAL-2026-13982, MAL-2026-13983, MAL-2026-13984, MAL-2026-13987
+    "check-audit": {"99.9.1"},
+    "cspell-esm": {"99.9.1"},
+    "eslint-generate-prerelease": {"99.9.1"},
+    "eslint-generate-release": {"99.9.1"},
+    "eslint-publish-release": {"99.9.1"},
+    "in-install": {"99.9.1"},
+    "knip-bun": {"99.9.1"},
+    "napi-raw": {"99.9.1"},
+    "resolve-audit": {"99.9.1"},
+    # miscellaneous exact-version packages (Aug 13 2026)
+    # MAL-2026-13938 to MAL-2026-13991 range; various typosquats and dev-tool imposters
+    "@jacksher/install-exec-poc": {"1.0.0", "1.0.2"},
+    "@kolbo/mcp": {"1.57.1"},
+    "@leonardo0902/vortex-kit": {"12.0.2"},
+    "@secauditb20y/sec-test-r3b": {"1.0.0"},
+    "chai-as-reformed": {"1.2.0"},
+    "cilm-ui-commons": {"1.1.0"},
+    "copytrade-core": {"2.3.0"},
+    "core-js-buffer": {"1.0.0"},
+    "debug-proxy-chrome-devtools": {"1.0.1", "1.0.2"},
+    "external-process-live-log": {"13.5.2"},
+    "functions-framework-nodejs": {"1.0.0"},
+    "global-intel": {"1.0.1"},
+    "js-assert-plus": {"1.0.0"},
+    "minimalistic-assert-plus": {"1.1.7"},
+    "nc-verify-127942": {"1.0.0"},
+    "node-config-svg-contract": {"1.0.0"},
+    "npm-hex-utils": {"1.1.1"},
+    "postcss-initialize-plugin": {"3.0.4"},
+    "power-assert-plus": {"1.2.2"},
+    "prediction-trader": {"2.3.0"},
+    "preinstall-hook-webhook-callback-demo": {"1.0.0", "1.0.1"},
+    "process-live-log": {"11.5.2"},
+    "tizen-webdriver-cli": {"1.0.0"},
+    "velora-kit": {"12.0.2", "12.1.2"},
+    "ventra-kit": {"1.0.2"},
+    "vexium-kit": {"2.0.2", "10.0.2"},
+    "wct-st": {"1.0.0"},
+    "webautomation_js": {"1.0.0", "1.0.1"},
+    "xrblocks-mcp": {"6.3.1"},
+    # mutex/lock/semaphore fake-utility cluster (Aug 14 2026)
+    # MAL-2026-13955 GHSA-2gqm-6m3p-62g5, MAL-2026-13998 GHSA-wpw5-2h95-j823
+    # MAL-2026-13999 GHSA-h6x7-5w93-p56j, MAL-2026-14003 GHSA-vcgv-x4wj-fr9f
+    # MAL-2026-14004 GHSA-c74f-2wp8-f38r, MAL-2026-14006 GHSA-fx8h-qw3r-xvf3
+    # MAL-2026-14008 GHSA-mf7m-8rhh-j3vr, MAL-2026-14010 GHSA-m4rw-m6pc-rjrx
+    # MAL-2026-14011 GHSA-r7rw-hjv5-9hcj, MAL-2026-14012 GHSA-m29h-wrvw-xpqw
+    # MAL-2026-14014 GHSA-5wp3-7whm-64mv
+    "mutex-forge": set(),
+    "async-critical-section": set(),
+    "async-lock-queue": set(),
+    "keyed-mutex-map": set(),
+    "lock-deadline-guard": set(),
+    "priority-mutex-lane": set(),
+    "resource-lease-pool": set(),
+    "semaphore-job-pool": set(),
+    "shared-slot-gate": set(),
+    "single-flight-lock": set(),
+    "try-lock-runner": set(),
+    # @caspianph test-package cluster (Aug 14 2026)
+    # MAL-2026-13992 GHSA-r6j8-4ffv-6mcj, MAL-2026-13993 GHSA-qmxg-fj5j-hjx8
+    # MAL-2026-13994 GHSA-g4m3-cq7f-6f85
+    "@caspianph/first-npm-package": set(),
+    "@caspianph/second-npm-package": set(),
+    "@caspianph/third-npm-package": set(),
+    # miscellaneous wildcard packages (Aug 14 2026)
+    # MAL-2026-13995 GHSA-r336-hh6w-xp9q, MAL-2026-14000 GHSA-v98x-q47m-h6qf
+    # MAL-2026-14001 GHSA-h83v-q7wq-gvgf, MAL-2026-14002 GHSA-2mmx-39f8-r8rm
+    # MAL-2026-14005 GHSA-cgj7-7fj2-6r74, MAL-2026-14007 GHSA-gmx3-395m-pwc2
+    # MAL-2026-14009 GHSA-57g4-vm3v-74xg, MAL-2026-14013 GHSA-p68g-6893-44r8
+    # MAL-2026-14015 GHSA-7q63-6v9w-j7mf
+    "@dsp-next-gen-ui/needs-review": set(),
+    "blocks-angular": set(),
+    "finvu-hdfc-sdk": set(),
+    "index-design-system": set(),
+    "path-match-js": set(),
+    "react-shield": set(),
+    "root-locator": set(),
+    "source-analyzer": set(),
+    "ts-enum-helper": set(),
+    # backfill: previously untracked pure-malware packages (MAL-2026-4288 to MAL-2026-6312)
+    # OSV records updated 2026-08-13; all are typosquats / dependency-confusion with no patched version
+    "@briskforge/envcheck": set(),           # MAL-2026-6212 GHSA-g63v-8g6g-5p76
+    "@bytemend/mfebus": set(),               # MAL-2026-6213 GHSA-hfjj-fph3-hp6h
+    "@chunklab/hexparse": set(),             # MAL-2026-6214 GHSA-fv23-ggqm-w99j
+    "@frostnode/probe": set(),               # MAL-2026-6304 GHSA-73jc-hjg9-95v9
+    "@frostnode/waitfor": set(),             # MAL-2026-6305 GHSA-w6p8-666c-885f
+    "@gbrlxvi/ts-form-utils": set(),         # MAL-2026-5753 GHSA-587p-qfc4-5c3c
+    "@gbrlxvi/ts-project-lint": set(),       # MAL-2026-6121 GHSA-m526-p8gm-4wxg
+    "@glitchpad/throttler": set(),           # MAL-2026-6307 GHSA-qqf7-vqp4-5rvv
+    "@hanssoft/libsignal-node": set(),       # MAL-2026-4393 GHSA-v265-vv2m-9pgf
+    "@hotcappuccino/nodepull": set(),        # MAL-2026-6085 GHSA-r3fv-99xj-m7pw
+    "@intentsolution/database-security-scanner": set(),  # MAL-2026-5825 GHSA-gx76-7hhh-jcj2
+    "@jaggle/resizeobserves": set(),         # MAL-2026-4288 GHSA-qc6p-vxcj-7r4h
+    "@lazyutil/dater": set(),                # MAL-2026-6308 GHSA-gjrj-3f9w-gpmr
+    "@open-banking/cabinet-providers": set(), # MAL-2026-5392 GHSA-423v-5hgq-8rxh
+    "@petitcode/eb-retry": set(),            # MAL-2026-6310 GHSA-vfmg-ghq7-3rv3
+    "@qwedqwed/axios": set(),                # MAL-2026-4422 GHSA-3gw3-hvvw-mp2h
+    "@rocketreach/rr-components": set(),     # MAL-2026-4427 GHSA-7v8q-r297-95jx
+    "@sourceflow-uk/sourceflow-tracker": set(), # MAL-2026-5430 GHSA-j9q7-mjw2-vvpr
+    "@stockrepublic/republic-components": set(), # MAL-2026-4289 GHSA-p923-4q96-mqgq
+    "@thomlecter1122/lab-helper-test": set(), # MAL-2026-5534 GHSA-223m-fcr3-c5gg
+    "@thymelab/logfx": set(),                # MAL-2026-6311 GHSA-j2pw-qr45-rpjm
+    "@tinyfox/shapecheck": set(),            # MAL-2026-6312 GHSA-9q9p-jf58-9fxg
+    "@ts-apis/ts-utils": set(),              # MAL-2026-6275 GHSA-3xmx-2xxv-rpfq
+    "@weirdorg/config": set(),               # MAL-2026-4466 GHSA-qj44-mw8g-p27p
+    "@weirdorg/dotenv": set(),               # MAL-2026-4467 GHSA-p44j-chjm-p4wj
+    "ac_calendar_ts": set(),                 # MAL-2026-5434 GHSA-xgwp-29j2-jxj3
+    "ac_semantic-ui_ts": set(),              # MAL-2026-5435 GHSA-hjh8-hv66-6mwc
+    "lab-helper": set(),                     # MAL-2026-5835 GHSA-gqf6-7j7q-9x94
+    "mastraqqq": set(),                      # MAL-2026-5913 GHSA-7vj9-63m9-3x7f
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -8636,6 +8797,10 @@ NPM_SUSPECT_SCOPES = (
     "@openzeppelin-5/",
     # @assetshop dep-confusion scope (Aug 12 2026) — 1 package pinned above
     "@assetshop/",
+    # @hzero-front-ui dep-confusion scope (Aug 13 2026) — 5 packages pinned above
+    "@hzero-front-ui/",
+    # @khaznatech dep-confusion scope (Aug 13 2026) — 3 packages pinned above
+    "@khaznatech/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
