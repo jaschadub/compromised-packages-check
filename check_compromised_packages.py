@@ -8690,6 +8690,63 @@ NPM_BAD: dict[str, set[str]] = {
     "ac_semantic-ui_ts": set(),              # MAL-2026-5435 GHSA-hjh8-hv66-6mwc
     "lab-helper": set(),                     # MAL-2026-5835 GHSA-gqf6-7j7q-9x94
     "mastraqqq": set(),                      # MAL-2026-5913 GHSA-7vj9-63m9-3x7f
+    # @workoscalif/@workoscalifant sudoku-themed malware cluster (Aug 14 2026)
+    # Attacker-controlled scopes delivering malware via fake sudoku npm packages.
+    # OSV MAL-2026-13366, MAL-2026-14040
+    "@workoscalif/sudoku": {"1.2.0", "1.3.0", "1.4.0", "1.5.0", "1.5.1", "1.5.2"},
+    "@workoscalifant/sudoku-term": {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.7", "1.1.8"},
+    # Alelo dep-confusion cluster (Aug 14 2026)
+    # 10 high-version (99.0.x) packages impersonating Alelo (Brazilian fintech) internal deps;
+    # hijack CI dependency resolution. Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-14020 through MAL-2026-14028, MAL-2026-14033
+    "alelo-api": {"99.0.0", "99.0.2"},
+    "alelo-auth": {"99.0.0", "99.0.2"},
+    "alelo-client": {"99.0.0", "99.0.2"},
+    "alelo-common": {"99.0.0"},
+    "alelo-core": {"99.0.0", "99.0.1", "99.0.2"},
+    "alelo-payment": {"99.0.0", "99.0.2"},
+    "alelo-sdk": {"99.0.0", "99.0.2"},
+    "alelo-services": {"99.0.0", "99.0.2"},
+    "alelo-utils": {"99.0.0"},
+    "meualelo": {"99.0.0"},
+    # fr-ito-web-react dep-confusion (Aug 14 2026)
+    # High-version (99.99.99) package targeting an internal React web frontend.
+    # OSV MAL-2026-14019
+    "fr-ito-web-react": {"99.99.99"},
+    # bs58 typosquat extension (Aug 14 2026) — companion packages to bs58-15 already tracked above
+    # OSV MAL-2026-14017, MAL-2026-14018
+    "bs58-33": {"6.0.1"},
+    "bs58-77": {"6.0.1"},
+    # notafollower Instagram-follower-check malware cluster (Aug 14 2026)
+    # Attacker-published packages delivering malware; no legitimate use.
+    # OSV MAL-2026-14034, MAL-2026-14035, MAL-2026-14036
+    "notafollower1": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.0.10", "1.0.11", "1.0.12", "1.0.13"},
+    "notafollower122": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7"},
+    "notafollower1226": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},
+    # Tailwind CSS typosquat cluster (Aug 14 2026)
+    # OSV MAL-2026-14037, MAL-2026-14038
+    "tailwind-plugin-kit": {"1.3.2"},
+    "tailwind-toolkit": {"1.3.2"},
+    # axios / Bootstrap / datefmt typosquat batch (Aug 14 2026)
+    # OSV MAL-2026-14029, MAL-2026-14030, MAL-2026-14031, MAL-2026-14032
+    "axios-fast": {"1.0.0", "1.0.1"},
+    "bootstrap-custom-ui": {"5.7.2"},
+    "datefmt-core-utils": {"1.0.0"},
+    "datefmt-simple-utils": {"1.0.0"},
+    # miscellaneous npm malware batch (Aug 14 2026) — OpenSSF Package Analysis detections
+    # OSV MAL-2026-14039 through MAL-2026-14051
+    "@cdnshell/loader": {"0.0.13", "0.0.14", "0.0.15", "0.0.16", "0.0.18", "0.0.19", "0.0.20"},
+    "@demopack/www": {"0.0.12"},
+    "@devmikets/hyperliquid-sdk": {"1.9.6"},
+    "@divineubg/divine": {"1.0.5"},
+    "@ferudionz/web_logger_js": {"1.0.0"},
+    "@ferudionz/webautomation": {"1.0.0"},
+    "@ghost_debugger/nanocache": {"0.1.1"},
+    "@guangnao/agent-proxy": {"1.2.1", "1.4.0", "1.4.2"},
+    "@lodash-js/lodash-js": {"0.1.0", "0.2.0", "0.3.0"},
+    "@mexc/shared-utils": {"1.0.0"},
+    "@polymarkets/clob-client-v2": {"1.0.6"},
+    "@velliajs/discord": {"1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -8801,6 +8858,12 @@ NPM_SUSPECT_SCOPES = (
     "@hzero-front-ui/",
     # @khaznatech dep-confusion scope (Aug 13 2026) — 3 packages pinned above
     "@khaznatech/",
+    # @workoscalif/@workoscalifant sudoku-themed malware scopes (Aug 14 2026) — attacker-controlled;
+    # packages pinned above; scope entries catch any undisclosed additional packages
+    "@workoscalif/",
+    "@workoscalifant/",
+    # @ferudionz malware scope (Aug 14 2026) — 2 packages pinned above
+    "@ferudionz/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
