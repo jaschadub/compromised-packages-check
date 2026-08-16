@@ -7462,7 +7462,7 @@ NPM_BAD: dict[str, set[str]] = {
     "akamai-sensorv1": {"1.0.0"},   # MAL-2026-13216
     "akamai-sensorv2": {"1.0.0"},   # MAL-2026-13217
     "akamai-sensorv3": {"1.0.0"},   # MAL-2026-12139
-    "akamaijs-sensor": {"3.0.0"},   # MAL-2026-12337
+    "akamaijs-sensor": {"2.0.0", "3.0.0"},   # MAL-2026-12337
 
     # async-mutex typosquats Aug 5–6 2026
     # Three packages typosquatting the popular `async-mutex` concurrency library.
@@ -8747,6 +8747,43 @@ NPM_BAD: dict[str, set[str]] = {
     "@mexc/shared-utils": {"1.0.0"},
     "@polymarkets/clob-client-v2": {"1.0.6"},
     "@velliajs/discord": {"1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7"},
+    # dependency-cruiser dep-confusion cluster (Aug 15 2026)
+    # Three packages at version 99.9.1 targeting dependency-cruiser's internal namespace;
+    # classic high-version dep-confusion attack hijacking CI dependency resolution.
+    # OSV MAL-2026-14053, MAL-2026-14054, MAL-2026-14068
+    "depcruise-baseline": {"99.9.1"},
+    "depcruise-fmt": {"99.9.1"},
+    "depcruise-wrap-stream-in-html": {"99.9.1"},
+    # HackerOne / Twilio build-probe packages (Aug 15 2026)
+    # DNS/HTTP callback packages designed to detect npm-install in corporate CI pipelines;
+    # published by external researchers probing HackerOne/Twilio bug-bounty scope.
+    # All confirmed active in OSV (Amazon Inspector detections, not withdrawn).
+    # OSV MAL-2026-14061, MAL-2026-14062, MAL-2026-14063
+    "hunterone-build-probe-9210": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7"},
+    "tw-pkgprobe-7731": {"1.0.0", "1.0.1", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.1.0", "1.1.1"},
+    "twilio-hackerone-poc-afe6937c": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},
+    # Akamai sensor cluster extension (Aug 15 2026)
+    # Two additional variants impersonating Akamai bot-detection sensor scripts,
+    # extending the cluster first tracked Aug 5 2026.
+    # OSV MAL-2026-14065, MAL-2026-14066
+    "akamai-sensor": {"1.0.0"},       # MAL-2026-14065
+    "akamaijs-sensorv1": {"3.0.0"},   # MAL-2026-14066
+    # miscellaneous npm malware batch (Aug 15 2026) — Amazon Inspector / OSV detections
+    # Includes dep-confusion bombs (autbank-core 99.x), i18next/Fastly/GCP impersonators,
+    # and attacker-controlled packages across unrelated scopes.
+    # OSV MAL-2024-9443, MAL-2026-12331, MAL-2026-14052, MAL-2026-14055,
+    # MAL-2026-14057, MAL-2026-14058, MAL-2026-14059, MAL-2026-14060,
+    # MAL-2026-14064, MAL-2026-14067
+    "sn-flow-client": {"1.0.1", "1.0.2", "10.10.10", "20.5.1"},
+    "@wololasod/tiny-id": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},
+    "require-i18next": {"20.0.0", "21.0.0"},
+    "harmony-app-toolkit": {"21.0.0", "22.0.0"},
+    "@openrepl/shared": {"0.0.4", "0.0.5"},
+    "adxaa": {"1.0.0"},
+    "autbank-core": {"99.0.0", "99.0.2"},
+    "fastly-vcl-language-client": {"1.0.0"},
+    "@finaxis/common-js": {"0.3.4"},
+    "upload-to-gcp": {"3.2.1"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
