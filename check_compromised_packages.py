@@ -490,7 +490,13 @@ Svelte/vim/kit extension + Sui blockchain (4), GHSA full-compromise wildcards
 zeal-rq-hooks, whs4_ued, dakumangalsingh_virus + 1 more); PyPI DeFi/Telegram SDK
 typosquats (dlmm, dlmm-sdk, euler-sdk, morpho-sdk, joule-btp-extension,
 joule-sbx-poc, telebot-pro); whs4_deu/whs4_eud updated to include 1.0.0;
-OSV MAL-2026-10925/11070/11071/13728–13769).
+OSV MAL-2026-10925/11070/11071/13728–13769), and the Aug 15 2026 npm batch
+(depcruise-baseline/fmt/wrap-stream-in-html dep-confusion, HackerOne/Twilio
+build-probe packages, Akamai sensor extension, misc malware;
+OSV MAL-2026-14052 through MAL-2026-14068), and the August 16 2026 batch:
+snavbox npm multi-protocol proxy/remote-management trojan (OSV MAL-2025-49362;
+any-version wildcard), kb-ai PyPI dependency-confusion install-time exfiltrator
+(OSV MAL-2026-14069; versions 0.1.0/0.1.1).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -503,7 +509,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-12
+Date:      2026-08-16
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1481,6 +1487,11 @@ PYPI_BAD: dict[str, set[str]] = {
     "joule-btp-extension": {"0.1.0", "0.1.1", "0.1.3", "0.1.4", "0.1.6"},  # MAL-2026-13732
     "joule-sbx-poc": {"0.1.0"},  # MAL-2026-13756
     "telebot-pro": {"2.3.7", "2.3.8"},  # MAL-2026-13757
+    # August 16 2026 PyPI malware — dependency-confusion demonstrator with system exfiltration
+    # kb-ai overrides the install command in setup.py to execute malicious code at install time,
+    # exfiltrating basic host info (IP address, username). Detected by Kamil Mańkowski (kam193).
+    # OSV MAL-2026-14069; campaign: GENERIC-standard-pypi-install-pentest.
+    "kb-ai": {"0.1.0", "0.1.1"},                                    # MAL-2026-14069
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -8784,6 +8795,14 @@ NPM_BAD: dict[str, set[str]] = {
     "fastly-vcl-language-client": {"1.0.0"},
     "@finaxis/common-js": {"0.3.4"},
     "upload-to-gcp": {"3.2.1"},
+    # August 16 2026 npm malware — snavbox multi-protocol proxy / remote-management trojan
+    # Disguised as "WildGuard - Protect Our Wildlife"; on install, downloads native shared
+    # libraries (sbx.so, bot.so, v1.so) from a remote host, installs a sing-box multi-protocol
+    # proxy (vless/vmess/trojan/hysteria2/tuic/reality/anytls), a Cloudflare Argo tunnel, and a
+    # Nezha remote-management agent. C2 callback to keep.gvrander.eu.org. Published 2025-10-30;
+    # OSV record updated 2026-08-16. SEMVER range `introduced: 0` → any version is malicious.
+    # OSV MAL-2025-49362.
+    "snavbox": set(),                                                # MAL-2025-49362
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
