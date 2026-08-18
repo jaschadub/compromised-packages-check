@@ -1492,6 +1492,9 @@ PYPI_BAD: dict[str, set[str]] = {
     # exfiltrating basic host info (IP address, username). Detected by Kamil Mańkowski (kam193).
     # OSV MAL-2026-14069; campaign: GENERIC-standard-pypi-install-pentest.
     "kb-ai": {"0.1.0", "0.1.1"},                                    # MAL-2026-14069
+    # socks5901 PyPI credential-harvesting malware (Aug 17 2026)
+    # OSV MAL-2026-14100
+    "socks5901": {"1.0.0"},                                          # MAL-2026-14100
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -8803,6 +8806,190 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV record updated 2026-08-16. SEMVER range `introduced: 0` → any version is malicious.
     # OSV MAL-2025-49362.
     "snavbox": set(),                                                # MAL-2025-49362
+    # August 17–18 2026 npm malware batch — OSV bulk sweep (Aug 18 2026 snapshot)
+    # ─── Tinkoff bank dep-confusion cluster ───────────────────────────────────────
+    # High-version (20.x–35.x) internal Tinkoff Russia bank package names uploaded
+    # to shadow private CI registries.
+    # OSV MAL-2026-12050, MAL-2026-12341, MAL-2026-12414, MAL-2026-12561
+    "tinkoff-statist-browser-typed-client-sme.reporting.reporting": {"20.5.4"},  # MAL-2026-12050
+    "bnpl-blocks-independent-bnpl-search": {"20.2.9"},                           # MAL-2026-12341
+    "pfp-forms-sme-loan": {"20.2.1"},                                            # MAL-2026-12414
+    "checkout-desktop-total": {"35.6.1"},                                        # MAL-2026-12561
+    # a.poltoradnev attacker-controlled packages — same actor as Tinkoff cluster;
+    # OSV >=0 ranges → any version is malicious.
+    # OSV MAL-2026-12127, MAL-2026-14103
+    "a.poltoradnev-package-c": set(),                                            # MAL-2026-12127
+    "a.poltoradnev-package-a": set(),                                            # MAL-2026-14103
+    # ─── @withgoogle/ scope impersonator ─────────────────────────────────────────
+    # Impersonates Google Stitch SDK; OSV SEMVER range >=0 → any version is
+    # malicious. Scope entry in NPM_SUSPECT_SCOPES catches further packages.
+    # OSV MAL-2026-6256.
+    "@withgoogle/stitch-sdk": set(),                                             # MAL-2026-6256
+    # ─── @zynkit/ attacker scope ─────────────────────────────────────────────────
+    # Two packages in the @zynkit attacker-controlled scope; OSV >=0 ranges.
+    # OSV MAL-2026-6313, MAL-2026-6314
+    "@zynkit/jwtbytes": set(),                                                   # MAL-2026-6313
+    "@zynkit/probe": set(),                                                      # MAL-2026-6314
+    # ─── @zizie071/ scope — @signalapp/libsignal-node impersonator ────────────────
+    # Typosquat of @signalapp/libsignal-node; OSV >=0 range. MAL-2026-4473.
+    "@zizie071/libsignal-node": set(),                                           # MAL-2026-4473
+    # ─── SUI blockchain cluster ──────────────────────────────────────────────────
+    # Typosquats of Sui blockchain GraphQL / Move RPC / Bucket Protocol packages;
+    # all OSV >=0 ranges (any version is malicious).
+    # OSV MAL-2026-14095, MAL-2026-14112, MAL-2026-14113, MAL-2026-4502
+    "sui-gql-lite": set(),                                                       # MAL-2026-14095
+    "sui-gql-core": set(),                                                       # MAL-2026-14112
+    "sui-move-rpc": set(),                                                       # MAL-2026-14113
+    "bucket-protocol-sdk-v2": set(),                                             # MAL-2026-4502
+    # ─── WhatsApp / Baileys bot cluster ──────────────────────────────────────────
+    # Typosquats and fork-names of @whiskeysockets/baileys WhatsApp library;
+    # actor 'junofficial' publishes multiple packages.
+    # OSV MAL-2026-14074, MAL-2026-14101, MAL-2026-14108, MAL-2026-14114, MAL-2026-14115
+    "@vyzensockets/baileys": {"0.3.2", "0.3.1", "0.2.5-B", "0.2.5", "0.2.4",
+                              "0.2.3", "0.2.2", "0.2.1", "0.2.0", "0.1.0"},     # MAL-2026-14074
+    "@junofficial/baileys": set(),                                               # MAL-2026-14101
+    "junofficial-userbot": set(),                                                # MAL-2026-14108
+    "userbotjs": set(),                                                          # MAL-2026-14114
+    "userbotjs-jun": set(),                                                      # MAL-2026-14115
+    # ─── 9.9.11 dep-confusion cluster ────────────────────────────────────────────
+    # Four packages published at version 9.9.11 in a single dep-confusion wave;
+    # OSV >=0 ranges. MAL-2026-4495, MAL-2026-4499, MAL-2026-4569, MAL-2026-4662
+    "banana-stand": set(),                                                       # MAL-2026-4495
+    "bolt-delivery-menu-app": set(),                                             # MAL-2026-4499
+    "gator-client": set(),                                                       # MAL-2026-4569
+    "rendezvous-js": set(),                                                      # MAL-2026-4662
+    # ─── Tool / env malware ───────────────────────────────────────────────────────
+    # OSV MAL-2026-4481, MAL-2026-6535, MAL-2026-6590, MAL-2026-14109, MAL-2026-14116
+    "arc-diag-util": set(),                                                      # MAL-2026-4481
+    "disksweep": set(),                                                          # MAL-2026-6535
+    "envfile-sync-cli": set(),                                                   # MAL-2026-6590
+    "leb128x": set(),                                                            # MAL-2026-14109
+    "runtime-health": {"1.0.2", "1.0.4", "1.0.1"},                              # MAL-2026-14116
+    # ─── Agent / bot / AI packages ───────────────────────────────────────────────
+    # OSV MAL-2026-6443, MAL-2026-12138, MAL-2026-14070, MAL-2026-14104, MAL-2026-14106
+    "agentsync-pkg": set(),                                                      # MAL-2026-6443
+    "agent-bot-api": set(),                                                      # MAL-2026-12138
+    "@ai-vertical/ai-agent": {"1.0.1", "1.0.0"},                                # MAL-2026-14070
+    "autoai": set(),                                                             # MAL-2026-14104
+    "cloud-agen-bot": set(),                                                     # MAL-2026-14106
+    # ─── Tool impersonators ───────────────────────────────────────────────────────
+    # awesome-ts-jest: typosquat of ts-jest (OSV >=0, MAL-2026-10188)
+    # async-mutex-v2: typosquat of async-mutex (OSV >=0, MAL-2026-10582)
+    # anthropic-setup: impersonates Anthropic npm SDK (OSV >=0, MAL-2026-12510)
+    "awesome-ts-jest": set(),                                                    # MAL-2026-10188
+    "async-mutex-v2": set(),                                                     # MAL-2026-10582
+    "anthropic-setup": set(),                                                    # MAL-2026-12510
+    # ─── @peptideventure/ attacker scope ─────────────────────────────────────────
+    # OSV >=0 ranges — any version is malicious.
+    # OSV MAL-2026-14071, MAL-2026-14072
+    "@peptideventure/peptide-score-modifier": set(),                             # MAL-2026-14071
+    "@peptideventure/peptide-unit": set(),                                       # MAL-2026-14072
+    # ─── epic-common cluster (npm security placeholders — full takedown) ──────────
+    # 0.0.1-security is npm registry's tombstone for a fully-removed package;
+    # use empty-set wildcard so re-uploads under new versions are caught.
+    # OSV MAL-2025-49124, MAL-2025-49125, MAL-2025-49192
+    "epic-common": set(),                                                        # MAL-2025-49124
+    "epic-common-node": set(),                                                   # MAL-2025-49125
+    "epic-sso": set(),                                                           # MAL-2025-49192
+    # ─── hrp probe cluster ────────────────────────────────────────────────────────
+    # DNS/HTTP callback packages probing corporate CI pipelines; same pattern as
+    # HackerOne/Twilio probes added Aug 15 2026. All confirmed active in OSV.
+    # OSV MAL-2025-47118, MAL-2025-47119, MAL-2025-47121, MAL-2025-47122,
+    # MAL-2026-14084, MAL-2026-14085
+    "hrp987": {"1.0.0"},                                                         # MAL-2025-47118
+    "hrp9873": {"1.0.0"},                                                        # MAL-2025-47119
+    "hrprce": {"1.0.0"},                                                         # MAL-2025-47121
+    "hrprce123": {"1.0.0"},                                                      # MAL-2025-47122
+    "hrp9871": {"1.0.0"},                                                        # MAL-2026-14084
+    "hrp9872": {"1.0.0"},                                                        # MAL-2026-14085
+    # ─── elf-stats cluster ────────────────────────────────────────────────────────
+    # Random-noun packages with "elf-stats-" prefix, published in multiple versions.
+    # OSV MAL-2025-192155, MAL-2026-14078, MAL-2026-14079
+    "elf-stats-sparkly-cushion-340": {"1.0.0"},                                  # MAL-2025-192155
+    "elf-stats-caroling-stocking-510": {"1.0.4", "1.0.3", "1.0.2", "1.0.1", "1.0.0"},  # MAL-2026-14078
+    "elf-stats-cranberry-wishlist-933": {"1.0.2", "1.0.1", "2.0.0"},            # MAL-2026-14079
+    # ─── npm_pkg_ generic-named probe cluster ────────────────────────────────────
+    # OSV MAL-2026-14089, MAL-2026-14090
+    "npm_pkg_1093": {"1.0.7", "1.0.6", "1.0.5", "1.0.4", "1.0.3", "1.0.2", "1.0.1", "1.0.0"},  # MAL-2026-14089
+    "npm_pkg_1094": {"1.0.7"},                                                   # MAL-2026-14090
+    # ─── Miscellaneous wildcard packages ─────────────────────────────────────────
+    # OSV >=0 ranges. MAL-2026-2498, MAL-2026-14076, MAL-2026-14086, MAL-2026-14096,
+    # MAL-2026-14102, MAL-2026-14105, MAL-2026-14107, MAL-2026-14110, MAL-2026-14111
+    "df-sandbox-test": set(),                                                    # MAL-2026-2498
+    "bcs-mini": set(),                                                           # MAL-2026-14076
+    "kit-hydration-vim": set(),                                                  # MAL-2026-14086
+    "svelte-goal-vim": set(),                                                    # MAL-2026-14096
+    "@siwatfa/yorn": set(),                                                      # MAL-2026-14102
+    "bcs-core": set(),                                                           # MAL-2026-14105
+    "club-sauce": set(),                                                         # MAL-2026-14107
+    "reseller-app": set(),                                                       # MAL-2026-14110
+    "sugarball-cli": set(),                                                      # MAL-2026-14111
+    # ─── Dep-confusion / 99.x / 100.x / 999.x version bombs ─────────────────────
+    # High-version packages shadowing internal corporate names.
+    # OSV MAL-2026-2446, MAL-2026-2523, MAL-2026-2524, MAL-2026-2823,
+    # MAL-2026-3028, MAL-2026-3033, MAL-2026-3334, MAL-2026-3353, MAL-2026-3397,
+    # MAL-2026-3724, MAL-2026-5401, MAL-2026-6183, MAL-2026-14073,
+    # MAL-2026-14077, MAL-2026-14082, MAL-2026-14083
+    "@corpweb-ui/wmkt-library": {"99.99.11", "99.99.12"},                        # MAL-2026-2446
+    "@telekom-wfa/auth-core": {"99.9.11", "99.9.12"},                            # MAL-2026-2523
+    "a2a-chat-canvas": set(),                                                    # MAL-2026-2524
+    "@genoma-ui/components": set(),                                              # MAL-2026-2823
+    "amplitude-ma-ts": set(),                                                    # MAL-2026-3028
+    "tether-base": {"99.0.0"},                                                   # MAL-2026-3033
+    "fanduel": {"100.5.0", "100.4.0", "100.2.0", "100.0.0"},                    # MAL-2026-3334
+    "money-badger-open-rpc": {"99.99.99", "200.99.100", "201.99.100",
+                              "199.99.100", "103.999.0", "102.999.0",
+                              "101.99.99", "100.99.99"},                          # MAL-2026-3353
+    "tecken": {"0.1.2", "0.1.13", "0.1.15", "0.1.12", "0.1.11", "0.1.10",
+               "0.1.9", "0.1.8", "0.1.7", "0.1.6", "0.1.5", "0.1.4",
+               "0.1.3", "0.1.1", "0.1.0"},                                      # MAL-2026-3397
+    "@convera/ui-shared": {"0.0.2", "0.0.3", "0.0.1"},                          # MAL-2026-3724
+    "savant-listing": {"999.9.10", "999.9.9"},                                   # MAL-2026-5401
+    "@mep-exp/api-tools": {"2.0.3", "0.0.1"},                                   # MAL-2026-6183
+    "@veertly/web-app": {"100.0.2", "100.0.0", "99.9.9"},                       # MAL-2026-14073
+    "dinotech-auth-utils": {"99.9.9", "10.1.1", "10.1.0", "10.0.8",
+                            "10.0.6", "10.0.5", "10.0.0"},                      # MAL-2026-14077
+    "google-logging-utils-internal": {"1.1.4", "9.9.9", "1.1.3"},               # MAL-2026-14082
+    "heft-storybook-v6-react-tutorial-storykit": {"1000.0.16", "1000.0.13"},    # MAL-2026-14083
+    # ─── Miscellaneous exact-version packages ─────────────────────────────────────
+    # OSV MAL-2026-2862, MAL-2026-14080, MAL-2026-14081, MAL-2026-14087,
+    # MAL-2026-14088, MAL-2026-14092, MAL-2026-14093, MAL-2026-14097,
+    # MAL-2026-14098, MAL-2026-14099
+    "rtms-manager": {"1.2.0", "1.4.0", "1.0.0"},                                # MAL-2026-2862
+    "expect-bundle": {"6.3.2"},                                                  # MAL-2026-14080
+    "game_overlay": {"8.5.8"},                                                   # MAL-2026-14081
+    "mw-filesystem-events-nodream-es6": {"0.0.32"},                              # MAL-2026-14087
+    "nolimitcity": {"1.0.0"},                                                    # MAL-2026-14088
+    "rimo-env-validator": {"1.0.1", "1.0.0"},                                   # MAL-2026-14092
+    "rtms-manager-dev": {"1.4.0", "1.3.0"},                                     # MAL-2026-14093
+    "thepackagethatworks_": {"1.0.2", "1.0.1", "1.0.0"},                        # MAL-2026-14097
+    "utils-bundle": {"8.1.6"},                                                   # MAL-2026-14098
+    "zip-bundle": {"7.3.1"},                                                     # MAL-2026-14099
+    # ─── Older OSV records refreshed Aug 17 2026 ──────────────────────────────────
+    # 2024–2025 MAL-* IDs marked modified on 2026-08-17 in the OSV bulk export;
+    # not previously captured in the scanner.
+    # OSV MAL-2024-10227, MAL-2025-3132, MAL-2025-3138, MAL-2025-3660,
+    # MAL-2025-3964, MAL-2025-4043, MAL-2025-4554, MAL-2025-4558, MAL-2025-4579,
+    # MAL-2025-6254, MAL-2025-6257, MAL-2025-6258, MAL-2025-6284,
+    # MAL-2025-6337, MAL-2025-6879
+    "@woody-mrs-potato/utils-banking": {"1.0.2", "1.0.5", "1.0.6", "1.0.8",
+                                       "1.0.10", "1.0.9", "1.0.7", "1.0.4",
+                                       "1.0.3", "1.0.1", "1.0.0"},              # MAL-2024-10227
+    "internal-utils-bronxi": {"100.0.0", "1.0.0", "1.0.1"},                     # MAL-2025-3132
+    "angular2-tesla-common": {"99.99.103", "99.99.100",
+                              "999999999.9999999999.9999999999"},                # MAL-2025-3138
+    "pie-docs": set(),                                                           # MAL-2025-3660
+    "fatfingers-vroooom": {"1.0.0"},                                             # MAL-2025-3964
+    "fireblocks-netlink-v2-api-validator": {"2.0.2", "9.0.2", "9.0.1", "9.0.0"},  # MAL-2025-4043
+    "cspotcode": {"1.0.1", "1.0.0"},                                             # MAL-2025-4554
+    "fatfingers-mybigpackage": {"1.0.0"},                                        # MAL-2025-4558
+    "skipthedishes_react": {"0.1.0"},                                            # MAL-2025-4579
+    "redux-init-rce": {"1.0.0"},                                                 # MAL-2025-6254
+    "redux-saga-channel-end-rce": {"1.0.0"},                                     # MAL-2025-6257
+    "redux-saga-task-cancel-rce": {"1.0.0"},                                     # MAL-2025-6258
+    "events-web": {"0.0.1", "1.0.0"},                                            # MAL-2025-6284
+    "@xcxcxxx/gsap3": {"99.10.90", "1.0.0"},                                    # MAL-2025-6337
+    "@yaqiguo/dnstest": {"1.0.0", "1.0.4", "1.0.2", "1.0.1"},                  # MAL-2025-6879
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -8920,6 +9107,23 @@ NPM_SUSPECT_SCOPES = (
     "@workoscalifant/",
     # @ferudionz malware scope (Aug 14 2026) — 2 packages pinned above
     "@ferudionz/",
+    # Aug 17–18 2026 new attacker-controlled scopes
+    # @withgoogle/ impersonates Google; @withgoogle/stitch-sdk pinned above
+    "@withgoogle/",
+    # @zynkit/ attacker scope — jwtbytes + probe pinned above
+    "@zynkit/",
+    # @junofficial/ WhatsApp/userbot actor scope — baileys + userbot packages pinned above
+    "@junofficial/",
+    # @peptideventure/ attacker scope — 2 packages pinned above
+    "@peptideventure/",
+    # @siwatfa/ attacker scope — yorn pinned above
+    "@siwatfa/",
+    # @zizie071/ attacker scope — libsignal-node impersonator pinned above
+    "@zizie071/",
+    # @ai-vertical/ attacker scope — ai-agent pinned above
+    "@ai-vertical/",
+    # @vyzensockets/ WhatsApp Baileys typosquat scope — baileys pinned above
+    "@vyzensockets/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
