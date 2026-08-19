@@ -1495,6 +1495,27 @@ PYPI_BAD: dict[str, set[str]] = {
     # socks5901 PyPI credential-harvesting malware (Aug 17 2026)
     # OSV MAL-2026-14100
     "socks5901": {"1.0.0"},                                          # MAL-2026-14100
+    # Aug 18-19 2026 PyPI malware sweep
+    # httpz-requests: typosquat of 'requests'; 33 versions active on PyPI exfiltrating credentials
+    # OSV MAL-2026-14130
+    "httpz-requests": {"1.8.0", "1.9.0", "1.10.0", "1.11.0", "1.12.0", "1.13.0",
+                       "1.14.0", "1.15.0", "1.16.0", "1.17.0", "1.18.0", "1.19.0",
+                       "1.20.0", "1.21.0", "1.21.1", "1.21.2", "1.21.3", "1.21.4",
+                       "1.21.5", "1.21.6", "1.21.7", "1.21.8", "1.21.9", "1.21.10",
+                       "1.21.11", "1.21.12", "1.21.13", "1.21.14", "1.21.15",
+                       "1.21.16", "1.21.17", "1.21.18", "1.21.19",
+                       "1.21.20"},                                   # MAL-2026-14130
+    # infogram-bot: impersonates Infogram (data-viz SaaS) with malicious bot integration
+    # OSV MAL-2026-14131
+    "infogram-bot": {"1.0.0", "1.2.0", "1.2.1", "1.3.0", "1.4.0",
+                     "1.5.0", "1.6.0", "1.6.1", "1.7.0", "1.8.0",
+                     "1.9.0"},                                       # MAL-2026-14131
+    # deepface-weight / deepface-weights: typosquats of deepface (face-recognition library)
+    # install-time credential exfiltration; OSV MAL-2026-14132 / MAL-2026-14158
+    "deepface-weights": {"0.1.0", "0.1.1", "0.1.2"},                # MAL-2026-14132
+    "deepface-weight": {"0.1.4"},                                    # MAL-2026-14158
+    # reqcrypt: typosquat of 'requests' with crypto-style naming; OSV MAL-2026-14133
+    "reqcrypt": {"0.1.0"},                                           # MAL-2026-14133
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -8990,6 +9011,211 @@ NPM_BAD: dict[str, set[str]] = {
     "events-web": {"0.0.1", "1.0.0"},                                            # MAL-2025-6284
     "@xcxcxxx/gsap3": {"99.10.90", "1.0.0"},                                    # MAL-2025-6337
     "@yaqiguo/dnstest": {"1.0.0", "1.0.4", "1.0.2", "1.0.1"},                  # MAL-2025-6879
+    # ─── Aug 18-19 2026 wave ─────────────────────────────────────────────────────────
+    # ─── Checkout / payment dep-confusion cluster (20.x.x) ───────────────────────────
+    # Packages targeting checkout / BNPL internal CI pipelines at high version numbers;
+    # same family as the Tinkoff 20.x cluster tracked above.
+    # OSV MAL-2026-12351, MAL-2026-12352, MAL-2026-14056, MAL-2026-14186, MAL-2026-14229
+    "checkout-common-tokens": {"20.1.6"},                                        # MAL-2026-12351
+    "checkout-mobile-pay-button": {"20.8.3"},                                    # MAL-2026-12352
+    "gunzip-js": {"99.9.1"},                                                     # MAL-2026-14056
+    "pump-segments-sdk": {"20.1.1"},                                             # MAL-2026-14186
+    "carbon-monorepo": {"20.1.1"},                                               # MAL-2026-14229
+    # ─── BCC design dep-confusion (9999.x.x) ─────────────────────────────────────────
+    # OSV MAL-2026-14117, MAL-2026-14119
+    "bcc-design": {"9999.0.0"},                                                  # MAL-2026-14117
+    "bcc-design-icons": {"9999.0.0"},                                            # MAL-2026-14119
+    # ─── @oyo_tech / @sarex-team dep-confusion (Aug 18-19 2026) ──────────────────────
+    # OYO Hotels internal package impersonation at 100.x / 99.99.x.
+    # @sarex-team: four packages at 9.9.11 — attacker-controlled scope.
+    # OSV MAL-2026-14123, MAL-2026-14204-14207
+    "@oyo_tech/oyochat_user": {"100.0.0", "99.99.99"},                           # MAL-2026-14123
+    "@sarex-team/sdk-js": {"9.9.11"},                                            # MAL-2026-14204
+    "@sarex-team/translator": {"9.9.11"},                                        # MAL-2026-14205
+    "@sarex-team/ui-kit": {"9.9.11"},                                            # MAL-2026-14206
+    "@sarex-team/viewer": {"9.9.11"},                                            # MAL-2026-14207
+    # ─── table-ui-new (Aug 2026) ──────────────────────────────────────────────────────
+    # OSV MAL-2026-12473
+    "table-ui-new": {"2.7.1", "2.7.2", "2.7.4", "2.7.5"},                      # MAL-2026-12473
+    # ─── TypeScript typosquat cluster (Aug 18-19 2026) ───────────────────────────────
+    # 15 packages misspelling "typescript" — classic install-on-typo attack.
+    # All at 1.0.0; OSV MAL-2026-14143 through MAL-2026-14157
+    "tyepescript-cli": {"1.0.0"},                                                # MAL-2026-14143
+    "tyepescript-core": {"1.0.0"},                                               # MAL-2026-14144
+    "typecript-cli": {"1.0.0"},                                                  # MAL-2026-14145
+    "typescipt-cli": {"1.0.0"},                                                  # MAL-2026-14146
+    "typescipt-core": {"1.0.0"},                                                 # MAL-2026-14147
+    "typescirpt-cli": {"1.0.0"},                                                 # MAL-2026-14148
+    "typescirpt-core": {"1.0.0"},                                                # MAL-2026-14149
+    "typescrip-cli": {"1.0.0"},                                                  # MAL-2026-14150
+    "typescriptt-cli": {"1.0.0"},                                                # MAL-2026-14151
+    "typescriptt-core": {"1.0.0"},                                               # MAL-2026-14152
+    "typescrit-cli": {"1.0.0"},                                                  # MAL-2026-14153
+    "typesript-cli": {"1.0.0"},                                                  # MAL-2026-14154
+    "typesript-core": {"1.0.0"},                                                 # MAL-2026-14155
+    "typscript-cli": {"1.0.0"},                                                  # MAL-2026-14156
+    "typscript-core": {"1.0.0"},                                                 # MAL-2026-14157
+    # ─── chalk typosquats (Aug 2026) ─────────────────────────────────────────────────
+    # chlklib: older entry (MAL-2026-6470) refreshed Aug 18; grouped here with the
+    # new chalk-* variants from Aug 19 (MAL-2026-14165 through MAL-2026-14168).
+    "chlklib": {"1.2.0", "1.2.1", "1.2.2", "1.2.3"},                            # MAL-2026-6470
+    "chalk-core": {"1.0.0"},                                                     # MAL-2026-14165
+    "chalk-es": {"1.0.0"},                                                       # MAL-2026-14166
+    "chalk-lib": {"1.0.0"},                                                      # MAL-2026-14167
+    "chalk-util": {"1.0.0"},                                                     # MAL-2026-14168
+    # ─── lodash typosquats (Aug 19 2026) ─────────────────────────────────────────────
+    # OSV MAL-2026-14178 through MAL-2026-14184
+    "ladash-cli": {"1.0.0"},                                                     # MAL-2026-14178
+    "loadashjs": {"1.0.0"},                                                      # MAL-2026-14179
+    "lodahs-cli": {"1.0.0"},                                                     # MAL-2026-14180
+    "lodahsjs": {"1.0.0"},                                                       # MAL-2026-14181
+    "lodash-lib": {"1.0.0"},                                                     # MAL-2026-14182
+    "lodhash-cli": {"1.0.0"},                                                    # MAL-2026-14183
+    "lodsh-cli": {"1.0.0"},                                                      # MAL-2026-14184
+    # ─── commander / comand typosquats (Aug 19 2026) ─────────────────────────────────
+    # OSV MAL-2026-14169 through MAL-2026-14174, MAL-2026-14234
+    "comand": {"1.0.0"},                                                         # MAL-2026-14169
+    "comander-cli": {"1.0.0"},                                                   # MAL-2026-14170
+    "comander-lib": {"1.0.0"},                                                   # MAL-2026-14171
+    "commandor-cli": {"1.0.0"},                                                  # MAL-2026-14172
+    "commandor-core": {"1.0.0"},                                                 # MAL-2026-14173
+    "commandorjs": {"1.0.0"},                                                    # MAL-2026-14174
+    "commandor-lib": {"1.0.0"},                                                  # MAL-2026-14234
+    # ─── axios typosquats (Aug 19 2026) ──────────────────────────────────────────────
+    # OSV MAL-2026-14162, MAL-2026-14163
+    "axious-core": {"1.0.0"},                                                    # MAL-2026-14162
+    "axois-http": {"1.0.0"},                                                     # MAL-2026-14163
+    # ─── chai typosquats (Aug 18-19 2026) ────────────────────────────────────────────
+    # OSV MAL-2026-13356, MAL-2026-14200, MAL-2026-14201
+    "chai-foundry": {"7.0.2", "7.0.3"},                                          # MAL-2026-13356
+    "chai-as-gateway": {"7.1.5"},                                                # MAL-2026-14200
+    "chaikit": {"2.3.5"},                                                        # MAL-2026-14201
+    # ─── Sui / Move GraphQL cluster (Aug 18-19 2026) ─────────────────────────────────
+    # Continuation of the Sui blockchain typosquat campaign (sui-bcs-codec, sui-gql,
+    # sui-gql-lite, sui-move-rpc tracked above). All confirmed active in OSV.
+    # OSV MAL-2026-14121, MAL-2026-14188, MAL-2026-14209, MAL-2026-14210
+    "sui-move-graphql": {"0.1.0", "0.2.0", "0.2.1"},                            # MAL-2026-14121
+    "sui-move-gql": {"1.0.2"},                                                   # MAL-2026-14188
+    "sui-gql-rpc": {"1.0.1"},                                                    # MAL-2026-14209
+    "sui-graphql-rpc": {"1.0.1"},                                                # MAL-2026-14210
+    # ─── Tailwind typosquats (Aug 19 2026) ───────────────────────────────────────────
+    # Continuation of the tailwind-plugin-kit / tailwind-toolkit cluster from Aug 14.
+    # OSV MAL-2026-14118, MAL-2026-14189, MAL-2026-14190, MAL-2026-14195, MAL-2026-14235
+    "core-tailwindcss-utility": {"3.7.1"},                                       # MAL-2026-14118
+    "tailwind-extension-kit": {"1.3.2"},                                         # MAL-2026-14189
+    "tailwind-utility-kit": {"1.3.2"},                                           # MAL-2026-14190
+    "tailwind-custom-templates": {"0.7.2"},                                      # MAL-2026-14195
+    "config-helper-kit": {"1.3.2"},                                              # MAL-2026-14235
+    # ─── TensorFlow.js typosquats (Aug 19 2026) ──────────────────────────────────────
+    # OSV MAL-2026-14192, MAL-2026-14196
+    "tfjs-inference": {"1.0.0"},                                                 # MAL-2026-14192
+    "tfjs-custom-module": {"1.0.0"},                                             # MAL-2026-14196
+    # ─── Google-branded malware / gaarf campaign (Aug 19 2026) ───────────────────────
+    # Packages impersonating Google CLI tools and MCP servers; bazelisk typosquats the
+    # legitimate Google Bazel version-manager. gaarf / gaarf-* impersonate the Google
+    # Ads API reporting framework (github.com/google/ads-api-report-fetcher).
+    # OSV MAL-2026-14227, MAL-2026-14228, MAL-2026-14230-14233, MAL-2026-14236-14239
+    "bazelisk": {"1.0.0"},                                                       # MAL-2026-14227
+    "broadcast-graphics-mcp": {"1.0.0"},                                         # MAL-2026-14228
+    "chrome-enterprise-premium-mcp": {"1.0.0"},                                  # MAL-2026-14230
+    "chromecast-webdriver-cli": {"1.0.0"},                                       # MAL-2026-14231
+    "chromeos-webdriver-cli": {"1.0.0"},                                         # MAL-2026-14232
+    "code-assist-mcp": {"1.0.0"},                                                # MAL-2026-14233
+    "gaarf": {"3.2.1"},                                                          # MAL-2026-14236
+    "gaarf-bq": {"1.0.0"},                                                       # MAL-2026-14237
+    "gaarf-node": {"1.0.0"},                                                     # MAL-2026-14238
+    "gaarf-node-bq": {"1.0.0"},                                                  # MAL-2026-14239
+    # ─── sys-/sy- prefix probe cluster (Aug 19 2026) ─────────────────────────────────
+    # Short-name packages exfiltrating CI environment variables via DNS/HTTP callbacks.
+    # OSV MAL-2026-14212 through MAL-2026-14215
+    "syboy": {"1.0.0"},                                                          # MAL-2026-14212
+    "syjoy": {"1.0.0"},                                                          # MAL-2026-14213
+    "sysc1": {"1.0.0", "1.0.1"},                                                 # MAL-2026-14214
+    "sysdo": {"1.0.0"},                                                          # MAL-2026-14215
+    # ─── streak- cluster (Aug 19 2026) ───────────────────────────────────────────────
+    # Continuation of the streak-*/lib-streak-math cluster from July 28-29 2026.
+    # OSV MAL-2026-14222, MAL-2026-14223, MAL-2026-14224
+    "streak-cal-core": {"1.0.0"},                                                # MAL-2026-14222
+    "streak-key-lib": {"1.0.0"},                                                 # MAL-2026-14223
+    "streak-metric-test": {"1.0.0"},                                             # MAL-2026-14224
+    # ─── txs- / ts-rand SDK cluster (Aug 19 2026) ────────────────────────────────────
+    # Fake SDK packages with txs- and ts- prefixes; malicious postinstall scripts.
+    # OSV MAL-2026-14193, MAL-2026-14198, MAL-2026-14199
+    "ts-rand-sdk": {"1.0.2"},                                                    # MAL-2026-14193
+    "txs-lib-sdk": {"1.0.2"},                                                    # MAL-2026-14198
+    "txs-runner-sdk": {"1.0.1"},                                                 # MAL-2026-14199
+    # ─── HackerOne build-probe cluster (Aug 18-19 2026) ──────────────────────────────
+    # Continuation of the HackerOne/Twilio probe series from Aug 15 2026;
+    # DNS/HTTP callback packages exfiltrating CI environment variables on install.
+    # OSV MAL-2026-14141, MAL-2026-14161
+    "test-npm-snurkeburk-hackerone": {"1.999.0"},                                # MAL-2026-14141
+    "@sidp-kiosk/test-npm-snurkeburk-hackerone": {"1.999.0", "2.999.0"},         # MAL-2026-14161
+    # ─── Dep-confusion probes (Aug 18-19 2026) ───────────────────────────────────────
+    # Attacker-owned canary/probe packages confirming internal registry resolution;
+    # confirmed exfiltration payloads; all active in OSV.
+    # OSV MAL-2026-14134, MAL-2026-14135, MAL-2026-14136, MAL-2026-14137,
+    # MAL-2026-14159, MAL-2026-14160
+    "@mohamed_nowisar/depconf-canary-test": {"0.0.1"},                           # MAL-2026-14134
+    "@mohamed_nowisar/token3-check": {"0.0.1"},                                  # MAL-2026-14135
+    "agora402-payment-utils": {"1.0.0"},                                         # MAL-2026-14136
+    "mtslink-depconf-probe-profileusername": {"1.0.0"},                          # MAL-2026-14137
+    "@evial/runtime-health": {"1.0.1"},                                          # MAL-2026-14159
+    "@library-dev-team/data-sanitizer": {"1.3.0"},                               # MAL-2026-14160
+    # ─── Wildcard (ANY version) packages (Aug 18 2026) ───────────────────────────────
+    # OSV >=0 ranges — any installed version is malicious.
+    # OSV MAL-2026-14124, MAL-2026-14125, MAL-2026-14126, MAL-2026-14127, MAL-2026-14128
+    "alphazone": set(),                                                          # MAL-2026-14124
+    "@guildai-services/guildai": set(),                                          # MAL-2026-14125
+    "@milleree/date-display": set(),                                             # MAL-2026-14126
+    "@reducers/projects": set(),                                                 # MAL-2026-14127
+    "motionspring": set(),                                                       # MAL-2026-14128
+    # ─── Miscellaneous exact-version packages (Aug 18-19 2026) ───────────────────────
+    # OSV MAL-2026-4509, MAL-2026-4510, MAL-2026-5717, MAL-2026-6473,
+    # MAL-2026-10669 (dbconnectify already tracked), MAL-2026-12127 (already tracked),
+    # MAL-2026-14120, MAL-2026-14122, MAL-2026-14129, MAL-2026-14138, MAL-2026-14139,
+    # MAL-2026-14140, MAL-2026-14142, MAL-2026-14164, MAL-2026-14175, MAL-2026-14176,
+    # MAL-2026-14177, MAL-2026-14185, MAL-2026-14187, MAL-2026-14191, MAL-2026-14194,
+    # MAL-2026-14197, MAL-2026-14202, MAL-2026-14203, MAL-2026-14208, MAL-2026-14211,
+    # MAL-2026-14216, MAL-2026-14217, MAL-2026-14218, MAL-2026-14219, MAL-2026-14220,
+    # MAL-2026-14221, MAL-2026-14225, MAL-2026-14226
+    "celonix-otp-react": {"1.0.0", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},        # MAL-2026-4509
+    "cerebrum-core": {"1.1.0"},                                                  # MAL-2026-4510
+    "claudechor": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},      # MAL-2026-5717
+    "colorpicker-ui": {"1.2.4", "1.2.5", "1.2.6"},                              # MAL-2026-6473
+    "blastradar": {"1.0.0"},                                                     # MAL-2026-14120
+    "ulebkit": {"1.0.0", "1.0.1"},                                               # MAL-2026-14122
+    "plugin-react-vite": {"2.1.2", "2.1.3"},                                    # MAL-2026-14129
+    "optimizely-starter-kit-for-fastly-compute": {"1.0.1"},                     # MAL-2026-14138
+    "prism-registry": {"1.0.1"},                                                 # MAL-2026-14139
+    "vite-svg-config": {"1.1.0"},                                                # MAL-2026-14140
+    "testingsmthb1g": {"1.0.0"},                                                 # MAL-2026-14142
+    "bqq1": {"1.0.0"},                                                           # MAL-2026-14164
+    "core-js-gns": {"1.0.0"},                                                    # MAL-2026-14175
+    "dev-env-check": {"1.0.3"},                                                  # MAL-2026-14176
+    "fast-glob-fast": {"0.2.0", "4.0.1", "8.0.0", "9.0.0",
+                       "10.0.0", "11.0.0"},                                      # MAL-2026-14177
+    "mutex-thread": {"1.3.0"},                                                   # MAL-2026-14185
+    "raectjs": {"1.0.0"},                                                        # MAL-2026-14187
+    "test_payload_folder": {"1.0.0"},                                            # MAL-2026-14191
+    "system-performance-helper": {"1.0.0"},                                      # MAL-2026-14194
+    "twapfetch": {"1.1.0", "1.1.1"},                                             # MAL-2026-14197
+    "chameleon-src": {"6.6.29"},                                                 # MAL-2026-14202
+    "@lilsccott6x9/devpipe-connector": {"1.0.0"},                                # MAL-2026-14203
+    "eth-batcher": {"1.0.0"},                                                    # MAL-2026-14208
+    "sw-pluginer": {"1.0.0", "1.0.1", "1.0.2", "1.1.0", "1.2.0"},              # MAL-2026-14211
+    "timed-assess": {"1.0.0", "1.0.1"},                                          # MAL-2026-14216
+    "ai-texts": {"1.0.1"},                                                       # MAL-2026-14217
+    "mapkit-loader": {"1.0.0"},                                                  # MAL-2026-14218
+    "setup-codex": {"1.0.0"},                                                    # MAL-2026-14219
+    "solidity-hold": {"2.0.1"},                                                  # MAL-2026-14220
+    "ssb-test-package": {"1.0.0"},                                               # MAL-2026-14221
+    "ambera": {"1.0.0", "1.0.1"},                                                # MAL-2026-14225
+    "animate-css-vite": {"1.0.1"},                                               # MAL-2026-14226
+    # ─── Older MAL IDs refreshed Aug 18 2026 ─────────────────────────────────────────
+    # 2026 MAL-* records marked modified on 2026-08-18 in the OSV bulk export;
+    # not previously captured in the scanner.
+    # OSV MAL-2026-2037, MAL-2026-4509/4510/5717/6473 grouped above
+    "@emilgroup/auth-sdk-node": {"1.21.1", "1.21.2"},                            # MAL-2026-2037
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -9124,6 +9350,11 @@ NPM_SUSPECT_SCOPES = (
     "@ai-vertical/",
     # @vyzensockets/ WhatsApp Baileys typosquat scope — baileys pinned above
     "@vyzensockets/",
+    # Aug 18-19 2026 new attacker-controlled scopes
+    # @sarex-team/ dep-confusion scope — sdk-js/translator/ui-kit/viewer pinned above
+    "@sarex-team/",
+    # @mohamed_nowisar/ dep-confusion probe scope — canary-test + token3-check pinned above
+    "@mohamed_nowisar/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
