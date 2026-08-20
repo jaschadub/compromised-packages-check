@@ -1516,6 +1516,13 @@ PYPI_BAD: dict[str, set[str]] = {
     "deepface-weight": {"0.1.4"},                                    # MAL-2026-14158
     # reqcrypt: typosquat of 'requests' with crypto-style naming; OSV MAL-2026-14133
     "reqcrypt": {"0.1.0"},                                           # MAL-2026-14133
+    # reqcrypt-dev: companion to reqcrypt; same malicious dropper, dev variant (Aug 19 2026)
+    # OSV MAL-2026-14274
+    "reqcrypt-dev": {"0.1.0"},                                       # MAL-2026-14274
+    # rc4-secure / libasync: infostealer packages (Aug 19–20 2026)
+    # OSV MAL-2026-14306, MAL-2026-14308
+    "rc4-secure": {"1.0.0"},                                         # MAL-2026-14306
+    "libasync": {"1.0.0"},                                           # MAL-2026-14308
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -8817,7 +8824,7 @@ NPM_BAD: dict[str, set[str]] = {
     "adxaa": {"1.0.0"},
     "autbank-core": {"99.0.0", "99.0.2"},
     "fastly-vcl-language-client": {"1.0.0"},
-    "@finaxis/common-js": {"0.3.4"},
+    "@finaxis/common-js": {"0.3.4", "0.3.5", "0.3.6", "0.3.8", "0.3.10"},
     "upload-to-gcp": {"3.2.1"},
     # August 16 2026 npm malware — snavbox multi-protocol proxy / remote-management trojan
     # Disguised as "WildGuard - Protect Our Wildlife"; on install, downloads native shared
@@ -9216,6 +9223,124 @@ NPM_BAD: dict[str, set[str]] = {
     # not previously captured in the scanner.
     # OSV MAL-2026-2037, MAL-2026-4509/4510/5717/6473 grouped above
     "@emilgroup/auth-sdk-node": {"1.21.1", "1.21.2"},                            # MAL-2026-2037
+    # ─── Tinkoff-adjacent Russian-fintech dep-confusion (20.x / 35.x) (Aug 2026) ─────
+    # High-version packages shadowing private Tinkoff/Dolyame/fintech internal registries;
+    # on require(), assembles Cloudflare Workers C2 hostnames (oob- prefix) from string
+    # fragments and downloads a platform-specific binary. Amazon Inspector detections;
+    # OSV bulk snapshot modified 2026-08-19/20.
+    # OSV MAL-2026-12178, MAL-2026-12362, MAL-2026-12364, MAL-2026-12365, MAL-2026-12367,
+    # MAL-2026-12380, MAL-2026-12382, MAL-2026-12747, MAL-2026-12784
+    "fb-cards-form-no-resident-information": {"20.4.4"},                         # MAL-2026-12178
+    "digital-interview-digital-interview-core": {"20.5.3"},                      # MAL-2026-12362
+    "dolyame-boxy-atom-bnpl-store-button": {"20.5.3"},                           # MAL-2026-12364
+    "dolyame-boxy-independent-bnpl-info-images": {"20.7.2"},                     # MAL-2026-12365
+    "dolyame-ui-form": {"20.1.7"},                                               # MAL-2026-12367
+    "fb-forms-form-boilerplate-contacts": {"20.7.1"},                            # MAL-2026-12380
+    "finance-business-company-id-models": {"20.1.5"},                            # MAL-2026-12382
+    "devplatform-s3-client": {"35.9.5"},                                         # MAL-2026-12747
+    "devplatform-spa-testing": {"35.8.6"},                                       # MAL-2026-12784
+    # ─── Misc credential/crypto stealers (MAL-2026-12xxx–13xxx) ──────────────────────
+    # Various malware packages — exfiltrators and droppers detected by OSV Package Analysis.
+    # OSV MAL-2026-12358, MAL-2026-12359, MAL-2026-12422, MAL-2026-13342
+    "croft-node": {"1.1.1", "1.1.2", "1.1.3"},                                  # MAL-2026-12358
+    "crypto-javas": {"2.0.4", "2.0.6", "2.0.7", "2.0.8", "2.0.9"},             # MAL-2026-12359
+    "quorvex": {"0.2.0", "0.2.1", "0.2.2"},                                     # MAL-2026-12422
+    "encrypt-string-safe": {"2.1.0", "2.2.0"},                                  # MAL-2026-13342
+    # ─── Older OSV records refreshed Aug 19–20 2026 ──────────────────────────────────
+    # MAL-2026-4xxx/5xxx/6xxx records that first appeared in the OSV Aug 19–20 snapshot;
+    # not present in prior sweeps.
+    # OSV MAL-2026-4550, MAL-2026-4556, MAL-2026-4561, MAL-2026-5611,
+    # MAL-2026-6374, MAL-2026-6540
+    "emojifancy-print": {"5.6.3"},                                               # MAL-2026-4550
+    "express-enrouten-async": {"1.4.11", "1.4.12"},                              # MAL-2026-4556
+    "fe-utils-core": {"1.0.4", "1.0.5"},                                         # MAL-2026-4561
+    "datetime-toolkit": {"1.0.0", "1.0.1", "1.0.2", "1.0.3",
+                         "1.0.4", "1.0.5", "1.0.6", "1.0.7"},                   # MAL-2026-5611
+    "evil-pkg": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},        # MAL-2026-6374
+    "db-rake": {"1.0.1", "1.0.2"},                                               # MAL-2026-6540
+    # ─── Aug 19–20 2026 mixed malware batch (MAL-2026-14240+) ─────────────────────────
+    # Amazon Inspector / OSV Package Analysis detections. Diverse payload types:
+    # Cloudflare Workers C2 droppers, env/credential exfiltrators, DoS/proxy installers,
+    # and pure name-squats. "ANY version" entries use set() — OSV >=0 range, no
+    # legitimate version exists. OSV bulk snapshot 2026-08-19 to 2026-08-20.
+    # OSV MAL-2026-14240 through MAL-2026-14316 (selected non-duplicate entries)
+    "dxr-dos": {"0.1.2"},                                                        # MAL-2026-14240
+    "dxrs-dos": {"0.1.3"},                                                       # MAL-2026-14241
+    "electro-session": {"0.1.0", "0.1.1", "0.1.3", "0.1.4"},                   # MAL-2026-14242
+    "flydev": {"0.0.1"},                                                         # MAL-2026-14243
+    "gemini-cli-a2a-server": {"1.0.0"},                                          # MAL-2026-14244
+    "github-policy-bot": {"1.0.0"},                                              # MAL-2026-14245
+    "hardhat-hold": {"2.0.1", "2.21.0"},                                         # MAL-2026-14246
+    "magika-js": {"4.1.1"},                                                      # MAL-2026-14247
+    "nice-utils-helper": {"1.0.0"},                                              # MAL-2026-14248
+    "localize-extract": {"1.0.0"},                                               # MAL-2026-14249
+    "luluking1": {"0.0.1"},                                                      # MAL-2026-14250
+    "ngsw-config": {"1.0.0"},                                                    # MAL-2026-14251
+    "npm-wold": {"1.1.1", "1.1.2"},                                              # MAL-2026-14252
+    "react-dom-helpers": {"3.3.3"},                                              # MAL-2026-14253
+    "saaa9": {"1.0.0"},                                                          # MAL-2026-14254
+    "secp256k1-lib": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},                     # MAL-2026-14255
+    "api-rs-tuils": {"2.1.6"},                                                   # MAL-2026-14256
+    "modsync": {"5.0.2"},                                                        # MAL-2026-14257
+    "ranux-cloud": {"1.0.0"},                                                    # MAL-2026-14258
+    "ranux-dev": {"5.0.0"},                                                      # MAL-2026-14259
+    "ranux-pro": {"2.0.0"},                                                      # MAL-2026-14260
+    "postcss-initialize-provider": {"3.0.4"},                                    # MAL-2026-14261
+    "pump-fun-skills": {"20.1.1"},                                               # MAL-2026-14262
+    "arb-kit": {"1.0.1"},                                                        # MAL-2026-14263
+    "de-morgan": {"2.1.3"},                                                      # MAL-2026-14264
+    "easydsbots": {"1.0.0"},                                                     # MAL-2026-14265
+    "electron-sessions": {"0.1.5"},                                              # MAL-2026-14266
+    "karma-proxy": {"1.0.0"},                                                    # MAL-2026-14267
+    "no-for-of-loops": {"1.0.1"},                                                # MAL-2026-14268
+    "novel-suduko": {"1.0.1"},                                                   # MAL-2026-14269
+    "nodealpha": {"1.0.7"},                                                      # MAL-2026-14270
+    "nodeberlin": {"1.0.7"},                                                     # MAL-2026-14271
+    "price-scripping-js": {"1.1.2"},                                             # MAL-2026-14272
+    "rand-txs-sdk": {"1.0.3"},                                                   # MAL-2026-14273
+    "minequest": {"0.1.1"},                                                      # MAL-2026-14275
+    "node_cryptography": {"1.0.0"},                                              # MAL-2026-14276
+    "o0o9": {"1.8.0", "2.0.1"},                                                  # MAL-2026-14277
+    "layer2-sdk": {"1.0.0", "1.0.1"},                                            # MAL-2026-14278
+    "localize-translate": {"1.0.0"},                                             # MAL-2026-14279
+    "mutex-core": {"2.1.2"},                                                     # MAL-2026-14280
+    "mutex-lite": {"1.4.2"},                                                     # MAL-2026-14281
+    "mutex-plus": {"3.0.2"},                                                     # MAL-2026-14282
+    "neverthrow-core": {"1.1.2"},                                                # MAL-2026-14283
+    "nibra1": {"1.0.0"},                                                         # MAL-2026-14284
+    # @wizloft scope — AES-encrypted dropper payload hidden in 40KB obfuscated line;
+    # 5 packages, all at 0.1.1-alpha.3; scope added to NPM_SUSPECT_SCOPES.
+    # OSV MAL-2026-14285 through MAL-2026-14289
+    "@wizloft/harness": {"0.1.1-alpha.3"},                                       # MAL-2026-14285
+    "@wizloft/harness-context": {"0.1.1-alpha.3"},                               # MAL-2026-14286
+    "@wizloft/harness-kernel": {"0.1.1-alpha.3"},                                # MAL-2026-14287
+    "@wizloft/harness-plugin-repository-files": {"0.1.1-alpha.3"},               # MAL-2026-14288
+    "@wizloft/harness-validation": {"0.1.1-alpha.3"},                            # MAL-2026-14289
+    "anhn-cli": {"1.1.4"},                                                       # MAL-2026-14290
+    "libas-signal": {"1.0.0"},                                                   # MAL-2026-14291
+    "log-res": {"1.0.3"},                                                        # MAL-2026-14292
+    "matrixflow-js": {"3.2.1"},                                                  # MAL-2026-14293
+    "mc-registry": {"1.0.8", "1.0.9"},                                           # MAL-2026-14294
+    "mcp-dev-toolkit": {"1.5.0"},                                                # MAL-2026-14295
+    "gfff5": {"1.0.0"},                                                          # MAL-2026-14296
+    "homekit-mcp": {"1.0.0"},                                                    # MAL-2026-14297
+    "emoji-prints-fancy": {"5.6.4"},                                             # MAL-2026-14298
+    "gear-composer": {"1.0.126"},                                                # MAL-2026-14299
+    "eth-react-provider": {"1.0.0"},                                             # MAL-2026-14300
+    "evm-validation": {"1.0.2", "1.0.3"},                                        # MAL-2026-14301
+    "ai-texts-utils": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},                    # MAL-2026-14302
+    "x6842179305": {"1.0.0", "1.0.1"},                                           # MAL-2026-14303
+    "base99-85x": {"5.0.2"},                                                     # MAL-2026-14304
+    "mc-provider": {"1.0.10"},                                                   # MAL-2026-14305
+    "express-route-engine": {"3.6.3"},                                           # MAL-2026-14307
+    "@idanefraim/my-ui-kit": set(),                                              # MAL-2026-14309 (ANY)
+    "bunnyhijack-test-0x00": {"1.0.0", "1.0.1"},                                # MAL-2026-14310
+    "eslint-config-consumerweb": set(),                                          # MAL-2026-14311 (ANY)
+    "griffin-transliterator": set(),                                             # MAL-2026-14312 (ANY)
+    "node-runtime-utils": {"1.0.0"},                                             # MAL-2026-14313
+    "webpack-cdn-fetcher": set(),                                                # MAL-2026-14314 (ANY)
+    "@httttt/mcp-demo": {"1.0.0"},                                               # MAL-2026-14315
+    "expect-dotenv": {"7.2.1"},                                                  # MAL-2026-14316
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -9355,6 +9480,9 @@ NPM_SUSPECT_SCOPES = (
     "@sarex-team/",
     # @mohamed_nowisar/ dep-confusion probe scope — canary-test + token3-check pinned above
     "@mohamed_nowisar/",
+    # @wizloft/ obfuscated-dropper scope (Aug 19 2026) — 5 harness packages pinned above;
+    # scope catches any undisclosed additional @wizloft packages
+    "@wizloft/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
