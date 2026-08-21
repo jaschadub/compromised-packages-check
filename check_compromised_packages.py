@@ -1523,6 +1523,10 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-14306, MAL-2026-14308
     "rc4-secure": {"1.0.0"},                                         # MAL-2026-14306
     "libasync": {"1.0.0"},                                           # MAL-2026-14308
+    # reqcrypts: further variant of the reqcrypt infostealer cluster (Aug 21 2026)
+    # Contains hidden backdoor; 4 versions published before takedown.
+    # OSV MAL-2026-14341
+    "reqcrypts": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},             # MAL-2026-14341
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9341,6 +9345,105 @@ NPM_BAD: dict[str, set[str]] = {
     "webpack-cdn-fetcher": set(),                                                # MAL-2026-14314 (ANY)
     "@httttt/mcp-demo": {"1.0.0"},                                               # MAL-2026-14315
     "expect-dotenv": {"7.2.1"},                                                  # MAL-2026-14316
+    # Aug 20-21 2026: dep-confusion fintech/dolyame/bigops/devplatform dropper wave
+    # Inflated-version packages (20.x.x and 35.x.x) that download and execute
+    # platform-specific binaries on require via Cloudflare Workers endpoints.
+    # Sources: OSV MAL-2026-12186, MAL-2026-12390, MAL-2026-12391, MAL-2026-12393,
+    # MAL-2026-12406, MAL-2026-12410, MAL-2026-12412, MAL-2026-12415,
+    # MAL-2026-12691, MAL-2026-12852, MAL-2026-12855, MAL-2026-13302, MAL-2026-14342
+    "pfp-forms-insurance-health": {"20.2.2"},                                   # MAL-2026-12186
+    "hubert-document-actual-insurance-rules-am": {"20.5.6"},                    # MAL-2026-12390
+    "hubert-verify-primary-email-am": {"20.4.6"},                               # MAL-2026-12391
+    "invest-module-cookie": {"20.8.2"},                                          # MAL-2026-12393
+    "pfa-errors": {"20.4.9"},                                                    # MAL-2026-12406
+    "pfp-block-mobile-steps": {"20.9.3"},                                        # MAL-2026-12410
+    "pfp-forms-independent-sme-glossary-anchor": {"20.4.4"},                    # MAL-2026-12412
+    "pfp-forms-sme-sitebuilder": {"20.2.1"},                                     # MAL-2026-12415
+    "devplatform-api-clients": {"35.6.8"},                                       # MAL-2026-12691
+    "bigops-umf-statist": {"35.3.1"},                                            # MAL-2026-12852
+    "bigops-watchdog-angular": {"35.4.8"},                                       # MAL-2026-12855
+    "dolyame-boxy-desktop-bnpl-card-panel": {"35.6.3"},                         # MAL-2026-13302
+    "coin-fees": {"20.1.1"},                                                     # MAL-2026-14342
+    # Aug 20 2026: lakk/nms analytics dep-confusion probes (9.9.x versions)
+    # Constructs subdomains from install-time environment data and beacons out.
+    # OSV MAL-2026-13348, MAL-2026-13451
+    "lakk-analytics": {"9.9.0", "9.9.11"},                                      # MAL-2026-13348
+    "nms-dashboard-js": {"9.9.0", "9.9.11"},                                    # MAL-2026-13451
+    # Aug 20 2026: kepler dep-confusion (inflated .999 versions)
+    # Declares dependency on an HTTP URL to a third-party host; dep-confusion probe.
+    # OSV MAL-2026-13369
+    "kepler": {"1.0.999", "1.999.999", "2.0.999", "2.1.999", "2.2.999",
+               "2.6.999", "2.999.999", "4.999.999", "5.0.999", "5.999.999",
+               "99.99.99"},                                                      # MAL-2026-13369
+    # Aug 20 2026: MCP server name-squatting (unscoped impersonators)
+    # Each package squats the unscoped `mcp-server-*` name to intercept
+    # `npx mcp-server-<name>` invocations by AI coding agents and developers.
+    # postinstall/postload hooks exfiltrate hostname, cwd, and env to attacker infra.
+    # OSV MAL-2026-5476 through MAL-2026-5485
+    "mcp-server-fetch": {"0.0.1", "0.0.2"},                                     # MAL-2026-5476
+    "mcp-server-figma": {"0.0.1", "0.0.2"},                                     # MAL-2026-5477
+    "mcp-server-git": {"0.0.1", "0.0.2"},                                       # MAL-2026-5478
+    "mcp-server-github": {"0.0.1", "0.0.2"},                                    # MAL-2026-5479
+    "mcp-server-notion": {"0.0.1", "0.0.2"},                                    # MAL-2026-5480
+    "mcp-server-postgres": {"0.0.1", "0.0.2"},                                  # MAL-2026-5481
+    "mcp-server-redis": {"0.0.1", "0.0.2"},                                     # MAL-2026-5482
+    "mcp-server-sentry": {"0.0.1", "0.0.2"},                                    # MAL-2026-5483
+    "mcp-server-sequential-thinking": {"0.0.1", "0.0.2"},                       # MAL-2026-5484
+    "mcp-server-supabase": {"0.0.1", "0.0.2"},                                  # MAL-2026-5485
+    # Aug 20 2026: misc malware, test probes, and typosquats
+    # plain-HTTP tarball URL self-dependency probes (Amazon Inspector)
+    "optimize-regex": {"1.2.1"},                                                 # MAL-2026-10103
+    "rallycoding": {"3.2.0"},                                                    # MAL-2026-10106
+    # n8n malicious community node — reads K8s service-account token on postinstall
+    "n8n-nodes-pentest-rce": {"1.0.0", "1.0.1", "1.0.3", "1.0.7", "1.0.8",
+                              "1.0.11", "1.0.15", "1.0.16", "1.0.19", "1.0.21",
+                              "1.0.28", "1.0.29", "1.0.30", "1.0.31", "1.0.32",
+                              "1.0.33", "1.0.35", "1.0.36", "1.0.37", "1.0.38",
+                              "1.0.39", "1.0.40", "1.0.41", "1.0.42", "1.0.43",
+                              "1.0.44"},                                         # MAL-2026-4617
+    "o3forms": {"90.0.0", "99.1.99"},                                            # MAL-2026-5450
+    "datetime-toolkit": {"1.0.0", "1.0.1", "1.0.2", "1.0.3",
+                         "1.0.4", "1.0.5", "1.0.6", "1.0.7"},                  # MAL-2026-5611
+    "node-multi-downloader": {"5.0.14-rc.3"},                                   # MAL-2026-5735
+    "tn-advertisement": {"5.0.0"},                                               # MAL-2026-5838
+    "jest-test-plugin-utils": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},  # MAL-2026-5896
+    "vite-common-utils": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},  # MAL-2026-6088
+    "evil-pkg": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},       # MAL-2026-6374
+    "db-query-log": {"1.0.1", "1.0.2"},                                         # MAL-2026-6539
+    "db-rake": {"1.0.1", "1.0.2"},                                              # MAL-2026-6540
+    "eslint-commit-parser": {"1.0.0"},                                           # MAL-2026-6567
+    "express-mocha-test": {"0.0.1"},                                             # MAL-2026-6568
+    "layerd-unit-codec-parser": {"1.0.0", "2.0.0"},                             # MAL-2026-6578
+    "lessload": {"1.0.1"},                                                       # MAL-2026-6579
+    "loadutils": {"1.0.4", "1.0.5", "1.0.6"},                                  # MAL-2026-6580
+    "pino-debugging": {"1.1.3", "1.1.4", "1.1.5"},                              # MAL-2026-6583
+    "test-pkg-pnpm": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},           # MAL-2026-6716
+    "test-pkg-x0": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"},             # MAL-2026-6717
+    "test-pkg-yarn": {"1.0.0", "1.0.1", "1.0.2"},                              # MAL-2026-6718
+    "gehneb": {"1.0.1"},                                                         # MAL-2026-4570
+    "happy-dlscord.js": {"14.16.3"},                                             # MAL-2026-4575
+    "internallib_v493": {"1.0.2", "1.0.3", "1.0.4"},                           # MAL-2026-4585
+    "mev-shield": {"1.4.2"},                                                     # MAL-2026-4609
+    "polygon-toolkit-validate": {"1.0.5"},                                       # MAL-2026-4642
+    "timed-assess": {"1.0.0", "1.0.1"},                                         # MAL-2026-14216
+    "ai-texts": {"1.0.1", "1.0.2"},                                             # MAL-2026-14217
+    "fetch-webjs-script": {"1.0.0"},                                             # MAL-2026-14317
+    "frenchworldcupwin": {"1.0.0", "1.0.1", "2.0.0", "2.0.5"},                 # MAL-2026-14318
+    "test-flow-1": {"1.0.0", "1.0.2"},                                          # MAL-2026-14319
+    "test-flow-entire6": {"1.0.0"},                                              # MAL-2026-14320
+    "test-flow-entire7": {"1.0.0"},                                              # MAL-2026-14321
+    "debug-fnt": set(),                                                          # MAL-2026-14322 (ANY)
+    "cig-data-patcher": set(),                                                   # MAL-2026-14323 (ANY)
+    "create-react-app-text": {"1.0.0"},                                          # MAL-2026-14324
+    "create-react-app-ui": {"1.0.0"},                                            # MAL-2026-14325
+    "create-react-app-ux": {"1.0.0"},                                            # MAL-2026-14326
+    "ethereum-validator": set(),                                                 # MAL-2026-14327 (ANY)
+    "goldstar-api-server": set(),                                                # MAL-2026-14328 (ANY)
+    "@pablo_clueless/printr": {"0.1.2", "0.1.4", "0.1.5", "0.1.6",
+                               "0.1.7", "0.1.8"},                               # MAL-2026-14329
+    "@pablo_clueless/sniffr": {"0.1.0", "0.1.1"},                               # MAL-2026-14330
+    "exam-kit": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},                         # MAL-2026-14331
+    "chai-as-soul": {"2.3.5", "2.3.6"},                                         # MAL-2026-14343
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -9603,6 +9706,24 @@ CRATES_BAD: dict[str, set[str]] = {
     # Single high-version (99.99.5) crate published to crates.io to shadow Proton AG's
     # internal crate and hijack its CI dependency resolution.
     "proton-pfff": {"99.99.5"},
+    # Aug 20-21 2026: droundy account compromise + coordinated build-time payload campaign
+    # Attacker compromised the 'droundy' (David Roundy) crates.io maintainer account and
+    # published malicious versions of three popular legitimate crates (arrayref, internment,
+    # append-only-vec) adding a dependency on the malicious dropper crate proc-macro1
+    # (typosquat of proc-macro2). Pure-malware support crates (aovine, arone, aronenao,
+    # proc-macro-en, tinymember) were also published as part of the same campaign.
+    # Sources: OSV MAL-2026-14332 through MAL-2026-14340
+    # Legitimate crates with poisoned specific versions — pin exactly:
+    "arrayref": {"0.3.10"},                                                      # MAL-2026-14336
+    "internment": {"0.8.7"},                                                     # MAL-2026-14337
+    "append-only-vec": {"0.1.9"},                                                # MAL-2026-14333
+    # Pure-malware crates (any version is malicious):
+    "proc-macro1": set(),                                                        # MAL-2026-14338 (ANY)
+    "proc-macro-en": set(),                                                      # MAL-2026-14339 (ANY)
+    "aovine": set(),                                                             # MAL-2026-14332 (ANY)
+    "arone": set(),                                                              # MAL-2026-14334 (ANY)
+    "aronenao": set(),                                                           # MAL-2026-14335 (ANY)
+    "tinymember": set(),                                                         # MAL-2026-14340 (ANY)
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
