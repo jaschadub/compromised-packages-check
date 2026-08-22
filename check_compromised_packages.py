@@ -1527,6 +1527,14 @@ PYPI_BAD: dict[str, set[str]] = {
     # Contains hidden backdoor; 4 versions published before takedown.
     # OSV MAL-2026-14341
     "reqcrypts": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},             # MAL-2026-14341
+    # boto4 ELF dropper / scrambleeer TCP reverse shell / requests-crypt exfiltrator (Aug 21 2026)
+    # boto4: typosquat of boto3; setup.py base64-decodes and executes a ~17 MB Linux ELF.
+    # scrambleeer: advertises numeric shuffler, opens TCP socket to bax.h4x.tv:6363 on import.
+    # requests-crypt: wraps HTTP client to exfiltrate JSON responses to attacker server.
+    # OSV MAL-2026-14349, MAL-2026-14350, MAL-2026-14351
+    "boto4": {"1.0.0", "1.0.2"},                                    # MAL-2026-14349
+    "scrambleeer": {"0.1.0", "0.1.1"},                              # MAL-2026-14350
+    "requests-crypt": {"0.1.0"},                                    # MAL-2026-14351
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9444,6 +9452,63 @@ NPM_BAD: dict[str, set[str]] = {
     "@pablo_clueless/sniffr": {"0.1.0", "0.1.1"},                               # MAL-2026-14330
     "exam-kit": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},                         # MAL-2026-14331
     "chai-as-soul": {"2.3.5", "2.3.6"},                                         # MAL-2026-14343
+    # Polymarket crypto-wallet-drainer cluster (Aug 21 2026)
+    # 9 npm packages published by maintainer 'polymarketdev' (GitHub: texsellix) within a
+    # ~2-minute window; postinstall script exfiltrates wallet keys and credentials.
+    # All are pure-malware typosquats; any version is malicious.
+    # Sources: OSV MAL-2026-4209 through MAL-2026-4217;
+    #          safedep.io/malicious-polymarket-npm-crypto-wallet-drainer/;
+    #          GHSA-pm36-9m37-g548 (et al.)
+    "polymarket-ai-agent": set(),                                                # MAL-2026-4209 (ANY)
+    "polymarket-auto-trade": set(),                                              # MAL-2026-4210 (ANY)
+    "polymarket-bot": set(),                                                     # MAL-2026-4211 (ANY)
+    "polymarket-claude-code": set(),                                             # MAL-2026-4212 (ANY)
+    "polymarket-copy-trading": set(),                                            # MAL-2026-4213 (ANY)
+    "polymarket-terminal": set(),                                                # MAL-2026-4214 (ANY)
+    "polymarket-trade": set(),                                                   # MAL-2026-4215 (ANY)
+    "polymarket-trader": set(),                                                  # MAL-2026-4216 (ANY)
+    "polymarket-trading-cli": set(),                                             # MAL-2026-4217 (ANY)
+    # rollup polyfill typosquats (Aug 21 2026)
+    # Companion packages to rollup-packages-polyfill-core (already tracked);
+    # all have SEMVER ranges introduced:0 — any version is malicious.
+    # OSV MAL-2026-12428 (rollup-packages-node-polyfills), MAL-2026-6372 (rollup-runtime-polyfill-core)
+    # GHSA-gp6f-mxh4-x3mh, GHSA-cx5m-r6wc-pp56
+    "rollup-packages-node-polyfills": set(),                                     # MAL-2026-12428 (ANY)
+    "rollup-runtime-polyfill-core": set(),                                       # MAL-2026-6372 (ANY)
+    # Aug 21–22 2026: miscellaneous obfuscated malware and infostealer probes
+    # All confirmed via OSV bulk export; SEMVER ranges introduced:0 (whole package malicious).
+    "pino-deploy": set(),                                                        # MAL-2024-2871 (ANY)
+    "postcss-animate-css-vars": set(),                                           # MAL-2026-12418 (ANY)
+    "pvm-autodoc": set(),                                                        # MAL-2026-12421 (ANY)
+    "react-fontawesome-icons": set(),                                            # MAL-2026-12423 (ANY)
+    "react-native-ui-message": set(),                                            # MAL-2026-12424 (ANY)
+    "saas-f-testing": set(),                                                     # MAL-2026-12434 (ANY)
+    "tailwind-animate-css-plugin": set(),                                        # MAL-2026-14352 (ANY)
+    "kelly-sizing": set(),                                                       # MAL-2026-14354 (ANY)
+    "qr-code-styling-temp": set(),                                               # MAL-2026-4655 (ANY)
+    "react-hook-use-debounce-throttle-12": set(),                                # MAL-2026-5909 (ANY)
+    "utils-common-helpers": set(),                                               # MAL-2026-5911 (ANY)
+    # Aug 21–22 2026: exact-version malicious probes and dep-confusion packages
+    "@js-lib-team/env-parser": {"1.0.0"},                                       # MAL-2026-14344
+    "express-session-handler": {"2.3.3"},                                        # MAL-2026-14345
+    "@next-fonts/font": {"1.0.0", "1.0.1"},                                     # MAL-2026-14346
+    "mcq-session": {"1.0.3", "1.0.4"},                                          # MAL-2026-14347
+    "moidevy": {"1.0.0"},                                                        # MAL-2026-14348
+    "@gfe/lx-watcher": {"1.5.3", "1.5.4"},                                      # MAL-2026-14353
+    "fuel-react": {"91.0.0"},                                                    # MAL-2026-14355
+    "lumen-pages-community": {"9.9.9"},                                          # MAL-2026-14356
+    # @postman-cse dep-confusion (Aug 22 2026)
+    # Attacker published @postman-cse/okta-aio-linux-arm64 to the public registry
+    # to shadow Postman's internal package and hijack its CI dependency resolution.
+    # 21 specific versions listed; no patched version (package removed).
+    # GHSA-h84r-259m-g3fg; OSV MAL-2026-14357
+    "@postman-cse/okta-aio-linux-arm64": {
+        "0.8.10", "0.8.11", "0.9.0", "0.9.1",
+        "0.10.0", "0.10.1", "0.10.2", "0.10.3", "0.10.4",
+        "0.10.5", "0.10.6", "0.10.7", "0.10.8", "0.10.9",
+        "0.11.0", "0.11.1", "0.11.2", "0.11.3",
+        "0.11.4", "0.11.5", "0.11.6",
+    },                                                                           # MAL-2026-14357
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -9586,6 +9651,9 @@ NPM_SUSPECT_SCOPES = (
     # @wizloft/ obfuscated-dropper scope (Aug 19 2026) — 5 harness packages pinned above;
     # scope catches any undisclosed additional @wizloft packages
     "@wizloft/",
+    # @postman-cse dep-confusion scope (Aug 22 2026) — okta-aio-linux-arm64 pinned above;
+    # scope catches any further @postman-cse dep-confusion packages
+    "@postman-cse/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
