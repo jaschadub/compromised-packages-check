@@ -1535,6 +1535,10 @@ PYPI_BAD: dict[str, set[str]] = {
     "boto4": {"1.0.0", "1.0.2"},                                    # MAL-2026-14349
     "scrambleeer": {"0.1.0", "0.1.1"},                              # MAL-2026-14350
     "requests-crypt": {"0.1.0"},                                    # MAL-2026-14351
+    # scrambleeeer TCP reverse shell (Aug 23 2026; distinct from scrambleeer above)
+    # Advertises a numeric-shuffling utility; opens reverse shell on import.
+    # OSV MAL-2026-14358
+    "scrambleeeer": {"0.1.0"},                                      # MAL-2026-14358
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9509,6 +9513,50 @@ NPM_BAD: dict[str, set[str]] = {
         "0.11.0", "0.11.1", "0.11.2", "0.11.3",
         "0.11.4", "0.11.5", "0.11.6",
     },                                                                           # MAL-2026-14357
+    # Aug 22–23 2026: stillm4ddpocs dep-confusion cluster (999.x version range)
+    # Five packages published by actor "stillm4ddpocs" to shadow internal package names.
+    # OSV MAL-2026-14360/14361/14376/14377/14378
+    "stillm4ddpocs-demo-widget": {"999.9.9"},                                   # MAL-2026-14360
+    "stillm4ddpocs-demo-gadget": {"999.9.10", "999.9.20", "999.9.12"},         # MAL-2026-14361
+    "stillm4ddpocs-demo-sprocket": {"999.9.12"},                                # MAL-2026-14376
+    "stillm4ddpocs-rtest-alpha": {"999.9.10", "999.9.9"},                      # MAL-2026-14377
+    "stillm4ddpocs-rtest-bravo": {"999.9.10", "999.9.9"},                      # MAL-2026-14378
+    # Aug 23 2026: *-shardsight-web / *-loadsight-web / *-buildsight-web / *-viewsight-web /
+    # *-fetchsight-web typosquat cluster (numeric-prefix npm packages)
+    # OSV MAL-2026-14362/14363/14364/14365/14366
+    "10-shardsight-web": {"1.0.1", "1.0.0"},                                   # MAL-2026-14362
+    "2-loadsight-web": {"1.0.0", "1.0.1"},                                     # MAL-2026-14363
+    "3-buildsight-web": {"1.0.1", "1.0.0"},                                    # MAL-2026-14364
+    "6-viewsight-web": {"1.0.1", "1.0.0"},                                     # MAL-2026-14365
+    "8-fetchsight-web": {"1.0.1", "1.0.0"},                                    # MAL-2026-14366
+    # Aug 23 2026: @syncraft-labs scope malware cluster
+    # Three packages across core/react/vue impersonating a legitimate UI framework scope.
+    # OSV MAL-2026-14367/14368/14369
+    "@syncraft-labs/core": {"0.4.1"},                                           # MAL-2026-14367
+    "@syncraft-labs/react": {"0.4.1"},                                          # MAL-2026-14368
+    "@syncraft-labs/vue": {"0.4.1"},                                            # MAL-2026-14369
+    # Aug 23 2026: @usaa-grp-personal-profile dep-confusion (999.0.0 version)
+    # Published to shadow USAA's internal personal-profile-common package.
+    # OSV MAL-2026-14370
+    "@usaa-grp-personal-profile/personal-profile-common": {"999.0.0"},         # MAL-2026-14370
+    # Aug 23 2026: testing-toolkit typosquat cluster (fake chai/hardhat/rust/solidity utils)
+    # Four packages impersonating testing utilities for chai, Hardhat, Rust, and Solidity.
+    # OSV MAL-2026-14371/14373/14374/14375
+    "chai-as-testkit": {"2.3.5"},                                               # MAL-2026-14371
+    "hatdhat-testkit": {"3.2.14"},                                              # MAL-2026-14373
+    "rust-testing-utils": {"2.3.0"},                                            # MAL-2026-14374
+    "solidity-testing-utils": {"1.2.0"},                                        # MAL-2026-14375
+    # Aug 23 2026: create-coin crypto npm malware
+    # OSV MAL-2026-14372
+    "create-coin": {"20.1.1"},                                                  # MAL-2026-14372
+    # Aug 23 2026: internallib_v902 npm backdoor (GHSA-3p65-4jqj-5j69)
+    # Impersonates an internal library; single malicious version published before takedown.
+    # OSV MAL-2026-14359 / GHSA-3p65-4jqj-5j69
+    "internallib_v902": {"1.2.1"},                                              # MAL-2026-14359
+    # Aug 23 2026: totp-utils npm infostealer (8 versions)
+    # Impersonates a TOTP/authentication utility; exfiltrates credentials.
+    # OSV MAL-2026-14379
+    "totp-utils": {"1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7", "1.4.8", "1.4.9"},  # MAL-2026-14379
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
