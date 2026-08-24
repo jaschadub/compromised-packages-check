@@ -1539,6 +1539,16 @@ PYPI_BAD: dict[str, set[str]] = {
     # Advertises a numeric-shuffling utility; opens reverse shell on import.
     # OSV MAL-2026-14358
     "scrambleeeer": {"0.1.0"},                                      # MAL-2026-14358
+    # Aug 23 2026: MLflow OpenTelemetry instrumentor typosquat
+    # Impersonates a legitimate OTEL instrumentor for MLflow.
+    # OSV MAL-2026-14384
+    "mlflow-otel-instrumentor": {"1.1.0"},                          # MAL-2026-14384
+    # Aug 23 2026: cryptgraphy typosquat of `cryptography`
+    # OSV MAL-2026-14388
+    "cryptgraphy": {"1.0.0"},                                       # MAL-2026-14388
+    # Aug 23 2026: envprovision PyPI malware (3 versions)
+    # OSV MAL-2026-14389
+    "envprovision": {"1.2.0", "1.3.0", "1.4.0"},                    # MAL-2026-14389
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9557,6 +9567,33 @@ NPM_BAD: dict[str, set[str]] = {
     # Impersonates a TOTP/authentication utility; exfiltrates credentials.
     # OSV MAL-2026-14379
     "totp-utils": {"1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7", "1.4.8", "1.4.9"},  # MAL-2026-14379
+    # Aug 23 2026: fund-list-filter / fund-portfolio dep-confusion (999.9.12 version)
+    # Two packages published at anomalous high version 999.9.12 to shadow internal
+    # fund-management packages and hijack CI dependency resolution.
+    # OSV MAL-2026-14380, MAL-2026-14381
+    "fund-list-filter": {"999.9.12"},                                            # MAL-2026-14380
+    "fund-portfolio": {"999.9.12"},                                              # MAL-2026-14381
+    # Aug 23 2026: @sdgdfgdfhhhfd/* attacker-controlled scope (chainvista, multiviewr)
+    # Both packages are pure-malware; OSV SEMVER ranges introduced:0 (any version).
+    # OSV MAL-2026-14382 / GHSA-849m-c6hc-74xx, MAL-2026-14383 / GHSA-wwgv-4qvc-7339
+    "@sdgdfgdfhhhfd/chainvista": set(),                                          # MAL-2026-14382 (ANY)
+    "@sdgdfgdfhhhfd/multiviewr": set(),                                          # MAL-2026-14383 (ANY)
+    # Aug 23 2026: *-dim-kit typosquat cluster (hydration-dim-kit, svelte-dim-kit)
+    # Two pure-malware packages; OSV SEMVER ranges introduced:0 (any version).
+    # OSV MAL-2026-14385 / GHSA-p33f-w7x3-mxrr, MAL-2026-14386 / GHSA-64x3-8jmm-fhp8
+    "hydration-dim-kit": set(),                                                  # MAL-2026-14385 (ANY)
+    "svelte-dim-kit": set(),                                                     # MAL-2026-14386 (ANY)
+    # Aug 23 2026: @opap/player-kyc-widget dep-confusion (3.999.999 version)
+    # Published at anomalous high version to shadow OPAP's internal KYC widget package.
+    # OSV MAL-2026-14387
+    "@opap/player-kyc-widget": {"3.999.999"},                                    # MAL-2026-14387
+    # Aug 24 2026: conversa-sdk npm malware (10 versions)
+    # Malicious SDK package with 10 malicious releases (1.0.0-1.0.9, 2.0.0-2.0.4).
+    # OSV MAL-2026-6185 / GHSA-8m82-6fp4-38m4
+    "conversa-sdk": {
+        "1.0.0", "1.0.4", "1.0.5", "1.0.6", "1.0.8", "1.0.9",
+        "2.0.0", "2.0.2", "2.0.3", "2.0.4",
+    },                                                                            # MAL-2026-6185
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
