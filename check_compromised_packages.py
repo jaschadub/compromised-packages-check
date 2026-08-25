@@ -496,7 +496,21 @@ build-probe packages, Akamai sensor extension, misc malware;
 OSV MAL-2026-14052 through MAL-2026-14068), and the August 16 2026 batch:
 snavbox npm multi-protocol proxy/remote-management trojan (OSV MAL-2025-49362;
 any-version wildcard), kb-ai PyPI dependency-confusion install-time exfiltrator
-(OSV MAL-2026-14069; versions 0.1.0/0.1.1).
+(OSV MAL-2026-14069; versions 0.1.0/0.1.1), and the August 24 2026 sweep:
+sm-* dep-confusion cluster (8 packages: sm-admin, sm-apikey-model, sm-billing-form,
+sm-cart, sm-checkout, sm-oauth, sm-payment, sm-session; OSV MAL-2026-14393–14400),
+dext-crate-* malware cluster (dext-crate-check/image/video; MAL-2026-14406–14408),
+*-dim-* UI typosquat extension (7 packages extending the Aug 23 dim-kit pair;
+MAL-2026-14416/14417/14429–14431/14441/14442), dep-confusion 999.x batch (amundi-compare,
+fund-calculator, @temptation.js/utils, dpg-media-7ehemel, @gsas/gsas-sdk, web-advertising,
+@elc-online/up-analytics; MAL-2026-14390/14391/14410/14411/14420/14440/14443),
+@medisend dep-confusion 4 packages (MAL-2026-14421–14424), MCP server malware pair
+(livemcp, mcp-real-chrome; MAL-2026-14413/14414), manticore/PayPal 9.4.3 cluster
+(manticore-log, paypal-business-sdk, ppb-manticore; MAL-2026-14433/14435/14437),
+Tinkoff/devplatform + sme-* continuation (5 packages; MAL-2026-12208/12440/12441/12730/12763),
+Tailwind animation typosquats (MAL-2026-12219/12220), older OSV records refreshed Aug 24
+(MAL-2026-4164/4818/5574/6497/10107), misc mixed batch 19 npm packages, and
+multyproccess/msrcpoc PyPI (MAL-2026-14401/14444).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1549,6 +1563,12 @@ PYPI_BAD: dict[str, set[str]] = {
     # Aug 23 2026: envprovision PyPI malware (3 versions)
     # OSV MAL-2026-14389
     "envprovision": {"1.2.0", "1.3.0", "1.4.0"},                    # MAL-2026-14389
+    # Aug 24 2026: multyproccess PyPI multiprocessing typosquat (4 versions)
+    # OSV MAL-2026-14401
+    "multyproccess": {"2.32.3", "2.32.4", "2.32.5", "2.32.6"},     # MAL-2026-14401
+    # Aug 24 2026: msrcpoc PyPI dep-confusion POC (99.1.9)
+    # OSV MAL-2026-14444
+    "msrcpoc": {"99.1.9"},                                           # MAL-2026-14444
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9594,6 +9614,129 @@ NPM_BAD: dict[str, set[str]] = {
         "1.0.0", "1.0.4", "1.0.5", "1.0.6", "1.0.8", "1.0.9",
         "2.0.0", "2.0.2", "2.0.3", "2.0.4",
     },                                                                            # MAL-2026-6185
+    # ─── Aug 24 2026: Tinkoff/devplatform + sme-* continuation ──────────────────
+    # Additional packages in the ongoing Tinkoff-adjacent Russian-fintech
+    # dep-confusion campaign. Extends the existing devplatform-* and sme-rko-*
+    # blocks with new any-version entries.
+    # OSV MAL-2026-12208 / GHSA-f4fh-84pr-v95c, MAL-2026-12440 / GHSA-vfcf-g2jc-xm3x,
+    # MAL-2026-12441 / GHSA-9hjr-v9x6-4g6g, MAL-2026-12730 / GHSA-p6mf-hpv9-53jc,
+    # MAL-2026-12763 / GHSA-49hq-jqjw-mhr7
+    "sme-scripts-cli": set(),                                                    # MAL-2026-12208
+    "sme-rko-finance-front-shared-entity-groups-models": set(),                  # MAL-2026-12440
+    "sme-scripts-shared-library-webpack-plugin": set(),                          # MAL-2026-12441
+    "devplatform-nx-ts": set(),                                                  # MAL-2026-12730
+    "devplatform-spa-plugin-cobrowsing": set(),                                  # MAL-2026-12763
+    # Aug 24 2026: Tailwind animation typosquat pair
+    # OSV MAL-2026-12219 / GHSA-69pm-q85v-q89g, MAL-2026-12220 / GHSA-pqcx-38vc-5c6x
+    "tailwind-animationgroup": set(),                                            # MAL-2026-12219
+    "tailwind-animationpack": set(),                                             # MAL-2026-12220
+    # Aug 24 2026: older OSV records appearing in Aug 24 bulk snapshot
+    # Various pure-malware and typosquat packages whose records were first present
+    # or last-modified in the Aug 24 GCS export.
+    # OSV MAL-2026-4164 / GHSA-2g7g-rqj2-26hv, MAL-2026-4818 / GHSA-948w-97g3-hvpp,
+    # MAL-2026-5574 / GHSA-2xx5-g7pf-q356, MAL-2026-6497, MAL-2026-10107
+    "identitysecuretokenserv": set(),                                            # MAL-2026-4164
+    "saturn-bail": set(),                                                        # MAL-2026-4818
+    "spotify-url-resolver": set(),                                               # MAL-2026-5574
+    "chai-as-synced": {"6.0.3", "7.0.9"},                                       # MAL-2026-6497
+    "security-node": set(),                                                      # MAL-2026-10107
+    # ─── Aug 24 2026: sm-* dep-confusion cluster (8 packages) ───────────────────
+    # High-version (99.0.x) packages targeting a private sm-* internal npm namespace.
+    # All any-version wildcards — OSV >=0 ranges, no legitimate public versions.
+    # OSV MAL-2026-14393 / GHSA-9jm5-rh3f-jr86, MAL-2026-14394 / GHSA-r6qx-cjjw-53q3,
+    # MAL-2026-14395 / GHSA-5fmw-xf3x-g32g, MAL-2026-14396 / GHSA-79hh-8hx9-8jjr,
+    # MAL-2026-14397 / GHSA-ccvj-vpx6-qq27, MAL-2026-14398 / GHSA-9v7m-8hh3-3mc3,
+    # MAL-2026-14399 / GHSA-xr9c-mx62-832c, MAL-2026-14400 / GHSA-2f9h-c49j-w22r
+    "sm-admin": set(),                                                           # MAL-2026-14393
+    "sm-apikey-model": set(),                                                    # MAL-2026-14394
+    "sm-billing-form": set(),                                                    # MAL-2026-14395
+    "sm-cart": set(),                                                            # MAL-2026-14396
+    "sm-checkout": set(),                                                        # MAL-2026-14397
+    "sm-oauth": set(),                                                           # MAL-2026-14398
+    "sm-payment": set(),                                                         # MAL-2026-14399
+    "sm-session": set(),                                                         # MAL-2026-14400
+    # ─── Aug 24 2026: dext-crate-* malware cluster (3 packages) ─────────────────
+    # Pure-malware packages masquerading as crate-utility helpers; any-version wildcards.
+    # OSV MAL-2026-14406 / GHSA-9m4w-p72c-cqwq, MAL-2026-14407 / GHSA-mj2f-654h-x283,
+    # MAL-2026-14408 / GHSA-299m-84fp-94p9
+    "dext-crate-check": set(),                                                   # MAL-2026-14406
+    "dext-crate-image": set(),                                                   # MAL-2026-14407
+    "dext-crate-video": set(),                                                   # MAL-2026-14408
+    # ─── Aug 24 2026: *-dim-* UI typosquat cluster extension (7 packages) ───────
+    # Extends the Aug 23 hydration-dim-kit / svelte-dim-kit pair with more
+    # permuted name variants. dim-hydration-ui has a specific published version;
+    # the rest have OSV >=0 ranges and use the any-version wildcard.
+    # OSV MAL-2026-14416 / GHSA-5hwv-w72c-55qw, MAL-2026-14417 / GHSA-3jcp-rjh9-wq99,
+    # MAL-2026-14429, MAL-2026-14430 / GHSA-xf2r-j86w-6c3x,
+    # MAL-2026-14431 / GHSA-79qw-ww45-gpfp, MAL-2026-14441 / GHSA-x8x3-xwj6-73vv,
+    # MAL-2026-14442 / GHSA-qvqg-96qf-37vw
+    "dims-hydration-ui": set(),                                                  # MAL-2026-14416
+    "dims-svelte-ui": set(),                                                     # MAL-2026-14417
+    "dim-hydration-ui": {"1.0.0"},                                               # MAL-2026-14429
+    "hydration-dim-ui": set(),                                                   # MAL-2026-14430
+    "hydration-ui-dim": set(),                                                   # MAL-2026-14431
+    "svelte-dim-ui": set(),                                                      # MAL-2026-14441
+    "svelte-ui-dim": set(),                                                      # MAL-2026-14442
+    # ─── Aug 24 2026: dep-confusion 999.x batch (7 packages) ────────────────────
+    # High-version packages (999.9.x / 99.99.99) shadowing private internal registries.
+    # OSV MAL-2026-14390, MAL-2026-14391, MAL-2026-14410, MAL-2026-14411,
+    # MAL-2026-14420, MAL-2026-14440, MAL-2026-14443
+    "amundi-compare": {"999.9.12"},                                              # MAL-2026-14390
+    "fund-calculator": {"999.9.12"},                                             # MAL-2026-14391
+    "@temptation.js/utils": {"999.9.15", "999.9.16"},                           # MAL-2026-14410
+    "dpg-media-7ehemel": {"999.9.15"},                                           # MAL-2026-14411
+    "@gsas/gsas-sdk": {"999.9.15"},                                              # MAL-2026-14420
+    "web-advertising": {"999.9.15", "999.9.16"},                                 # MAL-2026-14440
+    "@elc-online/up-analytics": {"99.99.99"},                                    # MAL-2026-14443
+    # ─── Aug 24 2026: @medisend/* dep-confusion (4 packages) ────────────────────
+    # Security-research dep-confusion probes targeting the @medisend private scope.
+    # Pinned to the exact -security-research versions published.
+    # OSV MAL-2026-14421, MAL-2026-14422, MAL-2026-14423, MAL-2026-14424
+    "@medisend/auth": {"0.0.1-security-research"},                               # MAL-2026-14421
+    "@medisend/core": {"0.0.1-security-research"},                               # MAL-2026-14422
+    "@medisend/shared": {"0.0.1-security-research"},                             # MAL-2026-14423
+    "@medisend/webview-bridge": {"0.0.1-security-research",
+                                 "0.0.2-security-research"},                     # MAL-2026-14424
+    # Aug 24 2026: MCP server malware pair
+    # livemcp and mcp-real-chrome: fake MCP server packages; any-version.
+    # OSV MAL-2026-14413 / GHSA-rxwc-v5gg-9hhw, MAL-2026-14414 / GHSA-vqm6-238c-g856
+    "livemcp": set(),                                                            # MAL-2026-14413
+    "mcp-real-chrome": set(),                                                    # MAL-2026-14414
+    # Aug 24 2026: manticore / PayPal 9.4.3 cluster (3 packages)
+    # All published at version 9.4.3; likely the same threat actor.
+    # OSV MAL-2026-14433, MAL-2026-14435, MAL-2026-14437
+    "manticore-log": {"9.4.3"},                                                  # MAL-2026-14433
+    "paypal-business-sdk": {"9.4.3"},                                            # MAL-2026-14435
+    "ppb-manticore": {"9.4.3"},                                                  # MAL-2026-14437
+    # ─── Aug 24 2026: mixed npm malware batch (19 packages) ─────────────────────
+    # Diverse credential stealers, typosquats, and pure-malware packages, each
+    # confirmed by an individual OSV MAL-2026-14xxx record.
+    # OSV MAL-2026-14392, MAL-2026-14402 / GHSA-3g4v-p5hc-83qm,
+    # MAL-2026-14403 / GHSA-8gjf-85f5-p24f, MAL-2026-14404 / GHSA-rw8r-gxqp-rwfh,
+    # MAL-2026-14405 / GHSA-9m88-8qj5-73j8, MAL-2026-14409 / GHSA-6rrq-x6hp-4xcm,
+    # MAL-2026-14412 / GHSA-wxfm-64xv-2h3m, MAL-2026-14415 / GHSA-r8wh-m45c-f35g,
+    # MAL-2026-14418 / GHSA-5xvx-37p2-x7j9, MAL-2026-14419 / GHSA-g95w-qwf7-2h4p,
+    # MAL-2026-14425 through MAL-2026-14428, MAL-2026-14432, MAL-2026-14434,
+    # MAL-2026-14436, MAL-2026-14438, MAL-2026-14439
+    "message-compiler": {"9.2.0"},                                               # MAL-2026-14392
+    "agentgui": {"1.0.1127"},                                                    # MAL-2026-14402
+    "react-emits": set(),                                                        # MAL-2026-14403
+    "@blurrydespair/libsignal-node": set(),                                      # MAL-2026-14404
+    "create-json-client": set(),                                                 # MAL-2026-14405
+    "polis-diraja": set(),                                                       # MAL-2026-14409
+    "@deepaksilaych/sess": set(),                                                 # MAL-2026-14412
+    "react-dynamic-parser": set(),                                               # MAL-2026-14415
+    "dotish": set(),                                                             # MAL-2026-14418
+    "tkyoussef-hb": set(),                                                       # MAL-2026-14419
+    "auth-otp": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},        # MAL-2026-14425
+    "babel-polyfill-plugin-corejs2": {"1.0.1"},                                  # MAL-2026-14426
+    "chai-as-mno": {"1.0.5"},                                                    # MAL-2026-14427
+    "consumerweb-serverutils": {"3.4.3"},                                         # MAL-2026-14428
+    "kelly-stake-sizing": {"0.1.1"},                                             # MAL-2026-14432
+    "openai-pr-reviewer": {"1.0.0"},                                             # MAL-2026-14434
+    "poly-price-node": {"1.1.2"},                                                # MAL-2026-14436
+    "remove-bg-serverless-azure": {"1.0.1"},                                     # MAL-2026-14438
+    "secret-key-totp": {"1.5.1"},                                                # MAL-2026-14439
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
