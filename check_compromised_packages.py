@@ -1569,6 +1569,20 @@ PYPI_BAD: dict[str, set[str]] = {
     # Aug 24 2026: msrcpoc PyPI dep-confusion POC (99.1.9)
     # OSV MAL-2026-14444
     "msrcpoc": {"99.1.9"},                                           # MAL-2026-14444
+    # ─── Aug 25–27 2026: mixed PyPI malware batch (8 packages) ──────────────────
+    # Diverse stealers, RCE probes, and typosquats, each confirmed by an
+    # individual OSV MAL-2026-14xxx record.
+    # OSV MAL-2026-14488, MAL-2026-14516, MAL-2026-14522, MAL-2026-14523,
+    # MAL-2026-14524, MAL-2026-14525, MAL-2026-14542, MAL-2026-14545
+    "0xfighter3": {"0.1"},                                           # MAL-2026-14525
+    "bigquery-agent-analytics-tracing": {"0.0.0", "0.0.1"},         # MAL-2026-14524
+    "minecraft-ytreceiver": {"0.1.0", "0.2.0", "0.3.0",
+                              "0.4.0", "0.5.0"},                     # MAL-2026-14516
+    "pybitjs": {"0.1.0"},                                            # MAL-2026-14545
+    "python-walletlibr-v": {"0.7.9"},                                # MAL-2026-14488
+    "rce-test": {"0.1"},                                             # MAL-2026-14523
+    "syntaxerror-package-12345": {"0.1"},                            # MAL-2026-14522
+    "trongridet": {"0.0.1"},                                         # MAL-2026-14542
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9737,6 +9751,258 @@ NPM_BAD: dict[str, set[str]] = {
     "poly-price-node": {"1.1.2"},                                                # MAL-2026-14436
     "remove-bg-serverless-azure": {"1.0.1"},                                     # MAL-2026-14438
     "secret-key-totp": {"1.5.1"},                                                # MAL-2026-14439
+    # ─── Tinkoff Bank dep-confusion (Aug 26 2026): 53 packages ──────────────────
+    # Dep-confusion attack against Tinkoff Bank's private npm registry.
+    # Attacker-uploaded packages at inflated version numbers (20.x / 35.x)
+    # to intercept private-registry resolution on public npm.
+    # OSV MAL-2026-12211 through MAL-2026-12487 (tinkoff-*, twork-*, statist-*, etc.)
+    "statist-browser-typed-client-mb.product.analytics": set(),                  # MAL-2026-12211
+    "statist-browser-typed-client-sme.platform.web.productsnavigation.events": set(), # MAL-2026-12214
+    "statist-browser-typed-client-sme.platform.web.teasers": set(),              # MAL-2026-12310
+    "taiga-ui-proprietary-navigation": set(),                                    # MAL-2026-12474
+    "tcb-web-copy-to-clipboard": set(),                                          # MAL-2026-12475
+    "time-linters-webapp-eslint-config": set(),                                  # MAL-2026-12479
+    "time-webkit-tag": set(),                                                    # MAL-2026-12226
+    "tinkoff-boxy-atom-text-link": set(),                                        # MAL-2026-12227
+    "tinkoff-boxy-desktop-icons-horizontal": set(),                              # MAL-2026-12228
+    "tinkoff-boxy-form-desktop-sme-registration-ooo": set(),                     # MAL-2026-12231
+    "tinkoff-boxy-mobile-documents": set(),                                      # MAL-2026-12234
+    "tinkoff-boxy-mobile-separator": set(),                                      # MAL-2026-12235
+    "tinkoff-component-page-loader": set(),                                      # MAL-2026-12239
+    "tinkoff-fb-rf-add-application": set(),                                      # MAL-2026-12242
+    "tinkoff-mutual-mgm-form": set(),                                            # MAL-2026-12244
+    "tinkoff-pfp-atom-styles-tiles": set(),                                      # MAL-2026-12246
+    "tinkoff-pfp-block-mobile-panels": set(),                                    # MAL-2026-12249
+    "tinkoff-pfp-integration-mobile-slider-icons": set(),                        # MAL-2026-12250
+    "tinkoff-pwa-confac-types": set(),                                           # MAL-2026-12252
+    "tinkoff-statist-browser-typed-client-art.apps.reporegistry": set(),         # MAL-2026-12253
+    "tinkoff-statist-browser-typed-client-dss.insurance.service": set(),         # MAL-2026-12257
+    "tinkoff-statist-browser-typed-client-dwh.chimera.base": set(),              # MAL-2026-12258
+    "tinkoff-statist-browser-typed-client-eventea.projects.smartcam": set(),     # MAL-2026-12260
+    "tinkoff-statist-browser-typed-client-investaccounting.events.templatepage.mainpage": set(), # MAL-2026-12261
+    "tinkoff-statist-browser-typed-client-investing.product.pulse": set(),       # MAL-2026-12262
+    "tinkoff-statist-browser-typed-client-leasing.admin.events": set(),          # MAL-2026-12266
+    "tinkoff-statist-browser-typed-client-mb.product.tgeofencing": {"20.9.6"},   # MAL-2026-12268
+    "tinkoff-statist-browser-typed-client-mb.reliability.android.events": {"20.5.4"}, # MAL-2026-12269
+    "tinkoff-statist-browser-typed-client-sme.platform.mobile.dynamicteasers.common": {"20.8.7"}, # MAL-2026-12270
+    "tinkoff-statist-browser-typed-client-sme.platform.web.companyprofile.metrics": {"20.2.7"}, # MAL-2026-12272
+    "tinkoff-statist-browser-typed-client-sme.rko.authorization.common": {"20.5.5"}, # MAL-2026-12273
+    "tinkoff-statist-browser-typed-client-sme.rko.conversionpayments.web": {"20.3.8"}, # MAL-2026-12274
+    "tinkoff-statist-browser-typed-client-sme.rko.ta.ios.events": {"20.6.1"},    # MAL-2026-12276
+    "tinkoff-statist-browser-typed-client-test.softwarecenter.metrics": {"20.1.3"}, # MAL-2026-12278
+    "tinkoff-terminal-kit-test-commons": {"20.9.7"},                             # MAL-2026-12281
+    "tinkoff-ui-angular-addon-wysiwyg": {"20.7.8"},                              # MAL-2026-12283
+    "tms-x-headers": {"20.2.9"},                                                 # MAL-2026-12480
+    "travel-core-utils-object": set(),                                           # MAL-2026-12487
+    "twork-data-services-aggregator-company-sme-main-timeline-loader-with-customers": {"20.3.8"}, # MAL-2026-12287
+    "twork-data-services-aggregator-sme-task-info": {"20.3.1"},                  # MAL-2026-12288
+    "twork-data-services-counterfree": {"20.1.3"},                               # MAL-2026-12289
+    "twork-data-services-customer-api-v2-customer-vip-status": {"20.9.7"},       # MAL-2026-12290
+    "twork-data-services-eacq-company-service-v2-api-v1-identifiers-crm": {"20.6.7"}, # MAL-2026-12291
+    "twork-data-services-getting-arrests": {"20.1.1"},                           # MAL-2026-12292
+    "twork-data-services-invest-box-account": {"20.8.8"},                        # MAL-2026-12293
+    "twork-data-services-procedure-engine-api-v1-procedure-info": {"20.6.9"},    # MAL-2026-12295
+    "twork-data-services-proxy-invest-symbols-list": {"20.4.6"},                 # MAL-2026-12298
+    "twork-data-services-proxy-prime-api-v1-account-overdraft-info": {"20.7.4"}, # MAL-2026-12299
+    "twork-data-services-role-app": {"20.9.6"},                                  # MAL-2026-12300
+    "twork-data-services-sme-operations-authorizations": {"20.8.9"},             # MAL-2026-12302
+    "twork-mf-e2e-nitro": {"20.8.5"},                                            # MAL-2026-12303
+    "twork-mf-sandbox": {"20.9.7"},                                              # MAL-2026-12304
+    "twork-products-taiga2-products-timeline": {"20.6.1"},                       # MAL-2026-12307
+    # ─── Devplatform / BigOps dep-confusion (Aug 26 2026): 8 packages ─────────
+    # Dep-confusion packages at 35.x versions targeting private devplatform / bigops registry.
+    # OSV MAL-2026-12745, MAL-2026-12754, MAL-2026-12779, MAL-2026-12785,
+    # MAL-2026-12844, MAL-2026-12846, MAL-2026-12853, MAL-2026-13250
+    "bigops-statements-timeline": set(),                                         # MAL-2026-13250
+    "bigops-timeline": set(),                                                    # MAL-2026-12844
+    "bigops-timers": set(),                                                      # MAL-2026-12846
+    "bigops-utils": set(),                                                       # MAL-2026-12853
+    "devplatform-rest-resources-v1": set(),                                      # MAL-2026-12745
+    "devplatform-spa": set(),                                                    # MAL-2026-12754
+    "devplatform-spa-plugin-s3-module-loader": set(),                            # MAL-2026-12779
+    "devplatform-spa-tokens": set(),                                             # MAL-2026-12785
+    # ─── Streak / svelte-streak typosquat cluster (Aug 26 2026): 27 packages ──
+    # Coordinated typosquat batch: streak-*, svelte-streak-*, and related packages.
+    # Each published at 1.0.0 with OSV MAL-2026-12xxx range: introduced=0.
+    # OSV MAL-2026-12458, MAL-2026-12459, MAL-2026-12460, MAL-2026-12461,
+    # MAL-2026-12463 through MAL-2026-12471, MAL-2026-12806, MAL-2026-12807,
+    # MAL-2026-12808, MAL-2026-14493 through MAL-2026-14502, MAL-2026-14511,
+    # MAL-2026-14541
+    "streak-calendar-core": set(),                                               # MAL-2026-12458
+    "streak-core-bucket": set(),                                                 # MAL-2026-12806
+    "streak-core-insights": set(),                                               # MAL-2026-12459
+    "streak-count-core": set(),                                                  # MAL-2026-12460
+    "streak-daily-core": set(),                                                  # MAL-2026-12461
+    "streak-day-primitives": set(),                                              # MAL-2026-12463
+    "streak-daybucket": set(),                                                   # MAL-2026-12464
+    "streak-daykey-lib": set(),                                                  # MAL-2026-12465
+    "streak-daykit": set(),                                                      # MAL-2026-12466
+    "streak-grid-core": set(),                                                   # MAL-2026-12807
+    "streak-int-lib": set(),                                                     # MAL-2026-12467
+    "streak-math-kit": set(),                                                    # MAL-2026-12468
+    "streak-math-lib": set(),                                                    # MAL-2026-12469
+    "streak-metric-core": set(),                                                 # MAL-2026-12808
+    "streak-view-core": set(),                                                   # MAL-2026-12471
+    "svelte-cls-ui": set(),                                                      # MAL-2026-14511
+    "svelte-daily-streaks": set(),                                               # MAL-2026-14493
+    "svelte-goal-streaks": set(),                                                # MAL-2026-14494
+    "svelte-hydration-streak": set(),                                            # MAL-2026-14495
+    "svelte-insight-streaks": set(),                                             # MAL-2026-14496
+    "svelte-insights-streak": set(),                                             # MAL-2026-14497
+    "svelte-intake-streaks": set(),                                              # MAL-2026-14498
+    "svelte-map-metric": set(),                                                  # MAL-2026-14499
+    "svelte-streak-map": set(),                                                  # MAL-2026-14500
+    "svelte-streak-panel": set(),                                                # MAL-2026-14501
+    "svelte-streak-tracker": set(),                                              # MAL-2026-14502
+    "svelte-vli-ui": set(),                                                      # MAL-2026-14541
+    # ─── Student/desmos npm malware cluster (Aug 25–26 2026): 25 packages ──────
+    # Coordinated batch of student-named malware packages. Each has an active OSV
+    # MAL-2026-14xxx record; all published at 1.0.0 with introduced=0 range.
+    # OSV MAL-2026-14446 through MAL-2026-14470 (25 records)
+    "classhomework": set(),                                                      # MAL-2026-14446
+    "classlesson": set(),                                                        # MAL-2026-14447
+    "classroomhomework": set(),                                                  # MAL-2026-14448
+    "classroomlesson": set(),                                                    # MAL-2026-14449
+    "classroomwork": set(),                                                      # MAL-2026-14450
+    "classwork": set(),                                                          # MAL-2026-14451
+    "desmosclasswork": set(),                                                    # MAL-2026-14452
+    "desmoshomework": set(),                                                     # MAL-2026-14453
+    "desmosisfire": set(),                                                       # MAL-2026-14454
+    "desmosistuff": set(),                                                       # MAL-2026-14455
+    "desmosmathwork": set(),                                                     # MAL-2026-14456
+    "desmosschoolwork": set(),                                                   # MAL-2026-14457
+    "desmoswork": set(),                                                         # MAL-2026-14458
+    "iamhungryrn": set(),                                                        # MAL-2026-14459
+    "ilovedesmos": set(),                                                        # MAL-2026-14460
+    "iwantaburger": set(),                                                       # MAL-2026-14461
+    "pleasedoyourhomework": set(),                                               # MAL-2026-14462
+    "schoolhomework": set(),                                                     # MAL-2026-14463
+    "schoollesson": set(),                                                       # MAL-2026-14464
+    "schoolwork": set(),                                                         # MAL-2026-14465
+    "sonsonsahur": set(),                                                        # MAL-2026-14466
+    "superdupertest111": set(),                                                  # MAL-2026-14467
+    "tungtunggod": set(),                                                        # MAL-2026-14468
+    "tungtungisgoated": set(),                                                   # MAL-2026-14469
+    "whatsgoodlookingbabycreed": set(),                                          # MAL-2026-14470
+    # ─── Hydration UI / svelte-UI cluster (Aug 25–26 2026): 5 packages ─────────
+    # OSV MAL-2026-14489, MAL-2026-14506, MAL-2026-14517, MAL-2026-14518,
+    # MAL-2026-14535
+    "dim-svelte-ui": set(),                                                      # MAL-2026-14506
+    "hydration-cls-ui": set(),                                                   # MAL-2026-14489
+    "hydration-ui-cls": set(),                                                   # MAL-2026-14517
+    "hydration-vli-ui": set(),                                                   # MAL-2026-14535
+    "svelte-ui-cls": set(),                                                      # MAL-2026-14518
+    # ─── WhatsApp Baileys malware cluster (Aug 26–27 2026): 4 packages ──────────
+    # Malicious Baileys (WhatsApp API) wrappers — attacker-controlled scopes.
+    # OSV MAL-2026-14527, MAL-2026-14528, MAL-2026-14529, MAL-2026-14540
+    "@fongsidev/scraper": set(),                                                 # MAL-2026-14527
+    "@lordmega/baileys": set(),                                                  # MAL-2026-14540
+    "baileys-inmemory-store": set(),                                             # MAL-2026-14528
+    "baileys-mbuilder": set(),                                                   # MAL-2026-14529
+    # ─── Vue plugin typosquats (2026): 2 packages ─────────────────────────────
+    # vue-template-compiler-plugin and vue-compiler-sfc-plugin impersonate
+    # official Vue plugins.
+    # OSV MAL-2026-3777, MAL-2026-4707
+    "vue-compiler-sfc-plugin": set(),                                            # MAL-2026-4707
+    "vue-template-compiler-plugin": set(),                                       # MAL-2026-3777
+    # ─── Vite plugin malware cluster (Aug 25–26 2026): 5 packages ───────────────
+    # Fake Vite build-tool plugins; multiple versions published per package.
+    # OSV MAL-2026-5714, MAL-2026-14479, MAL-2026-14480, MAL-2026-14481,
+    # MAL-2026-14482
+    "vite-plugin-bug-tracker": {"1.0.0", "1.1.0"},                               # MAL-2026-14479
+    "vite-plugin-image-analysis": {"1.0.0", "1.1.0", "1.1.2"},                  # MAL-2026-14480
+    "vite-plugin-image-tracker": {"1.0.0", "1.1.0"},                             # MAL-2026-14481
+    "vite-plugin-images-analysis": {"1.0.0"},                                    # MAL-2026-14482
+    "vite-plugin-logo": set(),                                                   # MAL-2026-5714
+    # ─── Self-sign certificate malware (Aug 27 2026): 2 packages ────────────────
+    # self-certificates and self-sign: credential/cert stealers with many versions.
+    # OSV MAL-2026-14543, MAL-2026-14544
+    "self-certificates": set(),                                                  # MAL-2026-14543
+    "self-sign": set(),                                                          # MAL-2026-14544
+    # ─── Ecobee API typosquats (Aug 25 2026): 3 packages ─────────────────────────
+    # ecobee-api, ecobee-home, ecobee2: fake Ecobee home-automation SDK packages.
+    # OSV MAL-2026-14474, MAL-2026-14475, MAL-2026-14476
+    "ecobee-api": {"0.0.2"},                                                     # MAL-2026-14474
+    "ecobee-home": {"0.0.2"},                                                    # MAL-2026-14475
+    "ecobee2": {"0.0.2"},                                                        # MAL-2026-14476
+    # ─── Spotify URL typosquats (Aug 25–26 2026): 3 packages ─────────────────────
+    # Typosquats on the legitimate spotify-url-info package (3.4.2).
+    # OSV MAL-2026-14487, MAL-2026-14492, MAL-2026-14538
+    "spotify-url-infos": {"3.4.2"},                                              # MAL-2026-14492
+    "spotify-url-resolovela": {"3.4.2"},                                         # MAL-2026-14487
+    "spotify-url-resolvers": {"3.4.2"},                                          # MAL-2026-14538
+    # ─── Chai testing framework typosquats (Aug 25–26 2026): 3 packages ─────────
+    # chai-as-otc, chai-as-org, chai-plus: typosquats on chai assertion library.
+    # OSV MAL-2026-14491, MAL-2026-14532, MAL-2026-14533
+    "chai-as-org": {"1.0.5"},                                                    # MAL-2026-14532
+    "chai-as-otc": {"1.0.5"},                                                    # MAL-2026-14491
+    "chai-plus": set(),                                                          # MAL-2026-14533
+    # ─── WM internal dep-confusion (Aug 26 2026): 3 packages ─────────────────────
+    # wm-eslint-fe, wm-lib-env-provider, wm-idp-sdk: dep-confusion probes
+    # against a WM private npm scope.
+    # OSV MAL-2026-4808, MAL-2026-14514, MAL-2026-14515
+    "wm-eslint-fe": set(),                                                       # MAL-2026-14514
+    "wm-idp-sdk": set(),                                                         # MAL-2026-4808
+    "wm-lib-env-provider": set(),                                                # MAL-2026-14515
+    # ─── Aug 25–27 2026: mixed npm malware batch (48 packages) ────────────────────
+    # Diverse credential stealers, dep-confusion probes, and pure-malware packages,
+    # each confirmed by an individual OSV MAL-2026-14xxx / MAL-2025-xxxx record.
+    # OSV MAL-2025-6727, MAL-2026-1383, MAL-2026-2828, MAL-2026-2830,
+    # MAL-2026-3030, MAL-2026-4677, MAL-2026-5884, MAL-2026-5935,
+    # MAL-2026-6223, MAL-2026-6224, MAL-2026-6358, MAL-2026-10136,
+    # MAL-2026-12221, MAL-2026-14445, MAL-2026-14471 through MAL-2026-14486,
+    # MAL-2026-14490, MAL-2026-14503 through MAL-2026-14510, MAL-2026-14512,
+    # MAL-2026-14513, MAL-2026-14519 through MAL-2026-14521, MAL-2026-14526,
+    # MAL-2026-14530, MAL-2026-14531, MAL-2026-14534, MAL-2026-14536,
+    # MAL-2026-14537, MAL-2026-14539, MAL-2026-14546 through MAL-2026-14550
+    "@immuta/pxl-components": {"99.99.0", "99.99.1"},                            # MAL-2026-1383
+    "analytics-v2": {"4.0.0"},                                                   # MAL-2026-14531
+    "array-shuffler-utils-99": set(),                                            # MAL-2026-14519
+    "cat-embed-i18n-res": {"1.0.0"},                                             # MAL-2026-14471
+    "commonjs-code-token": {"1.0.0", "1.0.1"},                                   # MAL-2026-14534
+    "cscasereadserv-paypal": {"3.4.3"},                                          # MAL-2026-14472
+    "css-import-order": {"1.1.0"},                                               # MAL-2026-14473
+    "digitalexp-style-module-l9": {"99.0.0"},                                    # MAL-2026-14445
+    "dumb-binding-gyp-package": set(),                                           # MAL-2026-14546
+    "express-security-policy": set(),                                            # MAL-2026-2828
+    "fetch-page-assets": {"1.2.9", "1.2.13", "1.2.14"},                          # MAL-2026-6358
+    "fivem-tool-helper": set(),                                                  # MAL-2026-14520
+    "fivem-tool-helper-v2": set(),                                               # MAL-2026-14521
+    "foldmap": set(),                                                            # MAL-2026-14507
+    "grandfather_of_the_desert": set(),                                          # MAL-2026-14547
+    "hexdrift": set(),                                                           # MAL-2026-14508
+    "hyperion-react-native-testapp": {"1.0.0"},                                  # MAL-2025-6727
+    "infomedia": set(),                                                          # MAL-2026-14530
+    "js-soul": {"1.0.4"},                                                        # MAL-2026-14477
+    "mham-js": {"1.0.4"},                                                        # MAL-2026-14478
+    "mjs-eslint": set(),                                                         # MAL-2026-6223
+    "mkb-manager": set(),                                                        # MAL-2026-14490
+    "model-poc-suhail": set(),                                                   # MAL-2026-3030
+    "modules-newline": {"0.0.6"},                                                # MAL-2026-14483
+    "mt-ts-serverless-starter": {"1.0.1"},                                       # MAL-2026-14536
+    "new-eslint": set(),                                                         # MAL-2026-6224
+    "octopus-action": {"1.0.1"},                                                 # MAL-2026-14537
+    "omniauth-recharge-rails-example": {"1.0.0"},                                # MAL-2026-14526
+    "r4wk-book": set(),                                                          # MAL-2026-14509
+    "react-remove-properties": {"6.14.1"},                                       # MAL-2026-14484
+    "renovate-config-doctolib": set(),                                           # MAL-2026-2830
+    "secretkey-2fa": {"1.0.0", "1.0.1"},                                         # MAL-2026-14485
+    "shai_hulululud": set(),                                                     # MAL-2026-14548
+    "snapbuf": set(),                                                            # MAL-2026-14510
+    "spf-analytics": {"1.0.0"},                                                  # MAL-2026-14486
+    "swift-optimizer": set(),                                                    # MAL-2026-4677
+    "tailwind-custom-forms": set(),                                              # MAL-2026-12221
+    "tailwind-scrollbar-hider": set(),                                           # MAL-2026-14512
+    "text-crate-check": set(),                                                   # MAL-2026-14503
+    "the_tax_free_cashier_is_at_9f": set(),                                      # MAL-2026-14549
+    "transform-es2015-sticky-regex": set(),                                      # MAL-2026-10136
+    "tset_racie": set(),                                                         # MAL-2026-14550
+    "tw-theme-kit": set(),                                                       # MAL-2026-5935
+    "typedoc-xyz": set(),                                                        # MAL-2026-14513
+    "video-crate-check": set(),                                                  # MAL-2026-14504
+    "voice-crate-check": set(),                                                  # MAL-2026-14505
+    "vortnode": set(),                                                           # MAL-2026-5884
+    "zenntechinc-cli": {"1.6.4", "1.6.6"},                                       # MAL-2026-14539
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -9882,6 +10148,11 @@ NPM_SUSPECT_SCOPES = (
     # @postman-cse dep-confusion scope (Aug 22 2026) — okta-aio-linux-arm64 pinned above;
     # scope catches any further @postman-cse dep-confusion packages
     "@postman-cse/",
+    # Aug 26–27 2026 new attacker-controlled scopes
+    # @fongsidev/ WhatsApp scraper/stealer scope — scraper pinned above
+    "@fongsidev/",
+    # @lordmega/ WhatsApp Baileys impersonator scope — baileys pinned above
+    "@lordmega/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
