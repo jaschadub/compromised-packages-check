@@ -1583,6 +1583,19 @@ PYPI_BAD: dict[str, set[str]] = {
     "rce-test": {"0.1"},                                             # MAL-2026-14523
     "syntaxerror-package-12345": {"0.1"},                            # MAL-2026-14522
     "trongridet": {"0.0.1"},                                         # MAL-2026-14542
+    # ─── Aug 27-28 2026: misc PyPI malware batch (8 packages) ───────────────────
+    # Mixed PyPI malware: mathkitlite/sap-quarterly-report/ekx-report-utils/decoris
+    # typosquats, and flyteplugins-* dep-confusion impersonating Flyte plugin packages.
+    # OSV MAL-2026-14552, MAL-2026-14554, MAL-2026-14555, MAL-2026-14556,
+    # MAL-2026-14581, MAL-2026-14582, MAL-2026-14583, MAL-2026-14584
+    "decoris": {"0.3.0", "0.3.3"},                                   # MAL-2026-14554
+    "ekx-report-utils": {"0.1.0", "0.2.0", "0.3.0", "0.4.0"},       # MAL-2026-14555
+    "flyteplugins-agento11y": {"2.6.10"},                             # MAL-2026-14581
+    "flyteplugins-echo": {"2.6.10"},                                  # MAL-2026-14582
+    "flyteplugins-nsight": {"2.6.10"},                                # MAL-2026-14583
+    "flyteplugins-redis": {"2.6.10"},                                 # MAL-2026-14584
+    "mathkitlite": {"0.1.0"},                                         # MAL-2026-14552
+    "sap-quarterly-report": {"1.0.0"},                                # MAL-2026-14556
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -10003,6 +10016,57 @@ NPM_BAD: dict[str, set[str]] = {
     "voice-crate-check": set(),                                                  # MAL-2026-14505
     "vortnode": set(),                                                           # MAL-2026-5884
     "zenntechinc-cli": {"1.6.4", "1.6.6"},                                       # MAL-2026-14539
+    # ─── @hd-team dep-confusion cluster (Aug 27 2026): 8 packages ───────────────
+    # Eight private-scope packages published to the public npm registry as
+    # dep-confusion probes targeting a company using @hd-team/* internally.
+    # OSV MAL-2026-14569, MAL-2026-14570, MAL-2026-14571, MAL-2026-14572,
+    # MAL-2026-14573, MAL-2026-14574, MAL-2026-14575, MAL-2026-14576
+    "@hd-team/app-dnpkg-beta": set(),                                 # MAL-2026-14569
+    "@hd-team/app-dnpkg-eight": set(),                                # MAL-2026-14570
+    "@hd-team/app-dnpkg-prod": set(),                                 # MAL-2026-14571
+    "@hd-team/app-dnpkg-ten": set(),                                  # MAL-2026-14572
+    "@hd-team/app-dnpkg-test": set(),                                 # MAL-2026-14573
+    "@hd-team/app-dnpkg-three": set(),                                # MAL-2026-14574
+    "@hd-team/app-impkg-prod": set(),                                 # MAL-2026-14575
+    "@hd-team/app-impkg-test": set(),                                 # MAL-2026-14576
+    # ─── Aug 27-28 2026: mixed npm malware batch (24 packages) ──────────────────
+    # Diverse credential stealers, dep-confusion probes, typosquats, and pure-malware.
+    # OSV MAL-2026-14551, MAL-2026-14553, MAL-2026-14557, MAL-2026-14558,
+    # MAL-2026-14559, MAL-2026-14560, MAL-2026-14561, MAL-2026-14562,
+    # MAL-2026-14563, MAL-2026-14564, MAL-2026-14565, MAL-2026-14566,
+    # MAL-2026-14567, MAL-2026-14568, MAL-2026-14577, MAL-2026-14578,
+    # MAL-2026-14579, MAL-2026-14580, MAL-2026-14585
+    "@cortana-md/engine": set(),                                      # MAL-2026-14553
+    "@postman-cse/okta-aio-darwin-arm64": {"0.11.6"},                 # MAL-2026-14580
+    "@znan/wabot": {"0.0.87", "0.0.88", "0.0.89", "0.0.90",
+                    "0.0.93", "0.0.94", "0.0.95", "0.0.96",
+                    "0.0.97", "0.0.98", "0.0.99", "0.0.101",
+                    "0.0.102", "0.0.103", "0.0.104", "0.0.105",
+                    "0.0.106", "0.1.0-rc.0", "0.1.0-rc.1",
+                    "0.1.0-beta.0", "0.2.0-beta.0", "0.2.0-beta.3",
+                    "0.2.0-beta.4", "0.2.0-beta.5", "0.2.0-beta.6",
+                    "0.2.0-beta.7", "0.2.0-beta.8", "0.2.1",
+                    "0.2.2-beta.0", "0.2.2-beta.1", "0.2.2-beta.2",
+                    "0.2.2-beta.3"},                                   # MAL-2026-14585
+    "bnotify-web-sdk": set(),                                         # MAL-2026-14551
+    "charclass": set(),                                               # MAL-2026-14557
+    "deepjoin": set(),                                                # MAL-2026-14558
+    "hydration-ui-dlx": set(),                                        # MAL-2026-14577
+    "imo-allowlist-xss-poc": set(),                                   # MAL-2026-14559
+    "inspectstack": set(),                                            # MAL-2026-14560
+    "module-relpath": set(),                                          # MAL-2026-14561
+    "morglog": set(),                                                  # MAL-2026-14562
+    "pushgitquickx": {"1.0.0", "1.0.4", "1.0.5", "1.0.6",
+                      "1.0.7", "1.0.8", "1.0.9", "1.0.10",
+                      "1.0.11", "1.0.12", "1.0.13", "1.0.14",
+                      "1.0.15", "1.0.16", "1.0.17"},                  # MAL-2026-14578
+    "rn-push-provisioning": set(),                                    # MAL-2026-14563
+    "sigcheck": set(),                                                # MAL-2026-14564
+    "stackpaths": set(),                                              # MAL-2026-14565
+    "svelte-ui-dlx": set(),                                           # MAL-2026-14579
+    "tailwindcss-3d-animate": set(),                                  # MAL-2026-14567
+    "tailwindcss-form-styles": {"0.5.15"},                            # MAL-2026-14568
+    "veloq": set(),                                                   # MAL-2026-14566
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -10145,14 +10209,17 @@ NPM_SUSPECT_SCOPES = (
     # @wizloft/ obfuscated-dropper scope (Aug 19 2026) — 5 harness packages pinned above;
     # scope catches any undisclosed additional @wizloft packages
     "@wizloft/",
-    # @postman-cse dep-confusion scope (Aug 22 2026) — okta-aio-linux-arm64 pinned above;
-    # scope catches any further @postman-cse dep-confusion packages
+    # @postman-cse dep-confusion scope (Aug 22 + Aug 28 2026) — okta-aio-linux-arm64 and
+    # okta-aio-darwin-arm64 pinned above; scope catches any further @postman-cse packages
     "@postman-cse/",
     # Aug 26–27 2026 new attacker-controlled scopes
     # @fongsidev/ WhatsApp scraper/stealer scope — scraper pinned above
     "@fongsidev/",
     # @lordmega/ WhatsApp Baileys impersonator scope — baileys pinned above
     "@lordmega/",
+    # @hd-team dep-confusion scope (Aug 27 2026) — 8 packages pinned above;
+    # scope catches any undisclosed additional @hd-team packages
+    "@hd-team/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
