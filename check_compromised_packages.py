@@ -1602,6 +1602,8 @@ PYPI_BAD: dict[str, set[str]] = {
     "yamlformat-tools": {"0.1.0"},           # MAL-2026-14589 — yaml cluster
     "yamlformatter-utils": {"1.0.0"},        # MAL-2026-14590 — yaml cluster
     "calcboxlite": {"1.0"},                  # MAL-2026-15488 — calculator utility typosquat
+    # ─── Aug 29 2026: Flask utility typosquat ────────────────────────────────────
+    "flask-header-guard": {"1.0.0"},        # MAL-2026-15566 — Flask plugin typosquat
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -10995,19 +10997,22 @@ NPM_BAD: dict[str, set[str]] = {
     "cacao1": {"9.9.9"},                  # MAL-2026-14591 — dep-confusion probe
     "@7nohe/openapi-react-query-codegen": {"0.0.0-365d4eb738d3146583431948d3ba6e27a32556be", "0.0.0-ec7876d6c917dad516ba69bbfafc948b834bf0ab", "0.5.4", "0.5.5", "1.6.3", "1.6.4", "2.2.1", "2.2.2", "3.0.3", "3.0.4"},  # MAL-2026-15494
     "@testrelic/playwright-analytics": {"2.13.0"},  # MAL-2026-15565
-    # ─── grafeno-* dep-confusion cluster (Aug 28 2026): 10 packages ─────────────
+    # ─── grafeno-* dep-confusion cluster (Aug 28–29 2026): 13 packages ────────────
     # Attacker published packages impersonating Grafeno's private Brazilian
-    # fintech API/SDK suite. OSV MAL-2026-15501..15522
-    "grafeno-api": {"1.0.0", "1.0.1"},    # MAL-2026-15501
-    "grafeno-auth": {"1.0.0"},             # MAL-2026-15502
-    "grafeno-client": {"1.0.0"},           # MAL-2026-15503
-    "grafeno-config": {"1.0.0"},           # MAL-2026-15504
-    "grafeno-core": {"1.0.0", "1.0.1"},    # MAL-2026-15505
-    "grafeno-logger": {"1.0.0", "1.0.1"},  # MAL-2026-15506
-    "grafeno-pix": {"1.0.0", "1.0.1"},     # MAL-2026-15507
-    "grafeno-sdk": {"1.0.0", "1.0.1"},     # MAL-2026-15508
-    "grafeno-utils": {"1.0.0"},             # MAL-2026-15509
-    "spc-grafeno": {"1.0.0"},               # MAL-2026-15522
+    # fintech API/SDK suite. OSV MAL-2026-15501..15522, MAL-2026-15571..15573
+    "grafeno-api": {"1.0.0", "1.0.1"},      # MAL-2026-15501
+    "grafeno-auth": {"1.0.0"},               # MAL-2026-15502
+    "grafeno-billing": {"1.0.0"},            # MAL-2026-15571
+    "grafeno-client": {"1.0.0"},             # MAL-2026-15503
+    "grafeno-config": {"1.0.0"},             # MAL-2026-15504
+    "grafeno-core": {"1.0.0", "1.0.1"},      # MAL-2026-15505
+    "grafeno-logger": {"1.0.0", "1.0.1"},    # MAL-2026-15506
+    "grafeno-payments": {"1.0.0"},           # MAL-2026-15572
+    "grafeno-pix": {"1.0.0", "1.0.1"},       # MAL-2026-15507
+    "grafeno-sdk": {"1.0.0", "1.0.1"},       # MAL-2026-15508
+    "grafeno-utils": {"1.0.0"},               # MAL-2026-15509
+    "grafeno-webhook": {"1.0.0"},            # MAL-2026-15573
+    "spc-grafeno": {"1.0.0"},                 # MAL-2026-15522
     # ─── dep-confusion 45.0.0 / 55.0.0 / 30.0.0 batch (Aug 28 2026): 30 pkgs ──
     # Internal-tool names published at inflated version numbers; classic dependency
     # confusion probes targeting Alibaba, Intuit, Atlassian, Ring, Mintel, etc.
@@ -11075,6 +11080,13 @@ NPM_BAD: dict[str, set[str]] = {
     "test-in-one": {"1.0.0"},  # MAL-2026-15562
     "vitest-chalk-pro": {"10.0.7"},  # MAL-2026-15563
     "vs-modules": {"1.2.2"},  # MAL-2026-15564
+    # ─── misc npm typosquat/malware batch (Aug 29 2026) ──────────────────────────
+    # Four new packages with ranges: introduced 0 (any version malicious).
+    # OSV MAL-2026-15567..15570
+    "htps-provider": set(),           # MAL-2026-15567, GHSA-gcqr-3vw3-7fqm
+    "manager-thedate": set(),         # MAL-2026-15568, GHSA-3rww-v3p8-fw9p
+    "nuvyra-marketplace-sdk": set(),  # MAL-2026-15569, GHSA-rq2p-956p-32h6
+    "node-net-pool": set(),           # MAL-2026-15570, GHSA-vm9g-mp9v-6q5p
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
