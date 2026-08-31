@@ -1604,6 +1604,13 @@ PYPI_BAD: dict[str, set[str]] = {
     "calcboxlite": {"1.0"},                  # MAL-2026-15488 — calculator utility typosquat
     # ─── Aug 29 2026: Flask utility typosquat ────────────────────────────────────
     "flask-header-guard": {"1.0.0"},        # MAL-2026-15566 — Flask plugin typosquat
+    # ─── Aug 30 2026: Streamlit malware + Tron private-key stealers ──────────────
+    # auth-app-streamlit exfiltrates credentials from Streamlit deployments.
+    # trongridor / tronlinker target Tron blockchain users for private-key theft.
+    # OSV MAL-2026-15577, MAL-2026-15578, MAL-2026-15588
+    "auth-app-streamlit": {"2.1.1"},  # MAL-2026-15577
+    "trongridor": {"0.0.1"},          # MAL-2026-15578 — Tron private-key stealer
+    "tronlinker": {"0.0.1"},          # MAL-2026-15588 — Tron private-key stealer
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11012,6 +11019,7 @@ NPM_BAD: dict[str, set[str]] = {
     "grafeno-sdk": {"1.0.0", "1.0.1"},       # MAL-2026-15508
     "grafeno-utils": {"1.0.0"},               # MAL-2026-15509
     "grafeno-webhook": {"1.0.0"},            # MAL-2026-15573
+    "grafeno-actions": {"999.0.0"},          # MAL-2026-15596
     "spc-grafeno": {"1.0.0"},                 # MAL-2026-15522
     # ─── dep-confusion 45.0.0 / 55.0.0 / 30.0.0 batch (Aug 28 2026): 30 pkgs ──
     # Internal-tool names published at inflated version numbers; classic dependency
@@ -11087,6 +11095,46 @@ NPM_BAD: dict[str, set[str]] = {
     "manager-thedate": set(),         # MAL-2026-15568, GHSA-3rww-v3p8-fw9p
     "nuvyra-marketplace-sdk": set(),  # MAL-2026-15569, GHSA-rq2p-956p-32h6
     "node-net-pool": set(),           # MAL-2026-15570, GHSA-vm9g-mp9v-6q5p
+    # ─── Autobahn/DB dep-confusion probes (Aug 30 2026) ──────────────────────────
+    # Two packages impersonating Deutsche Bank's internal autobahn tooling at
+    # implausibly high version numbers — classic dep-confusion probes.
+    # OSV MAL-2026-15589, MAL-2026-15590
+    "autobahn-electron-probe": {"99.99.1"},                       # MAL-2026-15589
+    "com.db.autobahn.notification-center-electron": {"88.88.2"},  # MAL-2026-15590
+    # ─── Web3 / DeFi malicious tools (Aug 30 2026): 8 packages ──────────────────
+    # Credential-exfiltrating packages targeting Web3/DeFi workflows:
+    # Fuel Network SDK impostors, schema/verify tools for ethers & viem,
+    # a random cre-setup dropper, and an npx OOB probe.
+    # OSV MAL-2026-15591..15599 (excl. 15596 grafeno-actions, added above)
+    "cre-setup": {"1.0.0"},           # MAL-2026-15591
+    "fuels-core": {"1.0.0"},          # MAL-2026-15592 — Fuel Network SDK impostor
+    "fuels-typegen": {"1.0.0"},       # MAL-2026-15593 — Fuel typegen impostor
+    "generate-schema-ethers": {"1.0.0"},  # MAL-2026-15594
+    "generate-schema-viem": {"1.0.0"},    # MAL-2026-15595
+    "npx-oob-package": {"1.0.2"},         # MAL-2026-15597 — OOB exfil probe
+    "verify-contract-ethers": {"1.0.0"},  # MAL-2026-15598
+    "verify-contract-viem": {"1.0.0"},    # MAL-2026-15599
+    # ─── misc npm malware batch (Aug 30–31 2026): 15 pure-malware typosquats ────
+    # GHSA-sourced, all ranges: introduced 0 — any installed version is malicious.
+    # Includes an @fidzzhost/baileys fake (targets WhatsApp bot devs), a
+    # @lucideproxy/svg Lucide icon proxy, ESLint/Prettier and Redis tooling
+    # typosquats, h-codex cluster, cloud-exfiltrator cluster, and misc.
+    # OSV MAL-2026-15574..15576, MAL-2026-15579..15588, MAL-2026-15600..15602
+    "gclassroom": set(),                  # MAL-2026-15574, GHSA-6c25-pq89-3m9w
+    "opiumbest": set(),                   # MAL-2026-15575, GHSA-pwqr-5gcr-9rc4
+    "quesoeducation": set(),              # MAL-2026-15576, GHSA-mm9m-8q5p-fxwx
+    "@fidzzhost/baileys": set(),          # MAL-2026-15579, GHSA-vc2v-c8j2-qxg9
+    "brat-codex": set(),                  # MAL-2026-15580, GHSA-63wg-22hx-h5q4
+    "cloudfcrxz": set(),                  # MAL-2026-15581, GHSA-p375-pmrj-262v
+    "cloufcrxz": set(),                   # MAL-2026-15582, GHSA-gxpc-36pf-vcrw
+    "h2-codex": set(),                    # MAL-2026-15583, GHSA-8h78-gfj3-qrp2
+    "h3-codex": set(),                    # MAL-2026-15584, GHSA-w6m7-6jhr-mfjc
+    "h3client": set(),                    # MAL-2026-15585, GHSA-89vf-5xgx-fhq7
+    "originaldevelopmentstelemetry": set(),  # MAL-2026-15586, GHSA-m8hq-jrvf-g8xm
+    "real-browser-plus": set(),           # MAL-2026-15587, GHSA-ffvr-gx62-j45m
+    "@lucideproxy/svg": set(),            # MAL-2026-15600, GHSA-6j97-93gg-j7r8
+    "eslint-prettier-js": set(),          # MAL-2026-15601, GHSA-fp43-fcrg-6w93
+    "redis-cookie-server": set(),         # MAL-2026-15602, GHSA-jgx3-v64x-v2w5
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
