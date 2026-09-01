@@ -1604,6 +1604,10 @@ PYPI_BAD: dict[str, set[str]] = {
     "calcboxlite": {"1.0"},                  # MAL-2026-15488 — calculator utility typosquat
     # ─── Aug 29 2026: Flask utility typosquat ────────────────────────────────────
     "flask-header-guard": {"1.0.0"},        # MAL-2026-15566 — Flask plugin typosquat
+    # ─── Sep 1 2026: server-check exfiltrator + Minecraft receiver ───────────────
+    # pyservercheck: fake server diagnostics library with postinstall exfil payload.
+    # OSV MAL-2026-15603
+    "pyservercheck": {"0.1.0", "0.1.1"},    # MAL-2026-15603
     # ─── Aug 30 2026: Streamlit malware + Tron private-key stealers ──────────────
     # auth-app-streamlit exfiltrates credentials from Streamlit deployments.
     # trongridor / tronlinker target Tron blockchain users for private-key theft.
@@ -11135,6 +11139,105 @@ NPM_BAD: dict[str, set[str]] = {
     "@lucideproxy/svg": set(),            # MAL-2026-15600, GHSA-6j97-93gg-j7r8
     "eslint-prettier-js": set(),          # MAL-2026-15601, GHSA-fp43-fcrg-6w93
     "redis-cookie-server": set(),         # MAL-2026-15602, GHSA-jgx3-v64x-v2w5
+    # ─── Sep 1 2026: @yane88 scope — 19 packages, Windows-tool repackagers ────────
+    # Attacker-controlled @yane88 scope publishing repackaged Windows binaries
+    # (Listary, Reqable, ripgrep, workbuddy, JetBrains IDEs) that exfiltrate
+    # credentials. All versions malicious (introduced: 0).
+    # OSV MAL-2026-15649..15667
+    "@yane88/hexhub-client": set(),      # MAL-2026-15649
+    "@yane88/idea-2026.2": set(),        # MAL-2026-15650
+    "@yane88/idea-2026.2-01": set(),     # MAL-2026-15651
+    "@yane88/idea-2026.2-02": set(),     # MAL-2026-15652
+    "@yane88/idea-2026.2-03": set(),     # MAL-2026-15653
+    "@yane88/idea-2026.2-04": set(),     # MAL-2026-15654
+    "@yane88/idea-2026.2-05": set(),     # MAL-2026-15655
+    "@yane88/idea-2026.2-06": set(),     # MAL-2026-15656
+    "@yane88/listary": set(),            # MAL-2026-15657
+    "@yane88/listary-01": set(),         # MAL-2026-15658
+    "@yane88/listary-02": set(),         # MAL-2026-15659
+    "@yane88/ripgrep-win": set(),        # MAL-2026-15660
+    "@yane88/term-reqable": set(),       # MAL-2026-15661
+    "@yane88/term-reqable-01": set(),    # MAL-2026-15662
+    "@yane88/term-reqable-02": set(),    # MAL-2026-15663
+    "@yane88/workbuddy": set(),          # MAL-2026-15664
+    "@yane88/workbuddy-01": set(),       # MAL-2026-15665
+    "@yane88/workbuddy-02": set(),       # MAL-2026-15666
+    "@yane88/workbuddy-03": set(),       # MAL-2026-15667
+    # ─── Sep 1 2026: @baipiaodajun scope — 5 packages, SSH/proxy malware ──────────
+    # Attacker-controlled scope publishing reverse-proxy and SSH-key harvesters.
+    # All versions malicious. OSV MAL-2026-15639..15643
+    "@baipiaodajun/mcbot": set(),           # MAL-2026-15639
+    "@baipiaodajun/mcbots": set(),          # MAL-2026-15640
+    "@baipiaodajun/npmsshx": set(),         # MAL-2026-15641
+    "@baipiaodajun/podman_env": set(),      # MAL-2026-15642
+    "@baipiaodajun/reverseproxy-fm": set(), # MAL-2026-15643
+    # ─── Sep 1 2026: misc single-scope pure-malware entries ──────────────────────
+    # @pipi596888/ccursor — cursor IDE impersonator. MAL-2026-15644
+    "@pipi596888/ccursor": set(),
+    # @fdr-mar/promos-types — attacker scope, all versions malicious. MAL-2026-15648
+    "@fdr-mar/promos-types": set(),
+    # @worrisome/reutil — attacker scope, all versions malicious. MAL-2026-15604
+    "@worrisome/reutil": set(),
+    # @testrelic/appium-analytics — fake Appium analytics node. MAL-2026-15647
+    "@testrelic/appium-analytics": {"1.1.1-next.88"},
+    # ─── Sep 1 2026: random-string cluster — 16 pure-malware typosquats ───────────
+    # Cluster of obfuscated-name packages with no legitimate use; all carry
+    # postinstall dropper payloads. OSV MAL-2026-15605..15620
+    "m2fcsfyjkuxb": set(),    # MAL-2026-15605
+    "m3fdfocdoewn": set(),    # MAL-2026-15606
+    "mbxcnsuwgs1": set(),     # MAL-2026-15607
+    "mjsdqwocvn": set(),      # MAL-2026-15608
+    "mn2adskhweox": set(),    # MAL-2026-15609
+    "mn3sadkoiewu": set(),    # MAL-2026-15610
+    "mn4xcouzvhus": set(),    # MAL-2026-15611
+    "mndsxcusiwlk1": set(),   # MAL-2026-15612
+    "mobiwaefhxc3": set(),    # MAL-2026-15613
+    "ndmfguyhoxc3": set(),    # MAL-2026-15614
+    "ndmushdkeqe": set(),     # MAL-2026-15615
+    "ndmxchdjxn2": set(),     # MAL-2026-15616
+    "skxcmwuncbg2": set(),    # MAL-2026-15617
+    "tesgfvbncsdbcv": set(),  # MAL-2026-15618
+    "testdgdbcsd": set(),     # MAL-2026-15619
+    "vxhjkseuiaqkb": set(),   # MAL-2026-15620
+    # ─── Sep 1 2026: misc pure-malware typosquats ─────────────────────────────────
+    # Assorted single-package pure-malware entries; all introduced: 0.
+    "nitroping": set(),             # MAL-2025-191134 — data-exfil tool
+    "acme-diagnostics": set(),      # MAL-2025-6396 — ACME typosquat
+    "core_main": set(),             # MAL-2026-15668
+    "kendo-angular-window": set(),  # MAL-2026-15669 — Kendo UI typosquat
+    "kisama-js": set(),             # MAL-2026-15645
+    "matrix-by-lmx": set(),        # MAL-2026-15670
+    "pig-ui-first": set(),          # MAL-2026-15646
+    "quartz-core": set(),           # MAL-2026-15671
+    "randomunblockedwebsite": set(), # MAL-2026-15672
+    "selfsigned-certificate": set(), # MAL-2026-15623
+    # ─── Sep 1 2026: MFA campaign extensions (3 packages) ─────────────────────────
+    # Additional packages from the same actor behind mfacord/mfakit/mfa-js.
+    # OSV MAL-2026-15628..15630
+    "mfa.io": {"1.0.0", "1.0.1"},     # MAL-2026-15628
+    "mfaatest": {"1.0.0"},            # MAL-2026-15629
+    "mfafix": {"1.1.0", "1.1.1"},     # MAL-2026-15630
+    # ─── Sep 1 2026: grafeno/SPC campaign extensions (2 packages) ─────────────────
+    # Two more SPC login packages tied to the grafeno dep-confusion campaign.
+    # OSV MAL-2026-15622, MAL-2026-15633
+    "spc_login": {"1.0.0"},          # MAL-2026-15622
+    "spc-grafeno-login": {"1.0.0"},  # MAL-2026-15633
+    # ─── Sep 1 2026: Fuel Network SDK impostors — fuels-forc (1 package) ──────────
+    # Additional Fuel Network SDK impostor; companion to fuels-core/fuels-typegen.
+    "fuels-forc": {"1.0.0"},         # MAL-2026-15626
+    # ─── Sep 1 2026: misc versioned malware batch (9 packages) ───────────────────
+    # Miscellaneous packages with pinned malicious versions from the Aug 31–Sep 1 sweep.
+    "claude-channel-telegram": {"9.9.9"},                          # MAL-2026-15624 — implausible version probe
+    "evilpostinstall": {"0.2.0", "0.6.0", "49.13.4074225", "4127000.0.1"},  # MAL-2026-15625
+    "gas-monitor": {"1.1.0"},                                      # MAL-2026-15621
+    "hyperliquid-composer": {"1.0.0"},                             # MAL-2026-15627
+    "nextjsupdater": {"1.2.1"},                                    # MAL-2026-15631
+    "node-request-utils": {"1.0.0"},                               # MAL-2026-15632
+    "tailwind-minanimated": {"2.3.7"},                             # MAL-2026-15634
+    "tailwind-modernanimation": {"2.3.8"},                         # MAL-2026-15635
+    "tailwindcss-forms-style": {"0.1.2"},                          # MAL-2026-15636
+    "test__123q1": {"3.2.4", "4.3.5"},                             # MAL-2026-15637
+    "test__123q2": {"2.1.1"},                                      # MAL-2026-15638
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -11288,6 +11391,19 @@ NPM_SUSPECT_SCOPES = (
     # @hd-team dep-confusion scope (Aug 27 2026) — 8 packages pinned above;
     # scope catches any undisclosed additional @hd-team packages
     "@hd-team/",
+    # @yane88 Windows-tool repackager scope (Sep 1 2026) — 19 packages pinned above;
+    # scope catches any undisclosed additional @yane88 packages
+    "@yane88/",
+    # @baipiaodajun SSH/proxy malware scope (Sep 1 2026) — 5 packages pinned above
+    "@baipiaodajun/",
+    # @pipi596888 attacker scope (Sep 1 2026) — ccursor pinned above
+    "@pipi596888/",
+    # @fdr-mar attacker scope (Sep 1 2026) — promos-types pinned above
+    "@fdr-mar/",
+    # @worrisome attacker scope (Sep 1 2026) — reutil pinned above
+    "@worrisome/",
+    # @testrelic fake Appium scope (Sep 1 2026) — appium-analytics pinned above
+    "@testrelic/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
