@@ -510,7 +510,17 @@ fund-calculator, @temptation.js/utils, dpg-media-7ehemel, @gsas/gsas-sdk, web-ad
 Tinkoff/devplatform + sme-* continuation (5 packages; MAL-2026-12208/12440/12441/12730/12763),
 Tailwind animation typosquats (MAL-2026-12219/12220), older OSV records refreshed Aug 24
 (MAL-2026-4164/4818/5574/6497/10107), misc mixed batch 19 npm packages, and
-multyproccess/msrcpoc PyPI (MAL-2026-14401/14444).
+multyproccess/msrcpoc PyPI (MAL-2026-14401/14444),
+and the Sep 1-2 2026 sweep: 21 new npm packages (@bpa-internal/* dep-confusion
+4-package cluster at 99.99.98/99.99.99; @pimy-b2cweb/* 2-package dep-confusion
+at 99.99.99; @yuva2210/* 2 RCE/exchange-attack PoC packages targeting HTX/OKX;
+@x-team/strapi 3 malicious versions; fuels-versions Fuel Network impostor;
+bamru any-version dropper; 6 misc dep-confusion probes; 5 ecosystem typosquats:
+leaflet-opencage-geocoding, mongosooe, react-hook-doms, eslint-rxjs;
+OSV MAL-2026-15673 through 15692, MAL-2026-15812), and 4 new PyPI packages
+(py-devoli-common dep-confusion, tallyboxlite exfiltrator, gcphelpit GCP
+credential-stealer, syswatch background-thread exfiltrator;
+OSV MAL-2026-15693, 15809, 15810, 15811).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -523,7 +533,7 @@ removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
 Author:    Jascha Wanger / Tarnover, LLC
-Date:      2026-08-16
+Date:      2026-09-02
 License:   MIT
 Usage:     check_compromised_packages.py [path]   (defaults to cwd)
 Exit code: 0 clean, 1 hit(s) found, 2 error
@@ -1615,6 +1625,16 @@ PYPI_BAD: dict[str, set[str]] = {
     "auth-app-streamlit": {"2.1.1"},  # MAL-2026-15577
     "trongridor": {"0.0.1"},          # MAL-2026-15578 — Tron private-key stealer
     "tronlinker": {"0.0.1"},          # MAL-2026-15588 — Tron private-key stealer
+    # ─── Sep 1-2 2026: dep-confusion + exfiltration PyPI batch (4 packages) ───────
+    # py-devoli-common: dep-confusion probe at 999.999.999 targeting private Devoli scope.
+    # tallyboxlite: exfiltrates data on install/import; sibling of calcboxlite.
+    # gcphelpit: GCP credential stealer; _verify.py module runs at import time.
+    # syswatch: starts a background thread on import exfiltrating host info.
+    # OSV MAL-2026-15693, MAL-2026-15809, MAL-2026-15810, MAL-2026-15811
+    "py-devoli-common": {"999.999.999"},              # MAL-2026-15693
+    "tallyboxlite": {"1.0"},                          # MAL-2026-15809
+    "gcphelpit": {"0.1.0", "0.1.1", "0.1.2"},         # MAL-2026-15810
+    "syswatch": {"1.0.0"},                            # MAL-2026-15811
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11238,6 +11258,41 @@ NPM_BAD: dict[str, set[str]] = {
     "tailwindcss-forms-style": {"0.1.2"},                          # MAL-2026-15636
     "test__123q1": {"3.2.4", "4.3.5"},                             # MAL-2026-15637
     "test__123q2": {"2.1.1"},                                      # MAL-2026-15638
+    # ─── Sep 1-2 2026: dep-confusion batch — @bpa-internal/*, misc (21 packages) ──
+    # @bpa-internal/* (4 packages at 99.99.98/99.99.99): high-version dep-confusion
+    # targeting private BPA internal packages. Scope @bpa-internal/ added below.
+    # OSV MAL-2026-15676, MAL-2026-15677, MAL-2026-15678, MAL-2026-15679
+    "@bpa-internal/bpa-auth":   {"99.99.98", "99.99.99"},  # MAL-2026-15676
+    "@bpa-internal/bpa-common": {"99.99.98", "99.99.99"},  # MAL-2026-15677
+    "@bpa-internal/bpa-types":  {"99.99.98", "99.99.99"},  # MAL-2026-15678
+    "@bpa-internal/bpa-utils":  {"99.99.98", "99.99.99"},  # MAL-2026-15679
+    # @pimy-b2cweb/* (2 packages at 99.99.99): dep-confusion targeting pimy B2C web stack.
+    # Scope @pimy-b2cweb/ added below. OSV MAL-2026-15683, MAL-2026-15684
+    "@pimy-b2cweb/apiclient-common": {"99.99.99"},  # MAL-2026-15683
+    "@pimy-b2cweb/common":           {"99.99.99"},  # MAL-2026-15684
+    # @yuva2210/* (2 packages): attacker-controlled scope targeting HTX/OKX exchanges
+    # with RCE payloads. Scope @yuva2210/ added below.
+    # OSV MAL-2026-15686, MAL-2026-15687
+    "@yuva2210/htx-poc-skills-rce": {"1.0.0", "1.0.1"},  # MAL-2026-15686
+    "@yuva2210/okx-poc-rce-impact": {"2.0.0"},            # MAL-2026-15687
+    # @x-team/strapi — malicious versions in the @x-team npm namespace.
+    # OSV MAL-2026-15685
+    "@x-team/strapi": {"3.6.11", "3.7.0", "3.7.1"},      # MAL-2026-15685
+    # Misc dep-confusion probes (Sep 1-2 2026)
+    "@b2b-frontend/store":          {"1.0.0"},   # MAL-2026-15675
+    "@cawraytestorg/packagetest2":  {"9.9.9"},   # MAL-2026-15680
+    "@grab-food/order-sdk-web":     {"49.9.9"},  # MAL-2026-15681 — Grab Food SDK impostor
+    "@ice-trade-components/common": {"99.99.99"},# MAL-2026-15682
+    "lil-swisgom-hlepers":          {"49.9.9"},  # MAL-2026-15689
+    "unifi-credential-server":      {"99.0.0"},  # MAL-2026-15692
+    # bamru: "System binary configuration tool" dropper; OSV ranges: introduced 0.
+    "bamru": set(),                              # MAL-2026-15674
+    # Ecosystem typosquats (pinned versions)
+    "fuels-versions":             {"1.0.0"},  # MAL-2026-15673 — Fuel Network SDK impostor
+    "leaflet-opencage-geocoding": {"1.0.0"},  # MAL-2026-15688 — typosquat of leaflet-opencage-geocoder
+    "mongosooe":                  {"1.0.1"},  # MAL-2026-15690 — typosquat of mongoose
+    "react-hook-doms":            {"5.3.1"},  # MAL-2026-15691 — typosquat of react-hook-form
+    "eslint-rxjs":                {"1.0.1"},  # MAL-2026-15812 — typosquat of eslint-plugin-rxjs
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -11404,6 +11459,14 @@ NPM_SUSPECT_SCOPES = (
     "@worrisome/",
     # @testrelic fake Appium scope (Sep 1 2026) — appium-analytics pinned above
     "@testrelic/",
+    # Sep 1-2 2026: new dep-confusion and attacker-controlled scopes
+    # @bpa-internal dep-confusion scope (Sep 1 2026) — 4 packages pinned above;
+    # scope catches any undisclosed additional @bpa-internal packages
+    "@bpa-internal/",
+    # @pimy-b2cweb dep-confusion scope (Sep 1 2026) — 2 packages pinned above
+    "@pimy-b2cweb/",
+    # @yuva2210 RCE/exchange-attack attacker scope (Sep 1 2026) — 2 packages pinned above
+    "@yuva2210/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
