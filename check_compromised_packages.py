@@ -5735,6 +5735,24 @@ NPM_BAD: dict[str, set[str]] = {
     "solana-js-client": {"1.0.0"},                                 # MAL-2026-5860
     "solana-mev-bot": {"1.0.0"},                                   # MAL-2026-5861
 
+    # Fake-SDK credential-harvest cluster (July 22-24 2026)
+    # Three packages impersonating official SendGrid, GPT/OpenAI, and Twilio SDKs.
+    # postinstall runs installer-side recon (hostname, FQDN, env) and phones home.
+    # OSV MAL-2026-5572 (GHSA-3cvf-g4vx-wgr3), MAL-2026-5612 (GHSA-wrmh-73gr-22fc),
+    # MAL-2026-5621 (GHSA-889w-p55g-884m).
+    "sendgrid-sdk": {
+        "0.1.0", "0.1.1", "0.1.2", "0.1.3",
+        "0.2.0", "0.2.1", "0.2.2", "0.2.3", "0.2.4",
+    },                                                              # MAL-2026-5572
+    "gpt-sdk": {
+        "0.1.0", "0.1.1", "0.1.2", "0.1.3",
+        "0.2.0", "0.2.1", "0.2.2", "0.2.3", "0.2.4",
+    },                                                              # MAL-2026-5612
+    "twilio-sdk": {
+        "0.1.0", "0.1.1", "0.1.2", "0.1.3",
+        "0.2.0", "0.2.1", "0.2.2", "0.2.3", "0.2.4",
+    },                                                              # MAL-2026-5621
+
     # n8n malicious nodes cluster (July 22-24 2026)
     # Seven malicious n8n community nodes with port-scanner, net-utils, and
     # postinstall-exec payloads. OSV MAL-2026-10997 through MAL-2026-11006.
@@ -11238,6 +11256,21 @@ NPM_BAD: dict[str, set[str]] = {
     "tailwindcss-forms-style": {"0.1.2"},                          # MAL-2026-15636
     "test__123q1": {"3.2.4", "4.3.5"},                             # MAL-2026-15637
     "test__123q2": {"2.1.1"},                                      # MAL-2026-15638
+    # ─── Sep 2 2026: @stellarshift crypto campaign (4 packages) ──────────────────
+    # Four packages in the @stellarshift npm scope with XOR-obfuscated postinstall
+    # payloads targeting Web3/EVM developers. All versions have active MAL-* records.
+    # OSV MAL-2026-15821 / MAL-2026-15822 / MAL-2026-15823 / MAL-2026-15824.
+    "@stellarshift/abi-tools": {"1.0.1", "1.0.3"},      # MAL-2026-15821
+    "@stellarshift/chain-metadata": {"1.0.1", "1.0.3"}, # MAL-2026-15822
+    "@stellarshift/evm-address-kit": {"1.0.1", "1.0.3"},# MAL-2026-15823
+    "@stellarshift/token-units": {"1.0.1", "1.0.3"},    # MAL-2026-15824
+    # ─── Sep 2 2026: malicious Baileys forks (2 packages) ─────────────────────────
+    # Two malicious forks of @whiskeysockets/baileys (WhatsApp Web library).
+    # @mrlegendbot/baileys auto-follows attacker-chosen WhatsApp newsletter channels;
+    # @systemzero/baileys establishes a hardcoded remote-control signal stream.
+    # OSV MAL-2026-15819 / MAL-2026-15820 (cross-ref MAL-2026-13929/13932).
+    "@mrlegendbot/baileys": {"1.2.4", "1.2.5"},         # MAL-2026-15819
+    "@systemzero/baileys": {"1.1.2"},                   # MAL-2026-15820
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
