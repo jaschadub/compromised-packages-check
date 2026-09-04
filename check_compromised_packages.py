@@ -1615,6 +1615,27 @@ PYPI_BAD: dict[str, set[str]] = {
     "auth-app-streamlit": {"2.1.1"},  # MAL-2026-15577
     "trongridor": {"0.0.1"},          # MAL-2026-15578 — Tron private-key stealer
     "tronlinker": {"0.0.1"},          # MAL-2026-15588 — Tron private-key stealer
+    # ─── Sep 3–4 2026: requests typosquat cluster (4 packages) ──────────────────
+    # Four packages impersonating the 'requests' HTTP library. Each installs an
+    # env-var / credential exfiltrator on import. OSV MAL-2026-15859/15860/15861/15862.
+    "0requests": {"0.0.1"},           # MAL-2026-15859 — one-char requests typosquat
+    "py-0requests": {"0.0.1"},        # MAL-2026-15860 — requests typosquat
+    "py-1requests": {"0.0.1"},        # MAL-2026-15861 — requests typosquat
+    "py-2equests": {"0.0.1"},         # MAL-2026-15862 — requests typosquat (char-swap)
+    # ─── Sep 3–4 2026: PyPI misc credential infostealers (6 packages) ───────────
+    # company-sdk: SSH key + cloud credential harvester executed at import time.
+    # env-validator-tool: env-var exfiltrator disguised as a validation helper.
+    # telemetry-helper: multi-version credential exfiltrator (8 published versions).
+    # trongridi: Tron blockchain private-key stealer (variant of trongridor).
+    # uvhttp-custom: malicious repackage of uvicorn/httpx stack.
+    # asti: generic env-var infostealer.
+    # OSV MAL-2026-15827/15828/15829/15858/15863/15864.
+    "company-sdk": {"0.0.1"},                               # MAL-2026-15827
+    "env-validator-tool": {"1.0.0", "1.0.1", "1.0.2"},     # MAL-2026-15828
+    "telemetry-helper": {"1.0.0", "1.0.1", "1.0.2", "1.1.0", "1.2.0", "1.3.0", "2.0.0", "2.0.1"},  # MAL-2026-15829
+    "trongridi": {"0.0.1"},                                 # MAL-2026-15858 — Tron stealer
+    "uvhttp-custom": {"1.7.9", "1.8.1", "1.9.9"},          # MAL-2026-15863
+    "asti": {"0.1.0"},                                      # MAL-2026-15864
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11271,6 +11292,100 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-15819 / MAL-2026-15820 (cross-ref MAL-2026-13929/13932).
     "@mrlegendbot/baileys": {"1.2.4", "1.2.5"},         # MAL-2026-15819
     "@systemzero/baileys": {"1.1.2"},                   # MAL-2026-15820
+    # ─── Sep 3 2026: frank-apple/google dependency-confusion cluster (10 packages) ─
+    # Two earlier probes (MAL-2026-3080/3081, first seen Mar 2026, OSV record
+    # updated Sep 3) plus 8 new packages (MAL-2026-15833/34/37/38/39/40/41/42)
+    # targeting Apple and Google internal package namespaces. All are pure-malware
+    # dependency-confusion probes; any version is malicious.
+    "frank-bot-gogle-cloning": {"1.1.0"},          # MAL-2026-3080
+    "frank-research-poc-apple": {"1.1.4"},         # MAL-2026-3081
+    "apple-cktool-internal-api-v9": set(),         # MAL-2026-15833
+    "apple-internal-test-utility": set(),          # MAL-2026-15834
+    "frank-apple-sync-service": set(),             # MAL-2026-15837
+    "frank-apple-utils": set(),                    # MAL-2026-15838
+    "google-cloud-internal-build-helper": set(),   # MAL-2026-15839
+    "google-cloud-internal-core-utils": set(),     # MAL-2026-15840
+    "google-cloud-mono-repo-helper": set(),        # MAL-2026-15841
+    "google-internal-cloud-audit-security-check": set(),  # MAL-2026-15842
+    # ─── Sep 3 2026: @viertechjs WhatsApp/messaging malware (3 packages) ─────────
+    # Attacker-controlled scope publishing malicious Baileys (WhatsApp Web) forks
+    # and an API package. All versions fully compromise the host.
+    # OSV MAL-2026-15830/15831/15832.
+    "@viertechjs/api": set(),                      # MAL-2026-15830
+    "@viertechjs/baileys": set(),                  # MAL-2026-15831
+    "@viertechjs/wb": set(),                       # MAL-2026-15832
+    # ─── Sep 3 2026: @quantixfinance env-var credential exfiltrator (10 packages) ─
+    # Fake DeFi/finance SDK scope. Each package's preinstall script collects every
+    # env variable whose name contains a cloud/API key pattern and exfiltrates it.
+    # OSV MAL-2026-15848 through MAL-2026-15857.
+    "@quantixfinance/api": {"1.0.0"},              # MAL-2026-15848
+    "@quantixfinance/common": {"1.0.0"},           # MAL-2026-15849
+    "@quantixfinance/config": {"1.0.0"},           # MAL-2026-15850
+    "@quantixfinance/contracts": {"1.0.0"},        # MAL-2026-15851
+    "@quantixfinance/sdk": {"1.0.0"},              # MAL-2026-15852
+    "@quantixfinance/supabase": {"1.0.0"},         # MAL-2026-15853
+    "@quantixfinance/token": {"1.0.0"},            # MAL-2026-15854
+    "@quantixfinance/tron": {"1.0.0"},             # MAL-2026-15855
+    "@quantixfinance/ui": {"1.0.0"},               # MAL-2026-15856
+    "@quantixfinance/wallet": {"1.0.0"},           # MAL-2026-15857
+    # ─── Sep 3–4 2026: @bx-ui-framework dependency-confusion (3 packages) ────────
+    # Three packages pull a runtime dependency from an attacker-controlled
+    # Artifactory mirror (repo.artifactorymanager.com). Versions 1.2.0 and 15.0.0.
+    # OSV MAL-2026-15866/15867/15868.
+    "@bx-ui-framework/authentication": {"1.2.0", "15.0.0"},  # MAL-2026-15866
+    "@bx-ui-framework/common": {"1.2.0", "15.0.0"},          # MAL-2026-15867
+    "@bx-ui-framework/microfrontend": {"15.0.0"},             # MAL-2026-15868
+    # ─── Sep 3–4 2026: guci/btree Chinese-ecosystem malware cluster (15 packages) ─
+    # Two distinct attacker-controlled clusters, both pure-malware with no
+    # legitimate use. btree-* / indexed-btree publish fake data-structure
+    # implementations; guci-* / element-*-guci impersonate a Chinese Vue.js
+    # component library. Also includes misc typosquats: fullcalendar-windos,
+    # html_vue, vscode-vue. OSV MAL-2026-15873 through MAL-2026-15894 (various).
+    "btree-core": set(),                           # MAL-2026-15873
+    "btree-leaderboard": set(),                    # MAL-2026-15874
+    "btree-lru-cache": set(),                      # MAL-2026-15875
+    "btree-range-store": set(),                    # MAL-2026-15876
+    "btree-time-index": set(),                     # MAL-2026-15877
+    "indexed-btree": set(),                        # MAL-2026-15888
+    "element-guci-util": set(),                    # MAL-2026-15880
+    "element-icon-guci": set(),                    # MAL-2026-15881
+    "element-utils-guci": set(),                   # MAL-2026-15882
+    "guci-date": set(),                            # MAL-2026-15884
+    "guci-main": set(),                            # MAL-2026-15885
+    "guci-wxrout": set(),                          # MAL-2026-15886
+    "fullcalendar-windos": set(),                  # MAL-2026-15883 — fullcalendar typosquat
+    "html_vue": set(),                             # MAL-2026-15887
+    "vscode-vue": set(),                           # MAL-2026-15894
+    # ─── Sep 3–4 2026: miscellaneous npm malware batch (20 packages) ─────────────
+    # Isolated pure-malware packages and version-pinned compromises across
+    # multiple campaigns disclosed Sep 3–4 2026. Sources: OSV bulk export.
+    "fuels-versions": {"1.0.0"},                   # MAL-2026-15673 — Fuel blockchain typosquat
+    "bamru": {"1.0.0"},                            # MAL-2026-15674
+    "@grab-food/order-sdk-web": {"49.9.9"},        # MAL-2026-15681 — dep-confusion probe
+    "@yuva2210/okx-poc-rce-impact": {"2.0.0"},     # MAL-2026-15687 — OKX RCE probe
+    "lil-swisgom-hlepers": {"49.9.9"},             # MAL-2026-15689
+    "eslint-rxjs": {"1.0.1"},                      # MAL-2026-15812 — eslint-rxjs typosquat
+    "bt2-api-gateway-node-js": {"999.0.0", "999.0.1"},  # MAL-2026-15813 — SSH-key exfiltrator
+    "order-package-saas": {"999.0.0", "999.0.1"}, # MAL-2026-15816 — dep-confusion probe
+    "daisypick": {"1.2.0"},                        # MAL-2026-15835
+    "eyiouss": set(),                              # MAL-2026-15836
+    "is-generator-check": set(),                   # MAL-2026-15843
+    "onceaction": set(),                           # MAL-2026-15844
+    "react-mongoose": set(),                       # MAL-2026-15845
+    "tailwind-theme-engine": set(),                # MAL-2026-15846
+    "fieldbase-webapplication-buildtools": {"99.99.99"},  # MAL-2026-15847 — dep-confusion
+    "@avigilon/node-webrtc": {"2.1.4", "2.1.5"},  # MAL-2026-15865 — Avigilon dep-confusion
+    "mcp-consultasdeveiculos-client": {"0.0.2", "0.1.0", "0.1.1"},  # MAL-2026-15869
+    "vitest-cli-dev": {"10.0.7"},                  # MAL-2026-15870 — vitest-cli typosquat
+    "wallet-watcher": {"1.0.2"},                   # MAL-2026-15871
+    "@a23842/dsh-notifier": set(),                 # MAL-2026-15872
+    "cbc97b7a": set(),                             # MAL-2026-15878
+    "dsh-waste-market": set(),                     # MAL-2026-15879
+    "neighbor-key-map": set(),                     # MAL-2026-15889
+    "ordered-freq-counter": set(),                 # MAL-2026-15890
+    "ordered-kv-index": set(),                     # MAL-2026-15891
+    "priority-slot-queue": set(),                  # MAL-2026-15892
+    "sliding-score-window": set(),                 # MAL-2026-15893
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -11437,6 +11552,24 @@ NPM_SUSPECT_SCOPES = (
     "@worrisome/",
     # @testrelic fake Appium scope (Sep 1 2026) — appium-analytics pinned above
     "@testrelic/",
+    # Sep 3–4 2026 new attacker-controlled scopes
+    # @viertechjs/ WhatsApp/messaging malware scope — 3 packages pinned above;
+    # entire attacker-controlled scope; scope catches any undisclosed additional packages
+    "@viertechjs/",
+    # @quantixfinance/ fake DeFi env-var exfiltrator scope — 10 packages pinned above;
+    # entire attacker-controlled scope; scope catches any additional @quantixfinance packages
+    "@quantixfinance/",
+    # @bx-ui-framework/ dep-confusion scope — 3 packages (authentication, common,
+    # microfrontend) pinned above pulling from attacker-controlled Artifactory mirror
+    "@bx-ui-framework/",
+    # @a23842/ attacker scope (Sep 4 2026) — dsh-notifier pinned above
+    "@a23842/",
+    # @yuva2210/ attacker scope (Sep 4 2026) — okx-poc-rce-impact pinned above
+    "@yuva2210/",
+    # @grab-food/ dep-confusion scope (Sep 4 2026) — order-sdk-web probe pinned above
+    "@grab-food/",
+    # @avigilon/ dep-confusion scope (Sep 4 2026) — node-webrtc pinned above
+    "@avigilon/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
