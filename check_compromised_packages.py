@@ -1636,6 +1636,29 @@ PYPI_BAD: dict[str, set[str]] = {
     "trongridi": {"0.0.1"},                                 # MAL-2026-15858 — Tron stealer
     "uvhttp-custom": {"1.7.9", "1.8.1", "1.9.9"},          # MAL-2026-15863
     "asti": {"0.1.0"},                                      # MAL-2026-15864
+    # ─── Sep 4 2026: PyPI dep-confusion probes (3 packages) ─────────────────────
+    # olympuslib / pymaas / tpu-raiden-jax — dep-confusion probes at 99.99.0
+    # targeting ML/cloud package names. All fire a canary/exfil callback on
+    # import. Detected by Amazon Inspector.
+    # OSV MAL-2026-15928, MAL-2026-15929, MAL-2026-15930
+    "olympuslib": {"99.99.0"},               # MAL-2026-15928 — dep-confusion probe
+    "pymaas": {"99.99.0"},                   # MAL-2026-15929 — dep-confusion probe
+    "tpu-raiden-jax": {"99.99.0"},           # MAL-2026-15930 — dep-confusion probe
+    # ─── Sep 4 2026: PyPI misc malware batch (6 packages) ───────────────────────
+    # timeweave: fake timezone/i18n library; all 10 published versions (1.0–1.9)
+    # contain an install-time credential exfiltrator. Detected by Amazon Inspector.
+    # astlsi / qoeoe: generic env-var infostealers (single version each).
+    # metricboxlite / chartkit-core: fake metrics/chart libraries with malware payload.
+    # houdus: infostealer (1.0.0 and 1.0.1).
+    # OSV MAL-2026-15910, MAL-2026-15926, MAL-2026-15927, MAL-2026-15931,
+    # MAL-2026-15932, MAL-2026-15933
+    "timeweave": {"1.0.0", "1.1.0", "1.2.0", "1.3.0", "1.4.0",
+                  "1.5.0", "1.6.0", "1.7.0", "1.8.0", "1.9.0"},  # MAL-2026-15910
+    "astlsi": {"0.1.0"},                     # MAL-2026-15926
+    "qoeoe": {"0.1.0"},                      # MAL-2026-15927
+    "metricboxlite": {"1.0", "2.0"},         # MAL-2026-15931
+    "chartkit-core": {"1.0"},                # MAL-2026-15932
+    "houdus": {"1.0.0", "1.0.1"},            # MAL-2026-15933
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11386,6 +11409,75 @@ NPM_BAD: dict[str, set[str]] = {
     "ordered-kv-index": set(),                     # MAL-2026-15891
     "priority-slot-queue": set(),                  # MAL-2026-15892
     "sliding-score-window": set(),                 # MAL-2026-15893
+    # ─── Sep 4 2026: Tailwind plugin typosquat batch (6 packages) ───────────────
+    # Six packages impersonating legitimate Tailwind CSS plugins; each fires a
+    # malicious payload on require. Detected by Amazon Inspector.
+    # OSV MAL-2026-15903, MAL-2026-15904, MAL-2026-15905, MAL-2026-15906,
+    # MAL-2026-15912, MAL-2026-15925
+    "tailwind-container-queries": {"0.1.1"},  # MAL-2026-15903
+    "tailwind-scrollbar-styles": {"4.0.3"},   # MAL-2026-15904
+    "tailwindcss-3d-styles": {"1.2.4"},       # MAL-2026-15905
+    "tailwindcss-animate-styles": {"1.0.9"},  # MAL-2026-15906
+    "tailwind-aspect": {"0.4.2"},             # MAL-2026-15912
+    "tailwind-contact-forms": {"0.5.12"},     # MAL-2026-15925
+    # ─── Sep 4 2026: Easypanel platform typosquat cluster (5 packages) ──────────
+    # Five packages impersonating the Easypanel container-management platform.
+    # Each fires a malicious preinstall script. Detected by Amazon Inspector.
+    # OSV MAL-2026-15895, MAL-2026-15896, MAL-2026-15897, MAL-2026-15898,
+    # MAL-2026-15899
+    "easypanel-app": {"1.0.0"},               # MAL-2026-15895
+    "easypanel-client": {"1.0.0"},            # MAL-2026-15896
+    "easypanel-core": {"1.0.0"},              # MAL-2026-15897
+    "easypanel-ctl": {"1.0.0"},               # MAL-2026-15898
+    "easypanel-docker": {"1.0.0"},            # MAL-2026-15899
+    # ─── Sep 4 2026: NestJS typosquat cluster (3 packages) ──────────────────────
+    # Three packages using numeric prefixes to typosquat on nestjs. Targets
+    # developers who mistype the package name. Detected by Amazon Inspector.
+    # OSV MAL-2026-15908, MAL-2026-15909, MAL-2026-15911
+    "0nestjs": {"0.0.1"},                     # MAL-2026-15908
+    "1nestjs": {"0.0.1"},                     # MAL-2026-15909
+    "2nestjs": {"0.0.1"},                     # MAL-2026-15911
+    # ─── Sep 4 2026: Baileys WhatsApp fork malware (3 packages) ─────────────────
+    # @crysnovax/baileys: credential-exfiltrating fork of @whiskeysockets/baileys;
+    # silently exfiltrates session data on every connection.open event.
+    # @modss/baileys / megan-baileys: similar WhatsApp Web fork infostealers.
+    # OSV MAL-2026-15917, MAL-2026-15918, MAL-2026-15919
+    "@crysnovax/baileys": {"2.7.6", "2.7.10", "2.7.11", "2.7.12", "2.7.13",
+                            "2.7.14", "2.7.15", "2.7.16", "2.7.17", "2.7.18",
+                            "2.7.19", "2.7.20", "2.7.21", "2.8.0", "2.8.1",
+                            "2.8.2", "2.8.3"},                # MAL-2026-15917
+    "@modss/baileys": {"1.0.0", "1.0.1", "1.0.2"},            # MAL-2026-15918
+    "megan-baileys": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5",
+                      "1.0.6", "1.0.8", "1.0.9", "1.0.11"},  # MAL-2026-15919
+    # ─── Sep 4 2026: miscellaneous npm malware batch (14 packages) ──────────────
+    # chromatitle-dev: obfuscated dropper (base64-encoded C2 URL in bootstrap.js).
+    # hydration-ui-pkg / tiny-folder-tree: generic pure-malware packages.
+    # net-util-y8: Unix-epoch-encoded version number used for stealth.
+    # peertube-plugin-video-views-counter: PeerTube plugin impersonator.
+    # taskforge-8xv / taskforge-9xv / text-transform-plus: misc infostealers.
+    # xcryption: crypto-themed infostealer (4 versions).
+    # box-sign-client / box-sign-client-poc: Box.com typosquat dep-confusion probes.
+    # claude-channel-discord: implausible-version (9.9.9) dep-confusion probe.
+    # line-through: generic pure-malware package.
+    # real-router-telemetry: telemetry-named malware (2 versions).
+    # OSV MAL-2026-15814, MAL-2026-15900, MAL-2026-15901, MAL-2026-15902,
+    # MAL-2026-15907, MAL-2026-15913, MAL-2026-15914, MAL-2026-15915,
+    # MAL-2026-15916, MAL-2026-15920, MAL-2026-15921, MAL-2026-15922,
+    # MAL-2026-15923, MAL-2026-15924
+    "chromatitle-dev": {"1.0.0"},              # MAL-2026-15814 — obfuscated dropper
+    "hydration-ui-pkg": {"1.0.0"},             # MAL-2026-15900
+    "net-util-y8": {"1.1788432509.0"},         # MAL-2026-15901 — Unix-epoch version stealth
+    "peertube-plugin-video-views-counter": {"1.0.2"},  # MAL-2026-15902
+    "tiny-folder-tree": {"0.1.0"},             # MAL-2026-15907
+    "taskforge-8xv": {"1.2.0"},               # MAL-2026-15913
+    "taskforge-9xv": {"1.3.0"},               # MAL-2026-15914
+    "text-transform-plus": {"1.2.4"},          # MAL-2026-15915
+    "xcryption": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},  # MAL-2026-15916
+    "box-sign-client": {"1.0.0"},              # MAL-2026-15920
+    "box-sign-client-poc": {"1.0.0"},          # MAL-2026-15921
+    "claude-channel-discord": {"9.9.9"},       # MAL-2026-15922 — dep-confusion probe
+    "line-through": {"1.0.0"},                 # MAL-2026-15923
+    "real-router-telemetry": {"1.0.1", "1.0.4"},  # MAL-2026-15924
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -11570,6 +11662,12 @@ NPM_SUSPECT_SCOPES = (
     "@grab-food/",
     # @avigilon/ dep-confusion scope (Sep 4 2026) — node-webrtc pinned above
     "@avigilon/",
+    # Sep 4 2026 new attacker-controlled scopes
+    # @crysnovax/ Baileys WhatsApp fork malware scope — baileys pinned above;
+    # entire attacker-controlled scope; scope catches any undisclosed additional packages
+    "@crysnovax/",
+    # @modss/ Baileys WhatsApp fork malware scope — baileys pinned above
+    "@modss/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
