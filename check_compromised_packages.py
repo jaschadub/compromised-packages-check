@@ -1659,6 +1659,14 @@ PYPI_BAD: dict[str, set[str]] = {
     "metricboxlite": {"1.0", "2.0"},         # MAL-2026-15931
     "chartkit-core": {"1.0"},                # MAL-2026-15932
     "houdus": {"1.0.0", "1.0.1"},            # MAL-2026-15933
+    # ─── Sep 5 2026: PyPI misc malware batch (3 packages) ───────────────────────
+    # dbt-sa-cli: fake dbt-CLI typosquat; credential exfiltrator on install.
+    # proxycer: generic infostealer (0.1.0).
+    # trongridew: Tron blockchain-themed stealer (0.0.1); distinct from trongridi.
+    # OSV MAL-2026-15934, MAL-2026-15935, MAL-2026-15936
+    "dbt-sa-cli": {"0.0.1"},               # MAL-2026-15934 — dbt typosquat
+    "proxycer": {"0.1.0"},                 # MAL-2026-15935
+    "trongridew": {"0.0.1"},               # MAL-2026-15936 — Tron stealer
 }
 
 # npm: exact package name -> set of malicious versions.
