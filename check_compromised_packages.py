@@ -1667,6 +1667,12 @@ PYPI_BAD: dict[str, set[str]] = {
     "dbt-sa-cli": {"0.0.1"},               # MAL-2026-15934 — dbt typosquat
     "proxycer": {"0.1.0"},                 # MAL-2026-15935
     "trongridew": {"0.0.1"},               # MAL-2026-15936 — Tron stealer
+    # ─── Sep 6–7 2026: PyPI misc malware batch (2 packages) ─────────────────────
+    # minecraftmodes: Minecraft-themed infostealer; specific version 0.3.3.
+    # dac-tools: dep-confusion probe targeting internal dac tooling; 999.0.0.
+    # OSV MAL-2026-15937, MAL-2026-15938
+    "minecraftmodes": {"0.3.3"},           # MAL-2026-15937
+    "dac-tools": {"999.0.0"},              # MAL-2026-15938 — dep-confusion probe
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11486,6 +11492,87 @@ NPM_BAD: dict[str, set[str]] = {
     "claude-channel-discord": {"9.9.9"},       # MAL-2026-15922 — dep-confusion probe
     "line-through": {"1.0.0"},                 # MAL-2026-15923
     "real-router-telemetry": {"1.0.1", "1.0.4"},  # MAL-2026-15924
+    # ─── Sep 6–7 2026: cline 2.3.0 maintainer compromise ───────────────────────
+    # The popular Cline AI coding-assistant npm package (formerly Claude Dev) had
+    # version 2.3.0 published with a malicious payload; 2.4.0 is clean.
+    # GHSA-9ppg-jx86-fqw7 / OSV MAL-2026-1380
+    "cline": {"2.3.0"},                           # MAL-2026-1380 / GHSA-9ppg-jx86-fqw7
+    # ─── Sep 6–7 2026: OCE/omni dep-confusion npm cluster (4 packages) ──────────
+    # Enterprise frontend dep-confusion probes; 0.0.1 is initial probe, 9999.0.0 is
+    # version-squatting payload. Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-15939, MAL-2026-15940, MAL-2026-15941, MAL-2026-15942
+    "omni-channel-oid-frontend": {"0.0.1"},       # MAL-2026-15939
+    "oce-configurator-wireless-frontend": {"0.0.1", "9999.0.0"},  # MAL-2026-15940
+    "ocfe-tv-subscription-center-web": {"0.0.1"}, # MAL-2026-15941
+    "omni-channel-order-frontend": {"0.0.1", "9999.0.0"},  # MAL-2026-15942
+    # ─── Sep 7 2026: mixed any-version malware batch (62 packages) ──────────────
+    # Large OpenSSF Package Analysis detection sweep: tunnels, Discord infostealers,
+    # Web3/Ethereum utilities, @crysnovax Baileys forks, @domyjs scope,
+    # @liuliang520500 Chinese e-commerce SDKs, @yoannchb scope, and misc packages.
+    # All carry OSV ranges introduced:"0" (any version is malicious).
+    # OSV MAL-2026-15943 through MAL-2026-16004
+    "1cattunnel": set(),                          # MAL-2026-15943 — tunnel malware
+    "@crysnovax/baileys-fixed": set(),            # MAL-2026-15944 — Baileys fork
+    "@crysnovax/baileys-stable": set(),           # MAL-2026-15945 — Baileys fork
+    "@crysnovax/plug": set(),                     # MAL-2026-15946 — Baileys fork
+    "@domyjs/anchor": set(),                      # MAL-2026-15947
+    "@domyjs/collapse": set(),                    # MAL-2026-15948
+    "@domyjs/debounce": set(),                    # MAL-2026-15949
+    "@domyjs/domy": set(),                        # MAL-2026-15950
+    "@domyjs/i18n": set(),                        # MAL-2026-15951
+    "@domyjs/intersect": set(),                   # MAL-2026-15952
+    "@domyjs/mask": set(),                        # MAL-2026-15953
+    "@domyjs/reactive": set(),                    # MAL-2026-15954
+    "@domyjs/router": set(),                      # MAL-2026-15955
+    "@domyjs/throttle": set(),                    # MAL-2026-15956
+    "@liuliang520500/jd-sdk": set(),              # MAL-2026-15957 — Chinese e-commerce SDK
+    "@liuliang520500/pdd-sdk": set(),             # MAL-2026-15958
+    "@liuliang520500/pdd-sdk-new": set(),         # MAL-2026-15959
+    "@liuliang520500/sinataoke_cn": set(),         # MAL-2026-15960
+    "@liuliang520500/sinataoke_cn_test": set(),    # MAL-2026-15961
+    "@liuliang520500/taobao-topclient": set(),     # MAL-2026-15962
+    "@pilllesss/yorn": set(),                     # MAL-2026-15963
+    "@yoannchb/cattract": set(),                  # MAL-2026-15964
+    "@yoannchb/langy": set(),                     # MAL-2026-15965
+    "@yoannchb/tokenize": set(),                  # MAL-2026-15966
+    "@yoannchb/wtf-json": set(),                  # MAL-2026-15967
+    "anime-vostfr": set(),                        # MAL-2026-15968
+    "array-frames": set(),                        # MAL-2026-15969
+    "array-scala": set(),                         # MAL-2026-15970
+    "btn-particles": set(),                       # MAL-2026-15971
+    "card3d": set(),                              # MAL-2026-15972
+    "chrome-speech-recognition": set(),           # MAL-2026-15973
+    "date-fns-formatter": set(),                  # MAL-2026-15974
+    "dcftunnel": set(),                           # MAL-2026-15975 — tunnel malware
+    "discord-phub": set(),                        # MAL-2026-15976 — Discord infostealer
+    "discord-tqr": set(),                         # MAL-2026-15977 — Discord infostealer
+    "drive-album": set(),                         # MAL-2026-15978
+    "enqueu": set(),                              # MAL-2026-15979
+    "ens-namehash-utils": set(),                  # MAL-2026-15980 — Ethereum/ENS typosquat
+    "eth-lib-helpers": set(),                     # MAL-2026-15981 — Ethereum typosquat
+    "eth-query-utils": set(),                     # MAL-2026-15982 — Ethereum typosquat
+    "fast-html-dom-parser": set(),                # MAL-2026-15983
+    "gas-price-checker": set(),                   # MAL-2026-15984 — Ethereum gas typosquat
+    "google-img-scrap": set(),                    # MAL-2026-15985
+    "iframe-to-video": set(),                     # MAL-2026-15986
+    "infinity-grid": set(),                       # MAL-2026-15987
+    "inner-svg-ts": set(),                        # MAL-2026-15988
+    "jimg": set(),                                # MAL-2026-15989
+    "json-into-html": set(),                      # MAL-2026-15990
+    "jwt-logger": set(),                          # MAL-2026-15991
+    "lazy-attr": set(),                           # MAL-2026-15992
+    "linkpreview-simple": set(),                  # MAL-2026-15993
+    "memov": set(),                               # MAL-2026-15994
+    "multicore-kit": set(),                       # MAL-2026-15995
+    "muswish": set(),                             # MAL-2026-15996
+    "node-helper": set(),                         # MAL-2026-15997
+    "onetime-rnd": set(),                         # MAL-2026-15998
+    "parallaxy-img": set(),                       # MAL-2026-15999
+    "pipipe": set(),                              # MAL-2026-16000
+    "puppeteer-obscura": set(),                   # MAL-2026-16001 — Puppeteer typosquat
+    "tempjs-template": set(),                     # MAL-2026-16002
+    "trading-bot-utils": set(),                   # MAL-2026-16003
+    "ulid-intel": set(),                          # MAL-2026-16004
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
