@@ -1673,6 +1673,13 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-15937, MAL-2026-15938
     "minecraftmodes": {"0.3.3"},           # MAL-2026-15937
     "dac-tools": {"999.0.0"},              # MAL-2026-15938 — dep-confusion probe
+    # ─── Sep 7 2026: PyPI malware batch (2 packages) ─────────────────────────────
+    # cv-train: dep-confusion probe at 99.0.0 plus a genuine install-time credential
+    #   exfiltrator at 0.0.5.
+    # telegram-helper: Telegram bot library typosquat; install-time exfiltrator.
+    # OSV MAL-2026-16016, MAL-2026-16017
+    "cv-train": {"0.0.5", "99.0.0"},       # MAL-2026-16016
+    "telegram-helper": {"0.1.1", "0.1.2"}, # MAL-2026-16017
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11573,6 +11580,137 @@ NPM_BAD: dict[str, set[str]] = {
     "tempjs-template": set(),                     # MAL-2026-16002
     "trading-bot-utils": set(),                   # MAL-2026-16003
     "ulid-intel": set(),                          # MAL-2026-16004
+    # ─── Sep 7–8 2026: AI CLI relay campaign (4 packages) ───────────────────────
+    # Attacker-published npm packages branded as AI coding/CLI tools; all carry
+    # malicious postinstall payloads relaying commands to a remote C2.
+    # SEMVER range introduced: "0" — any version is malicious.
+    # OSV MAL-2026-16011/16012/16013/16014;
+    # research.codelake.dev/advisories/clr-2026-3048-ai-cli-relay-campaign
+    "orbitron-tui": set(),                        # MAL-2026-16011
+    "orbitron-cli": set(),                        # MAL-2026-16012
+    "agent-free": set(),                          # MAL-2026-16013
+    "prime-coding-agent": set(),                  # MAL-2026-16014
+    # ─── Sep 7–8 2026: @aircanada dep-confusion (3 packages) ────────────────────
+    # Three packages impersonating Air Canada's internal frontend component suite;
+    # published at plausible version numbers — classic dep-confusion probes.
+    # SEMVER range introduced: "0" — any version is malicious.
+    # OSV MAL-2026-16018/16019/16020;
+    # GHSA-w6c3-rrw8-wxrx / GHSA-46mp-56rw-qpmm / GHSA-356v-pcf2-7958
+    "@aircanada/components": set(),               # MAL-2026-16018 / GHSA-w6c3-rrw8-wxrx
+    "@aircanada/core": set(),                     # MAL-2026-16019 / GHSA-46mp-56rw-qpmm
+    "@aircanada/navigation-handler": set(),       # MAL-2026-16020 / GHSA-356v-pcf2-7958
+    # ─── Sep 7–8 2026: cb-wallet dep-confusion cluster (9 packages) ─────────────
+    # Nine packages impersonating Coinbase's internal cb-wallet packages; published
+    # at version 0.0.1 or with no versions (SEMVER >=0). Any version is malicious.
+    # OSV MAL-2026-4506/4507/16027/16028/16029/16030/16031/16040/16041;
+    # GHSA-7944-c265-3ff7 / GHSA-m477-pr6m-v2fp / GHSA-cxwc-958j-45g8 /
+    # GHSA-5cg4-38v4-j4vc / GHSA-gw4f-3mgw-h64x / GHSA-qh9w-32r6-2qpw /
+    # GHSA-qw4m-ccr9-7r43
+    "cb-wallet-data": set(),                      # MAL-2026-4506
+    "cb-wallet-http": set(),                      # MAL-2026-4507
+    "cb-wallet-analytics": set(),                 # MAL-2026-16027 / GHSA-7944-c265-3ff7
+    "cb-wallet-env": set(),                       # MAL-2026-16028 / GHSA-m477-pr6m-v2fp
+    "cb-wallet-metadata": set(),                  # MAL-2026-16029 / GHSA-cxwc-958j-45g8
+    "cb-wallet-solana-provider": set(),           # MAL-2026-16030 / GHSA-5cg4-38v4-j4vc
+    "cb-wallet-store": set(),                     # MAL-2026-16031 / GHSA-gw4f-3mgw-h64x
+    "wallet-cds-web": set(),                      # MAL-2026-16040 / GHSA-qh9w-32r6-2qpw
+    "wallet-engine-signing": set(),               # MAL-2026-16041 / GHSA-qw4m-ccr9-7r43
+    # ─── Sep 7–8 2026: BMC dep-confusion (2 packages) ───────────────────────────
+    # Two packages impersonating BMC Software's internal i18n/translation tooling.
+    # SEMVER range introduced: "0". OSV MAL-2026-16025/16026;
+    # GHSA-327g-rcr8-hp3p / GHSA-997w-vpm2-ww7x
+    "bmc-i18n-extract-cli": set(),                # MAL-2026-16025 / GHSA-327g-rcr8-hp3p
+    "bmc-translate-utils": set(),                 # MAL-2026-16026 / GHSA-997w-vpm2-ww7x
+    # ─── Sep 7–8 2026: Scaleway dep-confusion (2 packages) ──────────────────────
+    # Two packages impersonating Scaleway's internal core/mobile SDKs.
+    # SEMVER range introduced: "0". OSV MAL-2026-16037/16038;
+    # GHSA-fv48-xvcx-h3qh / GHSA-h9g8-rwcg-hpmh
+    "scw-core": set(),                            # MAL-2026-16037 / GHSA-fv48-xvcx-h3qh
+    "scw-mobile": set(),                          # MAL-2026-16038 / GHSA-h9g8-rwcg-hpmh
+    # ─── Sep 7–8 2026: miscellaneous dep-confusion + malware batch (16 packages) ─
+    # agentrc-security-poc-policy / vishal_312pkg: single-version malware probes.
+    # @caliperx2/components / b2b-frontend-external-library /
+    #   omni-channel-configurator-wireline-frontend: dep-confusion probes (SEMVER >=0).
+    # @cp-shared-14/frontend-ui: one specific malicious version (6.3.4, no range).
+    # @idkruan-10/dpd-depconf-probe: explicit dep-confusion probe by attacker's own label.
+    # base-account-core / base-app-data / blueai-cli / feishu-docx-mcp /
+    #   kiki-baileys / op-ts-server-core / oscar-redis / redis-type-intel /
+    #   service-home: dep-confusion or pure-malware packages (all SEMVER >=0).
+    # OSV MAL-2026-16005/16006/16007/16008/16009/16015/16021/16022/16023/16024/
+    #     16032/16033/16034/16035/16036/16039;
+    # GHSA-994q-v55m-r2mw / GHSA-vgm8-2vf8-769j / GHSA-9hpg-rmwp-vg4p /
+    # GHSA-c2v5-8c2f-jj54 / GHSA-q5c6-p5q5-g3px / GHSA-g8cr-3r7q-pcr6 /
+    # GHSA-cj4c-268v-m597 / GHSA-c6m6-wr2f-6f63 / GHSA-v9rh-vg7p-gwqm /
+    # GHSA-m2c9-2v7c-fxf9
+    "agentrc-security-poc-policy": {"1.0.0"},     # MAL-2026-16005
+    "vishal_312pkg": {"1.0.0"},                   # MAL-2026-16006
+    "@caliperx2/components": set(),               # MAL-2026-16007
+    "b2b-frontend-external-library": set(),       # MAL-2026-16008
+    "omni-channel-configurator-wireline-frontend": set(),  # MAL-2026-16009
+    "@cp-shared-14/frontend-ui": {"6.3.4"},       # MAL-2026-16015
+    "@idkruan-10/dpd-depconf-probe": set(),        # MAL-2026-16021 / GHSA-994q-v55m-r2mw
+    "base-account-core": set(),                   # MAL-2026-16022 / GHSA-vgm8-2vf8-769j
+    "base-app-data": set(),                       # MAL-2026-16023 / GHSA-9hpg-rmwp-vg4p
+    "blueai-cli": set(),                          # MAL-2026-16024 / GHSA-c2v5-8c2f-jj54
+    "feishu-docx-mcp": set(),                     # MAL-2026-16032 / GHSA-q5c6-p5q5-g3px
+    "kiki-baileys": set(),                        # MAL-2026-16033 / GHSA-g8cr-3r7q-pcr6
+    "op-ts-server-core": set(),                   # MAL-2026-16034 / GHSA-cj4c-268v-m597
+    "oscar-redis": set(),                         # MAL-2026-16035 / GHSA-c6m6-wr2f-6f63
+    "redis-type-intel": set(),                    # MAL-2026-16036 / GHSA-v9rh-vg7p-gwqm
+    "service-home": set(),                        # MAL-2026-16039 / GHSA-m2c9-2v7c-fxf9
+    # ─── Sep 7 2026: codebuff-cli compromise (29 versions) ──────────────────────
+    # The codebuff-cli AI coding-assistant package had 29 specific versions
+    # compromised with a malicious payload (no clean patch; users should avoid all
+    # listed versions). No SEMVER introduced: "0" range — legitimate versions exist.
+    # OSV MAL-2026-4533
+    "codebuff-cli": {"1.0.4",  "1.0.10", "1.0.11", "1.0.12", "1.0.14", "1.0.15",
+                     "1.0.17", "1.0.18", "1.0.19", "1.0.20", "1.0.21", "1.0.22",
+                     "1.0.23", "1.0.24", "1.0.26", "1.0.27", "1.0.28",
+                     "1.1.0",  "1.1.1",  "1.1.2",  "1.1.3",  "1.1.4",  "1.1.5",
+                     "1.1.6",  "1.1.7",  "1.1.8",  "1.1.10", "1.1.11", "1.1.12"},  # MAL-2026-4533
+    # ─── OSV records updated Sep 8 2026: legacy dep-confusion probes ────────────
+    # The packages below were published at earlier dates (2023–Aug 2026) and their
+    # OSV records were last modified 2026-09-08. All have SEMVER ranges introduced:
+    # "0" — any installed version is malicious. Added on the date their active OSV
+    # records were confirmed by bulk-export sweep.
+    # afterpay-sdk-example-server:          OSV MAL-2023-1111  / GHSA-xqcr-rgfp-6wv7
+    # paypal-postman-lib:                   OSV MAL-2025-47594 / GHSA-96v6-4928-255v
+    # dbt-language-server:                  OSV MAL-2026-6367  / GHSA-w54g-2v55-m5vr
+    # llm-traces-app:                       OSV MAL-2026-6371  / GHSA-xcwg-9ggx-j7pm
+    # twilio-voice-js-reference-components: OSV MAL-2026-6373  / GHSA-5wvr-g236-9w68
+    # simplisafe-gatsby:                    OSV MAL-2026-6379  / GHSA-grcq-xfr7-4vpm
+    # log-update-ts:                        OSV MAL-2026-6483  / GHSA-5866-j382-r7g9
+    # starship-timeline:                    OSV MAL-2026-6485  / GHSA-7c79-95c2-vgwm
+    # content-publisher-sdks:              OSV MAL-2026-12356  / GHSA-cmjx-pgm3-j5gc
+    # github-app-sts-action:               OSV MAL-2026-12389  / GHSA-wmg2-8x3r-rg73
+    # hyper-kube-config:                   OSV MAL-2026-12392  / GHSA-pvc8-7whj-r3w4
+    # matlab-azure-devops-extension:       OSV MAL-2026-12400  / GHSA-9cfc-3wfm-r8p5
+    # tool-registry-scripts:               OSV MAL-2026-12482  / GHSA-r8mg-hv3j-fc44
+    # dynstrg-howto:                       OSV MAL-2026-12787  / GHSA-p2vx-mw75-76fw
+    # glia-functions-tools:                OSV MAL-2026-12790  / GHSA-62wp-x489-6g6h
+    # karapace-docs:                       OSV MAL-2026-12794  / GHSA-mf8g-pqcc-wxfw
+    # knowledge-grader:                    OSV MAL-2026-12795  / GHSA-m4g7-2mxw-5m83
+    # technical-challenge:                 OSV MAL-2026-12809  / GHSA-x874-j4r9-66gh
+    # wolverinechat:                       OSV MAL-2026-12816  / GHSA-9gmm-g6fq-594g
+    "afterpay-sdk-example-server": set(),         # MAL-2023-1111  / GHSA-xqcr-rgfp-6wv7
+    "paypal-postman-lib": set(),                  # MAL-2025-47594 / GHSA-96v6-4928-255v
+    "dbt-language-server": set(),                 # MAL-2026-6367  / GHSA-w54g-2v55-m5vr
+    "llm-traces-app": set(),                      # MAL-2026-6371  / GHSA-xcwg-9ggx-j7pm
+    "twilio-voice-js-reference-components": set(), # MAL-2026-6373  / GHSA-5wvr-g236-9w68
+    "simplisafe-gatsby": set(),                   # MAL-2026-6379  / GHSA-grcq-xfr7-4vpm
+    "log-update-ts": set(),                       # MAL-2026-6483  / GHSA-5866-j382-r7g9
+    "starship-timeline": set(),                   # MAL-2026-6485  / GHSA-7c79-95c2-vgwm
+    "content-publisher-sdks": set(),              # MAL-2026-12356 / GHSA-cmjx-pgm3-j5gc
+    "github-app-sts-action": set(),               # MAL-2026-12389 / GHSA-wmg2-8x3r-rg73
+    "hyper-kube-config": set(),                   # MAL-2026-12392 / GHSA-pvc8-7whj-r3w4
+    "matlab-azure-devops-extension": set(),       # MAL-2026-12400 / GHSA-9cfc-3wfm-r8p5
+    "tool-registry-scripts": set(),               # MAL-2026-12482 / GHSA-r8mg-hv3j-fc44
+    "dynstrg-howto": set(),                       # MAL-2026-12787 / GHSA-p2vx-mw75-76fw
+    "glia-functions-tools": set(),                # MAL-2026-12790 / GHSA-62wp-x489-6g6h
+    "karapace-docs": set(),                       # MAL-2026-12794 / GHSA-mf8g-pqcc-wxfw
+    "knowledge-grader": set(),                    # MAL-2026-12795 / GHSA-m4g7-2mxw-5m83
+    "technical-challenge": set(),                 # MAL-2026-12809 / GHSA-x874-j4r9-66gh
+    "wolverinechat": set(),                       # MAL-2026-12816 / GHSA-9gmm-g6fq-594g
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
