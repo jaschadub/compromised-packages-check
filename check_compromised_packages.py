@@ -1680,6 +1680,15 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-16016, MAL-2026-16017
     "cv-train": {"0.0.5", "99.0.0"},       # MAL-2026-16016
     "telegram-helper": {"0.1.1", "0.1.2"}, # MAL-2026-16017
+    # ─── Sep 8–9 2026: PyPI malware batch (3 packages) ──────────────────────────
+    # py-devoli-common: dep-confusion probe at version 999.999.999, targeting Devoli.
+    # gcphelpit: GCP credential-exfiltration tool (3 versions); GitHub commit
+    #   0f330a1 documents the malicious behavior (exfils GCP credentials on install).
+    # tsshare: install-time malware detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-15693, MAL-2026-15810, MAL-2026-16044
+    "py-devoli-common": {"999.999.999"},           # MAL-2026-15693 — dep-confusion probe
+    "gcphelpit": {"0.1.0", "0.1.1", "0.1.2"},     # MAL-2026-15810
+    "tsshare": {"1.0.19"},                          # MAL-2026-16044
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11711,6 +11720,74 @@ NPM_BAD: dict[str, set[str]] = {
     "knowledge-grader": set(),                    # MAL-2026-12795 / GHSA-m4g7-2mxw-5m83
     "technical-challenge": set(),                 # MAL-2026-12809 / GHSA-x874-j4r9-66gh
     "wolverinechat": set(),                       # MAL-2026-12816 / GHSA-9gmm-g6fq-594g
+    # ─── Sep 8–9 2026: WhatsApp Baileys impersonator cluster (4 new scopes) ─────
+    # Four new attacker-controlled scopes publishing malicious forks of
+    # @whiskeysockets/baileys (WhatsApp Web library). All carry SEMVER range
+    # introduced:"0" — every published version is malicious. Each scope has a
+    # GHSA advisory. Part of the continuing Baileys-fork infostealer campaign.
+    # @web2apk/baileys: 13 specific malicious versions also enumerated in OSV.
+    # GHSA-f4f2-cqqp-jcrx / GHSA-q246-72rh-fp8w / GHSA-gg93-mm5f-23v8 / GHSA-fw7g-gr3j-7wf7
+    # OSV MAL-2026-16043 / MAL-2026-16066 / MAL-2026-16067 / MAL-2026-16068
+    "@web2apk/baileys": set(),                    # MAL-2026-16043 / GHSA-f4f2-cqqp-jcrx
+    "@haimiya/baileys": set(),                    # MAL-2026-16066 / GHSA-q246-72rh-fp8w
+    "@vallensofficial/baileys": set(),            # MAL-2026-16067 / GHSA-gg93-mm5f-23v8
+    "@versacode/baileys": set(),                  # MAL-2026-16068 / GHSA-fw7g-gr3j-7wf7
+    # ─── Sep 8–9 2026: i18nexus account compromise (2 packages) ─────────────────
+    # i18nexus (the i18n SaaS CLI) and i18nexus-tools had all published versions
+    # replaced with a malicious payload; OSV shows SEMVER range introduced:"0"
+    # for both packages. i18nexus-tools v3.2.0 is also explicitly enumerated.
+    # GHSA-38hw-f37p-99jj (i18nexus), GHSA-9cfw-xh4g-cc2f (i18nexus-tools)
+    # OSV MAL-2026-16045 / MAL-2026-16046
+    "i18nexus": set(),                            # MAL-2026-16045 / GHSA-38hw-f37p-99jj
+    "i18nexus-tools": set(),                      # MAL-2026-16046 / GHSA-9cfw-xh4g-cc2f
+    # ─── Sep 8–9 2026: krdpass-auth-react-native any-version malware ─────────────
+    # Malicious React Native auth package; SEMVER range introduced:"0".
+    # Versions 10.0.0 and 1.6.0 are explicitly listed in OSV affected.versions.
+    # GHSA-3j7p-44mj-76hx / OSV MAL-2026-16042
+    "krdpass-auth-react-native": set(),           # MAL-2026-16042 / GHSA-3j7p-44mj-76hx
+    # ─── Sep 8–9 2026: dep-confusion + miscellaneous npm malware batch (22 packages) ─
+    # twilio-functions: dep-confusion at 99.99.99/99.99.100 targeting Twilio's internal npm.
+    # unifi-credential-server: dep-confusion at 99.0.0 targeting UniFi network gear CI.
+    # @umschool/analytics: dep-confusion at 999.0.x targeting UMSchool's internal registry.
+    # react-hook-doms: malware (version 5.3.1); postinstall payload detected by OSV.
+    # punypump: 3 malicious versions; OpenSSF Package Analysis detection.
+    # tailwindcss-aspectratio-styles / tailwind-aspect-styles: Tailwind CSS plugin
+    #   typosquat pair (2 versions each).
+    # @aspect-adv-ui/consent-manager: 2-version consent-manager malware.
+    # open-item-validator: 2-version validator malware.
+    # file-type-detector: 2-version file-type utility malware.
+    # gloggo: 3-version logging utility malware.
+    # sonmors / toru-ultimate / vinzz-wcli / rojo-rbx / selfcerts: single-version
+    #   pure-malware packages detected by OpenSSF Package Analysis.
+    # @usemosaik/template-react-js: dep-confusion probe at 1.0.1.
+    # @yongot/canary-mcp-isolation / @yongot/canary-mcp-test: attacker-controlled
+    #   MCP canary probe packages; OSV records confirmed active.
+    # alloy-graphql / bx-ui-view: single-version malware packages.
+    # express-session-timer: 5-version malware across multiple version numbers.
+    # OSV MAL-2026-12813, MAL-2026-15691, MAL-2026-15692, MAL-2026-16047 through
+    #     MAL-2026-16056, MAL-2026-16057 through MAL-2026-16065
+    "twilio-functions": {"99.99.99", "99.99.100"},     # MAL-2026-12813 — dep-confusion
+    "react-hook-doms": {"5.3.1"},                      # MAL-2026-15691
+    "unifi-credential-server": {"99.0.0"},             # MAL-2026-15692 — dep-confusion
+    "@usemosaik/template-react-js": {"1.0.1"},         # MAL-2026-16047 — dep-confusion probe
+    "punypump": {"1.2.2", "1.2.4", "1.2.5"},           # MAL-2026-16048
+    "tailwindcss-aspectratio-styles": {"0.3.4", "0.3.5"},  # MAL-2026-16049
+    "@aspect-adv-ui/consent-manager": {"2.4.0", "2.4.1"},  # MAL-2026-16050
+    "@umschool/analytics": {"999.0.0", "999.0.1", "999.0.2", "999.0.3", "999.0.4"},  # MAL-2026-16051 — dep-confusion
+    "open-item-validator": {"1.0.3", "1.0.5"},         # MAL-2026-16052
+    "file-type-detector": {"1.1.0", "1.1.1"},          # MAL-2026-16053
+    "gloggo": {"1.1.2", "1.1.3", "1.1.4"},             # MAL-2026-16054
+    "sonmors": {"2.11.2"},                             # MAL-2026-16055
+    "tailwind-aspect-styles": {"0.4.2"},               # MAL-2026-16056
+    "toru-ultimate": {"1.0.0"},                        # MAL-2026-16057
+    "vinzz-wcli": {"1.0.1"},                           # MAL-2026-16058
+    "rojo-rbx": {"1.4.3"},                             # MAL-2026-16059
+    "selfcerts": {"1.0.0"},                            # MAL-2026-16060
+    "@yongot/canary-mcp-isolation": {"1.0.1"},         # MAL-2026-16061 — MCP canary probe
+    "@yongot/canary-mcp-test": {"2.0.0", "3.0.0", "4.0.0"},  # MAL-2026-16062 — MCP canary probe
+    "alloy-graphql": {"1.0.1"},                        # MAL-2026-16063
+    "bx-ui-view": {"1.0.0"},                           # MAL-2026-16064
+    "express-session-timer": {"1.0.0", "1.0.1", "1.0.13", "1.0.14", "1.0.16"},  # MAL-2026-16065
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -11901,6 +11978,17 @@ NPM_SUSPECT_SCOPES = (
     "@crysnovax/",
     # @modss/ Baileys WhatsApp fork malware scope — baileys pinned above
     "@modss/",
+    # Sep 8–9 2026 new attacker-controlled Baileys WhatsApp fork scopes
+    # @web2apk/ WhatsApp Baileys fork malware scope — baileys pinned above
+    "@web2apk/",
+    # @haimiya/ WhatsApp Baileys fork malware scope — baileys pinned above
+    "@haimiya/",
+    # @vallensofficial/ WhatsApp Baileys fork malware scope — baileys pinned above
+    "@vallensofficial/",
+    # @versacode/ WhatsApp Baileys fork malware scope — baileys pinned above
+    "@versacode/",
+    # @yongot/ MCP canary probe scope (Sep 9 2026) — canary-mcp-isolation/test pinned above
+    "@yongot/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
