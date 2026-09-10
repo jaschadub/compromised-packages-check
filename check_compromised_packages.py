@@ -510,7 +510,23 @@ fund-calculator, @temptation.js/utils, dpg-media-7ehemel, @gsas/gsas-sdk, web-ad
 Tinkoff/devplatform + sme-* continuation (5 packages; MAL-2026-12208/12440/12441/12730/12763),
 Tailwind animation typosquats (MAL-2026-12219/12220), older OSV records refreshed Aug 24
 (MAL-2026-4164/4818/5574/6497/10107), misc mixed batch 19 npm packages, and
-multyproccess/msrcpoc PyPI (MAL-2026-14401/14444).
+multyproccess/msrcpoc PyPI (MAL-2026-14401/14444),
+and the September 9 2026 sweep: WhatsApp/Baileys typosquat cluster extension
+(6 npm: @fyxzpediaa/baileys, @vnxsync/libsignal-node, xbailsync,
+@neroxkira/vangal-baileys, @nexustechpro/baileys, @sahril2nd/baileys;
+OSV MAL-2026-16070/16083/16093/16103/16104/16105), the easypanel cluster
+(4 npm: easypanel-agent/api-client/deploy/hosting; OSV MAL-2026-16072–16075),
+dep-confusion 99.x/999.x pair (cat-sis2go-utils, @umschool/platform;
+OSV MAL-2026-16071/16082), chai-as-sleek Chai typosquat (MAL-2026-16077),
+crypto/DeFi malware cluster (9 npm: crypto-validates, graphql-js-client-transform,
+polygon-toolkits-validator, pumpswap-sdk-v1, raydium-clmm-sdk, sams-run-style,
+sams-text-style, gmgn-trading-kit, soltinel-pro; OSV MAL-2026-16085–16091/16094/16096),
+Discord/MFA credential stealers (discord-mfa-solver, mfaby, mfatest2;
+OSV MAL-2026-16100/16101/16102), @auction-fe dep-confusion cluster
+(4 npm; OSV MAL-2026-16106–16109), miscellaneous npm malware batch (10 packages;
+OSV MAL-2026-16069/16076/16078/16079/16081/16084/16092/16095/16097/16110),
+and 3 PyPI dep-confusion / build-probe packages (databricks-webapp-navigation-homepage,
+bq-build-probe-vrp-2026, bq-sdist-probe-vrp; OSV MAL-2026-16080/16098/16099).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1689,6 +1705,15 @@ PYPI_BAD: dict[str, set[str]] = {
     "py-devoli-common": {"999.999.999"},           # MAL-2026-15693 — dep-confusion probe
     "gcphelpit": {"0.1.0", "0.1.1", "0.1.2"},     # MAL-2026-15810
     "tsshare": {"1.0.19"},                          # MAL-2026-16044
+    # ─── Sep 9 2026: PyPI dep-confusion probe + build-probe batch (3 packages) ──
+    # databricks-webapp-navigation-homepage: dep-confusion probe at 999.0.0 targeting
+    #   Databricks' internal web navigation; high inflated version signals intent.
+    # bq-build-probe-vrp-2026 / bq-sdist-probe-vrp: BigQuery VRP (Vulnerability Reward
+    #   Program) build/sdist probe packages; install-time exfiltrators at low versions.
+    # OSV MAL-2026-16080, MAL-2026-16098, MAL-2026-16099
+    "databricks-webapp-navigation-homepage": {"999.0.0"},  # MAL-2026-16080 — dep-confusion probe
+    "bq-build-probe-vrp-2026": {"0.2.0"},                  # MAL-2026-16098 — BigQuery VRP build probe
+    "bq-sdist-probe-vrp": {"0.0.1"},                       # MAL-2026-16099 — BigQuery VRP sdist probe
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11788,6 +11813,93 @@ NPM_BAD: dict[str, set[str]] = {
     "alloy-graphql": {"1.0.1"},                        # MAL-2026-16063
     "bx-ui-view": {"1.0.0"},                           # MAL-2026-16064
     "express-session-timer": {"1.0.0", "1.0.1", "1.0.13", "1.0.14", "1.0.16"},  # MAL-2026-16065
+    # ─── Sep 9 2026: WhatsApp/Baileys typosquat cluster extension (6 packages) ───
+    # Additional fake WhatsApp Baileys forks published by different attacker aliases;
+    # all contain credential-exfiltration payloads targeting WhatsApp session tokens.
+    # @vnxsync/libsignal-node and xbailsync use SEMVER introduced:"0" wildcards.
+    # OSV MAL-2026-16070, MAL-2026-16083, MAL-2026-16093, MAL-2026-16103,
+    #     MAL-2026-16104, MAL-2026-16105
+    "@fyxzpediaa/baileys": {"8.1.2", "9.1.0"},         # MAL-2026-16070
+    "@vnxsync/libsignal-node": set(),                   # MAL-2026-16083 — any-version wildcard
+    "xbailsync": set(),                                 # MAL-2026-16093 — any-version wildcard
+    "@neroxkira/vangal-baileys": {"1.0.0", "1.0.1"},   # MAL-2026-16103
+    "@nexustechpro/baileys": {"2.2.7"},                 # MAL-2026-16104
+    "@sahril2nd/baileys": {"1.0.21"},                   # MAL-2026-16105
+    # ─── Sep 9 2026: easypanel cluster (4 packages) ──────────────────────────────
+    # Four packages impersonating the Easypanel self-hosted deployment platform;
+    # all published at v1.0.0 with malicious postinstall payloads.
+    # OSV MAL-2026-16072, MAL-2026-16073, MAL-2026-16074, MAL-2026-16075
+    "easypanel-agent": {"1.0.0"},                       # MAL-2026-16072
+    "easypanel-api-client": {"1.0.0"},                  # MAL-2026-16073
+    "easypanel-deploy": {"1.0.0"},                      # MAL-2026-16074
+    "easypanel-hosting": {"1.0.0"},                     # MAL-2026-16075
+    # ─── Sep 9 2026: dep-confusion 99.x / 999.x batch (2 packages) ──────────────
+    # cat-sis2go-utils: inflated-version dep-confusion (99.x) targeting an internal registry.
+    # @umschool/platform: inflated-version dep-confusion (999.x) targeting UMSchool's registry;
+    #   companion to @umschool/analytics already tracked above.
+    # OSV MAL-2026-16071, MAL-2026-16082
+    "cat-sis2go-utils": {"99.0.0", "99.1.0"},           # MAL-2026-16071 — dep-confusion
+    "@umschool/platform": {"999.0.0", "999.0.1", "999.0.2"},  # MAL-2026-16082 — dep-confusion
+    # ─── Sep 9 2026: chai-as-sleek Chai typosquat ────────────────────────────────
+    # Extension of the ongoing chai-as-* typosquat family; version 7.1.2 confirmed malicious.
+    # OSV MAL-2026-16077
+    "chai-as-sleek": {"7.1.2"},                         # MAL-2026-16077
+    # ─── Sep 9 2026: crypto / DeFi malware cluster (9 packages) ─────────────────
+    # Pure-malware packages impersonating DeFi/crypto SDK tooling.
+    # crypto-validates, graphql-js-client-transform, pumpswap-sdk-v1, raydium-clmm-sdk,
+    # sams-run-style, sams-text-style: SEMVER introduced:"0" wildcards — any version malicious.
+    # polygon-toolkits-validator: introduced:"0" wildcard (v1.1.4 also listed).
+    # gmgn-trading-kit / soltinel-pro: pinned malicious versions.
+    # OSV MAL-2026-16085, MAL-2026-16086, MAL-2026-16087, MAL-2026-16088,
+    #     MAL-2026-16089, MAL-2026-16090, MAL-2026-16091, MAL-2026-16094, MAL-2026-16096
+    "crypto-validates": set(),                          # MAL-2026-16085 — any-version wildcard
+    "graphql-js-client-transform": set(),               # MAL-2026-16086 — any-version wildcard
+    "polygon-toolkits-validator": set(),                # MAL-2026-16087 — any-version wildcard
+    "pumpswap-sdk-v1": set(),                           # MAL-2026-16088 — any-version wildcard
+    "raydium-clmm-sdk": set(),                          # MAL-2026-16089 — any-version wildcard
+    "sams-run-style": set(),                            # MAL-2026-16090 — any-version wildcard
+    "sams-text-style": set(),                           # MAL-2026-16091 — any-version wildcard
+    "gmgn-trading-kit": {"1.7.0", "1.7.1", "1.7.2"},   # MAL-2026-16094
+    "soltinel-pro": {"0.2.0", "0.2.1", "0.2.2"},        # MAL-2026-16096
+    # ─── Sep 9 2026: Discord / MFA credential stealers (3 packages) ─────────────
+    # Packages harvesting Discord tokens and MFA credentials; mfaby/mfatest2 appear
+    # to be attacker throwaway/PoC packages confirming MFA-bypass techniques.
+    # OSV MAL-2026-16100, MAL-2026-16101, MAL-2026-16102
+    "discord-mfa-solver": {"1.0.0", "1.0.1", "1.0.2"}, # MAL-2026-16100
+    "mfaby": {"1.0.0"},                                 # MAL-2026-16101
+    "mfatest2": {"1.0.0"},                              # MAL-2026-16102
+    # ─── Sep 9 2026: @auction-fe dep-confusion cluster (4 packages) ──────────────
+    # Four packages in the @auction-fe scope impersonating an internal auction-platform
+    # frontend; all carry SEMVER introduced:"0" wildcards (no specific versions published).
+    # OSV MAL-2026-16106, MAL-2026-16107, MAL-2026-16108, MAL-2026-16109
+    "@auction-fe/base": set(),                          # MAL-2026-16106 — any-version wildcard
+    "@auction-fe/portal": set(),                        # MAL-2026-16107 — any-version wildcard
+    "@auction-fe/reporting-system": set(),              # MAL-2026-16108 — any-version wildcard
+    "@auction-fe/ui-kit": set(),                        # MAL-2026-16109 — any-version wildcard
+    # ─── Sep 9 2026: miscellaneous npm malware batch (10 packages) ───────────────
+    # reactlogo-load: fake logo-loader utility; malicious postinstall (v1.0.0).
+    # external_deps_enjoyer: throwaway malware targeting external dependency chains.
+    # cache-cleanup-module / server-authorized-cleanup: server-side cleanup utilities
+    #   with malicious payloads at multiple versions.
+    # @staticj/cropperxmjs: scoped image-cropper typosquat (v1.6.0).
+    # amprem-activator: introduced:"0" wildcard with 3 listed versions (1.0.x).
+    # vinnleys: introduced:"0" wildcard (versions 1.0.0/1.0.1 listed).
+    # matrixkit-js: matrix SDK typosquat (v1.0.0).
+    # twilio-hackerone-poc-b8f21a: Twilio-branded HackerOne PoC malware (2 versions).
+    # @convertics/script: introduced:"0" wildcard scoped malware targeting Convertics.
+    # OSV MAL-2026-16069, MAL-2026-16071 (see dep-confusion above), MAL-2026-16076,
+    #     MAL-2026-16078, MAL-2026-16079, MAL-2026-16081, MAL-2026-16084,
+    #     MAL-2026-16092, MAL-2026-16095, MAL-2026-16097, MAL-2026-16110
+    "reactlogo-load": {"1.0.0"},                        # MAL-2026-16069
+    "external_deps_enjoyer": {"1.0.0"},                 # MAL-2026-16076
+    "cache-cleanup-module": {"2.5.0", "2.6.0"},         # MAL-2026-16078
+    "server-authorized-cleanup": {"1.1.0"},             # MAL-2026-16079
+    "@staticj/cropperxmjs": {"1.6.0"},                  # MAL-2026-16081
+    "amprem-activator": set(),                          # MAL-2026-16084 — any-version wildcard
+    "vinnleys": set(),                                  # MAL-2026-16092 — any-version wildcard
+    "matrixkit-js": {"1.0.0"},                          # MAL-2026-16095
+    "twilio-hackerone-poc-b8f21a": {"1.0.0", "1.0.1"}, # MAL-2026-16097
+    "@convertics/script": set(),                        # MAL-2026-16110 — any-version wildcard
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
