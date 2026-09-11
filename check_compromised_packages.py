@@ -1714,6 +1714,16 @@ PYPI_BAD: dict[str, set[str]] = {
     "databricks-webapp-navigation-homepage": {"999.0.0"},  # MAL-2026-16080 — dep-confusion probe
     "bq-build-probe-vrp-2026": {"0.2.0"},                  # MAL-2026-16098 — BigQuery VRP build probe
     "bq-sdist-probe-vrp": {"0.0.1"},                       # MAL-2026-16099 — BigQuery VRP sdist probe
+    # ─── Sep 10 2026: install-time malware batch (3 packages) ───────────────────
+    # websetup: install-time malware detected by OpenSSF Package Analysis (v0.1.0).
+    # pylever: prolific install-time malware family; 13 sequential versions (1.0.0–1.0.12).
+    # lucy-python-script-2030: throwaway credential exfiltrator (2 versions).
+    # OSV MAL-2026-16121, MAL-2026-16122, MAL-2026-16125
+    "websetup": {"0.1.0"},                                              # MAL-2026-16121
+    "pylever": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4",          # MAL-2026-16122
+                "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9",
+                "1.0.10", "1.0.11", "1.0.12"},
+    "lucy-python-script-2030": {"0.1.1", "0.1.2"},                     # MAL-2026-16125
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11900,6 +11910,33 @@ NPM_BAD: dict[str, set[str]] = {
     "matrixkit-js": {"1.0.0"},                          # MAL-2026-16095
     "twilio-hackerone-poc-b8f21a": {"1.0.0", "1.0.1"}, # MAL-2026-16097
     "@convertics/script": set(),                        # MAL-2026-16110 — any-version wildcard
+    # ─── Sep 10 2026: eToro dep-confusion cluster (10 packages) ─────────────────
+    # Ten packages impersonating eToro's internal npm packages at dependency-confusion
+    # version 999.0.0. OpenSSF Package Analysis detected each communicating with
+    # malicious infrastructure on install. No legitimate public package exists under
+    # these names at 999.x — the intent is to shadow private registry packages and
+    # execute in CI/CD pipelines that prefer higher semver.
+    # OSV MAL-2026-16111, MAL-2026-16112, MAL-2026-16113, MAL-2026-16114, MAL-2026-16115,
+    #     MAL-2026-16116, MAL-2026-16117, MAL-2026-16118, MAL-2026-16119, MAL-2026-16120
+    "etoro-aggregator": {"999.0.0"},                    # MAL-2026-16111
+    "etoro-analytics": {"999.0.0"},                     # MAL-2026-16112
+    "etoro-api": {"999.0.0"},                           # MAL-2026-16113
+    "etoro-auth": {"999.0.0"},                          # MAL-2026-16114
+    "etoro-billing": {"999.0.0"},                       # MAL-2026-16115
+    "etoro-builders": {"999.0.0"},                      # MAL-2026-16116
+    "etoro-cashout": {"999.0.0"},                       # MAL-2026-16117
+    "etoro-charts": {"999.0.0"},                        # MAL-2026-16118
+    "etoro-client": {"999.0.0"},                        # MAL-2026-16119
+    "etoro-core": {"999.0.0"},                          # MAL-2026-16120
+    # ─── Sep 10 2026: miscellaneous npm malware batch (2 packages) ───────────────
+    # pinochiomathm: malware package detected communicating with malicious domain;
+    #   4 versions published (2.3.2–2.3.5). Name typosquats pinochio-math tooling.
+    # tailwindcss-contact-forms: Tailwind CSS plugin typosquat with malicious payload;
+    #   7 versions (0.5.4–0.6.0) published before removal.
+    # OSV MAL-2026-16123, MAL-2026-16124
+    "pinochiomathm": {"2.3.2", "2.3.3", "2.3.4", "2.3.5"},            # MAL-2026-16123
+    "tailwindcss-contact-forms": {"0.5.4", "0.5.5", "0.5.6", "0.5.7", # MAL-2026-16124
+                                  "0.5.8", "0.5.9", "0.6.0"},
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
