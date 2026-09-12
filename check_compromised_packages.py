@@ -526,7 +526,20 @@ OSV MAL-2026-16100/16101/16102), @auction-fe dep-confusion cluster
 (4 npm; OSV MAL-2026-16106–16109), miscellaneous npm malware batch (10 packages;
 OSV MAL-2026-16069/16076/16078/16079/16081/16084/16092/16095/16097/16110),
 and 3 PyPI dep-confusion / build-probe packages (databricks-webapp-navigation-homepage,
-bq-build-probe-vrp-2026, bq-sdist-probe-vrp; OSV MAL-2026-16080/16098/16099).
+bq-build-probe-vrp-2026, bq-sdist-probe-vrp; OSV MAL-2026-16080/16098/16099),
+the September 10 2026 sweep: eToro dep-confusion cluster (10 npm packages at 999.0.0;
+OSV MAL-2026-16111–16120), pinochiomathm / tailwindcss-contact-forms npm malware pair
+(OSV MAL-2026-16123/16124), and websetup / pylever / lucy-python-script-2030 PyPI batch
+(OSV MAL-2026-16121/16122/16125),
+and the September 11–12 2026 sweep: @nimbusedge/auth dep-confusion (40 versions at
+19999.x; OSV MAL-2026-16132), AI/LLM typosquat cluster (langgrap, ollamaa, openaii,
+transfomers, aitextkit-py, aitextutils-py; OSV MAL-2026-16130/16131/16133–16136),
+web3/crypto malware (eth-account-web3, pymem-win, web3-eth-account;
+OSV MAL-2026-16127/16128/16129), platform-telemetry-client PyPI malware
+(OSV MAL-2026-16141), and 5 npm miscellaneous packages (strapi-plugin-vinsoc-1109,
+cr-bot-common, greensaver, tailwind-form-kit, tracker-cloudflare;
+OSV MAL-2026-16126/16137/16138/16139/16140), plus additional 99.0.x dep-confusion
+version entries added to 5 existing eToro packages.
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1724,6 +1737,29 @@ PYPI_BAD: dict[str, set[str]] = {
                 "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9",
                 "1.0.10", "1.0.11", "1.0.12"},
     "lucy-python-script-2030": {"0.1.1", "0.1.2"},                     # MAL-2026-16125
+    # ─── Sep 11–12 2026: AI/LLM typosquat cluster + web3/crypto + misc ──────────
+    # AI/LLM typosquat cluster: four packages impersonating popular Python AI/ML
+    #   libraries with install-time malware. langgrap typosquats langgraph (0.2.45);
+    #   ollamaa typosquats ollama (0.4.2); openaii typosquats openai (1.55.3);
+    #   transfomers typosquats transformers (4.44.2). Additionally aitextkit-py and
+    #   aitextutils-py are AI-toolkit-themed malware at 0.1.0 and 0.1.1.
+    # Web3/crypto malware: eth-account-web3 and web3-eth-account typosquat the
+    #   eth-account / web3 Python namespace (0.14.0 each); pymem-win impersonates a
+    #   Windows memory library (5 versions: 1.14.0–1.14.6).
+    # platform-telemetry-client: install-time malware at version 1.0.0 (Sep 12 2026).
+    # OSV MAL-2026-16127, MAL-2026-16128, MAL-2026-16129, MAL-2026-16130,
+    #     MAL-2026-16131, MAL-2026-16133, MAL-2026-16134, MAL-2026-16135,
+    #     MAL-2026-16136, MAL-2026-16141
+    "langgrap": {"0.2.45"},                             # MAL-2026-16133 — langgraph typosquat
+    "ollamaa": {"0.4.2"},                               # MAL-2026-16134 — ollama typosquat
+    "openaii": {"1.55.3"},                              # MAL-2026-16135 — openai typosquat
+    "transfomers": {"4.44.2"},                          # MAL-2026-16136 — transformers typosquat
+    "aitextkit-py": {"0.1.0", "0.1.1"},                 # MAL-2026-16130
+    "aitextutils-py": {"0.1.0", "0.1.1"},               # MAL-2026-16131
+    "eth-account-web3": {"0.14.0"},                     # MAL-2026-16127 — web3 namespace malware
+    "web3-eth-account": {"0.14.0"},                     # MAL-2026-16129 — eth-account typosquat
+    "pymem-win": {"1.14.0", "1.14.1", "1.14.4", "1.14.5", "1.14.6"},  # MAL-2026-16128
+    "platform-telemetry-client": {"1.0.0"},             # MAL-2026-16141
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -11918,14 +11954,14 @@ NPM_BAD: dict[str, set[str]] = {
     # execute in CI/CD pipelines that prefer higher semver.
     # OSV MAL-2026-16111, MAL-2026-16112, MAL-2026-16113, MAL-2026-16114, MAL-2026-16115,
     #     MAL-2026-16116, MAL-2026-16117, MAL-2026-16118, MAL-2026-16119, MAL-2026-16120
-    "etoro-aggregator": {"999.0.0"},                    # MAL-2026-16111
-    "etoro-analytics": {"999.0.0"},                     # MAL-2026-16112
+    "etoro-aggregator": {"99.0.0", "99.0.2", "999.0.0"},  # MAL-2026-16111
+    "etoro-analytics": {"99.0.0", "99.0.2", "999.0.0"},  # MAL-2026-16112
     "etoro-api": {"999.0.0"},                           # MAL-2026-16113
-    "etoro-auth": {"999.0.0"},                          # MAL-2026-16114
+    "etoro-auth": {"99.0.0", "999.0.0"},                # MAL-2026-16114
     "etoro-billing": {"999.0.0"},                       # MAL-2026-16115
     "etoro-builders": {"999.0.0"},                      # MAL-2026-16116
-    "etoro-cashout": {"999.0.0"},                       # MAL-2026-16117
-    "etoro-charts": {"999.0.0"},                        # MAL-2026-16118
+    "etoro-cashout": {"99.0.0", "99.0.2", "999.0.0"},   # MAL-2026-16117
+    "etoro-charts": {"99.0.0", "999.0.0"},              # MAL-2026-16118
     "etoro-client": {"999.0.0"},                        # MAL-2026-16119
     "etoro-core": {"999.0.0"},                          # MAL-2026-16120
     # ─── Sep 10 2026: miscellaneous npm malware batch (2 packages) ───────────────
@@ -11937,6 +11973,33 @@ NPM_BAD: dict[str, set[str]] = {
     "pinochiomathm": {"2.3.2", "2.3.3", "2.3.4", "2.3.5"},            # MAL-2026-16123
     "tailwindcss-contact-forms": {"0.5.4", "0.5.5", "0.5.6", "0.5.7", # MAL-2026-16124
                                   "0.5.8", "0.5.9", "0.6.0"},
+    # ─── Sep 11 2026: @nimbusedge dep-confusion + npm miscellaneous batch ─────────
+    # @nimbusedge/auth: dependency-confusion attack against the @nimbusedge internal
+    #   scope. 40 malicious versions published at artificially inflated 19999.x
+    #   semver numbers (the classic dep-confusion inflation pattern) plus 221.1.0.
+    #   Each version communicates with malicious infrastructure on install.
+    # strapi-plugin-vinsoc-1109: malicious Strapi plugin typosquat; single version 3.6.8.
+    # cr-bot-common: throwaway install-time malware; 1.0.0.
+    # greensaver: install-time malware detected by OpenSSF Package Analysis; 3 versions.
+    # tailwind-form-kit: Tailwind CSS utility-package malware; single version 0.6.4.
+    # tracker-cloudflare: malicious Cloudflare-themed tracking package; 1.0.0.
+    # OSV MAL-2026-16126, MAL-2026-16132, MAL-2026-16137, MAL-2026-16138,
+    #     MAL-2026-16139, MAL-2026-16140
+    "@nimbusedge/auth": {                               # MAL-2026-16132 — dep-confusion
+        "19999.0.1", "19999.0.2", "19999.0.3", "19999.0.4", "19999.0.5", "19999.0.6",
+        "19999.0.7", "19999.1337.1", "19999.1337.2", "19999.1337.4", "19999.1337.5",
+        "19999.1337.6", "19999.1337.7", "19999.1337.8", "19999.1338.1", "19999.1338.2",
+        "19999.1338.3", "19999.1338.4", "19999.1338.5", "19999.1338.6", "19999.1338.7",
+        "19999.1338.8", "19999.1339.1", "19999.1339.2", "19999.1339.3", "19999.1339.4",
+        "19999.1339.5", "19999.1349.5", "19999.1359.1", "19999.1359.2", "19999.1359.3",
+        "19999.1359.4", "19999.1359.5", "19999.1359.6", "19999.1360.1", "19999.1360.2",
+        "19999.1360.3", "19999.1360.4", "19999.1360.5", "221.1.0",
+    },
+    "strapi-plugin-vinsoc-1109": {"3.6.8"},             # MAL-2026-16126
+    "cr-bot-common": {"1.0.0"},                         # MAL-2026-16137
+    "greensaver": {"1.2.1", "1.2.2", "1.2.3"},          # MAL-2026-16138
+    "tailwind-form-kit": {"0.6.4"},                     # MAL-2026-16139
+    "tracker-cloudflare": {"1.0.0"},                    # MAL-2026-16140
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
