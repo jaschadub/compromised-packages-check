@@ -539,7 +539,9 @@ OSV MAL-2026-16127/16128/16129), platform-telemetry-client PyPI malware
 (OSV MAL-2026-16141), and 5 npm miscellaneous packages (strapi-plugin-vinsoc-1109,
 cr-bot-common, greensaver, tailwind-form-kit, tracker-cloudflare;
 OSV MAL-2026-16126/16137/16138/16139/16140), plus additional 99.0.x dep-confusion
-version entries added to 5 existing eToro packages.
+version entries added to 5 existing eToro packages,
+and the September 12 2026 sweep: python-fork PyPI fork-bomb malware
+(OSV MAL-2026-16142).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1760,6 +1762,11 @@ PYPI_BAD: dict[str, set[str]] = {
     "web3-eth-account": {"0.14.0"},                     # MAL-2026-16129 — eth-account typosquat
     "pymem-win": {"1.14.0", "1.14.1", "1.14.4", "1.14.5", "1.14.6"},  # MAL-2026-16128
     "platform-telemetry-client": {"1.0.0"},             # MAL-2026-16141
+    # ─── Sep 12 2026: python-fork fork-bomb malware ───────────────────────────
+    # python-fork: importing the module triggers a fork bomb, destabilizing the
+    #   system. Two versions published (0.1.0–0.1.1) before removal.
+    # OSV MAL-2026-16142 (source: kam193 / bad-packages.kam193.eu)
+    "python-fork": {"0.1.0", "0.1.1"},                  # MAL-2026-16142
 }
 
 # npm: exact package name -> set of malicious versions.
