@@ -1767,6 +1767,13 @@ PYPI_BAD: dict[str, set[str]] = {
     #   system. Two versions published (0.1.0–0.1.1) before removal.
     # OSV MAL-2026-16142 (source: kam193 / bad-packages.kam193.eu)
     "python-fork": {"0.1.0", "0.1.1"},                  # MAL-2026-16142
+    # ─── Sep 13 2026: 2026-09-openaii campaign — chroma-client typosquat ─────────
+    # chroma-client typosquats the legitimate chromadb/chroma Python library.
+    # Downloads and executes a remote malicious script from 167.86.108.190:7788;
+    # payload includes cryptominer, infostealer, SSH-key and credential exfiltration,
+    # persistence, and covering-tracks routines.
+    # OSV MAL-2026-16143 (source: kam193 / bad-packages.kam193.eu)
+    "chroma-client": {"0.5.7"},                          # MAL-2026-16143
 }
 
 # npm: exact package name -> set of malicious versions.
