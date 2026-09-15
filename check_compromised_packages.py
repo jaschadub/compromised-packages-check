@@ -11925,7 +11925,7 @@ NPM_BAD: dict[str, set[str]] = {
     # Packages harvesting Discord tokens and MFA credentials; mfaby/mfatest2 appear
     # to be attacker throwaway/PoC packages confirming MFA-bypass techniques.
     # OSV MAL-2026-16100, MAL-2026-16101, MAL-2026-16102
-    "discord-mfa-solver": {"1.0.0", "1.0.1", "1.0.2"}, # MAL-2026-16100
+    "discord-mfa-solver": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"}, # MAL-2026-16100
     "mfaby": {"1.0.0"},                                 # MAL-2026-16101
     "mfatest2": {"1.0.0"},                              # MAL-2026-16102
     # ─── Sep 9 2026: @auction-fe dep-confusion cluster (4 packages) ──────────────
@@ -11986,7 +11986,7 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-16123, MAL-2026-16124
     "pinochiomathm": {"2.3.2", "2.3.3", "2.3.4", "2.3.5"},            # MAL-2026-16123
     "tailwindcss-contact-forms": {"0.5.4", "0.5.5", "0.5.6", "0.5.7", # MAL-2026-16124
-                                  "0.5.8", "0.5.9", "0.6.0"},
+                                  "0.5.8", "0.5.9", "0.6.0", "0.6.1", "0.6.2"},
     # ─── Sep 11 2026: @nimbusedge dep-confusion + npm miscellaneous batch ─────────
     # @nimbusedge/auth: dependency-confusion attack against the @nimbusedge internal
     #   scope. 40 malicious versions published at artificially inflated 19999.x
@@ -11995,7 +11995,9 @@ NPM_BAD: dict[str, set[str]] = {
     # strapi-plugin-vinsoc-1109: malicious Strapi plugin typosquat; single version 3.6.8.
     # cr-bot-common: throwaway install-time malware; 1.0.0.
     # greensaver: install-time malware detected by OpenSSF Package Analysis; 3 versions.
-    # tailwind-form-kit: Tailwind CSS utility-package malware; single version 0.6.4.
+    # tailwind-form-kit: Tailwind CSS utility-package malware; OSV now carries
+    #   ranges: introduced:"0" (any version malicious) in addition to specific versions
+    #   0.6.2 and 0.6.4 — upgrading to empty-set wildcard per SKILLS.md guidance.
     # tracker-cloudflare: malicious Cloudflare-themed tracking package; 1.0.0.
     # OSV MAL-2026-16126, MAL-2026-16132, MAL-2026-16137, MAL-2026-16138,
     #     MAL-2026-16139, MAL-2026-16140
@@ -12012,8 +12014,71 @@ NPM_BAD: dict[str, set[str]] = {
     "strapi-plugin-vinsoc-1109": {"3.6.8"},             # MAL-2026-16126
     "cr-bot-common": {"1.0.0"},                         # MAL-2026-16137
     "greensaver": {"1.2.1", "1.2.2", "1.2.3"},          # MAL-2026-16138
-    "tailwind-form-kit": {"0.6.4"},                     # MAL-2026-16139
+    "tailwind-form-kit": set(),                          # MAL-2026-16139 — ranges: introduced 0 → any version
     "tracker-cloudflare": {"1.0.0"},                    # MAL-2026-16140
+    # ─── Sep 14 2026: dep-confusion high-version batch (2 packages) ──────────────
+    # app-rrhh: HR-application-themed dep-confusion attack at version 999.0.0.
+    #   OpenSSF Package Analysis detected install-time malicious behaviour.
+    # concierge-sdk: dep-confusion attack at versions 99.99.99–99.99.101 targeting
+    #   an internal "concierge" SDK namespace.
+    # OSV MAL-2026-16144, MAL-2026-16145
+    "app-rrhh": {"999.0.0"},                            # MAL-2026-16144
+    "concierge-sdk": {"99.99.99", "99.99.100", "99.99.101"}, # MAL-2026-16145
+    # ─── Sep 14 2026: fake n8n community automation nodes (2 packages) ───────────
+    # n8n-nodes-sysdiag and n8n-nodes-sysdiag2 impersonate legitimate n8n community
+    #   workflow-automation nodes with malicious payloads. Five versions of sysdiag
+    #   (1.0.0–1.0.4) and one version of sysdiag2 (2.0.0) were published before removal.
+    # OSV MAL-2026-16147, MAL-2026-16162
+    "n8n-nodes-sysdiag": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4"}, # MAL-2026-16147
+    "n8n-nodes-sysdiag2": {"2.0.0"},                    # MAL-2026-16162
+    # ─── Sep 14 2026: meeb322k actor cluster (2 packages) ────────────────────────
+    # Same actor publishing OS-information exfiltrators under different framework names:
+    #   os-info-meeb322k (standalone npm package, v1.0.0) and
+    #   strapi-plugin-os-info-meeb322k (disguised as a Strapi CMS plugin, v3.6.8).
+    # OSV MAL-2026-16149, MAL-2026-16152
+    "os-info-meeb322k": {"1.0.0"},                      # MAL-2026-16149
+    "strapi-plugin-os-info-meeb322k": {"3.6.8"},         # MAL-2026-16152
+    # ─── Sep 14 2026: noblox.js Roblox API typosquat (1 package) ────────────────
+    # noblox-asset.js typosquats the legitimate noblox.js Roblox scripting library.
+    #   Four versions published (7.4.0, 7.4.1, 7.4.2, 7.6.0) before removal.
+    # OSV MAL-2026-16148
+    "noblox-asset.js": {"7.4.0", "7.4.1", "7.4.2", "7.6.0"}, # MAL-2026-16148
+    # ─── Sep 14 2026: meraz actor cluster (2 packages) ───────────────────────────
+    # Same actor "meraz/merazmz" publishing project-tracker-themed malware as both a
+    #   scoped (@merazmz/project-tracker) and unscoped (meraz-project-tracker) package.
+    #   Both carry SEMVER introduced:"0" wildcards — any version is malicious.
+    # OSV MAL-2026-16157, MAL-2026-16161
+    "@merazmz/project-tracker": set(),                  # MAL-2026-16157 — any-version wildcard
+    "meraz-project-tracker": set(),                     # MAL-2026-16161 — any-version wildcard
+    # ─── Sep 14 2026: miscellaneous npm malware batch (13 packages) ──────────────
+    # @aiwfm/communitywfm.scripts.api: AI/HR-themed scoped package at 28.1.28;
+    #   likely impersonating an internal workforce-management script bundle.
+    # postgreesqlhelper: PostgreSQL helper typosquat (extra 'e'), v1.0.3.
+    # sql-limit-enforcer: database utility malware at the atypical version 10.0.0.
+    # web-main: generic-named install-time malware at 22.1.2.
+    # pino-ulid: fake pino logger ULID-generator plugin at 2.12.3.
+    # ultra-ws: WebSocket-library-themed malware at 1.0.0.
+    # get-power: install-time malware at 1.0.3.
+    # @yggbrasil/api: scoped malware impersonating a Brazilian company internal API;
+    #   SEMVER introduced:"0" wildcard — any version is malicious.
+    # afhmxiewpsf: throwaway random-name malware (6 versions: 1.0.0–1.0.5).
+    # dilxztech: throwaway attacker-controlled scope; any-version wildcard.
+    # lpulogin: login-themed malware; any-version wildcard.
+    # n8n-nodes-sysdiag (covered above in its own block).
+    # OSV MAL-2026-16146, MAL-2026-16150, MAL-2026-16151, MAL-2026-16153,
+    #     MAL-2026-16154, MAL-2026-16155, MAL-2026-16156, MAL-2026-16158,
+    #     MAL-2026-16159, MAL-2026-16160, MAL-2026-16163
+    "@aiwfm/communitywfm.scripts.api": {"28.1.28"},     # MAL-2026-16146
+    "postgreesqlhelper": {"1.0.3"},                     # MAL-2026-16150
+    "sql-limit-enforcer": {"10.0.0"},                   # MAL-2026-16151
+    "web-main": {"22.1.2"},                             # MAL-2026-16153
+    "pino-ulid": {"2.12.3"},                            # MAL-2026-16154
+    "ultra-ws": {"1.0.0"},                              # MAL-2026-16155
+    "get-power": {"1.0.3"},                             # MAL-2026-16156
+    "@yggbrasil/api": set(),                            # MAL-2026-16163 — any-version wildcard
+    "afhmxiewpsf": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"}, # MAL-2026-16158
+    "dilxztech": set(),                                 # MAL-2026-16159 — any-version wildcard
+    "lpulogin": set(),                                  # MAL-2026-16160 — any-version wildcard
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
