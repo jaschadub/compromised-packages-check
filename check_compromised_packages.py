@@ -1774,6 +1774,12 @@ PYPI_BAD: dict[str, set[str]] = {
     # persistence, and covering-tracks routines.
     # OSV MAL-2026-16143 (source: kam193 / bad-packages.kam193.eu)
     "chroma-client": {"0.5.7"},                          # MAL-2026-16143
+    # ─── Sep 16 2026: faiss-cpu-avx512 PyPI typosquat ────────────────────────
+    # faiss-cpu-avx512 typosquats the legitimate faiss-cpu / faiss-cpu-avx2 packages.
+    # 8 malicious versions published before removal: 1.9.0–1.9.7.
+    # OSV MAL-2026-16203
+    "faiss-cpu-avx512": {"1.9.0", "1.9.1", "1.9.2", "1.9.3",
+                         "1.9.4", "1.9.5", "1.9.6", "1.9.7"},  # MAL-2026-16203
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12079,6 +12085,60 @@ NPM_BAD: dict[str, set[str]] = {
     "afhmxiewpsf": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"}, # MAL-2026-16158
     "dilxztech": set(),                                 # MAL-2026-16159 — any-version wildcard
     "lpulogin": set(),                                  # MAL-2026-16160 — any-version wildcard
+    # ─── Sep 15–16 2026 sweep ─────────────────────────────────────────────────
+    # @biz44 scope malware cluster: 8 scoped packages + unscoped companions.
+    #   @biz44/id*-client, @biz44/process-runtime-utils, @biz44/runtime-utils —
+    #   install-time payload delivery. Unscoped: id79-client, process-lhpm, process-tailwind.
+    # strapi-plugin-meeb / strapi-plugin-meeb322k: 15 fake Strapi CMS plugins all at v3.6.8.
+    # tailwind-forms-styles: tailwind typosquat — any version is malicious.
+    # alkajsdfoiwqeusdflkjsdf: throwaway random-name malware at 3.7.3.
+    # csa-mfa: MFA-themed install-time malware.
+    # fulfillment-cuprum-auth-widget: cuprum-stack-related malware at 3.7.2.
+    # n8n-nodes-buildcheck: malicious n8n community-node plugin at 1.0.0.
+    # chai-as-crack: test-utility-themed malware at 7.0.5.
+    # kartykp-prod-oidc-test-pkg / kartykp-token-pkg: OIDC/token probe cluster.
+    # plogme: install-time data-exfiltration malware.
+    # @zaka13/thing: scoped malware.
+    # webpackbootstrap5 / webpackbootstrapscripts: webpack typosquats.
+    # OSV MAL-2026-16165 through MAL-2026-16202
+    "@biz44/id10-client": {"1.1.11"},                            # MAL-2026-16165
+    "@biz44/id12-client": {"1.1.13"},                            # MAL-2026-16166
+    "@biz44/id44-client": {"1.1.44"},                            # MAL-2026-16167
+    "@biz44/id79-client": {"1.1.80"},                            # MAL-2026-16168
+    "@biz44/id95-client": {"1.1.96"},                            # MAL-2026-16169
+    "@biz44/id99-client": {"1.1.100"},                           # MAL-2026-16170
+    "@biz44/process-runtime-utils": {"1.1.10", "1.1.79", "1.1.95"},  # MAL-2026-16171
+    "@biz44/runtime-utils": {"1.1.11", "1.1.13", "1.1.81", "1.1.96", "1.1.100"},  # MAL-2026-16172
+    "id79-client": {"1.1.79"},                                   # MAL-2026-16173
+    "process-lhpm": {"1.1.79"},                                  # MAL-2026-16178
+    "process-tailwind": {"1.1.99"},                              # MAL-2026-16179
+    "strapi-plugin-ccresh-meeb": {"3.6.8"},                      # MAL-2026-16180
+    "strapi-plugin-plsresh-meeb": {"3.6.8"},                     # MAL-2026-16181
+    "strapi-plugin-proccresh-meeb": {"3.6.8"},                   # MAL-2026-16182
+    "strapi-plugin-resh-meeb322k": {"3.6.8"},                    # MAL-2026-16183
+    "strapi-plugin-revs-meeb322k": {"3.6.8"},                    # MAL-2026-16184
+    "strapi-plugin-revs01-meeb322k": {"3.6.8"},                  # MAL-2026-16185
+    "strapi-plugin-revs02-meeb322k": {"3.6.8"},                  # MAL-2026-16186
+    "strapi-plugin-revsh-meeb322k": {"3.6.8"},                   # MAL-2026-16187
+    "strapi-plugin-rs-meeb322k": {"3.6.8"},                      # MAL-2026-16188
+    "strapi-plugin-sucresh-meeb": {"3.6.8"},                     # MAL-2026-16189
+    "strapi-plugin-tryccresh-meeb": {"3.6.8"},                   # MAL-2026-16190
+    "strapi-plugin-uicc-meeb": {"3.6.8"},                        # MAL-2026-16191
+    "strapi-plugin-weccresh-meeb": {"3.6.8"},                    # MAL-2026-16192
+    "strapi-plugin-yayccresh-meeb": {"3.6.8"},                   # MAL-2026-16193
+    "strapi-plugin-yesccresh-meeb": {"3.6.8"},                   # MAL-2026-16194
+    "tailwind-forms-styles": set(),                              # MAL-2026-16195 — any-version wildcard
+    "alkajsdfoiwqeusdflkjsdf": {"3.7.3"},                        # MAL-2026-16174
+    "csa-mfa": {"1.1.15", "1.1.16"},                             # MAL-2026-16175
+    "fulfillment-cuprum-auth-widget": {"3.7.2"},                 # MAL-2026-16176
+    "n8n-nodes-buildcheck": {"1.0.0"},                           # MAL-2026-16177
+    "chai-as-crack": {"7.0.5"},                                  # MAL-2026-16196
+    "kartykp-prod-oidc-test-pkg": {"1.0.3", "1.0.4"},            # MAL-2026-16197
+    "kartykp-token-pkg": {"1.0.2"},                              # MAL-2026-16198
+    "plogme": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},             # MAL-2026-16199
+    "@zaka13/thing": {"1.0.0"},                                  # MAL-2026-16200
+    "webpackbootstrap5": {"5.0.0"},                              # MAL-2026-16201
+    "webpackbootstrapscripts": {"5.110.3"},                      # MAL-2026-16202
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -12280,6 +12340,11 @@ NPM_SUSPECT_SCOPES = (
     "@versacode/",
     # @yongot/ MCP canary probe scope (Sep 9 2026) — canary-mcp-isolation/test pinned above
     "@yongot/",
+    # @biz44 attacker-controlled scope (Sep 15 2026) — 8 id*-client packages +
+    # process-runtime-utils / runtime-utils pinned above; scope catches further packages
+    "@biz44/",
+    # @zaka13 attacker-controlled scope (Sep 16 2026) — thing pinned above
+    "@zaka13/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
@@ -12418,6 +12483,10 @@ CRATES_BAD: dict[str, set[str]] = {
     "arone": set(),                                                              # MAL-2026-14334 (ANY)
     "aronenao": set(),                                                           # MAL-2026-14335 (ANY)
     "tinymember": set(),                                                         # MAL-2026-14340 (ANY)
+    # Sep 15 2026: logs-update malicious crate (OSV MAL-2026-16164)
+    # logs-update: published to crates.io with no legitimate use; any version is
+    # malicious (OSV introduced:"0", no fixed version recorded).
+    "logs-update": set(),                                                        # MAL-2026-16164 (ANY)
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
