@@ -1780,6 +1780,18 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-16203
     "faiss-cpu-avx512": {"1.9.0", "1.9.1", "1.9.2", "1.9.3",
                          "1.9.4", "1.9.5", "1.9.6", "1.9.7"},  # MAL-2026-16203
+    # ─── Sep 16–17 2026: 5 miscellaneous PyPI malware packages ─────────────────
+    # cli-anything-ai-market: AI/CLI-themed malware at 1.0.17/1.0.18.
+    # licloud: cloud SDK impersonator at 0.2.7a0/0.2.8.
+    # praetorian-mind-rce-test-2026: security research PoC malware at 0.0.1–0.0.3.
+    # rak-lab-yoav-orca-zrktd2cp5hjmo4x7: lab malware at 9.9.9.
+    # trongappy: Tron/crypto-themed malware at 0.0.1.
+    # OSV MAL-2026-16212, MAL-2026-16219, MAL-2026-16240, MAL-2026-16241, MAL-2026-16242
+    "cli-anything-ai-market": {"1.0.17", "1.0.18"},             # MAL-2026-16212
+    "licloud": {"0.2.7a0", "0.2.8"},                            # MAL-2026-16219
+    "praetorian-mind-rce-test-2026": {"0.0.1", "0.0.2", "0.0.3"},  # MAL-2026-16240
+    "rak-lab-yoav-orca-zrktd2cp5hjmo4x7": {"9.9.9"},            # MAL-2026-16241
+    "trongappy": {"0.0.1"},                                     # MAL-2026-16242
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12139,6 +12151,65 @@ NPM_BAD: dict[str, set[str]] = {
     "@zaka13/thing": {"1.0.0"},                                  # MAL-2026-16200
     "webpackbootstrap5": {"5.0.0"},                              # MAL-2026-16201
     "webpackbootstrapscripts": {"5.110.3"},                      # MAL-2026-16202
+    # ─── Sep 16–17 2026 sweep ──────────────────────────────────────────────────
+    # @prime0 scope: typosquats of balanced-match (@prime0/alanced-match),
+    #   minimatch (@prime0/inimatch), picomatch (@prime0/pcomatch) — all at 1.0.0.
+    # otel-span-adapter: OpenTelemetry-themed malware at 1.0.3/1.0.4.
+    # chai-as-agile: test-utility-themed malware at 2.4.7.
+    # swnwall: install-time malware at 1.2.10.
+    # discord-players / discord-resolvers: Discord-themed malware at 3.4.2.
+    # engin1: malware at 1.3.99.
+    # tetomood / tetotest / tol8t: malware cluster at 12.0.0/14.0.0.
+    # jexkcode: WhatsApp newsletter auto-follower; versions 1.0.1–1.1.4.
+    # bender-rspack-config: rspack-config-themed malware at 1.0.0.
+    # @traktis scope: core/environment malware at 99.99.x.
+    # process-mite: max233-account detached-JS dropper at 1.1.79.
+    # strapi-plugin-*-meeb continuation: 17 more fake Strapi CMS plugins at 3.6.8.
+    # idx_form_script: malware at 999.0.4.
+    # kartyk-github-oidc-test-pkg / kartyk-github-single-ver-pkg / kartyk-github-token-pkg:
+    #   OIDC/token-theft probe cluster — any version is malicious (ranges: introduced:"0").
+    # pkg-rollback-dreed-viced-sonic-ponds: any-version malware wildcard.
+    # 2 scopes added to NPM_SUSPECT_SCOPES: @prime0/, @traktis/
+    # OSV MAL-2026-16204 through MAL-2026-16247
+    "@prime0/alanced-match": {"1.0.0"},                         # MAL-2026-16204
+    "@prime0/inimatch": {"1.0.0"},                              # MAL-2026-16205
+    "@prime0/pcomatch": {"1.0.0"},                              # MAL-2026-16206
+    "chai-as-agile": {"2.4.7"},                                 # MAL-2026-16207
+    "otel-span-adapter": {"1.0.3", "1.0.4"},                    # MAL-2026-16208
+    "strapi-plugin-ccsuc-meeb": {"3.6.8"},                      # MAL-2026-16209
+    "strapi-plugin-pencc-meeb": {"3.6.8"},                      # MAL-2026-16210
+    "swnwall": {"1.2.10"},                                      # MAL-2026-16211
+    "discord-players": {"3.4.2"},                               # MAL-2026-16213
+    "discord-resolvers": {"3.4.2"},                             # MAL-2026-16214
+    "engin1": {"1.3.99"},                                       # MAL-2026-16215
+    "tetomood": {"12.0.0"},                                     # MAL-2026-16216
+    "tetotest": {"14.0.0"},                                     # MAL-2026-16217
+    "tol8t": {"14.0.0"},                                        # MAL-2026-16218
+    "jexkcode": {"1.0.1", "1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4"},  # MAL-2026-16220
+    "bender-rspack-config": {"1.0.0"},                          # MAL-2026-16221
+    "@traktis/core": {"99.99.2"},                               # MAL-2026-16222
+    "@traktis/environment": {"99.99.1", "99.99.2"},             # MAL-2026-16223
+    "process-mite": {"1.1.79"},                                 # MAL-2026-16224
+    "strapi-plugin-cccon-meeb": {"3.6.8"},                      # MAL-2026-16225
+    "strapi-plugin-ccip-meeb": {"3.6.8"},                       # MAL-2026-16226
+    "strapi-plugin-ccrec-meeb": {"3.6.8"},                      # MAL-2026-16227
+    "strapi-plugin-ccrev-meeb": {"3.6.8"},                      # MAL-2026-16228
+    "strapi-plugin-conresh-meeb": {"3.6.8"},                    # MAL-2026-16229
+    "strapi-plugin-feedmeeb": {"3.6.8"},                        # MAL-2026-16230
+    "strapi-plugin-honey-meeb": {"3.6.8"},                      # MAL-2026-16231
+    "strapi-plugin-listcc-meeb": {"3.6.8"},                     # MAL-2026-16232
+    "strapi-plugin-maylog-meeb": {"3.6.8"},                     # MAL-2026-16233
+    "strapi-plugin-os-rec": {"3.6.8"},                          # MAL-2026-16234
+    "strapi-plugin-osag": {"3.6.8"},                            # MAL-2026-16235
+    "strapi-plugin-perev-meeb": {"3.6.8"},                      # MAL-2026-16236
+    "strapi-plugin-persh-meeb": {"3.6.8"},                      # MAL-2026-16237
+    "strapi-plugin-portcc-meeb": {"3.6.8"},                     # MAL-2026-16238
+    "strapi-plugin-pysh-meeb": {"3.6.8"},                       # MAL-2026-16239
+    "idx_form_script": {"999.0.4"},                             # MAL-2026-16243
+    "kartyk-github-oidc-test-pkg": set(),                       # MAL-2026-16244 — any-version wildcard
+    "kartyk-github-single-ver-pkg": set(),                      # MAL-2026-16245 — any-version wildcard
+    "kartyk-github-token-pkg": set(),                           # MAL-2026-16246 — any-version wildcard
+    "pkg-rollback-dreed-viced-sonic-ponds": set(),              # MAL-2026-16247 — any-version wildcard
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -12345,6 +12416,10 @@ NPM_SUSPECT_SCOPES = (
     "@biz44/",
     # @zaka13 attacker-controlled scope (Sep 16 2026) — thing pinned above
     "@zaka13/",
+    # @prime0 typosquat scope (Sep 16 2026) — alanced-match / inimatch / pcomatch pinned above
+    "@prime0/",
+    # @traktis attacker scope (Sep 16 2026) — core / environment at 99.99.x pinned above
+    "@traktis/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
