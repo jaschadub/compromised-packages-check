@@ -1792,6 +1792,27 @@ PYPI_BAD: dict[str, set[str]] = {
     "praetorian-mind-rce-test-2026": {"0.0.1", "0.0.2", "0.0.3"},  # MAL-2026-16240
     "rak-lab-yoav-orca-zrktd2cp5hjmo4x7": {"9.9.9"},            # MAL-2026-16241
     "trongappy": {"0.0.1"},                                     # MAL-2026-16242
+    # ─── Sep 17–18 2026: 7 miscellaneous PyPI malware packages ──────────────
+    # marketing-mcp: MCP/marketing-tool-themed malware at 0.1.0.
+    # aiosendletter: email-utility malware at 0.2.0 and versions mimicking Python minor
+    #   releases (3.7–4.6); all confirmed by OSV MAL-2026-16264.
+    # pyjstat-smooth: trojanized pyjstat JSON-stat library with 18 malicious versions
+    #   spanning 1.5.0 through 2.5.17 (OSV MAL-2026-16267).
+    # index-forum: forum-utility malware at 2.5.4 (OSV MAL-2026-16268).
+    # requests-asetwe / requests-auroras / requests-triwes: requests typosquats at 2.34.2
+    #   (OSV MAL-2026-16269, MAL-2026-16274, MAL-2026-16275).
+    "marketing-mcp": {"0.1.0"},                                 # MAL-2026-16250
+    "aiosendletter": {"0.2.0", "3.7", "3.8", "3.9",
+                      "4.0", "4.1", "4.3", "4.5", "4.6"},      # MAL-2026-16264
+    "pyjstat-smooth": {"1.5.0", "2.5.0", "2.5.1", "2.5.2",
+                       "2.5.3", "2.5.5", "2.5.6", "2.5.7",
+                       "2.5.8", "2.5.9", "2.5.10", "2.5.11",
+                       "2.5.12", "2.5.13", "2.5.14", "2.5.15",
+                       "2.5.16", "2.5.17"},                     # MAL-2026-16267
+    "index-forum": {"2.5.4"},                                   # MAL-2026-16268
+    "requests-asetwe": {"2.34.2"},                              # MAL-2026-16269
+    "requests-auroras": {"2.34.2"},                             # MAL-2026-16274
+    "requests-triwes": {"2.34.2"},                              # MAL-2026-16275
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -4695,7 +4716,7 @@ NPM_BAD: dict[str, set[str]] = {
     # MAL-2026-10082 (chain-async-dom), MAL-2026-10055/10056 (chain-chai-*)
     "chai-as-align": {"7.1.0"},
     "chai-as-balanced": {"2.2.3"},
-    "chai-as-buffered": {"3.7.24"},
+    "chai-as-buffered": {"3.7.24", "7.2.5"},
     "chai-as-disarmed": {"3.2.3"},
     "chai-as-modified": {"6.0.4"},
     "chai-as-serialized": {"7.0.8"},
@@ -12088,7 +12109,7 @@ NPM_BAD: dict[str, set[str]] = {
     #     MAL-2026-16159, MAL-2026-16160, MAL-2026-16163
     "@aiwfm/communitywfm.scripts.api": {"28.1.28"},     # MAL-2026-16146
     "postgreesqlhelper": {"1.0.3"},                     # MAL-2026-16150
-    "sql-limit-enforcer": {"10.0.0"},                   # MAL-2026-16151
+    "sql-limit-enforcer": {"10.0.0", "10.0.1", "10.0.2"},  # MAL-2026-16151
     "web-main": {"22.1.2"},                             # MAL-2026-16153
     "pino-ulid": {"2.12.3"},                            # MAL-2026-16154
     "ultra-ws": {"1.0.0"},                              # MAL-2026-16155
@@ -12187,7 +12208,7 @@ NPM_BAD: dict[str, set[str]] = {
     "tol8t": {"14.0.0"},                                        # MAL-2026-16218
     "jexkcode": {"1.0.1", "1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4"},  # MAL-2026-16220
     "bender-rspack-config": {"1.0.0"},                          # MAL-2026-16221
-    "@traktis/core": {"99.99.2"},                               # MAL-2026-16222
+    "@traktis/core": {"99.99.1", "99.99.2"},                    # MAL-2026-16222
     "@traktis/environment": {"99.99.1", "99.99.2"},             # MAL-2026-16223
     "process-mite": {"1.1.79"},                                 # MAL-2026-16224
     "strapi-plugin-cccon-meeb": {"3.6.8"},                      # MAL-2026-16225
@@ -12205,11 +12226,61 @@ NPM_BAD: dict[str, set[str]] = {
     "strapi-plugin-persh-meeb": {"3.6.8"},                      # MAL-2026-16237
     "strapi-plugin-portcc-meeb": {"3.6.8"},                     # MAL-2026-16238
     "strapi-plugin-pysh-meeb": {"3.6.8"},                       # MAL-2026-16239
-    "idx_form_script": {"999.0.4"},                             # MAL-2026-16243
+    "idx_form_script": {"999.0.2", "999.0.4"},                  # MAL-2026-16243
     "kartyk-github-oidc-test-pkg": set(),                       # MAL-2026-16244 — any-version wildcard
     "kartyk-github-single-ver-pkg": set(),                      # MAL-2026-16245 — any-version wildcard
     "kartyk-github-token-pkg": set(),                           # MAL-2026-16246 — any-version wildcard
     "pkg-rollback-dreed-viced-sonic-ponds": set(),              # MAL-2026-16247 — any-version wildcard
+    # ─── Sep 17–18 2026: mixed npm malware batch ─────────────────────────────
+    # Tailwind CSS form-plugin typosquats continuing the Sep 15–16 wave:
+    #   tailwindcss-contact-form / tailwindcss-form-ui / tailwindcss-form-utils at 0.5.1.
+    # kartykgithub-takedown-a/b and kartykgithub-multiversion-a: OIDC/token-theft
+    #   probe cluster by the same kartyk attacker; exact versions per OSV.
+    # @kartyk-github-org/takedown-a/b: attacker-org scope; any-version wildcards.
+    # test89078-auth: auth-themed probe at 99.99.99.
+    # confx1789550882 / pulse-pwn-9f3a2: miscellaneous malware at 1.0.0.
+    # randompkga–e: five any-version wildcard test malware packages.
+    # laycot: malware at 1.3.10.
+    # ragacateslikodi: multi-version malware (7 versions, 1.0.0–1.0.6).
+    # @railone/image-utils: image-utility-themed malware at 1.1.10.
+    # @tink/tink-link-core: impersonates Google Tink at high version 9.9.10.
+    # blue-string-formatter-utils: string-utility malware at 1.0.0.
+    # @lekzo/baileys: WhatsApp Baileys fork malware at 0.0.1.
+    # xzvbailey / xzvbailsx / zero-baileys / xa424234657567: WhatsApp-themed malware cluster.
+    # @epic-mod-market/ui: any-version malware (GHSA-6p4m-66w3-6qpp / MAL-2022-250; active record
+    #   confirmed Sep 18 2026; malicious versions 1.9.9 and 99.9.8).
+    # OSV MAL-2022-250, MAL-2026-16248, MAL-2026-16249, MAL-2026-16251, MAL-2026-16252,
+    #   MAL-2026-16253, MAL-2026-16254, MAL-2026-16255 through MAL-2026-16260,
+    #   MAL-2026-16261, MAL-2026-16262, MAL-2026-16263, MAL-2026-16265, MAL-2026-16266,
+    #   MAL-2026-16270, MAL-2026-16271, MAL-2026-16272, MAL-2026-16273,
+    #   MAL-2026-16276, MAL-2026-16277, MAL-2026-16278, MAL-2026-16279, MAL-2026-16280
+    "tailwindcss-contact-form": {"0.5.1"},                      # MAL-2026-16251
+    "tailwindcss-form-ui": {"0.5.1"},                           # MAL-2026-16262
+    "tailwindcss-form-utils": {"0.5.1"},                        # MAL-2026-16263
+    "kartykgithub-takedown-a": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},  # MAL-2026-16248
+    "kartykgithub-takedown-b": {"1.0.0"},                       # MAL-2026-16249
+    "kartykgithub-multiversion-a": {"1.0.0", "1.0.1"},         # MAL-2026-16272
+    "@kartyk-github-org/takedown-a": set(),                     # MAL-2026-16265 — any-version wildcard
+    "@kartyk-github-org/takedown-b": set(),                     # MAL-2026-16266 — any-version wildcard
+    "test89078-auth": {"99.99.99"},                             # MAL-2026-16271
+    "confx1789550882": {"1.0.0"},                               # MAL-2026-16260
+    "pulse-pwn-9f3a2": {"1.0.0"},                               # MAL-2026-16254
+    "randompkga": set(),                                        # MAL-2026-16255 — any-version wildcard
+    "randompkgb": set(),                                        # MAL-2026-16256 — any-version wildcard
+    "randompkgc": set(),                                        # MAL-2026-16257 — any-version wildcard
+    "randompkgd": set(),                                        # MAL-2026-16258 — any-version wildcard
+    "randompkge": set(),                                        # MAL-2026-16259 — any-version wildcard
+    "laycot": {"1.3.10"},                                       # MAL-2026-16253
+    "ragacateslikodi": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},  # MAL-2026-16252
+    "@railone/image-utils": {"1.1.10"},                         # MAL-2026-16261
+    "@tink/tink-link-core": {"9.9.10"},                         # MAL-2026-16270
+    "blue-string-formatter-utils": {"1.0.0"},                   # MAL-2026-16273
+    "@lekzo/baileys": {"0.0.1"},                                # MAL-2026-16276
+    "xzvbailey": {"1.0.0"},                                     # MAL-2026-16278
+    "xzvbailsx": {"1.0.0"},                                     # MAL-2026-16279
+    "zero-baileys": {"2.7.0"},                                  # MAL-2026-16280
+    "xa424234657567": {"1.0.0"},                                # MAL-2026-16277
+    "@epic-mod-market/ui": {"1.9.9", "99.9.8"},                 # MAL-2022-250 / GHSA-6p4m-66w3-6qpp
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -12420,6 +12491,10 @@ NPM_SUSPECT_SCOPES = (
     "@prime0/",
     # @traktis attacker scope (Sep 16 2026) — core / environment at 99.99.x pinned above
     "@traktis/",
+    # @kartyk-github-org attacker scope (Sep 17 2026) — takedown-a/b wildcards pinned above
+    "@kartyk-github-org/",
+    # @lekzo WhatsApp Baileys fork malware scope (Sep 18 2026) — baileys pinned above
+    "@lekzo/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
