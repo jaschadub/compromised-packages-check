@@ -1813,6 +1813,15 @@ PYPI_BAD: dict[str, set[str]] = {
     "requests-asetwe": {"2.34.2"},                              # MAL-2026-16269
     "requests-auroras": {"2.34.2"},                             # MAL-2026-16274
     "requests-triwes": {"2.34.2"},                              # MAL-2026-16275
+    # ─── Sep 18–19 2026: 2 new PyPI malware packages ────────────────────────
+    # google-cloud-datacatalog-lineage-producer-client: dep-confusion probe/malware
+    #   exfiltrating host info on install/import; high-version probes 9999/99999999
+    #   alongside a normal-looking 0.2.7; OSV MAL-2024-12279.
+    # py-venv-doctor: venv health-check–themed package that exfiltrates the full
+    #   environment (opt-out telemetry) at install and on report generation;
+    #   OSV MAL-2026-16296.
+    "google-cloud-datacatalog-lineage-producer-client": {"9999", "99999999", "0.2.7"},  # MAL-2024-12279
+    "py-venv-doctor": {"0.1.0", "0.1.1"},                       # MAL-2026-16296
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12281,6 +12290,46 @@ NPM_BAD: dict[str, set[str]] = {
     "zero-baileys": {"2.7.0"},                                  # MAL-2026-16280
     "xa424234657567": {"1.0.0"},                                # MAL-2026-16277
     "@epic-mod-market/ui": {"1.9.9", "99.9.8"},                 # MAL-2022-250 / GHSA-6p4m-66w3-6qpp
+    # ─── Sep 18–19 2026: mixed npm malware batch ─────────────────────────────
+    # x509-escaping: preinstall malware; 4 versions 0.0.0–0.0.2 and 1.0.1 (MAL-2025-889).
+    # @sanzoffc/baileys: WhatsApp Baileys fork malware at 3.0.4; @sanzoffc/ scope added
+    #   to NPM_SUSPECT_SCOPES (MAL-2026-16281).
+    # tailwindcss-form: Tailwind CSS forms plugin typosquat at 0.5.1 (MAL-2026-16282).
+    # @shared-web/assets + @shared-web/utils: dep-confusion, install-lifecycle exfiltrators
+    #   at 9.9.10; @shared-web/ scope added to NPM_SUSPECT_SCOPES
+    #   (MAL-2026-16283, MAL-2026-16292).
+    # @shared-runtime/modules: dep-confusion env-exfiltrator at 9.9.10;
+    #   @shared-runtime/ scope added to NPM_SUSPECT_SCOPES (MAL-2026-16291).
+    # @insiderintelligence/googleadmanager: dep-confusion install-lifecycle exfiltrator
+    #   at 9.9.10; @insiderintelligence/ scope added to NPM_SUSPECT_SCOPES (MAL-2026-16290).
+    # sinful: any-version malware wildcard (ranges >=0; MAL-2026-16284).
+    # openmct-heatmap: any-version malware wildcard (ranges >=0; MAL-2026-16287).
+    # test89-auth / test890-auth / test899-auth / test8999-auth: auth-probe cluster;
+    #   ranges >=0; OSV MAL-2026-16285/16286/16288/16289.
+    # internallib_v949: child_process.exec malware; ranges >=0 (MAL-2026-16294).
+    # ac-polyfills: preinstall malware; ranges >=0 (MAL-2026-782).
+    # chai-as-indexed: chai typosquat at 7.2.8 (MAL-2026-16293).
+    # tailwindcss-forms-ui: Tailwind typosquat at 0.5.2 (MAL-2026-16295).
+    # keroeltop: malware at 99.99.99 (MAL-2026-16297).
+    # OSV MAL-2025-889, MAL-2026-782, MAL-2026-16281 through MAL-2026-16295, MAL-2026-16297
+    "x509-escaping": {"0.0.0", "0.0.1", "0.0.2", "1.0.1"},     # MAL-2025-889
+    "@sanzoffc/baileys": {"3.0.4"},                             # MAL-2026-16281
+    "tailwindcss-form": {"0.5.1"},                              # MAL-2026-16282
+    "@shared-web/assets": {"9.9.10"},                           # MAL-2026-16283
+    "@shared-web/utils": {"9.9.10"},                            # MAL-2026-16292
+    "@shared-runtime/modules": {"9.9.10"},                      # MAL-2026-16291
+    "@insiderintelligence/googleadmanager": {"9.9.10"},         # MAL-2026-16290
+    "sinful": set(),                                            # MAL-2026-16284 — any-version wildcard
+    "openmct-heatmap": set(),                                   # MAL-2026-16287 — any-version wildcard
+    "test89-auth": set(),                                       # MAL-2026-16288 — any-version wildcard
+    "test890-auth": set(),                                      # MAL-2026-16289 — any-version wildcard
+    "test899-auth": set(),                                      # MAL-2026-16285 — any-version wildcard
+    "test8999-auth": set(),                                     # MAL-2026-16286 — any-version wildcard
+    "internallib_v949": set(),                                  # MAL-2026-16294 — any-version wildcard
+    "ac-polyfills": set(),                                      # MAL-2026-782 — any-version wildcard
+    "chai-as-indexed": {"7.2.8"},                               # MAL-2026-16293
+    "tailwindcss-forms-ui": {"0.5.2"},                          # MAL-2026-16295
+    "keroeltop": {"99.99.99"},                                  # MAL-2026-16297
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -12495,6 +12544,15 @@ NPM_SUSPECT_SCOPES = (
     "@kartyk-github-org/",
     # @lekzo WhatsApp Baileys fork malware scope (Sep 18 2026) — baileys pinned above
     "@lekzo/",
+    # Sep 18–19 2026 new attacker-controlled scopes
+    # @sanzoffc/ WhatsApp Baileys fork malware scope — @sanzoffc/baileys at 3.0.4 pinned above
+    "@sanzoffc/",
+    # @shared-web/ dep-confusion scope — assets/utils at 9.9.10 pinned above
+    "@shared-web/",
+    # @shared-runtime/ dep-confusion scope — modules at 9.9.10 pinned above
+    "@shared-runtime/",
+    # @insiderintelligence/ dep-confusion scope — googleadmanager at 9.9.10 pinned above
+    "@insiderintelligence/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
