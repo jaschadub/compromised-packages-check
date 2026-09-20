@@ -1813,15 +1813,18 @@ PYPI_BAD: dict[str, set[str]] = {
     "requests-asetwe": {"2.34.2"},                              # MAL-2026-16269
     "requests-auroras": {"2.34.2"},                             # MAL-2026-16274
     "requests-triwes": {"2.34.2"},                              # MAL-2026-16275
-    # ─── Sep 18–19 2026: 2 new PyPI malware packages ────────────────────────
+    # ─── Sep 18–19 2026: 3 new PyPI malware packages ────────────────────────
     # google-cloud-datacatalog-lineage-producer-client: dep-confusion probe/malware
     #   exfiltrating host info on install/import; high-version probes 9999/99999999
     #   alongside a normal-looking 0.2.7; OSV MAL-2024-12279.
     # py-venv-doctor: venv health-check–themed package that exfiltrates the full
     #   environment (opt-out telemetry) at install and on report generation;
     #   OSV MAL-2026-16296.
+    # urc: exfiltrates basic host info (IP, username) via setup.py override on
+    #   install; version 99.99.99 (dep-confusion style); OSV MAL-2026-16298.
     "google-cloud-datacatalog-lineage-producer-client": {"9999", "99999999", "0.2.7"},  # MAL-2024-12279
     "py-venv-doctor": {"0.1.0", "0.1.1"},                       # MAL-2026-16296
+    "urc": {"99.99.99"},                                         # MAL-2026-16298
 }
 
 # npm: exact package name -> set of malicious versions.
