@@ -1825,6 +1825,10 @@ PYPI_BAD: dict[str, set[str]] = {
     "google-cloud-datacatalog-lineage-producer-client": {"9999", "99999999", "0.2.7"},  # MAL-2024-12279
     "py-venv-doctor": {"0.1.0", "0.1.1"},                       # MAL-2026-16296
     "urc": {"99.99.99"},                                         # MAL-2026-16298
+    # ─── Sep 21 2026: rrs PyPI infostealer ──────────────────────────────────────
+    # rrs: package with anomalous version numbers (0.3.100/0.4.105/0.4.106);
+    #   confirmed malicious by OSV MAL-2026-16346.
+    "rrs": {"0.3.100", "0.4.105", "0.4.106"},                   # MAL-2026-16346
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12333,6 +12337,76 @@ NPM_BAD: dict[str, set[str]] = {
     "chai-as-indexed": {"7.2.8"},                               # MAL-2026-16293
     "tailwindcss-forms-ui": {"0.5.2"},                          # MAL-2026-16295
     "keroeltop": {"99.99.99"},                                  # MAL-2026-16297
+    # ─── Sep 20–21 2026: mixed npm malware batch (47 packages) ──────────────────
+    # @nimbusedge2/* + @nimbsuedge3/* malware cluster: attacker-controlled scopes
+    #   impersonating "NimbusEdge" infrastructure; all at v1.1.x.
+    #   @nimbusedge2/ added to NPM_SUSPECT_SCOPES. OSV MAL-2026-16301 through MAL-2026-16306.
+    # @siriusbeyond/* dep-confusion cluster: auth/ui/utils at 99.0.0 + siriusbeyond 1.0.0;
+    #   @siriusbeyond/ added to NPM_SUSPECT_SCOPES. OSV MAL-2026-16320/16321/16322/16343.
+    # @pwaplatform/module-sso-integration dep-confusion at 99.0.0/99.0.1 (MAL-2026-16299).
+    # @baanx/solana-lib crypto-adjacent dep-confusion at 9.9.10 (MAL-2026-16300).
+    # element-plus typosquat cluster: @asenfotech/unplugin-element-plus and
+    #   element-plus-vite-cli at fake versions 2.9.3/2.9.5 (MAL-2026-16318/16331).
+    # keroeltop* follow-on cluster: keroeltopgg/kk/kkk at 99.99.99
+    #   (MAL-2026-16334/16335/16336).
+    # test1* probe batch (7): test12vv36, test1df23, test1gg234, test1hh235, test1ro,
+    #   test1sdsd2, testmgkregme (OSV MAL-2026-16311 through MAL-2026-16317).
+    # pf*/pflag* canary batch (5): pf23727, pf25133, pf25262, pflag14570, pflag29424
+    #   (OSV MAL-2026-16338 through MAL-2026-16342).
+    # byted-commerce-materials + commerce-materials (OSV MAL-2026-16326/16330).
+    # catwrestlingbird + catwrestlinghuman pair (OSV MAL-2026-16327/16328).
+    # Miscellaneous singles (14): @dbbhk/ui-components, chai-testing, chat-adapter-matrix,
+    #   npmscript_tesstalert_unpkg, npx-test-ma980, action-slack-message-root, better-envforge,
+    #   bulk-add-sdk, chai-as-viem, feed-widget-helper, homestack-cheer, my-cdn-script,
+    #   sorrawit-dev-helper, starbucks-sdk.
+    # OSV MAL-2026-16299 through MAL-2026-16345 (selected)
+    "@pwaplatform/module-sso-integration": {"99.0.0", "99.0.1"},                # MAL-2026-16299
+    "@baanx/solana-lib": {"9.9.10"},                                             # MAL-2026-16300
+    "@nimbsuedge3/xar": {"1.1.1"},                                               # MAL-2026-16301
+    "@nimbusedge2/auth": {"1.1.1"},                                              # MAL-2026-16302
+    "@nimbusedge2/authxsas": {"1.1.0"},                                          # MAL-2026-16303
+    "@nimbusedge2/authxsas1": {"1.1.0"},                                         # MAL-2026-16304
+    "@nimbusedge2/x": {"1.1.1"},                                                 # MAL-2026-16305
+    "@nimbusedge2/xa": {"1.1.0"},                                                # MAL-2026-16306
+    "chai-testing": {"1.1.4"},                                                   # MAL-2026-16307
+    "chat-adapter-matrix": {"99.99.99"},                                         # MAL-2026-16308
+    "npmscript_tesstalert_unpkg": {"1.0.1", "1.0.2"},                            # MAL-2026-16309
+    "npx-test-ma980": {"1.0.1"},                                                 # MAL-2026-16310
+    "test12vv36": {"99.99.99"},                                                  # MAL-2026-16311
+    "test1df23": {"99.99.99"},                                                   # MAL-2026-16312
+    "test1gg234": {"99.99.99"},                                                  # MAL-2026-16313
+    "test1hh235": {"99.99.99"},                                                  # MAL-2026-16314
+    "test1ro": {"99.99.99", "999.99.99"},                                        # MAL-2026-16315
+    "test1sdsd2": {"99.99.99"},                                                  # MAL-2026-16316
+    "testmgkregme": {"1.0.1"},                                                   # MAL-2026-16317
+    "@asenfotech/unplugin-element-plus": {"2.9.3", "2.9.5"},                    # MAL-2026-16318
+    "@dbbhk/ui-components": {"99.0.0"},                                          # MAL-2026-16319
+    "@siriusbeyond/auth": {"99.0.0"},                                            # MAL-2026-16320
+    "@siriusbeyond/ui": {"99.0.0"},                                              # MAL-2026-16321
+    "@siriusbeyond/utils": {"99.0.0"},                                           # MAL-2026-16322
+    "action-slack-message-root": {"1.0.1"},                                      # MAL-2026-16323
+    "better-envforge": {"1.0.0"},                                                # MAL-2026-16324
+    "bulk-add-sdk": {"1.99.99"},                                                 # MAL-2026-16325
+    "byted-commerce-materials": {"1.0.0"},                                       # MAL-2026-16326
+    "catwrestlingbird": {"1.0.0"},                                               # MAL-2026-16327
+    "catwrestlinghuman": {"1.0.0"},                                              # MAL-2026-16328
+    "chai-as-viem": {"1.1.3"},                                                   # MAL-2026-16329
+    "commerce-materials": {"1.0.0"},                                             # MAL-2026-16330
+    "element-plus-vite-cli": {"2.9.3", "2.9.5"},                                # MAL-2026-16331
+    "feed-widget-helper": {"1.0.0"},                                             # MAL-2026-16332
+    "homestack-cheer": {"1.1.9"},                                                # MAL-2026-16333
+    "keroeltopgg": {"99.99.99"},                                                 # MAL-2026-16334
+    "keroeltopkk": {"99.99.99"},                                                 # MAL-2026-16335
+    "keroeltopkkk": {"99.99.99"},                                                # MAL-2026-16336
+    "my-cdn-script": {"1.0.0"},                                                  # MAL-2026-16337
+    "pf23727": {"1.0.0"},                                                        # MAL-2026-16338
+    "pf25133": {"1.0.0"},                                                        # MAL-2026-16339
+    "pf25262": {"1.0.0"},                                                        # MAL-2026-16340
+    "pflag14570": {"1.0.0"},                                                     # MAL-2026-16341
+    "pflag29424": {"1.0.0"},                                                     # MAL-2026-16342
+    "siriusbeyond": {"1.0.0"},                                                   # MAL-2026-16343
+    "sorrawit-dev-helper": {"1.0.0"},                                            # MAL-2026-16344
+    "starbucks-sdk": {"1.0.0"},                                                  # MAL-2026-16345
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -12556,6 +12630,11 @@ NPM_SUSPECT_SCOPES = (
     "@shared-runtime/",
     # @insiderintelligence/ dep-confusion scope — googleadmanager at 9.9.10 pinned above
     "@insiderintelligence/",
+    # @nimbusedge2/ attacker-controlled scope (Sep 20-21 2026) — auth/authxsas/authxsas1/x/xa
+    # pinned above; scope catches any further packages from this actor
+    "@nimbusedge2/",
+    # @siriusbeyond/ dep-confusion scope (Sep 21 2026) — auth/ui/utils at 99.0.0 pinned above
+    "@siriusbeyond/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
