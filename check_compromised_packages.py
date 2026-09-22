@@ -541,7 +541,23 @@ cr-bot-common, greensaver, tailwind-form-kit, tracker-cloudflare;
 OSV MAL-2026-16126/16137/16138/16139/16140), plus additional 99.0.x dep-confusion
 version entries added to 5 existing eToro packages,
 and the September 12 2026 sweep: python-fork PyPI fork-bomb malware
-(OSV MAL-2026-16142).
+(OSV MAL-2026-16142),
+and the September 21–22 2026 sweep: Hardhat/Ethereum tool typosquat cluster
+(hardhat-base, hardhat-core, hardhat-devkit; OSV MAL-2026-16348/16349/3713),
+@uh-platform dep-confusion cluster (5 packages at 99–102 versions;
+OSV MAL-2026-16358–16362), @baanx dep-confusion cluster (abis, blockchain-config
+at 9.9.11; OSV MAL-2026-16351/16352), @vite-tab fake Vite packages (tab, tabui;
+OSV MAL-2026-6988/16371), math-package typosquat cluster (math-universe, mathmain,
+mathsbase; OSV MAL-2026-16367/16368/16369), miscellaneous npm batch (radio-player-theme,
+bnppf-flag-icons, @woodpecker-web-shared/components, gemini-computer-use,
+@asdfaskdjfksadhfkasf/nadaver2, blue-string-formatter-utilss, bytepack-probe-a7x3,
+my-ctf-helper-script-9921, @uol-afiliados/affiliated-config-lib, react-context-form-tdsss,
+wos-library, @zig-design-system/react, @epic-mw/localization, account-merge-site,
+egstore-graphql-client, epic-admin-node-services, epic-adminportal-frontend;
+OSV MAL-2026-16347/16350/16354/16355/16357/16363/16364/16365/16370/16372/16373/
+6512/16371/2022-251/2025-49107/2025-49111/2025-49113/2025-49114),
+and the PyPI batch (pullgetsage Telegram-session stealer, starlette-healthchecks
+typosquat; OSV MAL-2026-16366/16356).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1829,6 +1845,15 @@ PYPI_BAD: dict[str, set[str]] = {
     # rrs: package with anomalous version numbers (0.3.100/0.4.105/0.4.106);
     #   confirmed malicious by OSV MAL-2026-16346.
     "rrs": {"0.3.100", "0.4.105", "0.4.106"},                   # MAL-2026-16346
+    # ─── Sep 21 2026: pullgetsage Telegram-session stealer + starlette-healthchecks typosquat ──
+    # pullgetsage: on import, archives Telegram Desktop tdata directory (%APPDATA%/Telegram
+    #   Desktop/tdata) and POSTs it to a Cloudflare Workers endpoint; full session hijack.
+    #   Source: Amazon Inspector; OSV MAL-2026-16366.
+    # starlette-healthchecks: typosquat with malicious telemetry call;
+    #   related to starlette-healthcheck (already tracked); marked MALICIOUS by OSV/kam193.
+    #   Source: OSV MAL-2026-16356.
+    "pullgetsage": {"0.1.2"},                                    # MAL-2026-16366
+    "starlette-healthchecks": {"1.3.1", "1.3.2"},               # MAL-2026-16356
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12407,6 +12432,76 @@ NPM_BAD: dict[str, set[str]] = {
     "siriusbeyond": {"1.0.0"},                                                   # MAL-2026-16343
     "sorrawit-dev-helper": {"1.0.0"},                                            # MAL-2026-16344
     "starbucks-sdk": {"1.0.0"},                                                  # MAL-2026-16345
+    # ─── Sep 21–22 2026: multi-wave npm batch ───────────────────────────────────
+    # Hardhat/Ethereum tool typosquat cluster (Sep 21 2026)
+    # Three packages impersonating the Hardhat Ethereum dev framework; env-var
+    # exfiltrators using preinstall/postinstall scripts and detached child processes.
+    # Sources: OSV MAL-2026-16348, MAL-2026-16349, MAL-2026-3713
+    "hardhat-base": {"2.2.0", "2.2.2"},                                         # MAL-2026-16348
+    "hardhat-core": {"1.0.0", "2.1.2"},                                         # MAL-2026-3713
+    "hardhat-devkit": {"2.3.6"},                                                 # MAL-2026-16349
+    # @uh-platform dep-confusion cluster (Sep 21 2026)
+    # Five packages at 99–102 versions; all declare preinstall lifecycle scripts
+    # exfiltrating environment variables. Attacker-controlled scope.
+    # Sources: OSV MAL-2026-16358, MAL-2026-16359, MAL-2026-16360, MAL-2026-16361, MAL-2026-16362
+    "@uh-platform/cloud": {"101.0.0"},                                           # MAL-2026-16358
+    "@uh-platform/domain-widget": {"100.0.0"},                                   # MAL-2026-16359
+    "@uh-platform/nadaver": {"102.0.0"},                                         # MAL-2026-16360
+    "@uh-platform/nadaver2": {"102.0.0"},                                        # MAL-2026-16361
+    "@uh-platform/webcard": {"99.0.0"},                                          # MAL-2026-16362
+    # @baanx dep-confusion cluster (Sep 21 2026)
+    # Two more @baanx packages at 9.9.11; install scripts exfiltrate environment vars.
+    # (cf. @baanx/solana-lib at 9.9.10 already tracked; same dep-confusion campaign)
+    # Sources: OSV MAL-2026-16351, MAL-2026-16352
+    "@baanx/abis": {"9.9.11"},                                                   # MAL-2026-16351
+    "@baanx/blockchain-config": {"9.9.11"},                                      # MAL-2026-16352
+    # @vite-tab fake Vite package cluster (Sep 21 2026)
+    # Two packages that republish Vite's codebase with an added malicious payload;
+    # any version is malicious (OSV introduced:"0" on both records).
+    # Sources: OSV MAL-2026-6988 (GHSA-74pv-97c8-9hfp), MAL-2026-16371 (GHSA-q5h9-3mvh-45cf)
+    "@vite-tab/tab": set(),                                                      # MAL-2026-6988 (ANY)
+    "@vite-tab/tabui": set(),                                                    # MAL-2026-16371 (ANY)
+    # Math-package typosquat cluster (Sep 21 2026)
+    # Three pure-malware packages with no legitimate use; any version malicious
+    # per GHSA (introduced:"0", no fixed version recorded).
+    # Sources: OSV MAL-2026-16367 (GHSA-97cg-r346-fg22), MAL-2026-16368 (GHSA-v6mx-2p6p-3628),
+    #          MAL-2026-16369 (GHSA-v4cx-64j6-84xm)
+    "math-universe": set(),                                                      # MAL-2026-16367 (ANY)
+    "mathmain": set(),                                                           # MAL-2026-16368 (ANY)
+    "mathsbase": set(),                                                          # MAL-2026-16369 (ANY)
+    # Miscellaneous Sep 21–22 2026 npm malware batch (Amazon Inspector + GHSA)
+    # radio-player-theme: fake radio player; ships payload.js dropper (MAL-2026-16347)
+    # bnppf-flag-icons: dep-confusion on BNP Paribas Fortis; ships poc.js (MAL-2026-16350)
+    # @woodpecker-web-shared/components: postinstall exfiltrates CI environment (MAL-2026-16354)
+    # gemini-computer-use: fake Google Gemini CLI; exfiltrates env on run (MAL-2026-16355)
+    # @asdfaskdjfksadhfkasf/nadaver2: throwaway-scope preinstall exfiltrator (MAL-2026-16357)
+    # blue-string-formatter-utilss: double-s typosquat of string-formatter (MAL-2026-16363)
+    # bytepack-probe-a7x3: probe that pulls attacker-controlled leak-inject dep (MAL-2026-16364)
+    # my-ctf-helper-script-9921: exfiltrates install environment on require (MAL-2026-16365)
+    # @uol-afiliados/affiliated-config-lib: dep-confusion on UOL Afiliados (MAL-2026-16370)
+    # react-context-form-tdsss: dep-confusion typosquat, any version (MAL-2026-6512, GHSA-pg33-6m24-4p63)
+    # wos-library: any version malicious per GHSA (MAL-2026-16373, GHSA-mfwv-9gcf-2mww)
+    # @zig-design-system/react: any version malicious per GHSA (MAL-2026-16372, GHSA-rqjq-px4f-2m8r)
+    # @epic-mw/localization: GHSA-4cp8-h6vw-5g96 (v1.9.9); MAL-2022-251 confirmed active Sep 21 2026
+    # account-merge-site, egstore-graphql-client, epic-admin-node-services,
+    #   epic-adminportal-frontend: Amazon Inspector–detected npm malware (MAL-2025-49107/49111/49113/49114)
+    "radio-player-theme": {"6.0.0"},                                             # MAL-2026-16347
+    "bnppf-flag-icons": {"99.99.99"},                                            # MAL-2026-16350
+    "@woodpecker-web-shared/components": {"2.20.5"},                             # MAL-2026-16354
+    "gemini-computer-use": {"0.1.2"},                                            # MAL-2026-16355
+    "@asdfaskdjfksadhfkasf/nadaver2": {"102.0.0"},                               # MAL-2026-16357
+    "blue-string-formatter-utilss": {"1.2.0"},                                   # MAL-2026-16363
+    "bytepack-probe-a7x3": {"1.0.0", "1.0.1"},                                  # MAL-2026-16364
+    "my-ctf-helper-script-9921": {"1.0.0"},                                     # MAL-2026-16365
+    "@uol-afiliados/affiliated-config-lib": {"102.0.0"},                         # MAL-2026-16370
+    "react-context-form-tdsss": set(),                                           # MAL-2026-6512 (ANY)
+    "wos-library": set(),                                                        # MAL-2026-16373 (ANY)
+    "@zig-design-system/react": set(),                                           # MAL-2026-16372 (ANY)
+    "@epic-mw/localization": {"1.9.9"},                                          # MAL-2022-251
+    "account-merge-site": {"1.0.0"},                                             # MAL-2025-49107
+    "egstore-graphql-client": {"1.0.0"},                                         # MAL-2025-49111
+    "epic-admin-node-services": {"1.0.0"},                                       # MAL-2025-49113
+    "epic-adminportal-frontend": {"1.0.0"},                                      # MAL-2025-49114
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -12635,6 +12730,13 @@ NPM_SUSPECT_SCOPES = (
     "@nimbusedge2/",
     # @siriusbeyond/ dep-confusion scope (Sep 21 2026) — auth/ui/utils at 99.0.0 pinned above
     "@siriusbeyond/",
+    # Sep 21–22 2026 new attacker-controlled scopes
+    # @uh-platform/ dep-confusion scope — cloud/domain-widget/nadaver/nadaver2/webcard pinned above
+    "@uh-platform/",
+    # @baanx/ dep-confusion scope — abis/blockchain-config at 9.9.11 + solana-lib at 9.9.10 pinned above
+    "@baanx/",
+    # @vite-tab/ fake Vite scope — tab + tabui (any version) pinned above
+    "@vite-tab/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
