@@ -1854,6 +1854,24 @@ PYPI_BAD: dict[str, set[str]] = {
     #   Source: OSV MAL-2026-16356.
     "pullgetsage": {"0.1.2"},                                    # MAL-2026-16366
     "starlette-healthchecks": {"1.3.1", "1.3.2"},               # MAL-2026-16356
+    # ─── Sep 22–23 2026: PyPI malware batch ─────────────────────────────────────
+    # cloushaar-poc-exfil-91827: setup.py exfiltrates env at install; explicit PoC
+    #   exfil-test package; OSV MAL-2026-16377.
+    # crypto-trader-py: presents as crypto trading helper; infostealer payload;
+    #   OSV MAL-2026-16406.
+    # poly-check-b: generic-named infostealer; OSV MAL-2026-16407.
+    # snap-queue: setup.py _wus_boot() exfiltrates host info on install;
+    #   OSV MAL-2026-16408.
+    # auclean: custom pip install hook runs payload and downloads secondary stage;
+    #   VirusTotal / tria.ge confirmed; OSV MAL-2026-16410.
+    # kerokwis: exfiltrates env on install/import; version 99 (dep-confusion style);
+    #   OSV MAL-2026-16421.
+    "cloushaar-poc-exfil-91827": {"0.0.1"},                      # MAL-2026-16377
+    "crypto-trader-py": {"1.0.0"},                               # MAL-2026-16406
+    "poly-check-b": {"1.0.0"},                                   # MAL-2026-16407
+    "snap-queue": {"1.0.0"},                                     # MAL-2026-16408
+    "auclean": {"0.4.2", "0.4.3", "0.4.4"},                     # MAL-2026-16410
+    "kerokwis": {"99"},                                          # MAL-2026-16421
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12487,7 +12505,7 @@ NPM_BAD: dict[str, set[str]] = {
     #   epic-adminportal-frontend: Amazon Inspector–detected npm malware (MAL-2025-49107/49111/49113/49114)
     "radio-player-theme": {"6.0.0"},                                             # MAL-2026-16347
     "bnppf-flag-icons": {"99.99.99"},                                            # MAL-2026-16350
-    "@woodpecker-web-shared/components": {"2.20.5"},                             # MAL-2026-16354
+    "@woodpecker-web-shared/components": {"1.20.4", "2.20.5", "4.20.5"},          # MAL-2026-16354
     "gemini-computer-use": {"0.1.2"},                                            # MAL-2026-16355
     "@asdfaskdjfksadhfkasf/nadaver2": {"102.0.0"},                               # MAL-2026-16357
     "blue-string-formatter-utilss": {"1.2.0"},                                   # MAL-2026-16363
@@ -12502,6 +12520,161 @@ NPM_BAD: dict[str, set[str]] = {
     "egstore-graphql-client": {"1.0.0"},                                         # MAL-2025-49111
     "epic-admin-node-services": {"1.0.0"},                                       # MAL-2025-49113
     "epic-adminportal-frontend": {"1.0.0"},                                      # MAL-2025-49114
+    # ─── Sep 23 2026: Epic Games dep-confusion expansion ─────────────────────────
+    # Continuation of the Epic Games internal-package dep-confusion campaign
+    # (account-merge-site / egstore-graphql-client / epic-admin* above).
+    # Amazon Inspector detected further squatted package names that mirror Epic's
+    # private npm scope; all versions are malicious.
+    # epic-alt-utils: all published versions (0.0.0 through 10.0.0 + 2100.4.2) are
+    #   attacker-controlled dep-confusion payloads; OSV MAL-2025-49115.
+    "epic-alt-utils": set(),                                                     # MAL-2025-49115 (ANY)
+    "epic-analytics-worker": {"1.0.0"},                                          # MAL-2025-49116
+    "epic-angular-ui-codemirror": {"1.0.0"},                                     # MAL-2025-49117
+    "epic-asset-uploader-ui": {"1.0.0"},                                         # MAL-2025-49118
+    "epic-blog-frontend": {"1.0.0"},                                             # MAL-2025-49119
+    "epic-code-redemption": {"1.0.0"},                                           # MAL-2025-49120
+    "epic-comment-rating": {"1.0.0"},                                            # MAL-2025-49121
+    "epic-comment-rating-frontend": {"1.0.0"},                                   # MAL-2025-49122
+    "epic-comment-rating-service": {"1.0.0"},                                    # MAL-2025-49123
+    "epic-consent-dialog": {"1.0.0"},                                            # MAL-2025-49127
+    # ─── Sep 23 2026: BigOps/BNPL internal dep-confusion (high-version 35.x) ────
+    # Amazon Inspector detected several high-version (35.x) packages that shadow
+    # internal BigOps/BNPL platform libraries; on require(), they fetch and execute
+    # a remote payload. Sources: OSV MAL-2026-12151, 12750, 12892, 12989, 13245,
+    # 11045; GHSA-7pp9-3qqc-vc84, GHSA-24m2-6frm-vxj3, GHSA-pvq7-rm52-m5g7.
+    "bigops-auth-interceptor": set(),                                            # MAL-2026-12151 (ANY)
+    "devplatform-sdk": set(),                                                    # MAL-2026-12750 (ANY)
+    "bnpl-blocks-atom-bnpl-search-input": set(),                                 # MAL-2026-12892 (ANY)
+    "bnpl-blocks-mobile-bnpl-floating-button": set(),                            # MAL-2026-12989 (ANY)
+    "bigops-products-timeline": set(),                                           # MAL-2026-13245 (ANY)
+    "subapp-pkg-util": set(),                                                    # MAL-2026-11045 (ANY)
+    # ─── Sep 22 2026: @tvg-mar dep-confusion cluster ─────────────────────────────
+    # Five packages in the @tvg-mar scope published at version 9.9.10 with
+    # install lifecycle scripts that exfiltrate the CI environment; dep-confusion
+    # probes targeting TVG Marketing's internal npm scope.
+    # Sources: OSV MAL-2026-16412 through MAL-2026-16416.
+    "@tvg-mar/promos-context": {"9.9.10"},                                       # MAL-2026-16412
+    "@tvg-mar/promos-gtm": {"9.9.10"},                                           # MAL-2026-16413
+    "@tvg-mar/storyblok-bridge": {"9.9.10"},                                     # MAL-2026-16414
+    "@tvg-mar/tvg-promos-atomic-ui": {"9.9.10"},                                 # MAL-2026-16415
+    "@tvg-mar/utils": {"9.9.10"},                                                # MAL-2026-16416
+    # ─── Sep 23 2026: @wizloft/harness cluster ───────────────────────────────────
+    # Eleven packages in the @wizloft scope, all publishing as a "harness"
+    # framework; GHSA-malware classification; any version is malicious.
+    # Sources: OSV MAL-2026-14285 through MAL-2026-14289, MAL-2026-16423 through
+    # MAL-2026-16432; GHSA-8h24-fp89-4cw3 and related.
+    "@wizloft/harness-authority": set(),                                         # MAL-2026-16423 (ANY)
+    "@wizloft/harness-cli-adapter": set(),                                       # MAL-2026-16424 (ANY)
+    "@wizloft/harness-commands": set(),                                          # MAL-2026-16425 (ANY)
+    "@wizloft/harness-evidence": set(),                                          # MAL-2026-16426 (ANY)
+    "@wizloft/harness-file-providers": set(),                                    # MAL-2026-16427 (ANY)
+    "@wizloft/harness-memory": set(),                                            # MAL-2026-16428 (ANY)
+    "@wizloft/harness-plugin-file-events": set(),                                # MAL-2026-16429 (ANY)
+    "@wizloft/harness-plugin-file-memory": set(),                                # MAL-2026-16430 (ANY)
+    "@wizloft/harness-plugin-memory-context": set(),                             # MAL-2026-16431 (ANY)
+    "@wizloft/harness-project": set(),                                           # MAL-2026-16432 (ANY)
+    # ─── Sep 22 2026: envforge/envparse Windows dropper cluster ─────────────────
+    # envforge2/3 and envparse2/3 ship hidden Windows dropper stages via
+    # postinstall; GHSA-h8xg-3hfp-rx6q and related; any version is malicious.
+    "envforge2": set(),                                                          # MAL-2026-16392 (ANY)
+    "envforge3": set(),                                                          # MAL-2026-16393 (ANY)
+    "envparse2": set(),                                                          # MAL-2026-16394 (ANY)
+    "envparse3": set(),                                                          # MAL-2026-16395 (ANY)
+    # ─── Sep 22 2026: cloudNDMC cluster expansion ────────────────────────────────
+    # cloudndmcedu and three more ndmc-prefix packages join the previously tracked
+    # ndmc* exfiltrator family; any version is malicious.
+    "cloudndmcedu": set(),                                                       # MAL-2026-16391 (ANY)
+    "ndmcjcxiebysfdb": set(),                                                    # MAL-2026-16400 (ANY)
+    "ndmckauxuoincv": set(),                                                     # MAL-2026-16401 (ANY)
+    "ndmcmsujey": set(),                                                         # MAL-2026-16402 (ANY)
+    # ─── Sep 22–23 2026: misc dep-confusion probes at high versions ──────────────
+    # Dep-confusion probes targeting @tesla-insurance and @user-services private
+    # scopes; install scripts exfiltrate the build environment.
+    "@tesla-insurance/vinless-quote": {"9.9.10"},                                # MAL-2026-16378
+    "@user-services/web-components": {"9.9.10"},                                 # MAL-2026-16379
+    "@gsutevil/hta-stage": {"1.62.0"},                                           # MAL-2026-16419
+    "@mikudeveloper/baileys": {"1.0.0"},                                         # MAL-2026-16386
+    "@mr-supun-fernando/supunmd-bail": {"3.0.3"},                                # MAL-2026-16387
+    "@vitemirrorte/element-plus-vite-cli": {"2.9.1"},                            # MAL-2026-16433
+    # ─── Sep 23 2026: @httttt/mcp-npx-fetch-1 malicious MCP tool ────────────────
+    # GHSA-malware; any version installs malicious code on require/exec.
+    "@httttt/mcp-npx-fetch-1": set(),                                            # MAL-2026-16422 (ANY)
+    # ─── Sep 22–23 2026: various named npm malware packages ──────────────────────
+    # chai-logger: mimics chai logging helper; postinstall exfiltrator; MAL-2026-16380.
+    # cisco-github-simple: impersonates Cisco GitHub tooling; postinstall exec; MAL-2026-16381.
+    # take-home-caller-id: postinstall exfiltrator disguised as telephony util; MAL-2026-16382.
+    # mxdriver / tldriver / tlxbnhd: obfuscated credential-harvesting packages; MAL-2026-16383/84/85.
+    # nodetokyo / noverojava / oracle-redis: infostealer packages; MAL-2026-16388/89/90.
+    # faceplate-docs: high-version dep-confusion (1.0.0, 99.9.9, 99.9.10); MAL-2024-2355.
+    # test-react-app-in/out/way: throwaway React-themed exfiltrators; MAL-2026-16374/75/76.
+    # eslint-config-compact-utils: eslint-shaped infostealer; MAL-2026-16417.
+    # n8n-nodes-data-transformer-utils: malicious n8n community node; MAL-2026-16418.
+    # ubiquiti-agents-link-mcp: MCP-themed package, executes on bin-run; MAL-2026-16409.
+    # node-env-buffer / sysverify / tailwind-form-styles: generic-named malware; MAL-2026-16403/04/05.
+    # prettier-lint-lenz: impersonates prettier; postinstall exfiltrator; GHSA-8558-w8j5-67wq; MAL-2026-3769.
+    # uolcs-host-uol-anuncios-fe: UOL-scope dep-confusion; GHSA-p4vr-mx6g-r574; MAL-2026-4185.
+    # turbo-ws: ships postinstall exfiltrator; MAL-2026-16440.
+    # moidevl / moudeva: throwaway infostealer pair; MAL-2026-16441/42.
+    # my-company-device: dep-confusion style; MAL-2026-16443.
+    # n8n-nodes-healthmon / n8n-nodes-metricsagent: malicious n8n nodes; MAL-2026-16444/45.
+    # internallib_v497 / internallib_v550: internal-library–named exfiltrators; MAL-2026-16438/39.
+    # catplatebarcodeparser / catqrcodeconverter: high-version (99.2.1) probes; MAL-2026-16434/35.
+    # efhthrthrthregerht / eslint-plugin-i18n-shreddit: garbage/typosquat pairs; MAL-2026-16436/37.
+    "chai-logger": {"3.0.2"},                                                    # MAL-2026-16380
+    "cisco-github-simple": {"1.0.1"},                                            # MAL-2026-16381
+    "take-home-caller-id": {"1.0.1"},                                            # MAL-2026-16382
+    "mxdriver": {"0.0.1", "0.0.2"},                                              # MAL-2026-16383
+    "tldriver": {"0.0.1"},                                                       # MAL-2026-16384
+    "tlxbnhd": {"0.0.1"},                                                        # MAL-2026-16385
+    "nodetokyo": {"1.0.8"},                                                      # MAL-2026-16388
+    "noverojava": {"1.0.9", "1.1.0"},                                            # MAL-2026-16389
+    "oracle-redis": {"5.11.3"},                                                  # MAL-2026-16390
+    "faceplate-docs": {"1.0.0", "99.9.9", "99.9.10"},                           # MAL-2024-2355
+    "test-react-app-in": set(),                                                  # MAL-2026-16374 (ANY)
+    "test-react-app-out": set(),                                                 # MAL-2026-16375 (ANY)
+    "test-react-app-way": set(),                                                 # MAL-2026-16376 (ANY)
+    "eslint-config-compact-utils": {"1.0.2"},                                    # MAL-2026-16417
+    "n8n-nodes-data-transformer-utils": {"1.0.0"},                               # MAL-2026-16418
+    "ubiquiti-agents-link-mcp": {"0.0.1", "0.0.2", "0.2.0", "0.2.1"},           # MAL-2026-16409
+    "node-env-buffer": set(),                                                    # MAL-2026-16403 (ANY)
+    "sysverify": set(),                                                          # MAL-2026-16404 (ANY)
+    "tailwind-form-styles": set(),                                               # MAL-2026-16405 (ANY)
+    "prettier-lint-lenz": set(),                                                 # MAL-2026-3769 (ANY)
+    "uolcs-host-uol-anuncios-fe": set(),                                         # MAL-2026-4185 (ANY)
+    "turbo-ws": {"1.0.0"},                                                       # MAL-2026-16440
+    "moidevl": {"1.0.0"},                                                        # MAL-2026-16441
+    "moudeva": {"1.0.0"},                                                        # MAL-2026-16442
+    "my-company-device": {"0.1.0", "0.1.1"},                                     # MAL-2026-16443
+    "n8n-nodes-healthmon": {"1.0.0"},                                            # MAL-2026-16444
+    "n8n-nodes-metricsagent": {"1.0.0"},                                         # MAL-2026-16445
+    "internallib_v497": {"1.0.3"},                                               # MAL-2026-16438
+    "internallib_v550": {"1.0.1"},                                               # MAL-2026-16439
+    "catplatebarcodeparser": {"99.2.1"},                                          # MAL-2026-16434
+    "catqrcodeconverter": {"99.2.1"},                                             # MAL-2026-16435
+    "efhthrthrthregerht": {"99.9.9"},                                             # MAL-2026-16436
+    "eslint-plugin-i18n-shreddit": {"99.9.9"},                                   # MAL-2026-16437
+    # ─── Sep 22–23 2026: garbage-name npm exfiltrator batch ──────────────────────
+    # All garbage-named packages; any version is malicious; OSV MAL-2026-16396 through
+    # MAL-2026-16460 and related.
+    "fdhcxvnwhjiofv": set(),                                                     # MAL-2026-16396 (ANY)
+    "kambxjowhdsgyw": set(),                                                     # MAL-2026-16397 (ANY)
+    "luftmvfiwgxydes": set(),                                                    # MAL-2026-16398 (ANY)
+    "lufxchwmxwyps": set(),                                                      # MAL-2026-16399 (ANY)
+    "better-md": set(),                                                          # MAL-2026-16446 (ANY)
+    "caphsmgiwy": set(),                                                         # MAL-2026-16447 (ANY)
+    "debounce-throttle-base": set(),                                             # MAL-2026-16448 (ANY)
+    "iso-datetime-core": set(),                                                  # MAL-2026-16449 (ANY)
+    "kamafhbnowct": set(),                                                       # MAL-2026-16450 (ANY)
+    "luftzxyuiwgbgsp": set(),                                                    # MAL-2026-16451 (ANY)
+    "mob4zchvuine": set(),                                                       # MAL-2026-16452 (ANY)
+    "semver-bump-io": set(),                                                     # MAL-2026-16453 (ANY)
+    "solo-async-pipe": set(),                                                    # MAL-2026-16454 (ANY)
+    "some-tool-package": set(),                                                  # MAL-2026-16455 (ANY)
+    "tib2jcvowuyma": set(),                                                      # MAL-2026-16456 (ANY)
+    "tibcwmpoeafh": set(),                                                       # MAL-2026-16457 (ANY)
+    "tuxcmdfhjkw": set(),                                                        # MAL-2026-16458 (ANY)
+    "webp-https-errors": set(),                                                  # MAL-2026-16459 (ANY)
+    "xsjukcnv8low26": set(),                                                     # MAL-2026-16460 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
