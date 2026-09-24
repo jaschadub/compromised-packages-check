@@ -557,7 +557,27 @@ egstore-graphql-client, epic-admin-node-services, epic-adminportal-frontend;
 OSV MAL-2026-16347/16350/16354/16355/16357/16363/16364/16365/16370/16372/16373/
 6512/16371/2022-251/2025-49107/2025-49111/2025-49113/2025-49114),
 and the PyPI batch (pullgetsage Telegram-session stealer, starlette-healthchecks
-typosquat; OSV MAL-2026-16366/16356).
+typosquat; OSV MAL-2026-16366/16356),
+and the September 23–24 2026 sweep: Epic Games dep-confusion expansion — 29 additional
+squatted Epic internal package names (epic-games-nav-shared, epic-diesel-* × 10,
+epic-dynamo-utils, epic-env-utils, epic-eula, epic-eula-service, epic-file-upload,
+epic-fortnite-build/react/server/styles, epic-freight, epic-games-footer, epic-games-nav,
+epic-google-maps-tools, epic-graphql-schema/types, epic-gtm-url-checker, epic-gulp-utils,
+epic-hooks, epic-http-proxy; OSV MAL-2022-2767/MAL-2025-49130/49132–49158;
+GHSA-xmcp-9g5c-f4vw), @baanx scope extension (@baanx/common, @baanx/domain; any-version;
+OSV MAL-2026-16485/16486; GHSA-27jh-hjhg-vg2p), @insiderintelligence/componentlibrary
+dep-confusion (any-version; OSV MAL-2026-16353; GHSA-rjh6-qm48-cg84), the MemTensor
+MemOS Go credential-exfiltration worm (@memtensor/memos-cloud-openclaw-plugin npm 3
+versions + memoryos PyPI 2.0.34; same Go binary sckit harvests .npmrc/.pypirc/id_rsa
+and POSTs to skyleen[.]fr, then self-replicates via stolen creds; OSV MAL-2026-16476/
+16475; GHSA-mhjf-v53x-7p87/PYSEC-2026-3987), @test1230504 malware scope (3 any-version
+packages; OSV MAL-2026-16467/16468/16469; GHSA-3qx9-8g8p-4mcj), z-deno-truth-*
+obfuscated exfiltrator cluster (3 any-version packages; OSV MAL-2026-16470/16471/16472;
+GHSA-f8xr-gjfq-xfcp), misc npm batch (godxxx/godzz/godzzz, hachutis, helpersutils-dev-
+tools, sea-baileys, vite-dev-launcher, com.apple.unityplugin.storekit, event-hunter,
+simplenewnpmpackage, a-onesite, internallib_v463/v657, @rixxcodex/baileys, pino-testkit;
+OSV MAL-2026-16461–16484), and eslint-config-compact-utils updated with version 1.0.0
+(OSV MAL-2026-16417).
 
 Note: a large batch of packages initially flagged from the May 27 2026
 bulk OSV disclosures were subsequently withdrawn as false positives by the
@@ -1872,6 +1892,12 @@ PYPI_BAD: dict[str, set[str]] = {
     "snap-queue": {"1.0.0"},                                     # MAL-2026-16408
     "auclean": {"0.4.2", "0.4.3", "0.4.4"},                     # MAL-2026-16410
     "kerokwis": {"99"},                                          # MAL-2026-16421
+    # ─── Sep 23 2026: MemTensor MemOS Go credential-exfiltration worm ────────────
+    # memoryos ships the same Go binary (sckit) as @memtensor/memos-cloud-openclaw-plugin
+    # on npm; runs on every import; collects .npmrc/.pypirc/id_rsa/git-credentials
+    # and POSTs them to skyleen[.]fr; also self-replicates into repos via stolen creds.
+    # Source: OSV MAL-2026-16475; PYSEC-2026-3987.
+    "memoryos": {"2.0.34"},                                     # MAL-2026-16475
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12633,7 +12659,7 @@ NPM_BAD: dict[str, set[str]] = {
     "test-react-app-in": set(),                                                  # MAL-2026-16374 (ANY)
     "test-react-app-out": set(),                                                 # MAL-2026-16375 (ANY)
     "test-react-app-way": set(),                                                 # MAL-2026-16376 (ANY)
-    "eslint-config-compact-utils": {"1.0.2"},                                    # MAL-2026-16417
+    "eslint-config-compact-utils": {"1.0.0", "1.0.2"},                              # MAL-2026-16417
     "n8n-nodes-data-transformer-utils": {"1.0.0"},                               # MAL-2026-16418
     "ubiquiti-agents-link-mcp": {"0.0.1", "0.0.2", "0.2.0", "0.2.1"},           # MAL-2026-16409
     "node-env-buffer": set(),                                                    # MAL-2026-16403 (ANY)
@@ -12675,6 +12701,108 @@ NPM_BAD: dict[str, set[str]] = {
     "tuxcmdfhjkw": set(),                                                        # MAL-2026-16458 (ANY)
     "webp-https-errors": set(),                                                  # MAL-2026-16459 (ANY)
     "xsjukcnv8low26": set(),                                                     # MAL-2026-16460 (ANY)
+    # ─── Sep 23–24 2026: Epic Games dep-confusion expansion (continued) ──────────
+    # Continuation of the Amazon Inspector–detected Epic Games internal-namespace
+    # dep-confusion campaign (epic-admin*/epic-analytics-worker/epic-consent-dialog
+    # already tracked). This batch adds 29 additional squatted Epic package names:
+    # epic-games-nav-shared, the epic-diesel-* family (10), and additional epic-* tools
+    # (dynamo/env/eula/file-upload/fortnite-*/freight/games-footer/games-nav/google-maps-
+    # tools/graphql-*/gtm/gulp-utils/hooks/http-proxy). All versions other than the
+    # 0.0.1-security npm takedown placeholder are attacker-controlled.
+    # Sources: OSV MAL-2022-2767, MAL-2025-49130/49132–49158; GHSA-xmcp-9g5c-f4vw.
+    "epic-games-nav-shared": {"1.9.9", "99.9.2"},                                # MAL-2022-2767
+    "epic-diesel-affiliate": {"1.0.0"},                                          # MAL-2025-49130
+    "epic-diesel-common": {"1.0.0"},                                             # MAL-2025-49132
+    "epic-diesel-components": {"1.0.0"},                                         # MAL-2025-49133
+    "epic-diesel-feed": {"1.0.0"},                                               # MAL-2025-49134
+    "epic-diesel-form": {"1.0.0"},                                               # MAL-2025-49135
+    "epic-diesel-library": {"1.0.0"},                                            # MAL-2025-49136
+    "epic-diesel-products": {"1.0.0"},                                           # MAL-2025-49137
+    "epic-diesel-services": {"1.0.0"},                                           # MAL-2025-49138
+    "epic-diesel-store": {"1.0.0"},                                              # MAL-2025-49139
+    "epic-dynamo-utils": {"1.0.0"},                                              # MAL-2025-49140
+    "epic-env-utils": {"1.0.0"},                                                 # MAL-2025-49141
+    "epic-eula": {"1.0.0"},                                                      # MAL-2025-49142
+    "epic-eula-service": {"1.0.0"},                                              # MAL-2025-49143
+    "epic-file-upload": {"1.0.0"},                                               # MAL-2025-49144
+    "epic-fortnite-build": {"1.0.0"},                                            # MAL-2025-49145
+    "epic-fortnite-react": {"1.0.0"},                                            # MAL-2025-49146
+    "epic-fortnite-server": {"1.0.0"},                                           # MAL-2025-49147
+    "epic-fortnite-styles": {"1.0.0"},                                           # MAL-2025-49148
+    "epic-freight": {"1.0.0"},                                                   # MAL-2025-49149
+    "epic-games-footer": {"1.0.0"},                                              # MAL-2025-49150
+    "epic-games-nav": {"1.0.0"},                                                 # MAL-2025-49151
+    "epic-google-maps-tools": {"1.0.0"},                                         # MAL-2025-49152
+    "epic-graphql-schema": {"1.0.0"},                                            # MAL-2025-49153
+    "epic-graphql-types": {"1.0.0"},                                             # MAL-2025-49154
+    "epic-gtm-url-checker": {"1.0.0"},                                           # MAL-2025-49155
+    "epic-gulp-utils": {"1.0.0"},                                                # MAL-2025-49156
+    "epic-hooks": {"1.0.0"},                                                     # MAL-2025-49157
+    "epic-http-proxy": {"1.0.0"},                                                # MAL-2025-49158
+    # ─── Sep 23–24 2026: @baanx dep-confusion expansion ──────────────────────────
+    # @baanx/common and @baanx/domain extend the @baanx blockchain dep-confusion
+    # cluster (solana-lib/abis/blockchain-config already tracked above). Both carry
+    # an introduced:0 SEMVER range — any version is attacker-controlled.
+    # Sources: OSV MAL-2026-16485/16486; GHSA-27jh-hjhg-vg2p.
+    "@baanx/common": set(),                                                      # MAL-2026-16485 (ANY)
+    "@baanx/domain": set(),                                                      # MAL-2026-16486 (ANY)
+    # ─── Sep 24 2026: @insiderintelligence/componentlibrary dep-confusion ─────────
+    # componentlibrary extends @insiderintelligence/googleadmanager (already tracked).
+    # introduced:0 SEMVER range; @insiderintelligence/ scope in NPM_SUSPECT_SCOPES;
+    # this entry upgrades detection to a definite hit (exit 1).
+    # Source: OSV MAL-2026-16353; GHSA-rjh6-qm48-cg84.
+    "@insiderintelligence/componentlibrary": set(),                              # MAL-2026-16353 (ANY)
+    # ─── Sep 23 2026: MemTensor MemOS Go credential-exfiltration worm (npm) ──────
+    # @memtensor/memos-cloud-openclaw-plugin ships a hidden Go binary (sckit) that
+    # runs on every require(); harvests .npmrc/.pypirc/id_rsa/git-credentials and
+    # POSTs to skyleen[.]fr; self-replicates into other repos via stolen creds.
+    # Linked to PyPI memoryos (same binary and C2 infrastructure).
+    # Source: OSV MAL-2026-16476; GHSA-mhjf-v53x-7p87.
+    "@memtensor/memos-cloud-openclaw-plugin": {"0.1.21", "0.1.23", "0.1.25"},   # MAL-2026-16476
+    # ─── Sep 23 2026: @test1230504 scope malware cluster ─────────────────────────
+    # Three packages in the @test1230504 publisher scope; all carry a SEMVER >=0
+    # range (introduced:0) and GHSA-malware classification indicating any installed
+    # version is attacker-controlled.
+    # Sources: OSV MAL-2026-16467/16468/16469; GHSA-3qx9-8g8p-4mcj.
+    "@test1230504/probe-7f3k2m-utils": set(),                                    # MAL-2026-16467 (ANY)
+    "@test1230504/string-format-helper": set(),                                  # MAL-2026-16468 (ANY)
+    "@test1230504/test-publish-verify": set(),                                   # MAL-2026-16469 (ANY)
+    # ─── Sep 23 2026: z-deno-truth-* obfuscated exfiltrator cluster ──────────────
+    # Three obfuscated packages; package.json maps exports to setup.js in a
+    # non-standard way; SEMVER >=0 range; exfiltrates env/credentials on load.
+    # Sources: OSV MAL-2026-16470/16471/16472; GHSA-f8xr-gjfq-xfcp.
+    "z-deno-truth-bwhlsz": set(),                                                # MAL-2026-16470 (ANY)
+    "z-deno-truth-va499w": set(),                                                # MAL-2026-16471 (ANY)
+    "z-deno-truth-ya1t4m": set(),                                                # MAL-2026-16472 (ANY)
+    # ─── Sep 23 2026: misc npm malware batch ─────────────────────────────────────
+    # godxxx/godzz/godzzz: throwaway Amazon Inspector–detected malware trio; MAL-2026-16461/62/63.
+    # hachutis: multi-version malware (1.0.0 and 1.0.6); MAL-2026-16464.
+    # helpersutils-dev-tools: dev-tools–named infostealer; MAL-2026-16465.
+    # sea-baileys: WhatsApp Baileys typosquat; MAL-2026-16473.
+    # vite-dev-launcher: Vite typosquat shipping a postinstall exfiltrator; MAL-2026-16474.
+    # com.apple.unityplugin.storekit: fake Apple Unity StoreKit plugin; MAL-2026-16477.
+    # event-hunter: generic-named postinstall credential stealer; MAL-2026-16478.
+    # simplenewnpmpackage: postinstall exfiltrator; MAL-2026-16479.
+    # a-onesite: dep-confusion probe at 99.9.9; MAL-2026-16480.
+    # internallib_v463: exports reverse-shell fetcher via /bin/bash curl; MAL-2026-16481.
+    # internallib_v657: internal-library–named malware; MAL-2026-16482.
+    # @rixxcodex/baileys: WhatsApp Baileys typosquat, 4 versions; MAL-2026-16483.
+    # pino-testkit: pino logger typosquat; MAL-2026-16484.
+    "godxxx": {"1.0.0"},                                                         # MAL-2026-16461
+    "godzz": {"1.0.0"},                                                          # MAL-2026-16462
+    "godzzz": {"1.0.0"},                                                         # MAL-2026-16463
+    "hachutis": {"1.0.0", "1.0.6"},                                              # MAL-2026-16464
+    "helpersutils-dev-tools": {"1.0.11"},                                        # MAL-2026-16465
+    "sea-baileys": {"1.0.2"},                                                    # MAL-2026-16473
+    "vite-dev-launcher": {"2.9.4"},                                              # MAL-2026-16474
+    "com.apple.unityplugin.storekit": {"1.0.2"},                                 # MAL-2026-16477
+    "event-hunter": {"1.0.0"},                                                   # MAL-2026-16478
+    "simplenewnpmpackage": {"1.0.2"},                                             # MAL-2026-16479
+    "a-onesite": {"99.9.9"},                                                     # MAL-2026-16480
+    "internallib_v463": {"1.0.2"},                                               # MAL-2026-16481
+    "internallib_v657": {"1.0.1"},                                               # MAL-2026-16482
+    "@rixxcodex/baileys": {"8.0.15", "8.0.16", "8.1.0", "8.2.0"},               # MAL-2026-16483
+    "pino-testkit": {"10.4.5"},                                                  # MAL-2026-16484
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
