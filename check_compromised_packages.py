@@ -1898,6 +1898,23 @@ PYPI_BAD: dict[str, set[str]] = {
     # and POSTs them to skyleen[.]fr; also self-replicates into repos via stolen creds.
     # Source: OSV MAL-2026-16475; PYSEC-2026-3987.
     "memoryos": {"2.0.34"},                                     # MAL-2026-16475
+    # ─── Sep 25 2026: PyPI malware batch ─────────────────────────────────────────
+    # prosocks: SOCKS5 proxy credential exfiltrator masquerading as a networking
+    #   library; 30 versions published (1.0.0 through 1.0.32); steals env tokens
+    #   and proxy credentials on import; OSV MAL-2026-17167.
+    # vercel-runtime-python: impersonates a Vercel Python runtime package (Vercel
+    #   does not publish such a package on PyPI); dep-confusion probe; also published
+    #   dep-confusion versions 99.99.99/100.99.99/100.100.99; entire package is
+    #   attacker-controlled; OSV MAL-2026-17168.
+    # my-private-pkg: dep-confusion probe at 99.1.1 (high-version sentinel used to
+    #   detect and exfiltrate build-system config); OSV MAL-2026-17180.
+    "prosocks": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5",
+                 "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.0.13", "1.0.14",
+                 "1.0.15", "1.0.16", "1.0.17", "1.0.18", "1.0.19", "1.0.20",
+                 "1.0.21", "1.0.22", "1.0.23", "1.0.25", "1.0.26", "1.0.27",
+                 "1.0.28", "1.0.29", "1.0.30", "1.0.32"},              # MAL-2026-17167
+    "vercel-runtime-python": set(),                                     # MAL-2026-17168 (ANY)
+    "my-private-pkg": {"99.1.1"},                                       # MAL-2026-17180
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12803,6 +12820,233 @@ NPM_BAD: dict[str, set[str]] = {
     "internallib_v657": {"1.0.1"},                                               # MAL-2026-16482
     "@rixxcodex/baileys": {"8.0.15", "8.0.16", "8.1.0", "8.2.0"},               # MAL-2026-16483
     "pino-testkit": {"10.4.5"},                                                  # MAL-2026-16484
+    # ─── Sep 24 2026: @client-web-next/ dep-confusion cluster ────────────────────
+    # 22 packages impersonating internal Angular/React components of a Latin-American
+    # fintech company ("tarjeta", "origination-microfront"); all published at 0.0.1
+    # (dep-confusion probe versions) by an attacker-controlled publisher account.
+    # @client-web-next/ui also appeared at 9.999.2–9.999.3 (dep-confusion markers).
+    # Scope entry added to NPM_SUSPECT_SCOPES to catch further undisclosed packages.
+    # Sources: OSV MAL-2026-16493 through MAL-2026-16514.
+    "@client-web-next/ab-landing-form": {"0.0.1"},                               # MAL-2026-16493
+    "@client-web-next/ab-tests": {"0.0.1"},                                      # MAL-2026-16494
+    "@client-web-next/adaptive": {"0.0.1"},                                      # MAL-2026-16495
+    "@client-web-next/analytics": {"0.0.1"},                                     # MAL-2026-16496
+    "@client-web-next/api-metrics": {"0.0.1"},                                   # MAL-2026-16497
+    "@client-web-next/cms": {"0.0.1"},                                           # MAL-2026-16498
+    "@client-web-next/env-util": {"0.0.1"},                                      # MAL-2026-16499
+    "@client-web-next/event-bus-listener": {"0.0.1"},                            # MAL-2026-16500
+    "@client-web-next/feature-flags": {"0.0.1"},                                 # MAL-2026-16501
+    "@client-web-next/footer": {"0.0.1"},                                        # MAL-2026-16502
+    "@client-web-next/icons": {"0.0.1"},                                         # MAL-2026-16503
+    "@client-web-next/logger": {"0.0.1"},                                        # MAL-2026-16504
+    "@client-web-next/navigation-link": {"0.0.1"},                               # MAL-2026-16505
+    "@client-web-next/origination-microfront": {"0.0.1"},                        # MAL-2026-16506
+    "@client-web-next/providers": {"0.0.1"},                                     # MAL-2026-16507
+    "@client-web-next/tarjeta-button": {"0.0.1"},                                # MAL-2026-16508
+    "@client-web-next/timer": {"0.0.1"},                                         # MAL-2026-16509
+    "@client-web-next/transfer-state": {"0.0.1"},                                # MAL-2026-16510
+    "@client-web-next/ua-parser": {"0.0.1"},                                     # MAL-2026-16511
+    "@client-web-next/ui": {"9.999.2", "9.999.3"},                               # MAL-2026-16512
+    "@client-web-next/ui-business": {"0.0.1"},                                   # MAL-2026-16513
+    "@client-web-next/utils": {"0.0.1"},                                         # MAL-2026-16514
+    # ─── Sep 24 2026: @egencia/ dep-confusion cluster (Amex GBT) ─────────────────
+    # 8 npm packages impersonating the internal UI toolkit of Egencia (American
+    # Express Global Business Travel); all published at 99.x dep-confusion versions.
+    # Scope entry added to NPM_SUSPECT_SCOPES to catch further undisclosed packages.
+    # Sources: OSV MAL-2026-16515 through MAL-2026-16522.
+    "@egencia/design-tokens": {"99.99.9"},                                       # MAL-2026-16515
+    "@egencia/uitk-global-styles": {"99.9.9"},                                   # MAL-2026-16516
+    "@egencia/uitk-global-styles-6": {"99.99.9"},                                # MAL-2026-16517
+    "@egencia/uitk-react": {"99.99.9"},                                          # MAL-2026-16518
+    "@egencia/uitk-react-foundation": {"99.9.9"},                                # MAL-2026-16519
+    "@egencia/uitk-react-layout-flex": {"99.99.9"},                              # MAL-2026-16520
+    "@egencia/uitk-react-spacing": {"99.99.9"},                                  # MAL-2026-16521
+    "@egencia/uitk-react-text": {"99.9.9"},                                      # MAL-2026-16522
+    # ─── Sep 24 2026: misc npm dep-confusion / malware batch ─────────────────────
+    # @adominadmininstr/*: attacker-controlled publisher scope; two date-utility
+    #   impostor packages (date-util-helper, fmt-date-helper); MAL-2026-16490/16491.
+    # @cartradetech/example-package: dep-confusion probe targeting CarTrade Tech
+    #   (Indian used-car marketplace); 1.0.0; MAL-2026-16492.
+    # @ks-cqc/*: dep-confusion against CQC (China Quality Certification Center)
+    #   internal SDK; fingerprint-generator at 1.99.99 and h5-sig4 at 2.99.99;
+    #   MAL-2026-16523/16524.
+    # @larocas-bbresearch/*: security-researcher tombstone dep-confusion probes
+    #   (5 packages: tombstone-probe-8ejnsa, tombstone-probe-live-z6xz56,
+    #   tombstone-probe-odvz5y, tp-probe-dc7a3670, tp-probe-e29834ce);
+    #   MAL-2026-16525 through MAL-2026-16529.
+    # @yuva2210/*: additional dep-confusion PoC packages targeting OKX exchange
+    #   (okx-poc-preinstall at 1.0.0/1.0.1; poc-depconf at 1.0.0/1.0.1);
+    #   @yuva2210/ scope already in NPM_SUSPECT_SCOPES; MAL-2026-16531/16532.
+    # @ssgw/background-transition: dep-confusion probe at 9.999.999; MAL-2026-16530.
+    # @alphaspace/core: dep-confusion at 99.0.0–99.0.2; MAL-2026-17169.
+    # @birbalo/aliftech-ui: dep-confusion probe against Aliftech (Uzbek fintech)
+    #   UI library; 99.9.9; MAL-2026-17153.
+    # aliftech-ui: unscoped Aliftech UI dep-confusion companion; 99.9.9;
+    #   MAL-2026-17156.
+    # @nf-addons/am-global-header: dep-confusion against a digital-assets platform
+    #   (NFT/OSL) global header component; 9.9.10; MAL-2026-17154.
+    # @osl-design/react: dep-confusion against OSL Digital (exchange) design system;
+    #   9.9.10; MAL-2026-17155.
+    # exodus-firestore-synchronize: fake Exodus-wallet Firestore sync package;
+    #   0.0.1; targets wallet developers; MAL-2026-16533.
+    # mercuriusdream-oidc-replay-probe: OIDC token replay probe; 1.0.0;
+    #   MAL-2026-16535.
+    # mx-www-locales-common: dep-confusion against MercadoLibre/MX web locales;
+    #   99.0.0; MAL-2026-16536.
+    # spark-common / spark-rpc: two dep-confusion packages targeting an internal
+    #   Spark RPC framework; 1.0.0 each; MAL-2026-16537/16538.
+    # speaker_tagging_media_player: high-version dep-confusion probe (9999.0.0);
+    #   MAL-2026-16539.
+    # style-class-utils: generic-named infostealer at 1.0.0; MAL-2026-16540.
+    # zeal-util-hooks / zeal-utils: Zeal documentation browser dep-confusion pair
+    #   at 0.0.0; MAL-2026-16541/16542.
+    # halali-sample: dep-confusion probe at 999.9.14; MAL-2026-16534.
+    "@adominadmininstr/date-util-helper": {"1.0.0"},                             # MAL-2026-16490
+    "@adominadmininstr/fmt-date-helper": {"1.0.0"},                              # MAL-2026-16491
+    "@cartradetech/example-package": {"1.0.0"},                                  # MAL-2026-16492
+    "@ks-cqc/fingerprint-generator": {"1.99.99"},                                # MAL-2026-16523
+    "@ks-cqc/h5-sig4": {"2.99.99"},                                              # MAL-2026-16524
+    "@larocas-bbresearch/tombstone-probe-8ejnsa": {"0.0.1"},                     # MAL-2026-16525
+    "@larocas-bbresearch/tombstone-probe-live-z6xz56": {"0.0.1"},                # MAL-2026-16526
+    "@larocas-bbresearch/tombstone-probe-odvz5y": {"0.0.1"},                     # MAL-2026-16527
+    "@larocas-bbresearch/tp-probe-dc7a3670": {"1.0.0"},                          # MAL-2026-16528
+    "@larocas-bbresearch/tp-probe-e29834ce": {"1.0.0", "1.0.1"},                 # MAL-2026-16529
+    "@yuva2210/okx-poc-preinstall": {"1.0.0", "1.0.1"},                          # MAL-2026-16531
+    "@yuva2210/poc-depconf": {"1.0.0", "1.0.1"},                                 # MAL-2026-16532
+    "@ssgw/background-transition": {"9.999.999"},                                # MAL-2026-16530
+    "@alphaspace/core": {"99.0.0", "99.0.1", "99.0.2"},                          # MAL-2026-17169
+    "@birbalo/aliftech-ui": {"99.9.9"},                                          # MAL-2026-17153
+    "aliftech-ui": {"99.9.9"},                                                   # MAL-2026-17156
+    "@nf-addons/am-global-header": {"9.9.10"},                                   # MAL-2026-17154
+    "@osl-design/react": {"9.9.10"},                                             # MAL-2026-17155
+    "exodus-firestore-synchronize": {"0.0.1"},                                   # MAL-2026-16533
+    "mercuriusdream-oidc-replay-probe": {"1.0.0"},                               # MAL-2026-16535
+    "mx-www-locales-common": {"99.0.0"},                                         # MAL-2026-16536
+    "spark-common": {"1.0.0"},                                                   # MAL-2026-16537
+    "spark-rpc": {"1.0.0"},                                                      # MAL-2026-16538
+    "speaker_tagging_media_player": {"9999.0.0"},                                # MAL-2026-16539
+    "style-class-utils": {"1.0.0"},                                              # MAL-2026-16540
+    "zeal-util-hooks": {"0.0.0"},                                                # MAL-2026-16541
+    "zeal-utils": {"0.0.0"},                                                     # MAL-2026-16542
+    "halali-sample": {"999.9.14"},                                               # MAL-2026-16534
+    # ─── Sep 24 2026: Epic Games dep-confusion cluster ────────────────────────────
+    # 10 npm packages impersonating Epic Games internal tooling; each carries the
+    # npm security-placeholder version (0.0.1-security) indicating the packages
+    # were taken down after the dep-confusion probes were published. Entire
+    # packages are malicious (no legitimate published code). Use set() wildcard.
+    # epic-launcher-integration also published many fake semver versions (0.0.1 to
+    # 2100.4.2) before takedown; set() captures any re-upload.
+    # Sources: OSV MAL-2025-19703; MAL-2025-49159 through MAL-2025-49168.
+    "epic-launcher-integration": set(),                                          # MAL-2025-19703 (ANY)
+    "epic-i18n": set(),                                                          # MAL-2025-49159 (ANY)
+    "epic-js-error-reporting": set(),                                            # MAL-2025-49160 (ANY)
+    "epic-localization": set(),                                                  # MAL-2025-49162 (ANY)
+    "epic-messages-common": set(),                                               # MAL-2025-49163 (ANY)
+    "epic-minimalist-blog": set(),                                               # MAL-2025-49164 (ANY)
+    "epic-native-client-utils": set(),                                           # MAL-2025-49165 (ANY)
+    "epic-node-blog": set(),                                                     # MAL-2025-49166 (ANY)
+    "epic-node-cluster": set(),                                                  # MAL-2025-49167 (ANY)
+    "epic-node-cms": set(),                                                      # MAL-2025-49168 (ANY)
+    # ─── Sep 24–25 2026: misc npm malware batch ───────────────────────────────────
+    # agency-test-exercise / agency-testts: throwaway test-named malware packages;
+    #   1.0.2 and 1.0.0 respectively; MAL-2026-17170/17171.
+    # better-dotenv3 / secure-env3: env-variable exfiltrators impersonating
+    #   dotenv/secure-env; 1.0.1 each; MAL-2026-17172/17178.
+    # chromatitle / chromatitle-js: chroma-keying-themed credential stealers;
+    #   1.0.0 each; MAL-2026-17173/17174.
+    # wallet-connect-adapter: WalletConnect/Web3 credential interceptor; 1.4.2;
+    #   MAL-2026-17179.
+    # analytics-widget: generic-named infostealer; 1.0.0–1.0.1; MAL-2026-17163.
+    # building-build / c2-client: build-system typosquats with postinstall payloads;
+    #   1.0.0 each; MAL-2026-17164/17165.
+    # cache-swipper (note: not cache-sweeper): cache utility impersonator;
+    #   3.5.0 and 3.6.0; MAL-2026-17166.
+    # eslint-config-compact-base: ESLint config impersonator; 1.0.0; MAL-2026-17157.
+    # simple-date-formatter-new-{11,13,14,15,16}: five numbered date-formatter
+    #   typosquats each at 1.0.0; MAL-2026-17158 through MAL-2026-17162.
+    # alpha-helper: generic helper-named infostealer; 1.3.4; MAL-2026-12338.
+    # chai-as-rendered: Chai test plugin impersonator; 1.2.0; MAL-2026-12348.
+    # chart-data-utils: chart utility infostealer; 1.0.0; MAL-2026-12350.
+    # csv-parser-helper: CSV utility infostealer; 1.0.0; MAL-2026-12360.
+    # fastify-client-bundler: Fastify plugin impersonator; 1.4.0; MAL-2026-12379.
+    # gekko-mev-bot: MEV bot impersonator; 1.0.0; MAL-2026-12387.
+    # messenger-style: Messenger-themed infostealer; 1.0.1; MAL-2026-12796.
+    # npm-module-service: npm service impersonator; 3.7.2; MAL-2026-12404.
+    # poly-bbc-service: BBC/Poly service impersonator; 3.7.2; MAL-2026-12799.
+    # poly-custom-api: Poly API impersonator; 5.3.1; MAL-2026-12416.
+    # test22221: throwaway test-named infostealer; 2.2.7–2.2.9; MAL-2026-12478.
+    # time-utils-helper: time utility infostealer; 1.0.0; MAL-2026-12225.
+    # ventrix-kit: Ventrix framework impersonator; 0.5.2 and 1.5.2; MAL-2026-12494.
+    # voicemail: voicemail-themed credential stealer; 1.0.1–1.0.2; MAL-2026-12496.
+    # vscode-designer-14: VS Code extension impersonator; 14.0.1; MAL-2026-12497.
+    # saps_secplayground_npm_ai: SAP security playground test package that exfiltrates
+    #   data; 1.0.0–1.0.5; MAL-2026-14094.
+    # eslint-config-compact-base: ESLint config impersonator; 1.0.0; MAL-2026-17157.
+    # Older 2024 PoC/throwaway packages (re-indexed Sep 24 2026):
+    # a111y-cloud, a39a85e7, a-constructor.js, a11y-test-app, aabquery, aabquerys,
+    # abb-americas, abcotv-xml-parser, abcvbs, abdulla-chat-api, aaaa89852889,
+    # aave-improvement-process, ab-test-wordpress, @zarafront/lib-zds,
+    # @zettle-bo/apps, @zhiend989/asdfqwer, @zva/web:
+    # each carries a valid non-withdrawn OSV MAL-2024/2025 record.
+    "agency-test-exercise": {"1.0.2"},                                           # MAL-2026-17170
+    "agency-testts": {"1.0.0"},                                                  # MAL-2026-17171
+    "better-dotenv3": {"1.0.1"},                                                 # MAL-2026-17172
+    "secure-env3": {"1.0.1"},                                                    # MAL-2026-17178
+    "chromatitle": {"1.0.0"},                                                    # MAL-2026-17173
+    "chromatitle-js": {"1.0.0"},                                                 # MAL-2026-17174
+    "wallet-connect-adapter": {"1.4.2"},                                         # MAL-2026-17179
+    "analytics-widget": {"1.0.0", "1.0.1"},                                      # MAL-2026-17163
+    "building-build": {"1.0.0"},                                                 # MAL-2026-17164
+    "c2-client": {"1.0.0"},                                                      # MAL-2026-17165
+    "cache-swipper": {"3.5.0", "3.6.0"},                                         # MAL-2026-17166
+    "eslint-config-compact-base": {"1.0.0"},                                     # MAL-2026-17157
+    "simple-date-formatter-new-11": {"1.0.0"},                                   # MAL-2026-17158
+    "simple-date-formatter-new-13": {"1.0.0"},                                   # MAL-2026-17159
+    "simple-date-formatter-new-14": {"1.0.0"},                                   # MAL-2026-17160
+    "simple-date-formatter-new-15": {"1.0.0"},                                   # MAL-2026-17161
+    "simple-date-formatter-new-16": {"1.0.0"},                                   # MAL-2026-17162
+    "alpha-helper": {"1.3.4"},                                                   # MAL-2026-12338
+    "chai-as-rendered": {"1.2.0"},                                               # MAL-2026-12348
+    "chart-data-utils": {"1.0.0"},                                               # MAL-2026-12350
+    "csv-parser-helper": {"1.0.0"},                                              # MAL-2026-12360
+    "fastify-client-bundler": {"1.4.0"},                                         # MAL-2026-12379
+    "gekko-mev-bot": {"1.0.0"},                                                  # MAL-2026-12387
+    "messenger-style": {"1.0.1"},                                                # MAL-2026-12796
+    "npm-module-service": {"3.7.2"},                                             # MAL-2026-12404
+    "poly-bbc-service": {"3.7.2"},                                               # MAL-2026-12799
+    "poly-custom-api": {"5.3.1"},                                                # MAL-2026-12416
+    "test22221": {"2.2.7", "2.2.8", "2.2.9"},                                    # MAL-2026-12478
+    "time-utils-helper": {"1.0.0"},                                              # MAL-2026-12225
+    "ventrix-kit": {"0.5.2", "1.5.2"},                                           # MAL-2026-12494
+    "voicemail": {"1.0.1", "1.0.2"},                                             # MAL-2026-12496
+    "vscode-designer-14": {"14.0.1"},                                            # MAL-2026-12497
+    "saps_secplayground_npm_ai": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5"},  # MAL-2026-14094
+    "a111y-cloud": {"89.3.5"},                                                   # MAL-2024-11286
+    "a39a85e7": {"1.9.0"},                                                       # MAL-2024-11287
+    "a-constructor.js": {"99999999.99.9"},                                       # MAL-2024-1708
+    "a11y-test-app": {"1.0.0"},                                                  # MAL-2024-1709
+    "aabquery": {"1.0.0", "1.0.1"},                                              # MAL-2024-1710
+    "aabquerys": {"1.0.0", "1.0.1"},                                             # MAL-2024-1711
+    "abb-americas": {"1.0.0"},                                                   # MAL-2024-1712
+    "abcotv-xml-parser": {"1.0.0"},                                              # MAL-2024-1713
+    "abcvbs": {"3.2.1"},                                                         # MAL-2024-1714
+    "abdulla-chat-api": {"3.7.9"},                                               # MAL-2024-1715
+    "aaaa89852889": {"1.0.0"},                                                   # MAL-2025-789
+    "aave-improvement-process": {"99.99.99"},                                    # MAL-2025-6395
+    "ab-test-wordpress": {"1.18.3"},                                             # MAL-2025-48477
+    "@zarafront/lib-zds": {"99.50.55"},                                          # MAL-2024-8838
+    "@zettle-bo/apps": {"35.0.0"},                                               # MAL-2024-1767
+    "@zhiend989/asdfqwer": {"2.0.0"},                                            # MAL-2024-9489
+    "@zva/web": {"99.49.54", "99.50.54", "99.50.55"},                            # MAL-2024-9490
+    # ─── Sep 25 2026: n8n workflow-automation malicious community nodes ───────────
+    # Three fake n8n community-node packages impersonating workflow-automation
+    # integrations (flowstats, moonlet-helpers, moonlet-utils); published by the
+    # moonlet.io-impersonation actor; contain postinstall C2 exfiltration.
+    # Builds on the pattern of the @years17-20 n8n scope cluster (Aug 2026).
+    # Sources: OSV MAL-2026-17175/17176/17177.
+    "n8n-nodes-flowstats": {"1.0.0"},                                            # MAL-2026-17175
+    "n8n-nodes-moonlet-helpers": {"1.0.0", "1.0.4"},                             # MAL-2026-17176
+    "n8n-nodes-moonlet-utils": {"1.0.0"},                                        # MAL-2026-17177
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -13038,6 +13282,17 @@ NPM_SUSPECT_SCOPES = (
     "@baanx/",
     # @vite-tab/ fake Vite scope — tab + tabui (any version) pinned above
     "@vite-tab/",
+    # Sep 24 2026 new dep-confusion scopes
+    # @client-web-next/ dep-confusion scope — 22 packages pinned above (OSV MAL-2026-16493–16514)
+    "@client-web-next/",
+    # @egencia/ dep-confusion scope (Amex GBT) — 8 packages pinned above (OSV MAL-2026-16515–16522)
+    "@egencia/",
+    # @larocas-bbresearch/ security-researcher tombstone-probe scope — 5 packages pinned above
+    "@larocas-bbresearch/",
+    # @ks-cqc/ dep-confusion scope (CQC China) — fingerprint-generator + h5-sig4 pinned above
+    "@ks-cqc/",
+    # @adominadmininstr/ attacker-controlled publisher scope — 2 date-util packages pinned above
+    "@adominadmininstr/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
