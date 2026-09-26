@@ -1915,6 +1915,16 @@ PYPI_BAD: dict[str, set[str]] = {
                  "1.0.28", "1.0.29", "1.0.30", "1.0.32"},              # MAL-2026-17167
     "vercel-runtime-python": set(),                                     # MAL-2026-17168 (ANY)
     "my-private-pkg": {"99.1.1"},                                       # MAL-2026-17180
+    # ─── Sep 25–26 2026: PyPI malware batch ─────────────────────────────────────
+    # reqparser: import-time infostealer; starts a credential-exfiltration process
+    #   on module import; OSV MAL-2026-17181.
+    # tego-managed-agents-test: install-time malware with malicious custom install
+    #   command; dep-confusion probe; OSV MAL-2026-17183.
+    # sherpy: Chrome extension credential exfiltrator; exfiltrates extension
+    #   storage data (tokens, cookies) on use; OSV MAL-2026-17188.
+    "reqparser": {"1.0.0", "1.0.1"},                                    # MAL-2026-17181
+    "tego-managed-agents-test": {"0.1.0"},                              # MAL-2026-17183
+    "sherpy": {"0.1.0", "0.1.1"},                                       # MAL-2026-17188
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -8338,7 +8348,7 @@ NPM_BAD: dict[str, set[str]] = {
     "commonweb-balance": {"99.9.1"},  # MAL-2026-13439
     "commonweb-flow": {"1.0.0", "10.11.0", "10.12.0", "10.13.0", "10.14.0", "10.15.0", "5.8.999", "5.999.999", "6.0.999", "6.999.999", "7.1.999", "7.2.999", "7.3.999", "7.999.999", "99.99.99"},  # MAL-2025-6894
     "consumerweb-creditcollection": {"99.9.1"},  # MAL-2026-13441
-    "merchantweb-lang-cookie-reset": {"99.99.99"},  # MAL-2026-13449
+    "merchantweb-lang-cookie-reset": {"0.0.6", "0.0.999", "0.1.0", "0.1.999", "0.999.999", "1.0.998", "1.0.999", "1.999.999", "2.0.0", "99.99.99"},  # MAL-2026-13449
 
     # Miscellaneous npm malware Aug 5–7 2026 (no cluster pattern)
     # 63 packages: assorted malware, typosquats, and dep-confusion not fitting a named cluster.
@@ -13047,6 +13057,56 @@ NPM_BAD: dict[str, set[str]] = {
     "n8n-nodes-flowstats": {"1.0.0"},                                            # MAL-2026-17175
     "n8n-nodes-moonlet-helpers": {"1.0.0", "1.0.4"},                             # MAL-2026-17176
     "n8n-nodes-moonlet-utils": {"1.0.0"},                                        # MAL-2026-17177
+    # ─── Sep 25 2026: Epic Games dep-confusion cluster expansion ─────────────────
+    # 20 additional npm packages impersonating Epic Games internal tooling;
+    # continuation of the Sep 24 2026 Epic Games dep-confusion cluster;
+    # each carries 0.0.1-security (npm takedown placeholder) and 1.0.0; entire
+    # packages are attacker-controlled. Use set() wildcard per campaign pattern.
+    # Sources: OSV MAL-2025-49169 through MAL-2025-49188.
+    "epic-node-ecom-services": set(),                                            # MAL-2025-49169 (ANY)
+    "epic-node-marketo": set(),                                                  # MAL-2025-49170 (ANY)
+    "epic-node-purchase": set(),                                                 # MAL-2025-49171 (ANY)
+    "epic-node-sailthru": set(),                                                 # MAL-2025-49172 (ANY)
+    "epic-node-services": set(),                                                 # MAL-2025-49173 (ANY)
+    "epic-node-services-common": set(),                                          # MAL-2025-49174 (ANY)
+    "epic-offline-token-verifier-node": set(),                                   # MAL-2025-49175 (ANY)
+    "epic-okta-express-middleware": set(),                                       # MAL-2025-49176 (ANY)
+    "epic-openapi-codegen": set(),                                               # MAL-2025-49177 (ANY)
+    "epic-path-utils": set(),                                                    # MAL-2025-49178 (ANY)
+    "epic-react-blog": set(),                                                    # MAL-2025-49179 (ANY)
+    "epic-react-carousel": set(),                                                # MAL-2025-49180 (ANY)
+    "epic-react-common": set(),                                                  # MAL-2025-49181 (ANY)
+    "epic-react-form": set(),                                                    # MAL-2025-49182 (ANY)
+    "epic-react-search": set(),                                                  # MAL-2025-49183 (ANY)
+    "epic-react-slick": set(),                                                   # MAL-2025-49184 (ANY)
+    "epic-react-survey": set(),                                                  # MAL-2025-49185 (ANY)
+    "epic-react-test-utils": set(),                                              # MAL-2025-49186 (ANY)
+    "epic-react-testing": set(),                                                 # MAL-2025-49187 (ANY)
+    "epic-react-webpack-starter": set(),                                         # MAL-2025-49188 (ANY)
+    # ─── Sep 25–26 2026: misc npm malware / dep-confusion batch ──────────────────
+    # 0vulns-dependency-confusion-poc: communicates with a domain associated with
+    #   malicious activity; flagged by Amazon Inspector; version 1.0.0;
+    #   OSV MAL-2025-5016.
+    # com.db.dbk.ui-forms: dep-confusion probe targeting Deutsche Bank internal
+    #   package namespace; versions 99.0.0/99.0.1; OSV MAL-2026-12355.
+    # app-sca-info-banking: postinstall-exfiltration malware targeting banking CI
+    #   environments; version 0.0.24; OSV MAL-2026-17182.
+    # @airbnb-extended/typescript-config: dep-confusion probe impersonating
+    #   Airbnb internal TypeScript config package; version 99.9.1;
+    #   OSV MAL-2026-17184.
+    # shoplist-app: dep-confusion probe at inflated versions 99.99.99/993.99.99;
+    #   OSV MAL-2026-17185.
+    # @nubjs/types: fully malicious package (GHSA-7qx8-98q7-66p4); any installed
+    #   version at risk; version 0.9.4 confirmed; OSV MAL-2026-17186.
+    # @digift/cli: dep-confusion probe at version 99.99.100;
+    #   OSV MAL-2026-17187.
+    "0vulns-dependency-confusion-poc": {"1.0.0"},                                # MAL-2025-5016
+    "com.db.dbk.ui-forms": {"99.0.0", "99.0.1"},                                 # MAL-2026-12355
+    "app-sca-info-banking": {"0.0.24"},                                          # MAL-2026-17182
+    "@airbnb-extended/typescript-config": {"99.9.1"},                            # MAL-2026-17184
+    "shoplist-app": {"99.99.99", "993.99.99"},                                   # MAL-2026-17185
+    "@nubjs/types": {"0.9.4"},                                                   # MAL-2026-17186
+    "@digift/cli": {"99.99.100"},                                                 # MAL-2026-17187
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -13293,6 +13353,14 @@ NPM_SUSPECT_SCOPES = (
     "@ks-cqc/",
     # @adominadmininstr/ attacker-controlled publisher scope — 2 date-util packages pinned above
     "@adominadmininstr/",
+    # Sep 25–26 2026 new attacker-controlled / dep-confusion scopes
+    # @airbnb-extended/ dep-confusion scope impersonating Airbnb internal packages —
+    # typescript-config at 99.9.1 pinned above (OSV MAL-2026-17184)
+    "@airbnb-extended/",
+    # @nubjs/ attacker-controlled scope — @nubjs/types malware pinned above (OSV MAL-2026-17186)
+    "@nubjs/",
+    # @digift/ dep-confusion scope — @digift/cli at 99.99.100 pinned above (OSV MAL-2026-17187)
+    "@digift/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
