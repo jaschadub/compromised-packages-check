@@ -1925,6 +1925,15 @@ PYPI_BAD: dict[str, set[str]] = {
     "reqparser": {"1.0.0", "1.0.1"},                                    # MAL-2026-17181
     "tego-managed-agents-test": {"0.1.0"},                              # MAL-2026-17183
     "sherpy": {"0.1.0", "0.1.1"},                                       # MAL-2026-17188
+    # ─── Sep 26–27 2026: PyPI malware batch ──────────────────────────────────────
+    # requests-cache-utils: install/import-time infostealer; downloads and executes
+    #   an external infostealer payload on installation and module import;
+    #   typosquat of requests-cache; version 1.0.0; OSV MAL-2026-17191.
+    # donutautosellsrc: install-time dropper that fetches obfuscated code hidden in
+    #   an image file and loads a native extension module with an obfuscated payload;
+    #   versions 0.3.7–0.3.9; OSV MAL-2026-17192.
+    "requests-cache-utils": {"1.0.0"},                                  # MAL-2026-17191
+    "donutautosellsrc": {"0.3.7", "0.3.8", "0.3.9"},                   # MAL-2026-17192
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12888,7 +12897,7 @@ NPM_BAD: dict[str, set[str]] = {
     #   (okx-poc-preinstall at 1.0.0/1.0.1; poc-depconf at 1.0.0/1.0.1);
     #   @yuva2210/ scope already in NPM_SUSPECT_SCOPES; MAL-2026-16531/16532.
     # @ssgw/background-transition: dep-confusion probe at 9.999.999; MAL-2026-16530.
-    # @alphaspace/core: dep-confusion at 99.0.0–99.0.2; MAL-2026-17169.
+    # @alphaspace/core: dep-confusion at 99.0.0–99.0.3; MAL-2026-17169.
     # @birbalo/aliftech-ui: dep-confusion probe against Aliftech (Uzbek fintech)
     #   UI library; 99.9.9; MAL-2026-17153.
     # aliftech-ui: unscoped Aliftech UI dep-confusion companion; 99.9.9;
@@ -12924,7 +12933,7 @@ NPM_BAD: dict[str, set[str]] = {
     "@yuva2210/okx-poc-preinstall": {"1.0.0", "1.0.1"},                          # MAL-2026-16531
     "@yuva2210/poc-depconf": {"1.0.0", "1.0.1"},                                 # MAL-2026-16532
     "@ssgw/background-transition": {"9.999.999"},                                # MAL-2026-16530
-    "@alphaspace/core": {"99.0.0", "99.0.1", "99.0.2"},                          # MAL-2026-17169
+    "@alphaspace/core": {"99.0.0", "99.0.1", "99.0.2", "99.0.3"},                # MAL-2026-17169
     "@birbalo/aliftech-ui": {"99.9.9"},                                          # MAL-2026-17153
     "aliftech-ui": {"99.9.9"},                                                   # MAL-2026-17156
     "@nf-addons/am-global-header": {"9.9.10"},                                   # MAL-2026-17154
@@ -13107,6 +13116,15 @@ NPM_BAD: dict[str, set[str]] = {
     "shoplist-app": {"99.99.99", "993.99.99"},                                   # MAL-2026-17185
     "@nubjs/types": {"0.9.4"},                                                   # MAL-2026-17186
     "@digift/cli": {"99.99.100"},                                                 # MAL-2026-17187
+    # ─── Sep 26 2026: misc npm malware batch ──────────────────────────────────────
+    # chai-as-relay: Chai test-plugin impersonator with obfuscated infostealer;
+    #   index.js unconditionally requires lib/config.js — a ~4.4 MB obfuscator.io-
+    #   packed IIFE; version 1.2.1; OSV MAL-2026-17189.
+    # cma-self-hosted-sandbox-cf: preinstall-hook exfiltrator that collects
+    #   hostname, current user info, and home-directory listing to a remote C2;
+    #   version 1.0.0; OSV MAL-2026-17190.
+    "chai-as-relay": {"1.2.1"},                                                  # MAL-2026-17189
+    "cma-self-hosted-sandbox-cf": {"1.0.0"},                                     # MAL-2026-17190
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
