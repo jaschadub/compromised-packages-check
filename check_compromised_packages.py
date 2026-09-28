@@ -1934,6 +1934,40 @@ PYPI_BAD: dict[str, set[str]] = {
     #   versions 0.3.7–0.3.9; OSV MAL-2026-17192.
     "requests-cache-utils": {"1.0.0"},                                  # MAL-2026-17191
     "donutautosellsrc": {"0.3.7", "0.3.8", "0.3.9"},                   # MAL-2026-17192
+    # ─── Sep 27 2026: PyPI dep-confusion probes ───────────────────────────────────
+    # metrio: dep-confusion probe; setup.py/import exfiltrates host info to attacker
+    #   C2; versions 999.0.0/1000.0.0/1001.0.0 (high-version sentinels); OSV MAL-2026-17193.
+    # metrics-sdk: dep-confusion beacon; setup.py and __init__.py both exfiltrate on
+    #   install and import; same inflated versions 999.0.0/1000.0.0/1001.0.0;
+    #   OSV MAL-2026-17194.
+    "metrio": {"999.0.0", "1000.0.0", "1001.0.0"},                     # MAL-2026-17193
+    "metrics-sdk": {"999.0.0", "1000.0.0", "1001.0.0"},                # MAL-2026-17194
+    # ─── Sep 27 2026: PyPI steganographic-dropper / persistence cluster ──────────
+    # claudedashbord: installs a .pth file executed on every Python startup; imports
+    #   claudedashbord.telemetry which fetches and runs a remote payload; VirusTotal-
+    #   confirmed (d03c42c2…); versions 0.1.0–0.1.3; OSV MAL-2026-17195.
+    # donutpromotion: install-time steganographic dropper — obfuscated code fetches
+    #   payload hidden inside an image, loads a native extension module; shares the
+    #   same VirusTotal hash as claudedashbord and the same polygon C2 address;
+    #   version 0.1.0; OSV MAL-2026-17196.
+    # coinscan: setup.py imports coinscan.telemetry and calls check() which fetches
+    #   a JSON manifest from attacker-controlled domain; same campaign markers;
+    #   version 0.1.0; OSV MAL-2026-17197.
+    # caracas4check: installs boot.pth at site-packages root for persistent startup
+    #   execution; VirusTotal-confirmed (296b5205…); versions 1.1.1/1.1.2;
+    #   OSV MAL-2026-17198.
+    # scrapetools2: ships auto-update mechanism (downloader.py) that fetches tar.gz
+    #   payloads from public IPFS gateways (eu.orbitor.dev etc.) and executes them;
+    #   versions 0.2.0/0.2.1/1.2.0/1.2.1; OSV MAL-2026-17199.
+    # aseity: same steganographic dropper pattern as donutpromotion; obfuscated
+    #   install-time fetcher loads native extension hidden in an image; same C2
+    #   campaign markers; version 0.1.0; OSV MAL-2026-17200.
+    "claudedashbord": {"0.1.0", "0.1.1", "0.1.2", "0.1.3"},           # MAL-2026-17195
+    "donutpromotion": {"0.1.0"},                                        # MAL-2026-17196
+    "coinscan": {"0.1.0"},                                              # MAL-2026-17197
+    "caracas4check": {"1.1.1", "1.1.2"},                                # MAL-2026-17198
+    "scrapetools2": {"0.2.0", "0.2.1", "1.2.0", "1.2.1"},              # MAL-2026-17199
+    "aseity": {"0.1.0"},                                                # MAL-2026-17200
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13125,6 +13159,11 @@ NPM_BAD: dict[str, set[str]] = {
     #   version 1.0.0; OSV MAL-2026-17190.
     "chai-as-relay": {"1.2.1"},                                                  # MAL-2026-17189
     "cma-self-hosted-sandbox-cf": {"1.0.0"},                                     # MAL-2026-17190
+    # ─── Sep 28 2026: npm attacker probe ──────────────────────────────────────────
+    # @bb1ptest23/test-paket: identified as malicious by OpenSSF Package Analysis;
+    #   executed suspicious commands on installation; version 1.0.3;
+    #   OSV MAL-2026-17201.
+    "@bb1ptest23/test-paket": {"1.0.3"},                                         # MAL-2026-17201
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
