@@ -1968,6 +1968,15 @@ PYPI_BAD: dict[str, set[str]] = {
     "caracas4check": {"1.1.1", "1.1.2"},                                # MAL-2026-17198
     "scrapetools2": {"0.2.0", "0.2.1", "1.2.0", "1.2.1"},              # MAL-2026-17199
     "aseity": {"0.1.0"},                                                # MAL-2026-17200
+    # ─── Sep 28 2026: PyPI malware batch ─────────────────────────────────────────
+    # azure-langchain-example: install-time env-variable exfiltrator masquerading
+    #   as an Azure + LangChain integration helper; version 0.1.0;
+    #   OSV MAL-2026-17213.
+    # aseitylab: continuation of the aseity steganographic-dropper / .pth-persistence
+    #   campaign; same polygon-C2 pattern; versions 0.1.0/0.1.1;
+    #   OSV MAL-2026-17240.
+    "azure-langchain-example": {"0.1.0"},                               # MAL-2026-17213
+    "aseitylab": {"0.1.0", "0.1.1"},                                    # MAL-2026-17240
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -6522,7 +6531,7 @@ NPM_BAD: dict[str, set[str]] = {
     # Misc npm malware — July 25 2026
     # OSV MAL-2026-11064 / MAL-2026-11065 / MAL-2026-11066
     "page-navigation": {"1.0.1"},                                  # MAL-2026-11064
-    "swiper_angular": {"5.9999.0"},                                # MAL-2026-11065
+    "swiper_angular": set(),                                       # MAL-2026-11065 (ANY — introduced:0)
     "@ks-radar/radar": {"22.0.0"},                                 # MAL-2026-11066
     # Misc npm malware — July 26-27 2026
     # clerk-next-fix-auth-protection: Clerk.js auth-library impersonator, suspicious high
@@ -12053,7 +12062,7 @@ NPM_BAD: dict[str, set[str]] = {
     "tailwindcss-aspectratio-styles": {"0.3.4", "0.3.5"},  # MAL-2026-16049
     "@aspect-adv-ui/consent-manager": {"2.4.0", "2.4.1"},  # MAL-2026-16050
     "@umschool/analytics": {"999.0.0", "999.0.1", "999.0.2", "999.0.3", "999.0.4"},  # MAL-2026-16051 — dep-confusion
-    "open-item-validator": {"1.0.3", "1.0.5"},         # MAL-2026-16052
+    "open-item-validator": set(),                       # MAL-2026-16052 (ANY — introduced:0)
     "file-type-detector": {"1.1.0", "1.1.1"},          # MAL-2026-16053
     "gloggo": {"1.1.2", "1.1.3", "1.1.4"},             # MAL-2026-16054
     "sonmors": {"2.11.2"},                             # MAL-2026-16055
@@ -13164,6 +13173,65 @@ NPM_BAD: dict[str, set[str]] = {
     #   executed suspicious commands on installation; version 1.0.3;
     #   OSV MAL-2026-17201.
     "@bb1ptest23/test-paket": {"1.0.3"},                                         # MAL-2026-17201
+    # ─── Sep 28 2026: @wbnr / @consts / @digi-kernel scope-probe cluster ─────────
+    # Five attacker-controlled packages probing corporate/design-system namespaces;
+    # all carry only an introduced:0 range (no legitimate published versions);
+    # flagged by OpenSSF Package Analysis. Use set() wildcard throughout.
+    # Sources: OSV MAL-2026-17202 / 17203 / 17204 / 17205 / 17212.
+    "@consts/links": set(),                                                      # MAL-2026-17202 (ANY)
+    "@digi-kernel/digi-kernel-constrains": set(),                                # MAL-2026-17203 (ANY)
+    "@wbnr/design-kit": set(),                                                   # MAL-2026-17204 (ANY)
+    "@wbnr/lottiefiles-loader": set(),                                           # MAL-2026-17205 (ANY)
+    "wbnr-probe-visible-check": set(),                                           # MAL-2026-17212 (ANY)
+    # ─── Sep 28 2026: misc npm pure-malware wildcard batch ────────────────────────
+    # All packages below carry only an introduced:0 range (no legitimate versions
+    # exist) or a versions list combined with introduced:0, making the entire
+    # package attacker-controlled. Use set() wildcard per SKILLS.md policy.
+    # Sources: OSV MAL-2026-17206 through MAL-2026-17222.
+    "kalasnik-npm-simple-test": set(),                                           # MAL-2026-17206 (ANY)
+    "kjj81": set(),                                                              # MAL-2026-17207 (ANY)
+    "riot-private": set(),                                                       # MAL-2026-17208 (ANY)
+    "tanksync": set(),                                                           # MAL-2026-17209 (ANY)
+    "uuid-date": set(),                                                          # MAL-2026-17210 (ANY)
+    "vinzzsync-wacli": set(),                                                    # MAL-2026-17211 (ANY)
+    "img-to-native": set(),                                                      # MAL-2026-17216 (ANY)
+    "native-runner": set(),                                                      # MAL-2026-17218 (ANY)
+    "nebula-sdk": set(),                                                         # MAL-2026-17219 (ANY)
+    "nebulajs-api": set(),                                                       # MAL-2026-17220 (ANY)
+    "tailwindcss-form-kit": set(),                                               # MAL-2026-17221 (ANY)
+    "vite-plugin-crypto": set(),                                                 # MAL-2026-17222 (ANY)
+    # ─── Sep 28 2026: npm exact-version malware batch ────────────────────────────
+    # Mixed keyword-typosquat campaign targeting fabric.js, nebula.js, chalk/figlet,
+    # hardhat, and misc utility namespaces. Only the listed versions are confirmed
+    # malicious; no introduced:0 ranges present in these records.
+    # Sources: OSV MAL-2026-17214 through MAL-2026-17239.
+    "git-en-boite-logging": {"0.0.0"},                                           # MAL-2026-17214
+    "eslint-plugin-skywagon-web": {"100.0.0"},                                   # MAL-2026-17215
+    "my-skibidi": {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6"},               # MAL-2026-17217
+    "chalk-figlet": {"1.2.0"},                                                   # MAL-2026-17223
+    "fabric-asset-pipeline": {"1.0.0", "1.0.1"},                                # MAL-2026-17224
+    "fabric-render-bridge": {"1.0.0"},                                           # MAL-2026-17225
+    "figlet-chalk-render": {"1.2.1"},                                            # MAL-2026-17226
+    "nebula-llm": {"1.0.0"},                                                     # MAL-2026-17227
+    "nebulaai-sdk": {"1.0.0"},                                                   # MAL-2026-17228
+    "simple-date-formatter-new-12": {"1.0.0"},                                   # MAL-2026-17229
+    "llm-nebula": {"1.0.0"},                                                     # MAL-2026-17230
+    "dotenv-native": {"1.0.1"},                                                  # MAL-2026-17231
+    "fabric-native-loader": {"1.0.0"},                                           # MAL-2026-17232
+    "hardhat-lock": {"2.21.0"},                                                  # MAL-2026-17233
+    "hardhat-zet": {"2.0.1"},                                                    # MAL-2026-17234
+    "items-validator": {"1.0.5"},                                                # MAL-2026-17235
+    "mini-hardhat": {"1.1.4"},                                                   # MAL-2026-17236
+    "native-env": {"1.0.1"},                                                     # MAL-2026-17237
+    "rai6jaisahthaghee5ou-loader-package": {"1.0.0"},                            # MAL-2026-17238
+    "test-agency-assignment": {"1.0.2"},                                         # MAL-2026-17239
+    # ─── Sep 28 2026: dep-confusion 100.x legacy batch (updated records) ─────────
+    # Three packages with attacker-published 100.x versions and introduced:0 ranges,
+    # indicating full attacker control of the package namespace.
+    # Sources: OSV MAL-2026-3327 / 3329 / 3330.
+    "capacitor-plugin-service-worker": set(),                                    # MAL-2026-3327 (ANY)
+    "api-typings": set(),                                                        # MAL-2026-3329 (ANY)
+    "seek-pass": set(),                                                          # MAL-2026-3330 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
