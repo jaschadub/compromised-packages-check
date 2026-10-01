@@ -1977,6 +1977,16 @@ PYPI_BAD: dict[str, set[str]] = {
     #   OSV MAL-2026-17240.
     "azure-langchain-example": {"0.1.0"},                               # MAL-2026-17213
     "aseitylab": {"0.1.0", "0.1.1"},                                    # MAL-2026-17240
+    # ─── Sep 29–Oct 1 2026: PyPI infostealers ────────────────────────────────────
+    # Small batch of PyPI infostealers and typosquats.
+    # Sources: OSV MAL-2026-17286, MAL-2026-17319, MAL-2026-17325,
+    #          MAL-2026-17416, MAL-2026-17417, MAL-2026-17419.
+    "beautifytext": {"1.0.3", "1.0.4", "1.0.7"},                       # MAL-2026-17417
+    "bfox-build-utils": {"1.0.997"},                                    # MAL-2026-17319
+    "cleanup-string": {"1.0.0"},                                        # MAL-2026-17325
+    "friendly-greeting-tools": {"0.1.0", "0.1.1", "0.2", "0.3", "0.3.1"}, # MAL-2026-17416
+    "friendly-tools": {"0.1", "0.2"},                                   # MAL-2026-17419
+    "queeuees": {"0.0.1"},                                              # MAL-2026-17286
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13232,6 +13242,255 @@ NPM_BAD: dict[str, set[str]] = {
     "capacitor-plugin-service-worker": set(),                                    # MAL-2026-3327 (ANY)
     "api-typings": set(),                                                        # MAL-2026-3329 (ANY)
     "seek-pass": set(),                                                          # MAL-2026-3330 (ANY)
+    # ─── Sep 29–Oct 1 2026: Epic Games dep-confusion expansion ───────────────────
+    # Continuation of the Epic Games internal-tools dep-confusion campaign;
+    # covers epic-ue-*, epic-web-*, epic-webpack-*, mms-* (matchmaking-service),
+    # qa-egs-*, player-support-tools-ui, store-service-worker, and support tooling.
+    # All records include the 0.0.1-security npm placeholder → entire-package wildcard.
+    # Sources: OSV MAL-2022-2769 – MAL-2025-49239.
+    "epic-seller-portal-frontend": set(),                           # MAL-2025-49189 (ANY)
+    "epic-service-client": set(),                                   # MAL-2025-49190 (ANY)
+    "epic-service-worker": set(),                                   # MAL-2025-49191 (ANY)
+    "epic-sticky-header": set(),                                    # MAL-2025-49193 (ANY)
+    "epic-support-prettier-config": set(),                          # MAL-2022-2769 (ANY)
+    "epic-support-ticket-submission": set(),                        # MAL-2025-49194 (ANY)
+    "epic-ticket-loader": set(),                                    # MAL-2025-49195 (ANY)
+    "epic-tools-core": set(),                                       # MAL-2025-49196 (ANY)
+    "epic-tracking": set(),                                         # MAL-2025-49198 (ANY)
+    "epic-ue-blog": set(),                                          # MAL-2025-49200 (ANY)
+    "epic-ue-components": set(),                                    # MAL-2025-49201 (ANY)
+    "epic-ue-feed": set(),                                          # MAL-2025-49202 (ANY)
+    "epic-ue-fonts": set(),                                         # MAL-2022-2770 (ANY)
+    "epic-ue-header-footer": set(),                                 # MAL-2025-49203 (ANY)
+    "epic-ue-loading": set(),                                       # MAL-2022-2771 (ANY)
+    "epic-ue-map": set(),                                           # MAL-2025-49204 (ANY)
+    "epic-ue-newsletter": set(),                                    # MAL-2025-49205 (ANY)
+    "epic-ue-shared": set(),                                        # MAL-2025-49206 (ANY)
+    "epic-ue-spotlight": set(),                                     # MAL-2025-49207 (ANY)
+    "epic-ue-ui": set(),                                            # MAL-2022-2773 (ANY)
+    "epic-ue-utils": set(),                                         # MAL-2025-49208 (ANY)
+    "epic-ui-toolkit": set(),                                       # MAL-2025-49210 (ANY)
+    "epic-video-player": set(),                                     # MAL-2025-49211 (ANY)
+    "epic-web-payment-management": set(),                           # MAL-2025-49213 (ANY)
+    "epic-web-payment-management-iframe": set(),                    # MAL-2025-49214 (ANY)
+    "epic-web-payment-management-sandbox": set(),                   # MAL-2025-49215 (ANY)
+    "epic-web-purchase-frontend": set(),                            # MAL-2025-49216 (ANY)
+    "epic-web-sso": set(),                                          # MAL-2025-49217 (ANY)
+    "epic-web-video-player": set(),                                 # MAL-2025-49218 (ANY)
+    "epic-webpack-config": set(),                                   # MAL-2025-49219 (ANY)
+    "epic-webpack-hot-dev-client": set(),                           # MAL-2025-49220 (ANY)
+    "epic-webpack-node-externals": set(),                           # MAL-2025-49221 (ANY)
+    "epic-webpack-utils": set(),                                    # MAL-2025-49222 (ANY)
+    "eslint-config-epic": set(),                                    # MAL-2025-49223 (ANY)
+    "generator-epic-react": set(),                                  # MAL-2025-49224 (ANY)
+    "greet-test": set(),                                            # MAL-2025-49225 (ANY)
+    "jira-lint": set(),                                             # MAL-2025-49226 (ANY)
+    "mms-ref-client": set(),                                        # MAL-2025-49227 (ANY)
+    "mms-ref-dedserver": set(),                                     # MAL-2025-49228 (ANY)
+    "mms-service": set(),                                           # MAL-2025-49229 (ANY)
+    "mms-simulation": set(),                                        # MAL-2025-49230 (ANY)
+    "mms-thin-client": set(),                                       # MAL-2025-49231 (ANY)
+    "mms-tools": set(),                                             # MAL-2025-49232 (ANY)
+    "mod-manager": set(),                                           # MAL-2025-49233 (ANY)
+    "player-support-tools-ui": set(),                               # MAL-2025-49234 (ANY)
+    "qa-egs-rollback": set(),                                       # MAL-2025-49235 (ANY)
+    "set-egs-backend": set(),                                       # MAL-2025-49237 (ANY)
+    "ssp-config-management-tool": set(),                            # MAL-2025-49238 (ANY)
+    "store-service-worker": set(),                                  # MAL-2025-49239 (ANY)
+    # ─── Sep 29 2026: @hrmony dep-confusion cluster ──────────────────────────────
+    # Dependency-confusion attack targeting the internal npm scope of Hrmony
+    # (German HR/payroll SaaS). Packages carry introduced:0 ranges or inflated
+    # versions (*.99.0) indicating full attacker control of the namespace.
+    # Sources: OSV MAL-2026-17249 – MAL-2026-17282.
+    "@hrmony/account-management": set(),                            # MAL-2026-17249 (ANY)
+    "@hrmony/api-gateway-service-config": set(),                    # MAL-2026-17250 (ANY)
+    "@hrmony/app-gateway-templates": set(),                         # MAL-2026-17251 (ANY)
+    "@hrmony/belegerfassung-pladddform": set(),                     # MAL-2026-17252 (ANY)
+    "@hrmony/benefit-essenszuschuss": set(),                        # MAL-2026-17253 (ANY)
+    "@hrmony/benefit-internetzuschuss": set(),                      # MAL-2026-17254 (ANY)
+    "@hrmony/benefit-mobilitaet": set(),                            # MAL-2026-17255 (ANY)
+    "@hrmony/benefit-sachbezug": set(),                             # MAL-2026-17256 (ANY)
+    "@hrmony/benefitverwaltung": set(),                             # MAL-2026-17257 (ANY)
+    "@hrmony/cdk-constructs": set(),                                # MAL-2026-17258 (ANY)
+    "@hrmony/component-library": set(),                             # MAL-2026-17259 (ANY)
+    "@hrmony/devtool-configuration": set(),                         # MAL-2026-17260 (ANY)
+    "@hrmony/gutscheinverwaltung": set(),                           # MAL-2026-17261 (ANY)
+    "@hrmony/hyper-json-builder": set(),                            # MAL-2026-17282 (ANY)
+    "@hrmony/interfaces": set(),                                    # MAL-2026-17262 (ANY)
+    "@hrmony/kit": {"1.99.0"},                                      # MAL-2026-17263
+    "@hrmony/kit-1": {"1.99.0"},                                    # MAL-2026-17264
+    "@hrmony/kit-4": {"1.0.0"},                                     # MAL-2026-17265
+    "@hrmony/kit-5": set(),                                         # MAL-2026-17266 (ANY)
+    "@hrmony/lohndateien": set(),                                   # MAL-2026-17267 (ANY)
+    "@hrmony/mailer-pladddform": set(),                             # MAL-2026-17268 (ANY)
+    "@hrmony/middlewares": set(),                                   # MAL-2026-17269 (ANY)
+    "@hrmony/organisationsverwaltung": set(),                       # MAL-2026-17270 (ANY)
+    "@hrmony/pladddform-application": set(),                        # MAL-2026-17271 (ANY)
+    "@hrmony/pladddform-cli": set(),                                # MAL-2026-17272 (ANY)
+    "@hrmony/pladddform-codegen": set(),                            # MAL-2026-17273 (ANY)
+    "@hrmony/pladddform-config": set(),                             # MAL-2026-17274 (ANY)
+    "@hrmony/pladddform-core": set(),                               # MAL-2026-17275 (ANY)
+    "@hrmony/pladddform-frontend": set(),                           # MAL-2026-17276 (ANY)
+    "@hrmony/pladddform-infrastructure": set(),                     # MAL-2026-17277 (ANY)
+    "@hrmony/pladddform-partner-registry": set(),                   # MAL-2026-17278 (ANY)
+    "@hrmony/pladddform-shared-infrastructure": set(),              # MAL-2026-17279 (ANY)
+    "@hrmony/pladddform-testing": set(),                            # MAL-2026-17280 (ANY)
+    "@hrmony/valuenet": set(),                                      # MAL-2026-17281 (ANY)
+    # ─── Oct 1 2026: express/react typosquats ────────────────────────────────────
+    # Eight express typosquats (exprdd, exprrdd, exptrdd, etc.) and react-nodejs
+    # published at inflated semver matching real packages (5.2.1 / 19.3.0).
+    # Sources: OSV MAL-2026-17241 – MAL-2026-17294.
+    "exprdd": {"5.2.1"},                                            # MAL-2026-17241
+    "express-javascript": {"5.2.1"},                                # MAL-2026-17242
+    "express-nodejs": {"5.2.1"},                                    # MAL-2026-17243
+    "exprrdd": {"5.2.1"},                                           # MAL-2026-17244
+    "exptrdd": {"5.2.1"},                                           # MAL-2026-17245
+    "exptred": {"5.2.1"},                                           # MAL-2026-17246
+    "exptredd": {"5.2.1"},                                          # MAL-2026-17247
+    "xeprews": {"5.2.1"},                                           # MAL-2026-17248
+    "react-nodejs": {"19.3.0"},                                     # MAL-2026-17294
+    # ─── Sep 29–30 2026: Baileys/WhatsApp fork malware cluster ───────────────────
+    # Infostealer packages mimicking or forking the @whiskeysockets/baileys
+    # WhatsApp multi-device library. Attacker-controlled scopes and bare package
+    # names targeting WhatsApp bot developers; introduced:0 ranges or placeholder
+    # versions → entire-package wildcard for most entries.
+    # Sources: OSV MAL-2026-17285 – MAL-2026-17413.
+    "@akapaki/baileys": {"1.0.0", "1.0.1", "1.0.2"},               # MAL-2026-17285
+    "@badzz88/baileys": set(),                                      # MAL-2026-17341 (ANY)
+    "@bellaxchuu/belbails": set(),                                  # MAL-2026-17342 (ANY)
+    "@bellaxchuu/crystalred": set(),                                # MAL-2026-17343 (ANY)
+    "@bellaxchuu/familyxtrx": set(),                                # MAL-2026-17344 (ANY)
+    "@bellaxchuu/flowblue": set(),                                  # MAL-2026-17345 (ANY)
+    "@bellaxchuu/privatebails": set(),                              # MAL-2026-17346 (ANY)
+    "@bellaxchuu/skyblue": set(),                                   # MAL-2026-17347 (ANY)
+    "@bellaxchuu/teambails": set(),                                 # MAL-2026-17348 (ANY)
+    "@bellaxchuu/velvetry": set(),                                  # MAL-2026-17349 (ANY)
+    "@bellaxchuu/xtrxbails": set(),                                 # MAL-2026-17350 (ANY)
+    "@bottino/baileys": set(),                                      # MAL-2026-17351 (ANY)
+    "@chatunity/baileys": {"3.2.0", "3.2.1"},                       # MAL-2026-17287
+    "@fhkryxv/baileys": set(),                                      # MAL-2026-17352 (ANY)
+    "@fhkryxv/baileys-new": set(),                                  # MAL-2026-17353 (ANY)
+    "@hanzofc/baileys": set(),                                      # MAL-2026-17354 (ANY)
+    "@ikanngeming/ikannbail": set(),                                # MAL-2026-17355 (ANY)
+    "@ikyyjee/ikkysingle": set(),                                   # MAL-2026-17356 (ANY)
+    "@ikyyjee/ikyysinggle": set(),                                  # MAL-2026-17357 (ANY)
+    "@ikyyjee/ikyysingle": set(),                                   # MAL-2026-17358 (ANY)
+    "@japofc/baileys": set(),                                       # MAL-2026-17359 (ANY)
+    "@jojoxyz/condemnedforce-baileys": set(),                       # MAL-2026-17360 (ANY)
+    "@kanaraa/baileys": set(),                                      # MAL-2026-17361 (ANY)
+    "@kelvdra/baileys": set(),                                      # MAL-2026-17362 (ANY)
+    "@kxa/xbails": set(),                                           # MAL-2026-17363 (ANY)
+    "@lendkzn/xntaabail": set(),                                    # MAL-2026-17364 (ANY)
+    "@lendxntaa/baileys": set(),                                    # MAL-2026-17365 (ANY)
+    "@levvicode/baileys": set(),                                    # MAL-2026-17366 (ANY)
+    "@mikudeveloper/grace": set(),                                  # MAL-2026-17367 (ANY)
+    "@mivesensei/baileys": set(),                                   # MAL-2026-17368 (ANY)
+    "@noxleyss/baileys": set(),                                     # MAL-2026-17369 (ANY)
+    "@nyzzpedia/baileys-new": set(),                                # MAL-2026-17370 (ANY)
+    "@nyzzpediaa/baileys-new": set(),                               # MAL-2026-17371 (ANY)
+    "@ostyado/baileys": set(),                                      # MAL-2026-17372 (ANY)
+    "@queenanya/baileys": set(),                                    # MAL-2026-17373 (ANY)
+    "@rennnpm/baileys": set(),                                      # MAL-2026-17374 (ANY)
+    "@revizahoshii/baileys": set(),                                 # MAL-2026-17375 (ANY)
+    "@revizahoshii/hoshino": set(),                                 # MAL-2026-17376 (ANY)
+    "@saazkira/baileys": set(),                                     # MAL-2026-17377 (ANY)
+    "@sairidev/baileys-new": set(),                                 # MAL-2026-17378 (ANY)
+    "@sakataoffc/baileys": set(),                                   # MAL-2026-17379 (ANY)
+    "@teamolduser/baileys": set(),                                  # MAL-2026-17380 (ANY)
+    "@wanzlonely/bails4u": set(),                                   # MAL-2026-17381 (ANY)
+    "@wenzyx1/bails": set(),                                        # MAL-2026-17382 (ANY)
+    "@xatancchii/velycxbail": set(),                                # MAL-2026-17383 (ANY)
+    "@xayz/baileys": set(),                                         # MAL-2026-17384 (ANY)
+    "@zeronexcode/baileys": {"7.0.0-zeronex.8"},                    # MAL-2026-17326
+    "albert-anitabaileys": set(),                                   # MAL-2026-17385 (ANY)
+    "anuaja": set(),                                                # MAL-2026-17386 (ANY)
+    "arsya-baileys": set(),                                         # MAL-2026-17387 (ANY)
+    "baileys-xbats": set(),                                         # MAL-2026-17388 (ANY)
+    "bungoma": set(),                                               # MAL-2026-17389 (ANY)
+    "cantarella-baileys": set(),                                    # MAL-2026-17390 (ANY)
+    "eliteprotech-baileys": set(),                                  # MAL-2026-17391 (ANY)
+    "focashi": set(),                                               # MAL-2026-17392 (ANY)
+    "ishumdz-bail": set(),                                          # MAL-2026-17393 (ANY)
+    "itsmeeaizat-bailey": {"1.0.3", "1.0.4", "1.0.5"},              # MAL-2026-17311
+    "kasabaileys": set(),                                           # MAL-2026-17394 (ANY)
+    "keithbaileys": set(),                                          # MAL-2026-17395 (ANY)
+    "kiyoramarkets": set(),                                         # MAL-2026-17396 (ANY)
+    "levvleys": set(),                                              # MAL-2026-17397 (ANY)
+    "lilys-baileys": set(),                                         # MAL-2026-17398 (ANY)
+    "monte-md-baileys": set(),                                      # MAL-2026-17399 (ANY)
+    "my-baileys": set(),                                            # MAL-2026-17400 (ANY)
+    "noverojs": set(),                                              # MAL-2026-17401 (ANY)
+    "noxleyss": set(),                                              # MAL-2026-17402 (ANY)
+    "noxxleys": set(),                                              # MAL-2026-17403 (ANY)
+    "saturn-baileys": set(),                                        # MAL-2026-17404 (ANY)
+    "shadowmd": set(),                                              # MAL-2026-17405 (ANY)
+    "spencer-baileys": set(),                                       # MAL-2026-17406 (ANY)
+    "syncxbails": set(),                                            # MAL-2026-17407 (ANY)
+    "whalibmob": set(),                                             # MAL-2026-17408 (ANY)
+    "xvinleys": set(),                                              # MAL-2026-17409 (ANY)
+    "xzbails": set(),                                               # MAL-2026-17410 (ANY)
+    "xzvbails": set(),                                              # MAL-2026-17411 (ANY)
+    "xzvexpzcbailey": set(),                                        # MAL-2026-17412 (ANY)
+    "yonzoffic-baileys": set(),                                     # MAL-2026-17413 (ANY)
+    "yonzofficial": set(),                                          # MAL-2026-17414 (ANY)
+    # ─── Sep 29–Oct 1 2026: miscellaneous infostealers / typosquats ──────────────
+    # Mixed batch: dotenv forks, blockchain/solidity probes, pentest-scope
+    # dep-confusion packages (@rutxploit-sec/, @selfpentest/), Contoso/Cortana
+    # internal-tools dep-confusion, and misc keyword-grab packages.
+    # Sources: OSV MAL-2026-17283 – MAL-2026-17420.
+    "@astracode/byles-new": set(),                                  # MAL-2026-17340 (ANY)
+    "@cat-gen/materia": set(),                                      # MAL-2026-17333 (ANY)
+    "@cat-gen/material": set(),                                     # MAL-2026-17334 (ANY)
+    "@firelordzuka/pulse-poc": set(),                               # MAL-2026-17335 (ANY)
+    "@redman89405/my-module": set(),                                # MAL-2026-17336 (ANY)
+    "@rutxploit-sec/subsplash-canny": {"1.0.0"},                    # MAL-2026-17288
+    "@rutxploit-sec/subsplash-google-tag-manager": {"1.0.0"},       # MAL-2026-17289
+    "@rutxploit-sec/waves-button-poc": {"1.0.0", "2.0.0", "3.0.0"}, # MAL-2026-17290
+    "@rutxploit-sec/waves-icons": {"1.0.0"},                        # MAL-2026-17291
+    "@selfpentest/bin-confusion": {"1.0.0", "1.0.1"},               # MAL-2026-17292
+    "@selfpentest/eslint-pentest-plugin": {"1.0.0"},                # MAL-2026-17293
+    "@xoxo-momo/kit": set(),                                        # MAL-2026-17283 (ANY)
+    "booking-eligibility": {"1.0.0"},                               # MAL-2026-17316
+    "booking-tasks": {"1.0.2"},                                     # MAL-2026-17317
+    "cdn-img-fetch": {"1.0.0", "1.0.1"},                            # MAL-2026-17320
+    "chaienv": {"1.0.2"},                                           # MAL-2026-17321
+    "com.epi.e2e_test": {"1.2.2"},                                  # MAL-2026-17415
+    "common-fs": {"1.0.0"},                                         # MAL-2026-17300
+    "contoso-login-sim-loader": {"1.0.1"},                          # MAL-2026-17322
+    "cortana-md-engine": {"1.4.6"},                                 # MAL-2026-17323
+    "developmentstelemetry": {"1.0.1", "1.0.2"},                    # MAL-2026-17318
+    "dotenv-precheck": {"1.0.0", "1.1.0", "1.1.1"},                 # MAL-2026-17304
+    "dotenv-preflight": {"1.0.0"},                                  # MAL-2026-17324
+    "esm-dotenv": {"1.0.1"},                                        # MAL-2026-17305
+    "exiouss": {"5.0.1"},                                           # MAL-2026-17327
+    "fabric-loader-core": {"1.0.0"},                                # MAL-2026-17306
+    "fabric-mod-utils": {"1.0.0"},                                  # MAL-2026-17307
+    "fca-raihan": {"37.2.5", "37.2.6"},                             # MAL-2026-17328
+    "focaleys": {"1.1.0"},                                          # MAL-2026-17329
+    "fs-commons": {"1.0.1"},                                        # MAL-2026-17301
+    "future-scripts": {"0.0.2", "0.0.3"},                           # MAL-2026-17418
+    "godsplan": {"3.0.2"},                                          # MAL-2026-17315
+    "iban-validator-js": set(),                                     # MAL-2026-17331 (ANY)
+    "imgbundle": {"1.0.0", "1.0.1"},                                # MAL-2026-17330
+    "json-bigint-rs": {"0.1.1"},                                    # MAL-2026-17312
+    "link-age-great": set(),                                        # MAL-2026-17337 (ANY)
+    "link-status-page": set(),                                      # MAL-2026-17338 (ANY)
+    "mfahelper": {"1.0.0"},                                         # MAL-2026-17308
+    "online-header": {"99.0.0"},                                    # MAL-2026-17420
+    "pixsvg": {"0.2.0"},                                            # MAL-2026-17313
+    "reactjs-risk": {"99.1.0", "99.9.9", "99.12.0", "99.17.0", "99.17.1", "99.17.2", "99.17.4"},  # MAL-2026-17339
+    "runhelper": {"1.0.0"},                                         # MAL-2026-17332
+    "sk-lib-enc": set(),                                            # MAL-2026-17284 (ANY)
+    "solidity-lock": {"2.21.0"},                                    # MAL-2026-17302
+    "stestenv": {"1.0.1"},                                          # MAL-2026-17309
+    "tailwind-forms-kit": {"0.5.1"},                                # MAL-2026-17310
+    "test-agency-assign": {"1.0.4"},                                # MAL-2026-17295
+    "test-agency-assignment-01": {"1.0.5"},                         # MAL-2026-17296
+    "test-agency-assignment-02": {"1.0.5"},                         # MAL-2026-17297
+    "test-supply-npm-lib-4": {"3.3.3", "3.3.4", "3.3.5", "3.3.6"}, # MAL-2026-17314
+    "testosu888": {"1.0.0"},                                        # MAL-2026-17298
+    "testosu8887": {"1.0.1"},                                       # MAL-2026-17299
+    "web-vitals-polyfill-core-v1": set(),                           # MAL-2026-17303 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
