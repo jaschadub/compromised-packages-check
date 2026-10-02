@@ -1987,6 +1987,15 @@ PYPI_BAD: dict[str, set[str]] = {
     "friendly-greeting-tools": {"0.1.0", "0.1.1", "0.2", "0.3", "0.3.1"}, # MAL-2026-17416
     "friendly-tools": {"0.1", "0.2"},                                   # MAL-2026-17419
     "queeuees": {"0.0.1"},                                              # MAL-2026-17286
+    # ─── Oct 1–2 2026: PyPI AWS-credentials exfiltrator + Chrome infostealer ────
+    # spo365-graph: install-time rogue AWS Lambda deployment to exfiltrate
+    #   Secret Manager credentials; versions 1.0.0–1.1.2;
+    #   OSV MAL-2026-17421.
+    # shortneer: Chrome extension file exfiltrator (crypto wallets) and
+    #   Telegram data theft; version 0.1.0;
+    #   OSV MAL-2026-17422.
+    "spo365-graph": {"1.0.0", "1.1.0", "1.1.1", "1.1.2"},              # MAL-2026-17421
+    "shortneer": {"0.1.0"},                                             # MAL-2026-17422
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13491,6 +13500,16 @@ NPM_BAD: dict[str, set[str]] = {
     "testosu888": {"1.0.0"},                                        # MAL-2026-17298
     "testosu8887": {"1.0.1"},                                       # MAL-2026-17299
     "web-vitals-polyfill-core-v1": set(),                           # MAL-2026-17303 (ANY)
+    # ─── Oct 2 2026: miscellaneous npm malware ───────────────────────────────────
+    # illusion-datalab: throwaway npm infostealer; versions 1.1.1–1.1.5;
+    #   OSV MAL-2026-17423 / GHSA-834w-x8gq-8rmx.
+    # kartykgithub-ph-b: npm malware; full-compromise notice; 0.0.1-security
+    #   takedown placeholder present; OSV MAL-2026-17424 / GHSA-27m4-jjxc-69wf.
+    # kartykgithub-ph-e: npm malware; version 1.0.0;
+    #   OSV MAL-2026-17425 / GHSA-7hq7-x7ww-7cxr.
+    "illusion-datalab": {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5"},  # MAL-2026-17423
+    "kartykgithub-ph-b": set(),                                         # MAL-2026-17424 (ANY)
+    "kartykgithub-ph-e": {"1.0.0"},                                     # MAL-2026-17425
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
