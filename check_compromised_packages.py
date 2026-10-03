@@ -1996,6 +1996,15 @@ PYPI_BAD: dict[str, set[str]] = {
     #   OSV MAL-2026-17422.
     "spo365-graph": {"1.0.0", "1.1.0", "1.1.1", "1.1.2"},              # MAL-2026-17421
     "shortneer": {"0.1.0"},                                             # MAL-2026-17422
+    # ─── Oct 2 2026: PyPI supply-chain malware batch ──────────────────────────────
+    # dedh-devops-automation: deploys rogue AWS Lambda to exfiltrate Secret Manager
+    #   credentials at install time; 8 malicious versions;
+    #   OSV MAL-2026-17455.
+    # voxeval: imitates real AI-evaluation activity; deploys malware payload at
+    #   install time; 4 malicious versions;
+    #   OSV MAL-2026-17457.
+    "dedh-devops-automation": {"0.0.1", "5.0.0", "5.6.0", "5.6.1", "5.6.999", "5.8.0", "5.8.1", "5.9.0"},  # MAL-2026-17455
+    "voxeval": {"0.4.2", "0.4.3", "0.4.4", "0.4.5"},                   # MAL-2026-17457
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13510,6 +13519,60 @@ NPM_BAD: dict[str, set[str]] = {
     "illusion-datalab": {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5"},  # MAL-2026-17423
     "kartykgithub-ph-b": set(),                                         # MAL-2026-17424 (ANY)
     "kartykgithub-ph-e": {"1.0.0"},                                     # MAL-2026-17425
+    # kartykgithub-ph-f: npm malware; version 1.0.0; same actor as ph-b/ph-e above.
+    #   OSV MAL-2026-17426 / GHSA-x2m2-w3gv-m5wg.
+    "kartykgithub-ph-f": {"1.0.0"},                                     # MAL-2026-17426
+    # ─── Oct 2 2026: Amazon APL / Alexa dep-confusion cluster (10 packages) ──────
+    # Ten packages impersonating internal Amazon / Alexa Presentation Language (APL)
+    # projects. Each uses an inflated version (100.0.0) and runs `node setup.js` at
+    # postinstall — a classic dependency-confusion exfiltration payload.
+    # OSV MAL-2026-17427 – MAL-2026-17436.
+    "ai-workshop-maa15-radio": set(),               # MAL-2026-17427 (ANY)
+    "ai-workshop-radio-app": set(),                 # MAL-2026-17428 (ANY)
+    "ai-workshop-radio-lambda": set(),              # MAL-2026-17429 (ANY)
+    "alexa-cybertron-team-code-review-agent": set(), # MAL-2026-17430 (ANY)
+    "apl-rive-renderer": set(),                     # MAL-2026-17431 (ANY)
+    "brioche-apl-dev-env": set(),                   # MAL-2026-17432 (ANY)
+    "figma-to-apl": set(),                          # MAL-2026-17433 (ANY)
+    "live-detection-dashboard": set(),              # MAL-2026-17434 (ANY)
+    "niksinnkatalapp": set(),                       # MAL-2026-17435 (ANY)
+    "okra-cloud-cdk": set(),                        # MAL-2026-17436 (ANY)
+    # ─── Oct 2 2026: @bluewin/utils dep-confusion PoC ────────────────────────────
+    # Self-described "dependency confusion testing" package claiming the @bluewin scope.
+    # Version 1.0.0; OSV MAL-2026-17437.
+    "@bluewin/utils": {"1.0.0"},                    # MAL-2026-17437
+    # ─── Oct 2 2026: PhantomSub Baileys/WhatsApp fork cluster (15 packages) ──────
+    # 15 malicious forks of @whiskeysockets/baileys (WhatsApp Web library).
+    # PhantomSub family (OX Security, Sep 2026): injected code exfiltrates credentials
+    # without any user prompt. All OSV records combine SEMVER introduced:"0" ranges
+    # with explicit version lists — whole-package wildcard applies to all.
+    # OSV MAL-2026-17438 – MAL-2026-17452.
+    "@celestial-community/baileys": set(),          # MAL-2026-17438 (ANY)
+    "@developmentyora/baileyss": set(),             # MAL-2026-17439 (ANY)
+    "@erlanzz/baileys": set(),                      # MAL-2026-17440 (ANY)
+    "@fazzcodestudio/wa-web": set(),                # MAL-2026-17441 (ANY)
+    "@smart-dev-wa/baileys": set(),                 # MAL-2026-17442 (ANY)
+    "@zanta/baileys": set(),                        # MAL-2026-17443 (ANY)
+    "danz-bails": set(),                            # MAL-2026-17444 (ANY)
+    "ichigo-baileys": set(),                        # MAL-2026-17445 (ANY)
+    "luoxy-baileys": set(),                         # MAL-2026-17446 (ANY)
+    "mikuhostt-baileys": set(),                     # MAL-2026-17447 (ANY)
+    "prastzy": set(),                               # MAL-2026-17448 (ANY)
+    "prastzyy": set(),                              # MAL-2026-17449 (ANY)
+    "rubbydev-crash-baileys": set(),                # MAL-2026-17450 (ANY)
+    "wailib": set(),                                # MAL-2026-17451 (ANY)
+    "xcvrenzcompany": set(),                        # MAL-2026-17452 (ANY)
+    # ─── Oct 2 2026: @smwebserver/static 99.x dep-confusion ─────────────────────
+    # Version 99.9.1 targeting @smwebserver scope; OSV MAL-2026-17456.
+    "@smwebserver/static": {"99.9.1"},              # MAL-2026-17456
+    # ─── Oct 2 2026: frontend-kit malware trio ────────────────────────────────────
+    # Three packages with GHSA records and SEMVER introduced:"0"; full-package wildcard.
+    # translate-base-font: GHSA-grv5-7wp6-vw6h / OSV MAL-2026-17458.
+    # ui-base-colors: GHSA-qgqx-3mhx-jwx3 / OSV MAL-2026-17459.
+    # ui.dist.min.js: GHSA-325f-rjxf-3gm9 / OSV MAL-2026-17460.
+    "translate-base-font": set(),                   # MAL-2026-17458 / GHSA-grv5-7wp6-vw6h (ANY)
+    "ui-base-colors": set(),                        # MAL-2026-17459 / GHSA-qgqx-3mhx-jwx3 (ANY)
+    "ui.dist.min.js": set(),                        # MAL-2026-17460 / GHSA-325f-rjxf-3gm9 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
