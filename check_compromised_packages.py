@@ -2005,6 +2005,40 @@ PYPI_BAD: dict[str, set[str]] = {
     #   OSV MAL-2026-17457.
     "dedh-devops-automation": {"0.0.1", "5.0.0", "5.6.0", "5.6.1", "5.6.999", "5.8.0", "5.8.1", "5.9.0"},  # MAL-2026-17455
     "voxeval": {"0.4.2", "0.4.3", "0.4.4", "0.4.5"},                   # MAL-2026-17457
+    # ─── Oct 3 2026: PyPI coin-miner / voxcpm cluster ────────────────────────────
+    # voxel-tts: imitates TTS activity; deploys a coin miner at install time;
+    #   versions 0.5.0/0.5.1; OSV MAL-2026-17461.
+    # echogen: no legitimate purpose; exfiltrates basic host information on
+    #   install and import; version 1.0.0; OSV MAL-2026-17462.
+    # voxcpmtts3: fake TTS package in the voxcpm coin-miner cluster;
+    #   versions 0.1.0/0.1.1/0.1.2; OSV MAL-2026-17463.
+    # voxcpmui3: fake UI package in the voxcpm coin-miner cluster;
+    #   version 0.1.0; OSV MAL-2026-17464.
+    # voxcpmeval: fake eval package in the voxcpm coin-miner cluster;
+    #   version 0.1.0; OSV MAL-2026-17465.
+    # voxcpmkit: fake kit package in the voxcpm coin-miner cluster;
+    #   version 0.1.0; OSV MAL-2026-17466.
+    # voxcpmui4: fake UI package in the voxcpm coin-miner cluster;
+    #   version 0.2.0; OSV MAL-2026-17467.
+    # voxcpmintel: fake intelligence package in the voxcpm coin-miner cluster;
+    #   version 0.1.0; OSV MAL-2026-17468.
+    # infrabench: imitates infrastructure benchmarking; deploys a coin miner;
+    #   versions 0.1.0/0.1.1/0.2.0; OSV MAL-2026-17469.
+    # voxcpmruntime: fake runtime package in the voxcpm coin-miner cluster;
+    #   version 0.1.0; OSV MAL-2026-17470.
+    # caoxiltts: fake TTS package; deploys a coin miner;
+    #   versions 0.1.0/0.1.1; OSV MAL-2026-17471.
+    "voxel-tts": {"0.5.0", "0.5.1"},                                    # MAL-2026-17461
+    "echogen": {"1.0.0"},                                                # MAL-2026-17462
+    "voxcpmtts3": {"0.1.0", "0.1.1", "0.1.2"},                          # MAL-2026-17463
+    "voxcpmui3": {"0.1.0"},                                              # MAL-2026-17464
+    "voxcpmeval": {"0.1.0"},                                             # MAL-2026-17465
+    "voxcpmkit": {"0.1.0"},                                              # MAL-2026-17466
+    "voxcpmui4": {"0.2.0"},                                              # MAL-2026-17467
+    "voxcpmintel": {"0.1.0"},                                            # MAL-2026-17468
+    "infrabench": {"0.1.0", "0.1.1", "0.2.0"},                          # MAL-2026-17469
+    "voxcpmruntime": {"0.1.0"},                                          # MAL-2026-17470
+    "caoxiltts": {"0.1.0", "0.1.1"},                                     # MAL-2026-17471
 }
 
 # npm: exact package name -> set of malicious versions.
