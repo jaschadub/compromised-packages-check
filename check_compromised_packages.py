@@ -589,6 +589,29 @@ edison-tools/heims/openirf/ranno PyPI batch. Those entries have been
 removed. Only packages with an active (non-withdrawn) OSV MAL record, or
 independent authoritative corroboration, are retained.
 
+and the October 4–5 2026 sweep: CSS polyfill / a11y / UI malware cluster
+(css-a11y-contrast-utils, css-anchor-pos-fallback, css-env-function-shim,
+css-field-sizing-polyfill, css-gap-decorations-polyfill, css-interop-observer-polyfill,
+css-light-dark-polyfill, css-logical-prop-shim, css-reading-flow-polyfill,
+css-relative-color-util, css-scroll-anchor-polyfill, css-scroll-state-polyfill,
+css-snap-target-polyfill, css-starting-style-polyfill, focus-visible-polyfill-lite,
+a11y-tabindex-manager, dom-focus-sentinel, minimal-a11y-contrast-check, oleh-modal,
+popover-anchor-polyfill, postcss-gap-fallback-util, rgx33-css-grid-utils,
+rgx33-flex-layout-core, tailwindcss-forms-styles, tiny-css-token-parser,
+tiny-dom-focus-trap, tiny-focusgroup-helper, tiny-viewport-unit-calc,
+wcag-color-a11y-helpers; OSV MAL-2026-17475–17530), Angular typosquat cluster
+(@angularr/cli/core/router, @angulra/cli/core, @nagular/core/router;
+OSV MAL-2026-17492–17500), chai/core-js/express/dotenv/hardhat/lite-matter/Babel
+typosquats (chai-as-testmode MAL-2026-17473, core-js-gnz MAL-2026-17474,
+express-enhanced/express-fork MAL-2026-17489/17490, dotenv-async/dotenv-promises/
+promises-dotenv3 MAL-2026-17504/17505/17519, hardhat-ftp/jsx/plus/roof
+MAL-2026-17506–17509, lite-mater/lite-matte/lite-matterr MAL-2026-17511–17513,
+@babell/core MAL-2026-17497), dep-confusion batch (@kibt/www-nuxt-i18n
+MAL-2026-17498, botmaker-cli MAL-2026-17502, internallib_v275 MAL-2026-17510,
+monitoring-agent MAL-2026-17515, studiocode_eligibility/studiocode_tools
+MAL-2026-17522/17523, ultimate-websocket MAL-2026-17529, api-nebula MAL-2026-17531),
+and the anthropic-sdk PyPI impersonator (MAL-2026-17472).
+
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-08-16
 License:   MIT
@@ -2039,6 +2062,11 @@ PYPI_BAD: dict[str, set[str]] = {
     "infrabench": {"0.1.0", "0.1.1", "0.2.0"},                          # MAL-2026-17469
     "voxcpmruntime": {"0.1.0"},                                          # MAL-2026-17470
     "caoxiltts": {"0.1.0", "0.1.1"},                                     # MAL-2026-17471
+    # ─── Oct 4 2026: anthropic-sdk PyPI impersonator ─────────────────────────────
+    # anthropic-sdk: typosquats the official Anthropic Python SDK package (anthropic);
+    # credential/environment-variable exfiltrator; single version 0.1.0.
+    # OSV MAL-2026-17472.
+    "anthropic-sdk": {"0.1.0"},                                          # MAL-2026-17472
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13607,6 +13635,93 @@ NPM_BAD: dict[str, set[str]] = {
     "translate-base-font": set(),                   # MAL-2026-17458 / GHSA-grv5-7wp6-vw6h (ANY)
     "ui-base-colors": set(),                        # MAL-2026-17459 / GHSA-qgqx-3mhx-jwx3 (ANY)
     "ui.dist.min.js": set(),                        # MAL-2026-17460 / GHSA-325f-rjxf-3gm9 (ANY)
+    # ─── Oct 4 2026: chai / core-js / express typosquats ─────────────────────────
+    # chai-as-testmode: typosquats chai-as-promised; version 1.4.7. OSV MAL-2026-17473.
+    # core-js-gnz: typosquats core-js; version 1.0.0. OSV MAL-2026-17474.
+    # express-enhanced / express-fork: two more Express.js typosquats at 5.2.2
+    # (same campaign family as exprdd/express-javascript/etc. added Oct 3 2026).
+    # OSV MAL-2026-17489/17490.
+    "chai-as-testmode": {"1.4.7"},                  # MAL-2026-17473
+    "core-js-gnz": {"1.0.0"},                       # MAL-2026-17474
+    "express-enhanced": {"5.2.2"},                  # MAL-2026-17489
+    "express-fork": {"5.2.2"},                      # MAL-2026-17490
+    # ─── Oct 4 2026: CSS polyfill / a11y / UI malware cluster (29 packages) ──────
+    # Large batch of fake CSS polyfill and accessibility utility packages,
+    # all at version 1.0.0, published by a single actor. All confirmed active,
+    # OSV MAL-2026-17475 through MAL-2026-17530 (non-contiguous).
+    "css-a11y-contrast-utils": {"1.0.0"},           # MAL-2026-17475
+    "css-anchor-pos-fallback": {"1.0.0"},           # MAL-2026-17476
+    "css-env-function-shim": {"1.0.0"},             # MAL-2026-17477
+    "css-field-sizing-polyfill": {"1.0.0"},         # MAL-2026-17478
+    "css-gap-decorations-polyfill": {"1.0.0"},      # MAL-2026-17479
+    "css-interop-observer-polyfill": {"1.0.0"},     # MAL-2026-17480
+    "css-light-dark-polyfill": {"1.0.0"},           # MAL-2026-17481
+    "css-logical-prop-shim": {"1.0.0"},             # MAL-2026-17482
+    "css-reading-flow-polyfill": {"1.0.0"},         # MAL-2026-17483
+    "css-relative-color-util": {"1.0.0"},           # MAL-2026-17484
+    "css-scroll-anchor-polyfill": {"1.0.0"},        # MAL-2026-17485
+    "css-scroll-state-polyfill": {"1.0.0"},         # MAL-2026-17486
+    "css-snap-target-polyfill": {"1.0.0"},          # MAL-2026-17487
+    "css-starting-style-polyfill": {"1.0.0"},       # MAL-2026-17488
+    "focus-visible-polyfill-lite": {"1.0.0"},       # MAL-2026-17491
+    "a11y-tabindex-manager": {"1.0.0"},             # MAL-2026-17501
+    "dom-focus-sentinel": {"1.0.0"},                # MAL-2026-17503
+    "minimal-a11y-contrast-check": {"1.0.0"},       # MAL-2026-17514
+    "oleh-modal": {"1.0.0"},                        # MAL-2026-17516
+    "popover-anchor-polyfill": {"1.0.0"},           # MAL-2026-17517
+    "postcss-gap-fallback-util": {"1.0.0"},         # MAL-2026-17518
+    "rgx33-css-grid-utils": {"1.0.0"},              # MAL-2026-17520
+    "rgx33-flex-layout-core": {"1.0.0"},            # MAL-2026-17521
+    "tailwindcss-forms-styles": {"0.5.1"},          # MAL-2026-17524
+    "tiny-css-token-parser": {"1.0.0"},             # MAL-2026-17525
+    "tiny-dom-focus-trap": {"1.0.0"},               # MAL-2026-17526
+    "tiny-focusgroup-helper": {"1.0.0"},            # MAL-2026-17527
+    "tiny-viewport-unit-calc": {"1.0.0"},           # MAL-2026-17528
+    "wcag-color-a11y-helpers": {"1.0.0"},           # MAL-2026-17530
+    # ─── Oct 4 2026: Angular typosquat cluster (@angularr / @angulra / @nagular) ─
+    # Three fake scopes impersonating @angular/*; versions mirror real Angular releases.
+    # OSV MAL-2026-17492 through MAL-2026-17500. Scopes added to NPM_SUSPECT_SCOPES.
+    "@angularr/cli": {"22.2.1"},                    # MAL-2026-17492
+    "@angularr/core": {"1.0.67"},                   # MAL-2026-17493
+    "@angularr/router": {"2.2.0"},                  # MAL-2026-17494
+    "@angulra/cli": {"22.2.1"},                     # MAL-2026-17495
+    "@angulra/core": {"1.0.67"},                    # MAL-2026-17496
+    "@nagular/core": {"1.0.67"},                    # MAL-2026-17499
+    "@nagular/router": {"2.2.1"},                   # MAL-2026-17500
+    # ─── Oct 4 2026: misc typosquats / dep-confusion batch ───────────────────────
+    # @babell/core: typosquats @babel/core; version 8.0.6. OSV MAL-2026-17497.
+    # @kibt/www-nuxt-i18n: dep-confusion; 8 versions. OSV MAL-2026-17498.
+    # botmaker-cli: malware CLI impersonator; version 0.1.19. OSV MAL-2026-17502.
+    # dotenv-async / dotenv-promises / promises-dotenv3: dotenv typosquats at 1.0.0.
+    #   OSV MAL-2026-17504/17505/17519.
+    # hardhat-ftp / hardhat-jsx: Hardhat typosquats at 2.0.1. OSV MAL-2026-17506/17507.
+    # hardhat-plus / hardhat-roof: Hardhat typosquats at 2.21.0. OSV MAL-2026-17508/17509.
+    # internallib_v275: internal dep-confusion probe; version 1.0.3. OSV MAL-2026-17510.
+    # lite-mater / lite-matte / lite-matterr: typosquats of lite-matter. OSV MAL-2026-17511/17512/17513.
+    # monitoring-agent: monitoring-tool impersonator; version 1.0.1. OSV MAL-2026-17515.
+    # studiocode_eligibility / studiocode_tools: dep-confusion pair; version 1.0.1.
+    #   OSV MAL-2026-17522/17523.
+    # ultimate-websocket: websocket impersonator; version 1.0.0. OSV MAL-2026-17529.
+    # api-nebula (Oct 5 2026): version 1.0.0. OSV MAL-2026-17531.
+    "@babell/core": {"8.0.6"},                      # MAL-2026-17497
+    "@kibt/www-nuxt-i18n": {"99.0.1", "1.0.0", "0.1.0", "0.0.1", "1.1.0", "1.0.1", "3.0.0", "2.0.1"},  # MAL-2026-17498
+    "botmaker-cli": {"0.1.19"},                     # MAL-2026-17502
+    "dotenv-async": {"1.0.0"},                      # MAL-2026-17504
+    "dotenv-promises": {"1.0.0"},                   # MAL-2026-17505
+    "hardhat-ftp": {"2.0.1"},                       # MAL-2026-17506
+    "hardhat-jsx": {"2.0.1"},                       # MAL-2026-17507
+    "hardhat-plus": {"2.21.0"},                     # MAL-2026-17508
+    "hardhat-roof": {"2.21.0"},                     # MAL-2026-17509
+    "internallib_v275": {"1.0.3"},                  # MAL-2026-17510
+    "lite-mater": {"1.0.0"},                        # MAL-2026-17511
+    "lite-matte": {"1.0.0"},                        # MAL-2026-17512
+    "lite-matterr": {"1.0.0"},                      # MAL-2026-17513
+    "monitoring-agent": {"1.0.1"},                  # MAL-2026-17515
+    "promises-dotenv3": {"1.0.0"},                  # MAL-2026-17519
+    "studiocode_eligibility": {"1.0.1"},            # MAL-2026-17522
+    "studiocode_tools": {"1.0.1"},                  # MAL-2026-17523
+    "ultimate-websocket": {"1.0.0"},                # MAL-2026-17529
+    "api-nebula": {"1.0.0"},                        # MAL-2026-17531
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -13861,6 +13976,17 @@ NPM_SUSPECT_SCOPES = (
     "@nubjs/",
     # @digift/ dep-confusion scope — @digift/cli at 99.99.100 pinned above (OSV MAL-2026-17187)
     "@digift/",
+    # Oct 4 2026 Angular typosquat scopes — attacker-controlled; packages pinned above
+    # @angularr/ impersonates @angular/; cli/core/router pinned above (OSV MAL-2026-17492–17494)
+    "@angularr/",
+    # @angulra/ impersonates @angular/; cli/core pinned above (OSV MAL-2026-17495–17496)
+    "@angulra/",
+    # @nagular/ impersonates @angular/; core/router pinned above (OSV MAL-2026-17499–17500)
+    "@nagular/",
+    # @babell/ impersonates @babel/; core pinned above (OSV MAL-2026-17497)
+    "@babell/",
+    # @kibt/ dep-confusion scope — www-nuxt-i18n pinned above (OSV MAL-2026-17498)
+    "@kibt/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
