@@ -2067,6 +2067,13 @@ PYPI_BAD: dict[str, set[str]] = {
     # credential/environment-variable exfiltrator; single version 0.1.0.
     # OSV MAL-2026-17472.
     "anthropic-sdk": {"0.1.0"},                                          # MAL-2026-17472
+    # ─── Oct 5-6 2026: misc PyPI malware ─────────────────────────────────────────
+    # erc7730-hackathon: attacker-controlled PyPI package using hackathon branding;
+    #   single version 99.0.0 (sentinel version). OSV MAL-2026-17628.
+    # zencleaner: fake system-cleaner utility; credential exfiltrator;
+    #   versions 1.0.0, 1.0.3, 1.0.3.1. OSV MAL-2026-17629.
+    "erc7730-hackathon": {"99.0.0"},                                     # MAL-2026-17628
+    "zencleaner": {"1.0.0", "1.0.3", "1.0.3.1"},                        # MAL-2026-17629
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13722,6 +13729,101 @@ NPM_BAD: dict[str, set[str]] = {
     "studiocode_tools": {"1.0.1"},                  # MAL-2026-17523
     "ultimate-websocket": {"1.0.0"},                # MAL-2026-17529
     "api-nebula": {"1.0.0"},                        # MAL-2026-17531
+    # ─── Oct 5-6 2026: Angular typosquat cluster wave 2 ─────────────────────────
+    # Second wave of @angular/* impersonators, all publishing version 22.2.1.
+    # Ten new attacker-controlled scopes; scopes added to NPM_SUSPECT_SCOPES.
+    # OSV MAL-2026-17532 through MAL-2026-17541, MAL-2026-17544.
+    "@abgular/core": {"22.2.1"},                    # MAL-2026-17532
+    "@anfular/core": {"22.2.1"},                    # MAL-2026-17533
+    "@angjlar/core": {"22.2.1"},                    # MAL-2026-17534
+    "@anguar/core": {"22.2.1"},                     # MAL-2026-17535
+    "@angulaar/cli": {"22.2.1"},                    # MAL-2026-17536
+    "@angulaar/core": {"22.2.1"},                   # MAL-2026-17537
+    "@angulr/core": {"22.2.1"},                     # MAL-2026-17538
+    "@angupar/core": {"22.2.1"},                    # MAL-2026-17539
+    "@anngular/core": {"22.2.1"},                   # MAL-2026-17540
+    "@anuglar/core": {"22.2.1"},                    # MAL-2026-17541
+    "@qngular/core": {"22.2.1"},                    # MAL-2026-17544
+    # ─── Oct 5-6 2026: @inpeek/ dep-confusion ───────────────────────────────────
+    # @inpeek/odata and @inpeek/odata-angular: dep-confusion pair impersonating
+    # private @inpeek org packages; sentinel 99.99.x versions.
+    # OSV MAL-2026-17542/17543. Scope added to NPM_SUSPECT_SCOPES.
+    "@inpeek/odata": {"99.99.99", "99.99.100", "99.99.101", "99.99.102"},  # MAL-2026-17542
+    "@inpeek/odata-angular": {"99.99.99", "99.99.100", "99.99.101", "99.99.102"},  # MAL-2026-17543
+    # ─── Oct 5-6 2026: CSS polyfill typosquat cluster wave 2 ────────────────────
+    # 18 additional css-*-polyfill packages; all version 1.0.0; continuation of
+    # the wave-1 CSS/a11y cluster from Oct 4-5 2026.
+    # OSV MAL-2026-17547 through MAL-2026-17558, MAL-2026-17573 through MAL-2026-17578.
+    "css-at-scope-polyfill": {"1.0.0"},             # MAL-2026-17547
+    "css-ayucyz-polyfill": {"1.0.0"},               # MAL-2026-17548
+    "css-display-reading-polyfill": {"1.0.0"},      # MAL-2026-17549
+    "css-dwsawd-polyfill": {"1.0.0"},               # MAL-2026-17550
+    "css-gvqmfn-polyfill": {"1.0.0"},               # MAL-2026-17551
+    "css-hgwctv-polyfill": {"1.0.0"},               # MAL-2026-17552
+    "css-ikomdq-polyfill": {"1.0.0"},               # MAL-2026-17553
+    "css-mpmdds-polyfill": {"1.0.0"},               # MAL-2026-17554
+    "css-nbanqq-polyfill": {"1.0.0"},               # MAL-2026-17555
+    "css-ogojwh-polyfill": {"1.0.0"},               # MAL-2026-17556
+    "css-svqggc-polyfill": {"1.0.0"},               # MAL-2026-17557
+    "css-txedrf-polyfill": {"1.0.0"},               # MAL-2026-17558
+    "css-eqxcdx-polyfill": {"1.0.0"},               # MAL-2026-17573
+    "css-gwqyid-polyfill": {"1.0.0"},               # MAL-2026-17574
+    "css-kfvwax-polyfill": {"1.0.0"},               # MAL-2026-17575
+    "css-nrmgzn-polyfill": {"1.0.0"},               # MAL-2026-17576
+    "css-vvgsze-polyfill": {"1.0.0"},               # MAL-2026-17577
+    "css-yhpodl-polyfill": {"1.0.0"},               # MAL-2026-17578
+    # ─── Oct 5-6 2026: Hardhat extension cluster (continued) ────────────────────
+    # hardhat-kex / hardhat-spack: two more Hardhat typosquats.
+    # OSV MAL-2026-17559/17560.
+    "hardhat-kex": {"2.0.1"},                       # MAL-2026-17559
+    "hardhat-spack": {"3.0.2"},                     # MAL-2026-17560
+    # ─── Oct 5-6 2026: dzyclutch / dzyhaxz WhatsApp-client malware cluster ──────
+    # Attacker-controlled packages impersonating the @adiwajshing/baileys (WhatsApp)
+    # client ecosystem. All records have introduced:"0" (any version is malicious).
+    # diezyclutch-baileys is an older package (MAL-2026-13482, modified Oct 5 2026).
+    # @diezyclutch/ scope added to NPM_SUSPECT_SCOPES.
+    # OSV MAL-2026-13482, MAL-2026-17618 through MAL-2026-17624.
+    "diezyclutch-baileys": set(),                   # MAL-2026-13482
+    "@diezyclutch/baileys": set(),                  # MAL-2026-17618
+    "dzyclutch": set(),                             # MAL-2026-17619
+    "dzyclutch-baileys": set(),                     # MAL-2026-17620
+    "dzyclutch-libsignal-node": set(),              # MAL-2026-17621
+    "dzyhaxz-baileys": set(),                       # MAL-2026-17622
+    "dzyhaxz-libsignal": set(),                     # MAL-2026-17623
+    "documenclient": set(),                         # MAL-2026-17624
+    # ─── Oct 5-6 2026: serpacksven cluster ──────────────────────────────────────
+    # Three attacker-controlled packages (serpacksven / serpacksven1 / serpacksven2);
+    # introduced:"0" (any version is malicious). OSV MAL-2026-17625/17626/17627.
+    "serpacksven": set(),                           # MAL-2026-17625
+    "serpacksven1": set(),                          # MAL-2026-17626
+    "serpacksven2": set(),                          # MAL-2026-17627
+    # ─── Oct 5-6 2026: misc npm typosquats / dep-confusion ──────────────────────
+    # abbishal-poc: proof-of-concept malware package; version 1.1.0. MAL-2026-17545.
+    # aria-live-region-helper: fake a11y helper; version 1.0.0. MAL-2026-17546.
+    # checkmate-remediation-assistant: fake AI/security tool; version 1.0.0. MAL-2026-17572.
+    # insomnia-plugin-api-lint-helper: fake Insomnia plugin; version 1.0.0. MAL-2026-17561.
+    # internallib_v923: dep-confusion probe; version 1.0.3. MAL-2026-17562.
+    # ph-common: dep-confusion multi-version package; OSV MAL-2026-1809.
+    # risk-detection: sentinel-version malware (99.9.1); MAL-2026-17563.
+    # @subql/common: dep-confusion targeting SubQuery; version 5.8.3. MAL-2026-17571.
+    # tostpro: two sentinel versions (100.2.0, 100.6.0); MAL-2026-17564.
+    # typesens: typosquat/fake AI-search SDK; version 1.0.0. MAL-2026-17565.
+    # unified-platform: sentinel-version malware (99.9.1); MAL-2026-17566.
+    # virgil-cli: malicious CLI package; version 0.1.4. MAL-2026-17630.
+    # with-cte: fake SQL helper; version 1.0.0. MAL-2026-17579.
+    "abbishal-poc": {"1.1.0"},                      # MAL-2026-17545
+    "aria-live-region-helper": {"1.0.0"},           # MAL-2026-17546
+    "checkmate-remediation-assistant": {"1.0.0"},   # MAL-2026-17572
+    "insomnia-plugin-api-lint-helper": {"1.0.0"},   # MAL-2026-17561
+    "internallib_v923": {"1.0.3"},                  # MAL-2026-17562
+    "ph-common": {"0.1.0", "1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "77.7.7", "99.0.1"},  # MAL-2026-1809
+    "risk-detection": {"99.9.1"},                   # MAL-2026-17563
+    "@subql/common": {"5.8.3"},                     # MAL-2026-17571
+    "tostpro": {"100.2.0", "100.6.0"},              # MAL-2026-17564
+    "typesens": {"1.0.0"},                          # MAL-2026-17565
+    "unified-platform": {"99.9.1"},                 # MAL-2026-17566
+    "virgil-cli": {"0.1.4"},                        # MAL-2026-17630
+    "with-cte": {"1.0.0"},                          # MAL-2026-17579
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -13987,6 +14089,27 @@ NPM_SUSPECT_SCOPES = (
     "@babell/",
     # @kibt/ dep-confusion scope — www-nuxt-i18n pinned above (OSV MAL-2026-17498)
     "@kibt/",
+    # Oct 5-6 2026 Angular typosquat wave 2 — attacker-controlled scopes;
+    # packages pinned above in NPM_BAD (OSV MAL-2026-17532–17541, MAL-2026-17544)
+    "@abgular/",    # impersonates @angular/
+    "@anfular/",    # impersonates @angular/
+    "@angjlar/",    # impersonates @angular/
+    "@anguar/",     # impersonates @angular/
+    "@angulaar/",   # impersonates @angular/
+    "@angulr/",     # impersonates @angular/
+    "@angupar/",    # impersonates @angular/
+    "@anngular/",   # impersonates @angular/
+    "@anuglar/",    # impersonates @angular/
+    "@qngular/",    # impersonates @angular/
+    # @inpeek/ dep-confusion scope (Oct 5-6 2026) — 2 packages pinned above
+    # (OSV MAL-2026-17542/17543)
+    "@inpeek/",
+    # @diezyclutch/ WhatsApp-client malware scope (Oct 5-6 2026) — 1 package pinned above
+    # (OSV MAL-2026-17618); companion to dzyclutch/dzyhaxz cluster
+    "@diezyclutch/",
+    # @subql/ dep-confusion scope (Oct 5-6 2026) — @subql/common pinned above
+    # (OSV MAL-2026-17571); scope catches any additional @subql packages
+    "@subql/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
