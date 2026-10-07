@@ -2070,9 +2070,12 @@ PYPI_BAD: dict[str, set[str]] = {
     # ─── Oct 5-6 2026: misc PyPI malware ─────────────────────────────────────────
     # erc7730-hackathon: attacker-controlled PyPI package using hackathon branding;
     #   single version 99.0.0 (sentinel version). OSV MAL-2026-17628.
+    # lore-cs: dependency-confusion probe that exfiltrates basic system info at install;
+    #   single version 1.0.0. OSV MAL-2026-17639.
     # zencleaner: fake system-cleaner utility; credential exfiltrator;
     #   versions 1.0.0, 1.0.3, 1.0.3.1. OSV MAL-2026-17629.
     "erc7730-hackathon": {"99.0.0"},                                     # MAL-2026-17628
+    "lore-cs": {"1.0.0"},                                                # MAL-2026-17639
     "zencleaner": {"1.0.0", "1.0.3", "1.0.3.1"},                        # MAL-2026-17629
 }
 
@@ -13570,7 +13573,7 @@ NPM_BAD: dict[str, set[str]] = {
     "sk-lib-enc": set(),                                            # MAL-2026-17284 (ANY)
     "solidity-lock": {"2.21.0"},                                    # MAL-2026-17302
     "stestenv": {"1.0.1"},                                          # MAL-2026-17309
-    "tailwind-forms-kit": {"0.5.1"},                                # MAL-2026-17310
+    "tailwind-forms-kit": {"0.5.1", "0.5.3"},                       # MAL-2026-17310
     "test-agency-assign": {"1.0.4"},                                # MAL-2026-17295
     "test-agency-assignment-01": {"1.0.5"},                         # MAL-2026-17296
     "test-agency-assignment-02": {"1.0.5"},                         # MAL-2026-17297
@@ -13800,9 +13803,13 @@ NPM_BAD: dict[str, set[str]] = {
     # ─── Oct 5-6 2026: misc npm typosquats / dep-confusion ──────────────────────
     # abbishal-poc: proof-of-concept malware package; version 1.1.0. MAL-2026-17545.
     # aria-live-region-helper: fake a11y helper; version 1.0.0. MAL-2026-17546.
+    # captchetat-angularv8: any-version malware (GHSA-7crr-x792-cp3w); MAL-2026-17637.
     # checkmate-remediation-assistant: fake AI/security tool; version 1.0.0. MAL-2026-17572.
+    # css-jptvix-polyfill: ships thunderboltRegistry.js C2 loader; version 1.0.0. MAL-2026-17638.
+    # hardhat-init: Hardhat typosquat; version 2.21.0. MAL-2026-17636.
     # insomnia-plugin-api-lint-helper: fake Insomnia plugin; version 1.0.0. MAL-2026-17561.
-    # internallib_v923: dep-confusion probe; version 1.0.3. MAL-2026-17562.
+    # internallib_v23/v30/v86/v875/v923: dep-confusion probe cluster. MAL-2026-17632/17633/17634/17635/17562.
+    # @pinecone-experience/messages: dep-confusion sentinel (99.9.1). MAL-2026-17631.
     # ph-common: dep-confusion multi-version package; OSV MAL-2026-1809.
     # risk-detection: sentinel-version malware (99.9.1); MAL-2026-17563.
     # @subql/common: dep-confusion targeting SubQuery; version 5.8.3. MAL-2026-17571.
@@ -13813,10 +13820,18 @@ NPM_BAD: dict[str, set[str]] = {
     # with-cte: fake SQL helper; version 1.0.0. MAL-2026-17579.
     "abbishal-poc": {"1.1.0"},                      # MAL-2026-17545
     "aria-live-region-helper": {"1.0.0"},           # MAL-2026-17546
+    "captchetat-angularv8": set(),                  # MAL-2026-17637 / GHSA-7crr-x792-cp3w (ANY)
     "checkmate-remediation-assistant": {"1.0.0"},   # MAL-2026-17572
+    "css-jptvix-polyfill": {"1.0.0"},               # MAL-2026-17638
+    "hardhat-init": {"2.21.0"},                     # MAL-2026-17636
     "insomnia-plugin-api-lint-helper": {"1.0.0"},   # MAL-2026-17561
+    "internallib_v23": {"1.0.1"},                   # MAL-2026-17632
+    "internallib_v30": {"1.0.1"},                   # MAL-2026-17633
+    "internallib_v86": {"1.0.2"},                   # MAL-2026-17634
+    "internallib_v875": {"1.0.1"},                  # MAL-2026-17635
     "internallib_v923": {"1.0.3"},                  # MAL-2026-17562
     "ph-common": {"0.1.0", "1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "77.7.7", "99.0.1"},  # MAL-2026-1809
+    "@pinecone-experience/messages": {"99.9.1"},    # MAL-2026-17631
     "risk-detection": {"99.9.1"},                   # MAL-2026-17563
     "@subql/common": {"5.8.3"},                     # MAL-2026-17571
     "tostpro": {"100.2.0", "100.6.0"},              # MAL-2026-17564
