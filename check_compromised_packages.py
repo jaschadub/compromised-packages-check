@@ -13839,6 +13839,77 @@ NPM_BAD: dict[str, set[str]] = {
     "unified-platform": {"99.9.1"},                 # MAL-2026-17566
     "virgil-cli": {"0.1.4"},                        # MAL-2026-17630
     "with-cte": {"1.0.0"},                          # MAL-2026-17579
+    # ─── Oct 7-8 2026: hardhat malware cluster (continued) ──────────────────────
+    # Additional hardhat-prefixed packages publishing malicious versions alongside
+    # the hardhat-init/hardhat-kex/hardhat-spack cluster already pinned above.
+    # OSV MAL-2026-17658 through MAL-2026-17662.
+    "hardhat-bits": {"2.21.0"},                     # MAL-2026-17658
+    "hardhat-deep": {"2.0.1"},                      # MAL-2026-17659
+    "hardhat-option": {"2.0.1"},                    # MAL-2026-17660
+    "hardhat-pack": {"2.0.1"},                      # MAL-2026-17661
+    "hardhat-promised": {"2.21.0"},                 # MAL-2026-17662
+    # ─── Oct 7-8 2026: function-color / function-flag malware ───────────────────
+    # function-color and function-flag: attacker-controlled packages publishing
+    # credential-exfiltrating payloads. OSV MAL-2026-17647 / MAL-2026-17648.
+    "function-color": {"1.0.0", "1.7.3"},           # MAL-2026-17647
+    "function-flag": {"1.7.3"},                     # MAL-2026-17648
+    # ─── Oct 7-8 2026: CSS / polyfill malware cluster ───────────────────────────
+    # css-flow-render-shim and css-reading-display-polyfill: fake CSS polyfills
+    # shipping C2 loaders (thunderboltRegistry.js pattern); version 1.0.0.
+    # wix-ssr-thunderbolt-grid-polyfill: Wix Thunderbolt grid impersonator; 0.1.0.
+    # dotenv-runtime: fake dotenv runtime package; version 1.0.0.
+    # OSV MAL-2026-17655 / MAL-2026-17656 / MAL-2026-17664 / MAL-2026-17657.
+    "css-flow-render-shim": {"1.0.0"},              # MAL-2026-17655
+    "css-reading-display-polyfill": {"1.0.0"},      # MAL-2026-17656
+    "wix-ssr-thunderbolt-grid-polyfill": {"0.1.0"}, # MAL-2026-17664
+    "dotenv-runtime": {"1.0.0"},                    # MAL-2026-17657
+    # ─── Oct 7-8 2026: misc npm typosquats / dep-confusion ──────────────────────
+    # browser-metrics-plugin.contrib: attacker-controlled multi-version package
+    #   (sentinel versions include 99.0.1); OSV MAL-2026-17640.
+    # troubleshooting: attacker-controlled multi-version package (sentinel
+    #   versions include 99.0.1); OSV MAL-2026-17641.
+    # personio-pipeline-projen: Personio CI/CD dep-confusion; version 1.171.31.
+    #   OSV MAL-2026-17642.
+    # tensorlake: TensorLake SDK compromise; version 0.5.144. OSV MAL-2026-17650.
+    # @praveenvjpm/color-utils-7210: attacker-controlled scoped package; 1.0.0.
+    #   OSV MAL-2026-17651.
+    # @ziedzzz/demo-canary: attacker-controlled scoped package; 1.0.0.
+    #   OSV MAL-2026-17652.
+    # abbishal-poc-as-dependency / abbishal-poc2: PoC malware packages.
+    #   OSV MAL-2026-17653 / MAL-2026-17654.
+    # mfasolver: fake MFA utility; version 1.0.0. OSV MAL-2026-17663.
+    # internallib_v788: dep-confusion probe (introduced:"0"). OSV MAL-2026-17649.
+    # waie-crash-baileys: WhatsApp-client malware (introduced:"0"). MAL-2026-17643.
+    # random-certs: certificate utility malware (introduced:"0"). MAL-2026-17644.
+    # vectorizers: NLP/ML package name abuse (introduced:"0"). MAL-2026-17645.
+    # tailwindcss-animatecss-keyframes: Tailwind typosquat (introduced:"0").
+    #   MAL-2026-17646.
+    # eslint-config-support: npm-tombstoned typosquat (0.0.1-security sentinel).
+    #   MAL-2022-2806 (modified Oct 7 2026).
+    # e2e-test-utils: npm-tombstoned package (0.0.1-security sentinel).
+    #   MAL-2025-47990 (modified Oct 7 2026).
+    # store-webpack-config: npm-tombstoned package (0.0.1-security sentinel).
+    #   MAL-2025-49241 (modified Oct 7 2026).
+    # windows_registry_editor: npm-tombstoned package (0.0.1-security sentinel).
+    #   MAL-2025-49244 (modified Oct 7 2026).
+    "browser-metrics-plugin.contrib": {"0.0.1", "1.0.0", "1.0.1", "1.1.0", "2.0.1", "99.0.1"},  # MAL-2026-17640
+    "troubleshooting": {"0.1.0", "1.0.0", "1.0.1", "1.1.0", "2.0.1", "3.0.0", "99.0.1"},  # MAL-2026-17641
+    "personio-pipeline-projen": {"1.171.31"},        # MAL-2026-17642
+    "tensorlake": {"0.5.144"},                       # MAL-2026-17650
+    "@praveenvjpm/color-utils-7210": {"1.0.0"},      # MAL-2026-17651
+    "@ziedzzz/demo-canary": {"1.0.0"},               # MAL-2026-17652
+    "abbishal-poc-as-dependency": {"1.3.0", "1.3.1"},  # MAL-2026-17653
+    "abbishal-poc2": {"1.2.0"},                      # MAL-2026-17654
+    "mfasolver": {"1.0.0"},                          # MAL-2026-17663
+    "internallib_v788": set(),                       # MAL-2026-17649 (ANY)
+    "waie-crash-baileys": set(),                     # MAL-2026-17643 (ANY)
+    "random-certs": set(),                           # MAL-2026-17644 (ANY)
+    "vectorizers": set(),                            # MAL-2026-17645 (ANY)
+    "tailwindcss-animatecss-keyframes": set(),       # MAL-2026-17646 (ANY)
+    "eslint-config-support": set(),                  # MAL-2022-2806 (ANY)
+    "e2e-test-utils": set(),                         # MAL-2025-47990 (ANY)
+    "store-webpack-config": set(),                   # MAL-2025-49241 (ANY)
+    "windows_registry_editor": set(),                # MAL-2025-49244 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
