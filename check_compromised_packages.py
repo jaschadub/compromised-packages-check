@@ -610,7 +610,14 @@ MAL-2026-17506–17509, lite-mater/lite-matte/lite-matterr MAL-2026-17511–1751
 MAL-2026-17498, botmaker-cli MAL-2026-17502, internallib_v275 MAL-2026-17510,
 monitoring-agent MAL-2026-17515, studiocode_eligibility/studiocode_tools
 MAL-2026-17522/17523, ultimate-websocket MAL-2026-17529, api-nebula MAL-2026-17531),
-and the anthropic-sdk PyPI impersonator (MAL-2026-17472).
+and the anthropic-sdk PyPI impersonator (MAL-2026-17472), the Oct 8-9 2026
+npm multi-wave batch (42 packages: Tailwind/AnimateCSS CSS typosquat cluster
+extension ×6, @bellaxchuu baileys cluster expansion ×6, baileys/WhatsApp
+client malware cluster expansion ×7, @galicia-toolkit dep-confusion ×4,
+@dransay dep-confusion ×7, @bitwardne Bitwarden impersonation ×2, misc
+npm malware ×10; OSV MAL-2026-17665–17711, MAL-2026-3653), and the
+Apache Kafka PyPI dep-confusion cluster Oct 9 2026 (kafka-helmsman,
+kafka-roller; OSV MAL-2026-17702/17703).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-08-16
@@ -2077,6 +2084,13 @@ PYPI_BAD: dict[str, set[str]] = {
     "erc7730-hackathon": {"99.0.0"},                                     # MAL-2026-17628
     "lore-cs": {"1.0.0"},                                                # MAL-2026-17639
     "zencleaner": {"1.0.0", "1.0.3", "1.0.3.1"},                        # MAL-2026-17629
+    # ─── Oct 9 2026: Apache Kafka dep-confusion cluster (PyPI) ───────────────────
+    # kafka-helmsman and kafka-roller: dep-confusion attack targeting Apache Kafka
+    # tooling teams; high-version sentinel versions (99.x) published to PyPI to
+    # shadow internal packages. Amazon Inspector detection.
+    # OSV MAL-2026-17702/17703.
+    "kafka-helmsman": {"99.0.1", "99.0.2", "99.0.3", "99.0.4", "99.0.5", "99.0.6"},   # MAL-2026-17702
+    "kafka-roller": {"99.0.0", "99.0.1", "99.0.2", "99.0.3", "99.0.4", "99.0.5", "99.0.6"},  # MAL-2026-17703
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13910,6 +13924,84 @@ NPM_BAD: dict[str, set[str]] = {
     "e2e-test-utils": set(),                         # MAL-2025-47990 (ANY)
     "store-webpack-config": set(),                   # MAL-2025-49241 (ANY)
     "windows_registry_editor": set(),                # MAL-2025-49244 (ANY)
+    # ─── Oct 8-9 2026: Tailwind/AnimateCSS CSS dropper cluster extension ─────────
+    # animatecss-tailwind-adapter / animatecss-tailwind-bridge / tailwind-animatecss-uniform:
+    #   CSS utility typosquats deploying postinstall credential exfiltrators.
+    #   OSV MAL-2026-17665/17666/17667.
+    # tailwindcss-effects-kit / tailwindcss-ui-extensions: Tailwind plugin typosquats;
+    #   no legitimate upstream; introduced:"0" (any version). OSV MAL-2026-17686/17687.
+    # css-overscroll-contain: CSS polyfill typosquat; postinstall dropper;
+    #   versions 1.0.1/1.0.2/1.0.3. OSV MAL-2026-17705.
+    "animatecss-tailwind-adapter": {"2.0.6"},                    # MAL-2026-17665
+    "animatecss-tailwind-bridge": {"2.0.6"},                     # MAL-2026-17666
+    "tailwind-animatecss-uniform": {"2.0.7"},                    # MAL-2026-17667
+    "tailwindcss-effects-kit": set(),                            # MAL-2026-17686 (ANY)
+    "tailwindcss-ui-extensions": set(),                          # MAL-2026-17687 (ANY)
+    "css-overscroll-contain": {"1.0.1", "1.0.2", "1.0.3"},      # MAL-2026-17705
+    # ─── Oct 8 2026: @bellaxchuu WhatsApp baileys cluster expansion ──────────────
+    # Additional @bellaxchuu actor packages (existing entries: belbails, crystalred,
+    # familyxtrx, flowblue, privatebails, skyblue, velvetry, xtrxbails).
+    # All new packages carry introduced:"0" (any version). OSV MAL-2026-17675–17680.
+    "@bellaxchuu/bails": set(),                                  # MAL-2026-17675 (ANY)
+    "@bellaxchuu/libsignal-node": set(),                         # MAL-2026-17676 (ANY)
+    "@bellaxchuu/overbugs": set(),                               # MAL-2026-17677 (ANY)
+    "@bellaxchuu/xbailey": set(),                                # MAL-2026-17678 (ANY)
+    "@bellaxchuu/xbails": set(),                                 # MAL-2026-17679 (ANY)
+    "@bellaxchuu/yarnbails": set(),                              # MAL-2026-17680 (ANY)
+    # ─── Oct 8 2026: baileys / WhatsApp client malware cluster expansion ─────────
+    # Additional malicious WhatsApp-client packages across multiple actors.
+    # All carry introduced:"0" except @kxafunc/xbails. OSV MAL-2026-17669–17674/17701.
+    "@itsmee_aizat.id/baileys": set(),                           # MAL-2026-17669 (ANY)
+    "@itsmee_aizat.id/baileys2": set(),                          # MAL-2026-17670 (ANY)
+    "@xayz/brat-generator": set(),                               # MAL-2026-17671 (ANY)
+    "@xayz/libsignal-node": set(),                               # MAL-2026-17672 (ANY)
+    "bottino-baileys": set(),                                    # MAL-2026-17673 (ANY)
+    "brat-generator": set(),                                     # MAL-2026-17674 (ANY)
+    "@kxafunc/xbails": {"0.0.8"},                                # MAL-2026-17701
+    # ─── Oct 8 2026: @galicia-toolkit dependency-confusion cluster ─────────────────
+    # High-version (999.x) packages published to shadow Galicia Toolkit's internal
+    # npm scope. Amazon Inspector detection. OSV MAL-2026-17688–17691.
+    "@galicia-toolkit/core": set(),                              # MAL-2026-17688 (ANY)
+    "@galicia-toolkit/error-master": {"999.0.3"},                # MAL-2026-17689
+    "@galicia-toolkit/spa-build-config": {"999.0.3", "999.0.5", "999.0.6"},  # MAL-2026-17690
+    "@galicia-toolkit/tag-manager": {"999.0.3", "999.0.5", "999.0.6"},       # MAL-2026-17691
+    # ─── Oct 8 2026: @dransay dependency-confusion cluster ───────────────────────
+    # Seven 99.0.0 packages targeting the @dransay internal scope.
+    # Amazon Inspector detection. OSV MAL-2026-17668/17695–17700.
+    "@dransay/address-validation": {"99.0.0"},                   # MAL-2026-17668
+    "@dransay/db": {"99.0.0"},                                   # MAL-2026-17695
+    "@dransay/feature-flags": {"99.0.0"},                        # MAL-2026-17696
+    "@dransay/logger": {"99.0.0"},                               # MAL-2026-17697
+    "@dransay/phone-fix-test": {"99.0.0"},                       # MAL-2026-17698
+    "@dransay/secrets": {"99.0.0"},                              # MAL-2026-17699
+    "dransay": {"99.0.0"},                                       # MAL-2026-17700
+    # ─── Oct 8 2026: @bitwardne Bitwarden impersonation ──────────────────────────
+    # @bitwardne/cli and @bitwardne/jslib typosquat the official @bitwarden scope.
+    # Amazon Inspector detection. OSV MAL-2026-17693/17694.
+    "@bitwardne/cli": {"1.0.1"},                                 # MAL-2026-17693
+    "@bitwardne/jslib": {"1.1.0"},                               # MAL-2026-17694
+    # ─── Oct 8-9 2026: misc npm malware batch ────────────────────────────────────
+    # clickfix_npm_delivery: ClickFix-style social-engineering dropper; 1.0.0/1.0.2.
+    #   Amazon Inspector. OSV MAL-2026-17692.
+    # system-driver: OS-level utility impersonation; introduced:"0". OSV MAL-2026-17685.
+    # @wxwxtest/testrrrdd / testrrrd / wie888r / xblaxw: multi-version probe/malware
+    #   packages with escalating versions. Amazon Inspector. OSV MAL-2026-17704/17706–17708.
+    # revine: single-version malware; 2.4.0. OSV MAL-2026-17709.
+    # pxnpm: typosquat of the official pnpm package manager; 7.0.0-beta.6/beta.8/7.0.0.
+    #   OSV MAL-2026-17710.
+    # wix-reg-poc-bypass: Wix registry PoC bypass package; 1.0.0. OSV MAL-2026-17711.
+    # @design-system-coopeuch/web: dep-confusion targeting Chilean co-op Coopeuch's
+    #   design-system internal scope; 999.0.0/999.0.4. OSV MAL-2026-3653.
+    "clickfix_npm_delivery": {"1.0.0", "1.0.2"},                 # MAL-2026-17692
+    "system-driver": set(),                                      # MAL-2026-17685 (ANY)
+    "@wxwxtest/testrrrdd": {"0.0.1", "0.1.0", "1.0.0", "1.0.1", "2.0.0", "2.0.1", "3.0.0"},  # MAL-2026-17704
+    "testrrrd": {"0.0.1", "1.0.0", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},            # MAL-2026-17706
+    "wie888r": {"0.0.1", "1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},    # MAL-2026-17707
+    "xblaxw": {"1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},              # MAL-2026-17708
+    "revine": {"2.4.0"},                                         # MAL-2026-17709
+    "pxnpm": {"7.0.0-beta.6", "7.0.0-beta.8", "7.0.0"},         # MAL-2026-17710
+    "wix-reg-poc-bypass": {"1.0.0"},                             # MAL-2026-17711
+    "@design-system-coopeuch/web": {"999.0.0", "999.0.4"},       # MAL-2026-3653
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
