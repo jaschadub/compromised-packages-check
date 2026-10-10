@@ -2091,6 +2091,10 @@ PYPI_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-17702/17703.
     "kafka-helmsman": {"99.0.1", "99.0.2", "99.0.3", "99.0.4", "99.0.5", "99.0.6"},   # MAL-2026-17702
     "kafka-roller": {"99.0.0", "99.0.1", "99.0.2", "99.0.3", "99.0.4", "99.0.5", "99.0.6"},  # MAL-2026-17703
+    # ig-gox PyPI obfuscated infostealer (Oct 9 2026, OSV MAL-2026-17712)
+    # Hides obfuscated code aimed to avoid analysis; single version 1.0.0;
+    # detected by kam193 (bad-packages.kam193.eu/pypi/package/ig-gox).
+    "ig-gox": {"1.0.0"},                                                   # MAL-2026-17712
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14002,6 +14006,75 @@ NPM_BAD: dict[str, set[str]] = {
     "pxnpm": {"7.0.0-beta.6", "7.0.0-beta.8", "7.0.0"},         # MAL-2026-17710
     "wix-reg-poc-bypass": {"1.0.0"},                             # MAL-2026-17711
     "@design-system-coopeuch/web": {"999.0.0", "999.0.4"},       # MAL-2026-3653
+    # ─── Oct 9 2026: @brick-v2 dependency-confusion cluster ──────────────────────
+    # Six Angular-component-library packages published under the @brick-v2 scope
+    # with high-version (999.x) sentinels to shadow Brick v2 internal packages.
+    # preinstall / load-time payload; Amazon Inspector detection.
+    # OSV MAL-2026-17714 through MAL-2026-17719.
+    "@brick-v2/brand": {"999.0.1", "999.0.2", "999.0.3"},               # MAL-2026-17714
+    "@brick-v2/core": {"999.0.1", "999.0.2"},                            # MAL-2026-17715
+    "@brick-v2/form": {"999.0.1", "999.0.3"},                            # MAL-2026-17716
+    "@brick-v2/icons": {"999.0.1", "999.0.2", "999.0.3"},               # MAL-2026-17717
+    "@brick-v2/table": {"999.0.1", "999.0.2", "999.0.3"},               # MAL-2026-17718
+    "@brick-v2/tour": {"999.0.1", "999.0.2", "999.0.3"},                # MAL-2026-17719
+    # ─── Oct 9 2026: @galicia-toolkit extension Wave 2 ───────────────────────────
+    # Extends the Oct 8 @galicia-toolkit dep-confusion campaign to NestJS
+    # sub-scopes (@galicia-toolkit-cheques-nc, @galicia-toolkit-nestjs,
+    # @galicia-toolkit-nestjs-20, @galicia-toolkit-nestjs-20-lite).
+    # 11 packages; high-version (999.x or near-semver) sentinels; Amazon Inspector.
+    # OSV MAL-2026-17720 through MAL-2026-17730.
+    "@galicia-toolkit-cheques-nc/front": {"999.0.1", "999.0.2", "999.0.3"},          # MAL-2026-17720
+    "@galicia-toolkit-nestjs/archetype": {"999.0.1", "999.0.5", "999.0.6"},          # MAL-2026-17721
+    "@galicia-toolkit-nestjs/commons": {"3.0.1", "999.0.1", "999.0.6", "999.0.7", "999.0.8"},  # MAL-2026-17722
+    "@galicia-toolkit-nestjs/paas": {"999.0.3", "999.0.4", "999.0.5", "999.0.6"},   # MAL-2026-17723
+    "@galicia-toolkit-nestjs/swagger": {"999.0.1", "999.0.2", "999.0.3"},            # MAL-2026-17724
+    "@galicia-toolkit-nestjs-20/archetype": {"999.0.1", "999.0.2"},                  # MAL-2026-17725
+    "@galicia-toolkit-nestjs-20/commons": {"999.0.1", "999.0.2", "999.0.3"},         # MAL-2026-17726
+    "@galicia-toolkit-nestjs-20/paas": {"3.0.3", "3.0.5", "3.0.6", "3.0.7", "999.0.1"},  # MAL-2026-17727
+    "@galicia-toolkit-nestjs-20-lite/archetype": {"999.0.1", "999.0.2", "999.0.3", "999.0.5"},  # MAL-2026-17728
+    "@galicia-toolkit-nestjs-20-lite/commons": {"999.0.1", "999.0.2", "999.0.3"},   # MAL-2026-17729
+    "@galicia-toolkit-nestjs-20-lite/paas": {"1.0.20", "1.0.21", "1.0.22", "1.0.24"},  # MAL-2026-17730
+    # ─── Oct 9 2026: asepxyz WhatsApp-bot malware cluster ────────────────────────
+    # 13 pure-malware npm packages by attacker "asepxyz"; all any-version
+    # (ranges: introduced:"0"); GHSA-confirmed. Delivers WhatsApp-bot malware
+    # and credential-stealers; attacker-controlled names with no legitimate use.
+    # OSV MAL-2026-17731 through MAL-2026-17743; GHSA aliases per entry.
+    "@aseppxyzz12/baileys": set(),                  # MAL-2026-17731 / GHSA-4pw9-3c22-g559 (ANY)
+    "asepxyz": set(),                               # MAL-2026-17732 / GHSA-qvwh-x99q-h49x (ANY)
+    "asepxyz-baileys": set(),                       # MAL-2026-17733 / GHSA-xv7g-p6pq-vg9q (ANY)
+    "asepxyz-eslint-config": set(),                 # MAL-2026-17734 / GHSA-rhjp-rpj7-8x4q (ANY)
+    "asepxyz-signal": set(),                        # MAL-2026-17735 / GHSA-38rx-c4rh-xc4p (ANY)
+    "asepxyz12": set(),                             # MAL-2026-17736 / GHSA-3rxj-r3x6-3992 (ANY)
+    "asepxyznew": set(),                            # MAL-2026-17737 / GHSA-m23r-8cxr-4gw3 (ANY)
+    "asepxyzxrazamodsnew-baileys": set(),           # MAL-2026-17738 / GHSA-v95p-rhxh-mm8g (ANY)
+    "asepxyzz": set(),                              # MAL-2026-17739 / GHSA-hmqh-m5mj-f7mm (ANY)
+    "hanncap": set(),                               # MAL-2026-17740 / GHSA-jw9f-6xx8-mj3f (ANY)
+    "pahinuy": set(),                               # MAL-2026-17741 / GHSA-hcwg-cqc9-469q (ANY)
+    "razamodsxasepxyz": set(),                      # MAL-2026-17742 / GHSA-f3vq-wx4x-jv6w (ANY)
+    "tailwind-animatecss-form": set(),              # MAL-2026-17743 / GHSA-pp69-57rc-3v49 (ANY)
+    # ─── Oct 9 2026: kmf / test-account dep-confusion cluster ────────────────────
+    # Four high-version (99.x / 100.x) packages targeting the kmf internal npm
+    # scope. postinstall exfiltration. Amazon Inspector detection.
+    # OSV MAL-2026-17744, MAL-2026-17746 through MAL-2026-17748.
+    "kmf-vendor-pack": {"99.0.0"},                                       # MAL-2026-17744
+    "kmf-bootstrap": {"100.100.102", "100.100.103"},                     # MAL-2026-17746
+    "kmf-i18n": {"100.100.102"},                                         # MAL-2026-17747
+    "test-account-portal-fe": {"100.100.102"},                           # MAL-2026-17748
+    # ─── Oct 9 2026: @tunstock/remact-dom React DOM typosquat ────────────────────
+    # Impersonates react-dom by stealing its version number (19.2.0); load-time
+    # payload. Amazon Inspector detection. OSV MAL-2026-17745.
+    "@tunstock/remact-dom": {"19.2.0"},                                  # MAL-2026-17745
+    # ─── Oct 9 2026: @myorder-frontend-commons/analytics dep-confusion ───────────
+    # Three sentinel versions (3.0.0, 10.0.0, 99.0.0) targeting the
+    # @myorder-frontend-commons internal scope. Detected by OpenSSF Package Analysis.
+    # OSV MAL-2026-17749.
+    "@myorder-frontend-commons/analytics": {"3.0.0", "10.0.0", "99.0.0"},  # MAL-2026-17749
+    # ─── Oct 9 2026: Baileys malware cluster continuation ────────────────────────
+    # @fer2809fl/baileys and cloud-baileys extend the existing WhatsApp-Baileys
+    # malware family. GHSA-confirmed; 12 and 20 versions respectively.
+    # OSV MAL-2026-17750 / GHSA-wv7g-r3r9-ww8v; MAL-2026-17751 / GHSA-745p-g872-6x8c.
+    "@fer2809fl/baileys": {"1.4.5", "1.4.6", "1.4.7", "1.4.9", "7.0.0", "7.0.0-rc13", "7.0.1", "7.0.2", "7.0.4", "7.0.5", "7.0.6", "7.0.7"},  # MAL-2026-17750
+    "cloud-baileys": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.33", "1.1.34", "1.1.35", "1.1.36", "1.1.37", "1.1.38", "1.1.39", "1.1.40", "1.1.41", "1.1.42"},  # MAL-2026-17751
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14288,6 +14361,24 @@ NPM_SUSPECT_SCOPES = (
     # @subql/ dep-confusion scope (Oct 5-6 2026) — @subql/common pinned above
     # (OSV MAL-2026-17571); scope catches any additional @subql packages
     "@subql/",
+    # @brick-v2/ dep-confusion scope (Oct 9 2026) — 6 packages pinned above
+    # (OSV MAL-2026-17714–17719); scope catches any additional @brick-v2 packages
+    "@brick-v2/",
+    # @galicia-toolkit-nestjs/ scope (Oct 9 2026) — 4 packages pinned above
+    # (OSV MAL-2026-17721–17724); extends the Oct 8 @galicia-toolkit campaign
+    "@galicia-toolkit-nestjs/",
+    # @galicia-toolkit-nestjs-20/ scope (Oct 9 2026) — 3 packages pinned above
+    # (OSV MAL-2026-17725–17727)
+    "@galicia-toolkit-nestjs-20/",
+    # @galicia-toolkit-nestjs-20-lite/ scope (Oct 9 2026) — 3 packages pinned above
+    # (OSV MAL-2026-17728–17730)
+    "@galicia-toolkit-nestjs-20-lite/",
+    # @galicia-toolkit-cheques-nc/ scope (Oct 9 2026) — 1 package pinned above
+    # (OSV MAL-2026-17720)
+    "@galicia-toolkit-cheques-nc/",
+    # @myorder-frontend-commons/ dep-confusion scope (Oct 9 2026) — 1 package pinned above
+    # (OSV MAL-2026-17749)
+    "@myorder-frontend-commons/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
@@ -14430,6 +14521,11 @@ CRATES_BAD: dict[str, set[str]] = {
     # logs-update: published to crates.io with no legitimate use; any version is
     # malicious (OSV introduced:"0", no fixed version recorded).
     "logs-update": set(),                                                        # MAL-2026-16164 (ANY)
+    # sharpnes crates.io infostealer (Oct 9 2026, OSV MAL-2026-17713)
+    # Published by crows7781-glitch (account crows7781-glitch); any version
+    # is malicious (ranges: introduced:"0"). Credential infostealer with no
+    # legitimate use; described as "The sharpnes project is a learn."
+    "sharpnes": set(),                                                           # MAL-2026-17713 (ANY)
 }
 
 SKIP_DIRS = {"node_modules", ".venv", "venv", ".git",
