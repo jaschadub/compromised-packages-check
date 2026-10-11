@@ -2095,6 +2095,18 @@ PYPI_BAD: dict[str, set[str]] = {
     # Hides obfuscated code aimed to avoid analysis; single version 1.0.0;
     # detected by kam193 (bad-packages.kam193.eu/pypi/package/ig-gox).
     "ig-gox": {"1.0.0"},                                                   # MAL-2026-17712
+    # ─── Oct 10 2026: PyPI malware batch (agentaix / media-manager5 / agent-vx / pafer / webreader)
+    # Five install-time malware packages detected by kam193 (bad-packages.kam193.eu).
+    # agentaix: fake AI-agent SDK; versions 0.1.0/0.2.0. OSV MAL-2026-17752.
+    # media-manager5: fake media-management library; version 0.1.0. OSV MAL-2026-17753.
+    # agent-vx: fake AI-agent framework; version 0.1.0. OSV MAL-2026-17755.
+    # pafer: install-time payload; versions 0.9.7/0.9.8. OSV MAL-2026-17756.
+    # webreader: fake web-scraping/reading library; version 2.3.8. OSV MAL-2026-17757.
+    "agentaix": {"0.1.0", "0.2.0"},                                        # MAL-2026-17752
+    "media-manager5": {"0.1.0"},                                           # MAL-2026-17753
+    "agent-vx": {"0.1.0"},                                                 # MAL-2026-17755
+    "pafer": {"0.9.7", "0.9.8"},                                           # MAL-2026-17756
+    "webreader": {"2.3.8"},                                                # MAL-2026-17757
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14075,6 +14087,10 @@ NPM_BAD: dict[str, set[str]] = {
     # OSV MAL-2026-17750 / GHSA-wv7g-r3r9-ww8v; MAL-2026-17751 / GHSA-745p-g872-6x8c.
     "@fer2809fl/baileys": {"1.4.5", "1.4.6", "1.4.7", "1.4.9", "7.0.0", "7.0.0-rc13", "7.0.1", "7.0.2", "7.0.4", "7.0.5", "7.0.6", "7.0.7"},  # MAL-2026-17750
     "cloud-baileys": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.33", "1.1.34", "1.1.35", "1.1.36", "1.1.37", "1.1.38", "1.1.39", "1.1.40", "1.1.41", "1.1.42"},  # MAL-2026-17751
+    # ─── Oct 10 2026: @library-wide/library-shell dep-confusion sentinel ─────────
+    # High-version (99.9.1) sentinel package targeting the @library-wide internal
+    # npm scope. Detected by OpenSSF Package Analysis. OSV MAL-2026-17754.
+    "@library-wide/library-shell": {"99.9.1"},                             # MAL-2026-17754
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
