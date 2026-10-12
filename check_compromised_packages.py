@@ -13864,7 +13864,7 @@ NPM_BAD: dict[str, set[str]] = {
     "@pinecone-experience/messages": {"99.9.1"},    # MAL-2026-17631
     "risk-detection": {"99.9.1"},                   # MAL-2026-17563
     "@subql/common": {"5.8.3"},                     # MAL-2026-17571
-    "tostpro": {"100.2.0", "100.6.0"},              # MAL-2026-17564
+    "tostpro": {"100.2.0", "100.6.0", "100.7.0"},   # MAL-2026-17564
     "typesens": {"1.0.0"},                          # MAL-2026-17565
     "unified-platform": {"99.9.1"},                 # MAL-2026-17566
     "virgil-cli": {"0.1.4"},                        # MAL-2026-17630
@@ -14068,10 +14068,10 @@ NPM_BAD: dict[str, set[str]] = {
     # Four high-version (99.x / 100.x) packages targeting the kmf internal npm
     # scope. postinstall exfiltration. Amazon Inspector detection.
     # OSV MAL-2026-17744, MAL-2026-17746 through MAL-2026-17748.
-    "kmf-vendor-pack": {"99.0.0"},                                       # MAL-2026-17744
-    "kmf-bootstrap": {"100.100.102", "100.100.103"},                     # MAL-2026-17746
-    "kmf-i18n": {"100.100.102"},                                         # MAL-2026-17747
-    "test-account-portal-fe": {"100.100.102"},                           # MAL-2026-17748
+    "kmf-vendor-pack": {"99.0.0", "100.100.100", "100.100.101", "100.100.106"},  # MAL-2026-17744
+    "kmf-bootstrap": {"100.100.100", "100.100.101", "100.100.102", "100.100.103", "100.100.106"},  # MAL-2026-17746
+    "kmf-i18n": {"100.100.100", "100.100.101", "100.100.102"},           # MAL-2026-17747
+    "test-account-portal-fe": {"100.100.100", "100.100.102"},            # MAL-2026-17748
     # ─── Oct 9 2026: @tunstock/remact-dom React DOM typosquat ────────────────────
     # Impersonates react-dom by stealing its version number (19.2.0); load-time
     # payload. Amazon Inspector detection. OSV MAL-2026-17745.
@@ -14080,7 +14080,7 @@ NPM_BAD: dict[str, set[str]] = {
     # Three sentinel versions (3.0.0, 10.0.0, 99.0.0) targeting the
     # @myorder-frontend-commons internal scope. Detected by OpenSSF Package Analysis.
     # OSV MAL-2026-17749.
-    "@myorder-frontend-commons/analytics": {"3.0.0", "10.0.0", "99.0.0"},  # MAL-2026-17749
+    "@myorder-frontend-commons/analytics": {"0.0.1", "0.1.0", "0.2.0", "1.0.0", "1.1.0", "1.2.0", "2.0.0", "3.0.0", "5.0.0", "10.0.0", "99.0.0", "100.0.0"},  # MAL-2026-17749
     # ─── Oct 9 2026: Baileys malware cluster continuation ────────────────────────
     # @fer2809fl/baileys and cloud-baileys extend the existing WhatsApp-Baileys
     # malware family. GHSA-confirmed; 12 and 20 versions respectively.
@@ -14091,6 +14091,63 @@ NPM_BAD: dict[str, set[str]] = {
     # High-version (99.9.1) sentinel package targeting the @library-wide internal
     # npm scope. Detected by OpenSSF Package Analysis. OSV MAL-2026-17754.
     "@library-wide/library-shell": {"99.9.1"},                             # MAL-2026-17754
+    # ─── Oct 11 2026: @coopeuch/ dep-confusion cluster ───────────────────────────
+    # Five high-version (1.999.999) packages targeting the @coopeuch internal scope
+    # (Cooperativa de Ahorro y Crédito Coopeuch, Chile). Sentinel versions shadow
+    # real @coopeuch component packages. Scope added to NPM_SUSPECT_SCOPES.
+    # OSV MAL-2026-17759 through MAL-2026-17763.
+    "@coopeuch/button": {"1.999.999"},              # MAL-2026-17759
+    "@coopeuch/common": {"1.999.999"},              # MAL-2026-17760
+    "@coopeuch/components": {"1.999.999"},          # MAL-2026-17761
+    "@coopeuch/config": {"1.999.999"},              # MAL-2026-17762
+    "@coopeuch/core": {"1.999.999"},                # MAL-2026-17763
+    # ─── Oct 11 2026: @s4yhiitestpoc/ attacker-controlled PoC scope ─────────────
+    # Three packages (r2-https, r3-https, scan-https-d) at 1.0.0 publishing
+    # network-probing / data-exfiltration payloads under the attacker's own scope.
+    # Scope added to NPM_SUSPECT_SCOPES. OSV MAL-2026-17764 through MAL-2026-17766.
+    "@s4yhiitestpoc/r2-https": {"1.0.0"},          # MAL-2026-17764
+    "@s4yhiitestpoc/r3-https": {"1.0.0"},          # MAL-2026-17765
+    "@s4yhiitestpoc/scan-https-d": {"1.0.0"},      # MAL-2026-17766
+    # ─── Oct 11 2026: React versioned-package typosquats ─────────────────────────
+    # react-dropzone-v4 and react-paginate-v5 typosquat the popular react-dropzone
+    # and react-paginate packages; both publish sentinel version 99.0.0.
+    # OSV MAL-2026-17758 / MAL-2026-17777.
+    "react-dropzone-v4": {"99.0.0"},                # MAL-2026-17758
+    "react-paginate-v5": {"99.0.0"},                # MAL-2026-17777
+    # ─── Oct 11 2026: kmf dep-confusion cluster extension ────────────────────────
+    # Four additional packages using the same 100.100.10x sentinel-version pattern
+    # as kmf-vendor-pack / kmf-bootstrap / kmf-i18n / test-account-portal-fe
+    # already tracked above. Amazon Inspector detection.
+    # OSV MAL-2026-17769 through MAL-2026-17771, MAL-2026-17776.
+    "deposit-limit-fe": {"100.100.101", "100.100.102", "100.100.106"},    # MAL-2026-17769
+    "ksp-app": {"100.100.100"},                     # MAL-2026-17770
+    "ksp-client-registry": {"100.100.100", "100.100.101"},                # MAL-2026-17771
+    "pay-methods-kmf": {"100.100.100", "100.100.101", "100.100.102"},     # MAL-2026-17776
+    # ─── Oct 11 2026: Liferay dep-confusion sentinel ─────────────────────────────
+    # liferay-workspace-scripts publishes sentinel version 99.9.1 to shadow the
+    # legitimate Liferay workspace tooling package. Same sentinel pattern as
+    # @library-wide/library-shell above. OSV MAL-2026-17772.
+    "liferay-workspace-scripts": {"99.9.1"},        # MAL-2026-17772
+    # ─── Oct 11 2026: misc npm malware batch ─────────────────────────────────────
+    # another-very-long-name: multi-version attacker-controlled package (includes
+    #   sentinel 2.0.0/2.0.1). OSV MAL-2026-17767.
+    # cloudflare_module: Cloudflare package impersonator with sentinel 99.0.1;
+    #   multi-version (1.0.0/1.0.1/3.0.0/99.0.1). OSV MAL-2026-17768.
+    # hridoy-ultimate: attacker-controlled package; version 8.0.0. OSV MAL-2026-17803.
+    # nested-lib: multi-version malware package (1.0.0/1.0.1/1.1.0). OSV MAL-2026-17773.
+    # nitro-bundled-dep: Nitro bundler name abuse; versions 1.1.0/2.0.1/99.0.1.
+    #   OSV MAL-2026-17774.
+    # nitro-cjs-requirer: Nitro CJS name abuse; versions 0.0.1 through 99.0.1.
+    #   OSV MAL-2026-17775.
+    # some-very-long-package-name: multi-version attacker-controlled package
+    #   (includes sentinel 99.0.1). OSV MAL-2026-17778.
+    "another-very-long-name": {"1.0.1", "1.1.0", "2.0.0", "2.0.1"},     # MAL-2026-17767
+    "cloudflare_module": {"1.0.0", "1.0.1", "3.0.0", "99.0.1"},         # MAL-2026-17768
+    "hridoy-ultimate": {"8.0.0"},                   # MAL-2026-17803
+    "nested-lib": {"1.0.0", "1.0.1", "1.1.0"},     # MAL-2026-17773
+    "nitro-bundled-dep": {"1.1.0", "2.0.1", "99.0.1"},                   # MAL-2026-17774
+    "nitro-cjs-requirer": {"0.0.1", "1.0.0", "1.1.0", "2.0.0", "3.0.0", "99.0.1"},  # MAL-2026-17775
+    "some-very-long-package-name": {"1.0.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},  # MAL-2026-17778
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14395,6 +14452,12 @@ NPM_SUSPECT_SCOPES = (
     # @myorder-frontend-commons/ dep-confusion scope (Oct 9 2026) — 1 package pinned above
     # (OSV MAL-2026-17749)
     "@myorder-frontend-commons/",
+    # @coopeuch/ dep-confusion scope (Oct 11 2026) — 5 packages pinned above;
+    # (OSV MAL-2026-17759–17763); scope catches any additional @coopeuch packages
+    "@coopeuch/",
+    # @s4yhiitestpoc/ attacker-controlled PoC scope (Oct 11 2026) — 3 packages pinned above
+    # (OSV MAL-2026-17764–17766); scope catches any additional @s4yhiitestpoc packages
+    "@s4yhiitestpoc/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
