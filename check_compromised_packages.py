@@ -2107,6 +2107,16 @@ PYPI_BAD: dict[str, set[str]] = {
     "agent-vx": {"0.1.0"},                                                 # MAL-2026-17755
     "pafer": {"0.9.7", "0.9.8"},                                           # MAL-2026-17756
     "webreader": {"2.3.8"},                                                # MAL-2026-17757
+    # ─── Oct 12 2026: PyPI malware batch ─────────────────────────────────────────
+    # py2ops: install-time malware; version 2.2. OSV MAL-2026-17807.
+    # minecraftaccfinder: Minecraft account stealer targeting credentails; versions
+    #   0.1.0–0.4.0/2.0.0/3.0.0. OSV MAL-2026-17809.
+    # npp-ml: malicious ML-toolkit impersonator; versions 0.1.7–0.1.9.
+    #   OSV MAL-2026-17847.
+    "py2ops": {"2.2"},                                                         # MAL-2026-17807
+    "minecraftaccfinder": {"0.1.0", "0.1.1", "0.1.2", "0.3.0", "0.3.1",
+                           "0.4.0", "2.0.0", "3.0.0"},                        # MAL-2026-17809
+    "npp-ml": {"0.1.7", "0.1.8", "0.1.9"},                                    # MAL-2026-17847
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -13981,10 +13991,12 @@ NPM_BAD: dict[str, set[str]] = {
     "@galicia-toolkit/error-master": {"999.0.3"},                # MAL-2026-17689
     "@galicia-toolkit/spa-build-config": {"999.0.3", "999.0.5", "999.0.6"},  # MAL-2026-17690
     "@galicia-toolkit/tag-manager": {"999.0.3", "999.0.5", "999.0.6"},       # MAL-2026-17691
-    # ─── Oct 8 2026: @dransay dependency-confusion cluster ───────────────────────
-    # Seven 99.0.0 packages targeting the @dransay internal scope.
-    # Amazon Inspector detection. OSV MAL-2026-17668/17695–17700.
+    # ─── Oct 8 2026: @dransay dependency-confusion cluster (8 packages) ──────────
+    # Eight 99.0.0 packages targeting the @dransay internal scope (Oct 8: seven
+    # original; Oct 12: @dransay/api added). Amazon Inspector detection.
+    # OSV MAL-2026-17668/17695–17700/17805.
     "@dransay/address-validation": {"99.0.0"},                   # MAL-2026-17668
+    "@dransay/api": {"99.0.0"},                                  # MAL-2026-17805
     "@dransay/db": {"99.0.0"},                                   # MAL-2026-17695
     "@dransay/feature-flags": {"99.0.0"},                        # MAL-2026-17696
     "@dransay/logger": {"99.0.0"},                               # MAL-2026-17697
@@ -14101,11 +14113,13 @@ NPM_BAD: dict[str, set[str]] = {
     "@coopeuch/components": {"1.999.999"},          # MAL-2026-17761
     "@coopeuch/config": {"1.999.999"},              # MAL-2026-17762
     "@coopeuch/core": {"1.999.999"},                # MAL-2026-17763
-    # ─── Oct 11 2026: @s4yhiitestpoc/ attacker-controlled PoC scope ─────────────
-    # Three packages (r2-https, r3-https, scan-https-d) at 1.0.0 publishing
-    # network-probing / data-exfiltration payloads under the attacker's own scope.
-    # Scope added to NPM_SUSPECT_SCOPES. OSV MAL-2026-17764 through MAL-2026-17766.
+    # ─── Oct 11–12 2026: @s4yhiitestpoc/ attacker-controlled PoC scope ───────────
+    # Four packages (r2-https, r2-https-b, r3-https, scan-https-d) at 1.0.0
+    # publishing network-probing / data-exfiltration payloads under the
+    # attacker's own scope. Scope added to NPM_SUSPECT_SCOPES.
+    # OSV MAL-2026-17764 through MAL-2026-17766, MAL-2026-17808.
     "@s4yhiitestpoc/r2-https": {"1.0.0"},          # MAL-2026-17764
+    "@s4yhiitestpoc/r2-https-b": {"1.0.0"},        # MAL-2026-17808
     "@s4yhiitestpoc/r3-https": {"1.0.0"},          # MAL-2026-17765
     "@s4yhiitestpoc/scan-https-d": {"1.0.0"},      # MAL-2026-17766
     # ─── Oct 11 2026: React versioned-package typosquats ─────────────────────────
@@ -14148,6 +14162,58 @@ NPM_BAD: dict[str, set[str]] = {
     "nitro-bundled-dep": {"1.1.0", "2.0.1", "99.0.1"},                   # MAL-2026-17774
     "nitro-cjs-requirer": {"0.0.1", "1.0.0", "1.1.0", "2.0.0", "3.0.0", "99.0.1"},  # MAL-2026-17775
     "some-very-long-package-name": {"1.0.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},  # MAL-2026-17778
+    # ─── Oct 12 2026: misc npm malware batch ─────────────────────────────────────
+    # css-nesting-transform: malicious CSS-tooling impersonator; version 1.0.0.
+    #   OSV MAL-2026-17804.
+    # ap3-foundations-ui: sentinel dep-confusion (99.0.1); OSV MAL-2026-17806.
+    "css-nesting-transform": {"1.0.0"},                          # MAL-2026-17804
+    "ap3-foundations-ui": {"99.0.1"},                            # MAL-2026-17806
+    # ─── Oct 12 2026: WhatsApp/Baileys typosquat cluster expansion ───────────────
+    # Extension of the Oct 8 Baileys-fork cluster (MAL-2026-17285–17414).
+    # New packages from actors already tracked above: @revizahoshii/ (11 hoshino-*
+    # helper packages), @fazzcodestudio/ (baileys/fbot/mediaformater), @saazkira/
+    # (eslint-config/libsignal-node), @sanzoffc/ (libsignal-node), @modss/ (libsignal),
+    # @alipclutch/ (libsignal-node), @badzz88/ (eslint-config), @mikudeveloper/
+    # (libsignal-node), @ikanngeming/ (blubub/npm), @lekzo_dev/ (amprem),
+    # @wanzlonely/ (bailsforme/bailsme), plus new scopes/unscoped packages.
+    # OSV MAL-2026-17810 through MAL-2026-17846.
+    "@zaka13/zakasite": set(),                                   # MAL-2026-17810 (ANY)
+    "@ikanngeming/blubub": set(),                                # MAL-2026-17811 (ANY)
+    "@ikanngeming/npm": set(),                                   # MAL-2026-17812 (ANY)
+    "@lekzo_dev/amprem": set(),                                  # MAL-2026-17813 (ANY)
+    "@mikudeveloper/libsignal-node": set(),                      # MAL-2026-17814 (ANY)
+    "amprem": set(),                                             # MAL-2026-17815 (ANY)
+    "ikanngeming": set(),                                        # MAL-2026-17816 (ANY)
+    "nakkinpm": set(),                                           # MAL-2026-17817 (ANY)
+    "@alipclutch/libsignal-node": set(),                         # MAL-2026-17818 (ANY)
+    "@badzz88/eslint-config": set(),                             # MAL-2026-17819 (ANY)
+    "@fazzcodestudio/baileys": set(),                            # MAL-2026-17820 (ANY)
+    "@fazzcodestudio/fbot": set(),                               # MAL-2026-17821 (ANY)
+    "@fazzcodestudio/mediaformater": set(),                      # MAL-2026-17822 (ANY)
+    "@modss/libsignal": set(),                                   # MAL-2026-17823 (ANY)
+    "@revizahoshii/hoshino-fake-server": set(),                  # MAL-2026-17824 (ANY)
+    "@revizahoshii/hoshino-mcp-server": set(),                   # MAL-2026-17825 (ANY)
+    "@revizahoshii/hoshino-media-utils": set(),                  # MAL-2026-17826 (ANY)
+    "@revizahoshii/hoshino-native": set(),                       # MAL-2026-17827 (ANY)
+    "@revizahoshii/hoshino-store-mongo": set(),                  # MAL-2026-17828 (ANY)
+    "@revizahoshii/hoshino-store-mysql": set(),                  # MAL-2026-17829 (ANY)
+    "@revizahoshii/hoshino-store-postgres": set(),               # MAL-2026-17830 (ANY)
+    "@revizahoshii/hoshino-store-redis": set(),                  # MAL-2026-17831 (ANY)
+    "@revizahoshii/hoshino-store-sqlite": set(),                 # MAL-2026-17832 (ANY)
+    "@revizahoshii/hoshino-voip": set(),                         # MAL-2026-17833 (ANY)
+    "@revizahoshii/hoshino-wam": set(),                          # MAL-2026-17834 (ANY)
+    "@saazkira/eslint-config": set(),                            # MAL-2026-17835 (ANY)
+    "@saazkira/libsignal-node": set(),                           # MAL-2026-17836 (ANY)
+    "@sanzoffc/libsignal-node": set(),                           # MAL-2026-17837 (ANY)
+    "@wanzlonely/bailsforme": set(),                             # MAL-2026-17838 (ANY)
+    "@wanzlonely/bailsme": set(),                                # MAL-2026-17839 (ANY)
+    "@wanzlonelyy/bailslonely": set(),                           # MAL-2026-17840 (ANY)
+    "@wanzxlonelyy/bailslonely": set(),                          # MAL-2026-17841 (ANY)
+    "@we3js/framework": set(),                                   # MAL-2026-17842 (ANY)
+    "@xrelly-stack/bails": set(),                                # MAL-2026-17843 (ANY)
+    "bailslonely": set(),                                        # MAL-2026-17844 (ANY)
+    "node-telegram-sockets": set(),                              # MAL-2026-17845 (ANY)
+    "@yudzxml/baileys": set(),                                   # MAL-2026-17846 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14455,9 +14521,43 @@ NPM_SUSPECT_SCOPES = (
     # @coopeuch/ dep-confusion scope (Oct 11 2026) — 5 packages pinned above;
     # (OSV MAL-2026-17759–17763); scope catches any additional @coopeuch packages
     "@coopeuch/",
-    # @s4yhiitestpoc/ attacker-controlled PoC scope (Oct 11 2026) — 3 packages pinned above
-    # (OSV MAL-2026-17764–17766); scope catches any additional @s4yhiitestpoc packages
+    # @s4yhiitestpoc/ attacker-controlled PoC scope (Oct 11–12 2026) — 4 packages pinned above
+    # (OSV MAL-2026-17764–17766/17808); scope catches any additional @s4yhiitestpoc packages
     "@s4yhiitestpoc/",
+    # Oct 12 2026 Baileys/WhatsApp fork cluster expansion — new attacker-controlled scopes
+    # @dransay/ dep-confusion scope (Oct 8–12 2026) — 8 packages pinned above;
+    # scope catches any further @dransay packages
+    "@dransay/",
+    # @revizahoshii/ WhatsApp/messaging malware scope (Oct 8–12 2026) — 13 packages pinned above
+    # (baileys, hoshino, + 11 hoshino-* helpers); scope catches any additional packages
+    "@revizahoshii/",
+    # @fazzcodestudio/ WhatsApp malware scope (Oct 2–12 2026) — 4 packages pinned above
+    # (wa-web, baileys, fbot, mediaformater); scope catches any additional packages
+    "@fazzcodestudio/",
+    # @ikanngeming/ WhatsApp malware scope (Oct 8–12 2026) — 3 packages pinned above
+    # (ikannbail, blubub, npm); scope catches any additional packages
+    "@ikanngeming/",
+    # @saazkira/ WhatsApp malware scope (Oct 8–12 2026) — 3 packages pinned above
+    # (baileys, eslint-config, libsignal-node); scope catches any additional packages
+    "@saazkira/",
+    # @wanzlonely/ WhatsApp malware scope (Oct 8–12 2026) — 3 packages pinned above
+    # (bails4u, bailsforme, bailsme); scope catches any additional packages
+    "@wanzlonely/",
+    # @mikudeveloper/ WhatsApp malware scope (Oct 8–12 2026) — 3 packages pinned above
+    # (baileys, grace, libsignal-node); scope catches any additional packages
+    "@mikudeveloper/",
+    # @badzz88/ WhatsApp malware scope (Oct 8–12 2026) — 2 packages pinned above
+    # (baileys, eslint-config); scope catches any additional packages
+    "@badzz88/",
+    # @we3js/ attacker-controlled scope (Oct 12 2026) — framework pinned above
+    "@we3js/",
+    # @xrelly-stack/ WhatsApp malware scope (Oct 12 2026) — bails pinned above
+    "@xrelly-stack/",
+    # @yudzxml/ WhatsApp malware scope (Oct 12 2026) — baileys pinned above
+    "@yudzxml/",
+    # @wanzlonelyy/ and @wanzxlonelyy/ attacker-controlled scopes (Oct 12 2026)
+    "@wanzlonelyy/",
+    "@wanzxlonelyy/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
