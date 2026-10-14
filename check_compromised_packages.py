@@ -2117,6 +2117,19 @@ PYPI_BAD: dict[str, set[str]] = {
     "minecraftaccfinder": {"0.1.0", "0.1.1", "0.1.2", "0.3.0", "0.3.1",
                            "0.4.0", "2.0.0", "3.0.0"},                        # MAL-2026-17809
     "npp-ml": {"0.1.7", "0.1.8", "0.1.9"},                                    # MAL-2026-17847
+    # ─── Oct 13–14 2026: PyPI infostealer cluster ────────────────────────────────
+    # sysdiagd: Discord bot infostealer disguised as a system monitoring tool;
+    #   versions 1.2.1–1.2.3. Detected by kam193. OSV MAL-2026-17861.
+    # fontcase: downloads and executes an infostealer on import; versions 0.1.0–0.1.2.
+    #   Detected by kam193. OSV MAL-2026-17862.
+    # crelic-bqwheel-52f66a3f1d: exfiltrates environment variables from BigQuery
+    #   UDF contexts; version 0.0.1. Detected by kam193. OSV MAL-2026-17863.
+    # pyyi: fake Python 2 interpreter; registers hostname/OS to attacker C2
+    #   (space-z.ai); version 2.4.1. OSV MAL-2026-17866.
+    "sysdiagd": {"1.2.1", "1.2.2", "1.2.3"},                              # MAL-2026-17861
+    "fontcase": {"0.1.0", "0.1.1", "0.1.2"},                              # MAL-2026-17862
+    "crelic-bqwheel-52f66a3f1d": {"0.0.1"},                               # MAL-2026-17863
+    "pyyi": {"2.4.1"},                                                     # MAL-2026-17866
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14214,6 +14227,49 @@ NPM_BAD: dict[str, set[str]] = {
     "bailslonely": set(),                                        # MAL-2026-17844 (ANY)
     "node-telegram-sockets": set(),                              # MAL-2026-17845 (ANY)
     "@yudzxml/baileys": set(),                                   # MAL-2026-17846 (ANY)
+    # ─── Oct 13 2026: Baileys malware cluster continuation (chatest) ─────────────
+    # @chatest/baileys extends the Oct 8–12 Baileys-fork malware family.
+    # GHSA-c2gc-jwcq-w8r3 / OSV MAL-2026-17850.
+    "@chatest/baileys": set(),                                   # MAL-2026-17850 (ANY)
+    # ─── Oct 13 2026: opencode2 typosquat cluster ────────────────────────────────
+    # Nine packages impersonating sst/opencode (the SST open-source AI coding tool)
+    # and its platform-specific binary sub-packages. GHSA records confirm full
+    # compromise on all versions. OSV MAL-2026-17852 through MAL-2026-17860.
+    "opencode2": set(),                                          # MAL-2026-17852 (ANY)
+    "opencode2-darwin-arm64": set(),                             # MAL-2026-17853 (ANY)
+    "opencode2-darwin-x64": set(),                               # MAL-2026-17854 (ANY)
+    "opencode2-linux-arm64": set(),                              # MAL-2026-17855 (ANY)
+    "opencode2-linux-arm64-musl": set(),                         # MAL-2026-17856 (ANY)
+    "opencode2-linux-x64": set(),                                # MAL-2026-17857 (ANY)
+    "opencode2-linux-x64-musl": set(),                           # MAL-2026-17858 (ANY)
+    "opencode2-windows-arm64": set(),                            # MAL-2026-17859 (ANY)
+    "opencode2-windows-x64": set(),                              # MAL-2026-17860 (ANY)
+    # ─── Oct 13–14 2026: misc npm malware batch ──────────────────────────────────
+    # orderly-plugin-liquidity-heatmap: fake Orderly Network liquidity-heatmap
+    #   plugin; postinstall script exfiltrates GitHub Actions OIDC tokens;
+    #   versions 1.0.0–1.0.4 and 1.0.6. OSV MAL-2026-17848.
+    # brass-common: OpenSSF Package Analysis detection; sentinel version 99.9.1
+    #   (dep-confusion pattern). OSV MAL-2026-17849.
+    # yoodan-github-single-ver-pkg: GHSA-confirmed full compromise; version 1.0.1.
+    #   GHSA-2946-w5c6-hcw2 / OSV MAL-2026-17851.
+    # passwordcracker: fake Discord MFA library pulling external payload from
+    #   attacker GitHub repo; Windows C2 downloader. GHSA-confirmed wildcard.
+    #   OSV MAL-2026-17864.
+    # passwordcrackv2: variant of passwordcracker. GHSA-confirmed wildcard.
+    #   OSV MAL-2026-17865.
+    # @accenturecodefoundry/mfe-pot-shared-ui-scds-core: dep-confusion against
+    #   Accenture CodeFoundry internal scope; preinstall exfiltrates hostname/
+    #   username to attacker Azure endpoint; sentinel versions 99.99.x.
+    #   OSV MAL-2026-17867.
+    # @kre64/hello-npm-test: GHSA-confirmed fully-compromised package; version 1.0.0.
+    #   GHSA-c43r-xf4h-m548 / OSV MAL-2026-17868.
+    "orderly-plugin-liquidity-heatmap": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.6"},  # MAL-2026-17848
+    "brass-common": {"99.9.1"},                                  # MAL-2026-17849
+    "yoodan-github-single-ver-pkg": {"1.0.1"},                   # MAL-2026-17851
+    "passwordcracker": set(),                                    # MAL-2026-17864 (ANY)
+    "passwordcrackv2": set(),                                    # MAL-2026-17865 (ANY)
+    "@accenturecodefoundry/mfe-pot-shared-ui-scds-core": {"99.99.2", "99.99.4", "99.99.41"},  # MAL-2026-17867
+    "@kre64/hello-npm-test": {"1.0.0"},                          # MAL-2026-17868
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
