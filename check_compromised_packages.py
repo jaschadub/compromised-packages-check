@@ -2130,6 +2130,10 @@ PYPI_BAD: dict[str, set[str]] = {
     "fontcase": {"0.1.0", "0.1.1", "0.1.2"},                              # MAL-2026-17862
     "crelic-bqwheel-52f66a3f1d": {"0.0.1"},                               # MAL-2026-17863
     "pyyi": {"2.4.1"},                                                     # MAL-2026-17866
+    # ─── Oct 14 2026: credit card checker cluster ─────────────────────────────────────────
+    # saeka: mass credit card checker abusing real online retail services to validate
+    #   card data; versions 1.0.0, 1.2.0–1.2.3. Detected by kam193. OSV MAL-2026-17877.
+    "saeka": {"1.0.0", "1.2.0", "1.2.1", "1.2.2", "1.2.3"},              # MAL-2026-17877
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14270,6 +14274,35 @@ NPM_BAD: dict[str, set[str]] = {
     "passwordcrackv2": set(),                                    # MAL-2026-17865 (ANY)
     "@accenturecodefoundry/mfe-pot-shared-ui-scds-core": {"99.99.2", "99.99.4", "99.99.41"},  # MAL-2026-17867
     "@kre64/hello-npm-test": {"1.0.0"},                          # MAL-2026-17868
+    # ─── Oct 13–15 2026: dep-confusion cluster (conx3993 / priyashareek) + attacker scopes ──
+    # @mntv-analysis/ui, ui-components, workspaces-components: dep-confusion by npm user
+    #   'conx3993'; sentinel versions outrank internal packages; preinstall runs index.js
+    #   and exfiltrates env. introduced:0 (whole scope malicious). OSV MAL-2026-17869/17870/17871.
+    # @newspage/lib-ng-async-routes-ui, libx-amount: dep-confusion by 'priyashareek'
+    #   targeting @accenturecodefoundry and @newspage internal scopes; 99.99.x sentinel
+    #   versions; index.js exfiltrates env to attacker endpoint. introduced:0.
+    #   OSV MAL-2026-17872/17873.
+    # @user-interface-common/common-styles: dep-confusion by 'conx3993'; preinstall
+    #   exfiltrates env. introduced:0. OSV MAL-2026-17874.
+    # monkey-tags-ip: dep-confusion by 'conx3993'; preinstall 'ip.js' exfiltrates env
+    #   and host identity. introduced:0. OSV MAL-2026-17875.
+    # @xxxfnbs21/hello-demo: fully-compromised attacker package; computer fully compromised
+    #   on install. GHSA-hf57-6wg3-343x / OSV MAL-2026-17876.
+    # util-foriepft: published by 'regex33-hackerone'; thunderboltRegistry.js runs host
+    #   commands via child_process and exfiltrates output; version 1.0.0. OSV MAL-2026-17878.
+    # @flexmr/ui: dep-confusion beacon; beacon.js (preinstall/install/postinstall) sends
+    #   hostname + identity to 177.7.60.239:48080 and encodes hostname in DNS lookup;
+    #   sentinel version 99.99.99. OSV MAL-2026-17879.
+    "@mntv-analysis/ui": set(),                                          # MAL-2026-17869 (ANY)
+    "@mntv-analysis/ui-components": set(),                               # MAL-2026-17870 (ANY)
+    "@mntv-analysis/workspaces-components": set(),                       # MAL-2026-17871 (ANY)
+    "@newspage/lib-ng-async-routes-ui": set(),                           # MAL-2026-17872 (ANY)
+    "@newspage/libx-amount": set(),                                      # MAL-2026-17873 (ANY)
+    "@user-interface-common/common-styles": set(),                       # MAL-2026-17874 (ANY)
+    "monkey-tags-ip": set(),                                             # MAL-2026-17875 (ANY)
+    "@xxxfnbs21/hello-demo": {"0.1.2", "0.1.3", "0.1.5", "0.1.6", "0.1.8"},  # MAL-2026-17876
+    "util-foriepft": {"1.0.0"},                                          # MAL-2026-17878
+    "@flexmr/ui": {"99.99.99"},                                          # MAL-2026-17879
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14614,6 +14647,18 @@ NPM_SUSPECT_SCOPES = (
     # @wanzlonelyy/ and @wanzxlonelyy/ attacker-controlled scopes (Oct 12 2026)
     "@wanzlonelyy/",
     "@wanzxlonelyy/",
+    # @mntv-analysis/ dep-confusion scope (Oct 13 2026) — ui/ui-components/workspaces-components
+    # pinned above (conx3993 actor); scope catches any additional @mntv-analysis packages
+    "@mntv-analysis/",
+    # @newspage/ dep-confusion scope (Oct 13 2026) — lib-ng-async-routes-ui + libx-amount
+    # pinned above (priyashareek actor, companion to @accenturecodefoundry campaign)
+    "@newspage/",
+    # @user-interface-common/ dep-confusion scope (Oct 13 2026) — common-styles pinned above
+    "@user-interface-common/",
+    # @xxxfnbs21/ attacker-controlled scope (Oct 14 2026) — hello-demo pinned above
+    "@xxxfnbs21/",
+    # @flexmr/ dep-confusion scope (Oct 13 2026) — ui at 99.99.99 pinned above
+    "@flexmr/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
