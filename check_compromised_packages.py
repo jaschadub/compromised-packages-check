@@ -2132,8 +2132,35 @@ PYPI_BAD: dict[str, set[str]] = {
     "pyyi": {"2.4.1"},                                                     # MAL-2026-17866
     # ─── Oct 14 2026: credit card checker cluster ─────────────────────────────────────────
     # saeka: mass credit card checker abusing real online retail services to validate
-    #   card data; versions 1.0.0, 1.2.0–1.2.3. Detected by kam193. OSV MAL-2026-17877.
-    "saeka": {"1.0.0", "1.2.0", "1.2.1", "1.2.2", "1.2.3"},              # MAL-2026-17877
+    #   card data; all published versions malicious. Detected by kam193. OSV MAL-2026-17877.
+    "saeka": {"1.0.0", "1.2.0", "1.2.1", "1.2.2", "1.2.3",
+              "1.3.0", "1.4.0", "1.5.0", "1.6.0", "1.7.0",
+              "1.8.0", "1.8.1", "1.8.2", "2.0", "4.0", "5.0",
+              "6.0", "7.0", "8.0", "9.0", "9.5", "10.0",
+              "11.1", "11.2", "11.9", "15.0"},                             # MAL-2026-17877
+    # ─── Oct 15 2026: kam193 PyPI persistent-backdoor + file-exfil cluster ───────────────
+    # seapy-ops: advertised local file analysis tool; conceals folder collection and
+    #   upload behind an unlock gate; once unlocked recursively exfiltrates file contents.
+    #   Detected by ossf-package-analysis. OSV MAL-2026-17880.
+    # py-sock2: installs a persistent job allowing remote command execution on the host.
+    #   Detected by kam193. OSV MAL-2026-17881.
+    # py-worm: installs a persistent job allowing remote command execution on the host.
+    #   Three published versions. Detected by kam193. OSV MAL-2026-17883.
+    # getpubip: downloads and executes obfuscated malware on import; versions 0.1.0–0.1.2.
+    #   Detected by kam193. OSV MAL-2026-17884.
+    # proxyrubika / proxy-rubikis / proxyrobika: automated file exfiltration cluster —
+    #   three variant names, same actor. version 0.1.0 each. Detected by kam193.
+    #   OSV MAL-2026-17885 / MAL-2026-17887 / MAL-2026-17889.
+    # py-wormgpt: installs a persistent job allowing remote command execution on the host.
+    #   Detected by kam193. OSV MAL-2026-17886.
+    "seapy-ops": {"1.0.0", "1.0.1", "1.0.2", "1.1.0", "1.1.1", "1.1.2", "1.2.1", "1.2.2"},  # MAL-2026-17880
+    "py-sock2": {"0.1.0"},                                                # MAL-2026-17881
+    "py-worm": {"0.1.0", "2.0.0", "2.0.1"},                              # MAL-2026-17883
+    "getpubip": {"0.1.0", "0.1.1", "0.1.2"},                             # MAL-2026-17884
+    "proxyrubika": {"0.1.0"},                                             # MAL-2026-17885
+    "py-wormgpt": {"1.0.0"},                                              # MAL-2026-17886
+    "proxy-rubikis": {"0.1.0"},                                           # MAL-2026-17887
+    "proxyrobika": {"0.1.0"},                                             # MAL-2026-17889
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14303,6 +14330,23 @@ NPM_BAD: dict[str, set[str]] = {
     "@xxxfnbs21/hello-demo": {"0.1.2", "0.1.3", "0.1.5", "0.1.6", "0.1.8"},  # MAL-2026-17876
     "util-foriepft": {"1.0.0"},                                          # MAL-2026-17878
     "@flexmr/ui": {"99.99.99"},                                          # MAL-2026-17879
+    # ─── Oct 15–16 2026: tailwindcss typosquat + @flexmr expansion + malware cluster ────
+    # tailwindcss-uniform: fully malicious typosquat of tailwindcss; any installed version
+    #   compromises the host. GHSA-r7f7-6833-rxh9 / OSV MAL-2026-17882.
+    # @flexmr/utils: dep-confusion beacon; companion to @flexmr/ui (MAL-2026-17879);
+    #   exfiltrates hostname/identity; versions 1.0.0 and 3.0.12. OSV MAL-2026-17888.
+    # @developmentyora/yorakids: fully malicious package in attacker-controlled
+    #   @developmentyora scope; companion to @developmentyora/baileyss; any version
+    #   compromises the host. GHSA-xgr5-84p3-qqmf / OSV MAL-2026-17890.
+    # asistenyorstore: fully malicious npm package; any installed version compromises
+    #   the host. GHSA-qgh5-36wr-3vvw / OSV MAL-2026-17891.
+    # xmd-baileys: fully malicious Baileys/WhatsApp fork; any installed version compromises
+    #   the host. GHSA-m3qf-j9rf-pqrh / OSV MAL-2026-17892.
+    "tailwindcss-uniform": set(),                                        # MAL-2026-17882 (ANY)
+    "@flexmr/utils": {"1.0.0", "3.0.12"},                               # MAL-2026-17888
+    "@developmentyora/yorakids": set(),                                  # MAL-2026-17890 (ANY)
+    "asistenyorstore": set(),                                            # MAL-2026-17891 (ANY)
+    "xmd-baileys": set(),                                                # MAL-2026-17892 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14657,8 +14701,11 @@ NPM_SUSPECT_SCOPES = (
     "@user-interface-common/",
     # @xxxfnbs21/ attacker-controlled scope (Oct 14 2026) — hello-demo pinned above
     "@xxxfnbs21/",
-    # @flexmr/ dep-confusion scope (Oct 13 2026) — ui at 99.99.99 pinned above
+    # @flexmr/ dep-confusion scope (Oct 13 2026) — ui at 99.99.99 / utils 1.0.0+3.0.12 pinned above
     "@flexmr/",
+    # @developmentyora/ attacker-controlled WhatsApp malware scope (Oct 16 2026) —
+    # baileyss + yorakids pinned above; scope catches any additional packages
+    "@developmentyora/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
