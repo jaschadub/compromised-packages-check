@@ -2161,6 +2161,13 @@ PYPI_BAD: dict[str, set[str]] = {
     "py-wormgpt": {"1.0.0"},                                              # MAL-2026-17886
     "proxy-rubikis": {"0.1.0"},                                           # MAL-2026-17887
     "proxyrobika": {"0.1.0"},                                             # MAL-2026-17889
+    # ─── Oct 16 2026: remote-exec infostealer pair ───────────────────────────────────────────
+    # fromthehotel-poems: hides remote-code-execution behind an innocuous function facade;
+    #   v0.1.0. Detected by kam193. OSV MAL-2026-17897.
+    # marocolor: spawns a daemon thread on import that contacts a remote C2;
+    #   v1.0.0. Detected by amazon-inspector / kam193. OSV MAL-2026-17900.
+    "fromthehotel-poems": {"0.1.0"},                                     # MAL-2026-17897
+    "marocolor": {"1.0.0"},                                              # MAL-2026-17900
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14347,6 +14354,47 @@ NPM_BAD: dict[str, set[str]] = {
     "@developmentyora/yorakids": set(),                                  # MAL-2026-17890 (ANY)
     "asistenyorstore": set(),                                            # MAL-2026-17891 (ANY)
     "xmd-baileys": set(),                                                # MAL-2026-17892 (ANY)
+    # ─── Oct 16–17 2026: realwbx.com IP-beacon dep-confusion cluster + itsa-react compromise ─
+    # buyerdashboard, idlive-face-capture-web-development, web-pixels-manager, xapi-lib:
+    #   dep-confusion beacons; preinstall hook runs node index.js which GETs
+    #   https://realwbx.com/ip.php to exfiltrate host identity; inflated sentinel versions.
+    #   OSV MAL-2026-17893/17894/17895/17896.
+    # @flexmr/survey-client / @flexmr/survey-conversation: additional @flexmr/ dep-confusion
+    #   packages (same preinstall beacon pattern as @flexmr/ui/@flexmr/utils); multiple
+    #   sentinel versions. Detected by amazon-inspector. OSV MAL-2026-17898/17899.
+    # itsa-react-focuscontainer / itsa-react-maskedinput: compromised releases of legitimate
+    #   itsa-react component packages; host fully compromised on install.
+    #   GHSA-8c34-p746-v5rq / GHSA-hhr5-rjw6-9hr5. OSV MAL-2026-17910/17911.
+    "buyerdashboard": {"45.3.4"},                                        # MAL-2026-17893
+    "idlive-face-capture-web-development": {"78.8.1"},                   # MAL-2026-17894
+    "web-pixels-manager": {"76.2.4"},                                    # MAL-2026-17895
+    "xapi-lib": {"88.2.5", "88.2.3", "90.2.1", "90.3.1"},              # MAL-2026-17896
+    "@flexmr/survey-client": {"1.0.0", "1.0.12", "3.0.12", "10.0.12", "2.0.12"},    # MAL-2026-17898
+    "@flexmr/survey-conversation": {"1.0.12", "10.0.12", "2.0.12", "1.0.0", "3.0.12"},  # MAL-2026-17899
+    "itsa-react-focuscontainer": {"16.0.10"},                            # MAL-2026-17910
+    "itsa-react-maskedinput": {"16.1.2"},                                # MAL-2026-17911
+    # ─── Oct 16 2026: Baileys/WhatsApp typosquat pair ────────────────────────────────────────
+    # @xatancchii/natabaileys: fully malicious WhatsApp/Baileys fork in attacker-controlled
+    #   @xatancchii/ scope; companion to @xatancchii/velycxbail; any version compromises
+    #   the host. GHSA-cgq9-cff6-pf33. OSV MAL-2026-17901.
+    # parxleys: fully malicious Baileys/WhatsApp fork; any version compromises the host.
+    #   GHSA-rg3c-8x72-6pmc. OSV MAL-2026-17902.
+    "@xatancchii/natabaileys": set(),                                    # MAL-2026-17901 (ANY)
+    "parxleys": set(),                                                   # MAL-2026-17902 (ANY)
+    # ─── Oct 16 2026: @beloved-lenora/ opencode typosquat cluster ────────────────────────────
+    # Seven packages in attacker-controlled @beloved-lenora/ scope masquerading as opencode
+    # sub-packages; any installed version fully compromises the host.
+    # GHSA records: btw GHSA-xv54-6gmc-3xph, goal GHSA-c78h-wwhq-g6j8,
+    # orchestrator GHSA-7wq2-8pc2-wm26, shared-rpc GHSA-8c9g-fwgq-rqq5,
+    # shell-guard GHSA-pm76-w63j-7j29, stats GHSA-f4h2-68pg-ffhj, todo GHSA-9rjq-6mhc-46c5.
+    # OSV MAL-2026-17903 through MAL-2026-17909. Scope added to NPM_SUSPECT_SCOPES.
+    "@beloved-lenora/opencode-btw": set(),                               # MAL-2026-17903 (ANY)
+    "@beloved-lenora/opencode-goal": set(),                              # MAL-2026-17904 (ANY)
+    "@beloved-lenora/opencode-orchestrator": set(),                      # MAL-2026-17905 (ANY)
+    "@beloved-lenora/opencode-shared-rpc": set(),                        # MAL-2026-17906 (ANY)
+    "@beloved-lenora/opencode-shell-guard": set(),                       # MAL-2026-17907 (ANY)
+    "@beloved-lenora/opencode-stats": set(),                             # MAL-2026-17908 (ANY)
+    "@beloved-lenora/opencode-todo": set(),                              # MAL-2026-17909 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14706,6 +14754,10 @@ NPM_SUSPECT_SCOPES = (
     # @developmentyora/ attacker-controlled WhatsApp malware scope (Oct 16 2026) —
     # baileyss + yorakids pinned above; scope catches any additional packages
     "@developmentyora/",
+    # @xatancchii/ WhatsApp malware scope (Oct 16 2026) — velycxbail + natabaileys pinned above
+    "@xatancchii/",
+    # @beloved-lenora/ opencode typosquat scope (Oct 16 2026) — 7 packages pinned above
+    "@beloved-lenora/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
