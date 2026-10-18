@@ -2168,6 +2168,25 @@ PYPI_BAD: dict[str, set[str]] = {
     #   v1.0.0. Detected by amazon-inspector / kam193. OSV MAL-2026-17900.
     "fromthehotel-poems": {"0.1.0"},                                     # MAL-2026-17897
     "marocolor": {"1.0.0"},                                              # MAL-2026-17900
+    # ─── Oct 17 2026: kam193 fake TTS/ASR cluster ────────────────────────────────────────────
+    # Eight packages falsely advertising themselves as TTS (text-to-speech) or ASR
+    # (automatic speech recognition) libraries; all v0.1.0. Detected by kam193.
+    # OSV MAL-2026-17912 through MAL-2026-17920 (excluding 17919).
+    "driftwavets": {"0.1.0"},                                            # MAL-2026-17912
+    "emberlytts": {"0.1.0"},                                             # MAL-2026-17913
+    "glassbeakasr": {"0.1.0"},                                           # MAL-2026-17914
+    "novalithtts": {"0.1.0"},                                            # MAL-2026-17915
+    "pyrechoasr": {"0.1.0"},                                             # MAL-2026-17916
+    "quasitonnts": {"0.1.0"},                                            # MAL-2026-17917
+    "tonemaptts": {"0.1.0"},                                             # MAL-2026-17918
+    "voltswannts": {"0.1.0"},                                            # MAL-2026-17920
+    # ─── Oct 17–18 2026: amazon-inspector infostealers ───────────────────────────────────────
+    # ukraine69: benign-looking __init__.py facade concealing a malicious payload;
+    #   8 versions across 1.2.x. OSV MAL-2026-17919.
+    # leakdeep: presents as an OSINT tool; steals credentials on install/import.
+    #   5 versions. OSV MAL-2026-17921.
+    "ukraine69": {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.5", "1.2.6", "1.2.7", "1.2.8"},  # MAL-2026-17919
+    "leakdeep": {"2.5.0", "2.5.2", "2.6.0", "2.6.4", "2.6.6"},         # MAL-2026-17921
 }
 
 # npm: exact package name -> set of malicious versions.
