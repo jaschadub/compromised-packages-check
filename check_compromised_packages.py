@@ -2187,6 +2187,13 @@ PYPI_BAD: dict[str, set[str]] = {
     #   5 versions. OSV MAL-2026-17921.
     "ukraine69": {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.5", "1.2.6", "1.2.7", "1.2.8"},  # MAL-2026-17919
     "leakdeep": {"2.5.0", "2.5.2", "2.6.0", "2.6.4", "2.6.6"},         # MAL-2026-17921
+    # ─── Oct 18–19 2026: fab-tool typosquat pair ─────────────────────────────────────────────
+    # fabdeploycheck: typosquat of Fabric deployment tooling; ships infostealer payload.
+    #   1 version. OSV MAL-2026-17926.
+    # fabtoolkit: companion typosquat; same attacker, same payload delivery.
+    #   3 versions. OSV MAL-2026-17927.
+    "fabdeploycheck": {"0.1.1"},                                         # MAL-2026-17926
+    "fabtoolkit": {"0.1.0", "0.1.1", "0.1.2"},                          # MAL-2026-17927
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -12821,7 +12828,7 @@ NPM_BAD: dict[str, set[str]] = {
     "radio-player-theme": {"6.0.0"},                                             # MAL-2026-16347
     "bnppf-flag-icons": {"99.99.99"},                                            # MAL-2026-16350
     "@woodpecker-web-shared/components": {"1.20.4", "2.20.5", "4.20.5"},          # MAL-2026-16354
-    "gemini-computer-use": {"0.1.2"},                                            # MAL-2026-16355
+    "gemini-computer-use": {"0.1.2", "0.4.3", "0.4.5"},                         # MAL-2026-16355
     "@asdfaskdjfksadhfkasf/nadaver2": {"102.0.0"},                               # MAL-2026-16357
     "blue-string-formatter-utilss": {"1.2.0"},                                   # MAL-2026-16363
     "bytepack-probe-a7x3": {"1.0.0", "1.0.1"},                                  # MAL-2026-16364
@@ -14414,6 +14421,24 @@ NPM_BAD: dict[str, set[str]] = {
     "@beloved-lenora/opencode-shell-guard": set(),                       # MAL-2026-17907 (ANY)
     "@beloved-lenora/opencode-stats": set(),                             # MAL-2026-17908 (ANY)
     "@beloved-lenora/opencode-todo": set(),                              # MAL-2026-17909 (ANY)
+    # ─── Oct 18–19 2026: mixed dep-confusion + attacker scopes ───────────────────────────────
+    # @pkgship/frpc-linux-arm64: trojanized frp binary distribution; GHSA-753f-gx8g-q88w.
+    #   Version 0.71.0. OSV MAL-2026-17922.
+    # @apexacc/audit + @apexacc/cli: Apex Accelerator malware cluster detected by Elastic
+    #   Security Labs; any installed version fully compromises host.
+    #   OSV MAL-2026-17923/17924. Scope added to NPM_SUSPECT_SCOPES.
+    # @fluxionii/baileys: attacker-controlled WhatsApp Baileys fork; any version malicious.
+    #   GHSA-98x4-5hvc-62qx. OSV MAL-2026-17925. Scope added to NPM_SUSPECT_SCOPES.
+    # @fcsmc/commercial-analytics: dep-confusion beacon at sentinel version 99.9.1.
+    #   OSV MAL-2026-17928.
+    # @fmr-ap149494/apex-base-component: dep-confusion probe at sentinel version 99.9.1;
+    #   @fmr-ap149494 appears to be attacker-controlled. OSV MAL-2026-17929.
+    "@pkgship/frpc-linux-arm64": {"0.71.0"},                             # MAL-2026-17922
+    "@apexacc/audit": set(),                                             # MAL-2026-17923 (ANY)
+    "@apexacc/cli": set(),                                               # MAL-2026-17924 (ANY)
+    "@fluxionii/baileys": set(),                                         # MAL-2026-17925 (ANY)
+    "@fcsmc/commercial-analytics": {"99.9.1"},                           # MAL-2026-17928
+    "@fmr-ap149494/apex-base-component": {"99.9.1"},                     # MAL-2026-17929
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14777,6 +14802,11 @@ NPM_SUSPECT_SCOPES = (
     "@xatancchii/",
     # @beloved-lenora/ opencode typosquat scope (Oct 16 2026) — 7 packages pinned above
     "@beloved-lenora/",
+    # @apexacc/ Apex Accelerator malware scope (Oct 18-19 2026) — audit + cli pinned above;
+    # scope catches any further @apexacc packages from this actor
+    "@apexacc/",
+    # @fluxionii/ WhatsApp Baileys fork malware scope (Oct 19 2026) — baileys pinned above
+    "@fluxionii/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
