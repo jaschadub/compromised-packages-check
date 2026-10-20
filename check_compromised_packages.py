@@ -617,7 +617,18 @@ client malware cluster expansion ×7, @galicia-toolkit dep-confusion ×4,
 @dransay dep-confusion ×7, @bitwardne Bitwarden impersonation ×2, misc
 npm malware ×10; OSV MAL-2026-17665–17711, MAL-2026-3653), and the
 Apache Kafka PyPI dep-confusion cluster Oct 9 2026 (kafka-helmsman,
-kafka-roller; OSV MAL-2026-17702/17703).
+kafka-roller; OSV MAL-2026-17702/17703), the Oct 19 2026 multi-cluster
+batch: sc-geeksquad-core/sc-font-icons dep-confusion pair (MAL-2026-12435/12800),
+WhatsApp Baileys fork cluster (aemath-baileys/aldi02-baileys/item-validator/
+zeroz-baileys; MAL-2026-17930–17933), array-inline typosquat pair
+(MAL-2026-17934/17942), 58-package album-download long-name malware cluster
+(MAL-2026-17953–18043), 33-package short-name alphanumeric cluster
+(MAL-2026-17944–18044), base58x64/bs58x64/bs58x64.js crypto-encoding typosquats
+(MAL-2026-17988–17990), @an1mshnpmb9c84920/ dep-confusion scope 7 packages
+(MAL-2026-18046–18052), 8 fake AI-assistant installer packages
+(api-anthropic/chatgpt-*/claude-desktop-setup/codex-setup/@decoopus/*;
+MAL-2026-18053–18060), and PyPI dep-confusion pair vinted-mocked-apis/asurion
+(MAL-2026-17943/18045).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-08-16
@@ -2194,6 +2205,13 @@ PYPI_BAD: dict[str, set[str]] = {
     #   3 versions. OSV MAL-2026-17927.
     "fabdeploycheck": {"0.1.1"},                                         # MAL-2026-17926
     "fabtoolkit": {"0.1.0", "0.1.1", "0.1.2"},                          # MAL-2026-17927
+    # ─── Oct 19 2026: dep-confusion PyPI probes ──────────────────────────────────────────────
+    # vinted-mocked-apis: dep-confusion beacon impersonating Vinted internal mocked-API library;
+    #   sentinel version 99.0.0. OSV MAL-2026-17943.
+    # asurion: dep-confusion beacon impersonating Asurion internal Python package;
+    #   sentinel version 99.0.0. OSV MAL-2026-18045.
+    "vinted-mocked-apis": {"99.0.0"},                                    # MAL-2026-17943
+    "asurion": {"99.0.0"},                                               # MAL-2026-18045
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14439,6 +14457,178 @@ NPM_BAD: dict[str, set[str]] = {
     "@fluxionii/baileys": set(),                                         # MAL-2026-17925 (ANY)
     "@fcsmc/commercial-analytics": {"99.9.1"},                           # MAL-2026-17928
     "@fmr-ap149494/apex-base-component": {"99.9.1"},                     # MAL-2026-17929
+    # ─── Oct 19 2026: sc-* dep-confusion sentinel pair ────────────────────────────────────────
+    # sc-geeksquad-core + sc-font-icons: dep-confusion probes at sentinel versions 9999.0.0 and
+    #   99.9.1 targeting a Geek Squad / sc-* internal scope. OSV MAL-2026-12435/12800.
+    "sc-geeksquad-core": {"9999.0.0", "99.9.1"},                         # MAL-2026-12435
+    "sc-font-icons": {"9999.0.0", "99.9.1"},                             # MAL-2026-12800
+    # ─── Oct 19 2026: WhatsApp Baileys fork typosquat cluster ─────────────────────────────────
+    # aemath-baileys, aldi02-baileys, zeroz-baileys: attacker-controlled WhatsApp Baileys forks;
+    #   SEMVER >=0 (any version). GHSA-rc7v-fm82-xp4x / GHSA-fm6q-x7qr-xmpw / GHSA-fwfc-f4gp-qrcq.
+    #   OSV MAL-2026-17930/17931/17933.
+    # item-validator: any-version malware masquerading as an input-validation utility;
+    #   SEMVER >=0. GHSA-ff48-h3v7-m43r. OSV MAL-2026-17932.
+    "aemath-baileys": set(),                                             # MAL-2026-17930 (ANY)
+    "aldi02-baileys": set(),                                             # MAL-2026-17931 (ANY)
+    "item-validator": set(),                                             # MAL-2026-17932 (ANY)
+    "zeroz-baileys": set(),                                              # MAL-2026-17933 (ANY)
+    # ─── Oct 19 2026: array-inline typosquat pair ─────────────────────────────────────────────
+    # array-inline-transform: typosquat of array-inline / transform npm utilities; any version.
+    #   GHSA-5hpf-6www-ff38. OSV MAL-2026-17934.
+    # array-inline: squats the array-inline npm name; any version.
+    #   GHSA-4rc9-v9wp-xwrp. OSV MAL-2026-17942.
+    "array-inline-transform": set(),                                     # MAL-2026-17934 (ANY)
+    "array-inline": set(),                                               # MAL-2026-17942 (ANY)
+    # ─── Oct 19 2026: throwaway-name random npm malware cluster ──────────────────────────────
+    # Seven packages published as part of a throwaway-identity campaign; random names, any version.
+    # OSV MAL-2026-17935 through MAL-2026-17941.
+    "dsjklweuvhgsdcq": set(),                                            # MAL-2026-17935 (ANY)
+    "mx3dxhgic8xhd6": set(),                                             # MAL-2026-17936 (ANY)
+    "mxckjdgweuxpsiohd": set(),                                          # MAL-2026-17937 (ANY)
+    "nsdhjuiwqxmhsf1": set(),                                            # MAL-2026-17938 (ANY)
+    "ticketcathayoct12": set(),                                          # MAL-2026-17939 (ANY)
+    "vjkpwjxbvndelta": set(),                                            # MAL-2026-17940 (ANY)
+    "zxhgssiyluwxchn": set(),                                            # MAL-2026-17941 (ANY)
+    # ─── Oct 19 2026: album-download long-name npm malware cluster (58 packages) ─────────────
+    # Batch of packages using long music-album-download names as package identifiers; each is a
+    # pure-malware package with no legitimate use (SEMVER >=0 range). OSV MAL-2026-17953 through
+    # MAL-2026-18043 (non-contiguous). All pass the active-record gate.
+    "a-lbum-do-wnload-avai-lable-file-10635-about-to-choke-pzt0k-onnsvp": set(),    # MAL-2026-17953 (ANY)
+    "a-lbum-do-wnload-avai-lable-file-11522-seven-and-the-ragged-tiger-bkmqg-xorids": set(),  # MAL-2026-17954 (ANY)
+    "a-lbum-do-wnload-avai-lable-file-2019-138062-i-need-a-new-war-pp6yu-vclmgu": set(),  # MAL-2026-17955 (ANY)
+    "a-lbum-do-wnload-avai-lable-file-36733-tchamantche-9uiic-rfzaip": set(),       # MAL-2026-17956 (ANY)
+    "a-lbum-do-wnload-avai-lable-file-playing-the-angel-l9tng-nkbcwn": set(),       # MAL-2026-17957 (ANY)
+    "a-vailable-al-bum-513977-rant-in-e-minor-lybr0-bdhlsb": set(),                 # MAL-2026-17958 (ANY)
+    "a-vailable-al-bum-file-101379-communion-mt1lk-dvshll": set(),                  # MAL-2026-17959 (ANY)
+    "a-vailable-al-bum-file-19105-filles-de-kilimanjaro-4syt9-khnipp": set(),       # MAL-2026-17960 (ANY)
+    "a-vailable-al-bum-file-2015-39171-harmlessness-khwlm-ihtwah": set(),           # MAL-2026-17961 (ANY)
+    "a-vailable-al-bum-file-30258-secrets-of-the-beehive-rk1pl-vebirt": set(),      # MAL-2026-17962 (ANY)
+    "a-vailable-al-bum-file-36850-other-peoples-lives-vys1z-fuucqk": set(),         # MAL-2026-17963 (ANY)
+    "a-vailable-al-bum-file-the-world-wont-end-7io2n-pbncia": set(),                # MAL-2026-17964 (ANY)
+    "alb-um-availa-ble-zip-mp3-file-31673-finally-1m7lu-usrooy": set(),             # MAL-2026-17965 (ANY)
+    "alb-um-availa-ble-zip-mp3-file-43838-stories-of-the-years-sslgg-bqfcko": set(),  # MAL-2026-17966 (ANY)
+    "alb-um-availa-ble-zip-mp3-file-43857-green-light-mrpup-qmtshy": set(),         # MAL-2026-17967 (ANY)
+    "alb-um-availa-ble-zip-mp3-file-470287-watch-my-moves-2zscf-aatbzj": set(),     # MAL-2026-17968 (ANY)
+    "alb-um-availa-ble-zip-mp3-file-6053-the-specials-giqmz-flbewh": set(),         # MAL-2026-17969 (ANY)
+    "alb-um-availa-ble-zip-mp3-file-someone-to-drive-you-home-vbwzp-koufrz": set(), # MAL-2026-17970 (ANY)
+    "ava-ilable-down-load-mp3-today-157397-polymer-0dwv9-btizmd": set(),             # MAL-2026-17972 (ANY)
+    "ava-ilable-down-load-mp3-today-2018-120200-young-sick-camellia-qvg9z-dqpzyh": set(),  # MAL-2026-17973 (ANY)
+    "ava-ilable-down-load-mp3-today-35981-saints-and-sinners-mv3po-fqndxw": set(),   # MAL-2026-17974 (ANY)
+    "ava-ilable-down-load-mp3-today-5767-all-eyez-on-me-9vh62-ohwdae": set(),        # MAL-2026-17975 (ANY)
+    "ava-ilable-down-load-mp3-today-75491-life-after-youth-hfdu7-yzwkck": set(),     # MAL-2026-17976 (ANY)
+    "avail-able-albu-m-down-load-6807-yo-bum-rush-the-show-tq11q-lqcaye": set(),     # MAL-2026-17977 (ANY)
+    "avail-able-albu-m-down-load-9815-young-americans-vygt4-atskbj": set(),          # MAL-2026-17978 (ANY)
+    "avail-able-albu-m-down-load-almanac-tdedm-bajrnj": set(),                       # MAL-2026-17979 (ANY)
+    "availab-le-alb-um-zip-101158-the-louder-i-call-the-faster-it-runs-64ggm-khmrzg": set(),  # MAL-2026-17980 (ANY)
+    "availab-le-alb-um-zip-2022-482703-broken-hearts-club-bhvqx-hxwudi": set(),     # MAL-2026-17981 (ANY)
+    "availab-le-alb-um-zip-211740-city-burials-xwcy6-bhxnvc": set(),                # MAL-2026-17982 (ANY)
+    "availab-le-alb-um-zip-38895-crimes-of-passion-oeiro-wmybis": set(),             # MAL-2026-17983 (ANY)
+    "availab-le-alb-um-zip-56502-interstellar-space-1qv3j-xsmien": set(),            # MAL-2026-17984 (ANY)
+    "availab-le-alb-um-zip-hope-for-men-wmh1o-fjstib": set(),                        # MAL-2026-17985 (ANY)
+    "availab-le-alb-um-zip-music-is-rotted-one-note-7chcp-frcmmy": set(),            # MAL-2026-17986 (ANY)
+    "availab-le-alb-um-zip-the-visitor-l1n8t-frzacy": set(),                         # MAL-2026-17987 (ANY)
+    "do-wnload-available-2013-5195-ripley-pine-zoryg-cyvlnz": set(),                 # MAL-2026-17991 (ANY)
+    "do-wnload-available-2016-44937-in-the-magic-hour-xgzaj-txvlft": set(),          # MAL-2026-17992 (ANY)
+    "do-wnload-available-20999-ruff-ryders-first-lady-6wp8i-xhznkl": set(),          # MAL-2026-17993 (ANY)
+    "do-wnload-available-61075-you-think-you-really-know-me-1-c368u-jspcon": set(),  # MAL-2026-17994 (ANY)
+    "do-wnload-available-f2oap-wvzhe9": set(),                                       # MAL-2026-17995 (ANY)
+    "do-wnload-available-mulatu-steps-ahead-ag2jn-fzxotp": set(),                    # MAL-2026-17996 (ANY)
+    "do-wnload-available-provincial-q7d0i-muzxoj": set(),                            # MAL-2026-17997 (ANY)
+    "do-wnload-available-the-white-stripes-1-yywrn-pvfqxa": set(),                   # MAL-2026-17998 (ANY)
+    "down-lo-ad-now-zip-mp3-116827-chaos-is-me-rj9kf-abdorv": set(),                 # MAL-2026-17999 (ANY)
+    "down-lo-ad-now-zip-mp3-12737-talking-book-grhl4-lwvpqw": set(),                 # MAL-2026-18000 (ANY)
+    "down-lo-ad-now-zip-mp3-390322-the-silver-scream-2-welcome-to-horrorwood-4a2qf-tjkdio": set(),  # MAL-2026-18001 (ANY)
+    "down-lo-ad-now-zip-mp3-6140-the-ideal-crash-jysrl-jcdvdw": set(),               # MAL-2026-18002 (ANY)
+    "down-lo-ad-now-zip-mp3-duppy-writer-9bxwq-qpdzyd": set(),                       # MAL-2026-18003 (ANY)
+    "down-lo-ad-now-zip-mp3-year-of-the-gentleman-8mpja-vdihqg": set(),              # MAL-2026-18004 (ANY)
+    "down-load-available-zip-now-12673-dirt-farmer-jn0vw-rkwppg": set(),             # MAL-2026-18005 (ANY)
+    "down-load-available-zip-now-265533-the-safeway-elhem-xoyofv": set(),            # MAL-2026-18006 (ANY)
+    "down-load-available-zip-now-42301-gloria-tp7wn-dcxkwl": set(),                  # MAL-2026-18007 (ANY)
+    "down-load-available-zip-now-8238-bricks-are-heavy-0v3kh-yluceh": set(),         # MAL-2026-18008 (ANY)
+    "file-alb-um-zip-new-mp3-32338-think-before-you-speak-9znpc-akvcbt": set(),      # MAL-2026-18012 (ANY)
+    "mp3-do-wnload-file-to-day-27091-usa-united-state-of-atlanta-xoisl-pqpsio": set(),  # MAL-2026-18023 (ANY)
+    "mp3-do-wnload-file-to-day-d-nu951-cjkdsy": set(),                               # MAL-2026-18024 (ANY)
+    "mp3-file-zip-d-ownload-10759-grand-prix-ojzwj-auchhw": set(),                   # MAL-2026-18025 (ANY)
+    "mp3-file-zip-d-ownload-48120-lost-nation-road-0cibe-ynawhz": set(),             # MAL-2026-18026 (ANY)
+    "mp3-file-zip-d-ownload-challengers-ym2l6-mkqhum": set(),                        # MAL-2026-18027 (ANY)
+    "mp3-file-zip-d-ownload-hearts-of-oak-7cyqu-oiygcz": set(),                      # MAL-2026-18028 (ANY)
+    "mp3-file-zip-d-ownload-hypnotize-kpkk0-ygzaqq": set(),                          # MAL-2026-18029 (ANY)
+    "new-al-bum-av-ailable-131000-eton-alive-qzngy-cjxczf": set(),                   # MAL-2026-18030 (ANY)
+    "new-al-bum-av-ailable-50924-satta-massagana-rje2z-lfxsfe": set(),               # MAL-2026-18031 (ANY)
+    "new-al-bum-av-ailable-girls-can-tell-ccfoc-vmqodd": set(),                      # MAL-2026-18032 (ANY)
+    "zip-mp3-a-lbum-do-wnload-new-392999-fantasy-island-wlvf4-bxyvtm": set(),        # MAL-2026-18042 (ANY)
+    "zip-mp3-a-lbum-do-wnload-new-67476-what-we-do-egj2h-bgfgzz": set(),             # MAL-2026-18043 (ANY)
+    # ─── Oct 19 2026: short-name (6-char alphanumeric) npm malware cluster (33 packages) ─────
+    # Batch of 33 packages using 6-character random alphanumeric identifiers as package names;
+    # each is a pure-malware throwaway with no legitimate use (SEMVER >=0). OSV MAL-2026-17944
+    # through MAL-2026-18044 (non-contiguous).
+    "1n9lip": set(),   # MAL-2026-17944 (ANY)
+    "3gr2dj": set(),   # MAL-2026-17945 (ANY)
+    "3gr841": set(),   # MAL-2026-17946 (ANY)
+    "3qamjp": set(),   # MAL-2026-17947 (ANY)
+    "4p9kgm": set(),   # MAL-2026-17948 (ANY)
+    "5k5t5q": set(),   # MAL-2026-17949 (ANY)
+    "5xzkuy": set(),   # MAL-2026-17950 (ANY)
+    "8h66ok": set(),   # MAL-2026-17951 (ANY)
+    "8i7pp4": set(),   # MAL-2026-17952 (ANY)
+    "aqj3w7": set(),   # MAL-2026-17971 (ANY)
+    "esgbz5": set(),   # MAL-2026-18009 (ANY)
+    "f0klcr": set(),   # MAL-2026-18010 (ANY)
+    "f4iomt": set(),   # MAL-2026-18011 (ANY)
+    "g23p4g": set(),   # MAL-2026-18013 (ANY)
+    "g8ez1y": set(),   # MAL-2026-18014 (ANY)
+    "giu094": set(),   # MAL-2026-18015 (ANY)
+    "gtjgd4": set(),   # MAL-2026-18016 (ANY)
+    "ivzlid": set(),   # MAL-2026-18017 (ANY)
+    "j019qc": set(),   # MAL-2026-18018 (ANY)
+    "j5opb7": set(),   # MAL-2026-18019 (ANY)
+    "ju0oud": set(),   # MAL-2026-18020 (ANY)
+    "ljem3j": set(),   # MAL-2026-18021 (ANY)
+    "lstsyw": set(),   # MAL-2026-18022 (ANY)
+    "noe77e": set(),   # MAL-2026-18033 (ANY)
+    "oo9fja": set(),   # MAL-2026-18034 (ANY)
+    "rhlozh": set(),   # MAL-2026-18035 (ANY)
+    "rvmbnj": set(),   # MAL-2026-18036 (ANY)
+    "tkacg3": set(),   # MAL-2026-18037 (ANY)
+    "v49yzy": set(),   # MAL-2026-18038 (ANY)
+    "waojpf": set(),   # MAL-2026-18039 (ANY)
+    "x294tn": set(),   # MAL-2026-18040 (ANY)
+    "ysqp68": set(),   # MAL-2026-18041 (ANY)
+    "zubn7b": set(),   # MAL-2026-18044 (ANY)
+    # ─── Oct 19 2026: base58/bs58 crypto-encoding typosquat trio ─────────────────────────────
+    # base58x64, bs58x64, bs58x64.js: three typosquats of the bs58/base58 encoding libraries
+    #   used widely in Solana/Bitcoin tooling; SEMVER >=0. GHSA-57vp-ppmx-cgc5 /
+    #   GHSA-3xp5-jhc7-xcm9 / GHSA-rhf8-vjg2-4vpv. OSV MAL-2026-17988/17989/17990.
+    "base58x64": set(),                                                  # MAL-2026-17988 (ANY)
+    "bs58x64": set(),                                                    # MAL-2026-17989 (ANY)
+    "bs58x64.js": set(),                                                 # MAL-2026-17990 (ANY)
+    # ─── Oct 19 2026: @an1mshnpmb9c84920/ dep-confusion attacker scope (7 packages) ──────────
+    # Seven packages in attacker-controlled @an1mshnpmb9c84920/ scope; SEMVER >=0.
+    # GHSA-87gv-mmww-whrr / GHSA-mmr7-9m67-9qh5 + 5 more. OSV MAL-2026-18046 through 18052.
+    # Scope added to NPM_SUSPECT_SCOPES.
+    "@an1mshnpmb9c84920/gat-scope-target-125ec19a": set(),               # MAL-2026-18046 (ANY)
+    "@an1mshnpmb9c84920/oidc-cross-cafb9d929e": set(),                   # MAL-2026-18047 (ANY)
+    "@an1mshnpmb9c84920/pipe-compat-m19r8": set(),                       # MAL-2026-18048 (ANY)
+    "@an1mshnpmb9c84920/pipe-dns-m19t2": set(),                          # MAL-2026-18049 (ANY)
+    "@an1mshnpmb9c84920/stage-fn-m19p2": set(),                          # MAL-2026-18050 (ANY)
+    "@an1mshnpmb9c84920/stage-outer-m19s5": set(),                       # MAL-2026-18051 (ANY)
+    "@an1mshnpmb9c84920/stage-repo-m19g7": set(),                        # MAL-2026-18052 (ANY)
+    # ─── Oct 19 2026: fake AI-assistant installer npm malware cluster (8 packages) ───────────
+    # Eight packages impersonating installers or API clients for ChatGPT, Claude (Anthropic),
+    # and OpenAI Codex; all attacker-controlled, SEMVER >=0.
+    # @decoopus/chatgpt-setup GHSA-4632-2g34-4r9w / @decoopus/claude-setup GHSA-p7p5-jrq5-q47x.
+    # api-anthropic GHSA-cj9w-7h22-q93g / chatgpt-desktop-setup GHSA-pgq5-xq28-533m.
+    # chatgpt-pro-activator GHSA-qp43-mgx6-56x2 / chatgpt-pro-setup-tool GHSA-xwx3-5h3q-2v8r.
+    # claude-desktop-setup GHSA-f4mf-vhm8-xxqc / codex-setup GHSA-h8cg-xwfv-9x77.
+    # OSV MAL-2026-18053 through MAL-2026-18060. Scope @decoopus added to NPM_SUSPECT_SCOPES.
+    "@decoopus/chatgpt-setup": set(),                                    # MAL-2026-18053 (ANY)
+    "@decoopus/claude-setup": set(),                                     # MAL-2026-18054 (ANY)
+    "api-anthropic": set(),                                              # MAL-2026-18055 (ANY)
+    "chatgpt-desktop-setup": set(),                                      # MAL-2026-18056 (ANY)
+    "chatgpt-pro-activator": set(),                                      # MAL-2026-18057 (ANY)
+    "chatgpt-pro-setup-tool": set(),                                     # MAL-2026-18058 (ANY)
+    "claude-desktop-setup": set(),                                       # MAL-2026-18059 (ANY)
+    "codex-setup": set(),                                                # MAL-2026-18060 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -14807,6 +14997,11 @@ NPM_SUSPECT_SCOPES = (
     "@apexacc/",
     # @fluxionii/ WhatsApp Baileys fork malware scope (Oct 19 2026) — baileys pinned above
     "@fluxionii/",
+    # @an1mshnpmb9c84920/ dep-confusion attacker scope (Oct 19 2026) — 7 packages pinned above;
+    # entire attacker-controlled scope; scope catches any undisclosed additional packages
+    "@an1mshnpmb9c84920/",
+    # @decoopus/ fake AI-installer scope (Oct 19 2026) — chatgpt-setup + claude-setup pinned above
+    "@decoopus/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
