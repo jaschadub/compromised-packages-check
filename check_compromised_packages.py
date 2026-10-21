@@ -628,7 +628,21 @@ zeroz-baileys; MAL-2026-17930–17933), array-inline typosquat pair
 (MAL-2026-18046–18052), 8 fake AI-assistant installer packages
 (api-anthropic/chatgpt-*/claude-desktop-setup/codex-setup/@decoopus/*;
 MAL-2026-18053–18060), and PyPI dep-confusion pair vinted-mocked-apis/asurion
-(MAL-2026-17943/18045).
+(MAL-2026-17943/18045), the Oct 20 2026 fake-job-interview Tailwind/AnimateCSS
+cluster extension (26 npm packages; animate-tailwind-kit/animate-twcss-bridge/
+tailwind-animate-kit/tailwindcss-keyframe-kit/signalledger-bridge etc.;
+MAL-2026-18065–18090), dep-confusion 99.x npm batch Oct 20 2026 (ccl-global-shopping/
+sc-wizard/fanarena-common/sc-announcer/@platform-services/hrm-mfe-core/memories-core-web/
+ing-feat-itsme-oidc-authentication; MAL-2026-18061–18064/18091/18106/5780), misc npm
+Oct 20–21 2026 (formatting-subtitles-for-claude/tellyo-colours any-version;
+unicode-title-normalizer 1.0.0; @alannxd/baileys 27 versions;
+MAL-2026-18099/18100/18115/18120), workalendar typosquat cluster PyPI Oct 20 2026
+(test-workalendar-internal/workcalender/workalender/pafex/resion;
+MAL-2026-18092–18096), semver/debug typosquat cluster PyPI Oct 20 2026
+(semmver/semveer/semverr/semvver/debbug/deebug/semer/ssemver;
+MAL-2026-18101–18104/18116–18119), and dep-confusion + kam193 random-name
+PyPI probes Oct 20 2026 (facewareretargeter/hijiko-pilaka/hijok-lampam/
+jiklpo-tsunari-kay/trijigo-kalip; MAL-2026-18110–18114).
 
 Author:    Jascha Wanger / Tarnover, LLC
 Date:      2026-08-16
@@ -2212,6 +2226,40 @@ PYPI_BAD: dict[str, set[str]] = {
     #   sentinel version 99.0.0. OSV MAL-2026-18045.
     "vinted-mocked-apis": {"99.0.0"},                                    # MAL-2026-17943
     "asurion": {"99.0.0"},                                               # MAL-2026-18045
+    # ─── Oct 20 2026: workalendar typosquat cluster ──────────────────────────────────────────────
+    # test-workalendar-internal / workcalender / workalender: typosquats of the `workalendar` PyPI
+    #   holiday calendar library; Hatchling build hook runs malicious code during pip install.
+    #   OSV MAL-2026-18092/18093/18096. Source: Amazon Inspector.
+    # resion / pafex: related campaign (kam193 research); resion embeds a pickle disguised as a
+    #   config file; pafex is a companion dependency. OSV MAL-2026-18094/18095.
+    "test-workalendar-internal": {"0.0.1", "0.0.2", "0.0.3"},           # MAL-2026-18092
+    "workcalender": {"17.1.0.dev0"},                                     # MAL-2026-18093
+    "workalender": {"17.1.0.dev0"},                                      # MAL-2026-18096
+    "pafex": {"2.3"},                                                    # MAL-2026-18094
+    "resion": {"22.0.1"},                                                # MAL-2026-18095
+    # ─── Oct 20 2026: semver/debug typosquat cluster (Amazon Inspector + kam193) ─────────────────
+    # semmver / semveer / semverr / semvver: typosquats of `semver`; empty stub packages.
+    #   OSV MAL-2026-18101/18102/18103/18104. Source: Amazon Inspector.
+    # debbug / deebug / semer / ssemver: typosquats of `debug` / `semver`; download and execute
+    #   malicious code on install. OSV MAL-2026-18116/18117/18118/18119. Source: kam193.
+    "semmver": {"1.0.0"},                                                # MAL-2026-18101
+    "semveer": {"1.0.0"},                                                # MAL-2026-18102
+    "semverr": {"1.0.0"},                                                # MAL-2026-18103
+    "semvver": {"1.0.0"},                                                # MAL-2026-18104
+    "debbug": {"1.0.0"},                                                 # MAL-2026-18116
+    "deebug": {"1.0.0"},                                                 # MAL-2026-18117
+    "semer": {"1.0.0"},                                                  # MAL-2026-18118
+    "ssemver": {"1.0.0"},                                                # MAL-2026-18119
+    # ─── Oct 20 2026: dep-confusion and kam193 random-name malware probes ────────────────────────
+    # facewareretargeter: dep-confusion beacon; sentinel version 9.9.9. OSV MAL-2026-18110.
+    # hijiko-pilaka / hijok-lampam / jiklpo-tsunari-kay / trijigo-kalip: random-name PyPI packages
+    #   using fake http-downloaded dependencies to execute malicious code. OSV MAL-2026-18111/
+    #   18112/18113/18114. Source: kam193.
+    "facewareretargeter": {"9.9.9"},                                     # MAL-2026-18110
+    "hijiko-pilaka": {"1.0.0"},                                          # MAL-2026-18111
+    "hijok-lampam": {"1.0.0"},                                           # MAL-2026-18112
+    "jiklpo-tsunari-kay": {"1.0.0"},                                     # MAL-2026-18113
+    "trijigo-kalip": {"1.0.0"},                                          # MAL-2026-18114
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14629,6 +14677,67 @@ NPM_BAD: dict[str, set[str]] = {
     "chatgpt-pro-setup-tool": set(),                                     # MAL-2026-18058 (ANY)
     "claude-desktop-setup": set(),                                       # MAL-2026-18059 (ANY)
     "codex-setup": set(),                                                # MAL-2026-18060 (ANY)
+    # ─── Oct 20 2026: fake job interview Tailwind/AnimateCSS cluster extension (26 packages) ─────
+    # Extended wave of the fake-job-interview Tailwind/Animate.css plugin campaign (see
+    # MAL-2026-17665/17666/17667, already tracked). Same Animate.css integration template,
+    # README and description; private scoped package droppers published by throwaway npm accounts
+    # (johnxia1997, keinsell-jh, scott-rogers, etc.). OSV MAL-2026-18065 through MAL-2026-18090.
+    "animate-tailwind-kit": {"3.0.1", "3.0.4"},                         # MAL-2026-18065
+    "animate-twcss-bridge": {"2.0.6"},                                  # MAL-2026-18066
+    "animate-twcss-pack": {"2.0.6"},                                    # MAL-2026-18067
+    "animatecss-tailwind-binary": {"2.0.6"},                            # MAL-2026-18068
+    "animatecss-tailwind-graphic": {"2.0.6"},                           # MAL-2026-18069
+    "animatecss-tailwind-helper": {"2.0.6"},                            # MAL-2026-18070
+    "animatecss-tailwind-luminary": {"2.0.6", "2.0.7"},                 # MAL-2026-18071
+    "animatecss-tailwind-plugin": {"2.0.6"},                            # MAL-2026-18072
+    "animatecss-tailwind-presets": {"1.0.0", "2.0.3"},                  # MAL-2026-18073
+    "animatecss-tailwind-vectrix": {"2.0.6", "2.0.7"},                  # MAL-2026-18074
+    "signalledger-bridge": {"2.0.6"},                                   # MAL-2026-18075
+    "signalledger-diagnostics": {"2.0.6"},                              # MAL-2026-18076
+    "tailwind-animaflow-kit": {"2.0.6"},                                # MAL-2026-18077
+    "tailwind-animate-kit": {"2.0.6", "2.0.7", "2.0.8"},               # MAL-2026-18078
+    "tailwind-animatecss-kit": {"2.0.6"},                               # MAL-2026-18079
+    "tailwind-animationlab": {"2.0.6"},                                 # MAL-2026-18080
+    "tailwind-css-keyframes": {"1.0.7"},                                # MAL-2026-18081
+    "tailwind-fabric": {"3.0.1", "3.0.4"},                              # MAL-2026-18082
+    "tailwind-keyframes": {"2.0.6"},                                    # MAL-2026-18083
+    "tailwind-kinetic": {"2.0.6", "2.0.8"},                             # MAL-2026-18084
+    "tailwindcss-animate-catalog": {"2.0.6", "2.0.7"},                  # MAL-2026-18085
+    "tailwindcss-animatemotion": {"1.0.7"},                             # MAL-2026-18086
+    "tailwindcss-effect-lab": {"0.0.0-stage", "1.6.7"},                 # MAL-2026-18087
+    "tailwindcss-keyframe-kit": {"3.0.0", "3.0.1", "3.0.2"},           # MAL-2026-18088
+    "tailwindcss-motionanimate": {"1.0.1"},                             # MAL-2026-18089
+    "tailwindcss-visual-kit": {"0.0.0-stage", "1.3.6"},                 # MAL-2026-18090
+    # ─── Oct 20 2026: dep-confusion 99.x npm batch ───────────────────────────────────────────────
+    # Seven packages with sentinel dep-confusion versions (99.x): ccl-global-shopping, sc-wizard,
+    # fanarena-common, sc-announcer (all 99.9.1); @platform-services/hrm-mfe-core (99.9.1);
+    # memories-core-web (99.0.0); ing-feat-itsme-oidc-authentication (99.99.99 + 99.9.1).
+    # OSV MAL-2026-18061/18062/18063/18064/18091/18106/5780.
+    "ccl-global-shopping": {"99.9.1"},                                  # MAL-2026-18061
+    "sc-wizard": {"99.9.1"},                                            # MAL-2026-18062
+    "fanarena-common": {"99.9.1"},                                      # MAL-2026-18063
+    "sc-announcer": {"99.9.1"},                                         # MAL-2026-18064
+    "@platform-services/hrm-mfe-core": {"99.9.1"},                      # MAL-2026-18091
+    "memories-core-web": {"99.0.0"},                                    # MAL-2026-18106
+    "ing-feat-itsme-oidc-authentication": {"99.99.99", "99.9.1"},       # MAL-2026-5780
+    # ─── Oct 20–21 2026: misc npm full-compromise and infostealer packages ────────────────────────
+    # formatting-subtitles-for-claude: any version is malicious (GHSA-malware; SEMVER >=0).
+    #   OSV MAL-2026-18099.
+    # tellyo-colours: any version is malicious (GHSA-malware; SEMVER >=0).
+    #   OSV MAL-2026-18115.
+    # unicode-title-normalizer: npm install lifecycle script malware (Amazon Inspector).
+    #   1 version (1.0.0). OSV MAL-2026-18100.
+    # @alannxd/baileys: full account compromise; 27 malicious versions (GHSA-malware).
+    #   OSV MAL-2026-18120.
+    "formatting-subtitles-for-claude": set(),                           # MAL-2026-18099 (ANY)
+    "tellyo-colours": set(),                                            # MAL-2026-18115 (ANY)
+    "unicode-title-normalizer": {"1.0.0"},                              # MAL-2026-18100
+    "@alannxd/baileys": {"6.2.8", "6.2.7", "6.1.7", "6.1.6", "6.1.4",
+                         "6.1.3", "6.1.2", "6.1.1", "6.1.0", "6.0.9",
+                         "6.0.6", "6.0.5", "6.0.4", "6.0.3", "6.0.2",
+                         "6.0.1", "6.0.0", "5.0.6", "5.0.5", "4.0.4",
+                         "4.0.5", "4.0.3", "3.0.3", "3.0.0", "2.1.4",
+                         "2.1.3", "2.1.2"},                             # MAL-2026-18120
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
