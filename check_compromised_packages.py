@@ -695,7 +695,7 @@ PYPI_BAD: dict[str, set[str]] = {
     "dydx-v4-client": {"1.1.5.post1"},
     # TeamPCP / Trivy CI credential-steal cascade (March 2026)
     # litellm: GHSA-5mg7-485q-xm76 (Datadog, Snyk, Sonatype, Wiz, Endor Labs, Truesec)
-    "litellm": {"1.82.7", "1.82.8"},
+    "litellm": {"1.82.7", "1.82.8", "1.107.0"},
     # telnyx: GHSA-955r-262c-33jc (Akamai, Help Net Security, Mend, Hexastrike)
     "telnyx": {"4.87.1", "4.87.2"},
     # elementary-data GitHub Actions script-injection (April 24 2026)
@@ -2260,6 +2260,62 @@ PYPI_BAD: dict[str, set[str]] = {
     "hijok-lampam": {"1.0.0"},                                           # MAL-2026-18112
     "jiklpo-tsunari-kay": {"1.0.0"},                                     # MAL-2026-18113
     "trijigo-kalip": {"1.0.0"},                                          # MAL-2026-18114
+    # ─── Oct 21 2026: misc PyPI infostealers ────────────────────────────────────────────────────
+    # moveworks-capi-starter: supply-chain malware. OSV MAL-2026-18122.
+    # journey-test-helloshell / journey-test-hellospy: test-scope malware. OSV MAL-2026-18124/18133.
+    # iterquarry: multi-version PyPI malware. OSV MAL-2026-18131.
+    # libseal: multi-version PyPI malware. OSV MAL-2026-18132.
+    "moveworks-capi-starter": {"0.0.0", "0.2.0"},                       # MAL-2026-18122
+    "journey-test-helloshell": {"0.2.0"},                               # MAL-2026-18124
+    "journey-test-hellospy": {"0.1.1"},                                 # MAL-2026-18133
+    "iterquarry": {"2.1.1", "2.1.2", "2.1.3", "2.1.4", "2.2.0", "2.2.1"},  # MAL-2026-18131
+    "libseal": {"1.1.0", "1.1.1", "1.1.2", "1.1.3"},                   # MAL-2026-18132
+    # ─── Oct 22 2026: TTS/audio PyPI typosquat cluster (43 packages) ────────────────────────────
+    # Mass upload of fake TTS/ASR/audio-processing packages, all version 0.1.0.
+    # OSV MAL-2026-18134 through MAL-2026-18176.
+    "aurenatts": {"0.1.0"},                                             # MAL-2026-18134
+    "batchspar": {"0.1.0"},                                             # MAL-2026-18135
+    "brummatts": {"0.1.0"},                                             # MAL-2026-18136
+    "codecraze": {"0.1.0"},                                             # MAL-2026-18137
+    "crenelatts": {"0.1.0"},                                            # MAL-2026-18138
+    "dictanovaasr": {"0.1.0"},                                          # MAL-2026-18139
+    "grommatts": {"0.1.0"},                                             # MAL-2026-18140
+    "melcuratts": {"0.1.0"},                                            # MAL-2026-18141
+    "orchestril": {"0.1.0"},                                            # MAL-2026-18142
+    "phonoviatts": {"0.1.0"},                                           # MAL-2026-18143
+    "prosodinetts": {"0.1.0"},                                          # MAL-2026-18144
+    "quillonatts": {"0.1.0"},                                           # MAL-2026-18145
+    "shellgrip": {"0.1.0"},                                             # MAL-2026-18146
+    "solivoxtts": {"0.1.0"},                                            # MAL-2026-18147
+    "tessivatts": {"0.1.0"},                                            # MAL-2026-18148
+    "vellutts": {"0.1.0"},                                              # MAL-2026-18149
+    "voxilaratts": {"0.1.0"},                                           # MAL-2026-18150
+    "zennittts": {"0.1.0"},                                             # MAL-2026-18151
+    "acousticpack": {"0.1.0"},                                          # MAL-2026-18152
+    "hookgantry": {"0.1.0"},                                            # MAL-2026-18153
+    "pipegrip": {"0.1.0"},                                              # MAL-2026-18154
+    "acoustichub": {"0.1.0"},                                           # MAL-2026-18155
+    "asrdock": {"0.1.0"},                                               # MAL-2026-18156
+    "asrloom": {"0.1.0"},                                               # MAL-2026-18157
+    "audiokit": {"0.1.0"},                                              # MAL-2026-18158
+    "benchbridge": {"0.1.0"},                                           # MAL-2026-18159
+    "benchworks": {"0.1.0"},                                            # MAL-2026-18160
+    "evalstream": {"0.1.0"},                                            # MAL-2026-18161
+    "modelworks": {"0.1.0"},                                            # MAL-2026-18162
+    "phonemeforge": {"0.1.0"},                                          # MAL-2026-18163
+    "phonemeprobe": {"0.1.0"},                                          # MAL-2026-18164
+    "soundsocket": {"0.1.0"},                                           # MAL-2026-18165
+    "speakbench": {"0.1.0"},                                            # MAL-2026-18166
+    "speaksocket": {"0.1.0"},                                           # MAL-2026-18167
+    "speechprobe": {"0.1.0"},                                           # MAL-2026-18168
+    "ttsdock": {"0.1.0"},                                               # MAL-2026-18169
+    "ttsflow": {"0.1.0"},                                               # MAL-2026-18170
+    "ttsprobe": {"0.1.0"},                                              # MAL-2026-18171
+    "ttsweaver": {"0.1.0"},                                             # MAL-2026-18172
+    "vocabbench": {"0.1.0"},                                            # MAL-2026-18173
+    "vocabblend": {"0.1.0"},                                            # MAL-2026-18174
+    "voicekit": {"0.1.0"},                                              # MAL-2026-18175
+    "voxweaver": {"0.1.0"},                                             # MAL-2026-18176
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -9338,10 +9394,10 @@ NPM_BAD: dict[str, set[str]] = {
     # MAL-2026-13929, MAL-2026-13930, MAL-2026-13931
     "@dgxeon13/libsignal-node": {"1.0.0"},
     "@dreamguyxeon/baileyx": {"1.0.0", "2.0.0", "3.0.0", "4.0.0", "5.0.0"},
-    "@dreamguyxeon/libsignal-node": {"1.0.1"},
+    "@dreamguyxeon/libsignal-node": {"1.0.1", "1.0.2", "1.0.3"},
     # social-media automation / followers cluster (Aug 13 2026)
     # MAL-2026-13932, MAL-2026-13933, MAL-2026-13934, MAL-2026-13986
-    "my-auto-follow": {"1.0.0", "1.0.1", "1.0.2", "1.0.3"},
+    "my-auto-follow": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.6", "1.0.7"},
     "cc-skills-helper": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6"},
     "ai-analyzer": {"1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6",
                     "1.0.7", "1.0.8", "1.0.9", "1.0.10", "1.0.11", "1.0.12", "1.0.13",
@@ -11841,6 +11897,8 @@ NPM_BAD: dict[str, set[str]] = {
     "@fdr-mar/promos-types": set(),
     # @worrisome/reutil — attacker scope, all versions malicious. MAL-2026-15604
     "@worrisome/reutil": set(),
+    # @worrisome/aaaa — additional package from same attacker scope, all versions malicious. MAL-2026-18125/GHSA-fxf3-w84v-3v6g.
+    "@worrisome/aaaa": set(),
     # @testrelic/appium-analytics — fake Appium analytics node. MAL-2026-15647
     "@testrelic/appium-analytics": {"1.1.1-next.88"},
     # ─── Sep 1 2026: random-string cluster — 16 pure-malware typosquats ───────────
@@ -14738,6 +14796,21 @@ NPM_BAD: dict[str, set[str]] = {
                          "6.0.1", "6.0.0", "5.0.6", "5.0.5", "4.0.4",
                          "4.0.5", "4.0.3", "3.0.3", "3.0.0", "2.1.4",
                          "2.1.3", "2.1.2"},                             # MAL-2026-18120
+    # ─── Oct 21 2026: misc npm malware packages ──────────────────────────────────────────────────
+    # rootaccessxvv-bbmarker: arbitrary-code-execution npm package (1 version). OSV MAL-2026-18108.
+    # my-auto-follow-eltio: social-media automation malware (SEMVER >=0). OSV MAL-2026-18121/GHSA-xw7m-xxch-j3hp.
+    # peptide-modify: plain-scope fake peptide utility, no legitimate use (SEMVER >=0). OSV MAL-2026-18123/GHSA-h643-5mcg-c726.
+    # fnd-stores: pure-malware typosquat (SEMVER >=0, versions 0.0.6/0.0.7 confirmed). OSV MAL-2026-4565.
+    # @sudobility cluster: 4 packages with specific malicious versions (dep-confusion / CI-token stealer).
+    #   OSV MAL-2026-18127/18128/18129/18130.
+    "rootaccessxvv-bbmarker": {"1.0.2"},                                # MAL-2026-18108
+    "my-auto-follow-eltio": set(),                                      # MAL-2026-18121 (ANY)
+    "peptide-modify": set(),                                            # MAL-2026-18123 (ANY)
+    "fnd-stores": set(),                                                # MAL-2026-4565 (ANY)
+    "@sudobility/indexer_client": {"0.0.146"},                          # MAL-2026-18127
+    "@sudobility/shaperouter_client": {"0.0.14"},                       # MAL-2026-18128
+    "@sudobility/testomniac_client": {"0.0.131"},                       # MAL-2026-18129
+    "@sudobility/wildduck_client": {"2.3.102"},                         # MAL-2026-18130
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
