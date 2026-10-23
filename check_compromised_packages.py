@@ -2260,6 +2260,69 @@ PYPI_BAD: dict[str, set[str]] = {
     "hijok-lampam": {"1.0.0"},                                           # MAL-2026-18112
     "jiklpo-tsunari-kay": {"1.0.0"},                                     # MAL-2026-18113
     "trijigo-kalip": {"1.0.0"},                                          # MAL-2026-18114
+    # ─── Oct 21–22 2026: kam193 misc PyPI malware probes ────────────────────────────────────────
+    # moveworks-capi-starter: dep-confusion beacon. OSV MAL-2026-18122.
+    # journey-test-helloshell / journey-test-hellospy / journey-teste-shellhello: canary probes.
+    #   OSV MAL-2026-18124/18133/18203. Source: kam193.
+    # iterquarry: multi-version infostealer; OSV MAL-2026-18131.
+    # libseal: multi-version infostealer; OSV MAL-2026-18132.
+    # 1h1: random-name probe (1.0.0); OSV MAL-2026-18188.
+    # aanthropic: typosquat of `anthropic` (1.0.0); OSV MAL-2026-18189.
+    "moveworks-capi-starter": {"0.0.0", "0.2.0"},                        # MAL-2026-18122
+    "journey-test-helloshell": {"0.2.0"},                                # MAL-2026-18124
+    "journey-test-hellospy": {"0.1.1"},                                  # MAL-2026-18133
+    "journey-teste-shellhello": {"0.2.0"},                               # MAL-2026-18203
+    "iterquarry": {"2.1.1", "2.1.2", "2.1.3", "2.1.4", "2.2.0", "2.2.1"},  # MAL-2026-18131
+    "libseal": {"1.1.0", "1.1.1", "1.1.2", "1.1.3"},                    # MAL-2026-18132
+    "1h1": {"1.0.0"},                                                    # MAL-2026-18188
+    "aanthropic": {"1.0.0"},                                             # MAL-2026-18189
+    # ─── Oct 22 2026: fake TTS/ASR cluster (kam193 — 43 packages) ──────────────────────────────
+    # 43 fake TTS/ASR packages, all at 0.1.0, published in a single wave by the kam193 campaign.
+    # Names follow synthesizer/ASR product naming conventions (*atts/*asr/*tts/*dock/*kit).
+    # OSV MAL-2026-18134 through MAL-2026-18176.
+    "aurenatts": {"0.1.0"},                                              # MAL-2026-18134
+    "batchspar": {"0.1.0"},                                              # MAL-2026-18135
+    "brummatts": {"0.1.0"},                                              # MAL-2026-18136
+    "codecraze": {"0.1.0"},                                              # MAL-2026-18137
+    "crenelatts": {"0.1.0"},                                             # MAL-2026-18138
+    "dictanovaasr": {"0.1.0"},                                           # MAL-2026-18139
+    "grommatts": {"0.1.0"},                                              # MAL-2026-18140
+    "melcuratts": {"0.1.0"},                                             # MAL-2026-18141
+    "orchestril": {"0.1.0"},                                             # MAL-2026-18142
+    "phonoviatts": {"0.1.0"},                                            # MAL-2026-18143
+    "prosodinetts": {"0.1.0"},                                           # MAL-2026-18144
+    "quillonatts": {"0.1.0"},                                            # MAL-2026-18145
+    "shellgrip": {"0.1.0"},                                              # MAL-2026-18146
+    "solivoxtts": {"0.1.0"},                                             # MAL-2026-18147
+    "tessivatts": {"0.1.0"},                                             # MAL-2026-18148
+    "vellutts": {"0.1.0"},                                               # MAL-2026-18149
+    "voxilaratts": {"0.1.0"},                                            # MAL-2026-18150
+    "zennittts": {"0.1.0"},                                              # MAL-2026-18151
+    "acousticpack": {"0.1.0"},                                           # MAL-2026-18152
+    "hookgantry": {"0.1.0"},                                             # MAL-2026-18153
+    "pipegrip": {"0.1.0"},                                               # MAL-2026-18154
+    "acoustichub": {"0.1.0"},                                            # MAL-2026-18155
+    "asrdock": {"0.1.0"},                                                # MAL-2026-18156
+    "asrloom": {"0.1.0"},                                                # MAL-2026-18157
+    "audiokit": {"0.1.0"},                                               # MAL-2026-18158
+    "benchbridge": {"0.1.0"},                                            # MAL-2026-18159
+    "benchworks": {"0.1.0"},                                             # MAL-2026-18160
+    "evalstream": {"0.1.0"},                                             # MAL-2026-18161
+    "modelworks": {"0.1.0"},                                             # MAL-2026-18162
+    "phonemeforge": {"0.1.0"},                                           # MAL-2026-18163
+    "phonemeprobe": {"0.1.0"},                                           # MAL-2026-18164
+    "soundsocket": {"0.1.0"},                                            # MAL-2026-18165
+    "speakbench": {"0.1.0"},                                             # MAL-2026-18166
+    "speaksocket": {"0.1.0"},                                            # MAL-2026-18167
+    "speechprobe": {"0.1.0"},                                            # MAL-2026-18168
+    "ttsdock": {"0.1.0"},                                                # MAL-2026-18169
+    "ttsflow": {"0.1.0"},                                                # MAL-2026-18170
+    "ttsprobe": {"0.1.0"},                                               # MAL-2026-18171
+    "ttsweaver": {"0.1.0"},                                              # MAL-2026-18172
+    "vocabbench": {"0.1.0"},                                             # MAL-2026-18173
+    "vocabblend": {"0.1.0"},                                             # MAL-2026-18174
+    "voicekit": {"0.1.0"},                                               # MAL-2026-18175
+    "voxweaver": {"0.1.0"},                                              # MAL-2026-18176
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14738,6 +14801,110 @@ NPM_BAD: dict[str, set[str]] = {
                          "6.0.1", "6.0.0", "5.0.6", "5.0.5", "4.0.4",
                          "4.0.5", "4.0.3", "3.0.3", "3.0.0", "2.1.4",
                          "2.1.3", "2.1.2"},                             # MAL-2026-18120
+    # ─── Oct 21–22 2026: testmetest credential-stealer cluster ──────────────────────────────────
+    # 10 packages published by account testnewtestme2; each uses binding.gyp GYP command-expansion
+    # or a postinstall hook to run an obfuscated payload that decrypts a credential stealer and
+    # pipes it into Bun. Self-spreading; installs into the parent project's node_modules.
+    # kvarzo8f3atestmetest / sdk-utils-testmetest: introduced:0 wildcards from GHSA.
+    # OSV MAL-2026-18177/18178/18179/18180/18181/18182/18185/18186/18201/18202.
+    "data-pipeline-testmetest": {"2.0.1"},                              # MAL-2026-18177
+    "event-emitter-testmetest": {"1.0.6", "1.0.7", "4.1.0", "5.0.0"}, # MAL-2026-18178
+    "log-sink-testmetest": {"1.0.1"},                                   # MAL-2026-18179
+    "pixel-map-testmetest": {"0.0.1", "0.0.2", "0.0.3"},               # MAL-2026-18180
+    "test-brotli-testmetest": {"1.0.0"},                                # MAL-2026-18181
+    "test-brotli2-testmetest": {"1.0.0"},                               # MAL-2026-18182
+    "log-rotate-testmetest": {"1.0.1"},                                 # MAL-2026-18185
+    "net-codec-testmetest": {"1.0.1"},                                  # MAL-2026-18186
+    "kvarzo8f3atestmetest": set(),                                      # MAL-2026-18201 (ANY)
+    "sdk-utils-testmetest": set(),                                      # MAL-2026-18202 (ANY)
+    # ─── Oct 21–22 2026: misc npm malware batch ──────────────────────────────────────────────────
+    # rootaccessxvv-bbmarker: postinstall POSTs RCE-proof beacon to webhook.site. MAL-2026-18108.
+    # my-auto-follow-eltio: companion to my-auto-follow; introduced:0.
+    #   GHSA-xw7m-xxch-j3hp; MAL-2026-18121.
+    # peptide-modify: companion to @peptide-unit/ scope; introduced:0.
+    #   GHSA-h643-5mcg-c726; MAL-2026-18123.
+    # @worrisome/aaaa: additional @worrisome/ scope package; introduced:0.
+    #   GHSA-fxf3-w84v-3v6g; MAL-2026-18125.
+    # formatting-subtitles: preinstall shell exec malware; MAL-2026-18184.
+    # simplewave: postinstall malware; MAL-2026-18187.
+    # fnd-stores: postinstall env-exfiltrator; introduced:0; GHSA-wx9h-pmqq-rcgg; MAL-2026-4565.
+    "rootaccessxvv-bbmarker": {"1.0.2"},                                # MAL-2026-18108
+    "my-auto-follow-eltio": set(),                                      # MAL-2026-18121 (ANY)
+    "peptide-modify": set(),                                            # MAL-2026-18123 (ANY)
+    "@worrisome/aaaa": set(),                                           # MAL-2026-18125 (ANY)
+    "formatting-subtitles": {"1.0.2"},                                  # MAL-2026-18184
+    "simplewave": {"0.0.2"},                                            # MAL-2026-18187
+    "fnd-stores": set(),                                                # MAL-2026-4565 (ANY)
+    # ─── Oct 22 2026: agentic-skills / opencode-skills malware pair ─────────────────────────────
+    # agentic-awesome-skills: GHSA-rgwm-3jj9-h563; MAL-2026-18192. 20 versions (18.x–19.x).
+    # opencode-skills-collection: GHSA-9855-prwc-mfp2; MAL-2026-18193. 21 versions (4.0.x–4.1.x).
+    # Companion pair targeting AI/agent developer workflows.
+    "agentic-awesome-skills": {"18.9.0", "18.10.0", "18.11.0", "18.12.0", "18.13.0", "18.14.0",
+                                "19.0.0", "19.0.1", "19.1.0", "19.2.0", "19.3.0", "19.4.0",
+                                "19.5.0", "19.6.0", "19.7.0", "19.9.0", "19.10.1", "19.12.0",
+                                "19.12.1", "19.13.0"},                  # MAL-2026-18192
+    "opencode-skills-collection": {"4.0.56", "4.0.57", "4.0.77",
+                                    "4.1.0", "4.1.1", "4.1.3", "4.1.4", "4.1.6", "4.1.7",
+                                    "4.1.8", "4.1.9", "4.1.10", "4.1.11", "4.1.12", "4.1.13",
+                                    "4.1.14", "4.1.16", "4.1.17", "4.1.18", "4.1.19",
+                                    "4.1.20"},                          # MAL-2026-18193
+    # ─── Oct 22 2026: misc scoped npm malware ────────────────────────────────────────────────────
+    # @sudobility/ dep-confusion batch: 4 packages with postinstall hooks; Amazon Inspector.
+    #   OSV MAL-2026-18127/18128/18129/18130.
+    #   GHSA-xfvr-39v2-q24q / GHSA-x7g4-jh5c-33xr / GHSA-g7cj-274j-rxqw / GHSA-5ff7-5w72-hm63.
+    "@sudobility/indexer_client": {"0.0.146"},                          # MAL-2026-18127
+    "@sudobility/shaperouter_client": {"0.0.14"},                       # MAL-2026-18128
+    "@sudobility/testomniac_client": {"0.0.131"},                       # MAL-2026-18129
+    "@sudobility/wildduck_client": {"2.3.102"},                         # MAL-2026-18130
+    # @conduitops/logview-archive: postinstall pulls from attacker registry. MAL-2026-18183.
+    "@conduitops/logview-archive": {"1.0.1"},                           # MAL-2026-18183
+    # @pkgship/ frpc/frps binary bundle malware: bundles frp binaries with a credential harvester.
+    #   OSV MAL-2026-18191/18198/18199.
+    "@pkgship/frpc-darwin-amd64": {"0.71.1"},                           # MAL-2026-18191
+    "@pkgship/frpc-linux-amd64": {"0.71.1"},                            # MAL-2026-18198
+    "@pkgship/frps-linux-amd64": {"0.71.1"},                            # MAL-2026-18199
+    # @liauto/darwin-x64: GHSA-pmg6-2w6r-4q4h; MAL-2026-18190.
+    "@liauto/darwin-x64": {"0.1.1-b3"},                                 # MAL-2026-18190
+    # @lumen-labs-dev/whisper-node: GHSA-8mqm-233x-2g2j; MAL-2026-18194.
+    "@lumen-labs-dev/whisper-node": {"0.5.1"},                          # MAL-2026-18194
+    # @seggy116/next-diff: GHSA-fv2r-964m-pc2m; MAL-2026-18200.
+    "@seggy116/next-diff": {"0.3.0"},                                   # MAL-2026-18200
+    # @factiii/runner: GHSA-9j83-qj34-g5vc; MAL-2026-18204.
+    "@factiii/runner": {"0.28.0"},                                      # MAL-2026-18204
+    # @tekmidian/pai: GHSA-xvgg-qjjh-gq34; MAL-2026-18205.
+    "@tekmidian/pai": {"1.0.8", "1.0.9", "1.0.10"},                    # MAL-2026-18205
+    # darknode-cli: GHSA-6m47-rc2c-6xpg; MAL-2026-18195.
+    "darknode-cli": {"2.46.0", "2.46.1", "2.46.2"},                    # MAL-2026-18195
+    # imgdecode: introduced:0 (any version malicious); GHSA-hw69-vrvf-87h5; MAL-2026-18196.
+    "imgdecode": set(),                                                 # MAL-2026-18196 (ANY)
+    # x402-prompt-injection-scan: GHSA-w84w-rhx7-2f7g; MAL-2026-18197.
+    "x402-prompt-injection-scan": {"0.1.4"},                            # MAL-2026-18197
+    # ─── Oct 23 2026: @ecg-internal dep-confusion batch (European Classifieds Group) ────────────
+    # Six packages in the @ecg-internal/ scope published as public npm squats against ECG's
+    # private registry packages. All have introduced:0 (any version on public npm is malicious).
+    # OSV MAL-2026-18206/18207/18208/18209/18210/18211.
+    # GHSA-vcj4-3hxm-4rf3 / GHSA-9976-3w38-mrmj / GHSA-g8hh-8pxg-jr3x /
+    # GHSA-5x9g-7rj9-4xc8 / GHSA-hcw5-m6mm-qg3q / GHSA-r47j-grcr-p9h9.
+    # Scope added to NPM_SUSPECT_SCOPES.
+    "@ecg-internal/adobe-dmp-js": set(),                                # MAL-2026-18206 (ANY)
+    "@ecg-internal/aurora-js-formatters": set(),                        # MAL-2026-18207 (ANY)
+    "@ecg-internal/favourites-ui": set(),                               # MAL-2026-18208 (ANY)
+    "@ecg-internal/js-react-i18n": set(),                               # MAL-2026-18209 (ANY)
+    "@ecg-internal/media-util-js-lib": set(),                           # MAL-2026-18210 (ANY)
+    "@ecg-internal/reviews-dialog-ui": set(),                           # MAL-2026-18211 (ANY)
+    # ─── Oct 23 2026: @grabcad dep-confusion batch (Stratasys / GrabCAD) ───────────────────────
+    # Four packages in the @grabcad/ scope; all introduced:0. Scope added to NPM_SUSPECT_SCOPES.
+    # GHSA-fpfw-7wv8-x4mh / GHSA-cc6r-jh8f-6c76 / GHSA-mfh5-wvcp-2v6v / GHSA-6w2v-744r-g5j5.
+    # OSV MAL-2026-18214/18215/18216/18217.
+    "@grabcad/company-server-shared": set(),                            # MAL-2026-18214 (ANY)
+    "@grabcad/grabcad-shop-shared": set(),                              # MAL-2026-18215 (ANY)
+    "@grabcad/preferences-client": set(),                               # MAL-2026-18216 (ANY)
+    "@grabcad/user-license": set(),                                     # MAL-2026-18217 (ANY)
+    # ─── Oct 23 2026: additional wildcard dep-confusion packages ────────────────────────────────
+    # @blueskydataplatform/shared-ui: introduced:0; GHSA-6x9m-j5h8-w3vg; MAL-2026-18212.
+    # @cecm-web-sdk/core: introduced:0; GHSA-88qx-q5v7-q7x5; MAL-2026-18213.
+    "@blueskydataplatform/shared-ui": set(),                            # MAL-2026-18212 (ANY)
+    "@cecm-web-sdk/core": set(),                                        # MAL-2026-18213 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -15111,6 +15278,34 @@ NPM_SUSPECT_SCOPES = (
     "@an1mshnpmb9c84920/",
     # @decoopus/ fake AI-installer scope (Oct 19 2026) — chatgpt-setup + claude-setup pinned above
     "@decoopus/",
+    # Oct 21–22 2026 new attacker-controlled / dep-confusion scopes
+    # @sudobility/ dep-confusion scope — 4 packages pinned above (MAL-2026-18127–18130)
+    "@sudobility/",
+    # @conduitops/ malware scope — logview-archive pinned above (MAL-2026-18183)
+    "@conduitops/",
+    # @liauto/ malware scope — darwin-x64 pinned above (MAL-2026-18190)
+    "@liauto/",
+    # @pkgship/ frpc/frps binary malware scope — 3 packages pinned above (MAL-2026-18191/18198/18199)
+    "@pkgship/",
+    # @lumen-labs-dev/ malware scope — whisper-node pinned above (MAL-2026-18194)
+    "@lumen-labs-dev/",
+    # @seggy116/ malware scope — next-diff pinned above (MAL-2026-18200)
+    "@seggy116/",
+    # @factiii/ malware scope — runner pinned above (MAL-2026-18204)
+    "@factiii/",
+    # @tekmidian/ malware scope — pai pinned above (MAL-2026-18205)
+    "@tekmidian/",
+    # Oct 23 2026 dep-confusion scopes
+    # @ecg-internal/ dep-confusion scope (European Classifieds Group) — 6 packages pinned above;
+    # scope catches any additional undisclosed @ecg-internal packages (MAL-2026-18206–18211)
+    "@ecg-internal/",
+    # @grabcad/ dep-confusion scope (Stratasys / GrabCAD) — 4 packages pinned above;
+    # scope catches any additional undisclosed @grabcad packages (MAL-2026-18214–18217)
+    "@grabcad/",
+    # @blueskydataplatform/ dep-confusion scope — shared-ui pinned above (MAL-2026-18212)
+    "@blueskydataplatform/",
+    # @cecm-web-sdk/ dep-confusion scope — core pinned above (MAL-2026-18213)
+    "@cecm-web-sdk/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
