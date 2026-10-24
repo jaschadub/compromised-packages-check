@@ -2323,6 +2323,37 @@ PYPI_BAD: dict[str, set[str]] = {
     "vocabblend": {"0.1.0"},                                             # MAL-2026-18174
     "voicekit": {"0.1.0"},                                               # MAL-2026-18175
     "voxweaver": {"0.1.0"},                                              # MAL-2026-18176
+    # ─── Oct 23 2026: kam193 PyPI batch — C2/loader/SSH-tunnel malware ───────────────────────────────
+    # 24 packages: 22 generic loaders/C2 tools at 0.1.0 + sitecard SSH-tunnel exposer.
+    # Names follow job/task/work/load/run/queue/haul naming patterns. All from bad-packages.kam193.eu.
+    # OSV MAL-2026-18218 through MAL-2026-18242.
+    "qowa": {"0.1.0"},                                                      # MAL-2026-18218 (C2 server)
+    "onsokets": {"0.1.0"},                                                  # MAL-2026-18219
+    "kestreljob": {"0.1.0"},                                                # MAL-2026-18221
+    "badgertask": {"0.1.0"},                                                # MAL-2026-18222
+    "brambletask": {"0.1.0"},                                               # MAL-2026-18223
+    "brookworker": {"0.1.0"},                                               # MAL-2026-18224
+    "cobbleload": {"0.1.0"},                                                # MAL-2026-18225
+    "ferretqueue": {"0.1.0"},                                               # MAL-2026-18226
+    "flintqueue": {"0.1.0"},                                                # MAL-2026-18227
+    "jobwharf": {"0.1.0"},                                                  # MAL-2026-18228
+    "juniperrun": {"0.1.0"},                                                # MAL-2026-18229
+    "larchworker": {"0.1.0"},                                               # MAL-2026-18230
+    "loadferry": {"0.1.0"},                                                 # MAL-2026-18231
+    "marshrunner": {"0.1.0"},                                               # MAL-2026-18232
+    "otterload": {"0.1.0"},                                                 # MAL-2026-18233
+    "reedworker": {"0.1.0"},                                                # MAL-2026-18234
+    "runpier": {"0.1.0"},                                                   # MAL-2026-18235
+    "sedgehaul": {"0.1.0"},                                                 # MAL-2026-18236
+    "slatejob": {"0.1.0"},                                                  # MAL-2026-18237
+    "taskquay": {"0.1.0"},                                                  # MAL-2026-18238
+    "thistlerun": {"0.1.0"},                                                # MAL-2026-18239
+    "thornqueue": {"0.1.0"},                                                # MAL-2026-18240
+    "workslip": {"0.1.0"},                                                  # MAL-2026-18241
+    # sitecard: creates SSH session exposed via reverse tunnel, default no-auth,
+    # reports session info to a hardcoded server. Multiple versions. OSV MAL-2026-18242.
+    "sitecard": {"0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.6", "0.1.7", "0.1.8",
+                 "0.1.9", "0.1.10", "0.1.11", "0.1.12", "0.1.13", "0.1.14"},  # MAL-2026-18242
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14905,6 +14936,20 @@ NPM_BAD: dict[str, set[str]] = {
     # @cecm-web-sdk/core: introduced:0; GHSA-88qx-q5v7-q7x5; MAL-2026-18213.
     "@blueskydataplatform/shared-ui": set(),                            # MAL-2026-18212 (ANY)
     "@cecm-web-sdk/core": set(),                                        # MAL-2026-18213 (ANY)
+    # ─── Oct 23–24 2026: binary / generic malware batch ──────────────────────────────────────────────
+    # skillward: malicious code in 2 versions. GHSA-9wgc-5pgr-25p3; MAL-2026-18220.
+    "skillward": {"0.1.1", "0.1.2"},                                        # MAL-2026-18220
+    # @k18k/ OS-specific entrypoint SDK malware cluster; 3 platform packages at 0.2.0/0.2.1.
+    # Scope added to NPM_SUSPECT_SCOPES.
+    # GHSA-8wf7-8825-99q7 / GHSA-j58m-rwhr-923h / GHSA-9fhg-r3w6-g7r4; MAL-2026-18243/18244/18245.
+    "@k18k/entrypoint-sdk-darwin-arm64": {"0.2.0", "0.2.1"},               # MAL-2026-18243
+    "@k18k/entrypoint-sdk-darwin-x64": {"0.2.0", "0.2.1"},                 # MAL-2026-18244
+    "@k18k/entrypoint-sdk-linux-x64": {"0.2.0", "0.2.1"},                  # MAL-2026-18245
+    # orqiva-runtime-win32-x64: win32 binary malware; 1 version. GHSA-8j59-g9mq-7hf9; MAL-2026-18246.
+    "orqiva-runtime-win32-x64": {"0.1.0"},                                  # MAL-2026-18246
+    # @liauto/win32-x64: new package from already-tracked @liauto/ scope (in NPM_SUSPECT_SCOPES).
+    # GHSA-32x9-4g9x-5cxj; MAL-2026-18247.
+    "@liauto/win32-x64": {"0.1.2-b2"},                                      # MAL-2026-18247
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -15306,6 +15351,9 @@ NPM_SUSPECT_SCOPES = (
     "@blueskydataplatform/",
     # @cecm-web-sdk/ dep-confusion scope — core pinned above (MAL-2026-18213)
     "@cecm-web-sdk/",
+    # @k18k/ OS-specific SDK malware scope (Oct 23–24 2026) — darwin-arm64/darwin-x64/linux-x64
+    # pinned above (OSV MAL-2026-18243/18244/18245); scope catches any additional @k18k packages
+    "@k18k/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
