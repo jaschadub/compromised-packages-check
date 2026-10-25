@@ -14950,6 +14950,16 @@ NPM_BAD: dict[str, set[str]] = {
     # @liauto/win32-x64: new package from already-tracked @liauto/ scope (in NPM_SUSPECT_SCOPES).
     # GHSA-32x9-4g9x-5cxj; MAL-2026-18247.
     "@liauto/win32-x64": {"0.1.2-b2"},                                      # MAL-2026-18247
+    # ─── Oct 24–25 2026 misc npm malware batch ───────────────────────────────────────────────────
+    # overarch-windows-x64-yr: platform binary typosquat targeting the overarch C4/architecture
+    # tool; 3 specific malicious versions. GHSA-v5v8-j5gm-pq8v; MAL-2026-18248.
+    "overarch-windows-x64-yr": {"1.4.0", "1.5.0", "2.0.0"},                    # MAL-2026-18248
+    # noelc-css-blender: pure-malware; SEMVER >=0 range. GHSA-cj2x-975v-jmwf; MAL-2026-18249.
+    "noelc-css-blender": set(),                                                  # MAL-2026-18249 (ANY)
+    # tailwind-base-buttons: Tailwind CSS typosquat; any-version. GHSA-5j43-343m-gggg; MAL-2026-18250.
+    "tailwind-base-buttons": set(),                                              # MAL-2026-18250 (ANY)
+    # tailwindcss-theme-kit: Tailwind CSS typosquat; any-version. GHSA-v5xr-xjx7-ggwf; MAL-2026-18251.
+    "tailwindcss-theme-kit": set(),                                              # MAL-2026-18251 (ANY)
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
