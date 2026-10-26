@@ -2354,6 +2354,22 @@ PYPI_BAD: dict[str, set[str]] = {
     # reports session info to a hardcoded server. Multiple versions. OSV MAL-2026-18242.
     "sitecard": {"0.1.0", "0.1.1", "0.1.2", "0.1.3", "0.1.6", "0.1.7", "0.1.8",
                  "0.1.9", "0.1.10", "0.1.11", "0.1.12", "0.1.13", "0.1.14"},  # MAL-2026-18242
+    # ─── Oct 25–26 2026 PyPI malware batch ───────────────────────────────────────
+    # fontus: infostealer exfiltrating env vars/tokens; 3 published versions.
+    # zagents-message-bus: fake LLM agent orchestration bus; 4 versions including
+    #   dep-confusion markers (99.99.x); credential stealer.
+    # nebulallm: fake LLM API wrapper at 1.4.3; postinstall exfiltrator.
+    # claudeopusfile / claudeopuseni / claudeopusenifile: fake Anthropic Claude client
+    #   packages harvesting API keys on import; multiple versions each.
+    # dictmerge-lite: fake dict-merge utility; postinstall exfiltrator at 1.0.0.
+    # Sources: OSV MAL-2026-18271/18296/18297/18298/18299/18300/18301.
+    "fontus": {"0.0.1", "0.0.2", "0.0.3"},                                     # MAL-2026-18271
+    "zagents-message-bus": {"1.0.5", "1.0.10", "99.99.99", "99.99.100"},        # MAL-2026-18296
+    "nebulallm": {"1.4.3"},                                                      # MAL-2026-18297
+    "claudeopusfile": {"0.1.1", "0.1.2"},                                        # MAL-2026-18298
+    "claudeopuseni": {"0.1.0", "0.1.1"},                                         # MAL-2026-18299
+    "claudeopusenifile": {"0.1.3"},                                              # MAL-2026-18300
+    "dictmerge-lite": {"1.0.0"},                                                 # MAL-2026-18301
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -14960,6 +14976,128 @@ NPM_BAD: dict[str, set[str]] = {
     "tailwind-base-buttons": set(),                                              # MAL-2026-18250 (ANY)
     # tailwindcss-theme-kit: Tailwind CSS typosquat; any-version. GHSA-v5xr-xjx7-ggwf; MAL-2026-18251.
     "tailwindcss-theme-kit": set(),                                              # MAL-2026-18251 (ANY)
+    # ─── Oct 25 2026: appit-cordova / social-media-API malware cluster ──────────
+    # 19 packages from the same publisher family; all carry SEMVER >=0 (introduced:0)
+    # ranges — any installed version is attacker-controlled. Targets Cordova/Ionic
+    # mobile frameworks, social-media APIs (Instagram, TikTok, YouTube, SoundCloud),
+    # and PKI/OCSP/Redis utilities. ionic-insta-api-wrapper (MAL-2026-4588) is an
+    # earlier package from the same actor, also >=0.
+    # Sources: OSV MAL-2026-4588/18253/18254/18255/18256/18257/18258/18259/
+    #          18260/18261/18262/18263/18264/18265/18266/18267/18268/18269/18270.
+    "ionic-insta-api-wrapper": set(),                                            # MAL-2026-4588 (ANY)
+    "appit-cordova-admob": set(),                                                # MAL-2026-18253 (ANY)
+    "appit-cordova-plugin-ionic": set(),                                         # MAL-2026-18254 (ANY)
+    "cert-infos": set(),                                                         # MAL-2026-18255 (ANY)
+    "cordova-plugin-geofence-appit": set(),                                      # MAL-2026-18256 (ANY)
+    "insta-api-wrapper": set(),                                                  # MAL-2026-18257 (ANY)
+    "insta-reel-search": set(),                                                  # MAL-2026-18258 (ANY)
+    "ionic-insta-search": set(),                                                 # MAL-2026-18259 (ANY)
+    "ionic-sound-cloud-loader-api": set(),                                       # MAL-2026-18260 (ANY)
+    "ionic-tiktok-scraper": set(),                                               # MAL-2026-18261 (ANY)
+    "ionic-youtube-search": set(),                                               # MAL-2026-18262 (ANY)
+    "ionic-youtube-streams": set(),                                              # MAL-2026-18263 (ANY)
+    "ocsp-hashes": set(),                                                        # MAL-2026-18264 (ANY)
+    "p12-pem": set(),                                                            # MAL-2026-18265 (ANY)
+    "redis-dumper": set(),                                                       # MAL-2026-18266 (ANY)
+    "sound-cloud-loader-api": set(),                                             # MAL-2026-18267 (ANY)
+    "tiktok-video-scraper": set(),                                               # MAL-2026-18268 (ANY)
+    "youtube-info-streams": set(),                                               # MAL-2026-18269 (ANY)
+    "youtube-search-without-api-key": set(),                                     # MAL-2026-18270 (ANY)
+    # ─── Oct 25–26 2026: @eforms/forms-api dep-confusion ─────────────────────────
+    # Dep-confusion probe targeting an enterprise forms API; published at SNAPSHOT
+    # and dep-confusion marker 99.0.0.
+    # Source: OSV MAL-2026-18252.
+    "@eforms/forms-api": {"2.0.0-SNAPSHOT", "99.0.0"},                          # MAL-2026-18252
+    # ─── Oct 25–26 2026: @ppa-web-components/ dep-confusion cluster ──────────────
+    # 6 packages impersonating a PPA (Philippine Ports Authority or similar) web
+    # component library; published at realistic semver versions plus dep-confusion
+    # marker 99.0.1. @ppa-web-components/ scope added to NPM_SUSPECT_SCOPES.
+    # Sources: OSV MAL-2026-18272/18273/18274/18275/18286/18287.
+    "@ppa-web-components/ppa-banner": {"0.0.1", "1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0"},               # MAL-2026-18272
+    "@ppa-web-components/ppa-builder": {"0.0.1", "1.0.0", "1.0.1", "2.0.1", "3.0.0", "99.0.1"},                      # MAL-2026-18273
+    "@ppa-web-components/ppa-headerfooter": {"1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},        # MAL-2026-18274
+    "@ppa-web-components/ppa-hotel-collection": {"1.0.0", "1.1.0", "2.0.1", "3.0.0", "99.0.1"},                      # MAL-2026-18275
+    "@ppa-web-components/ppa-navigation": {"1.0.0", "1.0.1", "2.0.0", "2.0.1", "3.0.0", "99.0.1"},                   # MAL-2026-18286
+    "@ppa-web-components/ppa-searchform": {"0.0.1", "1.0.0", "1.0.1", "1.1.0", "2.0.0", "2.0.1", "3.0.0", "99.0.1"}, # MAL-2026-18287
+    # ─── Oct 26 2026: @drone-js-ext/ dep-confusion cluster ───────────────────────
+    # 2 packages impersonating drone.js JavaScript framework extension scope;
+    # published at multiple versions including dep-confusion marker 99.0.1.
+    # @drone-js-ext/ scope added to NPM_SUSPECT_SCOPES.
+    # Sources: OSV MAL-2026-18276/18277.
+    "@drone-js-ext/core": {"1.0.0", "2.0.1", "3.0.0", "99.0.1"},                # MAL-2026-18276
+    "@drone-js-ext/vip-badge": {"0.0.1", "1.0.1", "2.0.0", "99.0.1"},           # MAL-2026-18277
+    # ─── Oct 25–26 2026: @greenlake/ dep-confusion cluster ───────────────────────
+    # 5 packages impersonating internal cloud-platform components; published at
+    # realistic semver versions alongside dep-confusion marker 99.0.1.
+    # @greenlake/ scope added to NPM_SUSPECT_SCOPES.
+    # Sources: OSV MAL-2026-18282/18283/18316/18317/18318.
+    "@greenlake/common-context": {"3.0.0", "99.0.1"},                            # MAL-2026-18282
+    "@greenlake/session": {"1.0.0", "2.0.0", "3.0.0", "99.0.1"},                 # MAL-2026-18283
+    "@greenlake/auth": {"3.0.0"},                                                 # MAL-2026-18316
+    "@greenlake/context-pane": {"1.0.0", "3.0.0"},                               # MAL-2026-18317
+    "@greenlake/mfe-login-url": {"1.0.0", "2.0.0", "3.0.0"},                     # MAL-2026-18318
+    # ─── Oct 26 2026: @sxm-web/client-sdk-core dep-confusion ─────────────────────
+    # Dep-confusion probe impersonating SiriusXM (sxm-web) internal client SDK;
+    # 7 versions including high-version dep-confusion marker 13.3.7.
+    # Source: OSV MAL-2026-18319.
+    "@sxm-web/client-sdk-core": {"0.0.1", "1.0.0", "1.0.1", "1.1.0", "2.0.0", "3.0.0", "13.3.7"},  # MAL-2026-18319
+    # ─── Oct 26 2026: @s4yhiitestpoc/ PoC scanner cluster expansion ──────────────
+    # 8 additional packages from the existing @s4yhiitestpoc/ attacker-controlled PoC
+    # scope (scope already in NPM_SUSPECT_SCOPES); all carry SEMVER >=0 ranges.
+    # Sources: OSV MAL-2026-18302/18303/18304/18305/18306/18307/18308/18309.
+    "@s4yhiitestpoc/r2-control": set(),                                          # MAL-2026-18302 (ANY)
+    "@s4yhiitestpoc/r2-dns": set(),                                              # MAL-2026-18303 (ANY)
+    "@s4yhiitestpoc/r2-echo": set(),                                             # MAL-2026-18304 (ANY)
+    "@s4yhiitestpoc/r2-https-dualuse": set(),                                    # MAL-2026-18305 (ANY)
+    "@s4yhiitestpoc/scan-control-a": set(),                                      # MAL-2026-18306 (ANY)
+    "@s4yhiitestpoc/scan-dns-c": set(),                                          # MAL-2026-18307 (ANY)
+    "@s4yhiitestpoc/scan-echo-b": set(),                                         # MAL-2026-18308 (ANY)
+    "@s4yhiitestpoc/scan-https-dualuse-e": set(),                                # MAL-2026-18309 (ANY)
+    # ─── Oct 26 2026: @regex33-hackerone dep-confusion + CSS polyfill cluster ─────
+    # @regex33-hackerone/tb-compat: HackerOne researcher PoC dep-confusion; >=0 range.
+    #   Source: OSV MAL-2026-18310.
+    # bow-test: generic test-named malware; >=0 range. Source: OSV MAL-2026-18311.
+    # css-flexgap-shim: CSS Flexbox polyfill typosquat; >=0. Source: OSV MAL-2026-18312.
+    # css-grid-snap-util: CSS Grid polyfill typosquat; >=0. Source: OSV MAL-2026-18313.
+    # css-hnhxwd-polyfill: obfuscated CSS polyfill name; >=0. Source: OSV MAL-2026-18314.
+    "@regex33-hackerone/tb-compat": set(),                                       # MAL-2026-18310 (ANY)
+    "bow-test": set(),                                                           # MAL-2026-18311 (ANY)
+    "css-flexgap-shim": set(),                                                   # MAL-2026-18312 (ANY)
+    "css-grid-snap-util": set(),                                                 # MAL-2026-18313 (ANY)
+    "css-hnhxwd-polyfill": set(),                                                # MAL-2026-18314 (ANY)
+    # ─── Oct 25–26 2026: misc npm dep-confusion batch ────────────────────────────
+    # @fmr-ap153177/apex-kit-icons: Fidelity (fmr) internal toolkit dep-confusion at 99.9.1.
+    # @factoryz/apollo: dep-confusion probe at 99.9.1. MAL-2026-18278.
+    # @futurae-public/adaptive-js: Futurae adaptive authentication dep-confusion at 99.9.1.
+    # @generic-means/ing-feat-scanner-libs: ING Bank scanner-libs dep-confusion at 99.9.1.
+    # @jm-telefonica/multibrand-components: Telefónica España dep-confusion at 99.9.1.
+    # @postex/common: PostEx (Pakistan courier) internal dep-confusion at 99.9.1.
+    # jshelperdependenceny: misspelled JS helper dep-confusion probe at 99.0.0.
+    # paychex-pdftron: Paychex PDF toolkit dep-confusion at 99.9.1.
+    # react-native-bright-sdk: dep-confusion at 9000.0.0.
+    # sc-hydrate-carousel-price: dep-confusion at 99.9.1.
+    # event-bus-lite-testmetest: event-bus dev/test malware at 0.0.6.
+    # w-mousekey: mouse/keyboard event listener with 2 malicious versions (1.0.41/1.0.42).
+    # @capsense/ccx-welcome-page: CapSense fintech dep-confusion at 99.99.100.
+    # @capsense/core-ui: CapSense UI library dep-confusion at 99.99.100.
+    # dsh-native: native module dep-confusion at 1.4.1.
+    # Sources: OSV MAL-2026-18278/18279/18280/18281/18284/18285/18288/18289/18290/
+    #          18291/18292/18293/18294/18295/18315.
+    "@fmr-ap153177/apex-kit-icons": {"99.9.1"},                                  # MAL-2026-18279
+    "@factoryz/apollo": {"99.9.1"},                                              # MAL-2026-18278
+    "@futurae-public/adaptive-js": {"99.9.1"},                                   # MAL-2026-18280
+    "@generic-means/ing-feat-scanner-libs": {"99.9.1"},                          # MAL-2026-18281
+    "@jm-telefonica/multibrand-components": {"99.9.1"},                          # MAL-2026-18284
+    "@postex/common": {"99.9.1"},                                                # MAL-2026-18285
+    "jshelperdependenceny": {"99.0.0"},                                          # MAL-2026-18288
+    "paychex-pdftron": {"99.9.1"},                                               # MAL-2026-18289
+    "react-native-bright-sdk": {"9000.0.0"},                                     # MAL-2026-18290
+    "sc-hydrate-carousel-price": {"99.9.1"},                                     # MAL-2026-18291
+    "event-bus-lite-testmetest": {"0.0.6"},                                      # MAL-2026-18292
+    "w-mousekey": {"1.0.41", "1.0.42"},                                          # MAL-2026-18293
+    "@capsense/ccx-welcome-page": {"99.99.100"},                                 # MAL-2026-18294
+    "@capsense/core-ui": {"99.99.100"},                                          # MAL-2026-18295
+    "dsh-native": {"1.4.1"},                                                     # MAL-2026-18315
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
@@ -15364,6 +15502,17 @@ NPM_SUSPECT_SCOPES = (
     # @k18k/ OS-specific SDK malware scope (Oct 23–24 2026) — darwin-arm64/darwin-x64/linux-x64
     # pinned above (OSV MAL-2026-18243/18244/18245); scope catches any additional @k18k packages
     "@k18k/",
+    # Oct 25–26 2026 new dep-confusion scopes
+    # @ppa-web-components/ dep-confusion scope — 6 packages pinned above (OSV MAL-2026-18272–18275/18286/18287)
+    "@ppa-web-components/",
+    # @drone-js-ext/ dep-confusion scope — 2 packages pinned above (OSV MAL-2026-18276/18277)
+    "@drone-js-ext/",
+    # @greenlake/ dep-confusion scope — 5 packages pinned above (OSV MAL-2026-18282/18283/18316/18317/18318)
+    "@greenlake/",
+    # @sxm-web/ dep-confusion scope (SiriusXM) — client-sdk-core pinned above (OSV MAL-2026-18319)
+    "@sxm-web/",
+    # @capsense/ dep-confusion scope — ccx-welcome-page/core-ui pinned above (OSV MAL-2026-18294/18295)
+    "@capsense/",
 )
 
 # crates.io: exact crate name -> set of malicious versions.
