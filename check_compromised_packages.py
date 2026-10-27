@@ -2370,6 +2370,14 @@ PYPI_BAD: dict[str, set[str]] = {
     "claudeopuseni": {"0.1.0", "0.1.1"},                                         # MAL-2026-18299
     "claudeopusenifile": {"0.1.3"},                                              # MAL-2026-18300
     "dictmerge-lite": {"1.0.0"},                                                 # MAL-2026-18301
+    # ─── Oct 26 2026 PyPI malware batch ──────────────────────────────────────────
+    # changes-lxc-wrapper: install-time malware; 2 versions. OSV MAL-2026-18326.
+    # zagents-framework: fake agent framework; dep-confusion marker (99.x) + real version. OSV MAL-2026-18327.
+    # netweavex: install-time malware; 3 versions. OSV MAL-2026-18328.
+    # Sources: OSV MAL-2026-18326/18327/18328.
+    "changes-lxc-wrapper": {"0.0.0", "0.1.0"},                                      # MAL-2026-18326
+    "zagents-framework": {"6.25.30.10b5", "99.25.30.10b5"},                          # MAL-2026-18327
+    "netweavex": {"1.1.0", "1.1.1", "1.1.2"},                                        # MAL-2026-18328
 }
 
 # npm: exact package name -> set of malicious versions.
@@ -15098,6 +15106,34 @@ NPM_BAD: dict[str, set[str]] = {
     "@capsense/ccx-welcome-page": {"99.99.100"},                                 # MAL-2026-18294
     "@capsense/core-ui": {"99.99.100"},                                          # MAL-2026-18295
     "dsh-native": {"1.4.1"},                                                     # MAL-2026-18315
+    # ─── Oct 26 2026 npm malware batch ───────────────────────────────────────────
+    # @walknpm/todo-cli: malicious code; 1 version. OSV MAL-2026-18320.
+    # dsh-plugin-blender-3d: malicious code; 1 version. OSV MAL-2026-18321.
+    # numbors: malicious code; 1 version. OSV MAL-2026-18322.
+    # publish-poc-base: malicious code; 1 version. OSV MAL-2026-18323.
+    # publish-poc-test3: malicious code; 7 versions. OSV MAL-2026-18324.
+    # @worca/app: malicious code in RC versions; 2 versions. OSV MAL-2026-18325.
+    # @iobandamwer/cache-helper: malicious code; 13 versions. OSV MAL-2026-18329.
+    # @iobandamwer/native-helper: malicious code; SEMVER >=0 wildcard. OSV MAL-2026-18330.
+    # birch-css-utils: malicious code; SEMVER >=0 wildcard. OSV MAL-2026-18331.
+    # harlow-css-mixer: malicious code; SEMVER >=0 wildcard. OSV MAL-2026-18332.
+    # path-stream-utils-testmetest: malicious code; SEMVER >=0 wildcard. OSV MAL-2026-18333.
+    # postcss-semantic-themes: malicious code; SEMVER >=0 wildcard. OSV MAL-2026-18334.
+    # ctf-agent: malicious code; 1 version. OSV MAL-2026-18335.
+    # Sources: OSV MAL-2026-18320/18321/18322/18323/18324/18325/18329/18330/18331/18332/18333/18334/18335.
+    "@walknpm/todo-cli": {"2.0.1"},                                                  # MAL-2026-18320
+    "dsh-plugin-blender-3d": {"0.2.1"},                                              # MAL-2026-18321
+    "numbors": {"1.6.1"},                                                             # MAL-2026-18322
+    "publish-poc-base": {"1.0.7"},                                                   # MAL-2026-18323
+    "publish-poc-test3": {"1.0.15", "1.0.27", "1.0.18", "1.0.22", "1.0.19", "1.0.26", "1.0.21"},  # MAL-2026-18324
+    "@worca/app": {"1.14.0-rc.2", "1.14.0-rc.4"},                                   # MAL-2026-18325
+    "@iobandamwer/cache-helper": {"1.1.3", "1.1.2", "1.1.1", "1.1.0", "1.0.9", "1.0.8", "1.0.7", "1.0.6", "1.0.5", "1.0.4", "1.0.3", "1.0.2", "0.0.0-stage"},  # MAL-2026-18329
+    "@iobandamwer/native-helper": set(),                                             # MAL-2026-18330; SEMVER >=0
+    "birch-css-utils": set(),                                                        # MAL-2026-18331; SEMVER >=0
+    "harlow-css-mixer": set(),                                                       # MAL-2026-18332; SEMVER >=0
+    "path-stream-utils-testmetest": set(),                                           # MAL-2026-18333; SEMVER >=0
+    "postcss-semantic-themes": set(),                                                # MAL-2026-18334; SEMVER >=0
+    "ctf-agent": {"0.1.0"},                                                          # MAL-2026-18335
 }
 
 # npm scopes hit in this campaign. Exact versions are pinned above; any
